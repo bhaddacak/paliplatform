@@ -1,0 +1,22 @@
+Notes on text referencing
+	1. Pāli text referencing is really a mess. Formerly we rely mostly on academic standard. Now this scheme is no longer adaquate. Because there is no unified method for now, I try my best to make the references more enjoyable to use and remember.
+	2. The Academic method is shown for comparing. The sources of these references come from Oskar von Hinüber's "A Handbook of Pāli Literature" and "Standard Abbreviations of Pali texts" suggested by the Pali Text Society.
+	3. The collection of PTS follows the PTS standard, whereas, if no better alternatives, the others follow my scheme (which borrows some ideas from the SuttaCentral).
+	4. Items marked by an asterisk (*) have an additional note which can be shown by clicking them.
+	5. CSTR to SuttaCentral translation table
+		Mv = Kd1 - Kd10
+		Cv = Kd11 - Kd22
+		D1 = DN1 - DN13
+		D2 = DN14 - DN23
+		D3 = DN24 - DN34
+		M1 = MN1 - MN50
+		M2 = MN51 - MN100
+		M3 = MN101 - MN152
+		S1 = SN1 - SN11
+		S2 = SN12 - SN21
+		S3 = SN22 - SN34
+		S4 = SN35 - SN44
+		S5 = SN45 - SN56
+		Pt1 = Patthana1
+		Pt2 = Patthana2
+		Pt3 = Patthana3 - Patthana24

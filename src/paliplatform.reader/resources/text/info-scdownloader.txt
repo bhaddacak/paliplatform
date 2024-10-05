@@ -1,0 +1,3 @@
+Notes on SuttaCentral Bilara data
+	1. This tool downloads SuttaCentral's "Bilara data" from its current GitHub repo. The file is around 40 MB.
+	2. If the users want to keep the data up-to-date, they should download it from time to time.

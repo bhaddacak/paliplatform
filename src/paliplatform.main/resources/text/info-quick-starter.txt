@@ -1,0 +1,8 @@
+Quick starter guide
+	1. There are three modes the user can enter a character to text inputs in the program: 
+		(1) Regular mode (a➤a) is the normal input mode of your computer. Nothing is added to the process.
+		(2) Unused-characters mode (x➤ā) utilizes unused English characters for some Pāli letters with diacritics. Here are the program's default mapping: x=ā, X=ī, w=ṃ, W=ū, f=ñ, F=ṅ, q=ṭ, Q=ḍ, z=ṇ, Z=ḷ. This mode includes two special keys for making a character under cursor uppercase (<) and lowercase (>). All these keys can be set by the user. See the program's settings for more information.
+		(3) Composite mode (ā➤ā) is an intuitive way to enter a diacritic mark. Here are the program's preset: ~ = tilde, - = macron, ' = dot above, . = dot below, " = acute. The mapping can be set otherwise in the program's settings.
+	2. These modes can be switched circularly by the button marked with a mode's symbol, or pressing Ctrl-Space.
+	3. The program provided three embedded Roman fonts (DejaVu family) and some external fonts in directory 'fonts' at the program's root. The user can add more fonts (only ttf) there, particularly when non-Roman scripts are displayed unexpectedly. And if the user's host system has complete font set installed, external non-Roman fonts can be removed so that the program can fall back to use the system fonts.
+	4. If the program lingers when closing, try locking databases in Dict, Lucene, and DPD menu. This should be done when no further needs for Dict data, Lister tables, and DPD tables (e.g. deconstructor) to be created.

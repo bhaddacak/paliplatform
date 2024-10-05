@@ -1,0 +1,5 @@
+A guide to Term Lister
+	1. Before use, a list has to be generated first by selecting the "Listing options" button and choosing an index built formerly by Lucene Finder. Once the Generate button is pressed, a table will be created and the list can be selected and seen.
+	2. Despite included in the index, numbers and bold texts, when creating a lister table, are excluded. (Listing numbers makes little sense. And if bold texts are counted, the frequency of those terms will be doubled.)
+	3. In the frequency range option, to see the whole range, set it to ">= 1". Other options can be suited for other specific purposes.
+	4. When the maximum rows is set to 100,000 or greater, avoid sorting the result table alphabet-wise by clicking the table header 'Term'. This may cause the program unresponsive in slow computers. Sorting likewise by numbers, i.e. frequency or length, is safe but it may take time.

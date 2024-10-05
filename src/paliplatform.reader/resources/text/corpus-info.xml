@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<corpora>
+	<corpus>
+		<name>Chaṭṭha Saṅgāyana Tipiṭaka Restructured</name>
+		<shortname>CST Restructured</shortname>
+		<root>cstr</root>
+		<infofile>cstr-info.xml</infofile>
+		<inarchive>false</inarchive>
+		<transformable>true</transformable>
+		<textbasket>The Vinaya:Vinayapiṭake:vin</textbasket>
+		<textbasket>The Suttanta:Suttantapiṭake:sut</textbasket>
+		<textbasket>The Abhidhamma:Abhidhammapiṭake:abh</textbasket>
+		<textclass>Main texts:Mūlaganthā:mul</textclass>
+		<textclass>Exegetical works:Aṭṭhakathāṭīkādi:exe</textclass>
+		<description>A restructured collection of the Chaṭṭha Saṅgāyana Tipiṭaka prepared by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>https://github.com/bhaddacak/cst-kit</url>
+		<url>https://bhaddacak.github.io/cstpage</url>
+		<url>https://bhaddacak.github.io/cst</url>
+	</corpus>
+	<corpus>
+		<name>CST4 Data</name>
+		<shortname>CST4 Data</shortname>
+		<root>cst4</root>
+		<infofile>cst4-info.xml</infofile>
+		<inarchive>true</inarchive>
+		<zipfile>cst4roman_utf8.zip</zipfile>
+		<transformable>true</transformable>
+		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
+		<textbasket>The Suttanta:Suttapiṭaka:sut</textbasket>
+		<textbasket>The Abhidhamma:Abhidhammapiṭaka:abh</textbasket>
+		<textclass>Main texts:Mūla:mul</textclass>
+		<textclass>Commentaries:Aṭṭhakathā:att</textclass>
+		<textclass>Subcommentaries:Ṭīkā:tik</textclass>
+		<extragroup>Others (Extras):Añña:ext</extragroup>
+		<extrasubgroup>Visuddhimagga:Visuddhimaggo:vism</extrasubgroup>
+		<extrasubgroup>Works by Leḍī sayāḍo:Leḍī sayāḍo gantha-saṅgaho:ledi</extrasubgroup>
+		<extrasubgroup>Homage to the Buddha:Buddha-vandanā gantha-saṅgaho:van</extrasubgroup>
+		<extrasubgroup>Chronicles:Vaṃsa-gantha-saṅgaho:vam</extrasubgroup>
+		<extrasubgroup>Grammar books:Byākaraṇa-gantha-saṅgaho:gram</extrasubgroup>
+		<extrasubgroup>Question-answer for Saṅgāyana:Saṅgāyana-puccha-vissajjanā:pv</extrasubgroup>
+		<extrasubgroup>Texts in Nīti group:Nīti-gantha-saṅgaho:niti</extrasubgroup>
+		<extrasubgroup>Miscellaneous texts:Pakiṇṇaka-gantha-saṅgaho:pak</extrasubgroup>
+		<extrasubgroup>Texts in Sihala collection:Sihaḷa-gantha-saṅgaho:sin</extrasubgroup>
+		<description>The main distribution of the Chaṭṭha Saṅgāyana Tipiṭaka as bundled in CST4, cleanly converted from Devanagari to Roman script with least contamination by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>http://tipitaka.org</url>
+	</corpus>
+	<corpus>
+		<name>SuttaCentral</name>
+		<shortname>SuttaCentral</shortname>
+		<root>sc</root>
+		<inarchive>true</inarchive>
+		<zipfile>bilara-data-published.zip</zipfile>
+		<transformable>false</transformable>
+		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
+		<textbasket>The Suttanta:Suttantapiṭaka:sut</textbasket>
+		<textbasket>The Abhidhamma:Abhidhammapiṭaka:abh</textbasket>
+		<description>A decent source of Pāli texts and translations</description>
+		<copyright>Creative Commons Zero (CC0 1.0 Universal) (http://creativecommons.org/publicdomain/zero/1.0/)</copyright>
+		<url>https://suttacentral.net</url>
+		<url>https://github.com/suttacentral</url>
+	</corpus>
+	<corpus>
+		<name>The Pali Text Society Tipiṭaka</name>
+		<shortname>PTS Tipiṭaka</shortname>
+		<root>ptst</root>
+		<infofile>ptst-info.xml</infofile>
+		<inarchive>true</inarchive>
+		<zipfile>gretil_pts.zip</zipfile>
+		<transformable>false</transformable>
+		<textbasket>Vinaya-Piṭaka::vin</textbasket>
+		<textbasket>Sutta-Piṭaka::sut</textbasket>
+		<textbasket>Abhidhamma-Piṭaka::abh</textbasket>
+		<extragroup>Others::ext</extragroup>
+		<description>From GRETIL's collection, input by the Dhammakaya Foundation, Thailand, 1989-1996 (see more information in the documents)</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>http://gretil.sub.uni-goettingen.de/gretil.htm</url>
+	</corpus>
+	<corpus>
+		<name>Buddha Jayanti Tipiṭaka</name>
+		<shortname>BJT Tipiṭaka</shortname>
+		<root>bjt</root>
+		<infofile>bjt-info.xml</infofile>
+		<inarchive>true</inarchive>
+		<zipfile>gretil_bjt.zip</zipfile>
+		<transformable>false</transformable>
+		<textbasket>Vinayapiṭaka::vin</textbasket>
+		<textbasket>Suttantapiṭaka::sut</textbasket>
+		<textbasket>Abhidhammapiṭaka::abh</textbasket>
+		<description>From GRETIL's collection, input by the Sri Lanka Tripitaka Project</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>http://gretil.sub.uni-goettingen.de/gretil.htm</url>
+	</corpus>
+	<corpus>
+		<name>Siam Rath Tipiṭaka</name>
+		<shortname>SRT Tipiṭaka</shortname>
+		<root>srt</root>
+		<infofile>srt-info.xml</infofile>
+		<inarchive>true</inarchive>
+		<zipfile>srt_roman.zip</zipfile>
+		<transformable>false</transformable>
+		<textbasket>Vinayapiṭakaṃ::vin</textbasket>
+		<textbasket>Suttantapiṭakaṃ::sut</textbasket>
+		<textbasket>Abhidhammapiṭakaṃ::abh</textbasket>
+		<textclass>Main texts:Pāli:mul</textclass>
+		<textclass>Commentaries:Aṭṭhakathā:att</textclass>
+		<description>Converted from Thai script by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>https://bhaddacak.github.io/srtreader</url>
+		<url>http://www.learntripitaka.com</url>
+	</corpus>
+	<corpus>
+		<name>Traditional Pāli Grammar Books</name>
+		<shortname>Grammar Books</shortname>
+		<root>gram</root>
+		<infofile>gram-info.xml</infofile>
+		<inarchive>true</inarchive>
+		<zipfile>gram.zip</zipfile>
+		<transformable>false</transformable>
+		<description>Prepared by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>https://bhaddacak.github.io/grammarbooks</url>
+	</corpus>
+</corpora>

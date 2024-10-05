@@ -1,0 +1,8 @@
+How to find a document
+	1. There are roughly three modes of finding: (1) search in document's information as shown in TOC tree, (2) search in text references, and (3) search in document's contents (full text search).
+	2. Documents' information is more than it is shown in the table. So, unexpected results often show up.
+	3. Text references are abbreviations used for distinctive identifying a document. Here we can search their all possibilities including those used by academics. See also Reference Table for more details.
+	4. In content search, a regular-expression pattern can be used as a search query. In this mode, all special characters are interpreted as regex meta-characters, and the user has to press Enter to submit the query. This search is case-sensitive, and at least three characters are allowed as a query. The last column of the result shows the number of instances found in each document.
+	5. To search a whole word in this mode, '\b' can be used to mark the word boundary, For example, "\bdhammā\b" matches "dhammā" not "xxxdhammāxxx". Remember that complex regex patterns take time to process.
+	6. To narrow down the source and speed up the search, the inclusion of text groups should be set properly.
+	7. The content search, despite its handiness, is brute, slow, and stupid. For a more refined search, consider using Lucene Finder.

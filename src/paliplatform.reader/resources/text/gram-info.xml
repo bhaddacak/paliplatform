@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="kaccrupa">
+ <ref>Kacc:Rūpa</ref>
+ <file>gram/kaccrupa.txt</file>
+ <name>Kaccāyanabyākaraṇaṃ Padarūpasiddhi ca</name>
+ <description>The main texts used by the tradition of Kaccāyana school of Pāli grammar.</description>
+</text>
+<text id="dhmjs">
+ <ref>Dhmjs</ref>
+ <file>gram/dhmjs.txt</file>
+ <name>Kaccāyana-dhātumañjūsā</name>
+ <description>The collection of roots used by the Kaccāyana school, edited by J.R. Bhaddacak.</description>
+</text>
+<text id="moggpayo">
+ <ref>Mogg:Payo</ref>
+ <file>gram/moggpayo.txt</file>
+ <name>Moggallānabyākaraṇaṃ Payogasiddhi ca</name>
+ <description>The main texts used by the tradition of Moggallāna school of Pāli grammar.</description>
+</text>
+<text id="panct">
+ <ref>Pañc-t</ref>
+ <file>gram/panct.txt</file>
+ <name>Moggallānapañcikāṭīkā</name>
+ <description>The subcommentary on Moggallānapañcikā.</description>
+</text>
+<text id="niru">
+ <ref>Niru</ref>
+ <file>gram/niru.txt</file>
+ <name>Niruttidīpanī</name>
+ <description>Leḍī Sayāḍo's commentary on Moggallānabyākaraṇa.</description>
+</text>
+<text id="saddpad">
+ <ref>Sadd-Pad</ref>
+ <file>gram/saddpad.txt</file>
+ <name>Saddanītippakaraṇassa Padamālā</name>
+ <description>The first part of Aggavaṃsa's Saddanītippakaraṇa.</description>
+</text>
+<text id="sadddha">
+ <ref>Sadd-Dhā</ref>
+ <file>gram/sadddha.txt</file>
+ <name>Saddanītippakaraṇassa Dhātumālā</name>
+ <description>The second part of Aggavaṃsa's Saddanītippakaraṇa.</description>
+</text>
+<text id="saddsut">
+ <ref>Sadd-Sut</ref>
+ <file>gram/saddsut.txt</file>
+ <name>Saddanītippakaraṇassa Suttamālā</name>
+ <description>The third part of Aggavaṃsa's Saddanītippakaraṇa.</description>
+</text>
+<text id="abhidha">
+ <ref>Abhidhā</ref>
+ <file>gram/abhidha.txt</file>
+ <name>Abhidhānappadīpikā Ṭīkā ca</name>
+ <description>The first Pāli lexicography with its commentary.</description>
+</text>
+<text id="subho">
+ <ref>Subho</ref>
+ <file>gram/subho.txt</file>
+ <name>Subodhālaṅkāro</name>
+ <description>Saṅgharakkhita's book on the art of poetic composition.</description>
+</text>
+<text id="subhot">
+ <ref>Subho-t</ref>
+ <file>gram/subhot.txt</file>
+ <name>Subodhālaṅkāraṭīkā</name>
+ <description>A commentary on Saṅgharakkhita's Subodhālaṅkāra, the source text included.</description>
+</text>
+<text id="vutt">
+ <ref>Vutt</ref>
+ <file>gram/vutt.txt</file>
+ <name>Vuttodaya</name>
+ <description>Saṅgharakkhita's book on prosodic meter.</description>
+</text>
+<text id="dhatva">
+ <ref>Dhātva</ref>
+ <file>gram/dhatva.txt</file>
+ <name>Dhātvatthasaṅgaha</name>
+ <description>A modern collection of Pāli roots compiled by Visuddhācāra Thera in Mandalay.</description>
+</text>
+</collection>

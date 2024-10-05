@@ -1,0 +1,3 @@
+Notes on head words in DPD
+	1. Head words are distinct terms that have explanations. In one dictionary search, there can be more head words corresponding to the query. But this window shows only head words by their own terms. Homonyms can be seen with the ending numbers.
+	2. If the term has information about Word and Idiom Family, they will be shown together. Information about root can be opened in a separate window by linking button.

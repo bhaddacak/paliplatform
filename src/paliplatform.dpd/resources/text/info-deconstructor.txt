@@ -1,0 +1,9 @@
+A guide to Deconstructor
+	1. The Deconstructor uses data from DPD database, but not directly for a performance reason.
+	2. Before use, the internal deconstructor table has to be created first by pressing the Generate button. This can take several minutes to process.
+	3. Selecting higher maximum rows takes more time in retrieving data. But entering a more specific query can speed up the search considerably.
+	4. There are three search modes or methods:
+		i) Search from the beginning of head terms. This is normally quick for moderate maximum rows.
+		ii) Search within head terms. This is also reasonably quick. This mode allows a query at least 2 characters long.
+		iii) Search within both head terms and their deconstructions. This is quite slow, and Enter key or Search button has to be used to submit the query. This mode also allows a query at least 2 characters long.
+	5. The result table can be clicked to see the row in detail.

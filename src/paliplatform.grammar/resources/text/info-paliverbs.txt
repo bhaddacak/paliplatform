@@ -1,0 +1,5 @@
+Notes on Pāli verbs
+	1. All verbs listed here come from the Concise Pāli-English Dictionary of Ven. A.P. Buddhadatta. They are not meant to be exhaustive but have a good coverage.
+	2. The name of roots and paccayas can be slightly different from Kaccāyana/Saddanīti's convention.
+	3. The canonical verb form is singular, present, third-person, parassapada (active) verb form--typically ending with 'ti.'
+	4. Potential Participle is called commonly by other textbooks as Future Passive Participle.

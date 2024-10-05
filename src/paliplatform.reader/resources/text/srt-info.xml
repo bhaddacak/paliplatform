@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="buv1">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Buv1</ref>
+ <file>pali/01.txt</file>
+ <name>1. Mahāvibhaṅgo 1</name>
+</text>
+<text id="buv2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Buv2</ref>
+ <file>pali/02.txt</file>
+ <name>2. Mahāvibhaṅgo 2</name>
+</text>
+<text id="biv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Biv</ref>
+ <file>pali/03.txt</file>
+ <name>3. Bhikkhunīvibhaṅgo</name>
+</text>
+<text id="mv1">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Mv1</ref>
+ <file>pali/04.txt</file>
+ <name>4. Mahāvaggo 1</name>
+</text>
+<text id="mv2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Mv2</ref>
+ <file>pali/05.txt</file>
+ <name>5. Mahāvaggo 2</name>
+</text>
+<text id="cv1">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Cv1</ref>
+ <file>pali/06.txt</file>
+ <name>6. Cullavaggo 1</name>
+</text>
+<text id="cv2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Cv2</ref>
+ <file>pali/07.txt</file>
+ <name>7. Cullavaggo 2</name>
+</text>
+<text id="pvr">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>Pvr</ref>
+ <file>pali/08.txt</file>
+ <name>8. Parivāro</name>
+</text>
+<text id="d1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>D1</ref>
+ <file>pali/09.txt</file>
+ <name>9. Dīghanikāyassa Sīlakkhandhavaggo</name>
+</text>
+<text id="d2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>D2</ref>
+ <file>pali/10.txt</file>
+ <name>10. Dīghanikāyassa Mahāvaggo</name>
+</text>
+<text id="d3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>D3</ref>
+ <file>pali/11.txt</file>
+ <name>11. Dīghanikāyassa Pāṭikavaggo</name>
+</text>
+<text id="m1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>M1</ref>
+ <file>pali/12.txt</file>
+ <name>12. Majjhimanikāyassa Mūlapaṇṇāsakaṃ</name>
+</text>
+<text id="m2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>M2</ref>
+ <file>pali/13.txt</file>
+ <name>13. Majjhimanikāyassa Majjhimapaṇṇāsakaṃ</name>
+</text>
+<text id="m3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>M3</ref>
+ <file>pali/14.txt</file>
+ <name>14. Majjhimanikāyassa Uparipaṇṇāsakaṃ</name>
+</text>
+<text id="s1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>S1</ref>
+ <file>pali/15.txt</file>
+ <name>15. Saṃyuttanikāyassa Sagāthavaggo</name>
+</text>
+<text id="s2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>S2</ref>
+ <file>pali/16.txt</file>
+ <name>16. Saṃyuttanikāyassa Nidānavaggo</name>
+</text>
+<text id="s3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>S3</ref>
+ <file>pali/17.txt</file>
+ <name>17. Saṃyuttanikāyassa Khandhavāravaggo</name>
+</text>
+<text id="s4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>S4</ref>
+ <file>pali/18.txt</file>
+ <name>18. Saṃyuttanikāyassa Saḷāyatanavaggo</name>
+</text>
+<text id="s5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>S5</ref>
+ <file>pali/19.txt</file>
+ <name>19. Saṃyuttanikāyassa Mahāvāravaggo</name>
+</text>
+<text id="a1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>A1</ref>
+ <file>pali/20.txt</file>
+ <name>20. Aṅguttaranikāyassa (1) Eka-Duka-Tikanipātā</name>
+</text>
+<text id="a2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>A2</ref>
+ <file>pali/21.txt</file>
+ <name>21. Aṅguttaranikāyassa (2) Catukkanipāto</name>
+</text>
+<text id="a3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>A3</ref>
+ <file>pali/22.txt</file>
+ <name>22. Aṅguttaranikāyassa (3) Pañcaka-Chakkanipātā</name>
+</text>
+<text id="a4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>A4</ref>
+ <file>pali/23.txt</file>
+ <name>23. Aṅguttaranikāyassa (4) Sattaka-Aṭṭhaka-Navakanipātā</name>
+</text>
+<text id="a5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>A5</ref>
+ <file>pali/24.txt</file>
+ <name>24. Aṅguttaranikāyassa (5) Dasaka-Ekādasakanipātā</name>
+</text>
+<text id="khp-snp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Khp</ref>
+ <ref>Dhp</ref>
+ <ref>Ud</ref>
+ <ref>It</ref>
+ <ref>Snp</ref>
+ <file>pali/25.txt</file>
+ <name>25. Khuddakapāṭho, Dhammapadagāthā, Udānaṃ, Itivuttakaṃ, Suttanipātā</name>
+</text>
+<text id="vv-thig">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Vv</ref>
+ <ref>Pv</ref>
+ <ref>Thag</ref>
+ <ref>Thig</ref>
+ <file>pali/26.txt</file>
+ <name>26. Vimānavatthu, Petavatthu, Theragāthā, Therīgāthā</name>
+</text>
+<text id="ja1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Ja1</ref>
+ <file>pali/27.txt</file>
+ <name>27. Jātakaṃ 1: Eka-Cattālīsanipātajātakaṃ</name>
+</text>
+<text id="ja2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Ja2</ref>
+ <file>pali/28.txt</file>
+ <name>28. Jātakaṃ 2: Paññāsa-Mahānipātajātakaṃ</name>
+</text>
+<text id="nidd1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Nidd1</ref>
+ <file>pali/29.txt</file>
+ <name>29. Mahāniddeso</name>
+</text>
+<text id="nidd2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Nidd2</ref>
+ <file>pali/30.txt</file>
+ <name>30. Cūḷaniddeso</name>
+</text>
+<text id="psm">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Psm</ref>
+ <file>pali/31.txt</file>
+ <name>31. Paṭisambhidāmaggo</name>
+</text>
+<text id="ap1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Ap1</ref>
+ <file>pali/32.txt</file>
+ <name>32. Apadānaṃ 1</name>
+</text>
+<text id="ap2-cp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>Ap2</ref>
+ <ref>Bv</ref>
+ <ref>Cp</ref>
+ <file>pali/33.txt</file>
+ <name>33. Apadānaṃ 2, Buddhavaṃso, Cariyāpiṭakaṃ</name>
+</text>
+<text id="dhs">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Dhs</ref>
+ <file>pali/34.txt</file>
+ <name>34. Dhammasaṅgaṇi</name>
+</text>
+<text id="vbh">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Vbh</ref>
+ <file>pali/35.txt</file>
+ <name>35. Vibhaṅgo</name>
+</text>
+<text id="dhk-pp">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Dhk</ref>
+ <ref>Pp</ref>
+ <file>pali/36.txt</file>
+ <name>36. Dhātukathā, Puggalapaññatti</name>
+</text>
+<text id="kv">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Kv</ref>
+ <file>pali/37.txt</file>
+ <name>37. Kathāvatthu</name>
+</text>
+<text id="ym1">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Ym1</ref>
+ <file>pali/38.txt</file>
+ <name>38. Yamakaṃ 1</name>
+</text>
+<text id="ym2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Ym2</ref>
+ <file>pali/39.txt</file>
+ <name>39. Yamakaṃ 2</name>
+</text>
+<text id="pt1">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt1</ref>
+ <file>pali/40.txt</file>
+ <name>40. Paṭṭhānaṃ 1: Anulomatikapaṭṭhānaṃ Purimaṃ</name>
+</text>
+<text id="pt2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt2</ref>
+ <file>pali/41.txt</file>
+ <name>41. Paṭṭhānaṃ 2: Anulomatikapaṭṭhānaṃ Pacchimaṃ</name>
+</text>
+<text id="pt3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt3</ref>
+ <file>pali/42.txt</file>
+ <name>42. Paṭṭhānaṃ 3: Anulomadukapaṭṭhānaṃ Purimaṃ</name>
+</text>
+<text id="pt4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt4</ref>
+ <file>pali/43.txt</file>
+ <name>43. Paṭṭhānaṃ 4: Anulomadukapaṭṭhānaṃ Pacchimaṃ</name>
+</text>
+<text id="pt5">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt5</ref>
+ <file>pali/44.txt</file>
+ <name>44. Paṭṭhānaṃ 5: Anulomapaṭṭhānaṃ</name>
+</text>
+<text id="pt6">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>Pt6</ref>
+ <file>pali/45.txt</file>
+ <name>45. Paṭṭhānaṃ 6: Paccanīya, Anulomapaccanīya, Paccanīyānuloma</name>
+</text>
+<text id="sp1">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>Sp1</ref>
+ <file>attha/01.txt</file>
+ <name>1. Samantapāsādikā 1</name>
+</text>
+<text id="sp2">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>Sp2</ref>
+ <file>attha/02.txt</file>
+ <name>2. Samantapāsādikā 2</name>
+</text>
+<text id="sp3">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>Sp3</ref>
+ <file>attha/03.txt</file>
+ <name>3. Samantapāsādikā 3</name>
+</text>
+<text id="d-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>D-a1</ref>
+ <file>attha/04.txt</file>
+ <name>4. Dīghanikāyaṭṭhakathāya Sumaṅgalavilāsinī 1</name>
+</text>
+<text id="d-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>D-a2</ref>
+ <file>attha/05.txt</file>
+ <name>5. Dīghanikāyaṭṭhakathāya Sumaṅgalavilāsinī 2</name>
+</text>
+<text id="d-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>D-a3</ref>
+ <file>attha/06.txt</file>
+ <name>6. Dīghanikāyaṭṭhakathāya Sumaṅgalavilāsinī 3</name>
+</text>
+<text id="m-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>M-a1</ref>
+ <file>attha/07.txt</file>
+ <name>7. Majjhimanikāyaṭṭhakathāya Papañcasūdanī 1</name>
+</text>
+<text id="m-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>M-a2</ref>
+ <file>attha/08.txt</file>
+ <name>8. Majjhimanikāyaṭṭhakathāya Papañcasūdanī 2</name>
+</text>
+<text id="m-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>M-a3</ref>
+ <file>attha/09.txt</file>
+ <name>9. Majjhimanikāyaṭṭhakathāya Papañcasūdanī 3</name>
+</text>
+<text id="s-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>S-a1</ref>
+ <file>attha/10.txt</file>
+ <name>10. Saṃyuttanikāyaṭṭhakathāya Sāratthappakāsinī 1</name>
+</text>
+<text id="s-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>S-a2</ref>
+ <file>attha/11.txt</file>
+ <name>11. Saṃyuttanikāyaṭṭhakathāya Sāratthappakāsinī 2</name>
+</text>
+<text id="s-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>S-a3</ref>
+ <file>attha/12.txt</file>
+ <name>12. Saṃyuttanikāyaṭṭhakathāya Sāratthappakāsinī 3</name>
+</text>
+<text id="a-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>A-a1</ref>
+ <file>attha/13.txt</file>
+ <name>13. Aṅguttaranikāyaṭṭhakathāya Manorathapūraṇī 1</name>
+</text>
+<text id="a-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>A-a2</ref>
+ <file>attha/14.txt</file>
+ <name>14. Aṅguttaranikāyaṭṭhakathāya Manorathapūraṇī 2</name>
+</text>
+<text id="a-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>A-a3</ref>
+ <file>attha/15.txt</file>
+ <name>15. Aṅguttaranikāyaṭṭhakathāya Manorathapūraṇī 3</name>
+</text>
+<text id="khp-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Khp-a</ref>
+ <file>attha/16.txt</file>
+ <name>16. Paramatthajotikā Khuddakapāṭhavaṇṇanā</name>
+</text>
+<text id="dhp-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Dhp-a1</ref>
+ <file>attha/17.txt</file>
+ <name>17. Dhammapadaṭṭhakathā 1</name>
+</text>
+<text id="dhp-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Dhp-a2</ref>
+ <file>attha/18.txt</file>
+ <name>18. Dhammapadaṭṭhakathā 2</name>
+</text>
+<text id="ud-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ud-a</ref>
+ <file>attha/19.txt</file>
+ <name>19. Paramatthadīpanī Udānavaṇṇanā</name>
+</text>
+<text id="it-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>It-a</ref>
+ <file>attha/20.txt</file>
+ <name>20. Paramatthadīpanī Itivuttakavaṇṇanā</name>
+</text>
+<text id="snp-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Snp-a1</ref>
+ <file>attha/21.txt</file>
+ <name>21. Paramatthajotikā Suttanipātavaṇṇanā 1</name>
+</text>
+<text id="snp-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Snp-a2</ref>
+ <file>attha/22.txt</file>
+ <name>22. Paramatthajotikā Suttanipātavaṇṇanā 2</name>
+</text>
+<text id="vv-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Vv-a</ref>
+ <file>attha/23.txt</file>
+ <name>23. Paramatthadīpanī Vimānavatthuvaṇṇanā</name>
+</text>
+<text id="pv-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Pv-a</ref>
+ <file>attha/24.txt</file>
+ <name>24. Paramatthadīpanī Petavatthuvaṇṇanā</name>
+</text>
+<text id="thag-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thag-a1</ref>
+ <file>attha/25.txt</file>
+ <name>25. Paramatthadīpanī Theragāthāvaṇṇanā 1</name>
+</text>
+<text id="thag-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thag-a2</ref>
+ <file>attha/26.txt</file>
+ <name>26. Paramatthadīpanī Theragāthāvaṇṇanā 2</name>
+</text>
+<text id="thig-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thig-a</ref>
+ <file>attha/27.txt</file>
+ <name>27. Paramatthadīpanī Therīgāthāvaṇṇanā</name>
+</text>
+<text id="ja-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a1</ref>
+ <file>attha/28.txt</file>
+ <name>28. Jātakaṭṭhakathā Ekanipātavaṇṇanā 1</name>
+</text>
+<text id="ja-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a2</ref>
+ <file>attha/29.txt</file>
+ <name>29. Jātakaṭṭhakathā Ekanipātavaṇṇanā 2</name>
+</text>
+<text id="ja-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a3</ref>
+ <file>attha/30.txt</file>
+ <name>30. Jātakaṭṭhakathā Dukanipātavaṇṇanā</name>
+</text>
+<text id="ja-a4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a4</ref>
+ <file>attha/31.txt</file>
+ <name>31. Jātakaṭṭhakathā Tika-Pañcanipātavaṇṇanā</name>
+</text>
+<text id="ja-a5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a5</ref>
+ <file>attha/32.txt</file>
+ <name>32. Jātakaṭṭhakathā Chakka-Dasakanipātavaṇṇanā</name>
+</text>
+<text id="ja-a6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a6</ref>
+ <file>attha/33.txt</file>
+ <name>33. Jātakaṭṭhakathā Ekādasa-Pakiṇṇakanipātavaṇṇanā</name>
+</text>
+<text id="ja-a7">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a7</ref>
+ <file>attha/34.txt</file>
+ <name>34. Jātakaṭṭhakathā Vīsati-Cattālīsanipātavaṇṇanā</name>
+</text>
+<text id="ja-a8">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a8</ref>
+ <file>attha/35.txt</file>
+ <name>35. Jātakaṭṭhakathā Paññāsa-Sattatinipātavaṇṇanā</name>
+</text>
+<text id="ja-a9">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a9</ref>
+ <file>attha/36.txt</file>
+ <name>36. Jātakaṭṭhakathā Mahānipātavaṇaṇanā 1</name>
+</text>
+<text id="ja-a10">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ja-a10</ref>
+ <file>attha/37.txt</file>
+ <name>37. Jātakaṭṭhakathā Mahānipātavaṇaṇanā 2</name>
+</text>
+<text id="nidd-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Nidd-a1</ref>
+ <file>attha/38.txt</file>
+ <name>38. Saddhammappajjotikā Niddesavaṇṇanā 1</name>
+</text>
+<text id="nidd-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Nidd-a2</ref>
+ <file>attha/39.txt</file>
+ <name>39. Saddhammappajjotikā Niddesavaṇṇanā 2</name>
+</text>
+<text id="psm-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>psm-a1</ref>
+ <file>attha/40.txt</file>
+ <name>40. Saddhammappakāsinī Paṭisambhidāmaggavaṇṇanā 1</name>
+</text>
+<text id="psm-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>psm-a2</ref>
+ <file>attha/41.txt</file>
+ <name>41. Saddhammappakāsinī Paṭisambhidāmaggavaṇṇanā 2</name>
+</text>
+<text id="ap-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ap-a1</ref>
+ <file>attha/42.txt</file>
+ <name>42. Visuddhajanavilāsinī Apadānavaṇṇanā 1</name>
+</text>
+<text id="ap-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Ap-a2</ref>
+ <file>attha/43.txt</file>
+ <name>43. Visuddhajanavilāsinī Apadānavaṇṇanā 2</name>
+</text>
+<text id="bv-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Bv-a</ref>
+ <file>attha/44.txt</file>
+ <name>44. Madhuratthavilāsinī Buddhavaṃsavaṇṇanā</name>
+</text>
+<text id="cp-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>Cp-a</ref>
+ <file>attha/45.txt</file>
+ <name>45. Paramatthadīpanī Cariyāpiṭakavaṇṇanā</name>
+</text>
+<text id="dhs-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>dhs-a</ref>
+ <file>attha/46.txt</file>
+ <name>46. Aṭṭhasālinī Dhammasaṅgaṇīvaṇṇanā</name>
+</text>
+<text id="vbh-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>Vbh-a</ref>
+ <file>attha/47.txt</file>
+ <name>47. Sammohavinodanī Vibhaṅgavaṇṇanā</name>
+</text>
+<text id="dhk-pt-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>Dhk-a</ref>
+ <ref>Pp-a</ref>
+ <ref>Kv-a</ref>
+ <ref>Ym-a</ref>
+ <ref>Pt-a</ref>
+ <file>attha/48.txt</file>
+ <name>48. Paramatthadīpanī Pañcappakaraṇavaṇṇanā</name>
+</text>
+</collection>

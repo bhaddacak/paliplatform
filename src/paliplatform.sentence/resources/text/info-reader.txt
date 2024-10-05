@@ -1,0 +1,8 @@
+A guide to Pāli Sentence Reader
+	1. The reader facilitates Pāli text reading by incorporating various grammatical aids.
+	2. If not invoked by the HTML viewer or text Editor, text can be loaded into the reader by the paste button or Ctrl-V, after it is copied into clipboard. The text then will be shown sentence by sentence. Sentences can also be loaded as a sequence file.
+	3. There are two display modes: simple view and detailed view. In the latter, the DPD (if available) and the CPED will be used as the main explanations (the former overrides the latter). If no exact term found in the CPED, the nearest will show, marked by an asterisk (*).
+	4. The user can override explanations in the CPED with the custom dict. This can be modified by the user.
+	5. The reader also helps cutting common joined (sandhi) words by the list provided. This list can also be edited by the user. (No data from DPD deconstructor are used here.)
+	6. The sentence displayed can also be edited to get better explanations, for example, cutting long compounds to make their parts recognizable or cutting complex sandhi words or making certain corrections.
+	7. If a sentence has translations, the lightbulb at the toolbar will turn green. The user can see the translations by open translation pane. Translations can be added and edited. For detailed operations, see Sentence Manager. For more information, see the user's manual.

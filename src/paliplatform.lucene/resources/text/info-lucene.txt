@@ -1,0 +1,7 @@
+A guide to indexing in Lucene Finder 
+	1. Before searching, an index has to be built first by enabling "Indexing options". After a corpus and text group is selected and the Build button is pressed, the index will be created and available to select afterward.
+	2. Some other options can also be set before the index is built:
+		- Including numbers makes searching numbers in the text possible.
+		- Normally, it is no need to include boldface text in the index, because the text itself is already a part of other fields. Only if the user really needs to search the boldface text, this option can be helpful.
+		- Screening out short words, can reduce noise when searching. The options provide up to three characters long. For more than that, using stopwords is a typical practice.
+		- The user can edit stopwords, by selecting the menu provided.

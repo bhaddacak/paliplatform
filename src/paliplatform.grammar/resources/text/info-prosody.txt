@@ -1,0 +1,11 @@
+A quick guide to Pāli prosody
+	1. There are two main types of Pāli prosody: (1) those which are counted by meters or weight (mattāvutti), and (2) those which are counted by syllables (vaññavutti). There are also several subtypes of these as shown in the table.
+	2. The basic meter of a syllable can be light (lahu = 1 or l) or strong (garu = 2 or g). A short vowel unfollowed by ṃ or double consonants is counted as lahu, otherwise garu.
+	3. Groups in mattāvutti are represented by lowercase characters: n (1111), s (112), j (121), b (211), m (22), 4 (any of the above five), 6 (any + g or ll), 8 (any combination of the five), 2 (g or ll).
+	4. Groups in vaññavutti are represented by uppercase characters: N (111), S (112), J (121), Y (122), B (211), R (212), T (221), M (222), L (14 lahus).
+	5. Other symbols used in patterns are: | (or), ! (not), ; (line separator), - (mere separator to ease the reading).
+	6. The analysis can be done by copying some text and hitting Analyze button. It can also be called by the Pāli document viewer using a right-click over a selected text portion.
+	7. When the result is shown, at the end of pattern lines is summation, e.g. '(16/24)' means 16 syllables/24 meter-units.
+	8. When 'incomplete' is shown, it means the pattern requires more data to analyze. It can happen when the pattern need 2 lines but only 1 line is processed.
+	9. When 'over-required' is shown, it means the input is longer than required by the pattern.
+	10. When a long line is copied, it can be truncated, marked by '...'. It is not supposed to be a verse. 

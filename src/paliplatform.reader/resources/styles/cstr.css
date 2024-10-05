@@ -1,0 +1,13 @@
+body {margin-right:2em;}
+h2, h3, h4, h5, h6 {text-align:center;}
+.centre {text-align:center;}
+.bodytext {text-indent:4em;}
+.indent {text-indent:4em; margin-left:6em;}
+.strong {text-align:center; font-weight:bold;}
+.part {text-align:center; font-weight:bold;}
+.group {text-align:center; font-weight:bold;}
+.subgroup {text-align:center; font-weight:bold;}
+.gatha1 {margin-bottom:0em; margin-left:8em;}
+.gatha2 {margin-bottom:0em; margin-left:8em;}
+.gatha3 {margin-bottom:0em; margin-left:8em;}
+.gathalast {margin-bottom:2em; margin-left:8em;}

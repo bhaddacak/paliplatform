@@ -1,0 +1,10 @@
+Notes on DPD dictionary
+	1. This dictionary uses data from DPD database, but a new lookup table has to be created for better performance. Only some substantial information is selected to show here.
+	2. Before use, the lookup table and other some have to be created first by pressing the Generate button. This can take several minutes to process.
+	3. Selecting higher maximum results takes more time in retrieving data. But entering a more specific query can speed up the search considerably.
+	4. There are two search modes or methods:
+		i) Search from the beginning of head terms. This is normally quick for moderate maximum results.
+		ii) Search within head terms. This is also reasonably quick. This mode allows a query at least 2 characters long.
+	5. Results from deconstructor data can be included in the search by the hammer button provided. All the results will be merged and shown together.
+	6. Some dictionary entries have further links to additional data, for example, information about roots. This can be seen as a small button with an arrow.
+	7. When the table generation has been done, the Mini DPD in Dict module will be available. That can be more handy with a different search function but less informative.

@@ -1,0 +1,1702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="vin1">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vin1</ref>
+ <file>cst4roman_utf8/vin01m.mul.xml</file>
+ <name>Pārājikapāḷi</name>
+ <linkid>vin1</linkid>
+</text>
+<text id="vin1-a">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>vin1-a</ref>
+ <file>cst4roman_utf8/vin01a.att.xml</file>
+ <name>Pārājikakaṇḍa-aṭṭhakathā</name>
+ <linkid>vin1</linkid>
+</text>
+<text id="vin2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vin2</ref>
+ <file>cst4roman_utf8/vin02m1.mul.xml</file>
+ <name>Pācittiyapāḷi</name>
+ <linkid>vin2</linkid>
+</text>
+<text id="vin2-a">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>vin2-a</ref>
+ <file>cst4roman_utf8/vin02a1.att.xml</file>
+ <name>Pācittiya-aṭṭhakathā</name>
+ <name>Bhikkhunīvibhaṅgavaṇṇanā</name>
+ <linkid>vin2</linkid>
+</text>
+<text id="vin3">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vin3</ref>
+ <file>cst4roman_utf8/vin02m2.mul.xml</file>
+ <name>Mahāvaggapāḷi</name>
+ <linkid>vin3</linkid>
+</text>
+<text id="vin3-a">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>vin3-a</ref>
+ <file>cst4roman_utf8/vin02a2.att.xml</file>
+ <name>Mahāvagga-aṭṭhakathā</name>
+ <linkid>vin3</linkid>
+</text>
+<text id="vin4">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vin4</ref>
+ <file>cst4roman_utf8/vin02m3.mul.xml</file>
+ <name>Cūḷavaggapāḷi</name>
+ <linkid>vin4</linkid>
+</text>
+<text id="vin4-a">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>vin4-a</ref>
+ <file>cst4roman_utf8/vin02a3.att.xml</file>
+ <name>Cūḷavagga-aṭṭhakathā</name>
+ <linkid>vin4</linkid>
+</text>
+<text id="vin5">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vin5</ref>
+ <file>cst4roman_utf8/vin02m4.mul.xml</file>
+ <name>Parivārapāḷi</name>
+ <linkid>vin5</linkid>
+</text>
+<text id="vin5-a">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>vin5-a</ref>
+ <file>cst4roman_utf8/vin02a4.att.xml</file>
+ <name>Parivāra-aṭṭhakathā</name>
+ <linkid>vin5</linkid>
+</text>
+<text id="vin-t1">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vin-t1</ref>
+ <file>cst4roman_utf8/vin01t1.tik.xml</file>
+ <name>Sāratthadīpanī 1</name>
+</text>
+<text id="vin-t2">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vin-t2</ref>
+ <file>cst4roman_utf8/vin01t2.tik.xml</file>
+ <name>Sāratthadīpanī 2</name>
+</text>
+<text id="vin-t3">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vin-t3</ref>
+ <file>cst4roman_utf8/vin02t.tik.xml</file>
+ <name>Sāratthadīpanī 3</name>
+</text>
+<text id="dvm">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>dvm</ref>
+ <file>cst4roman_utf8/vin04t.nrf.xml</file>
+ <name>Dvemātikāpāḷi</name>
+</text>
+<text id="vns">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vns</ref>
+ <file>cst4roman_utf8/vin05t.nrf.xml</file>
+ <name>Vinayasaṅgaha</name>
+</text>
+<text id="vjb">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vjb</ref>
+ <file>cst4roman_utf8/vin06t.nrf.xml</file>
+ <name>Vajirabuddhi</name>
+</text>
+<text id="vmv">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vmv</ref>
+ <file>cst4roman_utf8/vin07t.nrf.xml</file>
+ <name>Vimativinodanī</name>
+</text>
+<text id="vnl">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vnl</ref>
+ <file>cst4roman_utf8/vin08t.nrf.xml</file>
+ <name>Vinayālaṅkāra</name>
+</text>
+<text id="kkh-t">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>kkh-t</ref>
+ <file>cst4roman_utf8/vin09t.nrf.xml</file>
+ <name>Kaṅkhāvitaraṇī-ṭīkā</name>
+</text>
+<text id="vnv">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vnv</ref>
+ <file>cst4roman_utf8/vin10t.nrf.xml</file>
+ <name>Vinayavinicchaya</name>
+</text>
+<text id="vnv-t">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>vnv-t</ref>
+ <file>cst4roman_utf8/vin11t.nrf.xml</file>
+ <name>Vinayavinicchaya-ṭīkā</name>
+</text>
+<text id="pc-y">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>pc-y</ref>
+ <file>cst4roman_utf8/vin12t.nrf.xml</file>
+ <name>Pācityādiyojanā</name>
+</text>
+<text id="khds">
+ <group>vin</group>
+ <docclass>tik</docclass>
+ <ref>khds</ref>
+ <ref>mls</ref>
+ <file>cst4roman_utf8/vin13t.nrf.xml</file>
+ <name>Khuddasikkhā-mūlasikkhā</name>
+</text>
+<text id="dn1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn1</ref>
+ <file>cst4roman_utf8/s0101m.mul.xml</file>
+ <name>Sīlakkhandhavaggapāḷi</name>
+ <linkid>dn1</linkid>
+</text>
+<text id="dn1-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>dn1-a</ref>
+ <file>cst4roman_utf8/s0101a.att.xml</file>
+ <name>Sīlakkhandhavaggaṭṭhakathā</name>
+ <linkid>dn1</linkid>
+</text>
+<text id="dn1-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>dn1-t</ref>
+ <file>cst4roman_utf8/s0101t.tik.xml</file>
+ <name>Sīlakkhandhavaggaṭīkā</name>
+ <linkid>dn1</linkid>
+</text>
+<text id="dn2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn2</ref>
+ <file>cst4roman_utf8/s0102m.mul.xml</file>
+ <name>Mahāvaggapāḷi</name>
+ <linkid>dn2</linkid>
+</text>
+<text id="dn2-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>dn2-a</ref>
+ <file>cst4roman_utf8/s0102a.att.xml</file>
+ <name>Mahāvaggaṭṭhakathā</name>
+ <linkid>dn2</linkid>
+</text>
+<text id="dn2-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>dn2-t</ref>
+ <file>cst4roman_utf8/s0102t.tik.xml</file>
+ <name>Mahāvaggaṭīkā</name>
+ <linkid>dn2</linkid>
+</text>
+<text id="dn3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn3</ref>
+ <file>cst4roman_utf8/s0103m.mul.xml</file>
+ <name>Pāthikavaggapāḷi</name>
+ <linkid>dn3</linkid>
+</text>
+<text id="dn3-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>dn3-a</ref>
+ <file>cst4roman_utf8/s0103a.att.xml</file>
+ <name>Pāthikavaggaṭṭhakathā</name>
+ <linkid>dn3</linkid>
+</text>
+<text id="dn3-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>dn3-t</ref>
+ <file>cst4roman_utf8/s0103t.tik.xml</file>
+ <name>Pāthikavaggaṭīkā</name>
+ <linkid>dn3</linkid>
+</text>
+<text id="dn1-nt1">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>dn1-nt1</ref>
+ <file>cst4roman_utf8/s0104t.nrf.xml</file>
+ <name>Sīlakkhandhavaggaabhinavaṭīkā 1</name>
+ <linkid>dn1</linkid>
+</text>
+<text id="dn1-nt2">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>dn1-nt2</ref>
+ <file>cst4roman_utf8/s0105t.nrf.xml</file>
+ <name>Sīlakkhandhavaggaabhinavaṭīkā 2</name>
+ <linkid>dn1</linkid>
+</text>
+<text id="mn1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn1</ref>
+ <file>cst4roman_utf8/s0201m.mul.xml</file>
+ <name>Mūlapaṇṇāsapāḷi</name>
+ <linkid>mn1</linkid>
+</text>
+<text id="mn1-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>mn1-a</ref>
+ <file>cst4roman_utf8/s0201a.att.xml</file>
+ <name>Mūlapaṇṇāsa-aṭṭhakathā</name>
+ <linkid>mn1</linkid>
+</text>
+<text id="mn1-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>mn1-t</ref>
+ <file>cst4roman_utf8/s0201t.tik.xml</file>
+ <name>Mūlapaṇṇāsa-ṭīkā</name>
+ <linkid>mn1</linkid>
+</text>
+<text id="mn2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn2</ref>
+ <file>cst4roman_utf8/s0202m.mul.xml</file>
+ <name>Majjhimapaṇṇāsapāḷi</name>
+ <linkid>mn2</linkid>
+</text>
+<text id="mn2-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>mn2-a</ref>
+ <file>cst4roman_utf8/s0202a.att.xml</file>
+ <name>Majjhimapaṇṇāsa-aṭṭhakathā</name>
+ <linkid>mn2</linkid>
+</text>
+<text id="mn2-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>mn2-t</ref>
+ <file>cst4roman_utf8/s0202t.tik.xml</file>
+ <name>Majjhimapaṇṇāsa-ṭīkā</name>
+ <linkid>mn2</linkid>
+</text>
+<text id="mn3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn3</ref>
+ <file>cst4roman_utf8/s0203m.mul.xml</file>
+ <name>Uparipaṇṇāsapāḷi</name>
+ <linkid>mn3</linkid>
+</text>
+<text id="mn3-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>mn3-a</ref>
+ <file>cst4roman_utf8/s0203a.att.xml</file>
+ <name>Uparipaṇṇāsa-aṭṭhakathā</name>
+ <linkid>mn3</linkid>
+</text>
+<text id="mn3-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>mn3-t</ref>
+ <file>cst4roman_utf8/s0203t.tik.xml</file>
+ <name>Uparipaṇṇāsa-ṭīkā</name>
+ <linkid>mn3</linkid>
+</text>
+<text id="sn1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn1</ref>
+ <file>cst4roman_utf8/s0301m.mul.xml</file>
+ <name>Sagāthāvaggo</name>
+ <linkid>sn1</linkid>
+</text>
+<text id="sn1-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>sn1-a</ref>
+ <file>cst4roman_utf8/s0301a.att.xml</file>
+ <name>Sagāthāvagga-aṭṭhakathā</name>
+ <linkid>sn1</linkid>
+</text>
+<text id="sn1-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>sn1-t</ref>
+ <file>cst4roman_utf8/s0301t.tik.xml</file>
+ <name>Sagāthāvaggaṭīkā</name>
+ <linkid>sn1</linkid>
+</text>
+<text id="sn2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn2</ref>
+ <file>cst4roman_utf8/s0302m.mul.xml</file>
+ <name>Nidānavaggo</name>
+ <linkid>sn2</linkid>
+</text>
+<text id="sn2-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>sn2-a</ref>
+ <file>cst4roman_utf8/s0302a.att.xml</file>
+ <name>Nidānavagga-aṭṭhakathā</name>
+ <linkid>sn2</linkid>
+</text>
+<text id="sn2-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>sn2-t</ref>
+ <file>cst4roman_utf8/s0302t.tik.xml</file>
+ <name>Nidānavaggaṭīkā</name>
+ <linkid>sn2</linkid>
+</text>
+<text id="sn3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn3</ref>
+ <file>cst4roman_utf8/s0303m.mul.xml</file>
+ <name>Khandhavaggo</name>
+ <linkid>sn3</linkid>
+</text>
+<text id="sn3-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>sn3-a</ref>
+ <file>cst4roman_utf8/s0303a.att.xml</file>
+ <name>Khandhavagga-aṭṭhakathā</name>
+ <linkid>sn3</linkid>
+</text>
+<text id="sn3-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>sn3-t</ref>
+ <file>cst4roman_utf8/s0303t.tik.xml</file>
+ <name>Khandhavaggaṭīkā</name>
+ <linkid>sn3</linkid>
+</text>
+<text id="sn4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn4</ref>
+ <file>cst4roman_utf8/s0304m.mul.xml</file>
+ <name>Saḷāyatanavaggo</name>
+ <linkid>sn4</linkid>
+</text>
+<text id="sn4-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>sn4-a</ref>
+ <file>cst4roman_utf8/s0304a.att.xml</file>
+ <name>Saḷāyatanavagga-aṭṭhakathā</name>
+ <linkid>sn4</linkid>
+</text>
+<text id="sn4-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>sn4-t</ref>
+ <file>cst4roman_utf8/s0304t.tik.xml</file>
+ <name>Saḷāyatanavaggaṭīkā</name>
+ <linkid>sn4</linkid>
+</text>
+<text id="sn5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn5</ref>
+ <file>cst4roman_utf8/s0305m.mul.xml</file>
+ <name>Mahāvaggo</name>
+ <linkid>sn5</linkid>
+</text>
+<text id="sn5-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>sn5-a</ref>
+ <file>cst4roman_utf8/s0305a.att.xml</file>
+ <name>Mahāvagga-aṭṭhakathā</name>
+ <linkid>sn5</linkid>
+</text>
+<text id="sn5-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>sn5-t</ref>
+ <file>cst4roman_utf8/s0305t.tik.xml</file>
+ <name>Mahāvaggaṭīkā</name>
+ <linkid>sn5</linkid>
+</text>
+<text id="an1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an1</ref>
+ <file>cst4roman_utf8/s0401m.mul.xml</file>
+ <name>Ekakanipātapāḷi</name>
+ <linkid>an1</linkid>
+</text>
+<text id="an1-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>an1-a</ref>
+ <file>cst4roman_utf8/s0401a.att.xml</file>
+ <name>Ekakanipāta-aṭṭhakathā</name>
+ <linkid>an1</linkid>
+</text>
+<text id="an1-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>an1-t</ref>
+ <file>cst4roman_utf8/s0401t.tik.xml</file>
+ <name>Ekakanipāta-ṭīkā</name>
+ <linkid>an1</linkid>
+</text>
+<text id="an2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an2</ref>
+ <file>cst4roman_utf8/s0402m1.mul.xml</file>
+ <name>Dukanipātapāḷi</name>
+ <linkid>an234</linkid>
+</text>
+<text id="an3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an3</ref>
+ <file>cst4roman_utf8/s0402m2.mul.xml</file>
+ <name>Tikanipātapāḷi</name>
+ <linkid>an234</linkid>
+</text>
+<text id="an4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an4</ref>
+ <file>cst4roman_utf8/s0402m3.mul.xml</file>
+ <name>Catukkanipātapāḷi</name>
+ <linkid>an234</linkid>
+</text>
+<text id="an234-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>an2-a</ref>
+ <ref>an3-a</ref>
+ <ref>an4-a</ref>
+ <file>cst4roman_utf8/s0402a.att.xml</file>
+ <name>Dukanipāta-aṭṭhakathā</name>
+ <name>Tikanipāta-aṭṭhakathā</name>
+ <name>Catukkanipāta-aṭṭhakathā</name>
+ <linkid>an234</linkid>
+</text>
+<text id="an234-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>an2-t</ref>
+ <ref>an3-t</ref>
+ <ref>an4-t</ref>
+ <file>cst4roman_utf8/s0402t.tik.xml</file>
+ <name>Dukanipāta-ṭīkā</name>
+ <name>Tikanipāta-ṭīkā</name>
+ <name>Catukkanipāta-ṭīkā</name>
+ <linkid>an234</linkid>
+</text>
+<text id="an5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an5</ref>
+ <file>cst4roman_utf8/s0403m1.mul.xml</file>
+ <name>Pañcakanipātapāḷi</name>
+ <linkid>an567</linkid>
+</text>
+<text id="an6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an6</ref>
+ <file>cst4roman_utf8/s0403m2.mul.xml</file>
+ <name>Chakkanipātapāḷi</name>
+ <linkid>an567</linkid>
+</text>
+<text id="an7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an7</ref>
+ <file>cst4roman_utf8/s0403m3.mul.xml</file>
+ <name>Sattakanipātapāḷi</name>
+ <linkid>an567</linkid>
+</text>
+<text id="an567-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>an5-a</ref>
+ <ref>an6-a</ref>
+ <ref>an7-a</ref>
+ <file>cst4roman_utf8/s0403a.att.xml</file>
+ <name>Pañcakanipāta-aṭṭhakathā</name>
+ <name>Dukanipāta-aṭṭhakathā</name>
+ <name>Sattakanipāta-aṭṭhakathā</name>
+ <linkid>an567</linkid>
+</text>
+<text id="an567-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>an5-t</ref>
+ <ref>an6-t</ref>
+ <ref>an7-t</ref>
+ <file>cst4roman_utf8/s0403t.tik.xml</file>
+ <name>Pañcakanipāta-ṭīkā</name>
+ <name>Dukanipāta-ṭīkā</name>
+ <name>Sattakanipāta-ṭīkā</name>
+ <linkid>an567</linkid>
+</text>
+<text id="an8">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an8</ref>
+ <file>cst4roman_utf8/s0404m1.mul.xml</file>
+ <name>Aṭṭhakanipātapāḷi</name>
+ <linkid>an811</linkid>
+</text>
+<text id="an9">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an9</ref>
+ <file>cst4roman_utf8/s0404m2.mul.xml</file>
+ <name>Navakanipātapāḷi</name>
+ <linkid>an811</linkid>
+</text>
+<text id="an10">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an10</ref>
+ <file>cst4roman_utf8/s0404m3.mul.xml</file>
+ <name>Dasakanipātapāḷi</name>
+ <linkid>an811</linkid>
+</text>
+<text id="an11">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an11</ref>
+ <file>cst4roman_utf8/s0404m4.mul.xml</file>
+ <name>Ekādasakanipātapāḷi</name>
+ <linkid>an811</linkid>
+</text>
+<text id="an811-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>an8-a</ref>
+ <ref>an9-a</ref>
+ <ref>an10-a</ref>
+ <ref>an11-a</ref>
+ <file>cst4roman_utf8/s0404a.att.xml</file>
+ <name>Aṭṭhakanipāta-aṭṭhakathā</name>
+ <name>Navakanipāta-aṭṭhakathā</name>
+ <name>Dasakanipāta-aṭṭhakathā</name>
+ <name>Ekādasakanipāta-aṭṭhakathā</name>
+ <linkid>an811</linkid>
+</text>
+<text id="an811-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>an8-t</ref>
+ <ref>an9-t</ref>
+ <ref>an10-t</ref>
+ <ref>an11-t</ref>
+ <file>cst4roman_utf8/s0404t.tik.xml</file>
+ <name>Aṭṭhakanipāta-ṭīkā</name>
+ <name>Navakanipāta-ṭīkā</name>
+ <name>Dasakanipāta-ṭīkā</name>
+ <name>Ekādasakanipāta-ṭīkā</name>
+ <linkid>an811</linkid>
+</text>
+<text id="kn1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>khp</ref>
+ <file>cst4roman_utf8/s0501m.mul.xml</file>
+ <name>Khuddakapāṭhapāḷi</name>
+ <linkid>kn1</linkid>
+</text>
+<text id="kn1-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>khp-a</ref>
+ <file>cst4roman_utf8/s0501a.att.xml</file>
+ <name>Khuddakapāṭha-aṭṭhakathā</name>
+ <linkid>kn1</linkid>
+</text>
+<text id="kn2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dhp</ref>
+ <file>cst4roman_utf8/s0502m.mul.xml</file>
+ <name>Dhammapadapāḷi</name>
+ <linkid>kn2</linkid>
+</text>
+<text id="kn2-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>dhp-a</ref>
+ <file>cst4roman_utf8/s0502a.att.xml</file>
+ <name>Dhammapada-aṭṭhakathā</name>
+ <linkid>kn2</linkid>
+</text>
+<text id="kn3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ud</ref>
+ <file>cst4roman_utf8/s0503m.mul.xml</file>
+ <name>Udānapāḷi</name>
+ <linkid>kn3</linkid>
+</text>
+<text id="kn3-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ud-a</ref>
+ <file>cst4roman_utf8/s0503a.att.xml</file>
+ <name>Udāna-aṭṭhakathā</name>
+ <linkid>kn3</linkid>
+</text>
+<text id="kn4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>it</ref>
+ <file>cst4roman_utf8/s0504m.mul.xml</file>
+ <name>Udānapāḷi</name>
+ <linkid>kn4</linkid>
+</text>
+<text id="kn4-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>it-a</ref>
+ <file>cst4roman_utf8/s0504a.att.xml</file>
+ <name>Udāna-aṭṭhakathā</name>
+ <linkid>kn4</linkid>
+</text>
+<text id="kn5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>snp</ref>
+ <file>cst4roman_utf8/s0505m.mul.xml</file>
+ <name>Suttanipātapāḷi</name>
+ <linkid>kn5</linkid>
+</text>
+<text id="kn5-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>snp-a</ref>
+ <file>cst4roman_utf8/s0505a.att.xml</file>
+ <name>Suttanipāta-aṭṭhakathā</name>
+ <linkid>kn5</linkid>
+</text>
+<text id="kn6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>vv</ref>
+ <file>cst4roman_utf8/s0506m.mul.xml</file>
+ <name>Vimānavatthupāḷi</name>
+ <linkid>kn6</linkid>
+</text>
+<text id="kn6-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>vv-a</ref>
+ <file>cst4roman_utf8/s0506a.att.xml</file>
+ <name>Vimānavatthu-aṭṭhakathā</name>
+ <linkid>kn6</linkid>
+</text>
+<text id="kn7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>pv</ref>
+ <file>cst4roman_utf8/s0507m.mul.xml</file>
+ <name>Petavatthupāḷi</name>
+ <linkid>kn7</linkid>
+</text>
+<text id="kn7-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>pv-a</ref>
+ <file>cst4roman_utf8/s0507a.att.xml</file>
+ <name>Petavatthu-aṭṭhakathā</name>
+ <linkid>kn7</linkid>
+</text>
+<text id="kn8">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>thag</ref>
+ <file>cst4roman_utf8/s0508m.mul.xml</file>
+ <name>Theragāthāpāḷi</name>
+ <linkid>kn8</linkid>
+</text>
+<text id="kn8a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thag-a1</ref>
+ <file>cst4roman_utf8/s0508a1.att.xml</file>
+ <name>Theragāthā-aṭṭhakathā 1</name>
+ <linkid>kn8</linkid>
+</text>
+<text id="kn8-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thag-a2</ref>
+ <file>cst4roman_utf8/s0508a2.att.xml</file>
+ <name>Theragāthā-aṭṭhakathā 2</name>
+ <linkid>kn8</linkid>
+</text>
+<text id="kn9">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>thig</ref>
+ <file>cst4roman_utf8/s0509m.mul.xml</file>
+ <name>Therīgāthāpāḷi</name>
+ <linkid>kn9</linkid>
+</text>
+<text id="kn9-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>thig-a</ref>
+ <file>cst4roman_utf8/s0509a.att.xml</file>
+ <name>Therīgāthā-aṭṭhakathā</name>
+ <linkid>kn9</linkid>
+</text>
+<text id="kn10">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ap1</ref>
+ <file>cst4roman_utf8/s0510m1.mul.xml</file>
+ <name>Apadānapāḷi 1</name>
+ <linkid>kn1011</linkid>
+</text>
+<text id="kn11">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ap2</ref>
+ <file>cst4roman_utf8/s0510m2.mul.xml</file>
+ <name>Apadānapāḷi 2</name>
+ <linkid>kn1011</linkid>
+</text>
+<text id="kn10-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ap-a</ref>
+ <file>cst4roman_utf8/s0510a.att.xml</file>
+ <name>Apadāna-aṭṭhakathā</name>
+ <linkid>kn1011</linkid>
+</text>
+<text id="kn12">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>bv</ref>
+ <file>cst4roman_utf8/s0511m.mul.xml</file>
+ <name>Buddhavaṃsapāḷi</name>
+ <linkid>kn12</linkid>
+</text>
+<text id="kn12-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>bv-a</ref>
+ <file>cst4roman_utf8/s0511a.att.xml</file>
+ <name>Buddhavaṃsa-aṭṭhakathā</name>
+ <linkid>kn12</linkid>
+</text>
+<text id="kn13">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>cp</ref>
+ <file>cst4roman_utf8/s0512m.mul.xml</file>
+ <name>Cariyāpiṭakapāḷi</name>
+ <linkid>kn13</linkid>
+</text>
+<text id="kn13-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>cp-a</ref>
+ <file>cst4roman_utf8/s0512a.att.xml</file>
+ <name>Cariyāpiṭaka-aṭṭhakathā</name>
+ <linkid>kn13</linkid>
+</text>
+<text id="kn14-1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ja1</ref>
+ <file>cst4roman_utf8/s0513m.mul.xml</file>
+ <name>Jātakapāḷi 1</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ja2</ref>
+ <file>cst4roman_utf8/s0514m.mul.xml</file>
+ <name>Jātakapāḷi 2</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a1</ref>
+ <file>cst4roman_utf8/s0513a1.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 1</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a2</ref>
+ <file>cst4roman_utf8/s0513a2.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 2</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a3</ref>
+ <file>cst4roman_utf8/s0513a3.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 3</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a4</ref>
+ <file>cst4roman_utf8/s0513a4.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 4</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a5</ref>
+ <file>cst4roman_utf8/s0514a1.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 5</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a6</ref>
+ <file>cst4roman_utf8/s0514a2.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 6</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn14-a7">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>ja-a7</ref>
+ <file>cst4roman_utf8/s0514a3.att.xml</file>
+ <name>Jātaka-aṭṭhakathā 7</name>
+ <linkid>kn14</linkid>
+</text>
+<text id="kn15">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nidd1</ref>
+ <file>cst4roman_utf8/s0515m.mul.xml</file>
+ <name>Mahāniddesapāḷi</name>
+ <linkid>kn15</linkid>
+</text>
+<text id="kn15-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>nidd1-a</ref>
+ <file>cst4roman_utf8/s0515a.att.xml</file>
+ <name>Mahāniddesa-aṭṭhakathā</name>
+ <linkid>kn15</linkid>
+</text>
+<text id="kn16">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nidd2</ref>
+ <file>cst4roman_utf8/s0516m.mul.xml</file>
+ <name>Cūḷaniddesapāḷi</name>
+ <linkid>kn16</linkid>
+</text>
+<text id="kn16-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>nidd2-a</ref>
+ <file>cst4roman_utf8/s0516a.att.xml</file>
+ <name>Cūḷaniddesa-aṭṭhakathā</name>
+ <linkid>kn16</linkid>
+</text>
+<text id="kn17">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>psm</ref>
+ <file>cst4roman_utf8/s0517m.mul.xml</file>
+ <name>Paṭisambhidāmaggapāḷi</name>
+ <linkid>kn17</linkid>
+</text>
+<text id="kn17-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>psm-a</ref>
+ <file>cst4roman_utf8/s0517a.att.xml</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā</name>
+ <linkid>kn17</linkid>
+</text>
+<text id="kn18">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mil</ref>
+ <file>cst4roman_utf8/s0518m.nrf.xml</file>
+ <name>Milindapañhapāḷi</name>
+ <linkid>kn18</linkid>
+</text>
+<text id="kn19">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nett</ref>
+ <file>cst4roman_utf8/s0519m.mul.xml</file>
+ <name>Nettippakaraṇapāḷi</name>
+ <linkid>kn19</linkid>
+</text>
+<text id="kn19-a">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>nett-a</ref>
+ <file>cst4roman_utf8/s0519a.att.xml</file>
+ <name>Nettippakaraṇa-aṭṭhakathā</name>
+ <linkid>kn19</linkid>
+</text>
+<text id="kn19-t">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>nett-t</ref>
+ <file>cst4roman_utf8/s0519t.tik.xml</file>
+ <name>Nettippakaraṇa-ṭīkā</name>
+ <linkid>kn19</linkid>
+</text>
+<text id="nettv">
+ <group>sut</group>
+ <docclass>tik</docclass>
+ <ref>nettv</ref>
+ <file>cst4roman_utf8/s0501t.nrf.xml</file>
+ <name>Nettivibhāvinī</name>
+ <linkid>kn19</linkid>
+</text>
+<text id="kn20">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ptkp</ref>
+ <file>cst4roman_utf8/s0520m.nrf.xml</file>
+ <name>Peṭakopadesapāḷi</name>
+ <linkid>kn20</linkid>
+</text>
+<text id="dhs">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>dhs</ref>
+ <file>cst4roman_utf8/abh01m.mul.xml</file>
+ <name>Dhammasaṅgaṇīpāḷi</name>
+ <linkid>dhs</linkid>
+</text>
+<text id="dhs-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>dhs-a</ref>
+ <file>cst4roman_utf8/abh01a.att.xml</file>
+ <name>Dhammasaṅgaṇī-aṭṭhakathā</name>
+ <linkid>dhs</linkid>
+</text>
+<text id="dhs-t">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>dhs-t</ref>
+ <file>cst4roman_utf8/abh01t.tik.xml</file>
+ <name>Dhammasaṅgaṇī-mūlaṭīkā</name>
+ <linkid>dhs</linkid>
+</text>
+<text id="vbh">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>vbh</ref>
+ <file>cst4roman_utf8/abh02m.mul.xml</file>
+ <name>Vibhaṅgapāḷi</name>
+ <linkid>vbh</linkid>
+</text>
+<text id="vbh-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>vbh-a</ref>
+ <file>cst4roman_utf8/abh02a.att.xml</file>
+ <name>Vibhaṅga-aṭṭhakathā</name>
+ <linkid>vbh</linkid>
+</text>
+<text id="vbh-t">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>vbh-t</ref>
+ <ref>vbh-at</ref>
+ <file>cst4roman_utf8/abh02t.tik.xml</file>
+ <name>Vibhaṅga-mūlaṭīkā</name>
+ <linkid>vbh</linkid>
+</text>
+<text id="dhk">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>dhk</ref>
+ <file>cst4roman_utf8/abh03m1.mul.xml</file>
+ <name>Dhātukathāpāḷi</name>
+</text>
+<text id="pp">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pp</ref>
+ <file>cst4roman_utf8/abh03m2.mul.xml</file>
+ <name>Puggalapaññattipāḷi</name>
+</text>
+<text id="kv">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>kv</ref>
+ <file>cst4roman_utf8/abh03m3.mul.xml</file>
+ <name>Kathāvatthupāḷi</name>
+</text>
+<text id="ym1">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ym1</ref>
+ <file>cst4roman_utf8/abh03m4.mul.xml</file>
+ <name>Yamakapāḷi 1</name>
+</text>
+<text id="ym2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ym2</ref>
+ <file>cst4roman_utf8/abh03m5.mul.xml</file>
+ <name>Yamakapāḷi 2</name>
+</text>
+<text id="ym3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ym3</ref>
+ <file>cst4roman_utf8/abh03m6.mul.xml</file>
+ <name>Yamakapāḷi 3</name>
+</text>
+<text id="pt1">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt1</ref>
+ <file>cst4roman_utf8/abh03m7.mul.xml</file>
+ <name>Paṭṭhānapāḷi 1</name>
+</text>
+<text id="pt2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt2</ref>
+ <file>cst4roman_utf8/abh03m8.mul.xml</file>
+ <name>Paṭṭhānapāḷi 2</name>
+</text>
+<text id="pt3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt3</ref>
+ <file>cst4roman_utf8/abh03m9.mul.xml</file>
+ <name>Paṭṭhānapāḷi 3</name>
+</text>
+<text id="pt4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt4</ref>
+ <file>cst4roman_utf8/abh03m10.mul.xml</file>
+ <name>Paṭṭhānapāḷi 4</name>
+</text>
+<text id="pt5">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt5</ref>
+ <file>cst4roman_utf8/abh03m11.mul.xml</file>
+ <name>Paṭṭhānapāḷi 5</name>
+</text>
+<text id="abh-a">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>dhk-a</ref>
+ <ref>pp-a</ref>
+ <ref>kv-a</ref>
+ <ref>ym-a</ref>
+ <ref>pt-a</ref>
+ <file>cst4roman_utf8/abh03a.att.xml</file>
+ <name>Pañcapakaraṇa-aṭṭhakathā</name>
+</text>
+<text id="abh-t">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>dhk-t</ref>
+ <ref>pp-t</ref>
+ <ref>kv-t</ref>
+ <ref>ym-t</ref>
+ <ref>pt-t</ref>
+ <file>cst4roman_utf8/abh03t.tik.xml</file>
+ <name>Pañcapakaraṇa-mūlaṭīkā</name>
+</text>
+<text id="dhs-at">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>dhs-at</ref>
+ <file>cst4roman_utf8/abh04t.nrf.xml</file>
+ <name>Dhammasaṅgaṇī-anuṭīkā</name>
+ <linkid>dhs</linkid>
+</text>
+<text id="abh-at">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>dhk-at</ref>
+ <ref>pp-at</ref>
+ <ref>kv-at</ref>
+ <ref>ym-at</ref>
+ <ref>pt-at</ref>
+ <file>cst4roman_utf8/abh05t.nrf.xml</file>
+ <name>Pañcapakaraṇa-anuṭīkā</name>
+</text>
+<text id="abhv">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>abhv</ref>
+ <file>cst4roman_utf8/abh06t.nrf.xml</file>
+ <name>Abhidhammāvatāro</name>
+</text>
+<text id="abhs">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>abhs</ref>
+ <ref>abhs-t</ref>
+ <file>cst4roman_utf8/abh07t.nrf.xml</file>
+ <name>Abhidhammatthasaṅgaho</name>
+</text>
+<text id="abhv-t">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>abhv-t</ref>
+ <file>cst4roman_utf8/abh08t.nrf.xml</file>
+ <name>Abhidhammāvatāra-ṭīkā</name>
+</text>
+<text id="abhm">
+ <group>abh</group>
+ <docclass>tik</docclass>
+ <ref>abhm</ref>
+ <ref>abhm-t</ref>
+ <file>cst4roman_utf8/abh09t.nrf.xml</file>
+ <name>Abhidhammamātikāpāḷi</name>
+</text>
+<text id="vism1">
+ <group>ext</group>
+ <docclass>vism</docclass>
+ <ref>vism1</ref>
+ <file>cst4roman_utf8/e0101n.mul.xml</file>
+ <name>Visuddhimaggo 1</name>
+ <linkid>vism</linkid>
+</text>
+<text id="vism2">
+ <group>ext</group>
+ <docclass>vism</docclass>
+ <ref>vism2</ref>
+ <file>cst4roman_utf8/e0102n.mul.xml</file>
+ <name>Visuddhimaggo 2</name>
+ <linkid>vism</linkid>
+</text>
+<text id="vism-t1">
+ <group>ext</group>
+ <docclass>vism</docclass>
+ <ref>vism-t1</ref>
+ <file>cst4roman_utf8/e0103n.att.xml</file>
+ <name>Visuddhimagga-mahāṭīkā 1</name>
+ <linkid>vism</linkid>
+</text>
+<text id="vism-t2">
+ <group>ext</group>
+ <docclass>vism</docclass>
+ <ref>vism-t2</ref>
+ <file>cst4roman_utf8/e0104n.att.xml</file>
+ <name>Visuddhimagga-mahāṭīkā 2</name>
+ <linkid>vism</linkid>
+</text>
+<text id="vism-t3">
+ <group>ext</group>
+ <docclass>vism</docclass>
+ <ref>vism-t3</ref>
+ <file>cst4roman_utf8/e0105n.nrf.xml</file>
+ <name>Visuddhimagga-nidānakathā</name>
+ <linkid>vism</linkid>
+</text>
+<text id="niru">
+ <group>ext</group>
+ <docclass>ledi</docclass>
+ <ref>niru</ref>
+ <file>cst4roman_utf8/e0201n.nrf.xml</file>
+ <name>Niruttidīpanīpāṭha</name>
+ <linkid>mogg</linkid>
+</text>
+<text id="pmd">
+ <group>ext</group>
+ <docclass>ledi</docclass>
+ <ref>pmd</ref>
+ <file>cst4roman_utf8/e0301n.nrf.xml</file>
+ <name>Paramatthadīpanī</name>
+</text>
+<text id="and">
+ <group>ext</group>
+ <docclass>ledi</docclass>
+ <ref>and</ref>
+ <file>cst4roman_utf8/e0401n.nrf.xml</file>
+ <name>Anudīpanīpāṭha</name>
+</text>
+<text id="ptd">
+ <group>ext</group>
+ <docclass>ledi</docclass>
+ <ref>ptd</ref>
+ <file>cst4roman_utf8/e0501n.nrf.xml</file>
+ <name>Paṭṭhānuddesa-dīpanīpāṭha</name>
+</text>
+<text id="nmk">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>nmk</ref>
+ <file>cst4roman_utf8/e0601n.nrf.xml</file>
+ <name>Namakkāra</name>
+</text>
+<text id="mhp">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>mhp</ref>
+ <file>cst4roman_utf8/e0602n.nrf.xml</file>
+ <name>Mahāpaṇāmapāṭha</name>
+</text>
+<text id="lkhn">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>lkhn</ref>
+ <file>cst4roman_utf8/e0603n.nrf.xml</file>
+ <name>Lakkhaṇāto Buddhathomanāgāthā</name>
+</text>
+<text id="stv">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>stv</ref>
+ <file>cst4roman_utf8/e0604n.nrf.xml</file>
+ <name>Sutavandanā</name>
+</text>
+<text id="jlk">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>jlk</ref>
+ <file>cst4roman_utf8/e0605n.nrf.xml</file>
+ <name>Jinālaṅkāra</name>
+</text>
+<text id="kml">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>kml</ref>
+ <file>cst4roman_utf8/e0606n.nrf.xml</file>
+ <name>Kamalāñjali</name>
+</text>
+<text id="pjm">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>pjm</ref>
+ <file>cst4roman_utf8/e0607n.nrf.xml</file>
+ <name>Pajjamadhu</name>
+</text>
+<text id="bgv">
+ <group>ext</group>
+ <docclass>van</docclass>
+ <ref>bgv</ref>
+ <file>cst4roman_utf8/e0608n.nrf.xml</file>
+ <name>Buddhaguṇagāthāvalī</name>
+</text>
+<text id="cgv">
+ <group>ext</group>
+ <docclass>vam</docclass>
+ <ref>cgv</ref>
+ <file>cst4roman_utf8/e0701n.nrf.xml</file>
+ <name>Cūḷaganthavaṃsapāḷi</name>
+</text>
+<text id="svp">
+ <group>ext</group>
+ <docclass>vam</docclass>
+ <ref>svp</ref>
+ <file>cst4roman_utf8/e0702n.nrf.xml</file>
+ <name>Sāsanavaṃsappadīpikā</name>
+</text>
+<text id="mhv">
+ <group>ext</group>
+ <docclass>vam</docclass>
+ <ref>mhv</ref>
+ <file>cst4roman_utf8/e0703n.nrf.xml</file>
+ <name>Mahāvaṃsapāḷi</name>
+</text>
+<text id="mogg">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>mogg</ref>
+ <file>cst4roman_utf8/e0801n.nrf.xml</file>
+ <name>Moggallānabyākaraṇaṃ</name>
+ <linkid>mogg</linkid>
+</text>
+<text id="kacc">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>kacc</ref>
+ <file>cst4roman_utf8/e0802n.nrf.xml</file>
+ <name>Kaccāyanabyākaraṇaṃ</name>
+ <linkid>kacc</linkid>
+</text>
+<text id="saddpad">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>sadd-pad</ref>
+ <file>cst4roman_utf8/e0803n.nrf.xml</file>
+ <name>Saddanītippakaraṇaṃ (padamālā)</name>
+</text>
+<text id="sadddha">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>sadd-dhā</ref>
+ <file>cst4roman_utf8/e0804n.nrf.xml</file>
+ <name>Saddanītippakaraṇaṃ (dhātumālā)</name>
+</text>
+<text id="rupa">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>rūpa</ref>
+ <file>cst4roman_utf8/e0805n.nrf.xml</file>
+ <name>Padarūpasiddhi</name>
+ <linkid>kacc</linkid>
+</text>
+<text id="panc-t">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>pañc-t</ref>
+ <file>cst4roman_utf8/e0806n.nrf.xml</file>
+ <name>Moggallānapañcikāṭīkā</name>
+ <linkid>mogg</linkid>
+</text>
+<text id="payo">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>payo</ref>
+ <file>cst4roman_utf8/e0807n.nrf.xml</file>
+ <name>Payogasiddhipāḷi</name>
+ <linkid>mogg</linkid>
+</text>
+<text id="vutt">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>vutt</ref>
+ <file>cst4roman_utf8/e0808n.nrf.xml</file>
+ <name>Vuttodayaṃ</name>
+</text>
+<text id="abhidha">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>abhidhā</ref>
+ <file>cst4roman_utf8/e0809n.nrf.xml</file>
+ <name>Abhidhānappadīpikā</name>
+ <linkid>abhidha</linkid>
+</text>
+<text id="abhidha-t">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>abhidhā-t</ref>
+ <file>cst4roman_utf8/e0810n.nrf.xml</file>
+ <name>Abhidhānappadīpikāṭīkā</name>
+ <linkid>abhidha</linkid>
+</text>
+<text id="subho">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>subho</ref>
+ <file>cst4roman_utf8/e0811n.nrf.xml</file>
+ <name>Subodhālaṅkāro</name>
+ <linkid>subho</linkid>
+</text>
+<text id="subho-t">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>subho-t</ref>
+ <file>cst4roman_utf8/e0812n.nrf.xml</file>
+ <name>Subodhālaṅkāraṭīkā</name>
+ <linkid>subho</linkid>
+</text>
+<text id="blv">
+ <group>ext</group>
+ <docclass>gram</docclass>
+ <ref>blv</ref>
+ <file>cst4roman_utf8/e0813n.nrf.xml</file>
+ <name>Bālāvatāro</name>
+ <linkid>kacc</linkid>
+</text>
+<text id="dpv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>d-pv</ref>
+ <file>cst4roman_utf8/e0901n.nrf.xml</file>
+ <name>Dīghanikāye (pu-vi)</name>
+</text>
+<text id="mpv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>m-pv</ref>
+ <file>cst4roman_utf8/e0902n.nrf.xml</file>
+ <name>Majjhimanikāye (pu-vi)</name>
+</text>
+<text id="spv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>s-pv</ref>
+ <file>cst4roman_utf8/e0903n.nrf.xml</file>
+ <name>Saṃyuttanikāye (pu-vi)</name>
+</text>
+<text id="apv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>a-pv</ref>
+ <file>cst4roman_utf8/e0904n.nrf.xml</file>
+ <name>Aṅguttaranikāye (pu-vi)</name>
+</text>
+<text id="vinpv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>vin-pv</ref>
+ <file>cst4roman_utf8/e0905n.nrf.xml</file>
+ <name>Vinayapiṭake (pu-vi)</name>
+</text>
+<text id="abhpv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>abh-pv</ref>
+ <file>cst4roman_utf8/e0906n.nrf.xml</file>
+ <name>Abhidhammapiṭake (pu-vi)</name>
+</text>
+<text id="attpv">
+ <group>ext</group>
+ <docclass>pv</docclass>
+ <ref>att-pv</ref>
+ <file>cst4roman_utf8/e0907n.nrf.xml</file>
+ <name>Aṭṭhakathā (pu-vi)</name>
+</text>
+<text id="kvd">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>kvd</ref>
+ <file>cst4roman_utf8/e1001n.nrf.xml</file>
+ <name>Kavidappaṇanīti</name>
+</text>
+<text id="nmj">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>nmj</ref>
+ <file>cst4roman_utf8/e1002n.nrf.xml</file>
+ <name>Nītimañjarī</name>
+</text>
+<text id="dhn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>dhn</ref>
+ <file>cst4roman_utf8/e1003n.nrf.xml</file>
+ <name>Dhammanīti</name>
+</text>
+<text id="mrn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>mrn</ref>
+ <file>cst4roman_utf8/e1004n.nrf.xml</file>
+ <name>Mahārahanīti</name>
+</text>
+<text id="lkn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>lkn</ref>
+ <file>cst4roman_utf8/e1005n.nrf.xml</file>
+ <name>Lokanīti</name>
+</text>
+<text id="stn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>stn</ref>
+ <file>cst4roman_utf8/e1006n.nrf.xml</file>
+ <name>Suttantanīti</name>
+</text>
+<text id="srn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>srn</ref>
+ <file>cst4roman_utf8/e1007n.nrf.xml</file>
+ <name>Sūrassatinīti</name>
+</text>
+<text id="cnn">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>cnn</ref>
+ <file>cst4roman_utf8/e1008n.nrf.xml</file>
+ <name>Cāṇakyanīti</name>
+</text>
+<text id="ndd">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>ndd</ref>
+ <file>cst4roman_utf8/e1009n.nrf.xml</file>
+ <name>Naradakkhadīpanī</name>
+</text>
+<text id="crd">
+ <group>ext</group>
+ <docclass>niti</docclass>
+ <ref>crd</ref>
+ <file>cst4roman_utf8/e1010n.nrf.xml</file>
+ <name>Caturārakkhadīpanī</name>
+</text>
+<text id="rsv">
+ <group>ext</group>
+ <docclass>pak</docclass>
+ <ref>rsv</ref>
+ <file>cst4roman_utf8/e1101n.nrf.xml</file>
+ <name>Rasavāhinī</name>
+</text>
+<text id="svs">
+ <group>ext</group>
+ <docclass>pak</docclass>
+ <ref>svs</ref>
+ <file>cst4roman_utf8/e1102n.nrf.xml</file>
+ <name>Sīmavisodhanī</name>
+</text>
+<text id="vsg">
+ <group>ext</group>
+ <docclass>pak</docclass>
+ <ref>vsg</ref>
+ <file>cst4roman_utf8/e1103n.nrf.xml</file>
+ <name>Vessantaragīti</name>
+</text>
+<text id="mvv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>mvv</ref>
+ <file>cst4roman_utf8/e1201n.nrf.xml</file>
+ <name>Moggallāna-vuttivivaraṇapañcikā</name>
+</text>
+<text id="thv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>thv</ref>
+ <file>cst4roman_utf8/e1202n.nrf.xml</file>
+ <name>Thūpavaṃsa</name>
+</text>
+<text id="dthv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>dthv</ref>
+ <file>cst4roman_utf8/e1203n.nrf.xml</file>
+ <name>Dāṭhāvaṃsa</name>
+</text>
+<text id="dhpv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>dhpv</ref>
+ <file>cst4roman_utf8/e1204n.nrf.xml</file>
+ <name>Dhātupāṭhavilāsinī</name>
+</text>
+<text id="dhv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>dhv</ref>
+ <file>cst4roman_utf8/e1205n.nrf.xml</file>
+ <name>Dhātuvaṃsa</name>
+</text>
+<text id="hvv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>hvv</ref>
+ <file>cst4roman_utf8/e1206n.nrf.xml</file>
+ <name>Hatthavanagallavihāravaṃsa</name>
+</text>
+<text id="jnc">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>jnc</ref>
+ <file>cst4roman_utf8/e1207n.nrf.xml</file>
+ <name>Jinacaritaya</name>
+</text>
+<text id="jvd">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>jvd</ref>
+ <file>cst4roman_utf8/e1208n.nrf.xml</file>
+ <name>Jinavaṃsadīpaṃ</name>
+</text>
+<text id="tkg">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>tkg</ref>
+ <file>cst4roman_utf8/e1209n.nrf.xml</file>
+ <name>Telakaṭāhagāthā</name>
+</text>
+<text id="mil-t">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>mil-t</ref>
+ <file>cst4roman_utf8/e1210n.nrf.xml</file>
+ <name>Milidaṭīkā</name>
+</text>
+<text id="pdm">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>pdm</ref>
+ <file>cst4roman_utf8/e1211n.nrf.xml</file>
+ <name>Padamañjarī</name>
+</text>
+<text id="pds">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>pds</ref>
+ <file>cst4roman_utf8/e1212n.nrf.xml</file>
+ <name>Padasādhanaṃ</name>
+</text>
+<text id="sdb">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>sdb</ref>
+ <file>cst4roman_utf8/e1213n.nrf.xml</file>
+ <name>Saddabindupakaraṇaṃ</name>
+</text>
+<text id="dhmjs">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>dhmjs</ref>
+ <file>cst4roman_utf8/e1214n.nrf.xml</file>
+ <name>Kaccāyana-dhātumañjusā</name>
+</text>
+<text id="skv">
+ <group>ext</group>
+ <docclass>sin</docclass>
+ <ref>skv</ref>
+ <file>cst4roman_utf8/e1215n.nrf.xml</file>
+ <name>Sāmantakūṭavaṇṇanā</name>
+</text>
+</collection>
+

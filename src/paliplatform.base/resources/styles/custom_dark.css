@@ -1,0 +1,183 @@
+.root {
+	-fx-font-family: "DejaVu Sans";
+	
+	-fx-base: #323232;
+	-fx-background: #323232;
+	
+	/* make controls (buttons, thumb, etc.) slightly lighter */
+	-fx-color: derive(-fx-base, 10%);
+	
+	/* text fields and table rows background */
+	-fx-control-inner-background: #141414;
+	/* version of -fx-control-inner-background for alternative rows */
+	-fx-control-inner-background-alt: derive(-fx-control-inner-background, 2.5%);
+	
+	/* text colors depending on background's brightness */
+	-fx-light-text-color: #dcdcdc;
+	-fx-mid-text-color: #646464;
+	-fx-dark-text-color: #141414;
+	
+	/* A bright blue for highlighting/accenting objects.  For example: selected
+	 * text; selected items in menus, lists, trees, and tables; progress bars */
+	-fx-accent: #005064;
+	
+	/* color of non-focused yet selected elements */
+	-fx-selection-bar-non-focused: #323232;
+}
+
+.shape {
+	-fx-fill: #dcdcdc;
+}
+
+.text-area {
+	-fx-highlight-fill: royalblue;
+	-fx-highlight-text-fill: white;
+}
+
+/* Fix derived prompt color for text fields */
+.text-input {
+	-fx-prompt-text-fill: derive(-fx-control-inner-background, +50%);
+}
+
+/* Keep prompt invisible when focused (above color fix overrides it) */
+.text-input:focused {
+	-fx-prompt-text-fill: transparent;
+}
+
+/* Fix scroll bar buttons arrows colors */
+.scroll-bar > .increment-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow {
+	-fx-background-color: -fx-mark-highlight-color, #dcdcdc;
+}
+
+.scroll-bar > .increment-button:hover > .increment-arrow,
+.scroll-bar > .decrement-button:hover > .decrement-arrow {
+	-fx-background-color: -fx-mark-highlight-color, #f0f0f0;
+}
+
+.scroll-bar > .increment-button:pressed > .increment-arrow,
+.scroll-bar > .decrement-button:pressed > .decrement-arrow {
+	-fx-background-color: -fx-mark-highlight-color, #ffffff;
+}
+
+.emphasized {
+	-fx-font-weight: bold;
+}
+
+.bordered-box {
+	-fx-padding: 8;
+	-fx-border-width: 2;
+	-fx-border-insets: 5;
+	-fx-border-radius: 5;
+	-fx-border-color: #a0a0a0;
+}
+
+.head-inverted {
+	-fx-background-color: #a0a0a0;
+	-fx-padding: 3px;
+}
+
+.head-inverted > .label {
+	-fx-text-fill: #000000;
+}
+
+.toolbar {
+	-fx-padding: 3px;
+}
+
+.infopopup {
+	-fx-background-color: #3f3f3ff0;
+	-fx-background-radius: 5;
+	-fx-padding: 10;
+	-fx-alignment: top-left;
+}
+
+.checkok {
+	-fx-alignment:center;
+	-fx-text-fill:lightgreen;
+}
+
+.letterbox {
+	-fx-padding: 0;
+	-fx-background-color: #3f3f5ff0;
+	-fx-background-radius: 5;
+}
+
+.letterbox-highlight {
+	-fx-padding: 0;
+	-fx-background-color: midnightblue;
+	-fx-background-radius: 5;
+}
+
+.button-highlight {
+	-fx-color: midnightblue;
+	-fx-font-weight: bold;
+}
+
+.bigcharbox {
+	-fx-padding: 0;
+	-fx-background-color: darkslateblue;
+	-fx-background-radius: 15;
+}
+
+.bigchar {
+	-fx-fill: lightskyblue
+}
+
+.labelbutton {
+	-fx-padding: 3;
+	-fx-size: 200%;
+}
+
+.labelbutton:hover {
+	-fx-padding: 3;
+	-fx-background-color: derive(darkslateblue, 30%);
+	-fx-background-radius: 15;
+}
+
+.tablegridbox {
+	-fx-padding: 3;
+	-fx-background-color: #3f3f5ff0;
+	-fx-background-radius: 7;
+}
+
+.stanzabox {
+	-fx-padding: 5 10 5 10;
+	-fx-background-color: #3f3f5ff0;
+	-fx-background-radius: 7;
+}
+
+.search-result-normal {
+	-fx-fill: #B0B0B0;
+}
+
+.search-result-faded {
+	-fx-fill: #606060;
+}
+
+.search-result-highlight {
+	-fx-fill: darkorange;
+}
+
+.reader-term {
+	-fx-fill: aquamarine;
+}
+
+.reader-info {
+	-fx-fill: #B0B0B0;
+}
+
+.fontmono { 
+	-fx-font-family: "DejaVu Sans Mono";
+}
+
+/*
+.cell-highlighted {
+	-fx-background-color: #005064;
+}
+
+.cell-normal {
+	-fx-background-color: #303030;
+}
+*/
+

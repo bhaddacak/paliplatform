@@ -1,0 +1,4 @@
+Notes on families of terms
+	1. All data are read directly from the DPD database.
+	2. Families of roots are shown in Roots window.
+	3. Families of words and idioms are also shown in dictionary entries that have such information.

@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Pāli Platform 3" basedir=".." default="help">
+
+<property name="product.name" value="PaliPlatform"/>
+<property name="product.version" value="3.0.0"/>
+<property name="basename" value="paliplatform"/>
+<property name="launcher.name" value="PPLauncher"/>
+<property name="src.dir" value="src"/>
+<property name="build.dir" value="${basedir}/build"/>
+<property name="dist.dir" value="${basedir}/dist/${product.name}"/>
+<property name="modules.dir" value="${build.dir}/modules"/>
+<property name="jar.dir" value="${build.dir}/jar"/>
+<property name="lib.dir" value="${dist.dir}/modules"/>
+<property name="shell.launcher" location="${dist.dir}/run.sh"/>
+
+<path id="modulepath">
+	<pathelement path="${modules.dir}"/>
+	<pathelement path="${lib.dir}"/>
+</path>
+
+<target name="help" description="Display an instruction of the build script">
+	<echo>
+Project name: ${ant.project.name}
+Ant version: ${ant.version}
+Java version: ${ant.java.version}
+
+Instruction:
+   1. To build the whole thing, go to 'src' directory 
+      which contains build.xml (see also Item 3 below)
+      then type this command:
+         $ ant build
+   2. To just compile the project, type this:
+         $ ant compile
+      To run the program
+      (after the compilation is done successfully),
+      type this:
+         $ ant run
+	  (It is far more better to go to the distribution dir
+	     and start the program there.)
+      For more information about other specific tasks,
+      type this:
+         $ ant -p
+         OR
+         $ ant -projecthelp   
+   3. Before the compilation will succeed,
+      the file structure has to be arranged in this way (at least):
+
+	ROOT-DIR/ (You name it)
+	|--src/
+	|   |--paliplatform.base/
+	|   |   |--paliplatform/
+	|   |   |    |--base
+	|   |   |        |--*.java
+	|   |   |--resources/
+	|   |   |    |--...
+	|   |   |--module-info.java
+	|   |--paliplatform.main/
+	|   |   |--...
+	|   |--...
+	|   |--build.xml
+	|
+	|--dist/ (containing the final product)
+	|   |--${product.name}
+	|       |--data/
+	|       |--fonts/
+	|       |--modules/
+	|       |--PPLaucher.exe
+	|       |--PPLaucher.jar
+	|       |--run.bat
+	|       |--run.sh
+	|       |--some other stuff...
+	|
+	|--build/ (created and deleted in the process)
+	|   |--modules/
+	|   |--jar/
+	| 
+	</echo>
+</target>
+
+<target name="clean-all"  description="Delete the build's directory">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="clean-modules"  description="Delete the built modules">
+	<delete dir="${modules.dir}"/>
+</target>
+
+<target name="clean-base"  description="Delete the base's built classes">
+	<delete dir="${modules.dir}/${basename}.base"/>
+</target>
+
+<target name="clean-main"  description="Delete the main's built classes">
+	<delete dir="${modules.dir}/${basename}.main"/>
+</target>
+
+<target name="clean-dict"  description="Delete the dict's built classes">
+	<delete dir="${modules.dir}/${basename}.dict"/>
+</target>
+
+<target name="clean-grammar"  description="Delete the grammar's built classes">
+	<delete dir="${modules.dir}/${basename}.grammar"/>
+</target>
+
+<target name="clean-sentence"  description="Delete the sentence's built classes">
+	<delete dir="${modules.dir}/${basename}.sentence"/>
+</target>
+
+<target name="clean-reader"  description="Delete the reader's built classes">
+	<delete dir="${modules.dir}/${basename}.reader"/>
+</target>
+
+<target name="clean-lucene"  description="Delete the lucene's built classes">
+	<delete dir="${modules.dir}/${basename}.lucene"/>
+</target>
+
+<target name="clean-dpd"  description="Delete the dpd's built classes">
+	<delete dir="${modules.dir}/${basename}.dpd"/>
+</target>
+
+<target name="clean-jfx"  description="Delete the jfx's built classes">
+	<delete dir="${modules.dir}/${basename}.jfx"/>
+</target>
+
+<target name="clean-launcher"  description="Delete the launcher's built classes">
+	<delete dir="${modules.dir}/${basename}.launcher"/>
+</target>
+
+<target name="lib.check">	
+	<available file="${lib.dir}" type="dir" property="lib.exists"/>
+</target>
+
+<target name="lib.error" depends="lib.check" unless="lib.exists">
+	<echo>
+The required libraries does not exist (Lucene, Gson, etc).
+It has to be located at 'dist/${product.name}/modules.'
+See '$ ant help' for more information about the file structure.
+	</echo>
+</target>
+
+<target name="compile" depends="lib.check,lib.error" if="lib.exists" description="compile the source code">
+	<mkdir dir="${modules.dir}"/>
+	<javac modulesourcepath="${src.dir}" destdir="${modules.dir}" includeantruntime="false" source="11" target="11">
+		<compilerarg value="-Xlint:deprecation"/>
+		<compilerarg value="-Xlint:unchecked"/>
+		<modulepath refid="modulepath"/>
+	</javac>
+</target>
+
+<target name="output.base.check">
+	<available file="${modules.dir}/${basename}.base/${basename}/base/Utilities.class" type="file" property="output.base.exists"/>	
+</target>
+
+<target name="output.main.check">
+	<available file="${modules.dir}/${basename}.main/${basename}/main/PaliPlatform.class" type="file" property="output.main.exists"/>	
+</target>
+
+<target name="output.dict.check">
+	<available file="${modules.dir}/${basename}.dict/${basename}/dict/DictMenu.class" type="file" property="output.dict.exists"/>	
+</target>
+
+<target name="output.grammar.check">
+	<available file="${modules.dir}/${basename}.grammar/${basename}/grammar/GrammarMenu.class" type="file" property="output.grammar.exists"/>	
+</target>
+
+<target name="output.sentence.check">
+	<available file="${modules.dir}/${basename}.sentence/${basename}/sentence/SentenceMenu.class" type="file" property="output.sentence.exists"/>	
+</target>
+
+<target name="output.reader.check">
+	<available file="${modules.dir}/${basename}.reader/${basename}/reader/ReaderMenu.class" type="file" property="output.reader.exists"/>	
+</target>
+
+<target name="output.lucene.check">
+	<available file="${modules.dir}/${basename}.lucene/${basename}/lucene/LuceneMenu.class" type="file" property="output.lucene.exists"/>	
+</target>
+
+<target name="output.dpd.check">
+	<available file="${modules.dir}/${basename}.dpd/${basename}/dpd/DpdMenu.class" type="file" property="output.dpd.exists"/>	
+</target>
+
+<target name="output.jfx.check">
+	<available file="${modules.dir}/${basename}.jfx/${basename}/jfx/Installer.class" type="file" property="output.jfx.exists"/>	
+</target>
+
+<target name="output.launcher.check">
+	<available file="${modules.dir}/${basename}.launcher/${basename}/launcher/Launcher.class" type="file" property="output.launcher.exists"/>	
+</target>
+
+<target name="res.base.copy">
+	<copy todir="${modules.dir}/${basename}.base/${basename}/base">
+		<fileset dir="${src.dir}/${basename}.base" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.main.copy">
+	<copy todir="${modules.dir}/${basename}.main/${basename}/main">
+		<fileset dir="${src.dir}/${basename}.main" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.dict.copy">
+	<copy todir="${modules.dir}/${basename}.dict/${basename}/dict">
+		<fileset dir="${src.dir}/${basename}.dict" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.grammar.copy">
+	<copy todir="${modules.dir}/${basename}.grammar/${basename}/grammar">
+		<fileset dir="${src.dir}/${basename}.grammar" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.sentence.copy">
+	<copy todir="${modules.dir}/${basename}.sentence/${basename}/sentence">
+		<fileset dir="${src.dir}/${basename}.sentence" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.reader.copy">
+	<copy todir="${modules.dir}/${basename}.reader/${basename}/reader">
+		<fileset dir="${src.dir}/${basename}.reader" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.lucene.copy">
+	<copy todir="${modules.dir}/${basename}.lucene/${basename}/lucene">
+		<fileset dir="${src.dir}/${basename}.lucene" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.dpd.copy">
+	<copy todir="${modules.dir}/${basename}.dpd/${basename}/dpd">
+		<fileset dir="${src.dir}/${basename}.dpd" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="res.jfx.copy">
+	<copy todir="${modules.dir}/${basename}.jfx/${basename}/jfx">
+		<fileset dir="${src.dir}/${basename}.jfx" includes="resources/**"/>
+	</copy>
+</target>
+
+<target name="rescopy" depends="res.base.copy,res.main.copy,res.dict.copy,res.grammar.copy,res.sentence.copy,res.reader.copy,res.lucene.copy,res.dpd.copy,res.jfx.copy"/>
+
+<target name="jar-base" depends="output.base.check,res.base.copy" if="output.base.exists" description="Generate the base's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-base-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.base"/>
+	</jar>
+</target>
+
+<target name="jar-main" depends="output.main.check,res.main.copy" if="output.main.exists" description="Generate the main's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-main-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.main"/>
+	</jar>
+</target>
+
+<target name="jar-dict" depends="output.dict.check,res.dict.copy" if="output.dict.exists" description="Generate the dict's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-dict-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.dict"/>
+	</jar>
+</target>
+
+<target name="jar-grammar" depends="output.grammar.check,res.grammar.copy" if="output.grammar.exists" description="Generate the grammar's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-grammar-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.grammar"/>
+	</jar>
+</target>
+
+<target name="jar-sentence" depends="output.sentence.check,res.sentence.copy" if="output.sentence.exists" description="Generate the sentence's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-sentence-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.sentence"/>
+	</jar>
+</target>
+
+<target name="jar-reader" depends="output.reader.check,res.reader.copy" if="output.reader.exists" description="Generate the reader's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-reader-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.reader"/>
+	</jar>
+</target>
+
+<target name="jar-lucene" depends="output.lucene.check,res.lucene.copy" if="output.lucene.exists" description="Generate the lucene's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-lucene-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.lucene"/>
+	</jar>
+</target>
+
+<target name="jar-dpd" depends="output.dpd.check,res.dpd.copy" if="output.dpd.exists" description="Generate the dpd's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-dpd-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.dpd"/>
+	</jar>
+</target>
+
+<target name="jar-jfx" depends="output.jfx.check,res.jfx.copy" if="output.jfx.exists" description="Generate the jfx's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-jfx-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.jfx"/>
+	</jar>
+</target>
+
+<target name="jar-launcher" depends="output.launcher.check" if="output.launcher.exists" description="Generate the launcher's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-launcher-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.launcher"/>
+		<manifest>
+			<attribute name="Main-Class" value="${basename}.launcher.Launcher"/>
+		</manifest>
+	</jar>
+</target>
+
+<target name="jar" depends="jar-base,jar-main,jar-dict,jar-grammar,jar-sentence,jar-reader,jar-lucene,jar-dpd,jar-jfx,jar-launcher"/>
+
+<target name="jars-copy" depends="jar">
+	<copy todir="${lib.dir}">
+		<fileset dir="${jar.dir}" includes="*.jar"/>
+	</copy>
+</target>
+
+<target name="launcher-copy" depends="jar-launcher">
+	<copy file="${jar.dir}/${basename}-launcher-${product.version}.jar" tofile="${dist.dir}/${launcher.name}.jar"/>
+</target>
+
+<target name="run" depends="jars-copy">
+	<exec executable="${shell.launcher}" spawn="true"/>
+</target>
+
+<target name="build" depends="compile,jars-copy,launcher-copy" description="Compile, jar, and copy to the destination"/>
+<target name="build-run" depends="compile,jars-copy,launcher-copy,run" description="Compile, jar, copy, and run"/>
+<target name="clean-build" depends="clean-all,build" description="Clean, compile, jar, and copy to the destination"/>
+<target name="build-jar" depends="compile,jar" description="Compile, and jar"/>
+</project>

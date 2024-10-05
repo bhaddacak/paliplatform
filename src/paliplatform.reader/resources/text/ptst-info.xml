@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="vin1">
+ <group>vin</group>
+ <ref>Vin1</ref>
+ <file>pts/1_tipit/1_vin/vin1maou.htm</file>
+ <name>Vinaya-Piṭaka 1, Māhavagga</name>
+ <description>Based on the edition by Hermann Oldenberg, London: Pali Text Society 1879, Reprinted 1929, 1964, 1997.</description>
+</text>
+<text id="vin2">
+ <group>vin</group>
+ <ref>Vin2</ref>
+ <file>pts/1_tipit/1_vin/vin2cuou.htm</file>
+ <name>Vinaya-Piṭaka 2, Cullavagga</name>
+ <description>Based on the edition by Hermann Oldenberg, London: Pali Text Society 1880, Reprinted 1930, 1964, 1977, 1995.</description>
+</text>
+<text id="vin3">
+ <group>vin</group>
+ <ref>Vin3</ref>
+ <file>pts/1_tipit/1_vin/vin3s1ou.htm</file>
+ <name>Vinaya-Piṭaka 3, Suttavibhaṅga 1</name>
+ <description>Based on the edition by Hermann Oldenberg: The Vinaya Piṭakam, Vol. III: The Suttavibhaṅga, First Part (Pārājika, Saṃghādisesa, Aniyata, Nissaggiya), London: Pali Text Society 1881, Reprinted 1964, 1984, 1993.</description>
+</text>
+<text id="vin4">
+ <group>vin</group>
+ <ref>Vin4</ref>
+ <file>pts/1_tipit/1_vin/vin4s2ou.htm</file>
+ <name>Vinaya-Piṭaka 4, Suttavibhaṅga 2</name>
+ <description>Based on the edition by Hermann Oldenberg: The Vinaya Piṭakam, Vol. IV: The Suttavibhaṅga, Second Part (End of the Mahāvibhaṅga; Bhikkhunīvibhaṅga), London: Pali Text Society 1882, Reprinted 1964, 1984, 1993.</description>
+</text>
+<text id="vin5">
+ <group>vin</group>
+ <ref>Vin5</ref>
+ <file>pts/1_tipit/1_vin/vin5paou.htm</file>
+ <name>Vinaya-Piṭaka 5, Parivāra</name>
+ <description>Based on the edition by Hermann Oldenberg: The Vinaya Piṭakam, Vol. V: The Parivāra, London: Pali Text Society 1883, Reprinted 1964, 1982.</description>
+</text>
+<text id="d1">
+ <group>sut</group>
+ <ref>D1</ref>
+ <file>pts/1_tipit/2_sut/1_digh/dighn1ou.htm</file>
+ <name>Dīgha-Nikāya 1, Suttantas 1-13</name>
+ <description>Vol. I: Sīlakkhandavagga, Suttantas 1-13. Based on the edition by T.W. Rhys Davids and J.E. Carpenter, London: Pali Text Society 1890.</description>
+</text>
+<text id="d2">
+ <group>sut</group>
+ <ref>D2</ref>
+ <file>pts/1_tipit/2_sut/1_digh/dighn2ou.htm</file>
+ <name>Dīgha-Nikāya 2, Suttantas 14-23</name>
+ <description>Vol. II: Mahāvagga, Suttantas 14-23. Based on the edition by T.W. Rhys Davids and J.E. Carpenter, London: Pali Text Society 1903.</description>
+</text>
+<text id="d3">
+ <group>sut</group>
+ <ref>D3</ref>
+ <file>pts/1_tipit/2_sut/1_digh/dighn3ou.htm</file>
+ <name>Dīgha-Nikāya 3, Suttantas 24-34</name>
+ <description>Vol. III: Pātikavagga, Suttantas 24-34. Based on the edition by T.W. Rhys Davids and J.E. Carpenter, London: Pali Text Society 1911.</description>
+</text>
+<text id="m1">
+ <group>sut</group>
+ <ref>M1</ref>
+ <file>pts/1_tipit/2_sut/2_majjh/majjn1ou.htm</file>
+ <name>Majjhima-Nikāya 1, Suttantas 1-76</name>
+ <description>Based on Vol. I, ed. by V. Trenckner, London: Pali Text Society 1888, Reprinted 1948, 1964, 1979</description>
+</text>
+<text id="m2">
+ <group>sut</group>
+ <ref>M2</ref>
+ <file>pts/1_tipit/2_sut/2_majjh/majjn2ou.htm</file>
+ <name>Majjhima-Nikāya 2, Suttantas 77-106</name>
+ <description>Based on Vol. II, ed. by Robert Chalmers, London: Pali Text Society 1896, Reprinted 1951, 1960, 1977</description>
+</text>
+<text id="m3">
+ <group>sut</group>
+ <ref>M3</ref>
+ <file>pts/1_tipit/2_sut/2_majjh/majjn3ou.htm</file>
+ <name>Majjhima-Nikāya 3, Suttantas 107-152</name>
+ <description>Based on Vol. III, ed. by R. Chalmers, London: Pali Text Society 1899, Reprinted 1951, 1977</description>
+</text>
+<text id="s1">
+ <group>sut</group>
+ <ref>S1</ref>
+ <file>pts/1_tipit/2_sut/3_samyu/samyu1ou.htm</file>
+ <name>Saṃyutta-Nikāya 1, Sagātha-Vagga</name>
+ <description>Part I: Sagatha-Vagga. Based on the edition by L. Feer, London: Pali Text Society 1884.</description>
+</text>
+<text id="s2">
+ <group>sut</group>
+ <ref>S2</ref>
+ <file>pts/1_tipit/2_sut/3_samyu/samyu2ou.htm</file>
+ <name>Saṃyutta-Nikāya 2, Nidāna-Vagga</name>
+ <description>Part II: Nidana-Vagga. Based on the edition by L. Feer, London: Pali Text Society 1888.</description>
+</text>
+<text id="s3">
+ <group>sut</group>
+ <ref>S3</ref>
+ <file>pts/1_tipit/2_sut/3_samyu/samyu3ou.htm</file>
+ <name>Saṃyutta-Nikāya 3, Khanda-Vagga</name>
+ <description>Part III: Khanda-Vagga. Based on the edition by L. Feer, London: Pali Text Society 1890.</description>
+</text>
+<text id="s4">
+ <group>sut</group>
+ <ref>S4</ref>
+ <file>pts/1_tipit/2_sut/3_samyu/samyu4ou.htm</file>
+ <name>Saṃyutta-Nikāya 4, Saḷāyatana-Vagga</name>
+ <description>Part IV: Salayatana-Vagga. Based on the edition by L. Feer, London: Pali Text Society 1894.</description>
+</text>
+<text id="s5">
+ <group>sut</group>
+ <ref>S5</ref>
+ <file>pts/1_tipit/2_sut/3_samyu/samyu5ou.htm</file>
+ <name>Saṃyutta-Nikāya 5, Mahā-Vagga</name>
+ <description>Part V: Maha-Vagga. Based on the edition by L. Feer, London: Pali Text Society 1898.</description>
+</text>
+<text id="a1">
+ <group>sut</group>
+ <ref>A1</ref>
+ <file>pts/1_tipit/2_sut/4_angu/angut1ou.htm</file>
+ <name>Aṅguttara-Nikāya 1, Eka-Duka-Tikanipāta</name>
+ <description>Part I: Ekanipata, Dukanipata, Tikanipata. Based on the edition by R. Morris, London: Pali Text Society 1885, second edition, revised by A.K. Warder, 1961.</description>
+</text>
+<text id="a2">
+ <group>sut</group>
+ <ref>A2</ref>
+ <file>pts/1_tipit/2_sut/4_angu/angut2ou.htm</file>
+ <name>Aṅguttara-Nikāya 2, Catukkanipata</name>
+ <description>Part II: Catukkanipata. Based on the edition by R. Morris, London: Pali Text Society 1888, Reprinted 1976.</description>
+</text>
+<text id="a3">
+ <group>sut</group>
+ <ref>A3</ref>
+ <file>pts/1_tipit/2_sut/4_angu/angut3ou.htm</file>
+ <name>Aṅguttara-Nikāya 3, Pancaka-Chakkanipāta</name>
+ <description>Part III: Pancakanipata, Chakkanipata. Based on the edition by E. Hardy, London: Pali Text Society 1897, Reprinted 1976.</description>
+</text>
+<text id="a4">
+ <group>sut</group>
+ <ref>A4</ref>
+ <file>pts/1_tipit/2_sut/4_angu/angut4ou.htm</file>
+ <name>Aṅguttara-Nikāya 4, Sattaka-Atthaka-Navakanipāta</name>
+ <description>Part IV: Sattakanipata, Atthakanipata, Navakanipata. Based on the edition by E. Hardy, London: Pali Text Society 1899, Reprinted 1958.</description>
+</text>
+<text id="a5">
+ <group>sut</group>
+ <ref>A5</ref>
+ <file>pts/1_tipit/2_sut/4_angu/angut5ou.htm</file>
+ <name>Aṅguttara-Nikāya 5, Dasaka-Ekadasakanipāta</name>
+ <description>Part V: Dasakanipata, Ekadasakanipata. Based on the edition by E. Hardy, London: Pali Text Society 1900, Reprinted 1958.</description>
+</text>
+<text id="khp">
+ <group>sut</group>
+ <ref>Khp</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/khudp_ou.htm</file>
+ <name>Khuddakapāṭha</name>
+ <description>Based on the edition Helmer Smith from a collation by Mabel Hunt, London: Pali Text Society 1915, Reprinted 1959, 1978</description>
+</text>
+<text id="dhp">
+ <group>sut</group>
+ <ref>Dhp</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/dhampdou.htm</file>
+ <name>Dhammapada</name>
+ <description>Based on the edition by O.v. Hinüber and K.R. Norman, London: Pali Text Society 1995.</description>
+</text>
+<text id="ud">
+ <group>sut</group>
+ <ref>Ud</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/udana_ou.htm</file>
+ <name>Udāna</name>
+ <description>Based on the edition by Paul Steinthal, London: Pali Text Society 1885, Reprinted 1948, 1982.</description>
+</text>
+<text id="it">
+ <group>sut</group>
+ <ref>It</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/itivutou.htm</file>
+ <name>Itivuttaka</name>
+ <description>Based on the edition by Ernst Windisch, London: Pali Text Society 1889, Reprinted 1948, 1975.</description>
+</text>
+<text id="snp">
+ <group>sut</group>
+ <ref>Sn</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/sutnipou.htm</file>
+ <name>Suttanipāta</name>
+ <description>Based on the edition by Dines Andersen and Helmer Smith: Sutta-Nipāta, London: Pali Text Society 1913, Reprinted 1948, 1965, 1984.</description>
+</text>
+<text id="vv">
+ <group>sut</group>
+ <ref>Vv</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/vimvatou.htm</file>
+ <name>Vimānavatthu</name>
+ <description>Based on the edition by N.A. Jayawickrama: Vimānavatthu and Petavatthu, London: Pali Text Society 1977.</description>
+</text>
+<text id="pv">
+ <group>sut</group>
+ <ref>Pv</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/petvatou.htm</file>
+ <name>Petavatthu</name>
+ <description>Based on the edition by N.A. Jayawickrama: Vimānavatthu and Petavatthu, London: Pali Text Society 1977.</description>
+</text>
+<text id="thag">
+ <group>sut</group>
+ <ref>Th</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/theragou.htm</file>
+ <name>Theragāthā</name>
+ <description>Based on the edition by Hermann Oldenberg: The Thera- and Therī-Gāthā (Stanzas Ascribed to Elders of the Buddhist Order of Recluses), ed. by H. Oldenberg and R. Pischel, London: Pali Text Society 1883. Second edition with appendices by K.R. Norman and L. Alsdorf, 1966, pp. 1-115.</description>
+</text>
+<text id="thig">
+ <group>sut</group>
+ <ref>Thī</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/therigou.htm</file>
+ <name>Therīgāthā</name>
+ <description>Based on the edition by Richard Pischel: The Thera- and Therī-Gāthā (Stanzas Ascribed to Elders of the Buddhist Order of Recluses), ed. by H. Oldenberg and R. Pischel, London: Pali Text Society 1883. Second edition with appendices by K.R. Norman and L. Alsdorf, 1966, pp. 123-250.</description>
+</text>
+<text id="ap">
+ <group>sut</group>
+ <ref>Ap</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/apadanou.htm</file>
+ <name>Apadāna</name>
+ <description>Based on the edition by Mary E. Lilley: The Apadāna of the Khuddaka Nikāya, Parts I and II, London: The Pali Text Society 1925/1927.</description>
+</text>
+<text id="bv">
+ <group>sut</group>
+ <ref>Bv</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/budvmsou.htm</file>
+ <name>Buddhavaṃsa</name>
+ <description>Based on the new edition by N.A. Jayawickrama: Buddhavaṃsa and Cariyāpiṭaka, London: Pali Text Society 1974.</description>
+</text>
+<text id="cp">
+ <group>sut</group>
+ <ref>Cp</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/carpitou.htm</file>
+ <name>Cariyāpiṭaka</name>
+ <description>Based on the new edition by N.A. Jayawickrama: Buddhavaṃsa and Cariyāpiṭaka, London: Pali Text Society 1974.</description>
+</text>
+<text id="ja1">
+ <group>sut</group>
+ <ref>Ja1</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak1ou.htm</file>
+ <name>Jātaka 1, Ekanipāta</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. I, London: Pali Text Society 1877, Reprinted 1962.</description>
+</text>
+<text id="ja2">
+ <group>sut</group>
+ <ref>Ja2</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak2ou.htm</file>
+ <name>Jātaka 2, Duka-Tikanipāta</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. II, London: Pali Text Society 1879, Reprinted 1963.</description>
+</text>
+<text id="ja3">
+ <group>sut</group>
+ <ref>Ja3</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak3ou.htm</file>
+ <name>Jātaka 3, Nipatas IV-IX</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. III, London: Pali Text Society 1883, Reprinted 1963.</description>
+</text>
+<text id="ja4">
+ <group>sut</group>
+ <ref>Ja4</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak4ou.htm</file>
+ <name>Jātaka 4, Nipatas X-XV</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. IV, London: Pali Text Society 1887, Reprinted 1963.</description>
+</text>
+<text id="ja5">
+ <group>sut</group>
+ <ref>Ja5</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak5ou.htm</file>
+ <name>Jātaka 5, Nipatas XVI-XXI</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. V, London: Pali Text Society 1891, Reprinted 1963.</description>
+</text>
+<text id="ja6">
+ <group>sut</group>
+ <ref>Ja6</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/jatak6ou.htm</file>
+ <name>Jātaka 6, XXII Mahānipāta</name>
+ <description>Based on the edition by V. Fausböll: The Jātaka together with its commentary, being tales of the anterior births of Gotama Buddha. For the first time edited in the original Pāli, Vol. VI, London: Pali Text Society 1896, Reprinted 1964.</description>
+</text>
+<text id="nidd1">
+ <group>sut</group>
+ <ref>Nidd1</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/nidde1ou.htm</file>
+ <name>Niddesa 1, Mahāniddesa</name>
+ <description>Based on the edition by L. de la Vallée Poussin and E.J. Thomas: Mahāniddesa, Parts I and II, London: Pali Text Society 1916/1917, Combined reprint 1978.</description>
+</text>
+<text id="nidd2">
+ <group>sut</group>
+ <ref>Nidd2</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/nidde2ou.htm</file>
+ <name>Niddesa 2, Cullaniddesa</name>
+ <description>Based on the edition by Wilhelm Stede: Cullaniddesa, Oxford: Pali Text Society 1918, Reprinted 1988.</description>
+</text>
+<text id="psm1">
+ <group>sut</group>
+ <ref>Paṭis1</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/patis1ou.htm</file>
+ <name>Paṭisambhidāmagga 1</name>
+ <description>Based on the edition by Arnold C. Taylor: The Paṭisambhidāmagga, Vol. I, London: Pali Text Society 1905, Reprinted 1979.</description>
+</text>
+<text id="psm2">
+ <group>sut</group>
+ <ref>Paṭis2</ref>
+ <file>pts/1_tipit/2_sut/5_khudd/patis2ou.htm</file>
+ <name>Paṭisambhidāmagga 2</name>
+ <description>Based on the edition by Arnold C. Taylor: The Paṭisambhidāmagga, Vol. II, London: Pali Text Society 1907, Reprinted 1979.</description>
+</text>
+<text id="dhs">
+ <group>abh</group>
+ <ref>Dhs</ref>
+ <file>pts/1_tipit/3_abh/dhamsgou.htm</file>
+ <name>Dhammasaṅgaṇī</name>
+ <description>Based on the edition by Edward Müller, London: Pali Text Society 1885, Reprinted 1978.</description>
+</text>
+<text id="vbh">
+ <group>abh</group>
+ <ref>Vibh</ref>
+ <file>pts/1_tipit/3_abh/vibhanou.htm</file>
+ <name>Vibhaṅga</name>
+ <description>Based on the edition by C.A.F. Rhys Davids: The Vibhaṅga: Being the Second Book of the Abhidhamma Piṭaka, London: Pali Text Society 1904, Reprinted 1978.</description>
+</text>
+<text id="dhk">
+ <group>abh</group>
+ <ref>Dhātuk</ref>
+ <file>pts/1_tipit/3_abh/dhatukou.htm</file>
+ <name>Dhātukathā</name>
+ <description>Based on the edition by Edmund Rowland Gooneratne: The Dhātu-Kathā Pakaraṇa and its commentary, London: Pali Text Society 1892, Reprinted, with corrections 1963, 1987.</description>
+</text>
+<text id="pp">
+ <group>abh</group>
+ <ref>Pp</ref>
+ <file>pts/1_tipit/3_abh/pugpanou.htm</file>
+ <name>Puggalapaññatti</name>
+ <description>Based on the edition Richard Morris, London: Pali Text Society 1883, Reprinted 1972.</description>
+</text>
+<text id="kv">
+ <group>abh</group>
+ <ref>Kv</ref>
+ <file>pts/1_tipit/3_abh/kathavou.htm</file>
+ <name>Kathāvatthu</name>
+ <description>Based on the edition by Arnold C. Taylor: Kathāvatthu, Vols. I, II, London: Pali Text Society 1894, Reprinted 1897, 1979.</description>
+</text>
+<text id="ym1">
+ <group>abh</group>
+ <ref>Yam1</ref>
+ <file>pts/1_tipit/3_abh/yamak1ou.htm</file>
+ <name>Yamaka 1</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1911, Reprinted 1987.</description>
+</text>
+<text id="ym2">
+ <group>abh</group>
+ <ref>Yam2</ref>
+ <file>pts/1_tipit/3_abh/yamak2ou.htm</file>
+ <name>Yamaka 2</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1913, Reprinted 1987.</description>
+</text>
+<text id="pt1">
+ <group>abh</group>
+ <ref>Tikap1</ref>
+ <file>pts/1_tipit/3_abh/patti1ou.htm</file>
+ <name>Tikapaṭṭhāna 1</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1921, Reprinted 1988.</description>
+</text>
+<text id="pt2">
+ <group>abh</group>
+ <ref>Tikap2</ref>
+ <file>pts/1_tipit/3_abh/patti2ou.htm</file>
+ <name>Tikapaṭṭhāna 2</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1922, Reprinted 1988.</description>
+</text>
+<text id="pt3">
+ <group>abh</group>
+ <ref>Tikap3</ref>
+ <file>pts/1_tipit/3_abh/patti3ou.htm</file>
+ <name>Tikapaṭṭhāna 3</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1923, Reprinted 1988.</description>
+</text>
+<text id="pt4">
+ <group>abh</group>
+ <ref>Dukap</ref>
+ <file>pts/1_tipit/3_abh/patdukou.htm</file>
+ <name>Dukapaṭṭhāna</name>
+ <description>Based on the edition Rhys Davids, London: Pali Text Society 1906, Reprinted 1988.</description>
+</text>
+<text id="mil">
+ <group>ext</group>
+ <ref>Mil</ref>
+ <file>pts/2_parcan/milindou.htm</file>
+ <name>Milindapañho</name>
+ <description>Based on the edition by V. Trenckner: The Milindapañho: Being Dialogues between King Milinda and the Buddhist Sage Nāgasena, London: Pali Text Society 1890, Reprinted 1928, 1962, 1986.</description>
+</text>
+<text id="vism">
+ <group>ext</group>
+ <ref>Vism</ref>
+ <file>pts/4_comm/buvismou.htm</file>
+ <name>Visuddhimagga</name>
+ <description>Based on the edition by C.A.F. Rhys Davids, 2 Vols., London: Pali Text Society 1920-1921.</description>
+</text>
+<text id="sp1">
+ <group>ext</group>
+ <ref>Sp1</ref>
+ <file>pts/4_comm/samp_1ou.htm</file>
+ <name>Samantapāsādikā 1</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. I: Nidāna; Bhikkhuvibhaṅga: Pārājika 1. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1924, Reprinted 1975.</description>
+</text>
+<text id="sp2">
+ <group>ext</group>
+ <ref>Sp2</ref>
+ <file>pts/4_comm/samp_2ou.htm</file>
+ <name>Samantapāsādikā 2</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. II: Bhikkhuvibhaṅga: Pārājika 2-4. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1924, Reprinted 1975.</description>
+</text>
+<text id="sp3">
+ <group>ext</group>
+ <ref>Sp3</ref>
+ <file>pts/4_comm/samp_3ou.htm</file>
+ <name>Samantapāsādikā 3</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. III: Bhikkhuvibhaṅga: Saṅghādisesa, Aniyata, Nissaggiya-Pācittiya. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1930, Reprinted 1968.</description>
+</text>
+<text id="sp4">
+ <group>ext</group>
+ <ref>Sp4</ref>
+ <file>pts/4_comm/samp_4ou.htm</file>
+ <name>Samantapāsādikā 4</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. IV: Bhikkhuvibhaṅga: Pācittiya, Paṭidesanīya, Sekhiya, Adhikaraṇasamatha; Bhikkunīvibhaṅga. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1934, Reprinted 1967.</description>
+</text>
+<text id="sp5">
+ <group>ext</group>
+ <ref>Sp5</ref>
+ <file>pts/4_comm/samp_5ou.htm</file>
+ <name>Samantapāsādikā 5</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. V: Mahāvagga. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1938, Reprinted 1966.</description>
+</text>
+<text id="sp6">
+ <group>ext</group>
+ <ref>Sp6</ref>
+ <file>pts/4_comm/samp_6ou.htm</file>
+ <name>Samantapāsādikā 6</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. VI: Cullavagga. Based on the edition J. Takakusu and Makoto Nagai, London: Pali Text Society 1947, Reprinted 1982.</description>
+</text>
+<text id="sp7">
+ <group>ext</group>
+ <ref>Sp7</ref>
+ <file>pts/4_comm/samp_7ou.htm</file>
+ <name>Samantapāsādikā 7</name>
+ <description>Buddhaghosa's Commentary on the Vinaya Piṭaka, Vol. VII: Parivāra. Based on the edition J. Takakusu and Makoto Nagai, assisted by Kogen Mizuno, London: Pali Text Society 1947, Reprinted 1981.</description>
+</text>
+</collection>

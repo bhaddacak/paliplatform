@@ -1,0 +1,84 @@
+╭──────────╮
+│ Websites │
+╰──────────╯
+⊚ The author's base portal: https://bhaddacak.github.io
+⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
+⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
+⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured:
+    https://github.com/bhaddacak/cst-kit
+    https://bhaddacak.github.io/cstpage
+    https://bhaddacak.github.io/cst
+
+╭─────────╮
+│ Credits │
+╰─────────╯
+⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured is based on Chaṭṭha Saṅgāyana CD published by Vipassana Research Institute (VRI) via tipitaka.org
+⊚ Chaṭṭha Saṅgāyana Tipiṭaka 4 data are bundled with the CST4 (see tipitaka.org)
+⊚ SuttaCentral Bilara data (https://github.com/suttacentral)
+⊚ PTS and BJT edition come from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.htm)
+⊚ Siam Rath Tipiṭaka is converted from Thai (http://www.learntripitaka.com)
+⊚ Some grammar texts are converted from Thai (https://sites.google.com/view/palipage)
+⊚ Apache Lucene 9 (https://lucene.apache.org), Apache License 2.0
+⊚ H2 database engine (unmodified binary) version 2.x (https://h2database.com/), Mozilla Public License 2.0 or Eclipse Public License 1.0 (https://h2database.com/html/license.html)
+⊚ SQLite JDBC (https://github.com/xerial/sqlite-jdbc), Apache License 2.0 
+⊚ Gson (https://google.github.io/gson), Apache License 2.0
+⊚ Apache Commons library: Lang, IO, Compress, CSV, etc. (https://commons.apache.org), Apache License 2.0
+⊚ XZ for Java (https://tukaani.org/xz/java.html), BSD Zero Clause License (0BSD) 
+⊚ Icon images by Font Awesome 6 (https://fontawesome.com), Font Awesome Free License
+⊚ DejaVu fonts 2.37 (https://dejavu-fonts.github.io/)
+⊚ The JDK used is Amazon Corretto 11.0.24.8.1 (build 11.0.24+8-LTS) for Linux (i686), https://aws.amazon.com/corretto
+⊚ JavaFX GUI toolkit (https://gluonhq.com/products/javafx), GPL 2.0
+⊚ Apache Ant 1.10.14 (https://ant.apache.org/), Apache License 2.0 
+⊚ Launch4j 3.50, launcher creator for Windows (http://launch4j.sourceforge.net)
+⊚ Dictionaries incorporated into the program are:
+  - Concise Pāli-English Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-pe/index.htm
+  - Concise English-Pāli Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-ep/index.htm
+  - The Pali Text Society's Pali-English Dictionary, T. W. Rhys Davids and W. Stede
+  - A digital Version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
+  - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
+  - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), CC-BY-NC 4.0
+⊚ Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
+⊚ Explanations and the list of Pāli prosody come from Vuttodayamañjarī (Thai) by Gandhasārābhivaṃsa, printed by Mahachulalongkorn Buddhist University, Nakhon Pathom, Thailand (2001)
+
+╭────────────╮
+│ Change log │
+╰────────────╯
+2024, Oct 5
+⊚ Pāli Platform 3.0 alpha1 is a pre-release for test
+⊚ CST-Restructured, CST4, PTS, etc. integrated
+⊚ SuttaCentral and DPD incorporated
+⊚ Many features added
+⊚ Code refactored and bugs fixed
+
+2023, Dec 11
+⊚ Pāli Platform Classic 2.1 is released, GPL3 license applied
+⊚ Features added in Document Finder
+⊚ Conversion between ṃ and ṁ added in Text Editor
+⊚ Several improvements and bug-fixes
+
+2022, Nov 12
+⊚ Pāli Platform version 2 RC1 is released, newly written in most parts with Java 11 and JavaFX UI
+⊚ Pāli Platform version 1 is discontinued
+
+2020, Jan 18 - 2021, Nov 20
+⊚ Pāli Platform version 1, developed with Java 8 and Swing UI
+
+╭─────────╮
+│ License │
+╰─────────╯
+
+Copyright 2023-2024 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at
+your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see https://www.gnu.org/licenses/.
+

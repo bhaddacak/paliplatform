@@ -1,0 +1,13 @@
+body {margin-right:2em;}
+blockquote {
+  border-left: 3px solid;
+  padding: 1px 0.5em;
+  opacity: .90;
+}
+.verse-line {display:block;}
+.sc-sentid {font-size:0.65em;}
+.sc-variant {font-size:0.75em;}
+.sc-author {font-size:0.7em;}
+.sc-translation {font-size:0.85em;}
+.sc-comment {font-size:0.8em;}
+.sc-reference {font-size:0.75em;}

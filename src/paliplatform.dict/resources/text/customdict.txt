@@ -1,0 +1,13 @@
+# Custom Pali Dictionary
+# ======================
+# The content of this dictionary overrides CPED in the Reader.
+# Lines started with '#' will be ignored.
+# Only lowercase head words are acceptable.
+# Format: 
+#         word=meaning:explanation
+# 'word' and '=' and ':' are mandatory, 'meaning' and 'explanation' are optional.
+#
+…pe…=:ellipsis
+ti=:quote marker
+iti=:quote marker
+nti=:quote marker

@@ -1,0 +1,4 @@
+Notes on Pāli roots in DPD
+	1. This window lists all roots presented in the DPD with some essential information.
+	2. Information about Root Family is shown together here, if any.
+	3. The search is not only for the root name but also for the details.

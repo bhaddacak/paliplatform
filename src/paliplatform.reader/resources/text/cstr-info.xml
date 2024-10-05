@@ -1,0 +1,4597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="buv1">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>buv1</ref>
+ <file>cst-vm-buv1</file>
+ <name>Bhikkhuvibhaṅga 1</name>
+ <altname>Mahāvibhaṅga 1</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin01m.mul0</cscdfile>
+ <cscdfile>vin01m.mul1</cscdfile>
+ <cscdfile>vin01m.mul2</cscdfile>
+ <cscdfile>vin01m.mul3</cscdfile>
+ <cscdfile>vin01m.mul4</cscdfile>
+ <description>The Vinaya of Bhikkhu from Pārājika to Nissaggiya-pācittiya</description>
+ <commentary>sp1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="buv2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>buv2</ref>
+ <file>cst-vm-buv2</file>
+ <name>Bhikkhuvibhaṅga 2</name>
+ <altname>Mahāvibhaṅga 2</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin02m1.mul0</cscdfile>
+ <cscdfile>vin02m1.mul1</cscdfile>
+ <cscdfile>vin02m1.mul2</cscdfile>
+ <cscdfile>vin02m1.mul3</cscdfile>
+ <description>The Vinaya of Bhikkhu from Pācittiya to Adhikaraṇasamatha</description>
+ <commentary>sp2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="biv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>biv</ref>
+ <file>cst-vm-biv</file>
+ <name>Bhikkhunīvibhaṅga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin02m1.mul4</cscdfile>
+ <cscdfile>vin02m1.mul5</cscdfile>
+ <cscdfile>vin02m1.mul6</cscdfile>
+ <cscdfile>vin02m1.mul7</cscdfile>
+ <cscdfile>vin02m1.mul8</cscdfile>
+ <cscdfile>vin02m1.mul9</cscdfile>
+ <cscdfile>vin02m1.mul10</cscdfile>
+ <description>The Vinaya of Bhikkhunī</description>
+ <commentary>sp3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>mv</ref>
+ <file>cst-vm-mv</file>
+ <name>Mahāvagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin02m2.mul0</cscdfile>
+ <cscdfile>vin02m2.mul1</cscdfile>
+ <cscdfile>vin02m2.mul2</cscdfile>
+ <cscdfile>vin02m2.mul3</cscdfile>
+ <cscdfile>vin02m2.mul4</cscdfile>
+ <cscdfile>vin02m2.mul5</cscdfile>
+ <cscdfile>vin02m2.mul6</cscdfile>
+ <cscdfile>vin02m2.mul7</cscdfile>
+ <cscdfile>vin02m2.mul8</cscdfile>
+ <cscdfile>vin02m2.mul9</cscdfile>
+ <description>Major topics in the Vinaya</description>
+ <commentary>sp4</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="cv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>cv</ref>
+ <file>cst-vm-cv</file>
+ <name>Cūḷavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin02m3.mul0</cscdfile>
+ <cscdfile>vin02m3.mul1</cscdfile>
+ <cscdfile>vin02m3.mul2</cscdfile>
+ <cscdfile>vin02m3.mul3</cscdfile>
+ <cscdfile>vin02m3.mul4</cscdfile>
+ <cscdfile>vin02m3.mul5</cscdfile>
+ <cscdfile>vin02m3.mul6</cscdfile>
+ <cscdfile>vin02m3.mul7</cscdfile>
+ <cscdfile>vin02m3.mul8</cscdfile>
+ <cscdfile>vin02m3.mul9</cscdfile>
+ <cscdfile>vin02m3.mul10</cscdfile>
+ <cscdfile>vin02m3.mul11</cscdfile>
+ <description>Minor topics in the Vinaya</description>
+ <commentary>sp5</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pvr">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>pvr</ref>
+ <file>cst-vm-pvr</file>
+ <name>Parivāra</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>vin02m4.mul0</cscdfile>
+ <cscdfile>vin02m4.mul1</cscdfile>
+ <cscdfile>vin02m4.mul2</cscdfile>
+ <cscdfile>vin02m4.mul3</cscdfile>
+ <cscdfile>vin02m4.mul4</cscdfile>
+ <cscdfile>vin02m4.mul5</cscdfile>
+ <cscdfile>vin02m4.mul6</cscdfile>
+ <cscdfile>vin02m4.mul7</cscdfile>
+ <cscdfile>vin02m4.mul8</cscdfile>
+ <cscdfile>vin02m4.mul9</cscdfile>
+ <cscdfile>vin02m4.mul10</cscdfile>
+ <cscdfile>vin02m4.mul11</cscdfile>
+ <cscdfile>vin02m4.mul12</cscdfile>
+ <cscdfile>vin02m4.mul13</cscdfile>
+ <cscdfile>vin02m4.mul14</cscdfile>
+ <cscdfile>vin02m4.mul15</cscdfile>
+ <cscdfile>vin02m4.mul16</cscdfile>
+ <cscdfile>vin02m4.mul17</cscdfile>
+ <description>Miscellaneous topics in the Vinaya</description>
+ <commentary>sp6</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="bup">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>bup</ref>
+ <file>cst-vm-bup</file>
+ <name>Bhikkhupātimokkha</name>
+ <altname>Mātikā 1</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin04t.nrf0</cscdfile>
+ <description>The recital/summarized form of Bhikkhu-Vinaya</description>
+ <commentary>kkh1</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="bip">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>bip</ref>
+ <file>cst-vm-bip</file>
+ <name>Bhikkhunīpātimokkha</name>
+ <altname>Mātikā 2</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin04t.nrf1</cscdfile>
+ <description>The recital/summarized form of Bhikkhunī-Vinaya</description>
+ <commentary>kkh2</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="sp1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp1</ref>
+ <file>cst-ve-sp1</file>
+ <name>Samantapāsādikā 1</name>
+ <altname>Bhikkhuvibhaṅga-aṭṭhakathā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin01a.att0</cscdfile>
+ <cscdfile>vin01a.att1</cscdfile>
+ <cscdfile>vin01a.att2</cscdfile>
+ <cscdfile>vin01a.att3</cscdfile>
+ <cscdfile>vin01a.att4</cscdfile>
+ <cscdfile>vin01a.att5</cscdfile>
+ <description>The commentary to Bhikkhu-Vinaya from Pārājika to Nissaggiya-pācittiya</description>
+ <commentary>sd1</commentary>
+ <commentary>vmv1</commentary>
+ <commentary>vjb1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sp2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp2</ref>
+ <file>cst-ve-sp2</file>
+ <name>Samantapāsādikā 2</name>
+ <altname>Bhikkhuvibhaṅga-aṭṭhakathā 2</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin02a1.att0</cscdfile>
+ <cscdfile>vin02a1.att1</cscdfile>
+ <cscdfile>vin02a1.att2</cscdfile>
+ <cscdfile>vin02a1.att3</cscdfile>
+ <description>The commentary to Bhikkhu-Vinaya from Pācittiya to Adhikaraṇasamatha</description>
+ <commentary>sd2</commentary>
+ <commentary>vmv2</commentary>
+ <commentary>vjb2</commentary>
+ <commentary>pc-y</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sp3">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp3</ref>
+ <file>cst-ve-sp3</file>
+ <name>Samantapāsādikā 3</name>
+ <altname>Bhikkhunīvibhaṅga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin02a1.att4</cscdfile>
+ <cscdfile>vin02a1.att5</cscdfile>
+ <cscdfile>vin02a1.att6</cscdfile>
+ <cscdfile>vin02a1.att7</cscdfile>
+ <cscdfile>vin02a1.att8</cscdfile>
+ <description>The commentary to Bhikkhunī-Vinaya</description>
+ <commentary>sd3</commentary>
+ <commentary>vmv3</commentary>
+ <commentary>biv-y</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sp4">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp4</ref>
+ <file>cst-ve-sp4</file>
+ <name>Samantapāsādikā 4</name>
+ <altname>Mahāvagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin02a2.att0</cscdfile>
+ <cscdfile>vin02a2.att1</cscdfile>
+ <cscdfile>vin02a2.att2</cscdfile>
+ <cscdfile>vin02a2.att3</cscdfile>
+ <cscdfile>vin02a2.att4</cscdfile>
+ <cscdfile>vin02a2.att5</cscdfile>
+ <cscdfile>vin02a2.att6</cscdfile>
+ <cscdfile>vin02a2.att7</cscdfile>
+ <cscdfile>vin02a2.att8</cscdfile>
+ <cscdfile>vin02a2.att9</cscdfile>
+ <description>The commentary to Mahāvagga</description>
+ <commentary>sd4</commentary>
+ <commentary>vmv4</commentary>
+ <commentary>vjb4</commentary>
+ <commentary>mv-y</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sp5">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp5</ref>
+ <file>cst-ve-sp5</file>
+ <name>Samantapāsādikā 5</name>
+ <altname>Cūḷavagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin02a3.att0</cscdfile>
+ <cscdfile>vin02a3.att1</cscdfile>
+ <cscdfile>vin02a3.att2</cscdfile>
+ <cscdfile>vin02a3.att3</cscdfile>
+ <cscdfile>vin02a3.att4</cscdfile>
+ <cscdfile>vin02a3.att5</cscdfile>
+ <cscdfile>vin02a3.att6</cscdfile>
+ <cscdfile>vin02a3.att7</cscdfile>
+ <cscdfile>vin02a3.att8</cscdfile>
+ <cscdfile>vin02a3.att9</cscdfile>
+ <cscdfile>vin02a3.att10</cscdfile>
+ <cscdfile>vin02a3.att11</cscdfile>
+ <description>The commentary to Cūḷavagga</description>
+ <commentary>sd5</commentary>
+ <commentary>vmv5</commentary>
+ <commentary>vjb5</commentary>
+ <commentary>cv-y</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sp6">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sp6</ref>
+ <file>cst-ve-sp6</file>
+ <name>Samantapāsādikā 6</name>
+ <altname>Parivāra-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>vin02a4.att0</cscdfile>
+ <cscdfile>vin02a4.att1</cscdfile>
+ <cscdfile>vin02a4.att2</cscdfile>
+ <cscdfile>vin02a4.att3</cscdfile>
+ <cscdfile>vin02a4.att4</cscdfile>
+ <cscdfile>vin02a4.att5</cscdfile>
+ <cscdfile>vin02a4.att6</cscdfile>
+ <cscdfile>vin02a4.att7</cscdfile>
+ <cscdfile>vin02a4.att8</cscdfile>
+ <cscdfile>vin02a4.att9</cscdfile>
+ <cscdfile>vin02a4.att10</cscdfile>
+ <cscdfile>vin02a4.att11</cscdfile>
+ <cscdfile>vin02a4.att12</cscdfile>
+ <cscdfile>vin02a4.att13</cscdfile>
+ <cscdfile>vin02a4.att14</cscdfile>
+ <cscdfile>vin02a4.att15</cscdfile>
+ <cscdfile>vin02a4.att16</cscdfile>
+ <cscdfile>vin02a4.att17</cscdfile>
+ <description>The commentary to Parivāra</description>
+ <commentary>sd6</commentary>
+ <commentary>vmv6</commentary>
+ <commentary>vjb6</commentary>
+ <commentary>pvr-y</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="sd1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd1</ref>
+ <file>cst-ve-sd1</file>
+ <name>Sāratthadīpanī 1</name>
+ <altname>Bhikkhuvibhaṅga-ṭīkā 1</altname>
+ <altname>Samantapāsādikā-ṭīkā 1</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin01t1.tik0</cscdfile>
+ <cscdfile>vin01t1.tik1</cscdfile>
+ <cscdfile>vin01t2.tik0</cscdfile>
+ <cscdfile>vin01t2.tik1</cscdfile>
+ <cscdfile>vin01t2.tik2</cscdfile>
+ <cscdfile>vin01t2.tik3</cscdfile>
+ <description>The main subcommentary to Bhikkhuvibhaṅga 1</description>
+ <linkable>false</linkable>
+</text>
+<text id="sd2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd2</ref>
+ <file>cst-ve-sd2</file>
+ <name>Sāratthadīpanī 2</name>
+ <altname>Bhikkhuvibhaṅga-ṭīkā 2</altname>
+ <altname>Samantapāsādikā-ṭīkā 2</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin02t.tik0</cscdfile>
+ <cscdfile>vin02t.tik1</cscdfile>
+ <cscdfile>vin02t.tik2</cscdfile>
+ <description>The main subcommentary to Bhikkhuvibhaṅga 2</description>
+ <linkable>false</linkable>
+</text>
+<text id="sd3">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd3</ref>
+ <file>cst-ve-sd3</file>
+ <name>Sāratthadīpanī 3</name>
+ <altname>Bhikkhunīvibhaṅga-ṭīkā</altname>
+ <altname>Samantapāsādikā-ṭīkā 3</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin02t.tik3</cscdfile>
+ <cscdfile>vin02t.tik4</cscdfile>
+ <cscdfile>vin02t.tik5</cscdfile>
+ <cscdfile>vin02t.tik6</cscdfile>
+ <cscdfile>vin02t.tik7</cscdfile>
+ <description>The main subcommentary to Bhikkhunīvibhaṅga</description>
+ <linkable>false</linkable>
+</text>
+<text id="sd4">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd4</ref>
+ <file>cst-ve-sd4</file>
+ <name>Sāratthadīpanī 4</name>
+ <altname>Mahāvagga-ṭīkā</altname>
+ <altname>Samantapāsādikā-ṭīkā 4</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin02t.tik8</cscdfile>
+ <cscdfile>vin02t.tik9</cscdfile>
+ <cscdfile>vin02t.tik10</cscdfile>
+ <cscdfile>vin02t.tik11</cscdfile>
+ <cscdfile>vin02t.tik12</cscdfile>
+ <cscdfile>vin02t.tik13</cscdfile>
+ <cscdfile>vin02t.tik14</cscdfile>
+ <cscdfile>vin02t.tik15</cscdfile>
+ <cscdfile>vin02t.tik16</cscdfile>
+ <cscdfile>vin02t.tik17</cscdfile>
+ <cscdfile>vin02t.tik18</cscdfile>
+ <description>The main subcommentary to Mahāvagga</description>
+ <linkable>false</linkable>
+</text>
+<text id="sd5">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd5</ref>
+ <file>cst-ve-sd5</file>
+ <name>Sāratthadīpanī 5</name>
+ <altname>Cūḷavagga-ṭīkā</altname>
+ <altname>Samantapāsādikā-ṭīkā 5</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin02t.tik19</cscdfile>
+ <cscdfile>vin02t.tik20</cscdfile>
+ <cscdfile>vin02t.tik21</cscdfile>
+ <cscdfile>vin02t.tik22</cscdfile>
+ <cscdfile>vin02t.tik23</cscdfile>
+ <cscdfile>vin02t.tik24</cscdfile>
+ <cscdfile>vin02t.tik25</cscdfile>
+ <cscdfile>vin02t.tik26</cscdfile>
+ <cscdfile>vin02t.tik27</cscdfile>
+ <cscdfile>vin02t.tik28</cscdfile>
+ <cscdfile>vin02t.tik29</cscdfile>
+ <cscdfile>vin02t.tik30</cscdfile>
+ <cscdfile>vin02t.tik31</cscdfile>
+ <description>The main subcommentary to Cūḷavagga</description>
+ <linkable>false</linkable>
+</text>
+<text id="sd6">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>sd6</ref>
+ <file>cst-ve-sd6</file>
+ <name>Sāratthadīpanī 6</name>
+ <altname>Parivāra-ṭīkā</altname>
+ <altname>Samantapāsādikā-ṭīkā 6</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin02t.tik32</cscdfile>
+ <cscdfile>vin02t.tik33</cscdfile>
+ <cscdfile>vin02t.tik34</cscdfile>
+ <cscdfile>vin02t.tik35</cscdfile>
+ <cscdfile>vin02t.tik36</cscdfile>
+ <cscdfile>vin02t.tik37</cscdfile>
+ <cscdfile>vin02t.tik38</cscdfile>
+ <cscdfile>vin02t.tik39</cscdfile>
+ <cscdfile>vin02t.tik40</cscdfile>
+ <cscdfile>vin02t.tik41</cscdfile>
+ <cscdfile>vin02t.tik42</cscdfile>
+ <cscdfile>vin02t.tik43</cscdfile>
+ <cscdfile>vin02t.tik44</cscdfile>
+ <cscdfile>vin02t.tik45</cscdfile>
+ <cscdfile>vin02t.tik46</cscdfile>
+ <cscdfile>vin02t.tik47</cscdfile>
+ <description>The main subcommentary to Parivāra</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv1</ref>
+ <file>cst-ve-vmv1</file>
+ <name>Vimativinodanī 1</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf0</cscdfile>
+ <cscdfile>vin07t.nrf1</cscdfile>
+ <cscdfile>vin07t.nrf2</cscdfile>
+ <cscdfile>vin07t.nrf3</cscdfile>
+ <cscdfile>vin07t.nrf4</cscdfile>
+ <cscdfile>vin07t.nrf5</cscdfile>
+ <description>A commentary to Samantapāsādikā 1 (Bhikkhuvibhaṅga 1)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv2</ref>
+ <file>cst-ve-vmv2</file>
+ <name>Vimativinodanī 2</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf6</cscdfile>
+ <cscdfile>vin07t.nrf7</cscdfile>
+ <cscdfile>vin07t.nrf8</cscdfile>
+ <description>A commentary to Samantapāsādikā 2 (Bhikkhuvibhaṅga 2)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv3">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv3</ref>
+ <file>cst-ve-vmv3</file>
+ <name>Vimativinodanī 3</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf9</cscdfile>
+ <cscdfile>vin07t.nrf10</cscdfile>
+ <cscdfile>vin07t.nrf11</cscdfile>
+ <cscdfile>vin07t.nrf12</cscdfile>
+ <cscdfile>vin07t.nrf13</cscdfile>
+ <cscdfile>vin07t.nrf14</cscdfile>
+ <description>A commentary to Samantapāsādikā 3 (Bhikkhunīvibhaṅga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv4">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv4</ref>
+ <file>cst-ve-vmv4</file>
+ <name>Vimativinodanī 4</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf16</cscdfile>
+ <cscdfile>vin07t.nrf17</cscdfile>
+ <cscdfile>vin07t.nrf18</cscdfile>
+ <cscdfile>vin07t.nrf19</cscdfile>
+ <cscdfile>vin07t.nrf20</cscdfile>
+ <cscdfile>vin07t.nrf21</cscdfile>
+ <cscdfile>vin07t.nrf22</cscdfile>
+ <cscdfile>vin07t.nrf23</cscdfile>
+ <cscdfile>vin07t.nrf24</cscdfile>
+ <cscdfile>vin07t.nrf25</cscdfile>
+ <description>A commentary to Samantapāsādikā 4 (Mahāvagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv5">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv5</ref>
+ <file>cst-ve-vmv5</file>
+ <name>Vimativinodanī 5</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf26</cscdfile>
+ <cscdfile>vin07t.nrf27</cscdfile>
+ <cscdfile>vin07t.nrf28</cscdfile>
+ <cscdfile>vin07t.nrf29</cscdfile>
+ <cscdfile>vin07t.nrf30</cscdfile>
+ <cscdfile>vin07t.nrf31</cscdfile>
+ <cscdfile>vin07t.nrf32</cscdfile>
+ <cscdfile>vin07t.nrf33</cscdfile>
+ <cscdfile>vin07t.nrf34</cscdfile>
+ <cscdfile>vin07t.nrf35</cscdfile>
+ <cscdfile>vin07t.nrf36</cscdfile>
+ <cscdfile>vin07t.nrf37</cscdfile>
+ <cscdfile>vin07t.nrf38</cscdfile>
+ <description>A commentary to Samantapāsādikā 5 (Cūḷavagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vmv6">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vmv6</ref>
+ <file>cst-ve-vmv6</file>
+ <name>Vimativinodanī 6</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin07t.nrf39</cscdfile>
+ <cscdfile>vin07t.nrf40</cscdfile>
+ <cscdfile>vin07t.nrf41</cscdfile>
+ <cscdfile>vin07t.nrf42</cscdfile>
+ <cscdfile>vin07t.nrf43</cscdfile>
+ <cscdfile>vin07t.nrf44</cscdfile>
+ <cscdfile>vin07t.nrf45</cscdfile>
+ <cscdfile>vin07t.nrf46</cscdfile>
+ <cscdfile>vin07t.nrf47</cscdfile>
+ <cscdfile>vin07t.nrf48</cscdfile>
+ <cscdfile>vin07t.nrf49</cscdfile>
+ <cscdfile>vin07t.nrf50</cscdfile>
+ <cscdfile>vin07t.nrf51</cscdfile>
+ <cscdfile>vin07t.nrf52</cscdfile>
+ <cscdfile>vin07t.nrf53</cscdfile>
+ <cscdfile>vin07t.nrf54</cscdfile>
+ <cscdfile>vin07t.nrf55</cscdfile>
+ <cscdfile>vin07t.nrf56</cscdfile>
+ <description>A commentary to Samantapāsādikā 6 (Parivāra)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vjb1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vjb1</ref>
+ <file>cst-ve-vjb1</file>
+ <name>Vajirabuddhi 1</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin06t.nrf0</cscdfile>
+ <cscdfile>vin06t.nrf1</cscdfile>
+ <description>A commentary to Samantapāsādikā 1 (Bhikkhuvibhaṅga 1)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vjb2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vjb2</ref>
+ <file>cst-ve-vjb2</file>
+ <name>Vajirabuddhi 2</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin06t.nrf2</cscdfile>
+ <description>A commentary to Samantapāsādikā 2 (Bhikkhuvibhaṅga 2)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vjb4">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vjb4</ref>
+ <file>cst-ve-vjb4</file>
+ <name>Vajirabuddhi 4</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin06t.nrf3</cscdfile>
+ <description>A commentary to Samantapāsādikā 4 (Mahāvagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vjb5">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vjb4</ref>
+ <file>cst-ve-vjb5</file>
+ <name>Vajirabuddhi 5</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin06t.nrf4</cscdfile>
+ <description>A commentary to Samantapāsādikā 5 (Cūḷavagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vjb6">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vjb6</ref>
+ <file>cst-ve-vjb6</file>
+ <name>Vajirabuddhi 6</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin06t.nrf5</cscdfile>
+ <description>A commentary to Samantapāsādikā 6 (Parivāra)</description>
+ <linkable>false</linkable>
+</text>
+<text id="pc-y">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>pc-y</ref>
+ <file>cst-ve-pcy</file>
+ <name>Pācityādiyojanā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin12t.nrf0</cscdfile>
+ <description>A commentary to Samantapāsādikā 2 (Bhikkhuvibhaṅga 2)</description>
+ <linkable>false</linkable>
+</text>
+<text id="biv-y">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>biv-y</ref>
+ <file>cst-ve-bivy</file>
+ <name>Bhikkhunīvibhaṅgayojanā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin12t.nrf1</cscdfile>
+ <description>A commentary to Samantapāsādikā 3 (Bhikkhunīvibhaṅga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="mv-y">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>mv-y</ref>
+ <file>cst-ve-mvy</file>
+ <name>Mahāvaggayojanā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin12t.nrf2</cscdfile>
+ <description>A commentary to Samantapāsādikā 4 (Mahāvagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="cv-y">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>cv-y</ref>
+ <file>cst-ve-cvy</file>
+ <name>Cūḷavaggayojanā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin12t.nrf3</cscdfile>
+ <description>A commentary to Samantapāsādikā 5 (Cūḷavagga)</description>
+ <linkable>false</linkable>
+</text>
+<text id="pvr-y">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>pvr-y</ref>
+ <file>cst-ve-pvry</file>
+ <name>Parivārayojanā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin12t.nrf4</cscdfile>
+ <description>A commentary to Samantapāsādikā 6 (Parivāra)</description>
+ <linkable>false</linkable>
+</text>
+<text id="kkh1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh1</ref>
+ <file>cst-ve-kkh1</file>
+ <name>Kaṅkhāvitaraṇī 1</name>
+ <altname>Bhikkhupātimokkha-aṭṭhakathā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin04t.nrf2</cscdfile>
+ <cscdfile>vin04t.nrf3</cscdfile>
+ <cscdfile>vin04t.nrf4</cscdfile>
+ <cscdfile>vin04t.nrf5</cscdfile>
+ <cscdfile>vin04t.nrf6</cscdfile>
+ <cscdfile>vin04t.nrf7</cscdfile>
+ <cscdfile>vin04t.nrf8</cscdfile>
+ <cscdfile>vin04t.nrf9</cscdfile>
+ <cscdfile>vin04t.nrf10</cscdfile>
+ <description>The commentary to Bhikkhupātimokkha</description>
+ <commentary>kkh-pt1</commentary>
+ <commentary>kkh-nt1</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="kkh2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh2</ref>
+ <file>cst-ve-kkh2</file>
+ <name>Kaṅkhāvitaraṇī 2</name>
+ <altname>Bhikkhunīpātimokkha-aṭṭhakathā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin04t.nrf11</cscdfile>
+ <cscdfile>vin04t.nrf12</cscdfile>
+ <cscdfile>vin04t.nrf13</cscdfile>
+ <cscdfile>vin04t.nrf14</cscdfile>
+ <cscdfile>vin04t.nrf15</cscdfile>
+ <cscdfile>vin04t.nrf16</cscdfile>
+ <description>The commentary to Bhikkhunīpātimokkha</description>
+ <commentary>kkh-pt2</commentary>
+ <commentary>kkh-nt2</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="kkh-pt1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh-pt1</ref>
+ <file>cst-ve-kkhpt1</file>
+ <name>Kaṅkhāvitaraṇī-purāṇaṭīkā 1</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin09t.nrf1</cscdfile>
+ <cscdfile>vin09t.nrf2</cscdfile>
+ <cscdfile>vin09t.nrf3</cscdfile>
+ <cscdfile>vin09t.nrf4</cscdfile>
+ <cscdfile>vin09t.nrf5</cscdfile>
+ <cscdfile>vin09t.nrf6</cscdfile>
+ <cscdfile>vin09t.nrf7</cscdfile>
+ <description>An old commentary to Kaṅkhāvitaraṇī 1 (Bhikkhupātimokkha)</description>
+ <linkable>false</linkable>
+</text>
+<text id="kkh-pt2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh-pt2</ref>
+ <file>cst-ve-kkhpt2</file>
+ <name>Kaṅkhāvitaraṇī-purāṇaṭīkā 2</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin09t.nrf8</cscdfile>
+ <cscdfile>vin09t.nrf9</cscdfile>
+ <cscdfile>vin09t.nrf10</cscdfile>
+ <cscdfile>vin09t.nrf11</cscdfile>
+ <cscdfile>vin09t.nrf12</cscdfile>
+ <description>An old commentary to Kaṅkhāvitaraṇī 2 (Bhikkhunīpātimokkha)</description>
+ <linkable>false</linkable>
+</text>
+<text id="kkh-nt1">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh-nt1</ref>
+ <file>cst-ve-kkhnt1</file>
+ <name>Kaṅkhāvitaraṇī-abhinavaṭīkā 1</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin09t.nrf12</cscdfile>
+ <cscdfile>vin09t.nrf13</cscdfile>
+ <cscdfile>vin09t.nrf14</cscdfile>
+ <cscdfile>vin09t.nrf15</cscdfile>
+ <cscdfile>vin09t.nrf16</cscdfile>
+ <cscdfile>vin09t.nrf17</cscdfile>
+ <cscdfile>vin09t.nrf18</cscdfile>
+ <cscdfile>vin09t.nrf19</cscdfile>
+ <description>A new commentary to Kaṅkhāvitaraṇī 1 (Bhikkhupātimokkha)</description>
+ <linkable>false</linkable>
+</text>
+<text id="kkh-nt2">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>kkh-nt2</ref>
+ <file>cst-ve-kkhnt2</file>
+ <name>Kaṅkhāvitaraṇī-abhinavaṭīkā 2</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin09t.nrf20</cscdfile>
+ <cscdfile>vin09t.nrf21</cscdfile>
+ <cscdfile>vin09t.nrf22</cscdfile>
+ <cscdfile>vin09t.nrf23</cscdfile>
+ <cscdfile>vin09t.nrf24</cscdfile>
+ <cscdfile>vin09t.nrf25</cscdfile>
+ <description>A new commentary to Kaṅkhāvitaraṇī 2 (Bhikkhunīpātimokkha)</description>
+ <linkable>false</linkable>
+</text>
+<text id="vns">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vns</ref>
+ <file>cst-ve-vns</file>
+ <name>Vinayasaṅgaha</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin05t.nrf0</cscdfile>
+ <cscdfile>vin05t.nrf1</cscdfile>
+ <cscdfile>vin05t.nrf2</cscdfile>
+ <cscdfile>vin05t.nrf3</cscdfile>
+ <cscdfile>vin05t.nrf4</cscdfile>
+ <cscdfile>vin05t.nrf5</cscdfile>
+ <cscdfile>vin05t.nrf6</cscdfile>
+ <cscdfile>vin05t.nrf7</cscdfile>
+ <cscdfile>vin05t.nrf8</cscdfile>
+ <cscdfile>vin05t.nrf9</cscdfile>
+ <cscdfile>vin05t.nrf10</cscdfile>
+ <cscdfile>vin05t.nrf11</cscdfile>
+ <cscdfile>vin05t.nrf12</cscdfile>
+ <cscdfile>vin05t.nrf13</cscdfile>
+ <cscdfile>vin05t.nrf14</cscdfile>
+ <cscdfile>vin05t.nrf15</cscdfile>
+ <cscdfile>vin05t.nrf16</cscdfile>
+ <cscdfile>vin05t.nrf17</cscdfile>
+ <cscdfile>vin05t.nrf18</cscdfile>
+ <cscdfile>vin05t.nrf19</cscdfile>
+ <cscdfile>vin05t.nrf20</cscdfile>
+ <cscdfile>vin05t.nrf21</cscdfile>
+ <cscdfile>vin05t.nrf22</cscdfile>
+ <cscdfile>vin05t.nrf23</cscdfile>
+ <cscdfile>vin05t.nrf24</cscdfile>
+ <cscdfile>vin05t.nrf25</cscdfile>
+ <cscdfile>vin05t.nrf26</cscdfile>
+ <cscdfile>vin05t.nrf27</cscdfile>
+ <cscdfile>vin05t.nrf28</cscdfile>
+ <cscdfile>vin05t.nrf29</cscdfile>
+ <cscdfile>vin05t.nrf30</cscdfile>
+ <cscdfile>vin05t.nrf31</cscdfile>
+ <cscdfile>vin05t.nrf32</cscdfile>
+ <cscdfile>vin05t.nrf33</cscdfile>
+ <cscdfile>vin05t.nrf34</cscdfile>
+ <description>A miscellaneous commentary to the Vinaya</description>
+ <commentary>vnl</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vnl">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vnl</ref>
+ <file>cst-ve-vnl</file>
+ <name>Vinayālaṅkāra</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin08t.nrf0</cscdfile>
+ <cscdfile>vin08t.nrf1</cscdfile>
+ <cscdfile>vin08t.nrf2</cscdfile>
+ <cscdfile>vin08t.nrf3</cscdfile>
+ <cscdfile>vin08t.nrf4</cscdfile>
+ <cscdfile>vin08t.nrf5</cscdfile>
+ <cscdfile>vin08t.nrf6</cscdfile>
+ <cscdfile>vin08t.nrf7</cscdfile>
+ <cscdfile>vin08t.nrf8</cscdfile>
+ <cscdfile>vin08t.nrf9</cscdfile>
+ <cscdfile>vin08t.nrf10</cscdfile>
+ <cscdfile>vin08t.nrf11</cscdfile>
+ <cscdfile>vin08t.nrf12</cscdfile>
+ <cscdfile>vin08t.nrf13</cscdfile>
+ <cscdfile>vin08t.nrf14</cscdfile>
+ <cscdfile>vin08t.nrf15</cscdfile>
+ <cscdfile>vin08t.nrf16</cscdfile>
+ <cscdfile>vin08t.nrf17</cscdfile>
+ <cscdfile>vin08t.nrf18</cscdfile>
+ <cscdfile>vin08t.nrf19</cscdfile>
+ <cscdfile>vin08t.nrf20</cscdfile>
+ <cscdfile>vin08t.nrf21</cscdfile>
+ <cscdfile>vin08t.nrf22</cscdfile>
+ <cscdfile>vin08t.nrf23</cscdfile>
+ <cscdfile>vin08t.nrf24</cscdfile>
+ <cscdfile>vin08t.nrf25</cscdfile>
+ <cscdfile>vin08t.nrf26</cscdfile>
+ <cscdfile>vin08t.nrf27</cscdfile>
+ <cscdfile>vin08t.nrf28</cscdfile>
+ <cscdfile>vin08t.nrf29</cscdfile>
+ <cscdfile>vin08t.nrf30</cscdfile>
+ <cscdfile>vin08t.nrf31</cscdfile>
+ <cscdfile>vin08t.nrf32</cscdfile>
+ <cscdfile>vin08t.nrf33</cscdfile>
+ <cscdfile>vin08t.nrf34</cscdfile>
+ <cscdfile>vin08t.nrf35</cscdfile>
+ <description>The commentary to Vinayasaṅgaha</description>
+ <linkable>false</linkable>
+</text>
+<text id="vnv">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vnv</ref>
+ <file>cst-ve-vnv</file>
+ <name>Vinayavinicchaya</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin10t.nrf0</cscdfile>
+ <cscdfile>vin10t.nrf1</cscdfile>
+ <cscdfile>vin10t.nrf2</cscdfile>
+ <cscdfile>vin10t.nrf3</cscdfile>
+ <cscdfile>vin10t.nrf4</cscdfile>
+ <description>A commentary to the Vinaya</description>
+ <commentary>vnv-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vnv-t">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>vnv-t</ref>
+ <file>cst-ve-vnvt</file>
+ <name>Vinayavinicchayaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin11t.nrf0</cscdfile>
+ <cscdfile>vin11t.nrf1</cscdfile>
+ <cscdfile>vin11t.nrf2</cscdfile>
+ <cscdfile>vin11t.nrf3</cscdfile>
+ <cscdfile>vin11t.nrf4</cscdfile>
+ <cscdfile>vin11t.nrf5</cscdfile>
+ <cscdfile>vin11t.nrf6</cscdfile>
+ <cscdfile>vin11t.nrf7</cscdfile>
+ <cscdfile>vin11t.nrf8</cscdfile>
+ <cscdfile>vin11t.nrf9</cscdfile>
+ <cscdfile>vin11t.nrf10</cscdfile>
+ <cscdfile>vin11t.nrf11</cscdfile>
+ <cscdfile>vin11t.nrf12</cscdfile>
+ <cscdfile>vin11t.nrf13</cscdfile>
+ <cscdfile>vin11t.nrf14</cscdfile>
+ <cscdfile>vin11t.nrf15</cscdfile>
+ <cscdfile>vin11t.nrf16</cscdfile>
+ <cscdfile>vin11t.nrf17</cscdfile>
+ <cscdfile>vin11t.nrf18</cscdfile>
+ <cscdfile>vin11t.nrf19</cscdfile>
+ <cscdfile>vin11t.nrf20</cscdfile>
+ <cscdfile>vin11t.nrf21</cscdfile>
+ <cscdfile>vin11t.nrf22</cscdfile>
+ <cscdfile>vin11t.nrf23</cscdfile>
+ <cscdfile>vin11t.nrf24</cscdfile>
+ <cscdfile>vin11t.nrf25</cscdfile>
+ <cscdfile>vin11t.nrf26</cscdfile>
+ <cscdfile>vin11t.nrf27</cscdfile>
+ <cscdfile>vin11t.nrf28</cscdfile>
+ <cscdfile>vin11t.nrf29</cscdfile>
+ <cscdfile>vin11t.nrf30</cscdfile>
+ <cscdfile>vin11t.nrf31</cscdfile>
+ <cscdfile>vin11t.nrf32</cscdfile>
+ <cscdfile>vin11t.nrf33</cscdfile>
+ <cscdfile>vin11t.nrf34</cscdfile>
+ <cscdfile>vin11t.nrf35</cscdfile>
+ <description>The commentary to Vinayavinicchaya</description>
+ <linkable>false</linkable>
+</text>
+<text id="utv">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>utv</ref>
+ <file>cst-ve-utv</file>
+ <name>Uttaravinicchaya</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin10t.nrf5</cscdfile>
+ <cscdfile>vin10t.nrf6</cscdfile>
+ <cscdfile>vin10t.nrf7</cscdfile>
+ <description>A commentary to the Vinaya</description>
+ <commentary>utv-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="utv-t">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>utv-t</ref>
+ <file>cst-ve-utvt</file>
+ <name>Uttaravinicchayaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin11t.nrf36</cscdfile>
+ <cscdfile>vin11t.nrf37</cscdfile>
+ <cscdfile>vin11t.nrf38</cscdfile>
+ <cscdfile>vin11t.nrf39</cscdfile>
+ <cscdfile>vin11t.nrf40</cscdfile>
+ <cscdfile>vin11t.nrf41</cscdfile>
+ <cscdfile>vin11t.nrf42</cscdfile>
+ <cscdfile>vin11t.nrf43</cscdfile>
+ <cscdfile>vin11t.nrf44</cscdfile>
+ <cscdfile>vin11t.nrf45</cscdfile>
+ <cscdfile>vin11t.nrf46</cscdfile>
+ <cscdfile>vin11t.nrf47</cscdfile>
+ <cscdfile>vin11t.nrf48</cscdfile>
+ <description>The commentary to Uttaravinicchaya</description>
+ <linkable>false</linkable>
+</text>
+<text id="khds">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>khds</ref>
+ <file>cst-ve-khds</file>
+ <name>Khuddasikkhā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin13t.nrf0</cscdfile>
+ <description>A composition on the Vinaya</description>
+ <commentary>khds-pt</commentary>
+ <commentary>khds-nt</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="khds-pt">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>khds-pt</ref>
+ <file>cst-ve-khdspt</file>
+ <name>Khuddasikkhā-purāṇaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin13t.nrf1</cscdfile>
+ <description>An old commentary to Khuddasikkhā</description>
+ <linkable>false</linkable>
+</text>
+<text id="khds-nt">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>khds-nt</ref>
+ <file>cst-ve-khdsnt</file>
+ <name>Khuddasikkhā-abhinavaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin13t.nrf2</cscdfile>
+ <description>A new commentary to Khuddasikkhā</description>
+ <linkable>false</linkable>
+</text>
+<text id="mls">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>mls</ref>
+ <file>cst-ve-mls</file>
+ <name>Mūlasikkhā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin13t.nrf3</cscdfile>
+ <description>A composition on the Vinaya</description>
+ <commentary>mls-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mls-t">
+ <group>vin</group>
+ <docclass>exe</docclass>
+ <ref>mls-t</ref>
+ <file>cst-ve-mlst</file>
+ <name>Mūlasikkhāṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>vin13t.nrf4</cscdfile>
+ <description>A commentary to Mūlasikkhā</description>
+ <linkable>false</linkable>
+</text>
+<text id="d1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>d1</ref>
+ <file>cst-sm-d1</file>
+ <name>Dīghanikāya Sīlakkhandhavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0101m.mul0</cscdfile>
+ <cscdfile>s0101m.mul1</cscdfile>
+ <cscdfile>s0101m.mul2</cscdfile>
+ <cscdfile>s0101m.mul3</cscdfile>
+ <cscdfile>s0101m.mul4</cscdfile>
+ <cscdfile>s0101m.mul5</cscdfile>
+ <cscdfile>s0101m.mul6</cscdfile>
+ <cscdfile>s0101m.mul7</cscdfile>
+ <cscdfile>s0101m.mul8</cscdfile>
+ <cscdfile>s0101m.mul9</cscdfile>
+ <cscdfile>s0101m.mul10</cscdfile>
+ <cscdfile>s0101m.mul11</cscdfile>
+ <cscdfile>s0101m.mul12</cscdfile>
+ <description>The Sīlakkhandhavagga of the long discourses</description>
+ <commentary>smv1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="d2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>d2</ref>
+ <file>cst-sm-d2</file>
+ <name>Dīghanikāya Mahāvagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0102m.mul0</cscdfile>
+ <cscdfile>s0102m.mul1</cscdfile>
+ <cscdfile>s0102m.mul2</cscdfile>
+ <cscdfile>s0102m.mul3</cscdfile>
+ <cscdfile>s0102m.mul4</cscdfile>
+ <cscdfile>s0102m.mul5</cscdfile>
+ <cscdfile>s0102m.mul6</cscdfile>
+ <cscdfile>s0102m.mul7</cscdfile>
+ <cscdfile>s0102m.mul8</cscdfile>
+ <cscdfile>s0102m.mul9</cscdfile>
+ <description>The Mahāvagga of the long discourses</description>
+ <commentary>smv2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="d3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>d3</ref>
+ <file>cst-sm-d3</file>
+ <name>Dīghanikāya Pāthikavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0103m.mul0</cscdfile>
+ <cscdfile>s0103m.mul1</cscdfile>
+ <cscdfile>s0103m.mul2</cscdfile>
+ <cscdfile>s0103m.mul3</cscdfile>
+ <cscdfile>s0103m.mul4</cscdfile>
+ <cscdfile>s0103m.mul5</cscdfile>
+ <cscdfile>s0103m.mul6</cscdfile>
+ <cscdfile>s0103m.mul7</cscdfile>
+ <cscdfile>s0103m.mul8</cscdfile>
+ <cscdfile>s0103m.mul9</cscdfile>
+ <cscdfile>s0103m.mul10</cscdfile>
+ <description>The Pāthikavagga of the long discourses</description>
+ <commentary>smv3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="smv1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>smv1</ref>
+ <file>cst-se-smv1</file>
+ <name>Sumaṅgalavilāsinī 1</name>
+ <altname>Dīghanikāya-aṭṭhakathā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0101a.att0</cscdfile>
+ <cscdfile>s0101a.att1</cscdfile>
+ <cscdfile>s0101a.att2</cscdfile>
+ <cscdfile>s0101a.att3</cscdfile>
+ <cscdfile>s0101a.att4</cscdfile>
+ <cscdfile>s0101a.att5</cscdfile>
+ <cscdfile>s0101a.att6</cscdfile>
+ <cscdfile>s0101a.att7</cscdfile>
+ <cscdfile>s0101a.att8</cscdfile>
+ <cscdfile>s0101a.att9</cscdfile>
+ <cscdfile>s0101a.att10</cscdfile>
+ <cscdfile>s0101a.att11</cscdfile>
+ <cscdfile>s0101a.att12</cscdfile>
+ <cscdfile>s0101a.att13</cscdfile>
+ <description>The commentary to Sīlakkhandhavagga of the long discourses</description>
+ <commentary>lpd1</commentary>
+ <commentary>sv-nt</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="smv2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>smv2</ref>
+ <file>cst-se-smv2</file>
+ <name>Sumaṅgalavilāsinī 2</name>
+ <altname>Dīghanikāya-aṭṭhakathā 2</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0102a.att0</cscdfile>
+ <cscdfile>s0102a.att1</cscdfile>
+ <cscdfile>s0102a.att2</cscdfile>
+ <cscdfile>s0102a.att3</cscdfile>
+ <cscdfile>s0102a.att4</cscdfile>
+ <cscdfile>s0102a.att5</cscdfile>
+ <cscdfile>s0102a.att6</cscdfile>
+ <cscdfile>s0102a.att7</cscdfile>
+ <cscdfile>s0102a.att8</cscdfile>
+ <cscdfile>s0102a.att9</cscdfile>
+ <description>The commentary to Mahāvagga of the long discourses</description>
+ <commentary>lpd2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="smv3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>smv3</ref>
+ <file>cst-se-smv3</file>
+ <name>Sumaṅgalavilāsinī 3</name>
+ <altname>Dīghanikāya-aṭṭhakathā 3</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0103a.att0</cscdfile>
+ <cscdfile>s0103a.att1</cscdfile>
+ <cscdfile>s0103a.att2</cscdfile>
+ <cscdfile>s0103a.att3</cscdfile>
+ <cscdfile>s0103a.att4</cscdfile>
+ <cscdfile>s0103a.att5</cscdfile>
+ <cscdfile>s0103a.att6</cscdfile>
+ <cscdfile>s0103a.att7</cscdfile>
+ <cscdfile>s0103a.att8</cscdfile>
+ <cscdfile>s0103a.att9</cscdfile>
+ <cscdfile>s0103a.att10</cscdfile>
+ <description>The commentary to Pāthikavagga of the long discourses</description>
+ <commentary>lpd3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="lpd1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpd1</ref>
+ <file>cst-se-lpd1</file>
+ <name>Līnatthappakāsinī (Dīghanikāya) 1</name>
+ <altname>Dīghanikāya-ṭīkā 1</altname>
+ <altname>Sumaṅgalavilāsinī-ṭīkā 1</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0101t.tik0</cscdfile>
+ <cscdfile>s0101t.tik1</cscdfile>
+ <cscdfile>s0101t.tik2</cscdfile>
+ <cscdfile>s0101t.tik3</cscdfile>
+ <cscdfile>s0101t.tik4</cscdfile>
+ <cscdfile>s0101t.tik5</cscdfile>
+ <cscdfile>s0101t.tik6</cscdfile>
+ <cscdfile>s0101t.tik7</cscdfile>
+ <cscdfile>s0101t.tik8</cscdfile>
+ <cscdfile>s0101t.tik9</cscdfile>
+ <cscdfile>s0101t.tik10</cscdfile>
+ <cscdfile>s0101t.tik11</cscdfile>
+ <cscdfile>s0101t.tik12</cscdfile>
+ <cscdfile>s0101t.tik13</cscdfile>
+ <description>The main subcommentary to Sīlakkhandhavagga of the long discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lpd2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpd2</ref>
+ <file>cst-se-lpd2</file>
+ <name>Līnatthappakāsinī (Dīghanikāya) 2</name>
+ <altname>Dīghanikāya-ṭīkā 2</altname>
+ <altname>Sumaṅgalavilāsinī-ṭīkā 2</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0102t.tik0</cscdfile>
+ <cscdfile>s0102t.tik1</cscdfile>
+ <cscdfile>s0102t.tik2</cscdfile>
+ <cscdfile>s0102t.tik3</cscdfile>
+ <cscdfile>s0102t.tik4</cscdfile>
+ <cscdfile>s0102t.tik5</cscdfile>
+ <cscdfile>s0102t.tik6</cscdfile>
+ <cscdfile>s0102t.tik7</cscdfile>
+ <cscdfile>s0102t.tik8</cscdfile>
+ <cscdfile>s0102t.tik9</cscdfile>
+ <description>The main subcommentary to Mahāvagga of the long discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lpd3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpd3</ref>
+ <file>cst-se-lpd3</file>
+ <name>Līnatthappakāsinī (Dīghanikāya) 3</name>
+ <altname>Dīghanikāya-ṭīkā 3</altname>
+ <altname>Sumaṅgalavilāsinī-ṭīkā 3</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0103t.tik0</cscdfile>
+ <cscdfile>s0103t.tik1</cscdfile>
+ <cscdfile>s0103t.tik2</cscdfile>
+ <cscdfile>s0103t.tik3</cscdfile>
+ <cscdfile>s0103t.tik4</cscdfile>
+ <cscdfile>s0103t.tik5</cscdfile>
+ <cscdfile>s0103t.tik6</cscdfile>
+ <cscdfile>s0103t.tik7</cscdfile>
+ <cscdfile>s0103t.tik8</cscdfile>
+ <cscdfile>s0103t.tik9</cscdfile>
+ <cscdfile>s0103t.tik10</cscdfile>
+ <description>The main subcommentary to Pāthikavagga of the long discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="sv-nt">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>sv-nt</ref>
+ <file>cst-se-svnt</file>
+ <name>Sīlakkhandhavagga-abhinavaṭīkā</name>
+ <altname>Sādhuvilāsinī</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0104t.nrf0</cscdfile>
+ <cscdfile>s0104t.nrf1</cscdfile>
+ <cscdfile>s0105t.nrf0</cscdfile>
+ <cscdfile>s0105t.nrf1</cscdfile>
+ <cscdfile>s0105t.nrf2</cscdfile>
+ <cscdfile>s0105t.nrf3</cscdfile>
+ <cscdfile>s0105t.nrf4</cscdfile>
+ <cscdfile>s0105t.nrf5</cscdfile>
+ <cscdfile>s0105t.nrf6</cscdfile>
+ <cscdfile>s0105t.nrf7</cscdfile>
+ <cscdfile>s0105t.nrf8</cscdfile>
+ <cscdfile>s0105t.nrf9</cscdfile>
+ <cscdfile>s0105t.nrf10</cscdfile>
+ <cscdfile>s0105t.nrf11</cscdfile>
+ <description>A new subcommentary to Sīlakkhandhavagga of the long discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="m1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>m1</ref>
+ <file>cst-sm-m1</file>
+ <name>Majjhimanikāya Mūlapaṇṇāsa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0201m.mul0</cscdfile>
+ <cscdfile>s0201m.mul1</cscdfile>
+ <cscdfile>s0201m.mul2</cscdfile>
+ <cscdfile>s0201m.mul3</cscdfile>
+ <cscdfile>s0201m.mul4</cscdfile>
+ <description>The first fifty of the middle-length discourses</description>
+ <commentary>pps1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="m2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>m2</ref>
+ <file>cst-sm-m2</file>
+ <name>Majjhimanikāya Majjhimapaṇṇāsa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0202m.mul0</cscdfile>
+ <cscdfile>s0202m.mul1</cscdfile>
+ <cscdfile>s0202m.mul2</cscdfile>
+ <cscdfile>s0202m.mul3</cscdfile>
+ <cscdfile>s0202m.mul4</cscdfile>
+ <description>The middle fifty of the middle-length discourses</description>
+ <commentary>pps2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="m3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>m3</ref>
+ <file>cst-sm-m3</file>
+ <name>Majjhimanikāya Uparipaṇṇāsa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0203m.mul0</cscdfile>
+ <cscdfile>s0203m.mul1</cscdfile>
+ <cscdfile>s0203m.mul2</cscdfile>
+ <cscdfile>s0203m.mul3</cscdfile>
+ <cscdfile>s0203m.mul4</cscdfile>
+ <description>The last fifty of the middle-length discourses</description>
+ <commentary>pps3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pps1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>pps1</ref>
+ <file>cst-se-pps1</file>
+ <name>Papañcasūdanī 1</name>
+ <altname>Mūlapaṇṇāsa-aṭṭhakathā</altname>
+ <altname>Majjhimanikāya-aṭṭhakathā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0201a.att0</cscdfile>
+ <cscdfile>s0201a.att1</cscdfile>
+ <cscdfile>s0201a.att2</cscdfile>
+ <cscdfile>s0201a.att3</cscdfile>
+ <cscdfile>s0201a.att4</cscdfile>
+ <cscdfile>s0201a.att5</cscdfile>
+ <description>The commentary to the first fifty of the middle-length discourses</description>
+ <commentary>lpm1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pps2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>pps2</ref>
+ <file>cst-se-pps2</file>
+ <name>Papañcasūdanī 2</name>
+ <altname>Majjhimapaṇṇāsa-aṭṭhakathā</altname>
+ <altname>Majjhimanikāya-aṭṭhakathā 2</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0202a.att0</cscdfile>
+ <cscdfile>s0202a.att1</cscdfile>
+ <cscdfile>s0202a.att2</cscdfile>
+ <cscdfile>s0202a.att3</cscdfile>
+ <cscdfile>s0202a.att4</cscdfile>
+ <description>The commentary to the middle fifty of the middle-length discourses</description>
+ <commentary>lpm2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pps3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>pps3</ref>
+ <file>cst-se-pps3</file>
+ <name>Papañcasūdanī 3</name>
+ <altname>Uparipaṇṇāsa-aṭṭhakathā</altname>
+ <altname>Majjhimanikāya-aṭṭhakathā 3</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0203a.att0</cscdfile>
+ <cscdfile>s0203a.att1</cscdfile>
+ <cscdfile>s0203a.att2</cscdfile>
+ <cscdfile>s0203a.att3</cscdfile>
+ <cscdfile>s0203a.att4</cscdfile>
+ <description>The commentary to the last fifty of the middle-length discourses</description>
+ <commentary>lpm3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="lpm1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpm1</ref>
+ <file>cst-se-lpm1</file>
+ <name>Līnatthappakāsinī (Majjhimanikāya) 1</name>
+ <altname>Mūlapaṇṇāsa-ṭīkā</altname>
+ <altname>Majjhimanikāya-ṭīkā 1</altname>
+ <altname>Papañcasūdanī-ṭīkā 1</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0201t.tik0</cscdfile>
+ <cscdfile>s0201t.tik1</cscdfile>
+ <cscdfile>s0201t.tik2</cscdfile>
+ <cscdfile>s0201t.tik3</cscdfile>
+ <cscdfile>s0201t.tik4</cscdfile>
+ <cscdfile>s0201t.tik5</cscdfile>
+ <description>The main subcommentary to the first fifty of the middle-length discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lpm2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpm2</ref>
+ <file>cst-se-lpm2</file>
+ <name>Līnatthappakāsinī (Majjhimanikāya) 2</name>
+ <altname>Majjhimapaṇṇāsa-ṭīkā</altname>
+ <altname>Majjhimanikāya-ṭīkā 2</altname>
+ <altname>Papañcasūdanī-ṭīkā 2</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0202t.tik0</cscdfile>
+ <cscdfile>s0202t.tik1</cscdfile>
+ <cscdfile>s0202t.tik2</cscdfile>
+ <cscdfile>s0202t.tik3</cscdfile>
+ <cscdfile>s0202t.tik4</cscdfile>
+ <description>The main subcommentary to the middle fifty of the middle-length discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lpm3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lpm3</ref>
+ <file>cst-se-lpm3</file>
+ <name>Līnatthappakāsinī (Majjhimanikāya) 3</name>
+ <altname>Uparipaṇṇāsa-ṭīkā</altname>
+ <altname>Majjhimanikāya-ṭīkā 3</altname>
+ <altname>Papañcasūdanī-ṭīkā 3</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0203t.tik0</cscdfile>
+ <cscdfile>s0203t.tik1</cscdfile>
+ <cscdfile>s0203t.tik2</cscdfile>
+ <cscdfile>s0203t.tik3</cscdfile>
+ <cscdfile>s0203t.tik4</cscdfile>
+ <description>The main subcommentary to the last fifty of the middle-length discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="s1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>s1</ref>
+ <file>cst-sm-s1</file>
+ <name>Saṃyuttanikāya Sagāthāvagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0301m.mul0</cscdfile>
+ <cscdfile>s0301m.mul1</cscdfile>
+ <cscdfile>s0301m.mul2</cscdfile>
+ <cscdfile>s0301m.mul3</cscdfile>
+ <cscdfile>s0301m.mul4</cscdfile>
+ <cscdfile>s0301m.mul5</cscdfile>
+ <cscdfile>s0301m.mul6</cscdfile>
+ <cscdfile>s0301m.mul7</cscdfile>
+ <cscdfile>s0301m.mul8</cscdfile>
+ <cscdfile>s0301m.mul9</cscdfile>
+ <cscdfile>s0301m.mul10</cscdfile>
+ <description>The Sagāthāvagga of the connected discourses</description>
+ <commentary>srp1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="s2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>s2</ref>
+ <file>cst-sm-s2</file>
+ <name>Saṃyuttanikāya Nidānavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0302m.mul0</cscdfile>
+ <cscdfile>s0302m.mul1</cscdfile>
+ <cscdfile>s0302m.mul2</cscdfile>
+ <cscdfile>s0302m.mul3</cscdfile>
+ <cscdfile>s0302m.mul4</cscdfile>
+ <cscdfile>s0302m.mul5</cscdfile>
+ <cscdfile>s0302m.mul6</cscdfile>
+ <cscdfile>s0302m.mul7</cscdfile>
+ <cscdfile>s0302m.mul8</cscdfile>
+ <cscdfile>s0302m.mul9</cscdfile>
+ <description>The Nidānavagga of the connected discourses</description>
+ <commentary>srp2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="s3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>s3</ref>
+ <file>cst-sm-s3</file>
+ <name>Saṃyuttanikāya Khandhavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0303m.mul0</cscdfile>
+ <cscdfile>s0303m.mul1</cscdfile>
+ <cscdfile>s0303m.mul2</cscdfile>
+ <cscdfile>s0303m.mul3</cscdfile>
+ <cscdfile>s0303m.mul4</cscdfile>
+ <cscdfile>s0303m.mul5</cscdfile>
+ <cscdfile>s0303m.mul6</cscdfile>
+ <cscdfile>s0303m.mul7</cscdfile>
+ <cscdfile>s0303m.mul8</cscdfile>
+ <cscdfile>s0303m.mul9</cscdfile>
+ <cscdfile>s0303m.mul10</cscdfile>
+ <cscdfile>s0303m.mul11</cscdfile>
+ <cscdfile>s0303m.mul12</cscdfile>
+ <description>The Khandhavagga of the connected discourses</description>
+ <commentary>srp3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="s4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>s4</ref>
+ <file>cst-sm-s4</file>
+ <name>Saṃyuttanikāya Saḷāyatanavagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0304m.mul0</cscdfile>
+ <cscdfile>s0304m.mul1</cscdfile>
+ <cscdfile>s0304m.mul2</cscdfile>
+ <cscdfile>s0304m.mul3</cscdfile>
+ <cscdfile>s0304m.mul4</cscdfile>
+ <cscdfile>s0304m.mul5</cscdfile>
+ <cscdfile>s0304m.mul6</cscdfile>
+ <cscdfile>s0304m.mul7</cscdfile>
+ <cscdfile>s0304m.mul8</cscdfile>
+ <cscdfile>s0304m.mul9</cscdfile>
+ <description>The Saḷāyatanavagga of the connected discourses</description>
+ <commentary>srp4</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="s5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>s5</ref>
+ <file>cst-sm-s5</file>
+ <name>Saṃyuttanikāya Mahāvagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0305m.mul0</cscdfile>
+ <cscdfile>s0305m.mul1</cscdfile>
+ <cscdfile>s0305m.mul2</cscdfile>
+ <cscdfile>s0305m.mul3</cscdfile>
+ <cscdfile>s0305m.mul4</cscdfile>
+ <cscdfile>s0305m.mul5</cscdfile>
+ <cscdfile>s0305m.mul6</cscdfile>
+ <cscdfile>s0305m.mul7</cscdfile>
+ <cscdfile>s0305m.mul8</cscdfile>
+ <cscdfile>s0305m.mul9</cscdfile>
+ <cscdfile>s0305m.mul10</cscdfile>
+ <cscdfile>s0305m.mul11</cscdfile>
+ <description>The Mahāvagga of the connected discourses</description>
+ <commentary>srp5</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srp1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srp1</ref>
+ <file>cst-se-srp1</file>
+ <name>Sāratthappakāsinī 1</name>
+ <altname>Sagāthāvagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0301a.att0</cscdfile>
+ <cscdfile>s0301a.att1</cscdfile>
+ <cscdfile>s0301a.att2</cscdfile>
+ <cscdfile>s0301a.att3</cscdfile>
+ <cscdfile>s0301a.att4</cscdfile>
+ <cscdfile>s0301a.att5</cscdfile>
+ <cscdfile>s0301a.att6</cscdfile>
+ <cscdfile>s0301a.att7</cscdfile>
+ <cscdfile>s0301a.att8</cscdfile>
+ <cscdfile>s0301a.att9</cscdfile>
+ <cscdfile>s0301a.att10</cscdfile>
+ <cscdfile>s0301a.att11</cscdfile>
+ <description>The commentary to Sagāthāvagga of the connected discourses</description>
+ <commentary>lps1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srp2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srp2</ref>
+ <file>cst-se-srp2</file>
+ <name>Sāratthappakāsinī 2</name>
+ <altname>Nidānavagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0302a.att0</cscdfile>
+ <cscdfile>s0302a.att1</cscdfile>
+ <cscdfile>s0302a.att2</cscdfile>
+ <cscdfile>s0302a.att3</cscdfile>
+ <cscdfile>s0302a.att4</cscdfile>
+ <cscdfile>s0302a.att5</cscdfile>
+ <cscdfile>s0302a.att6</cscdfile>
+ <cscdfile>s0302a.att7</cscdfile>
+ <cscdfile>s0302a.att8</cscdfile>
+ <cscdfile>s0302a.att9</cscdfile>
+ <description>The commentary to Nidānavagga of the connected discourses</description>
+ <commentary>lps2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srp3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srp3</ref>
+ <file>cst-se-srp3</file>
+ <name>Sāratthappakāsinī 3</name>
+ <altname>Khandhavagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0303a.att0</cscdfile>
+ <cscdfile>s0303a.att1</cscdfile>
+ <cscdfile>s0303a.att2</cscdfile>
+ <cscdfile>s0303a.att3</cscdfile>
+ <cscdfile>s0303a.att4</cscdfile>
+ <cscdfile>s0303a.att5</cscdfile>
+ <cscdfile>s0303a.att6</cscdfile>
+ <cscdfile>s0303a.att7</cscdfile>
+ <cscdfile>s0303a.att8</cscdfile>
+ <cscdfile>s0303a.att9</cscdfile>
+ <cscdfile>s0303a.att10</cscdfile>
+ <cscdfile>s0303a.att11</cscdfile>
+ <cscdfile>s0303a.att12</cscdfile>
+ <description>The commentary to Khandhavagga of the connected discourses</description>
+ <commentary>lps3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srp4">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srp4</ref>
+ <file>cst-se-srp4</file>
+ <name>Sāratthappakāsinī 4</name>
+ <altname>Saḷāyatanavagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0304a.att0</cscdfile>
+ <cscdfile>s0304a.att1</cscdfile>
+ <cscdfile>s0304a.att2</cscdfile>
+ <cscdfile>s0304a.att3</cscdfile>
+ <cscdfile>s0304a.att4</cscdfile>
+ <cscdfile>s0304a.att5</cscdfile>
+ <cscdfile>s0304a.att6</cscdfile>
+ <cscdfile>s0304a.att7</cscdfile>
+ <cscdfile>s0304a.att8</cscdfile>
+ <cscdfile>s0304a.att9</cscdfile>
+ <description>The commentary to Saḷāyatanavagga of the connected discourses</description>
+ <commentary>lps4</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srp5">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srp5</ref>
+ <file>cst-se-srp5</file>
+ <name>Sāratthappakāsinī 5</name>
+ <altname>Mahāvagga-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0305a.att0</cscdfile>
+ <cscdfile>s0305a.att1</cscdfile>
+ <cscdfile>s0305a.att2</cscdfile>
+ <cscdfile>s0305a.att3</cscdfile>
+ <cscdfile>s0305a.att4</cscdfile>
+ <cscdfile>s0305a.att5</cscdfile>
+ <cscdfile>s0305a.att6</cscdfile>
+ <cscdfile>s0305a.att7</cscdfile>
+ <cscdfile>s0305a.att8</cscdfile>
+ <cscdfile>s0305a.att9</cscdfile>
+ <cscdfile>s0305a.att10</cscdfile>
+ <cscdfile>s0305a.att11</cscdfile>
+ <description>The commentary to Mahāvagga of the connected discourses</description>
+ <commentary>lps5</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="lps1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lps1</ref>
+ <file>cst-se-lps1</file>
+ <name>Līnatthappakāsinī (Saṃyuttanikāya) 1</name>
+ <altname>Sagāthāvagga-ṭīkā</altname>
+ <altname>Saṃyuttanikāya-ṭīkā 1</altname>
+ <altname>Sāratthappakāsinī-ṭīkā 1</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0301t.tik0</cscdfile>
+ <cscdfile>s0301t.tik1</cscdfile>
+ <cscdfile>s0301t.tik2</cscdfile>
+ <cscdfile>s0301t.tik3</cscdfile>
+ <cscdfile>s0301t.tik4</cscdfile>
+ <cscdfile>s0301t.tik5</cscdfile>
+ <cscdfile>s0301t.tik6</cscdfile>
+ <cscdfile>s0301t.tik7</cscdfile>
+ <cscdfile>s0301t.tik8</cscdfile>
+ <cscdfile>s0301t.tik9</cscdfile>
+ <cscdfile>s0301t.tik10</cscdfile>
+ <cscdfile>s0301t.tik11</cscdfile>
+ <description>The main subcommentary to Sagāthāvagga of the connected discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lps2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lps2</ref>
+ <file>cst-se-lps2</file>
+ <name>Līnatthappakāsinī (Saṃyuttanikāya) 2</name>
+ <altname>Nidānavagga-ṭīkā</altname>
+ <altname>Saṃyuttanikāya-ṭīkā 2</altname>
+ <altname>Sāratthappakāsinī-ṭīkā 2</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0302t.tik0</cscdfile>
+ <cscdfile>s0302t.tik1</cscdfile>
+ <cscdfile>s0302t.tik2</cscdfile>
+ <cscdfile>s0302t.tik3</cscdfile>
+ <cscdfile>s0302t.tik4</cscdfile>
+ <cscdfile>s0302t.tik5</cscdfile>
+ <cscdfile>s0302t.tik6</cscdfile>
+ <cscdfile>s0302t.tik7</cscdfile>
+ <cscdfile>s0302t.tik8</cscdfile>
+ <cscdfile>s0302t.tik9</cscdfile>
+ <description>The main subcommentary to Nidānavagga of the connected discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lps3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lps3</ref>
+ <file>cst-se-lps3</file>
+ <name>Līnatthappakāsinī (Saṃyuttanikāya) 3</name>
+ <altname>Khandhavagga-ṭīkā</altname>
+ <altname>Saṃyuttanikāya-ṭīkā 3</altname>
+ <altname>Sāratthappakāsinī-ṭīkā 3</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0303t.tik0</cscdfile>
+ <cscdfile>s0303t.tik1</cscdfile>
+ <cscdfile>s0303t.tik2</cscdfile>
+ <cscdfile>s0303t.tik3</cscdfile>
+ <cscdfile>s0303t.tik4</cscdfile>
+ <cscdfile>s0303t.tik5</cscdfile>
+ <cscdfile>s0303t.tik6</cscdfile>
+ <cscdfile>s0303t.tik7</cscdfile>
+ <cscdfile>s0303t.tik8</cscdfile>
+ <cscdfile>s0303t.tik9</cscdfile>
+ <cscdfile>s0303t.tik10</cscdfile>
+ <cscdfile>s0303t.tik11</cscdfile>
+ <cscdfile>s0303t.tik12</cscdfile>
+ <description>The main subcommentary to Khandhavagga of the connected discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lps4">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lps4</ref>
+ <file>cst-se-lps4</file>
+ <name>Līnatthappakāsinī (Saṃyuttanikāya) 4</name>
+ <altname>Saḷāyatanavagga-ṭīkā</altname>
+ <altname>Saṃyuttanikāya-ṭīkā 4</altname>
+ <altname>Sāratthappakāsinī-ṭīkā 4</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0304t.tik0</cscdfile>
+ <cscdfile>s0304t.tik1</cscdfile>
+ <cscdfile>s0304t.tik2</cscdfile>
+ <cscdfile>s0304t.tik3</cscdfile>
+ <cscdfile>s0304t.tik4</cscdfile>
+ <cscdfile>s0304t.tik5</cscdfile>
+ <cscdfile>s0304t.tik6</cscdfile>
+ <cscdfile>s0304t.tik7</cscdfile>
+ <cscdfile>s0304t.tik8</cscdfile>
+ <cscdfile>s0304t.tik9</cscdfile>
+ <description>The main subcommentary to Saḷāyatanavagga of the connected discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="lps5">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>lps5</ref>
+ <file>cst-se-lps5</file>
+ <name>Līnatthappakāsinī (Saṃyuttanikāya) 5</name>
+ <altname>Mahāvagga-ṭīkā</altname>
+ <altname>Saṃyuttanikāya-ṭīkā 5</altname>
+ <altname>Sāratthappakāsinī-ṭīkā 5</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0305t.tik0</cscdfile>
+ <cscdfile>s0305t.tik1</cscdfile>
+ <cscdfile>s0305t.tik2</cscdfile>
+ <cscdfile>s0305t.tik3</cscdfile>
+ <cscdfile>s0305t.tik4</cscdfile>
+ <cscdfile>s0305t.tik5</cscdfile>
+ <cscdfile>s0305t.tik6</cscdfile>
+ <cscdfile>s0305t.tik7</cscdfile>
+ <cscdfile>s0305t.tik8</cscdfile>
+ <cscdfile>s0305t.tik9</cscdfile>
+ <cscdfile>s0305t.tik10</cscdfile>
+ <cscdfile>s0305t.tik11</cscdfile>
+ <description>The main subcommentary to Mahāvagga of the connected discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="a1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a1</ref>
+ <file>cst-sm-a1</file>
+ <name>Aṅguttaranikāya Ekakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0401m.mul0</cscdfile>
+ <cscdfile>s0401m.mul1</cscdfile>
+ <cscdfile>s0401m.mul2</cscdfile>
+ <cscdfile>s0401m.mul3</cscdfile>
+ <cscdfile>s0401m.mul4</cscdfile>
+ <cscdfile>s0401m.mul5</cscdfile>
+ <cscdfile>s0401m.mul6</cscdfile>
+ <cscdfile>s0401m.mul7</cscdfile>
+ <cscdfile>s0401m.mul8</cscdfile>
+ <cscdfile>s0401m.mul9</cscdfile>
+ <cscdfile>s0401m.mul10</cscdfile>
+ <cscdfile>s0401m.mul11</cscdfile>
+ <cscdfile>s0401m.mul12</cscdfile>
+ <cscdfile>s0401m.mul13</cscdfile>
+ <cscdfile>s0401m.mul14</cscdfile>
+ <cscdfile>s0401m.mul15</cscdfile>
+ <cscdfile>s0401m.mul16</cscdfile>
+ <cscdfile>s0401m.mul17</cscdfile>
+ <cscdfile>s0401m.mul18</cscdfile>
+ <cscdfile>s0401m.mul19</cscdfile>
+ <description>The group of the ones in the numerical discourses</description>
+ <commentary>mnp1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a2</ref>
+ <file>cst-sm-a2</file>
+ <name>Aṅguttaranikāya Dukanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0402m1.mul0</cscdfile>
+ <cscdfile>s0402m1.mul1</cscdfile>
+ <cscdfile>s0402m1.mul2</cscdfile>
+ <cscdfile>s0402m1.mul3</cscdfile>
+ <cscdfile>s0402m1.mul4</cscdfile>
+ <cscdfile>s0402m1.mul5</cscdfile>
+ <cscdfile>s0402m1.mul6</cscdfile>
+ <cscdfile>s0402m1.mul7</cscdfile>
+ <cscdfile>s0402m1.mul8</cscdfile>
+ <cscdfile>s0402m1.mul9</cscdfile>
+ <cscdfile>s0402m1.mul10</cscdfile>
+ <cscdfile>s0402m1.mul11</cscdfile>
+ <cscdfile>s0402m1.mul12</cscdfile>
+ <cscdfile>s0402m1.mul13</cscdfile>
+ <cscdfile>s0402m1.mul14</cscdfile>
+ <cscdfile>s0402m1.mul15</cscdfile>
+ <cscdfile>s0402m1.mul16</cscdfile>
+ <cscdfile>s0402m1.mul17</cscdfile>
+ <cscdfile>s0402m1.mul18</cscdfile>
+ <description>The group of the twos in the numerical discourses</description>
+ <commentary>mnp2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a3</ref>
+ <file>cst-sm-a3</file>
+ <name>Aṅguttaranikāya Tikanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0402m2.mul0</cscdfile>
+ <cscdfile>s0402m2.mul1</cscdfile>
+ <cscdfile>s0402m2.mul2</cscdfile>
+ <cscdfile>s0402m2.mul3</cscdfile>
+ <cscdfile>s0402m2.mul4</cscdfile>
+ <cscdfile>s0402m2.mul5</cscdfile>
+ <cscdfile>s0402m2.mul6</cscdfile>
+ <cscdfile>s0402m2.mul7</cscdfile>
+ <cscdfile>s0402m2.mul8</cscdfile>
+ <cscdfile>s0402m2.mul9</cscdfile>
+ <cscdfile>s0402m2.mul10</cscdfile>
+ <cscdfile>s0402m2.mul11</cscdfile>
+ <cscdfile>s0402m2.mul12</cscdfile>
+ <cscdfile>s0402m2.mul13</cscdfile>
+ <cscdfile>s0402m2.mul14</cscdfile>
+ <cscdfile>s0402m2.mul15</cscdfile>
+ <cscdfile>s0402m2.mul16</cscdfile>
+ <cscdfile>s0402m2.mul17</cscdfile>
+ <description>The group of the threes in the numerical discourses</description>
+ <commentary>mnp3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a4</ref>
+ <file>cst-sm-a4</file>
+ <name>Aṅguttaranikāya Catukkanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0402m3.mul0</cscdfile>
+ <cscdfile>s0402m3.mul1</cscdfile>
+ <cscdfile>s0402m3.mul2</cscdfile>
+ <cscdfile>s0402m3.mul3</cscdfile>
+ <cscdfile>s0402m3.mul4</cscdfile>
+ <cscdfile>s0402m3.mul5</cscdfile>
+ <cscdfile>s0402m3.mul6</cscdfile>
+ <cscdfile>s0402m3.mul7</cscdfile>
+ <cscdfile>s0402m3.mul8</cscdfile>
+ <cscdfile>s0402m3.mul9</cscdfile>
+ <cscdfile>s0402m3.mul10</cscdfile>
+ <cscdfile>s0402m3.mul11</cscdfile>
+ <cscdfile>s0402m3.mul12</cscdfile>
+ <cscdfile>s0402m3.mul13</cscdfile>
+ <cscdfile>s0402m3.mul14</cscdfile>
+ <cscdfile>s0402m3.mul15</cscdfile>
+ <cscdfile>s0402m3.mul16</cscdfile>
+ <cscdfile>s0402m3.mul17</cscdfile>
+ <cscdfile>s0402m3.mul18</cscdfile>
+ <cscdfile>s0402m3.mul19</cscdfile>
+ <cscdfile>s0402m3.mul20</cscdfile>
+ <cscdfile>s0402m3.mul21</cscdfile>
+ <cscdfile>s0402m3.mul22</cscdfile>
+ <cscdfile>s0402m3.mul23</cscdfile>
+ <cscdfile>s0402m3.mul24</cscdfile>
+ <cscdfile>s0402m3.mul25</cscdfile>
+ <cscdfile>s0402m3.mul26</cscdfile>
+ <cscdfile>s0402m3.mul27</cscdfile>
+ <description>The group of the fours in the numerical discourses</description>
+ <commentary>mnp4</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a5</ref>
+ <file>cst-sm-a5</file>
+ <name>Aṅguttaranikāya Pañcakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0403m1.mul0</cscdfile>
+ <cscdfile>s0403m1.mul1</cscdfile>
+ <cscdfile>s0403m1.mul2</cscdfile>
+ <cscdfile>s0403m1.mul3</cscdfile>
+ <cscdfile>s0403m1.mul4</cscdfile>
+ <cscdfile>s0403m1.mul5</cscdfile>
+ <cscdfile>s0403m1.mul6</cscdfile>
+ <cscdfile>s0403m1.mul7</cscdfile>
+ <cscdfile>s0403m1.mul8</cscdfile>
+ <cscdfile>s0403m1.mul9</cscdfile>
+ <cscdfile>s0403m1.mul10</cscdfile>
+ <cscdfile>s0403m1.mul11</cscdfile>
+ <cscdfile>s0403m1.mul12</cscdfile>
+ <cscdfile>s0403m1.mul13</cscdfile>
+ <cscdfile>s0403m1.mul14</cscdfile>
+ <cscdfile>s0403m1.mul15</cscdfile>
+ <cscdfile>s0403m1.mul16</cscdfile>
+ <cscdfile>s0403m1.mul17</cscdfile>
+ <cscdfile>s0403m1.mul18</cscdfile>
+ <cscdfile>s0403m1.mul19</cscdfile>
+ <cscdfile>s0403m1.mul20</cscdfile>
+ <cscdfile>s0403m1.mul21</cscdfile>
+ <cscdfile>s0403m1.mul22</cscdfile>
+ <cscdfile>s0403m1.mul23</cscdfile>
+ <cscdfile>s0403m1.mul24</cscdfile>
+ <cscdfile>s0403m1.mul25</cscdfile>
+ <cscdfile>s0403m1.mul26</cscdfile>
+ <cscdfile>s0403m1.mul27</cscdfile>
+ <cscdfile>s0403m1.mul28</cscdfile>
+ <description>The group of the fives in the numerical discourses</description>
+ <commentary>mnp5</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a6</ref>
+ <file>cst-sm-a6</file>
+ <name>Aṅguttaranikāya Chakkanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0403m2.mul0</cscdfile>
+ <cscdfile>s0403m2.mul1</cscdfile>
+ <cscdfile>s0403m2.mul2</cscdfile>
+ <cscdfile>s0403m2.mul3</cscdfile>
+ <cscdfile>s0403m2.mul4</cscdfile>
+ <cscdfile>s0403m2.mul5</cscdfile>
+ <cscdfile>s0403m2.mul6</cscdfile>
+ <cscdfile>s0403m2.mul7</cscdfile>
+ <cscdfile>s0403m2.mul8</cscdfile>
+ <cscdfile>s0403m2.mul9</cscdfile>
+ <cscdfile>s0403m2.mul10</cscdfile>
+ <cscdfile>s0403m2.mul11</cscdfile>
+ <cscdfile>s0403m2.mul12</cscdfile>
+ <description>The group of the sixes in the numerical discourses</description>
+ <commentary>mnp6</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a7</ref>
+ <file>cst-sm-a7</file>
+ <name>Aṅguttaranikāya Sattakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0403m3.mul0</cscdfile>
+ <cscdfile>s0403m3.mul1</cscdfile>
+ <cscdfile>s0403m3.mul2</cscdfile>
+ <cscdfile>s0403m3.mul3</cscdfile>
+ <cscdfile>s0403m3.mul4</cscdfile>
+ <cscdfile>s0403m3.mul5</cscdfile>
+ <cscdfile>s0403m3.mul6</cscdfile>
+ <cscdfile>s0403m3.mul7</cscdfile>
+ <cscdfile>s0403m3.mul8</cscdfile>
+ <cscdfile>s0403m3.mul9</cscdfile>
+ <cscdfile>s0403m3.mul10</cscdfile>
+ <description>The group of the sevens in the numerical discourses</description>
+ <commentary>mnp7</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a8">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a8</ref>
+ <file>cst-sm-a8</file>
+ <name>Aṅguttaranikāya Aṭṭhakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0404m1.mul0</cscdfile>
+ <cscdfile>s0404m1.mul1</cscdfile>
+ <cscdfile>s0404m1.mul2</cscdfile>
+ <cscdfile>s0404m1.mul3</cscdfile>
+ <cscdfile>s0404m1.mul4</cscdfile>
+ <cscdfile>s0404m1.mul5</cscdfile>
+ <cscdfile>s0404m1.mul6</cscdfile>
+ <cscdfile>s0404m1.mul7</cscdfile>
+ <cscdfile>s0404m1.mul8</cscdfile>
+ <cscdfile>s0404m1.mul9</cscdfile>
+ <cscdfile>s0404m1.mul10</cscdfile>
+ <description>The group of the eights in the numerical discourses</description>
+ <commentary>mnp8</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a9">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a9</ref>
+ <file>cst-sm-a9</file>
+ <name>Aṅguttaranikāya Navakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0404m2.mul0</cscdfile>
+ <cscdfile>s0404m2.mul1</cscdfile>
+ <cscdfile>s0404m2.mul2</cscdfile>
+ <cscdfile>s0404m2.mul3</cscdfile>
+ <cscdfile>s0404m2.mul4</cscdfile>
+ <cscdfile>s0404m2.mul5</cscdfile>
+ <cscdfile>s0404m2.mul6</cscdfile>
+ <cscdfile>s0404m2.mul7</cscdfile>
+ <cscdfile>s0404m2.mul8</cscdfile>
+ <cscdfile>s0404m2.mul9</cscdfile>
+ <description>The group of the nines in the numerical discourses</description>
+ <commentary>mnp9</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a10">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a10</ref>
+ <file>cst-sm-a10</file>
+ <name>Aṅguttaranikāya Dasakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0404m3.mul0</cscdfile>
+ <cscdfile>s0404m3.mul1</cscdfile>
+ <cscdfile>s0404m3.mul2</cscdfile>
+ <cscdfile>s0404m3.mul3</cscdfile>
+ <cscdfile>s0404m3.mul4</cscdfile>
+ <cscdfile>s0404m3.mul5</cscdfile>
+ <cscdfile>s0404m3.mul6</cscdfile>
+ <cscdfile>s0404m3.mul7</cscdfile>
+ <cscdfile>s0404m3.mul8</cscdfile>
+ <cscdfile>s0404m3.mul9</cscdfile>
+ <cscdfile>s0404m3.mul10</cscdfile>
+ <cscdfile>s0404m3.mul11</cscdfile>
+ <cscdfile>s0404m3.mul12</cscdfile>
+ <cscdfile>s0404m3.mul13</cscdfile>
+ <cscdfile>s0404m3.mul14</cscdfile>
+ <cscdfile>s0404m3.mul15</cscdfile>
+ <cscdfile>s0404m3.mul16</cscdfile>
+ <cscdfile>s0404m3.mul17</cscdfile>
+ <cscdfile>s0404m3.mul18</cscdfile>
+ <cscdfile>s0404m3.mul19</cscdfile>
+ <cscdfile>s0404m3.mul20</cscdfile>
+ <cscdfile>s0404m3.mul21</cscdfile>
+ <cscdfile>s0404m3.mul22</cscdfile>
+ <description>The group of the tens in the numerical discourses</description>
+ <commentary>mnp10</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="a11">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>a11</ref>
+ <file>cst-sm-a11</file>
+ <name>Aṅguttaranikāya Ekādasakanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0404m4.mul0</cscdfile>
+ <cscdfile>s0404m4.mul1</cscdfile>
+ <cscdfile>s0404m4.mul2</cscdfile>
+ <cscdfile>s0404m4.mul3</cscdfile>
+ <description>The group of the elevens in the numerical discourses</description>
+ <commentary>mnp11</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp1</ref>
+ <file>cst-se-mnp1</file>
+ <name>Manorathapūraṇī 1</name>
+ <altname>Ekakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0401a.att0</cscdfile>
+ <cscdfile>s0401a.att1</cscdfile>
+ <cscdfile>s0401a.att2</cscdfile>
+ <cscdfile>s0401a.att3</cscdfile>
+ <cscdfile>s0401a.att4</cscdfile>
+ <cscdfile>s0401a.att5</cscdfile>
+ <cscdfile>s0401a.att6</cscdfile>
+ <cscdfile>s0401a.att7</cscdfile>
+ <cscdfile>s0401a.att8</cscdfile>
+ <cscdfile>s0401a.att9</cscdfile>
+ <cscdfile>s0401a.att10</cscdfile>
+ <cscdfile>s0401a.att11</cscdfile>
+ <cscdfile>s0401a.att12</cscdfile>
+ <cscdfile>s0401a.att13</cscdfile>
+ <cscdfile>s0401a.att14</cscdfile>
+ <cscdfile>s0401a.att15</cscdfile>
+ <cscdfile>s0401a.att16</cscdfile>
+ <cscdfile>s0401a.att17</cscdfile>
+ <cscdfile>s0401a.att18</cscdfile>
+ <cscdfile>s0401a.att19</cscdfile>
+ <description>The commentary to the group of the ones in the numerical discourses</description>
+ <commentary>srm1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp2</ref>
+ <file>cst-se-mnp2</file>
+ <name>Manorathapūraṇī 2</name>
+ <altname>Dukanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 2</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402a.att0</cscdfile>
+ <cscdfile>s0402a.att1</cscdfile>
+ <cscdfile>s0402a.att2</cscdfile>
+ <cscdfile>s0402a.att3</cscdfile>
+ <cscdfile>s0402a.att4</cscdfile>
+ <cscdfile>s0402a.att5</cscdfile>
+ <cscdfile>s0402a.att6</cscdfile>
+ <cscdfile>s0402a.att7</cscdfile>
+ <cscdfile>s0402a.att8</cscdfile>
+ <cscdfile>s0402a.att9</cscdfile>
+ <cscdfile>s0402a.att10</cscdfile>
+ <cscdfile>s0402a.att11</cscdfile>
+ <cscdfile>s0402a.att12</cscdfile>
+ <cscdfile>s0402a.att13</cscdfile>
+ <cscdfile>s0402a.att14</cscdfile>
+ <cscdfile>s0402a.att15</cscdfile>
+ <cscdfile>s0402a.att16</cscdfile>
+ <cscdfile>s0402a.att17</cscdfile>
+ <cscdfile>s0402a.att18</cscdfile>
+ <description>The commentary to the group of the twos in the numerical discourses</description>
+ <commentary>srm2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp3</ref>
+ <file>cst-se-mnp3</file>
+ <name>Manorathapūraṇī 3</name>
+ <altname>Tikanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 3</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402a.att19</cscdfile>
+ <cscdfile>s0402a.att20</cscdfile>
+ <cscdfile>s0402a.att21</cscdfile>
+ <cscdfile>s0402a.att22</cscdfile>
+ <cscdfile>s0402a.att23</cscdfile>
+ <cscdfile>s0402a.att24</cscdfile>
+ <cscdfile>s0402a.att25</cscdfile>
+ <cscdfile>s0402a.att26</cscdfile>
+ <cscdfile>s0402a.att27</cscdfile>
+ <cscdfile>s0402a.att28</cscdfile>
+ <cscdfile>s0402a.att29</cscdfile>
+ <cscdfile>s0402a.att30</cscdfile>
+ <cscdfile>s0402a.att31</cscdfile>
+ <cscdfile>s0402a.att32</cscdfile>
+ <cscdfile>s0402a.att33</cscdfile>
+ <cscdfile>s0402a.att34</cscdfile>
+ <cscdfile>s0402a.att35</cscdfile>
+ <description>The commentary to the group of the threes in the numerical discourses</description>
+ <commentary>srm3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp4">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp4</ref>
+ <file>cst-se-mnp4</file>
+ <name>Manorathapūraṇī 4</name>
+ <altname>Catukkanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 4</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402a.att36</cscdfile>
+ <cscdfile>s0402a.att37</cscdfile>
+ <cscdfile>s0402a.att38</cscdfile>
+ <cscdfile>s0402a.att39</cscdfile>
+ <cscdfile>s0402a.att40</cscdfile>
+ <cscdfile>s0402a.att41</cscdfile>
+ <cscdfile>s0402a.att42</cscdfile>
+ <cscdfile>s0402a.att43</cscdfile>
+ <cscdfile>s0402a.att44</cscdfile>
+ <cscdfile>s0402a.att45</cscdfile>
+ <cscdfile>s0402a.att46</cscdfile>
+ <cscdfile>s0402a.att47</cscdfile>
+ <cscdfile>s0402a.att48</cscdfile>
+ <cscdfile>s0402a.att49</cscdfile>
+ <cscdfile>s0402a.att50</cscdfile>
+ <cscdfile>s0402a.att51</cscdfile>
+ <cscdfile>s0402a.att52</cscdfile>
+ <cscdfile>s0402a.att53</cscdfile>
+ <cscdfile>s0402a.att54</cscdfile>
+ <cscdfile>s0402a.att55</cscdfile>
+ <cscdfile>s0402a.att56</cscdfile>
+ <cscdfile>s0402a.att57</cscdfile>
+ <cscdfile>s0402a.att58</cscdfile>
+ <cscdfile>s0402a.att59</cscdfile>
+ <cscdfile>s0402a.att60</cscdfile>
+ <cscdfile>s0402a.att61</cscdfile>
+ <cscdfile>s0402a.att62</cscdfile>
+ <cscdfile>s0402a.att63</cscdfile>
+ <description>The commentary to the group of the fours in the numerical discourses</description>
+ <commentary>srm4</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp5">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp5</ref>
+ <file>cst-se-mnp5</file>
+ <name>Manorathapūraṇī 5</name>
+ <altname>Pañcakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 5</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403a.att0</cscdfile>
+ <cscdfile>s0403a.att1</cscdfile>
+ <cscdfile>s0403a.att2</cscdfile>
+ <cscdfile>s0403a.att3</cscdfile>
+ <cscdfile>s0403a.att4</cscdfile>
+ <cscdfile>s0403a.att5</cscdfile>
+ <cscdfile>s0403a.att6</cscdfile>
+ <cscdfile>s0403a.att7</cscdfile>
+ <cscdfile>s0403a.att8</cscdfile>
+ <cscdfile>s0403a.att9</cscdfile>
+ <cscdfile>s0403a.att10</cscdfile>
+ <cscdfile>s0403a.att11</cscdfile>
+ <cscdfile>s0403a.att12</cscdfile>
+ <cscdfile>s0403a.att13</cscdfile>
+ <cscdfile>s0403a.att14</cscdfile>
+ <cscdfile>s0403a.att15</cscdfile>
+ <cscdfile>s0403a.att16</cscdfile>
+ <cscdfile>s0403a.att17</cscdfile>
+ <cscdfile>s0403a.att18</cscdfile>
+ <cscdfile>s0403a.att19</cscdfile>
+ <cscdfile>s0403a.att20</cscdfile>
+ <cscdfile>s0403a.att21</cscdfile>
+ <cscdfile>s0403a.att22</cscdfile>
+ <cscdfile>s0403a.att23</cscdfile>
+ <cscdfile>s0403a.att24</cscdfile>
+ <cscdfile>s0403a.att25</cscdfile>
+ <description>The commentary to the group of the fives in the numerical discourses</description>
+ <commentary>srm5</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp6">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp6</ref>
+ <file>cst-se-mnp6</file>
+ <name>Manorathapūraṇī 6</name>
+ <altname>Chakkanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 6</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403a.att26</cscdfile>
+ <cscdfile>s0403a.att27</cscdfile>
+ <cscdfile>s0403a.att28</cscdfile>
+ <cscdfile>s0403a.att29</cscdfile>
+ <cscdfile>s0403a.att30</cscdfile>
+ <cscdfile>s0403a.att31</cscdfile>
+ <cscdfile>s0403a.att32</cscdfile>
+ <cscdfile>s0403a.att33</cscdfile>
+ <cscdfile>s0403a.att34</cscdfile>
+ <cscdfile>s0403a.att35</cscdfile>
+ <cscdfile>s0403a.att36</cscdfile>
+ <cscdfile>s0403a.att37</cscdfile>
+ <cscdfile>s0403a.att38</cscdfile>
+ <description>The commentary to the group of the sixes in the numerical discourses</description>
+ <commentary>srm6</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp7">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp7</ref>
+ <file>cst-se-mnp7</file>
+ <name>Manorathapūraṇī 7</name>
+ <altname>Sattakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 7</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403a.att39</cscdfile>
+ <cscdfile>s0403a.att40</cscdfile>
+ <cscdfile>s0403a.att41</cscdfile>
+ <cscdfile>s0403a.att42</cscdfile>
+ <cscdfile>s0403a.att43</cscdfile>
+ <cscdfile>s0403a.att44</cscdfile>
+ <cscdfile>s0403a.att45</cscdfile>
+ <cscdfile>s0403a.att46</cscdfile>
+ <description>The commentary to the group of the sevens in the numerical discourses</description>
+ <commentary>srm7</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp8">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp8</ref>
+ <file>cst-se-mnp8</file>
+ <name>Manorathapūraṇī 8</name>
+ <altname>Aṭṭhakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 8</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404a.att0</cscdfile>
+ <cscdfile>s0404a.att1</cscdfile>
+ <cscdfile>s0404a.att2</cscdfile>
+ <cscdfile>s0404a.att3</cscdfile>
+ <cscdfile>s0404a.att4</cscdfile>
+ <cscdfile>s0404a.att5</cscdfile>
+ <cscdfile>s0404a.att6</cscdfile>
+ <cscdfile>s0404a.att7</cscdfile>
+ <cscdfile>s0404a.att8</cscdfile>
+ <cscdfile>s0404a.att9</cscdfile>
+ <description>The commentary to the group of the eights in the numerical discourses</description>
+ <commentary>srm8</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp9">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp9</ref>
+ <file>cst-se-mnp9</file>
+ <name>Manorathapūraṇī 9</name>
+ <altname>Navakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 9</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404a.att10</cscdfile>
+ <cscdfile>s0404a.att11</cscdfile>
+ <cscdfile>s0404a.att12</cscdfile>
+ <cscdfile>s0404a.att13</cscdfile>
+ <cscdfile>s0404a.att14</cscdfile>
+ <description>The commentary to the group of the nines in the numerical discourses</description>
+ <commentary>srm9</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp10">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp10</ref>
+ <file>cst-se-mnp10</file>
+ <name>Manorathapūraṇī 10</name>
+ <altname>Dasakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 10</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404a.att15</cscdfile>
+ <cscdfile>s0404a.att16</cscdfile>
+ <cscdfile>s0404a.att17</cscdfile>
+ <cscdfile>s0404a.att18</cscdfile>
+ <cscdfile>s0404a.att19</cscdfile>
+ <cscdfile>s0404a.att20</cscdfile>
+ <cscdfile>s0404a.att21</cscdfile>
+ <cscdfile>s0404a.att22</cscdfile>
+ <cscdfile>s0404a.att23</cscdfile>
+ <cscdfile>s0404a.att24</cscdfile>
+ <cscdfile>s0404a.att25</cscdfile>
+ <cscdfile>s0404a.att26</cscdfile>
+ <cscdfile>s0404a.att27</cscdfile>
+ <cscdfile>s0404a.att28</cscdfile>
+ <cscdfile>s0404a.att29</cscdfile>
+ <cscdfile>s0404a.att30</cscdfile>
+ <description>The commentary to the group of the tens in the numerical discourses</description>
+ <commentary>srm10</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="mnp11">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>mnp11</ref>
+ <file>cst-se-mnp11</file>
+ <name>Manorathapūraṇī 11</name>
+ <altname>Ekādasakanipāta-aṭṭhakathā</altname>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 11</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404a.att31</cscdfile>
+ <cscdfile>s0404a.att32</cscdfile>
+ <description>The commentary to the group of the elevens in the numerical discourses</description>
+ <commentary>srm11</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="srm1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm1</ref>
+ <file>cst-se-srm1</file>
+ <name>Sāratthamañjūsā 1</name>
+ <altname>Ekakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0401t.tik0</cscdfile>
+ <cscdfile>s0401t.tik1</cscdfile>
+ <cscdfile>s0401t.tik2</cscdfile>
+ <cscdfile>s0401t.tik3</cscdfile>
+ <cscdfile>s0401t.tik4</cscdfile>
+ <cscdfile>s0401t.tik5</cscdfile>
+ <cscdfile>s0401t.tik6</cscdfile>
+ <cscdfile>s0401t.tik7</cscdfile>
+ <cscdfile>s0401t.tik8</cscdfile>
+ <cscdfile>s0401t.tik9</cscdfile>
+ <cscdfile>s0401t.tik10</cscdfile>
+ <cscdfile>s0401t.tik11</cscdfile>
+ <cscdfile>s0401t.tik12</cscdfile>
+ <cscdfile>s0401t.tik13</cscdfile>
+ <cscdfile>s0401t.tik14</cscdfile>
+ <cscdfile>s0401t.tik15</cscdfile>
+ <cscdfile>s0401t.tik16</cscdfile>
+ <cscdfile>s0401t.tik17</cscdfile>
+ <cscdfile>s0401t.tik18</cscdfile>
+ <description>The subcommentary to the group of the ones in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm2</ref>
+ <file>cst-se-srm2</file>
+ <name>Sāratthamañjūsā 2</name>
+ <altname>Dukanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 2</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402t.tik0</cscdfile>
+ <cscdfile>s0402t.tik1</cscdfile>
+ <cscdfile>s0402t.tik2</cscdfile>
+ <cscdfile>s0402t.tik3</cscdfile>
+ <cscdfile>s0402t.tik4</cscdfile>
+ <cscdfile>s0402t.tik5</cscdfile>
+ <cscdfile>s0402t.tik6</cscdfile>
+ <cscdfile>s0402t.tik7</cscdfile>
+ <cscdfile>s0402t.tik8</cscdfile>
+ <cscdfile>s0402t.tik9</cscdfile>
+ <cscdfile>s0402t.tik10</cscdfile>
+ <cscdfile>s0402t.tik11</cscdfile>
+ <cscdfile>s0402t.tik12</cscdfile>
+ <cscdfile>s0402t.tik13</cscdfile>
+ <cscdfile>s0402t.tik14</cscdfile>
+ <cscdfile>s0402t.tik15</cscdfile>
+ <cscdfile>s0402t.tik16</cscdfile>
+ <cscdfile>s0402t.tik17</cscdfile>
+ <description>The subcommentary to the group of the twos in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm3</ref>
+ <file>cst-se-srm3</file>
+ <name>Sāratthamañjūsā 3</name>
+ <altname>Tikanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 3</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402t.tik18</cscdfile>
+ <cscdfile>s0402t.tik19</cscdfile>
+ <cscdfile>s0402t.tik20</cscdfile>
+ <cscdfile>s0402t.tik21</cscdfile>
+ <cscdfile>s0402t.tik22</cscdfile>
+ <cscdfile>s0402t.tik23</cscdfile>
+ <cscdfile>s0402t.tik24</cscdfile>
+ <cscdfile>s0402t.tik25</cscdfile>
+ <cscdfile>s0402t.tik26</cscdfile>
+ <cscdfile>s0402t.tik27</cscdfile>
+ <cscdfile>s0402t.tik28</cscdfile>
+ <cscdfile>s0402t.tik29</cscdfile>
+ <cscdfile>s0402t.tik30</cscdfile>
+ <cscdfile>s0402t.tik31</cscdfile>
+ <cscdfile>s0402t.tik32</cscdfile>
+ <cscdfile>s0402t.tik33</cscdfile>
+ <description>The subcommentary to the group of the threes in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm4">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm4</ref>
+ <file>cst-se-srm4</file>
+ <name>Sāratthamañjūsā 4</name>
+ <altname>Catukkanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 4</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0402t.tik34</cscdfile>
+ <cscdfile>s0402t.tik35</cscdfile>
+ <cscdfile>s0402t.tik36</cscdfile>
+ <cscdfile>s0402t.tik37</cscdfile>
+ <cscdfile>s0402t.tik38</cscdfile>
+ <cscdfile>s0402t.tik39</cscdfile>
+ <cscdfile>s0402t.tik40</cscdfile>
+ <cscdfile>s0402t.tik41</cscdfile>
+ <cscdfile>s0402t.tik42</cscdfile>
+ <cscdfile>s0402t.tik43</cscdfile>
+ <cscdfile>s0402t.tik44</cscdfile>
+ <cscdfile>s0402t.tik45</cscdfile>
+ <cscdfile>s0402t.tik46</cscdfile>
+ <cscdfile>s0402t.tik47</cscdfile>
+ <cscdfile>s0402t.tik48</cscdfile>
+ <cscdfile>s0402t.tik49</cscdfile>
+ <cscdfile>s0402t.tik50</cscdfile>
+ <cscdfile>s0402t.tik51</cscdfile>
+ <cscdfile>s0402t.tik52</cscdfile>
+ <cscdfile>s0402t.tik53</cscdfile>
+ <cscdfile>s0402t.tik54</cscdfile>
+ <cscdfile>s0402t.tik55</cscdfile>
+ <cscdfile>s0402t.tik56</cscdfile>
+ <cscdfile>s0402t.tik57</cscdfile>
+ <cscdfile>s0402t.tik58</cscdfile>
+ <description>The subcommentary to the group of the fours in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm5">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm5</ref>
+ <file>cst-se-srm5</file>
+ <name>Sāratthamañjūsā 5</name>
+ <altname>Pañcakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 5</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403t.tik0</cscdfile>
+ <cscdfile>s0403t.tik1</cscdfile>
+ <cscdfile>s0403t.tik2</cscdfile>
+ <cscdfile>s0403t.tik3</cscdfile>
+ <cscdfile>s0403t.tik4</cscdfile>
+ <cscdfile>s0403t.tik5</cscdfile>
+ <cscdfile>s0403t.tik6</cscdfile>
+ <cscdfile>s0403t.tik7</cscdfile>
+ <cscdfile>s0403t.tik8</cscdfile>
+ <cscdfile>s0403t.tik9</cscdfile>
+ <cscdfile>s0403t.tik10</cscdfile>
+ <cscdfile>s0403t.tik11</cscdfile>
+ <cscdfile>s0403t.tik12</cscdfile>
+ <cscdfile>s0403t.tik13</cscdfile>
+ <cscdfile>s0403t.tik14</cscdfile>
+ <cscdfile>s0403t.tik15</cscdfile>
+ <cscdfile>s0403t.tik16</cscdfile>
+ <cscdfile>s0403t.tik17</cscdfile>
+ <cscdfile>s0403t.tik18</cscdfile>
+ <cscdfile>s0403t.tik19</cscdfile>
+ <cscdfile>s0403t.tik20</cscdfile>
+ <cscdfile>s0403t.tik21</cscdfile>
+ <cscdfile>s0403t.tik22</cscdfile>
+ <description>The subcommentary to the group of the fives in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm6">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm6</ref>
+ <file>cst-se-srm6</file>
+ <name>Sāratthamañjūsā 6</name>
+ <altname>Chakkanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 6</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403t.tik23</cscdfile>
+ <cscdfile>s0403t.tik24</cscdfile>
+ <cscdfile>s0403t.tik25</cscdfile>
+ <cscdfile>s0403t.tik26</cscdfile>
+ <cscdfile>s0403t.tik27</cscdfile>
+ <cscdfile>s0403t.tik28</cscdfile>
+ <cscdfile>s0403t.tik29</cscdfile>
+ <cscdfile>s0403t.tik30</cscdfile>
+ <cscdfile>s0403t.tik31</cscdfile>
+ <cscdfile>s0403t.tik32</cscdfile>
+ <description>The subcommentary to the group of the sixes in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm7">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm7</ref>
+ <file>cst-se-srm7</file>
+ <name>Sāratthamañjūsā 7</name>
+ <altname>Sattakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 7</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0403t.tik33</cscdfile>
+ <cscdfile>s0403t.tik34</cscdfile>
+ <cscdfile>s0403t.tik35</cscdfile>
+ <cscdfile>s0403t.tik36</cscdfile>
+ <cscdfile>s0403t.tik37</cscdfile>
+ <cscdfile>s0403t.tik38</cscdfile>
+ <cscdfile>s0403t.tik39</cscdfile>
+ <cscdfile>s0403t.tik40</cscdfile>
+ <description>The subcommentary to the group of the sevens in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm8">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm8</ref>
+ <file>cst-se-srm8</file>
+ <name>Sāratthamañjūsā 8</name>
+ <altname>Aṭṭhakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 8</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404t.tik0</cscdfile>
+ <cscdfile>s0404t.tik1</cscdfile>
+ <cscdfile>s0404t.tik2</cscdfile>
+ <cscdfile>s0404t.tik3</cscdfile>
+ <cscdfile>s0404t.tik4</cscdfile>
+ <cscdfile>s0404t.tik5</cscdfile>
+ <cscdfile>s0404t.tik6</cscdfile>
+ <cscdfile>s0404t.tik7</cscdfile>
+ <description>The subcommentary to the group of the eights in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm9">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm9</ref>
+ <file>cst-se-srm9</file>
+ <name>Sāratthamañjūsā 9</name>
+ <altname>Navakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 9</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404t.tik8</cscdfile>
+ <cscdfile>s0404t.tik9</cscdfile>
+ <cscdfile>s0404t.tik10</cscdfile>
+ <cscdfile>s0404t.tik11</cscdfile>
+ <cscdfile>s0404t.tik12</cscdfile>
+ <description>The subcommentary to the group of the nines in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm10">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm10</ref>
+ <file>cst-se-srm10</file>
+ <name>Sāratthamañjūsā 10</name>
+ <altname>Dasakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 10</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404t.tik13</cscdfile>
+ <cscdfile>s0404t.tik14</cscdfile>
+ <cscdfile>s0404t.tik15</cscdfile>
+ <cscdfile>s0404t.tik16</cscdfile>
+ <cscdfile>s0404t.tik17</cscdfile>
+ <cscdfile>s0404t.tik18</cscdfile>
+ <cscdfile>s0404t.tik19</cscdfile>
+ <cscdfile>s0404t.tik20</cscdfile>
+ <cscdfile>s0404t.tik21</cscdfile>
+ <cscdfile>s0404t.tik22</cscdfile>
+ <cscdfile>s0404t.tik23</cscdfile>
+ <cscdfile>s0404t.tik24</cscdfile>
+ <cscdfile>s0404t.tik25</cscdfile>
+ <description>The subcommentary to the group of the tens in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="srm11">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>srm11</ref>
+ <file>cst-se-srm11</file>
+ <name>Sāratthamañjūsā 11</name>
+ <altname>Ekādasakanipāta-ṭīkā</altname>
+ <altname>Aṅguttaranikāya-ṭīkā 11</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0404t.tik26</cscdfile>
+ <cscdfile>s0404t.tik27</cscdfile>
+ <description>The subcommentary to the group of the elevens in the numerical discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="khp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>khp</ref>
+ <file>cst-sm-khp</file>
+ <name>Khuddakapāṭha</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0501m.mul0</cscdfile>
+ <cscdfile>s0501m.mul1</cscdfile>
+ <cscdfile>s0501m.mul2</cscdfile>
+ <cscdfile>s0501m.mul3</cscdfile>
+ <cscdfile>s0501m.mul4</cscdfile>
+ <cscdfile>s0501m.mul5</cscdfile>
+ <cscdfile>s0501m.mul6</cscdfile>
+ <cscdfile>s0501m.mul7</cscdfile>
+ <cscdfile>s0501m.mul8</cscdfile>
+ <description>The short recitations</description>
+ <commentary>khp-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="khp-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>khp-a</ref>
+ <file>cst-se-khpa</file>
+ <name>Khuddakapāṭha-aṭṭhakathā</name>
+ <altname>Paramatthajotikā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0501a.att0</cscdfile>
+ <cscdfile>s0501a.att1</cscdfile>
+ <cscdfile>s0501a.att2</cscdfile>
+ <cscdfile>s0501a.att3</cscdfile>
+ <cscdfile>s0501a.att4</cscdfile>
+ <cscdfile>s0501a.att5</cscdfile>
+ <cscdfile>s0501a.att6</cscdfile>
+ <cscdfile>s0501a.att7</cscdfile>
+ <cscdfile>s0501a.att8</cscdfile>
+ <cscdfile>s0501a.att9</cscdfile>
+ <description>The commentary to the short recitations</description>
+ <linkable>false</linkable>
+</text>
+<text id="dhp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dhp</ref>
+ <file>cst-sm-dhp</file>
+ <name>Dhammapada</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0502m.mul0</cscdfile>
+ <cscdfile>s0502m.mul1</cscdfile>
+ <cscdfile>s0502m.mul2</cscdfile>
+ <cscdfile>s0502m.mul3</cscdfile>
+ <cscdfile>s0502m.mul4</cscdfile>
+ <cscdfile>s0502m.mul5</cscdfile>
+ <cscdfile>s0502m.mul6</cscdfile>
+ <cscdfile>s0502m.mul7</cscdfile>
+ <cscdfile>s0502m.mul8</cscdfile>
+ <cscdfile>s0502m.mul9</cscdfile>
+ <cscdfile>s0502m.mul10</cscdfile>
+ <cscdfile>s0502m.mul11</cscdfile>
+ <cscdfile>s0502m.mul12</cscdfile>
+ <cscdfile>s0502m.mul13</cscdfile>
+ <cscdfile>s0502m.mul14</cscdfile>
+ <cscdfile>s0502m.mul15</cscdfile>
+ <cscdfile>s0502m.mul16</cscdfile>
+ <cscdfile>s0502m.mul17</cscdfile>
+ <cscdfile>s0502m.mul18</cscdfile>
+ <cscdfile>s0502m.mul19</cscdfile>
+ <cscdfile>s0502m.mul20</cscdfile>
+ <cscdfile>s0502m.mul21</cscdfile>
+ <cscdfile>s0502m.mul22</cscdfile>
+ <cscdfile>s0502m.mul23</cscdfile>
+ <cscdfile>s0502m.mul24</cscdfile>
+ <cscdfile>s0502m.mul25</cscdfile>
+ <description>The Dhammapada</description>
+ <commentary>dhp-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhp-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>dhp-a</ref>
+ <file>cst-se-dhpa</file>
+ <name>Dhammapada-aṭṭhakathā</name>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0502a.att0</cscdfile>
+ <cscdfile>s0502a.att1</cscdfile>
+ <cscdfile>s0502a.att2</cscdfile>
+ <cscdfile>s0502a.att3</cscdfile>
+ <cscdfile>s0502a.att4</cscdfile>
+ <cscdfile>s0502a.att5</cscdfile>
+ <cscdfile>s0502a.att6</cscdfile>
+ <cscdfile>s0502a.att7</cscdfile>
+ <cscdfile>s0502a.att8</cscdfile>
+ <cscdfile>s0502a.att9</cscdfile>
+ <cscdfile>s0502a.att10</cscdfile>
+ <cscdfile>s0502a.att11</cscdfile>
+ <cscdfile>s0502a.att12</cscdfile>
+ <cscdfile>s0502a.att13</cscdfile>
+ <cscdfile>s0502a.att14</cscdfile>
+ <cscdfile>s0502a.att15</cscdfile>
+ <cscdfile>s0502a.att16</cscdfile>
+ <cscdfile>s0502a.att17</cscdfile>
+ <cscdfile>s0502a.att18</cscdfile>
+ <cscdfile>s0502a.att19</cscdfile>
+ <cscdfile>s0502a.att20</cscdfile>
+ <cscdfile>s0502a.att21</cscdfile>
+ <cscdfile>s0502a.att22</cscdfile>
+ <cscdfile>s0502a.att23</cscdfile>
+ <cscdfile>s0502a.att24</cscdfile>
+ <cscdfile>s0502a.att25</cscdfile>
+ <cscdfile>s0502a.att26</cscdfile>
+ <description>The commentary to the Dhammapada</description>
+ <linkable>false</linkable>
+</text>
+<text id="ud">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ud</ref>
+ <file>cst-sm-ud</file>
+ <name>Udāna</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0503m.mul0</cscdfile>
+ <cscdfile>s0503m.mul1</cscdfile>
+ <cscdfile>s0503m.mul2</cscdfile>
+ <cscdfile>s0503m.mul3</cscdfile>
+ <cscdfile>s0503m.mul4</cscdfile>
+ <cscdfile>s0503m.mul5</cscdfile>
+ <cscdfile>s0503m.mul6</cscdfile>
+ <cscdfile>s0503m.mul7</cscdfile>
+ <description>The inspired utterances</description>
+ <commentary>ud-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ud-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>ud-a</ref>
+ <file>cst-se-uda</file>
+ <name>Udāna-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0503a.att0</cscdfile>
+ <cscdfile>s0503a.att1</cscdfile>
+ <cscdfile>s0503a.att2</cscdfile>
+ <cscdfile>s0503a.att3</cscdfile>
+ <cscdfile>s0503a.att4</cscdfile>
+ <cscdfile>s0503a.att5</cscdfile>
+ <cscdfile>s0503a.att6</cscdfile>
+ <cscdfile>s0503a.att7</cscdfile>
+ <cscdfile>s0503a.att8</cscdfile>
+ <description>The commentary to the inspired utterances</description>
+ <linkable>false</linkable>
+</text>
+<text id="it">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>it</ref>
+ <file>cst-sm-it</file>
+ <name>Itivuttaka</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0504m.mul0</cscdfile>
+ <cscdfile>s0504m.mul1</cscdfile>
+ <cscdfile>s0504m.mul2</cscdfile>
+ <cscdfile>s0504m.mul3</cscdfile>
+ <description>The ‘thus spoken’</description>
+ <commentary>it-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="it-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>it-a</ref>
+ <file>cst-se-ita</file>
+ <name>Itivuttaka-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0504a.att0</cscdfile>
+ <cscdfile>s0504a.att1</cscdfile>
+ <cscdfile>s0504a.att2</cscdfile>
+ <cscdfile>s0504a.att3</cscdfile>
+ <cscdfile>s0504a.att4</cscdfile>
+ <description>The commentary to the ‘thus spoken’</description>
+ <linkable>false</linkable>
+</text>
+<text id="snp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>snp</ref>
+ <file>cst-sm-snp</file>
+ <name>Suttanipāta</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0505m.mul0</cscdfile>
+ <cscdfile>s0505m.mul1</cscdfile>
+ <cscdfile>s0505m.mul2</cscdfile>
+ <cscdfile>s0505m.mul3</cscdfile>
+ <cscdfile>s0505m.mul4</cscdfile>
+ <description>The groups of discourses</description>
+ <commentary>snp-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="snp-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>snp-a</ref>
+ <file>cst-se-snpa</file>
+ <name>Suttanipāta-aṭṭhakathā</name>
+ <altname>Paramatthajotikā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0505a.att0</cscdfile>
+ <cscdfile>s0505a.att1</cscdfile>
+ <cscdfile>s0505a.att2</cscdfile>
+ <cscdfile>s0505a.att3</cscdfile>
+ <cscdfile>s0505a.att4</cscdfile>
+ <description>The commentary to the groups of discourses</description>
+ <linkable>false</linkable>
+</text>
+<text id="vv">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>vv</ref>
+ <file>cst-sm-vv</file>
+ <name>Vimānavatthu</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0506m.mul0</cscdfile>
+ <cscdfile>s0506m.mul1</cscdfile>
+ <description>The stories of heavenly palaces</description>
+ <commentary>vv-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vv-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>vv-a</ref>
+ <file>cst-se-vva</file>
+ <name>Vimānavatthu-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0506a.att0</cscdfile>
+ <cscdfile>s0506a.att1</cscdfile>
+ <cscdfile>s0506a.att2</cscdfile>
+ <description>The commentary to the stories of heavenly palaces</description>
+ <linkable>false</linkable>
+</text>
+<text id="pv">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>pv</ref>
+ <file>cst-sm-pv</file>
+ <name>Petavatthu</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0507m.mul0</cscdfile>
+ <cscdfile>s0507m.mul1</cscdfile>
+ <cscdfile>s0507m.mul2</cscdfile>
+ <cscdfile>s0507m.mul3</cscdfile>
+ <description>The stories of ghosts</description>
+ <commentary>pv-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pv-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>pv-a</ref>
+ <file>cst-se-pva</file>
+ <name>Petavatthu-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0507a.att0</cscdfile>
+ <cscdfile>s0507a.att1</cscdfile>
+ <cscdfile>s0507a.att2</cscdfile>
+ <cscdfile>s0507a.att3</cscdfile>
+ <cscdfile>s0507a.att4</cscdfile>
+ <description>The commentary to the stories of ghosts</description>
+ <linkable>false</linkable>
+</text>
+<text id="thag">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>thag</ref>
+ <file>cst-sm-thag</file>
+ <name>Theragāthā</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0508m.mul0</cscdfile>
+ <cscdfile>s0508m.mul1</cscdfile>
+ <cscdfile>s0508m.mul2</cscdfile>
+ <cscdfile>s0508m.mul3</cscdfile>
+ <cscdfile>s0508m.mul4</cscdfile>
+ <cscdfile>s0508m.mul5</cscdfile>
+ <cscdfile>s0508m.mul6</cscdfile>
+ <cscdfile>s0508m.mul7</cscdfile>
+ <cscdfile>s0508m.mul8</cscdfile>
+ <cscdfile>s0508m.mul9</cscdfile>
+ <cscdfile>s0508m.mul10</cscdfile>
+ <cscdfile>s0508m.mul11</cscdfile>
+ <cscdfile>s0508m.mul12</cscdfile>
+ <cscdfile>s0508m.mul13</cscdfile>
+ <cscdfile>s0508m.mul14</cscdfile>
+ <cscdfile>s0508m.mul15</cscdfile>
+ <cscdfile>s0508m.mul16</cscdfile>
+ <cscdfile>s0508m.mul17</cscdfile>
+ <cscdfile>s0508m.mul18</cscdfile>
+ <cscdfile>s0508m.mul19</cscdfile>
+ <cscdfile>s0508m.mul20</cscdfile>
+ <description>The verses spoken by monks</description>
+ <commentary>thag-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="thag-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>thag-a</ref>
+ <file>cst-se-thaga</file>
+ <name>Theragāthā-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0508a1.att0</cscdfile>
+ <cscdfile>s0508a1.att1</cscdfile>
+ <cscdfile>s0508a1.att2</cscdfile>
+ <cscdfile>s0508a1.att3</cscdfile>
+ <cscdfile>s0508a2.att0</cscdfile>
+ <cscdfile>s0508a2.att1</cscdfile>
+ <cscdfile>s0508a2.att2</cscdfile>
+ <cscdfile>s0508a2.att3</cscdfile>
+ <cscdfile>s0508a2.att4</cscdfile>
+ <cscdfile>s0508a2.att5</cscdfile>
+ <cscdfile>s0508a2.att6</cscdfile>
+ <cscdfile>s0508a2.att7</cscdfile>
+ <cscdfile>s0508a2.att8</cscdfile>
+ <cscdfile>s0508a2.att9</cscdfile>
+ <cscdfile>s0508a2.att10</cscdfile>
+ <cscdfile>s0508a2.att11</cscdfile>
+ <cscdfile>s0508a2.att12</cscdfile>
+ <cscdfile>s0508a2.att13</cscdfile>
+ <cscdfile>s0508a2.att14</cscdfile>
+ <cscdfile>s0508a2.att15</cscdfile>
+ <cscdfile>s0508a2.att16</cscdfile>
+ <cscdfile>s0508a2.att17</cscdfile>
+ <description>The commentary to the verses spoken by monks</description>
+ <linkable>false</linkable>
+</text>
+<text id="thig">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>thig</ref>
+ <file>cst-sm-thig</file>
+ <name>Therīgāthā</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0509m.mul0</cscdfile>
+ <cscdfile>s0509m.mul1</cscdfile>
+ <cscdfile>s0509m.mul2</cscdfile>
+ <cscdfile>s0509m.mul3</cscdfile>
+ <cscdfile>s0509m.mul4</cscdfile>
+ <cscdfile>s0509m.mul5</cscdfile>
+ <cscdfile>s0509m.mul6</cscdfile>
+ <cscdfile>s0509m.mul7</cscdfile>
+ <cscdfile>s0509m.mul8</cscdfile>
+ <cscdfile>s0509m.mul9</cscdfile>
+ <cscdfile>s0509m.mul10</cscdfile>
+ <cscdfile>s0509m.mul11</cscdfile>
+ <cscdfile>s0509m.mul12</cscdfile>
+ <cscdfile>s0509m.mul13</cscdfile>
+ <cscdfile>s0509m.mul14</cscdfile>
+ <cscdfile>s0509m.mul15</cscdfile>
+ <description>The verses spoken by nuns</description>
+ <commentary>thig-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="thig-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>thig-a</ref>
+ <file>cst-se-thiga</file>
+ <name>Therīgāthā-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0509a.att0</cscdfile>
+ <cscdfile>s0509a.att1</cscdfile>
+ <cscdfile>s0509a.att2</cscdfile>
+ <cscdfile>s0509a.att3</cscdfile>
+ <cscdfile>s0509a.att4</cscdfile>
+ <cscdfile>s0509a.att5</cscdfile>
+ <cscdfile>s0509a.att6</cscdfile>
+ <cscdfile>s0509a.att7</cscdfile>
+ <cscdfile>s0509a.att8</cscdfile>
+ <cscdfile>s0509a.att9</cscdfile>
+ <cscdfile>s0509a.att10</cscdfile>
+ <cscdfile>s0509a.att11</cscdfile>
+ <cscdfile>s0509a.att12</cscdfile>
+ <cscdfile>s0509a.att13</cscdfile>
+ <cscdfile>s0509a.att14</cscdfile>
+ <cscdfile>s0509a.att15</cscdfile>
+ <description>The commentary to the verses spoken by nuns</description>
+ <linkable>false</linkable>
+</text>
+<text id="ap1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ap1</ref>
+ <file>cst-sm-ap1</file>
+ <name>Therāpadāna</name>
+ <altname>Apadāna 1</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0510m1.mul0</cscdfile>
+ <cscdfile>s0510m1.mul1</cscdfile>
+ <cscdfile>s0510m1.mul2</cscdfile>
+ <cscdfile>s0510m1.mul3</cscdfile>
+ <cscdfile>s0510m1.mul4</cscdfile>
+ <cscdfile>s0510m1.mul5</cscdfile>
+ <cscdfile>s0510m1.mul6</cscdfile>
+ <cscdfile>s0510m1.mul7</cscdfile>
+ <cscdfile>s0510m1.mul8</cscdfile>
+ <cscdfile>s0510m1.mul9</cscdfile>
+ <cscdfile>s0510m1.mul10</cscdfile>
+ <cscdfile>s0510m1.mul11</cscdfile>
+ <cscdfile>s0510m1.mul12</cscdfile>
+ <cscdfile>s0510m1.mul13</cscdfile>
+ <cscdfile>s0510m1.mul14</cscdfile>
+ <cscdfile>s0510m1.mul15</cscdfile>
+ <cscdfile>s0510m1.mul16</cscdfile>
+ <cscdfile>s0510m1.mul17</cscdfile>
+ <cscdfile>s0510m1.mul18</cscdfile>
+ <cscdfile>s0510m1.mul19</cscdfile>
+ <cscdfile>s0510m1.mul20</cscdfile>
+ <cscdfile>s0510m1.mul21</cscdfile>
+ <cscdfile>s0510m1.mul22</cscdfile>
+ <cscdfile>s0510m1.mul23</cscdfile>
+ <cscdfile>s0510m1.mul24</cscdfile>
+ <cscdfile>s0510m1.mul25</cscdfile>
+ <cscdfile>s0510m1.mul26</cscdfile>
+ <cscdfile>s0510m1.mul27</cscdfile>
+ <cscdfile>s0510m1.mul28</cscdfile>
+ <cscdfile>s0510m1.mul29</cscdfile>
+ <cscdfile>s0510m1.mul30</cscdfile>
+ <cscdfile>s0510m1.mul31</cscdfile>
+ <cscdfile>s0510m1.mul32</cscdfile>
+ <cscdfile>s0510m1.mul33</cscdfile>
+ <cscdfile>s0510m1.mul34</cscdfile>
+ <cscdfile>s0510m1.mul35</cscdfile>
+ <cscdfile>s0510m1.mul36</cscdfile>
+ <cscdfile>s0510m1.mul37</cscdfile>
+ <cscdfile>s0510m1.mul38</cscdfile>
+ <cscdfile>s0510m1.mul39</cscdfile>
+ <cscdfile>s0510m1.mul40</cscdfile>
+ <cscdfile>s0510m1.mul41</cscdfile>
+ <cscdfile>s0510m2.mul0</cscdfile>
+ <cscdfile>s0510m2.mul1</cscdfile>
+ <cscdfile>s0510m2.mul2</cscdfile>
+ <cscdfile>s0510m2.mul3</cscdfile>
+ <cscdfile>s0510m2.mul4</cscdfile>
+ <cscdfile>s0510m2.mul5</cscdfile>
+ <cscdfile>s0510m2.mul6</cscdfile>
+ <cscdfile>s0510m2.mul7</cscdfile>
+ <cscdfile>s0510m2.mul8</cscdfile>
+ <cscdfile>s0510m2.mul9</cscdfile>
+ <cscdfile>s0510m2.mul10</cscdfile>
+ <cscdfile>s0510m2.mul11</cscdfile>
+ <cscdfile>s0510m2.mul12</cscdfile>
+ <cscdfile>s0510m2.mul13</cscdfile>
+ <description>The Apadānas spoken by monks</description>
+ <commentary>ap-a1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ap2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ap2</ref>
+ <file>cst-sm-ap2</file>
+ <name>Therīapadāna</name>
+ <altname>Apadāna 2</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0510m2.mul14</cscdfile>
+ <cscdfile>s0510m2.mul15</cscdfile>
+ <cscdfile>s0510m2.mul16</cscdfile>
+ <cscdfile>s0510m2.mul17</cscdfile>
+ <description>The Apadānas spoken by nuns</description>
+ <linkable>false</linkable>
+</text>
+<text id="ap1-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>ap1-a</ref>
+ <file>cst-se-apa1</file>
+ <name>Therāpadāna-aṭṭhakathā</name>
+ <altname>Visuddhajanavilāsinī</altname>
+ <altname>Apadāna-aṭṭhakathā 1</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0510a.att0</cscdfile>
+ <cscdfile>s0510a.att1</cscdfile>
+ <cscdfile>s0510a.att2</cscdfile>
+ <cscdfile>s0510a.att3</cscdfile>
+ <cscdfile>s0510a.att4</cscdfile>
+ <cscdfile>s0510a.att5</cscdfile>
+ <cscdfile>s0510a.att6</cscdfile>
+ <cscdfile>s0510a.att7</cscdfile>
+ <cscdfile>s0510a.att8</cscdfile>
+ <cscdfile>s0510a.att9</cscdfile>
+ <cscdfile>s0510a.att10</cscdfile>
+ <cscdfile>s0510a.att11</cscdfile>
+ <cscdfile>s0510a.att12</cscdfile>
+ <cscdfile>s0510a.att13</cscdfile>
+ <cscdfile>s0510a.att14</cscdfile>
+ <cscdfile>s0510a.att15</cscdfile>
+ <cscdfile>s0510a.att16</cscdfile>
+ <cscdfile>s0510a.att17</cscdfile>
+ <cscdfile>s0510a.att18</cscdfile>
+ <cscdfile>s0510a.att19</cscdfile>
+ <cscdfile>s0510a.att20</cscdfile>
+ <cscdfile>s0510a.att21</cscdfile>
+ <cscdfile>s0510a.att22</cscdfile>
+ <cscdfile>s0510a.att23</cscdfile>
+ <cscdfile>s0510a.att24</cscdfile>
+ <cscdfile>s0510a.att25</cscdfile>
+ <cscdfile>s0510a.att26</cscdfile>
+ <cscdfile>s0510a.att27</cscdfile>
+ <cscdfile>s0510a.att28</cscdfile>
+ <cscdfile>s0510a.att29</cscdfile>
+ <cscdfile>s0510a.att30</cscdfile>
+ <cscdfile>s0510a.att31</cscdfile>
+ <cscdfile>s0510a.att32</cscdfile>
+ <cscdfile>s0510a.att33</cscdfile>
+ <cscdfile>s0510a.att34</cscdfile>
+ <cscdfile>s0510a.att35</cscdfile>
+ <cscdfile>s0510a.att36</cscdfile>
+ <cscdfile>s0510a.att37</cscdfile>
+ <cscdfile>s0510a.att38</cscdfile>
+ <cscdfile>s0510a.att39</cscdfile>
+ <cscdfile>s0510a.att40</cscdfile>
+ <cscdfile>s0510a.att41</cscdfile>
+ <cscdfile>s0510a.att42</cscdfile>
+ <description>The commentary to Apadānas spoken by monks</description>
+ <linkable>false</linkable>
+</text>
+<text id="bv">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>bv</ref>
+ <file>cst-sm-bv</file>
+ <name>Buddhavaṃsa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0511m.mul0</cscdfile>
+ <cscdfile>s0511m.mul1</cscdfile>
+ <cscdfile>s0511m.mul2</cscdfile>
+ <cscdfile>s0511m.mul3</cscdfile>
+ <cscdfile>s0511m.mul4</cscdfile>
+ <cscdfile>s0511m.mul5</cscdfile>
+ <cscdfile>s0511m.mul6</cscdfile>
+ <cscdfile>s0511m.mul7</cscdfile>
+ <cscdfile>s0511m.mul8</cscdfile>
+ <cscdfile>s0511m.mul9</cscdfile>
+ <cscdfile>s0511m.mul10</cscdfile>
+ <cscdfile>s0511m.mul11</cscdfile>
+ <cscdfile>s0511m.mul12</cscdfile>
+ <cscdfile>s0511m.mul13</cscdfile>
+ <cscdfile>s0511m.mul14</cscdfile>
+ <cscdfile>s0511m.mul15</cscdfile>
+ <cscdfile>s0511m.mul16</cscdfile>
+ <cscdfile>s0511m.mul17</cscdfile>
+ <cscdfile>s0511m.mul18</cscdfile>
+ <cscdfile>s0511m.mul19</cscdfile>
+ <cscdfile>s0511m.mul20</cscdfile>
+ <cscdfile>s0511m.mul21</cscdfile>
+ <cscdfile>s0511m.mul22</cscdfile>
+ <cscdfile>s0511m.mul23</cscdfile>
+ <cscdfile>s0511m.mul24</cscdfile>
+ <cscdfile>s0511m.mul25</cscdfile>
+ <cscdfile>s0511m.mul26</cscdfile>
+ <cscdfile>s0511m.mul27</cscdfile>
+ <cscdfile>s0511m.mul28</cscdfile>
+ <description>The lineage of the Buddhas</description>
+ <commentary>bv-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="bv-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>bv-a</ref>
+ <file>cst-se-bva</file>
+ <name>Buddhavaṃsa-aṭṭhakathā</name>
+ <altname>Madhuratthavilāsinī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0511a.att0</cscdfile>
+ <cscdfile>s0511a.att1</cscdfile>
+ <cscdfile>s0511a.att2</cscdfile>
+ <cscdfile>s0511a.att3</cscdfile>
+ <cscdfile>s0511a.att4</cscdfile>
+ <cscdfile>s0511a.att5</cscdfile>
+ <cscdfile>s0511a.att6</cscdfile>
+ <cscdfile>s0511a.att7</cscdfile>
+ <cscdfile>s0511a.att8</cscdfile>
+ <cscdfile>s0511a.att9</cscdfile>
+ <cscdfile>s0511a.att10</cscdfile>
+ <cscdfile>s0511a.att11</cscdfile>
+ <cscdfile>s0511a.att12</cscdfile>
+ <cscdfile>s0511a.att13</cscdfile>
+ <cscdfile>s0511a.att14</cscdfile>
+ <cscdfile>s0511a.att15</cscdfile>
+ <cscdfile>s0511a.att16</cscdfile>
+ <cscdfile>s0511a.att17</cscdfile>
+ <cscdfile>s0511a.att18</cscdfile>
+ <cscdfile>s0511a.att19</cscdfile>
+ <cscdfile>s0511a.att20</cscdfile>
+ <cscdfile>s0511a.att21</cscdfile>
+ <cscdfile>s0511a.att22</cscdfile>
+ <cscdfile>s0511a.att23</cscdfile>
+ <cscdfile>s0511a.att24</cscdfile>
+ <cscdfile>s0511a.att25</cscdfile>
+ <cscdfile>s0511a.att26</cscdfile>
+ <cscdfile>s0511a.att27</cscdfile>
+ <cscdfile>s0511a.att28</cscdfile>
+ <description>The commentary to the lineage of the Buddhas</description>
+ <linkable>false</linkable>
+</text>
+<text id="cp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>cp</ref>
+ <file>cst-sm-cp</file>
+ <name>Cariyāpiṭaka</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0512m.mul0</cscdfile>
+ <cscdfile>s0512m.mul1</cscdfile>
+ <cscdfile>s0512m.mul2</cscdfile>
+ <description>The basket of conduct</description>
+ <commentary>cp-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="cp-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>cp-a</ref>
+ <file>cst-se-cpa</file>
+ <name>Cariyāpiṭaka-aṭṭhakathā</name>
+ <altname>Paramatthadīpanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0512a.att0</cscdfile>
+ <cscdfile>s0512a.att1</cscdfile>
+ <cscdfile>s0512a.att2</cscdfile>
+ <cscdfile>s0512a.att3</cscdfile>
+ <description>The commentary to the basket of conduct</description>
+ <linkable>false</linkable>
+</text>
+<text id="ja">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ja</ref>
+ <file>cst-sm-ja</file>
+ <name>Jātaka</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0513m.mul0</cscdfile>
+ <cscdfile>s0513m.mul1</cscdfile>
+ <cscdfile>s0513m.mul2</cscdfile>
+ <cscdfile>s0513m.mul3</cscdfile>
+ <cscdfile>s0513m.mul4</cscdfile>
+ <cscdfile>s0513m.mul5</cscdfile>
+ <cscdfile>s0513m.mul6</cscdfile>
+ <cscdfile>s0513m.mul7</cscdfile>
+ <cscdfile>s0513m.mul8</cscdfile>
+ <cscdfile>s0513m.mul9</cscdfile>
+ <cscdfile>s0513m.mul10</cscdfile>
+ <cscdfile>s0513m.mul11</cscdfile>
+ <cscdfile>s0513m.mul12</cscdfile>
+ <cscdfile>s0513m.mul13</cscdfile>
+ <cscdfile>s0513m.mul14</cscdfile>
+ <cscdfile>s0513m.mul15</cscdfile>
+ <cscdfile>s0514m.mul0</cscdfile>
+ <cscdfile>s0514m.mul1</cscdfile>
+ <cscdfile>s0514m.mul2</cscdfile>
+ <cscdfile>s0514m.mul3</cscdfile>
+ <cscdfile>s0514m.mul4</cscdfile>
+ <cscdfile>s0514m.mul5</cscdfile>
+ <description>The birth stories</description>
+ <commentary>ja-a1</commentary>
+ <commentary>ja-a2</commentary>
+ <commentary>ja-a3</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ja-a1">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>ja-a1</ref>
+ <file>cst-se-jaa1</file>
+ <name>Jātaka-aṭṭhakathā 1</name>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0513a1.att0</cscdfile>
+ <cscdfile>s0513a1.att1</cscdfile>
+ <cscdfile>s0513a2.att0</cscdfile>
+ <cscdfile>s0513a2.att1</cscdfile>
+ <description>The commentary to the birth stories 1 (group 1-3)</description>
+ <linkable>false</linkable>
+</text>
+<text id="ja-a2">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>ja-a2</ref>
+ <file>cst-se-jaa2</file>
+ <name>Jātaka-aṭṭhakathā 2</name>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0513a3.att0</cscdfile>
+ <cscdfile>s0513a3.att1</cscdfile>
+ <cscdfile>s0513a3.att2</cscdfile>
+ <cscdfile>s0513a3.att3</cscdfile>
+ <cscdfile>s0513a3.att4</cscdfile>
+ <cscdfile>s0513a3.att5</cscdfile>
+ <cscdfile>s0513a4.att0</cscdfile>
+ <cscdfile>s0513a4.att1</cscdfile>
+ <cscdfile>s0513a4.att2</cscdfile>
+ <cscdfile>s0513a4.att3</cscdfile>
+ <cscdfile>s0513a4.att4</cscdfile>
+ <cscdfile>s0513a4.att5</cscdfile>
+ <description>The commentary to the birth stories 2 (group 4-15)</description>
+ <linkable>false</linkable>
+</text>
+<text id="ja-a3">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>ja-a3</ref>
+ <file>cst-se-jaa3</file>
+ <name>Jātaka-aṭṭhakathā 3</name>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0513a4.att6</cscdfile>
+ <cscdfile>s0514a1.att0</cscdfile>
+ <cscdfile>s0514a1.att1</cscdfile>
+ <cscdfile>s0514a1.att2</cscdfile>
+ <cscdfile>s0514a1.att3</cscdfile>
+ <cscdfile>s0514a1.att4</cscdfile>
+ <cscdfile>s0514a2.att</cscdfile>
+ <cscdfile>s0514a3.att</cscdfile>
+ <description>The commentary to the birth stories 3 (group 16-22)</description>
+ <linkable>false</linkable>
+</text>
+<text id="nidd1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nidd1</ref>
+ <file>cst-sm-nidd1</file>
+ <name>Mahāniddesa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0515m.mul0</cscdfile>
+ <cscdfile>s0515m.mul1</cscdfile>
+ <cscdfile>s0515m.mul2</cscdfile>
+ <cscdfile>s0515m.mul3</cscdfile>
+ <cscdfile>s0515m.mul4</cscdfile>
+ <cscdfile>s0515m.mul5</cscdfile>
+ <cscdfile>s0515m.mul6</cscdfile>
+ <cscdfile>s0515m.mul7</cscdfile>
+ <cscdfile>s0515m.mul8</cscdfile>
+ <cscdfile>s0515m.mul9</cscdfile>
+ <cscdfile>s0515m.mul10</cscdfile>
+ <cscdfile>s0515m.mul11</cscdfile>
+ <cscdfile>s0515m.mul12</cscdfile>
+ <cscdfile>s0515m.mul13</cscdfile>
+ <cscdfile>s0515m.mul14</cscdfile>
+ <cscdfile>s0515m.mul15</cscdfile>
+ <description>The great explanations</description>
+ <commentary>nidd-a1</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="nidd2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nidd2</ref>
+ <file>cst-sm-nidd2</file>
+ <name>Cūḷaniddesa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0516m.mul0</cscdfile>
+ <cscdfile>s0516m.mul1</cscdfile>
+ <cscdfile>s0516m.mul2</cscdfile>
+ <description>The small explanations</description>
+ <commentary>nidd-a2</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="nidd1-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>nidd1-a</ref>
+ <file>cst-se-nidda1</file>
+ <name>Mahāniddesa-aṭṭhakathā</name>
+ <altname>Saddhammappajjotikā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0515a.att0</cscdfile>
+ <cscdfile>s0515a.att1</cscdfile>
+ <cscdfile>s0515a.att2</cscdfile>
+ <cscdfile>s0515a.att3</cscdfile>
+ <cscdfile>s0515a.att4</cscdfile>
+ <cscdfile>s0515a.att5</cscdfile>
+ <cscdfile>s0515a.att6</cscdfile>
+ <cscdfile>s0515a.att7</cscdfile>
+ <cscdfile>s0515a.att8</cscdfile>
+ <cscdfile>s0515a.att9</cscdfile>
+ <cscdfile>s0515a.att10</cscdfile>
+ <cscdfile>s0515a.att11</cscdfile>
+ <cscdfile>s0515a.att12</cscdfile>
+ <cscdfile>s0515a.att13</cscdfile>
+ <cscdfile>s0515a.att14</cscdfile>
+ <cscdfile>s0515a.att15</cscdfile>
+ <cscdfile>s0515a.att16</cscdfile>
+ <description>The commentary to the great explanations</description>
+ <linkable>false</linkable>
+</text>
+<text id="nidd2-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>nidd2-a</ref>
+ <file>cst-se-nidda2</file>
+ <name>Cūḷaniddesa-aṭṭhakathā</name>
+ <altname>Saddhammappajjotikā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0516a.att0</cscdfile>
+ <cscdfile>s0516a.att1</cscdfile>
+ <description>The commentary to the small explanations</description>
+ <linkable>false</linkable>
+</text>
+<text id="psm">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>psm</ref>
+ <file>cst-sm-psm</file>
+ <name>Paṭisambhidāmagga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0517m.mul0</cscdfile>
+ <cscdfile>s0517m.mul1</cscdfile>
+ <cscdfile>s0517m.mul2</cscdfile>
+ <description>The path of discrimination</description>
+ <commentary>psm-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="psm-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>psm-a</ref>
+ <file>cst-se-psma</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā</name>
+ <altname>Saddhammappakāsinī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0517a.att0</cscdfile>
+ <cscdfile>s0517a.att1</cscdfile>
+ <cscdfile>s0517a.att2</cscdfile>
+ <cscdfile>s0517a.att3</cscdfile>
+ <cscdfile>s0517a.att4</cscdfile>
+ <cscdfile>s0517a.att5</cscdfile>
+ <cscdfile>s0517a.att6</cscdfile>
+ <cscdfile>s0517a.att7</cscdfile>
+ <cscdfile>s0517a.att8</cscdfile>
+ <cscdfile>s0517a.att9</cscdfile>
+ <cscdfile>s0517a.att10</cscdfile>
+ <cscdfile>s0517a.att11</cscdfile>
+ <cscdfile>s0517a.att12</cscdfile>
+ <cscdfile>s0517a.att13</cscdfile>
+ <cscdfile>s0517a.att14</cscdfile>
+ <cscdfile>s0517a.att15</cscdfile>
+ <cscdfile>s0517a.att16</cscdfile>
+ <cscdfile>s0517a.att17</cscdfile>
+ <cscdfile>s0517a.att18</cscdfile>
+ <cscdfile>s0517a.att19</cscdfile>
+ <cscdfile>s0517a.att20</cscdfile>
+ <cscdfile>s0517a.att21</cscdfile>
+ <cscdfile>s0517a.att22</cscdfile>
+ <cscdfile>s0517a.att23</cscdfile>
+ <description>The commentary to the path of discrimination</description>
+ <linkable>false</linkable>
+</text>
+<text id="mil">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mil</ref>
+ <file>cst-sm-mil</file>
+ <name>Milindapañha</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0518m.nrf0</cscdfile>
+ <cscdfile>s0518m.nrf1</cscdfile>
+ <cscdfile>s0518m.nrf2</cscdfile>
+ <cscdfile>s0518m.nrf3</cscdfile>
+ <cscdfile>s0518m.nrf4</cscdfile>
+ <description>The king Milinda's problems</description>
+ <linkable>false</linkable>
+</text>
+<text id="nett">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>nett</ref>
+ <file>cst-sm-nett</file>
+ <name>Nettippakaraṇa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0519m.mul0</cscdfile>
+ <cscdfile>s0519m.mul1</cscdfile>
+ <cscdfile>s0519m.mul2</cscdfile>
+ <cscdfile>s0519m.mul3</cscdfile>
+ <cscdfile>s0519m.mul4</cscdfile>
+ <cscdfile>s0519m.mul5</cscdfile>
+ <description>The ‘guide’</description>
+ <commentary>nett-a</commentary>
+ <commentary>nettv</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="nett-a">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>nett-a</ref>
+ <file>cst-se-netta</file>
+ <name>Nettippakaraṇa-aṭṭhakathā</name>
+ <cscdclass>att</cscdclass>
+ <cscdfile>s0519a.att0</cscdfile>
+ <cscdfile>s0519a.att1</cscdfile>
+ <cscdfile>s0519a.att2</cscdfile>
+ <cscdfile>s0519a.att3</cscdfile>
+ <cscdfile>s0519a.att4</cscdfile>
+ <cscdfile>s0519a.att5</cscdfile>
+ <cscdfile>s0519a.att6</cscdfile>
+ <description>The commentary to Nettippakaraṇa</description>
+ <commentary>nett-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="nett-t">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>nett-t</ref>
+ <file>cst-se-nettt</file>
+ <name>Nettippakaraṇa-ṭīkā</name>
+ <altname>Līnatthavaṇṇanā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0519t.tik0</cscdfile>
+ <cscdfile>s0519t.tik1</cscdfile>
+ <cscdfile>s0519t.tik2</cscdfile>
+ <cscdfile>s0519t.tik3</cscdfile>
+ <cscdfile>s0519t.tik4</cscdfile>
+ <cscdfile>s0519t.tik5</cscdfile>
+ <cscdfile>s0519t.tik6</cscdfile>
+ <description>A subcommentary to Nettippakaraṇa</description>
+ <linkable>false</linkable>
+</text>
+<text id="nettv">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>nettv</ref>
+ <file>cst-se-nettv</file>
+ <name>Nettivibhāvinī</name>
+ <altname>Nettippakaraṇa-(nava)ṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>s0501t.nrf0</cscdfile>
+ <cscdfile>s0501t.nrf1</cscdfile>
+ <cscdfile>s0501t.nrf2</cscdfile>
+ <cscdfile>s0501t.nrf3</cscdfile>
+ <cscdfile>s0501t.nrf4</cscdfile>
+ <cscdfile>s0501t.nrf5</cscdfile>
+ <description>A new commentary to Nettippakaraṇa</description>
+ <linkable>false</linkable>
+</text>
+<text id="ptkp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>ptkp</ref>
+ <file>cst-sm-ptkp</file>
+ <name>Peṭakopadesa</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>s0520m.nrf0</cscdfile>
+ <cscdfile>s0520m.nrf1</cscdfile>
+ <cscdfile>s0520m.nrf2</cscdfile>
+ <cscdfile>s0520m.nrf3</cscdfile>
+ <cscdfile>s0520m.nrf4</cscdfile>
+ <cscdfile>s0520m.nrf5</cscdfile>
+ <cscdfile>s0520m.nrf6</cscdfile>
+ <cscdfile>s0520m.nrf7</cscdfile>
+ <description>The older kind of ‘guide’</description>
+ <linkable>false</linkable>
+</text>
+<text id="vism">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>vism</ref>
+ <file>cst-se-vism</file>
+ <name>Visuddhimagga</name>
+ <cscdclass>ann</cscdclass>
+ <cscdfile>e0101n.mul0.xml</cscdfile>
+ <cscdfile>e0101n.mul1.xml</cscdfile>
+ <cscdfile>e0101n.mul2.xml</cscdfile>
+ <cscdfile>e0101n.mul3.xml</cscdfile>
+ <cscdfile>e0101n.mul4.xml</cscdfile>
+ <cscdfile>e0101n.mul5.xml</cscdfile>
+ <cscdfile>e0101n.mul6.xml</cscdfile>
+ <cscdfile>e0101n.mul7.xml</cscdfile>
+ <cscdfile>e0101n.mul8.xml</cscdfile>
+ <cscdfile>e0101n.mul9.xml</cscdfile>
+ <cscdfile>e0101n.mul10.xml</cscdfile>
+ <cscdfile>e0101n.mul11.xml</cscdfile>
+ <cscdfile>e0102n.mul0.xml</cscdfile>
+ <cscdfile>e0102n.mul1.xml</cscdfile>
+ <cscdfile>e0102n.mul2.xml</cscdfile>
+ <cscdfile>e0102n.mul3.xml</cscdfile>
+ <cscdfile>e0102n.mul4.xml</cscdfile>
+ <cscdfile>e0102n.mul5.xml</cscdfile>
+ <cscdfile>e0102n.mul6.xml</cscdfile>
+ <cscdfile>e0102n.mul7.xml</cscdfile>
+ <cscdfile>e0102n.mul8.xml</cscdfile>
+ <cscdfile>e0102n.mul9.xml</cscdfile>
+ <cscdfile>e0102n.mul10.xml</cscdfile>
+ <cscdfile>e0102n.mul11.xml</cscdfile>
+ <description>The path of purification</description>
+ <commentary>vism-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vism-t">
+ <group>sut</group>
+ <docclass>exe</docclass>
+ <ref>vism-t</ref>
+ <file>cst-se-vismt</file>
+ <name>Visuddhimagga-mahāṭīkā</name>
+ <cscdclass>ann</cscdclass>
+ <cscdfile>e0103n.att0.xml</cscdfile>
+ <cscdfile>e0103n.att1.xml</cscdfile>
+ <cscdfile>e0103n.att2.xml</cscdfile>
+ <cscdfile>e0103n.att3.xml</cscdfile>
+ <cscdfile>e0103n.att4.xml</cscdfile>
+ <cscdfile>e0103n.att5.xml</cscdfile>
+ <cscdfile>e0103n.att6.xml</cscdfile>
+ <cscdfile>e0103n.att7.xml</cscdfile>
+ <cscdfile>e0103n.att8.xml</cscdfile>
+ <cscdfile>e0103n.att9.xml</cscdfile>
+ <cscdfile>e0103n.att10.xml</cscdfile>
+ <cscdfile>e0103n.att11.xml</cscdfile>
+ <cscdfile>e0104n.att0.xml</cscdfile>
+ <cscdfile>e0104n.att1.xml</cscdfile>
+ <cscdfile>e0104n.att2.xml</cscdfile>
+ <cscdfile>e0104n.att3.xml</cscdfile>
+ <cscdfile>e0104n.att4.xml</cscdfile>
+ <cscdfile>e0104n.att5.xml</cscdfile>
+ <cscdfile>e0104n.att6.xml</cscdfile>
+ <cscdfile>e0104n.att7.xml</cscdfile>
+ <cscdfile>e0104n.att8.xml</cscdfile>
+ <cscdfile>e0104n.att9.xml</cscdfile>
+ <cscdfile>e0104n.att10.xml</cscdfile>
+ <cscdfile>e0104n.att11.xml</cscdfile>
+ <description>The commentary to the path of purification</description>
+ <linkable>false</linkable>
+</text>
+<text id="dhs">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>dhs</ref>
+ <file>cst-am-dhs</file>
+ <name>Dhammasaṅgaṇī</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh01m.mul0</cscdfile>
+ <cscdfile>abh01m.mul1</cscdfile>
+ <cscdfile>abh01m.mul2</cscdfile>
+ <cscdfile>abh01m.mul3</cscdfile>
+ <cscdfile>abh01m.mul4</cscdfile>
+ <description>The collection of ‘dhammas’</description>
+ <commentary>as</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vbh">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>vbh</ref>
+ <file>cst-am-vbh</file>
+ <name>Vibhaṅga</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh02m.mul0</cscdfile>
+ <cscdfile>abh02m.mul1</cscdfile>
+ <cscdfile>abh02m.mul2</cscdfile>
+ <cscdfile>abh02m.mul3</cscdfile>
+ <cscdfile>abh02m.mul4</cscdfile>
+ <cscdfile>abh02m.mul5</cscdfile>
+ <cscdfile>abh02m.mul6</cscdfile>
+ <cscdfile>abh02m.mul7</cscdfile>
+ <cscdfile>abh02m.mul8</cscdfile>
+ <cscdfile>abh02m.mul9</cscdfile>
+ <cscdfile>abh02m.mul10</cscdfile>
+ <cscdfile>abh02m.mul11</cscdfile>
+ <cscdfile>abh02m.mul12</cscdfile>
+ <cscdfile>abh02m.mul13</cscdfile>
+ <cscdfile>abh02m.mul14</cscdfile>
+ <cscdfile>abh02m.mul15</cscdfile>
+ <cscdfile>abh02m.mul16</cscdfile>
+ <cscdfile>abh02m.mul17</cscdfile>
+ <description>The analysis of ‘dhammas’</description>
+ <commentary>vbh-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhk">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>dhk</ref>
+ <file>cst-am-dhk</file>
+ <name>Dhātukathā</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m1.mul0</cscdfile>
+ <cscdfile>abh03m1.mul1</cscdfile>
+ <cscdfile>abh03m1.mul2</cscdfile>
+ <cscdfile>abh03m1.mul3</cscdfile>
+ <cscdfile>abh03m1.mul4</cscdfile>
+ <cscdfile>abh03m1.mul5</cscdfile>
+ <cscdfile>abh03m1.mul6</cscdfile>
+ <cscdfile>abh03m1.mul7</cscdfile>
+ <cscdfile>abh03m1.mul8</cscdfile>
+ <cscdfile>abh03m1.mul9</cscdfile>
+ <cscdfile>abh03m1.mul10</cscdfile>
+ <cscdfile>abh03m1.mul11</cscdfile>
+ <cscdfile>abh03m1.mul12</cscdfile>
+ <cscdfile>abh03m1.mul13</cscdfile>
+ <cscdfile>abh03m1.mul14</cscdfile>
+ <description>The discourse on ‘elements’</description>
+ <commentary>dhk-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pp">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pp</ref>
+ <file>cst-am-pp</file>
+ <name>Puggalapaññatti</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m2.mul0</cscdfile>
+ <cscdfile>abh03m2.mul1</cscdfile>
+ <description>The concepts of ‘person’</description>
+ <commentary>pp-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="kv">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>kv</ref>
+ <file>cst-am-kv</file>
+ <name>Kathāvatthu</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m3.mul0</cscdfile>
+ <cscdfile>abh03m3.mul1</cscdfile>
+ <cscdfile>abh03m3.mul2</cscdfile>
+ <cscdfile>abh03m3.mul3</cscdfile>
+ <cscdfile>abh03m3.mul4</cscdfile>
+ <cscdfile>abh03m3.mul5</cscdfile>
+ <cscdfile>abh03m3.mul6</cscdfile>
+ <cscdfile>abh03m3.mul7</cscdfile>
+ <cscdfile>abh03m3.mul8</cscdfile>
+ <cscdfile>abh03m3.mul9</cscdfile>
+ <cscdfile>abh03m3.mul10</cscdfile>
+ <cscdfile>abh03m3.mul11</cscdfile>
+ <cscdfile>abh03m3.mul12</cscdfile>
+ <cscdfile>abh03m3.mul13</cscdfile>
+ <cscdfile>abh03m3.mul14</cscdfile>
+ <cscdfile>abh03m3.mul15</cscdfile>
+ <cscdfile>abh03m3.mul16</cscdfile>
+ <cscdfile>abh03m3.mul17</cscdfile>
+ <cscdfile>abh03m3.mul18</cscdfile>
+ <cscdfile>abh03m3.mul19</cscdfile>
+ <cscdfile>abh03m3.mul20</cscdfile>
+ <cscdfile>abh03m3.mul21</cscdfile>
+ <cscdfile>abh03m3.mul22</cscdfile>
+ <cscdfile>abh03m3.mul23</cscdfile>
+ <cscdfile>abh03m3.mul24</cscdfile>
+ <cscdfile>abh03m3.mul25</cscdfile>
+ <cscdfile>abh03m3.mul26</cscdfile>
+ <cscdfile>abh03m3.mul27</cscdfile>
+ <cscdfile>abh03m3.mul28</cscdfile>
+ <cscdfile>abh03m3.mul29</cscdfile>
+ <cscdfile>abh03m3.mul30</cscdfile>
+ <description>The text dealing with disputes</description>
+ <commentary>kv-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ym">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ym</ref>
+ <file>cst-am-ym</file>
+ <name>Yamaka</name>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m4.mul0</cscdfile>
+ <cscdfile>abh03m4.mul1</cscdfile>
+ <cscdfile>abh03m4.mul2</cscdfile>
+ <cscdfile>abh03m4.mul3</cscdfile>
+ <cscdfile>abh03m4.mul4</cscdfile>
+ <cscdfile>abh03m5.mul0</cscdfile>
+ <cscdfile>abh03m5.mul1</cscdfile>
+ <cscdfile>abh03m5.mul2</cscdfile>
+ <cscdfile>abh03m6.mul0</cscdfile>
+ <cscdfile>abh03m6.mul1</cscdfile>
+ <description>The ‘pairs’</description>
+ <commentary>ym-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pt1">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt1</ref>
+ <file>cst-am-pt1</file>
+ <name>Paṭṭhāna 1</name>
+ <altname>Tikapaṭṭhāna</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m7.mul0</cscdfile>
+ <cscdfile>abh03m7.mul1</cscdfile>
+ <cscdfile>abh03m7.mul2</cscdfile>
+ <cscdfile>abh03m7.mul3</cscdfile>
+ <cscdfile>abh03m7.mul4</cscdfile>
+ <cscdfile>abh03m7.mul5</cscdfile>
+ <cscdfile>abh03m7.mul6</cscdfile>
+ <cscdfile>abh03m7.mul7</cscdfile>
+ <cscdfile>abh03m8.mul0</cscdfile>
+ <cscdfile>abh03m8.mul1</cscdfile>
+ <cscdfile>abh03m8.mul2</cscdfile>
+ <cscdfile>abh03m8.mul3</cscdfile>
+ <cscdfile>abh03m8.mul4</cscdfile>
+ <cscdfile>abh03m8.mul5</cscdfile>
+ <cscdfile>abh03m8.mul6</cscdfile>
+ <cscdfile>abh03m8.mul7</cscdfile>
+ <cscdfile>abh03m8.mul8</cscdfile>
+ <cscdfile>abh03m8.mul9</cscdfile>
+ <cscdfile>abh03m8.mul10</cscdfile>
+ <cscdfile>abh03m8.mul11</cscdfile>
+ <cscdfile>abh03m8.mul12</cscdfile>
+ <cscdfile>abh03m8.mul13</cscdfile>
+ <cscdfile>abh03m8.mul14</cscdfile>
+ <cscdfile>abh03m8.mul15</cscdfile>
+ <cscdfile>abh03m8.mul16</cscdfile>
+ <description>The conditional relations 1 (groups of three)</description>
+ <commentary>pt-a</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pt2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt2</ref>
+ <file>cst-am-pt2</file>
+ <name>Paṭṭhāna 2</name>
+ <altname>Dukapaṭṭhāna</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m9.mul0</cscdfile>
+ <cscdfile>abh03m9.mul1</cscdfile>
+ <cscdfile>abh03m9.mul2</cscdfile>
+ <cscdfile>abh03m9.mul3</cscdfile>
+ <cscdfile>abh03m9.mul4</cscdfile>
+ <cscdfile>abh03m9.mul5</cscdfile>
+ <cscdfile>abh03m9.mul6</cscdfile>
+ <cscdfile>abh03m9.mul7</cscdfile>
+ <cscdfile>abh03m9.mul8</cscdfile>
+ <cscdfile>abh03m9.mul9</cscdfile>
+ <cscdfile>abh03m10.mul0</cscdfile>
+ <description>The conditional relations 2 (groups of two)</description>
+ <commentary>pt-a</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="pt3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>pt3</ref>
+ <file>cst-am-pt3</file>
+ <name>Paṭṭhāna 3</name>
+ <altname>Dukatikādipaṭṭhāna</altname>
+ <cscdclass>mul</cscdclass>
+ <cscdfile>abh03m10.mul1</cscdfile>
+ <cscdfile>abh03m10.mul2</cscdfile>
+ <cscdfile>abh03m10.mul3</cscdfile>
+ <cscdfile>abh03m10.mul4</cscdfile>
+ <cscdfile>abh03m10.mul5</cscdfile>
+ <cscdfile>abh03m10.mul6</cscdfile>
+ <cscdfile>abh03m10.mul7</cscdfile>
+ <cscdfile>abh03m10.mul8</cscdfile>
+ <cscdfile>abh03m10.mul9</cscdfile>
+ <cscdfile>abh03m10.mul10</cscdfile>
+ <cscdfile>abh03m10.mul11</cscdfile>
+ <cscdfile>abh03m10.mul12</cscdfile>
+ <cscdfile>abh03m10.mul13</cscdfile>
+ <cscdfile>abh03m10.mul14</cscdfile>
+ <cscdfile>abh03m10.mul15</cscdfile>
+ <cscdfile>abh03m10.mul16</cscdfile>
+ <cscdfile>abh03m10.mul17</cscdfile>
+ <cscdfile>abh03m10.mul18</cscdfile>
+ <cscdfile>abh03m10.mul19</cscdfile>
+ <cscdfile>abh03m10.mul20</cscdfile>
+ <cscdfile>abh03m11.mul0</cscdfile>
+ <cscdfile>abh03m11.mul1</cscdfile>
+ <cscdfile>abh03m11.mul2</cscdfile>
+ <cscdfile>abh03m11.mul3</cscdfile>
+ <cscdfile>abh03m11.mul4</cscdfile>
+ <cscdfile>abh03m11.mul5</cscdfile>
+ <cscdfile>abh03m11.mul6</cscdfile>
+ <cscdfile>abh03m11.mul7</cscdfile>
+ <cscdfile>abh03m11.mul8</cscdfile>
+ <cscdfile>abh03m11.mul9</cscdfile>
+ <cscdfile>abh03m11.mul10</cscdfile>
+ <cscdfile>abh03m11.mul11</cscdfile>
+ <cscdfile>abh03m11.mul12</cscdfile>
+ <cscdfile>abh03m11.mul13</cscdfile>
+ <cscdfile>abh03m11.mul14</cscdfile>
+ <cscdfile>abh03m11.mul15</cscdfile>
+ <cscdfile>abh03m11.mul16</cscdfile>
+ <cscdfile>abh03m11.mul17</cscdfile>
+ <cscdfile>abh03m11.mul18</cscdfile>
+ <cscdfile>abh03m11.mul19</cscdfile>
+ <description>The conditional relations 3 (combinations)</description>
+ <commentary>pt-a</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="as">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>as</ref>
+ <file>cst-ae-as</file>
+ <name>Aṭṭhasālinī</name>
+ <altname>Dhammasaṅgaṇī-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh01a.att0</cscdfile>
+ <cscdfile>abh01a.att1</cscdfile>
+ <cscdfile>abh01a.att2</cscdfile>
+ <cscdfile>abh01a.att3</cscdfile>
+ <cscdfile>abh01a.att4</cscdfile>
+ <cscdfile>abh01a.att5</cscdfile>
+ <cscdfile>abh01a.att6</cscdfile>
+ <cscdfile>abh01a.att7</cscdfile>
+ <description>The commentary to the collection of ‘dhammas’</description>
+ <commentary>dhs-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vbh-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>vbh-a</ref>
+ <file>cst-ae-vbha</file>
+ <name>Vibhaṅga-aṭṭhakathā</name>
+ <altname>Sammohavinodanī</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh02a.att0</cscdfile>
+ <cscdfile>abh02a.att1</cscdfile>
+ <cscdfile>abh02a.att2</cscdfile>
+ <cscdfile>abh02a.att3</cscdfile>
+ <cscdfile>abh02a.att4</cscdfile>
+ <cscdfile>abh02a.att5</cscdfile>
+ <cscdfile>abh02a.att6</cscdfile>
+ <cscdfile>abh02a.att7</cscdfile>
+ <cscdfile>abh02a.att8</cscdfile>
+ <cscdfile>abh02a.att9</cscdfile>
+ <cscdfile>abh02a.att10</cscdfile>
+ <cscdfile>abh02a.att11</cscdfile>
+ <cscdfile>abh02a.att12</cscdfile>
+ <cscdfile>abh02a.att13</cscdfile>
+ <cscdfile>abh02a.att14</cscdfile>
+ <cscdfile>abh02a.att15</cscdfile>
+ <cscdfile>abh02a.att16</cscdfile>
+ <cscdfile>abh02a.att17</cscdfile>
+ <description>The commentary to the analysis of ‘dhammas’</description>
+ <commentary>vbh-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhk-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>dhk-a</ref>
+ <file>cst-ae-dhka</file>
+ <name>Dhātukathā-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh03a.att0</cscdfile>
+ <cscdfile>abh03a.att1</cscdfile>
+ <cscdfile>abh03a.att2</cscdfile>
+ <description>The commentary to the discourse on ‘elements’</description>
+ <commentary>dhk-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pp-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pp-a</ref>
+ <file>cst-ae-ppa</file>
+ <name>Puggalapaññatti-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh03a.att3</cscdfile>
+ <cscdfile>abh03a.att4</cscdfile>
+ <cscdfile>abh03a.att5</cscdfile>
+ <description>The commentary to the concepts of ‘person’</description>
+ <commentary>pp-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="kv-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>kv-a</ref>
+ <file>cst-ae-kva</file>
+ <name>Kathāvatthu-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh03a.att6</cscdfile>
+ <cscdfile>abh03a.att7</cscdfile>
+ <cscdfile>abh03a.att8</cscdfile>
+ <cscdfile>abh03a.att9</cscdfile>
+ <cscdfile>abh03a.att10</cscdfile>
+ <cscdfile>abh03a.att11</cscdfile>
+ <cscdfile>abh03a.att12</cscdfile>
+ <cscdfile>abh03a.att13</cscdfile>
+ <cscdfile>abh03a.att14</cscdfile>
+ <cscdfile>abh03a.att15</cscdfile>
+ <cscdfile>abh03a.att16</cscdfile>
+ <cscdfile>abh03a.att17</cscdfile>
+ <cscdfile>abh03a.att18</cscdfile>
+ <cscdfile>abh03a.att19</cscdfile>
+ <cscdfile>abh03a.att20</cscdfile>
+ <cscdfile>abh03a.att21</cscdfile>
+ <cscdfile>abh03a.att22</cscdfile>
+ <cscdfile>abh03a.att23</cscdfile>
+ <cscdfile>abh03a.att24</cscdfile>
+ <cscdfile>abh03a.att25</cscdfile>
+ <cscdfile>abh03a.att26</cscdfile>
+ <cscdfile>abh03a.att27</cscdfile>
+ <cscdfile>abh03a.att28</cscdfile>
+ <cscdfile>abh03a.att29</cscdfile>
+ <cscdfile>abh03a.att30</cscdfile>
+ <cscdfile>abh03a.att31</cscdfile>
+ <cscdfile>abh03a.att32</cscdfile>
+ <cscdfile>abh03a.att33</cscdfile>
+ <cscdfile>abh03a.att34</cscdfile>
+ <cscdfile>abh03a.att35</cscdfile>
+ <cscdfile>abh03a.att36</cscdfile>
+ <cscdfile>abh03a.att37</cscdfile>
+ <cscdfile>abh03a.att38</cscdfile>
+ <description>The commentary to the text dealing with disputes</description>
+ <commentary>kv-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ym-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>ym-a</ref>
+ <file>cst-ae-yma</file>
+ <name>Yamaka-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh03a.att39</cscdfile>
+ <cscdfile>abh03a.att40</cscdfile>
+ <cscdfile>abh03a.att41</cscdfile>
+ <cscdfile>abh03a.att42</cscdfile>
+ <cscdfile>abh03a.att43</cscdfile>
+ <cscdfile>abh03a.att44</cscdfile>
+ <cscdfile>abh03a.att45</cscdfile>
+ <cscdfile>abh03a.att46</cscdfile>
+ <cscdfile>abh03a.att47</cscdfile>
+ <cscdfile>abh03a.att48</cscdfile>
+ <cscdfile>abh03a.att49</cscdfile>
+ <description>The commentary to the ‘pairs’</description>
+ <commentary>ym-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pt-a">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pt-a</ref>
+ <file>cst-ae-pta</file>
+ <name>Paṭṭhāna-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <cscdclass>att</cscdclass>
+ <cscdfile>abh03a.att50</cscdfile>
+ <cscdfile>abh03a.att51</cscdfile>
+ <cscdfile>abh03a.att52</cscdfile>
+ <cscdfile>abh03a.att53</cscdfile>
+ <cscdfile>abh03a.att54</cscdfile>
+ <cscdfile>abh03a.att55</cscdfile>
+ <cscdfile>abh03a.att56</cscdfile>
+ <cscdfile>abh03a.att57</cscdfile>
+ <cscdfile>abh03a.att58</cscdfile>
+ <cscdfile>abh03a.att59</cscdfile>
+ <cscdfile>abh03a.att60</cscdfile>
+ <cscdfile>abh03a.att61</cscdfile>
+ <cscdfile>abh03a.att62</cscdfile>
+ <cscdfile>abh03a.att63</cscdfile>
+ <cscdfile>abh03a.att64</cscdfile>
+ <cscdfile>abh03a.att65</cscdfile>
+ <description>The commentary to the conditional relations</description>
+ <commentary>pt-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhs-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>dhs-t</ref>
+ <file>cst-ae-dhst</file>
+ <name>Dhammasaṅgaṇī-mūlaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh01t.tik0</cscdfile>
+ <cscdfile>abh01t.tik1</cscdfile>
+ <cscdfile>abh01t.tik2</cscdfile>
+ <cscdfile>abh01t.tik3</cscdfile>
+ <cscdfile>abh01t.tik4</cscdfile>
+ <cscdfile>abh01t.tik5</cscdfile>
+ <cscdfile>abh01t.tik6</cscdfile>
+ <cscdfile>abh01t.tik7</cscdfile>
+ <cscdfile>abh01t.tik8</cscdfile>
+ <description>The subcommentary to the collection of ‘dhammas’</description>
+ <commentary>dhs-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhs-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>dhs-at</ref>
+ <file>cst-ae-dhsat</file>
+ <name>Dhammasaṅgaṇī-anuṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh04t.tik0</cscdfile>
+ <cscdfile>abh04t.tik1</cscdfile>
+ <cscdfile>abh04t.tik2</cscdfile>
+ <cscdfile>abh04t.tik3</cscdfile>
+ <cscdfile>abh04t.tik4</cscdfile>
+ <cscdfile>abh04t.tik5</cscdfile>
+ <cscdfile>abh04t.tik6</cscdfile>
+ <cscdfile>abh04t.tik7</cscdfile>
+ <description>The sub-subcommentary to the collection of ‘dhammas’</description>
+ <linkable>false</linkable>
+</text>
+<text id="vbh-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>vbh-t</ref>
+ <file>cst-ae-vbht</file>
+ <name>Vibhaṅga-mūlaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh02t.tik0</cscdfile>
+ <cscdfile>abh02t.tik1</cscdfile>
+ <cscdfile>abh02t.tik2</cscdfile>
+ <cscdfile>abh02t.tik3</cscdfile>
+ <cscdfile>abh02t.tik4</cscdfile>
+ <cscdfile>abh02t.tik5</cscdfile>
+ <cscdfile>abh02t.tik6</cscdfile>
+ <cscdfile>abh02t.tik7</cscdfile>
+ <cscdfile>abh02t.tik8</cscdfile>
+ <cscdfile>abh02t.tik9</cscdfile>
+ <cscdfile>abh02t.tik10</cscdfile>
+ <cscdfile>abh02t.tik11</cscdfile>
+ <cscdfile>abh02t.tik12</cscdfile>
+ <cscdfile>abh02t.tik13</cscdfile>
+ <cscdfile>abh02t.tik14</cscdfile>
+ <cscdfile>abh02t.tik15</cscdfile>
+ <cscdfile>abh02t.tik16</cscdfile>
+ <cscdfile>abh02t.tik17</cscdfile>
+ <description>The subcommentary to the analysis of ‘dhammas’</description>
+ <commentary>vbh-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="vbh-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>vbh-at</ref>
+ <file>cst-ae-vbhat</file>
+ <name>Vibhaṅga-anuṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh02t.tik18</cscdfile>
+ <cscdfile>abh02t.tik19</cscdfile>
+ <cscdfile>abh02t.tik20</cscdfile>
+ <cscdfile>abh02t.tik21</cscdfile>
+ <cscdfile>abh02t.tik22</cscdfile>
+ <cscdfile>abh02t.tik23</cscdfile>
+ <cscdfile>abh02t.tik24</cscdfile>
+ <cscdfile>abh02t.tik25</cscdfile>
+ <cscdfile>abh02t.tik26</cscdfile>
+ <cscdfile>abh02t.tik27</cscdfile>
+ <cscdfile>abh02t.tik28</cscdfile>
+ <cscdfile>abh02t.tik29</cscdfile>
+ <cscdfile>abh02t.tik30</cscdfile>
+ <cscdfile>abh02t.tik31</cscdfile>
+ <cscdfile>abh02t.tik32</cscdfile>
+ <cscdfile>abh02t.tik33</cscdfile>
+ <cscdfile>abh02t.tik34</cscdfile>
+ <cscdfile>abh02t.tik35</cscdfile>
+ <description>The sub-subcommentary to the analysis of ‘dhammas’</description>
+ <linkable>false</linkable>
+</text>
+<text id="dhk-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>dhk-t</ref>
+ <file>cst-ae-dhkt</file>
+ <name>Dhātukathā-mūlaṭīkā</name>
+ <altname>Pañcapakaraṇa-mūlaṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh03t.tik0</cscdfile>
+ <description>The subcommentary to the discourse on ‘elements’</description>
+ <commentary>dhk-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="dhk-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>dhk-at</ref>
+ <file>cst-ae-dhkat</file>
+ <name>Dhātukathā-anuṭīkā</name>
+ <altname>Pañcapakaraṇa-anuṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh05t.nrf1</cscdfile>
+ <description>The sub-subcommentary to the discourse on ‘elements’</description>
+ <linkable>false</linkable>
+</text>
+<text id="pp-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pp-t</ref>
+ <file>cst-ae-ppt</file>
+ <name>Puggalapaññatti-mūlaṭīkā</name>
+ <altname>Pañcapakaraṇa-mūlaṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh03t.tik1</cscdfile>
+ <description>The subcommentary to the concepts of ‘person’</description>
+ <commentary>pp-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pp-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pp-at</ref>
+ <file>cst-ae-ppat</file>
+ <name>Puggalapaññatti-anuṭīkā</name>
+ <altname>Pañcapakaraṇa-anuṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh05t.nrf2</cscdfile>
+ <description>The sub-subcommentary to the concepts of ‘person’</description>
+ <linkable>false</linkable>
+</text>
+<text id="kv-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>kv-t</ref>
+ <file>cst-ae-kvt</file>
+ <name>Kathāvatthu-mūlaṭīkā</name>
+ <altname>Pañcapakaraṇa-mūlaṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh03t.tik2</cscdfile>
+ <description>The subcommentary to the text dealing with disputes</description>
+ <commentary>kv-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="kv-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>kv-at</ref>
+ <file>cst-ae-kvat</file>
+ <name>Kathāvatthu-anuṭīkā</name>
+ <altname>Pañcapakaraṇa-anuṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh05t.nrf3</cscdfile>
+ <description>The sub-subcommentary to the text dealing with disputes</description>
+ <linkable>false</linkable>
+</text>
+<text id="ym-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>ym-t</ref>
+ <file>cst-ae-ymt</file>
+ <name>Yamaka-mūlaṭīkā</name>
+ <altname>Pañcapakaraṇa-mūlaṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh03t.tik3</cscdfile>
+ <description>The subcommentary to the ‘pairs’</description>
+ <commentary>ym-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="ym-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>ym-at</ref>
+ <file>cst-ae-ymat</file>
+ <name>Yamaka-anuṭīkā</name>
+ <altname>Pañcapakaraṇa-anuṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh05t.nrf4</cscdfile>
+ <description>The sub-subcommentary to the ‘pairs’</description>
+ <linkable>false</linkable>
+</text>
+<text id="pt-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pt-t</ref>
+ <file>cst-ae-ptt</file>
+ <name>Paṭṭhāna-mūlaṭīkā</name>
+ <altname>Pañcapakaraṇa-mūlaṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh03t.tik4</cscdfile>
+ <description>The subcommentary to the conditional relations</description>
+ <commentary>pt-at</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="pt-at">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pt-at</ref>
+ <file>cst-ae-ptat</file>
+ <name>Paṭṭhāna-anuṭīkā</name>
+ <altname>Pañcapakaraṇa-anuṭīkā</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh05t.nrf5</cscdfile>
+ <description>The sub-subcommentary to the conditional relations</description>
+ <linkable>false</linkable>
+</text>
+<text id="abhv">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhv</ref>
+ <file>cst-ae-abhv</file>
+ <name>Abhidhammāvatāra</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh06t.nrf0</cscdfile>
+ <cscdfile>abh06t.nrf1</cscdfile>
+ <cscdfile>abh06t.nrf2</cscdfile>
+ <cscdfile>abh06t.nrf3</cscdfile>
+ <cscdfile>abh06t.nrf4</cscdfile>
+ <cscdfile>abh06t.nrf5</cscdfile>
+ <cscdfile>abh06t.nrf6</cscdfile>
+ <cscdfile>abh06t.nrf7</cscdfile>
+ <cscdfile>abh06t.nrf8</cscdfile>
+ <cscdfile>abh06t.nrf9</cscdfile>
+ <cscdfile>abh06t.nrf10</cscdfile>
+ <cscdfile>abh06t.nrf11</cscdfile>
+ <cscdfile>abh06t.nrf12</cscdfile>
+ <cscdfile>abh06t.nrf13</cscdfile>
+ <cscdfile>abh06t.nrf14</cscdfile>
+ <cscdfile>abh06t.nrf15</cscdfile>
+ <cscdfile>abh06t.nrf16</cscdfile>
+ <cscdfile>abh06t.nrf17</cscdfile>
+ <cscdfile>abh06t.nrf18</cscdfile>
+ <cscdfile>abh06t.nrf19</cscdfile>
+ <cscdfile>abh06t.nrf20</cscdfile>
+ <cscdfile>abh06t.nrf21</cscdfile>
+ <cscdfile>abh06t.nrf22</cscdfile>
+ <cscdfile>abh06t.nrf23</cscdfile>
+ <cscdfile>abh06t.nrf24</cscdfile>
+ <description>Introduction to Abhidhamma</description>
+ <commentary>abhv-pt</commentary>
+ <commentary>abhv-nt</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="abhv-pt">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhv-pt</ref>
+ <file>cst-ae-abhvpt</file>
+ <name>Abhidhammāvatāra-purāṇaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh08t.nrf0</cscdfile>
+ <cscdfile>abh08t.nrf1</cscdfile>
+ <cscdfile>abh08t.nrf2</cscdfile>
+ <cscdfile>abh08t.nrf3</cscdfile>
+ <cscdfile>abh08t.nrf4</cscdfile>
+ <cscdfile>abh08t.nrf5</cscdfile>
+ <cscdfile>abh08t.nrf6</cscdfile>
+ <cscdfile>abh08t.nrf7</cscdfile>
+ <cscdfile>abh08t.nrf8</cscdfile>
+ <cscdfile>abh08t.nrf9</cscdfile>
+ <cscdfile>abh08t.nrf10</cscdfile>
+ <cscdfile>abh08t.nrf11</cscdfile>
+ <cscdfile>abh08t.nrf12</cscdfile>
+ <cscdfile>abh08t.nrf13</cscdfile>
+ <cscdfile>abh08t.nrf14</cscdfile>
+ <cscdfile>abh08t.nrf15</cscdfile>
+ <cscdfile>abh08t.nrf16</cscdfile>
+ <cscdfile>abh08t.nrf17</cscdfile>
+ <cscdfile>abh08t.nrf18</cscdfile>
+ <cscdfile>abh08t.nrf19</cscdfile>
+ <cscdfile>abh08t.nrf20</cscdfile>
+ <cscdfile>abh08t.nrf21</cscdfile>
+ <cscdfile>abh08t.nrf22</cscdfile>
+ <cscdfile>abh08t.nrf23</cscdfile>
+ <description>The old commentary to the Introduction to Abhidhamma</description>
+ <linkable>false</linkable>
+</text>
+<text id="abhv-nt">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhv-nt</ref>
+ <file>cst-ae-abhvnt</file>
+ <name>Abhidhammāvatāra-abhinavaṭīkā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh08t.nrf24</cscdfile>
+ <cscdfile>abh08t.nrf25</cscdfile>
+ <cscdfile>abh08t.nrf26</cscdfile>
+ <cscdfile>abh08t.nrf27</cscdfile>
+ <cscdfile>abh08t.nrf28</cscdfile>
+ <cscdfile>abh08t.nrf29</cscdfile>
+ <cscdfile>abh08t.nrf30</cscdfile>
+ <cscdfile>abh08t.nrf31</cscdfile>
+ <cscdfile>abh08t.nrf32</cscdfile>
+ <cscdfile>abh08t.nrf33</cscdfile>
+ <cscdfile>abh08t.nrf34</cscdfile>
+ <cscdfile>abh08t.nrf35</cscdfile>
+ <cscdfile>abh08t.nrf36</cscdfile>
+ <cscdfile>abh08t.nrf37</cscdfile>
+ <cscdfile>abh08t.nrf38</cscdfile>
+ <cscdfile>abh08t.nrf39</cscdfile>
+ <cscdfile>abh08t.nrf40</cscdfile>
+ <cscdfile>abh08t.nrf41</cscdfile>
+ <cscdfile>abh08t.nrf42</cscdfile>
+ <cscdfile>abh08t.nrf43</cscdfile>
+ <cscdfile>abh08t.nrf44</cscdfile>
+ <cscdfile>abh08t.nrf45</cscdfile>
+ <cscdfile>abh08t.nrf46</cscdfile>
+ <cscdfile>abh08t.nrf47</cscdfile>
+ <cscdfile>abh08t.nrf48</cscdfile>
+ <description>The new commentary to the Introduction to Abhidhamma</description>
+ <linkable>false</linkable>
+</text>
+<text id="abhs">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhs</ref>
+ <file>cst-ae-abhs</file>
+ <name>Abhidhammatthasaṅgaha</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh07t.nrf0</cscdfile>
+ <cscdfile>abh07t.nrf1</cscdfile>
+ <cscdfile>abh07t.nrf2</cscdfile>
+ <cscdfile>abh07t.nrf3</cscdfile>
+ <cscdfile>abh07t.nrf4</cscdfile>
+ <cscdfile>abh07t.nrf5</cscdfile>
+ <cscdfile>abh07t.nrf6</cscdfile>
+ <cscdfile>abh07t.nrf7</cscdfile>
+ <cscdfile>abh07t.nrf8</cscdfile>
+ <description>The compendium of Abhidhamma</description>
+ <commentary>abhs-t</commentary>
+ <linkable>true</linkable>
+</text>
+<text id="abhs-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhs-t</ref>
+ <file>cst-ae-abhst</file>
+ <name>Abhidhammatthasaṅgaha-ṭīkā</name>
+ <altname>Abhidhammatthavibhāvinī</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh07t.nrf8</cscdfile>
+ <cscdfile>abh07t.nrf9</cscdfile>
+ <cscdfile>abh07t.nrf10</cscdfile>
+ <cscdfile>abh07t.nrf11</cscdfile>
+ <cscdfile>abh07t.nrf12</cscdfile>
+ <cscdfile>abh07t.nrf13</cscdfile>
+ <cscdfile>abh07t.nrf14</cscdfile>
+ <cscdfile>abh07t.nrf15</cscdfile>
+ <cscdfile>abh07t.nrf16</cscdfile>
+ <cscdfile>abh07t.nrf17</cscdfile>
+ <description>The commentary to the compendium of Abhidhamma</description>
+ <linkable>false</linkable>
+</text>
+<text id="abhm">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhm</ref>
+ <file>cst-ae-abhm</file>
+ <name>Abhidhammamātikā</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh09t.nrf0</cscdfile>
+ <cscdfile>abh09t.nrf1</cscdfile>
+ <cscdfile>abh09t.nrf2</cscdfile>
+ <cscdfile>abh09t.nrf3</cscdfile>
+ <cscdfile>abh09t.nrf4</cscdfile>
+ <cscdfile>abh09t.nrf5</cscdfile>
+ <cscdfile>abh09t.nrf6</cscdfile>
+ <description>The heads of Abhidhamma</description>
+ <commentary>abhm-t</commentary>
+ <linkable>false</linkable>
+</text>
+<text id="abhm-t">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>abhm-t</ref>
+ <file>cst-ae-abhmt</file>
+ <name>Abhidhammamātikā-ṭīkā</name>
+ <altname>Mohavicchedanī</altname>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh09t.nrf6</cscdfile>
+ <cscdfile>abh09t.nrf7</cscdfile>
+ <cscdfile>abh09t.nrf8</cscdfile>
+ <cscdfile>abh09t.nrf9</cscdfile>
+ <cscdfile>abh09t.nrf10</cscdfile>
+ <cscdfile>abh09t.nrf11</cscdfile>
+ <cscdfile>abh09t.nrf12</cscdfile>
+ <cscdfile>abh09t.nrf13</cscdfile>
+ <description>The commentary to the heads of Abhidhamma</description>
+ <linkable>false</linkable>
+</text>
+<text id="nrp">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>nrp</ref>
+ <file>cst-ae-nrp</file>
+ <name>Nāmarūpapariccheda</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh06t.nrf25</cscdfile>
+ <cscdfile>abh06t.nrf26</cscdfile>
+ <cscdfile>abh06t.nrf27</cscdfile>
+ <cscdfile>abh06t.nrf28</cscdfile>
+ <cscdfile>abh06t.nrf29</cscdfile>
+ <cscdfile>abh06t.nrf30</cscdfile>
+ <cscdfile>abh06t.nrf31</cscdfile>
+ <cscdfile>abh06t.nrf32</cscdfile>
+ <cscdfile>abh06t.nrf33</cscdfile>
+ <cscdfile>abh06t.nrf34</cscdfile>
+ <cscdfile>abh06t.nrf35</cscdfile>
+ <cscdfile>abh06t.nrf36</cscdfile>
+ <cscdfile>abh06t.nrf37</cscdfile>
+ <cscdfile>abh06t.nrf38</cscdfile>
+ <cscdfile>abh06t.nrf39</cscdfile>
+ <description>The distinction of name and form</description>
+ <linkable>false</linkable>
+</text>
+<text id="pmv">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>pmv</ref>
+ <file>cst-ae-pmv</file>
+ <name>Paramatthavinicchaya</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh06t.nrf40</cscdfile>
+ <cscdfile>abh06t.nrf41</cscdfile>
+ <cscdfile>abh06t.nrf42</cscdfile>
+ <cscdfile>abh06t.nrf43</cscdfile>
+ <cscdfile>abh06t.nrf44</cscdfile>
+ <cscdfile>abh06t.nrf45</cscdfile>
+ <cscdfile>abh06t.nrf46</cscdfile>
+ <cscdfile>abh06t.nrf47</cscdfile>
+ <cscdfile>abh06t.nrf48</cscdfile>
+ <cscdfile>abh06t.nrf49</cscdfile>
+ <cscdfile>abh06t.nrf50</cscdfile>
+ <cscdfile>abh06t.nrf51</cscdfile>
+ <cscdfile>abh06t.nrf52</cscdfile>
+ <cscdfile>abh06t.nrf53</cscdfile>
+ <cscdfile>abh06t.nrf54</cscdfile>
+ <cscdfile>abh06t.nrf55</cscdfile>
+ <cscdfile>abh06t.nrf56</cscdfile>
+ <cscdfile>abh06t.nrf57</cscdfile>
+ <cscdfile>abh06t.nrf58</cscdfile>
+ <cscdfile>abh06t.nrf59</cscdfile>
+ <cscdfile>abh06t.nrf60</cscdfile>
+ <cscdfile>abh06t.nrf61</cscdfile>
+ <cscdfile>abh06t.nrf62</cscdfile>
+ <cscdfile>abh06t.nrf63</cscdfile>
+ <cscdfile>abh06t.nrf64</cscdfile>
+ <cscdfile>abh06t.nrf65</cscdfile>
+ <cscdfile>abh06t.nrf66</cscdfile>
+ <cscdfile>abh06t.nrf67</cscdfile>
+ <cscdfile>abh06t.nrf68</cscdfile>
+ <cscdfile>abh06t.nrf69</cscdfile>
+ <cscdfile>abh06t.nrf70</cscdfile>
+ <description>The analysis of the ultimate</description>
+ <linkable>false</linkable>
+</text>
+<text id="scs">
+ <group>abh</group>
+ <docclass>exe</docclass>
+ <ref>scs</ref>
+ <file>cst-ae-scs</file>
+ <name>Saccasaṅkhepa</name>
+ <cscdclass>tik</cscdclass>
+ <cscdfile>abh06t.nrf71</cscdfile>
+ <cscdfile>abh06t.nrf72</cscdfile>
+ <cscdfile>abh06t.nrf73</cscdfile>
+ <cscdfile>abh06t.nrf74</cscdfile>
+ <cscdfile>abh06t.nrf75</cscdfile>
+ <cscdfile>abh06t.nrf76</cscdfile>
+ <cscdfile>abh06t.nrf77</cscdfile>
+ <description>The summary of reality</description>
+ <linkable>false</linkable>
+</text>
+</collection>

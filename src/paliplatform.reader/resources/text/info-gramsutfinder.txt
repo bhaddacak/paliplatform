@@ -1,0 +1,7 @@
+Notes on Grammatical Sutta Finder
+	1. This tool has its web version at https://bhaddacak.github.io/gramsut.
+	2. There are six books that have formula-like suttas, i.e., Kacc (k), Rūpa (r), Mogg (m), Payo (p), Niru (n), and Sadd (s).
+	3. The cross-references are reconstructed from Niruttidīpanī without much checking. Sometimes they may be wrong, and sometimes they are overwhelming, but the information is worthwhile.
+	4. Only Niruttidīpanī has notes in its suttas, disable these can reduce noise in the result.
+	5. Search is done with simple string matching, but full text is searched (including notes), not just what you see. The cross-references can also be searched by entering the short form, e.g., k1 or m2.1 or s1105.
+	6. Payogasiddhi already has sutta numbers related to Mogg, so it does not appear in the cross-references.

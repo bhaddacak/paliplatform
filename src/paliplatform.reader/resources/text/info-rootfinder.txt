@@ -1,0 +1,9 @@
+Notes on Pāli Root Finder
+	1. This tool has its web version at https://bhaddacak.github.io/paliroot, which is slightly handier and more powerful. Some other details can also be found in the web version.
+	2. All roots known to us collected in four books are listed here.
+	3. Pāli Dhātupāṭha are taken from the book by Dines Andersen and Helmer Smith (1921). This has no digital version.
+	4. The large part of Dhātumañjūsā is taken from the Chaṭṭha Saṅgāyana collection, but substantially edited against a Thai edition, which has variants marked as 'sy'.
+	5. Saddanīti Dhātumālā also taken from the Chaṭṭha Saṅgāyana with some editing and additions. Variants found in the Smith's edition (1929) and a Thai edition are marked as 'sm' and 'sy' respectively.
+	6. Dhātvatthasaṅgaha is taken from Palipage then checked against a Thai edition, which has variants marked as 'sy'.
+	7. Only Dhātupāṭha uses 9-group scheme, whereas the rest use 8-group. To differentiate the two, the former uses lowercase roman numbers but others use uppercases.
+	8. Each column of the output table can be sorted by clicking the column header. So, roots that look similar can be grouped together by sorting the Root (second) column.

@@ -1,0 +1,9 @@
+body {margin-right:2em;}
+button {color:gray; cursor:pointer;}
+blockquote {
+  border-left: 3px solid;
+  padding: 1px 0.5em;
+  opacity: .90;
+}
+.red {color:gray;}
+.center {text-align:center;}

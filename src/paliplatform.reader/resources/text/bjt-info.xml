@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+<text id="buv1">
+ <group>vin</group>
+ <ref>Buv1</ref>
+ <file>bjt/1_tipit/1_vin/paraji_u.htm</file>
+ <name>Pārājikapāḷi Bhikkhuvibhaṅgo</name>
+</text>
+<text id="buv2">
+ <group>vin</group>
+ <ref>Buv2</ref>
+ <file>bjt/1_tipit/1_vin/pacitt_u.htm</file>
+ <name>Pācittiyapāḷi Bhikkhuvibhaṅgo</name>
+</text>
+<text id="biv">
+ <group>vin</group>
+ <ref>Biv</ref>
+ <file>bjt/1_tipit/1_vin/bivibh_u.htm</file>
+ <name>Bhikkhunīvibhaṅgo</name>
+</text>
+<text id="mv1">
+ <group>vin</group>
+ <ref>Mv1</ref>
+ <file>bjt/1_tipit/1_vin/mahavg1u.htm</file>
+ <name>Mahāvaggapāḷi 1</name>
+</text>
+<text id="mv2">
+ <group>vin</group>
+ <ref>Mv2</ref>
+ <file>bjt/1_tipit/1_vin/mahavg2u.htm</file>
+ <name>Mahāvaggapāḷi 2</name>
+</text>
+<text id="cv1">
+ <group>vin</group>
+ <ref>Cv1</ref>
+ <file>bjt/1_tipit/1_vin/cullav1u.htm</file>
+ <name>Cullavaggapāḷi 1</name>
+</text>
+<text id="cv2">
+ <group>vin</group>
+ <ref>Cv2</ref>
+ <file>bjt/1_tipit/1_vin/cullav2u.htm</file>
+ <name>Cullavaggapāḷi 2</name>
+</text>
+<text id="pvr1">
+ <group>vin</group>
+ <ref>Pvr1</ref>
+ <file>bjt/1_tipit/1_vin/pariva1u.htm</file>
+ <name>Parivārapāḷi 1</name>
+</text>
+<text id="pvr2">
+ <group>vin</group>
+ <ref>Pvr2</ref>
+ <file>bjt/1_tipit/1_vin/pariva2u.htm</file>
+ <name>Parivārapāḷi 2</name>
+</text>
+<text id="d1">
+ <group>sut</group>
+ <ref>D1</ref>
+ <file>bjt/1_tipit/2_sut/1_digh/dighan1u.htm</file>
+ <name>Dīghanikāyo 1</name>
+</text>
+<text id="d2">
+ <group>sut</group>
+ <ref>D2</ref>
+ <file>bjt/1_tipit/2_sut/1_digh/dighan2u.htm</file>
+ <name>Dīghanikāyo 2</name>
+</text>
+<text id="d3">
+ <group>sut</group>
+ <ref>D3</ref>
+ <file>bjt/1_tipit/2_sut/1_digh/dighan3u.htm</file>
+ <name>Dīghanikāyo 3</name>
+</text>
+<text id="m1">
+ <group>sut</group>
+ <ref>M1</ref>
+ <file>bjt/1_tipit/2_sut/2_majjh/majjhi1u.htm</file>
+ <name>Majjhimanikāyo 1</name>
+</text>
+<text id="m2">
+ <group>sut</group>
+ <ref>M2</ref>
+ <file>bjt/1_tipit/2_sut/2_majjh/majjhi2u.htm</file>
+ <name>Majjhimanikāyo 2</name>
+</text>
+<text id="m3">
+ <group>sut</group>
+ <ref>M3</ref>
+ <file>bjt/1_tipit/2_sut/2_majjh/majjhi3u.htm</file>
+ <name>Majjhimanikāyo 3</name>
+</text>
+<text id="s1">
+ <group>sut</group>
+ <ref>S1</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut1u.htm</file>
+ <name>Saṃyuttanikāyo 1</name>
+</text>
+<text id="s2">
+ <group>sut</group>
+ <ref>S2</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut2u.htm</file>
+ <name>Saṃyuttanikāyo 2</name>
+</text>
+<text id="s3">
+ <group>sut</group>
+ <ref>S3</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut3u.htm</file>
+ <name>Saṃyuttanikāyo 3</name>
+</text>
+<text id="s4">
+ <group>sut</group>
+ <ref>S4</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut4u.htm</file>
+ <name>Saṃyuttanikāyo 4</name>
+</text>
+<text id="s5">
+ <group>sut</group>
+ <ref>S5</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut5u.htm</file>
+ <name>Saṃyuttanikāyo 5-1</name>
+</text>
+<text id="s6">
+ <group>sut</group>
+ <ref>S6</ref>
+ <file>bjt/1_tipit/2_sut/3_samyu/samyut6u.htm</file>
+ <name>Saṃyuttanikāyo 5-2</name>
+</text>
+<text id="a1">
+ <group>sut</group>
+ <ref>A1</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt1u.htm</file>
+ <name>Aṅguttaranikāyo 1</name>
+</text>
+<text id="a2">
+ <group>sut</group>
+ <ref>A2</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt2u.htm</file>
+ <name>Aṅguttaranikāyo 2</name>
+</text>
+<text id="a3">
+ <group>sut</group>
+ <ref>A3</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt3u.htm</file>
+ <name>Aṅguttaranikāyo 3</name>
+</text>
+<text id="a4">
+ <group>sut</group>
+ <ref>A4</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt4u.htm</file>
+ <name>Aṅguttaranikāyo 4</name>
+</text>
+<text id="a5">
+ <group>sut</group>
+ <ref>A5</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt5u.htm</file>
+ <name>Aṅguttaranikāyo 5</name>
+</text>
+<text id="a6">
+ <group>sut</group>
+ <ref>A6</ref>
+ <file>bjt/1_tipit/2_sut/4_angu/angutt6u.htm</file>
+ <name>Aṅguttaranikāyo 6</name>
+</text>
+<text id="khp">
+ <group>sut</group>
+ <ref>Khp</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/khuddaku.htm</file>
+ <name>Khuddakapāṭhapāḷi</name>
+</text>
+<text id="dhp">
+ <group>sut</group>
+ <ref>Dhp</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/dhamma1u.htm</file>
+ <name>Dhammapadapāḷi</name>
+</text>
+<text id="ud">
+ <group>sut</group>
+ <ref>Ud</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/udana_u.htm</file>
+ <name>Udānapāḷi</name>
+</text>
+<text id="it">
+ <group>sut</group>
+ <ref>It</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/itivuttu.htm</file>
+ <name>Itivuttakapāḷi</name>
+</text>
+<text id="snp">
+ <group>sut</group>
+ <ref>Snp</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/suttaniu.htm</file>
+ <name>Suttanipāto</name>
+</text>
+<text id="vv">
+ <group>sut</group>
+ <ref>Vv</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/vimanavu.htm</file>
+ <name>Vimānavatthupāḷi</name>
+</text>
+<text id="pv">
+ <group>sut</group>
+ <ref>Pv</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/petavatu.htm</file>
+ <name>Petavatthupāḷi</name>
+</text>
+<text id="thag">
+ <group>sut</group>
+ <ref>Thag</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/theragau.htm</file>
+ <name>Theragāthāpāḷi</name>
+</text>
+<text id="thig">
+ <group>sut</group>
+ <ref>Thig</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/therigau.htm</file>
+ <name>Therīgāthāpāḷi</name>
+</text>
+<text id="ap1">
+ <group>sut</group>
+ <ref>Ap1</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/apadan1u.htm</file>
+ <name>Apadānapāḷi 1</name>
+</text>
+<text id="ap2">
+ <group>sut</group>
+ <ref>Ap2</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/apadan2u.htm</file>
+ <name>Apadānapāḷi 1</name>
+</text>
+<text id="ap3">
+ <group>sut</group>
+ <ref>Ap3</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/apadan3u.htm</file>
+ <name>Apadānapāḷi 1</name>
+</text>
+<text id="bv">
+ <group>sut</group>
+ <ref>Bv</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/buddhavu.htm</file>
+ <name>Buddhavaṃsapāḷi</name>
+</text>
+<text id="cp">
+ <group>sut</group>
+ <ref>Cp</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/cariyapu.htm</file>
+ <name>Cariyāpiṭakapāḷi</name>
+</text>
+<text id="ja1">
+ <group>sut</group>
+ <ref>Ja1</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka1u.htm</file>
+ <name>Jātakapāḷi 1</name>
+</text>
+<text id="ja2">
+ <group>sut</group>
+ <ref>Ja2</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka2u.htm</file>
+ <name>Jātakapāḷi 2</name>
+</text>
+<text id="ja3">
+ <group>sut</group>
+ <ref>Ja3</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka3u.htm</file>
+ <name>Jātakapāḷi 3</name>
+</text>
+<text id="ja4">
+ <group>sut</group>
+ <ref>Ja4</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka4u.htm</file>
+ <name>Jātakapāḷi 4</name>
+</text>
+<text id="ja5">
+ <group>sut</group>
+ <ref>Ja5</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka5u.htm</file>
+ <name>Jātakapāḷi 5</name>
+</text>
+<text id="ja6">
+ <group>sut</group>
+ <ref>Ja6</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/jataka6u.htm</file>
+ <name>Jātakapāḷi 6</name>
+</text>
+<text id="nidd1">
+ <group>sut</group>
+ <ref>Nidd1</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/mahanidu.htm</file>
+ <name>Mahāniddesapāḷi</name>
+</text>
+<text id="nidd2">
+ <group>sut</group>
+ <ref>Nidd2</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/cullaniu.htm</file>
+ <name>Cullaniddesapāḷi</name>
+</text>
+<text id="psm1">
+ <group>sut</group>
+ <ref>Psm1</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/patisa1u.htm</file>
+ <name>Paṭisambhidāmaggo 1</name>
+</text>
+<text id="psm2">
+ <group>sut</group>
+ <ref>Psm2</ref>
+ <file>bjt/1_tipit/2_sut/5_khudd/patisa2u.htm</file>
+ <name>Paṭisambhidāmaggo 2</name>
+</text>
+<text id="dhs">
+ <group>abh</group>
+ <ref>Dhs</ref>
+ <file>bjt/1_tipit/3_abh/dhamsanu.htm</file>
+ <name>Dhammasaṅgaṇippakaraṇaṃ</name>
+</text>
+<text id="vbh1">
+ <group>abh</group>
+ <ref>Vbh1</ref>
+ <file>bjt/1_tipit/3_abh/vibhan1u.htm</file>
+ <name>Vibhaṅgappakaraṇaṃ 1</name>
+</text>
+<text id="vbh2">
+ <group>abh</group>
+ <ref>Vbh2</ref>
+ <file>bjt/1_tipit/3_abh/vibhan2u.htm</file>
+ <name>Vibhaṅgappakaraṇaṃ 2</name>
+</text>
+<text id="dhk">
+ <group>abh</group>
+ <ref>Dhk</ref>
+ <file>bjt/1_tipit/3_abh/dhatukau.htm</file>
+ <name>Dhātukathāppakaraṇaṃ</name>
+</text>
+<text id="pp">
+ <group>abh</group>
+ <ref>Pp</ref>
+ <file>bjt/1_tipit/3_abh/puggalau.htm</file>
+ <name>Puggalapaññattippakaraṇaṃ</name>
+</text>
+<text id="kv1">
+ <group>abh</group>
+ <ref>Kv1</ref>
+ <file>bjt/1_tipit/3_abh/kathav1u.htm</file>
+ <name>Kathāvatthuppakaraṇaṃ 1</name>
+</text>
+<text id="kv2">
+ <group>abh</group>
+ <ref>Kv2</ref>
+ <file>bjt/1_tipit/3_abh/kathav2u.htm</file>
+ <name>Kathāvatthuppakaraṇaṃ 2</name>
+</text>
+<text id="kv3">
+ <group>abh</group>
+ <ref>Kv3</ref>
+ <file>bjt/1_tipit/3_abh/kathav3u.htm</file>
+ <name>Kathāvatthuppakaraṇaṃ 3</name>
+</text>
+<text id="ym1">
+ <group>abh</group>
+ <ref>Ym1</ref>
+ <file>bjt/1_tipit/3_abh/yamaka1u.htm</file>
+ <name>Yamakappakaraṇaṃ 1</name>
+</text>
+<text id="ym2">
+ <group>abh</group>
+ <ref>Ym2</ref>
+ <file>bjt/1_tipit/3_abh/yamaka2u.htm</file>
+ <name>Yamakappakaraṇaṃ 2</name>
+</text>
+<text id="ym3">
+ <group>abh</group>
+ <ref>Ym3</ref>
+ <file>bjt/1_tipit/3_abh/yamaka3u.htm</file>
+ <name>Yamakappakaraṇaṃ 3</name>
+</text>
+<text id="pt1">
+ <group>abh</group>
+ <ref>Pt1</ref>
+ <file>bjt/1_tipit/3_abh/pattha1u.htm</file>
+ <name>Paṭṭhānappakaraṇaṃ 1</name>
+</text>
+<text id="pt2">
+ <group>abh</group>
+ <ref>Pt2</ref>
+ <file>bjt/1_tipit/3_abh/pattha2u.htm</file>
+ <name>Paṭṭhānappakaraṇaṃ 2</name>
+</text>
+</collection>

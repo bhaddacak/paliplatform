@@ -1,0 +1,1431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<references>
+ <ref id="buv">
+ 	<name>Bhikkhuvibhaṅga</name>
+ 	<altname>Mahāvibhaṅga</altname>
+ 	<cstr>Buv1</cstr>
+ 	<cstr>Buv2</cstr>
+ 	<cst4>Vin1</cst4>
+ 	<cst4>Vin2</cst4>
+ 	<ptst>Vin3</ptst>
+ 	<ptst>Vin4</ptst>
+ 	<bjt>Buv1</bjt>
+ 	<bjt>Buv2</bjt>
+ 	<srt>Buv1</srt>
+ 	<srt>Buv2</srt>
+ 	<sc>Bu-vb</sc>
+ </ref>
+ <ref id="biv">
+ 	<name>Bhikkhunīvibhaṅga</name>
+ 	<cstr>Biv</cstr>
+ 	<cst4>Vin2</cst4>
+ 	<ptst>Vin4</ptst>
+ 	<bjt>Biv</bjt>
+ 	<srt>Biv</srt>
+ 	<sc>Bi-vb</sc>
+ </ref>
+ <ref id="mv">
+ 	<name>Mahāvagga</name>
+ 	<cstr>Mv</cstr>
+ 	<cst4>Vin3</cst4>
+ 	<ptst>Vin1</ptst>
+ 	<bjt>Mv1</bjt>
+ 	<bjt>Mv2</bjt>
+ 	<srt>Mv1</srt>
+ 	<srt>Mv2</srt>
+ 	<sc>Kd</sc>
+ </ref>
+ <ref id="cv">
+ 	<name>Cūḷavagga</name>
+ 	<altname>Cullavaggo</altname>
+ 	<cstr>Cv</cstr>
+ 	<cst4>Vin4</cst4>
+ 	<ptst>Vin2</ptst>
+ 	<bjt>Cv1</bjt>
+ 	<bjt>Cv2</bjt>
+ 	<srt>Cv1</srt>
+ 	<srt>Cv2</srt>
+ 	<sc>Kd</sc>
+ </ref>
+ <ref id="pvr">
+ 	<name>Parivāra</name>
+ 	<cstr>Pvr</cstr>
+ 	<cst4>Vin5</cst4>
+ 	<ptst>Vin5</ptst>
+ 	<bjt>Pvr1</bjt>
+ 	<bjt>Pvr2</bjt>
+ 	<srt>Pvr</srt>
+ 	<sc>Pvr</sc>
+ </ref>
+ <ref id="bup">
+ 	<name>Bhikkhupātimokkha</name>
+ 	<altname>Dvemātikā 1</altname>
+ 	<cstr>Bup</cstr>
+ 	<cst4>Dvm</cst4>
+ 	<sc>Bu-pm</sc>
+ </ref>
+ <ref id="bip">
+ 	<name>Bhikkhunīpātimokkha</name>
+ 	<altname>Dvemātikā 2</altname>
+ 	<cstr>Bip</cstr>
+ 	<cst4>Dvm</cst4>
+ 	<sc>Bi-pm</sc>
+ </ref>
+ <ref id="sp">
+ 	<name>Samantapāsādikā</name>
+ 	<altname>Vinaya-aṭṭhakathā</altname>
+ 	<acad>Sp</acad>
+ 	<cstr>Sp1</cstr>
+ 	<cstr>Sp2</cstr>
+ 	<cstr>Sp3</cstr>
+ 	<cstr>Sp4</cstr>
+ 	<cstr>Sp5</cstr>
+ 	<cstr>Sp6</cstr>
+ 	<cst4>Vin1-a</cst4>
+ 	<cst4>Vin2-a</cst4>
+ 	<cst4>Vin3-a</cst4>
+ 	<cst4>Vin4-a</cst4>
+ 	<cst4>Vin5-a</cst4>
+ 	<ptst>Sp1</ptst>
+ 	<ptst>Sp2</ptst>
+ 	<ptst>Sp3</ptst>
+ 	<ptst>Sp4</ptst>
+ 	<ptst>Sp5</ptst>
+ 	<ptst>Sp6</ptst>
+ 	<ptst>Sp7</ptst>
+ 	<srt>Sp1</srt>
+ 	<srt>Sp2</srt>
+ 	<srt>Sp3</srt>
+ </ref>
+ <ref id="sd">
+ 	<name>Sāratthadīpanī</name>
+ 	<altname>Samantapāsādikā-ṭīkā</altname>
+ 	<acad>Sp-ṭ</acad>
+ 	<cstr>Sd1</cstr>
+ 	<cstr>Sd2</cstr>
+ 	<cstr>Sd3</cstr>
+ 	<cstr>Sd4</cstr>
+ 	<cstr>Sd5</cstr>
+ 	<cstr>Sd6</cstr>
+ 	<cst4>Vin-t1</cst4>
+ 	<cst4>Vin-t2</cst4>
+ 	<cst4>Vin-t3</cst4>
+ </ref>
+ <ref id="vmv">
+ 	<name>Vimativinodanī</name>
+ 	<note>A ṭīkā on Samantapāsādikā</note>
+ 	<acad>Vmv</acad>
+ 	<cstr>Vmv1</cstr>
+ 	<cstr>Vmv2</cstr>
+ 	<cstr>Vmv3</cstr>
+ 	<cstr>Vmv4</cstr>
+ 	<cstr>Vmv5</cstr>
+ 	<cstr>Vmv6</cstr>
+ 	<cst4>Vmv</cst4>
+ </ref>
+ <ref id="vjb">
+ 	<name>Vajirabuddhi</name>
+ 	<note>A ṭīkā on Samantapāsādikā</note>
+ 	<acad>Vjb</acad>
+ 	<cstr>Vjb1</cstr>
+ 	<cstr>Vjb2</cstr>
+ 	<cstr>Vjb4</cstr>
+ 	<cstr>Vjb5</cstr>
+ 	<cstr>Vjb6</cstr>
+ 	<cst4>Vjb</cst4>
+ </ref>
+ <ref id="pc-y">
+ 	<name>Pācityādiyojanā</name>
+ 	<acad>Pāc-y</acad>
+ 	<cstr>Pc-y</cstr>
+ 	<cstr>Biv-y</cstr>
+ 	<cstr>Mv-y</cstr>
+ 	<cstr>Cv-y</cstr>
+ 	<cstr>Pvr-y</cstr>
+ 	<cst4>Pc-y</cst4>
+ </ref>
+ <ref id="kkh">
+ 	<name>Kaṅkhāvitaraṇī</name>
+ 	<acad>Kkh</acad>
+ 	<cstr>Kkh1</cstr>
+ 	<cstr>Kkh2</cstr>
+ 	<cst4>Dvm</cst4>
+ </ref>
+ <ref id="kkh-pt">
+ 	<name>Kaṅkhāvitaraṇī-purāṇaṭīkā</name>
+ 	<cstr>Kkh-pt1</cstr>
+ 	<cstr>Kkh-pt2</cstr>
+ 	<cst4>Kkh-t</cst4>
+ </ref>
+ <ref id="kkh-nt">
+ 	<name>Kaṅkhāvitaraṇī-abhinavaṭīkā</name>
+ 	<cstr>Kkh-nt1</cstr>
+ 	<cstr>Kkh-nt2</cstr>
+ 	<cst4>Kkh-t</cst4>
+ </ref>
+ <ref id="vns">
+ 	<name>Vinayasaṅgaha</name>
+ 	<cstr>Vns</cstr>
+ 	<cst4>Vns</cst4>
+ </ref>
+ <ref id="vnl">
+ 	<name>Vinayālaṅkāra</name>
+ 	<note>A ṭīkā on Vinayasaṅgaha</note>
+ 	<cstr>Vnl</cstr>
+ 	<cst4>Vnl</cst4>
+ </ref>
+ <ref id="vnv">
+ 	<name>Vinayavinicchaya</name>
+ 	<acad>Vin-vn</acad>
+ 	<cstr>Vnv</cstr>
+ 	<cst4>Vnv</cst4>
+ </ref>
+ <ref id="vnv-t">
+ 	<name>Vinayavinicchayaṭīkā</name>
+ 	<cstr>Vnv-t</cstr>
+ 	<cst4>Vnv-t</cst4>
+ </ref>
+ <ref id="utv">
+ 	<name>Uttaravinicchaya</name>
+ 	<note>In CST4 data, Uttaravinicchaya is bundled with Vinayavinicchaya</note>
+ 	<acad>Utt-vn</acad>
+ 	<cstr>Utv</cstr>
+ </ref>
+ <ref id="utv-t">
+ 	<name>Uttaravinicchayaṭīkā</name>
+ 	<note>In CST4 data, Uttaravinicchayaṭīkā is bundled with Vinayavinicchayaṭīkā</note>
+ 	<cstr>Utv-t</cstr>
+ </ref>
+ <ref id="khds">
+ 	<name>Khuddasikkhā</name>
+ 	<acad>Khuddas</acad>
+ 	<cstr>Khds</cstr>
+ 	<cst4>Khds</cst4>
+ </ref>
+ <ref id="khds-pt">
+ 	<name>Khuddasikkhā-purāṇaṭīkā</name>
+ 	<cstr>Khds-pt</cstr>
+ </ref>
+ <ref id="khds-nt">
+ 	<name>Khuddasikkhā-abhinavaṭīkā</name>
+ 	<cstr>Khds-nt</cstr>
+ </ref>
+ <ref id="mls">
+ 	<name>Mūlasikkhā</name>
+ 	<note>In CST4 data, Mūlasikkhā is bundled with Khuddasikkhā</note>
+ 	<acad>Mūla-s</acad>
+ 	<cstr>Mls</cstr>
+ </ref>
+ <ref id="mls-t">
+ 	<name>Mūlasikkhāṭīkā</name>
+ 	<cstr>Mls-t</cstr>
+ </ref>
+ <ref id="d">
+ 	<name>Dīghanikāya</name>
+ 	<acad>D</acad>
+ 	<acad>DN</acad>
+ 	<cstr>D1</cstr>
+ 	<cstr>D2</cstr>
+ 	<cstr>D3</cstr>
+ 	<cst4>DN1</cst4>
+ 	<cst4>DN2</cst4>
+ 	<cst4>DN3</cst4>
+ 	<ptst>D1</ptst>
+ 	<ptst>D2</ptst>
+ 	<ptst>D3</ptst>
+ 	<bjt>D1</bjt>
+ 	<bjt>D2</bjt>
+ 	<bjt>D3</bjt>
+ 	<srt>D1</srt>
+ 	<srt>D2</srt>
+ 	<srt>D3</srt>
+ 	<sc>DN</sc>
+ </ref>
+ <ref id="smv">
+ 	<name>Sumaṅgalavilāsinī</name>
+ 	<altname>Dīghanikāya-aṭṭhakathā</altname>
+ 	<acad>Sv</acad>
+ 	<cstr>Smv1</cstr>
+ 	<cstr>Smv2</cstr>
+ 	<cstr>Smv3</cstr>
+ 	<cst4>DN1-a</cst4>
+ 	<cst4>DN2-a</cst4>
+ 	<cst4>DN3-a</cst4>
+ 	<srt>D-a1</srt>
+ 	<srt>D-a2</srt>
+ 	<srt>D-a3</srt>
+ </ref>
+ <ref id="lpd">
+ 	<name>Līnatthappakāsinī (Dīghanikāya)</name>
+ 	<altname>Dīghanikāya-ṭīkā</altname>
+ 	<acad>Sv-ṭ</acad>
+ 	<cstr>Lpd1</cstr>
+ 	<cstr>Lpd2</cstr>
+ 	<cstr>Lpd3</cstr>
+ 	<cst4>DN1-t</cst4>
+ 	<cst4>DN2-t</cst4>
+ 	<cst4>DN3-t</cst4>
+ </ref>
+ <ref id="sv-nt">
+ 	<name>Sīlakkhandhavagga-abhinavaṭīkā</name>
+ 	<cstr>Sv-nt</cstr>
+ 	<cst4>DN1-nt1</cst4>
+ 	<cst4>DN1-nt2</cst4>
+ 	<cst4>DN1-nt3</cst4>
+ </ref>
+ <ref id="m">
+ 	<name>Majjhimanikāya</name>
+ 	<acad>M</acad>
+ 	<acad>MN</acad>
+ 	<cstr>M1</cstr>
+ 	<cstr>M2</cstr>
+ 	<cstr>M3</cstr>
+ 	<cst4>MN1</cst4>
+ 	<cst4>MN2</cst4>
+ 	<cst4>MN3</cst4>
+ 	<ptst>M1</ptst>
+ 	<ptst>M2</ptst>
+ 	<ptst>M3</ptst>
+ 	<bjt>M1</bjt>
+ 	<bjt>M2</bjt>
+ 	<bjt>M3</bjt>
+ 	<srt>M1</srt>
+ 	<srt>M2</srt>
+ 	<srt>M3</srt>
+ 	<sc>MN</sc>
+ </ref>
+ <ref id="pps">
+ 	<name>Papañcasūdanī</name>
+ 	<altname>Majjhimanikāya-aṭṭhakathā</altname>
+ 	<acad>Ps</acad>
+ 	<cstr>Pps1</cstr>
+ 	<cstr>Pps2</cstr>
+ 	<cstr>Pps3</cstr>
+ 	<cst4>MN1-a</cst4>
+ 	<cst4>MN2-a</cst4>
+ 	<cst4>MN3-a</cst4>
+ 	<srt>M-a1</srt>
+ 	<srt>M-a2</srt>
+ 	<srt>M-a3</srt>
+ </ref>
+ <ref id="lpm">
+ 	<name>Līnatthappakāsinī (Majjhimanikāya)</name>
+ 	<altname>Majjhimanikāya-ṭīkā</altname>
+ 	<acad>Ps-ṭ</acad>
+ 	<cstr>Lpm1</cstr>
+ 	<cstr>Lpm2</cstr>
+ 	<cstr>Lpm3</cstr>
+ 	<cst4>MN1-t</cst4>
+ 	<cst4>MN2-t</cst4>
+ 	<cst4>MN3-t</cst4>
+ </ref>
+ <ref id="s">
+ 	<name>Saṃyuttanikāya</name>
+ 	<acad>S</acad>
+ 	<acad>SN</acad>
+ 	<cstr>S1</cstr>
+ 	<cstr>S2</cstr>
+ 	<cstr>S3</cstr>
+ 	<cstr>S4</cstr>
+ 	<cstr>S5</cstr>
+ 	<cst4>SN1</cst4>
+ 	<cst4>SN2</cst4>
+ 	<cst4>SN3</cst4>
+ 	<cst4>SN4</cst4>
+ 	<cst4>SN5</cst4>
+ 	<ptst>S1</ptst>
+ 	<ptst>S2</ptst>
+ 	<ptst>S3</ptst>
+ 	<ptst>S4</ptst>
+ 	<ptst>S5</ptst>
+ 	<bjt>S1</bjt>
+ 	<bjt>S2</bjt>
+ 	<bjt>S3</bjt>
+ 	<bjt>S4</bjt>
+ 	<bjt>S5</bjt>
+ 	<bjt>S6</bjt>
+ 	<srt>S1</srt>
+ 	<srt>S2</srt>
+ 	<srt>S3</srt>
+ 	<srt>S4</srt>
+ 	<srt>S5</srt>
+ 	<sc>SN</sc>
+ </ref>
+ <ref id="srp">
+ 	<name>Sāratthappakāsinī</name>
+ 	<altname>Saṃyuttanikāya-aṭṭhakathā</altname>
+ 	<acad>Spk</acad>
+ 	<cstr>Srp1</cstr>
+ 	<cstr>Srp2</cstr>
+ 	<cstr>Srp3</cstr>
+ 	<cstr>Srp4</cstr>
+ 	<cstr>Srp5</cstr>
+ 	<cst4>SN1-a</cst4>
+ 	<cst4>SN2-a</cst4>
+ 	<cst4>SN3-a</cst4>
+ 	<cst4>SN4-a</cst4>
+ 	<cst4>SN5-a</cst4>
+ 	<srt>S-a1</srt>
+ 	<srt>S-a2</srt>
+ 	<srt>S-a3</srt>
+ </ref>
+ <ref id="lps">
+ 	<name>Līnatthappakāsinī (Saṃyuttanikāya)</name>
+ 	<altname>Saṃyuttanikāya-ṭīkā</altname>
+ 	<acad>Spk-ṭ</acad>
+ 	<cstr>Lps1</cstr>
+ 	<cstr>Lps2</cstr>
+ 	<cstr>Lps3</cstr>
+ 	<cstr>Lps4</cstr>
+ 	<cstr>Lps5</cstr>
+ 	<cst4>SN1-t</cst4>
+ 	<cst4>SN2-t</cst4>
+ 	<cst4>SN3-t</cst4>
+ 	<cst4>SN4-t</cst4>
+ 	<cst4>SN5-t</cst4>
+ </ref>
+ <ref id="a">
+ 	<name>Aṅguttaranikāya</name>
+ 	<acad>A</acad>
+ 	<acad>AN</acad>
+ 	<cstr>A1</cstr>
+ 	<cstr>A2</cstr>
+ 	<cstr>A3</cstr>
+ 	<cstr>A4</cstr>
+ 	<cstr>A5</cstr>
+ 	<cstr>A6</cstr>
+ 	<cstr>A7</cstr>
+ 	<cstr>A8</cstr>
+ 	<cstr>A9</cstr>
+ 	<cstr>A10</cstr>
+ 	<cstr>A11</cstr>
+ 	<cst4>AN1</cst4>
+ 	<cst4>AN2</cst4>
+ 	<cst4>AN3</cst4>
+ 	<cst4>AN4</cst4>
+ 	<cst4>AN5</cst4>
+ 	<cst4>AN6</cst4>
+ 	<cst4>AN7</cst4>
+ 	<cst4>AN8</cst4>
+ 	<cst4>AN9</cst4>
+ 	<cst4>AN10</cst4>
+ 	<cst4>AN11</cst4>
+ 	<ptst>A1</ptst>
+ 	<ptst>A2</ptst>
+ 	<ptst>A3</ptst>
+ 	<ptst>A4</ptst>
+ 	<ptst>A5</ptst>
+ 	<bjt>A1</bjt>
+ 	<bjt>A2</bjt>
+ 	<bjt>A3</bjt>
+ 	<bjt>A4</bjt>
+ 	<bjt>A5</bjt>
+ 	<bjt>A6</bjt>
+ 	<srt>A1</srt>
+ 	<srt>A2</srt>
+ 	<srt>A3</srt>
+ 	<srt>A4</srt>
+ 	<srt>A5</srt>
+ 	<sc>AN</sc>
+ </ref>
+ <ref id="mnp">
+ 	<name>Manorathapūraṇī</name>
+ 	<altname>Aṅguttaranikāya-aṭṭhakathā</altname>
+ 	<acad>Mp</acad>
+ 	<cstr>Mnp1</cstr>
+ 	<cstr>Mnp2</cstr>
+ 	<cstr>Mnp3</cstr>
+ 	<cstr>Mnp4</cstr>
+ 	<cstr>Mnp5</cstr>
+ 	<cstr>Mnp6</cstr>
+ 	<cstr>Mnp7</cstr>
+ 	<cstr>Mnp8</cstr>
+ 	<cstr>Mnp9</cstr>
+ 	<cstr>Mnp10</cstr>
+ 	<cstr>Mnp11</cstr>
+ 	<cst4>AN1-a</cst4>
+ 	<cst4>AN2-a</cst4>
+ 	<cst4>AN3-a</cst4>
+ 	<cst4>AN4-a</cst4>
+ 	<cst4>AN5-a</cst4>
+ 	<cst4>AN6-a</cst4>
+ 	<cst4>AN7-a</cst4>
+ 	<cst4>AN8-a</cst4>
+ 	<cst4>AN9-a</cst4>
+ 	<cst4>AN10-a</cst4>
+ 	<cst4>AN11-a</cst4>
+ 	<srt>A-a1</srt>
+ 	<srt>A-a2</srt>
+ 	<srt>A-a3</srt>
+ </ref>
+ <ref id="srm">
+ 	<name>Sāratthamañjūsā</name>
+ 	<acad>Mp-ṭ</acad>
+ 	<cstr>Srm1</cstr>
+ 	<cstr>Srm2</cstr>
+ 	<cstr>Srm3</cstr>
+ 	<cstr>Srm4</cstr>
+ 	<cstr>Srm5</cstr>
+ 	<cstr>Srm6</cstr>
+ 	<cstr>Srm7</cstr>
+ 	<cstr>Srm8</cstr>
+ 	<cstr>Srm9</cstr>
+ 	<cstr>Srm10</cstr>
+ 	<cstr>Srm11</cstr>
+ 	<cst4>AN1-t</cst4>
+ 	<cst4>AN2-t</cst4>
+ 	<cst4>AN3-t</cst4>
+ 	<cst4>AN4-t</cst4>
+ 	<cst4>AN5-t</cst4>
+ 	<cst4>AN6-t</cst4>
+ 	<cst4>AN7-t</cst4>
+ 	<cst4>AN8-t</cst4>
+ 	<cst4>AN9-t</cst4>
+ 	<cst4>AN10-t</cst4>
+ 	<cst4>AN11-t</cst4>
+ </ref>
+ <ref id="khp">
+ 	<name>Khuddakapāṭha</name>
+ 	<acad>Khp</acad>
+ 	<cstr>Khp</cstr>
+ 	<cst4>Khp</cst4>
+ 	<ptst>Khp</ptst>
+ 	<bjt>Khp</bjt>
+ 	<srt>Khp</srt>
+ 	<sc>Kp</sc>
+ </ref>
+ <ref id="khp-a">
+ 	<name>Khuddakapāṭha-aṭṭhakathā</name>
+ 	<altname>Paramatthajotikā</altname>
+ 	<cstr>Khp-a</cstr>
+ 	<cst4>Khp-a</cst4>
+ 	<srt>Khp-a</srt>
+ </ref>
+ <ref id="dhp">
+ 	<name>Dhammapada</name>
+ 	<acad>Dhp</acad>
+ 	<cstr>Dhp</cstr>
+ 	<cst4>Dhp</cst4>
+ 	<ptst>Dhp</ptst>
+ 	<bjt>Dhp</bjt>
+ 	<srt>Dhp</srt>
+ 	<sc>Dhp</sc>
+ </ref>
+ <ref id="dhp-a">
+ 	<name>Dhammapada-aṭṭhakathā</name>
+ 	<acad>Dhp-a</acad>
+ 	<cstr>Dhp-a</cstr>
+ 	<cst4>Dhp-a</cst4>
+ 	<srt>Dhp-a1</srt>
+ 	<srt>Dhp-a2</srt>
+ </ref>
+ <ref id="ud">
+ 	<name>Udāna</name>
+ 	<acad>Ud</acad>
+ 	<cstr>Ud</cstr>
+ 	<cst4>Ud</cst4>
+ 	<ptst>Ud</ptst>
+ 	<bjt>Ud</bjt>
+ 	<srt>Ud</srt>
+ 	<sc>Ud</sc>
+ </ref>
+ <ref id="ud-a">
+ 	<name>Udāna-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Ud-a</acad>
+ 	<cstr>Ud-a</cstr>
+ 	<cst4>Ud-a</cst4>
+ 	<srt>Ud-a</srt>
+ </ref>
+ <ref id="it">
+ 	<name>Itivuttaka</name>
+ 	<acad>It</acad>
+ 	<cstr>It</cstr>
+ 	<cst4>It</cst4>
+ 	<ptst>It</ptst>
+ 	<bjt>It</bjt>
+ 	<srt>It</srt>
+ 	<sc>Iti</sc>
+ </ref>
+ <ref id="it-a">
+ 	<name>Itivuttaka-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>It-a</acad>
+ 	<cstr>It-a</cstr>
+ 	<cst4>It-a</cst4>
+ 	<srt>It-a</srt>
+ </ref>
+ <ref id="snp">
+ 	<name>Suttanipāta</name>
+ 	<acad>Sn</acad>
+ 	<cstr>Snp</cstr>
+ 	<cst4>Snp</cst4>
+ 	<ptst>Sn</ptst>
+ 	<bjt>Snp</bjt>
+ 	<srt>Snp</srt>
+ 	<sc>Snp</sc>
+ </ref>
+ <ref id="snp-a">
+ 	<name>Suttanipāta-aṭṭhakathā</name>
+ 	<altname>Paramatthajotikā</altname>
+ 	<acad>Pj</acad>
+ 	<cstr>Snp-a</cstr>
+ 	<cst4>Snp-a</cst4>
+ 	<srt>Snp-a1</srt>
+ 	<srt>Snp-a2</srt>
+ </ref>
+ <ref id="vv">
+ 	<name>Vimānavatthu</name>
+ 	<acad>Vv</acad>
+ 	<cstr>Vv</cstr>
+ 	<cst4>Vv</cst4>
+ 	<ptst>Vv</ptst>
+ 	<bjt>Vv</bjt>
+ 	<srt>Vv</srt>
+ 	<sc>Vv</sc>
+ </ref>
+ <ref id="vv-a">
+ 	<name>Vimānavatthu-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Vv-a</acad>
+ 	<cstr>Vv-a</cstr>
+ 	<cst4>Vv-a</cst4>
+ 	<srt>Vv-a</srt>
+ </ref>
+ <ref id="pv">
+ 	<name>Petavatthu</name>
+ 	<acad>Pv</acad>
+ 	<cstr>Pv</cstr>
+ 	<cst4>Pv</cst4>
+ 	<ptst>Pv</ptst>
+ 	<bjt>Pv</bjt>
+ 	<srt>Pv</srt>
+ 	<sc>Pv</sc>
+ </ref>
+ <ref id="pv-a">
+ 	<name>Petavatthu-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Pv-a</acad>
+ 	<cstr>Pv-a</cstr>
+ 	<cst4>Pv-a</cst4>
+ 	<srt>Pv-a</srt>
+ </ref>
+ <ref id="thag">
+ 	<name>Theragāthā</name>
+ 	<acad>Th</acad>
+ 	<cstr>Thag</cstr>
+ 	<cst4>Thag</cst4>
+ 	<ptst>Th</ptst>
+ 	<bjt>Thag</bjt>
+ 	<srt>Thag</srt>
+ 	<sc>Thag</sc>
+ </ref>
+ <ref id="thag-a">
+ 	<name>Theragāthā-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Th-a</acad>
+ 	<cstr>Thag-a</cstr>
+ 	<cst4>Thag-a1</cst4>
+ 	<cst4>Thag-a2</cst4>
+ 	<srt>Thag-a1</srt>
+ 	<srt>Thag-a2</srt>
+ </ref>
+ <ref id="thig">
+ 	<name>Therīgāthā</name>
+ 	<acad>Thī</acad>
+ 	<cstr>Thig</cstr>
+ 	<cst4>Thig</cst4>
+ 	<ptst>Thī</ptst>
+ 	<bjt>Thig</bjt>
+ 	<srt>Thig</srt>
+ 	<sc>Thig</sc>
+ </ref>
+ <ref id="thig-a">
+ 	<name>Therīgāthā-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Thī-a</acad>
+ 	<cstr>Thig-a</cstr>
+ 	<cst4>Thig-a</cst4>
+ 	<srt>Thig-a</srt>
+ </ref>
+ <ref id="ap">
+ 	<name>Apadāna</name>
+ 	<note>Apadāna is divided into Therāpadāna and Therīapadāna</note>
+ 	<acad>Ap</acad>
+ 	<cstr>Ap1</cstr>
+ 	<cstr>Ap2</cstr>
+ 	<cst4>Ap1</cst4>
+ 	<cst4>Ap2</cst4>
+ 	<ptst>Ap</ptst>
+ 	<bjt>Ap1</bjt>
+ 	<bjt>Ap2</bjt>
+ 	<bjt>Ap3</bjt>
+ 	<srt>Ap1</srt>
+ 	<srt>Ap2</srt>
+ 	<sc>Tha-ap</sc>
+ 	<sc>Thi-ap</sc>
+ </ref>
+ <ref id="ap-a">
+ 	<name>Apadāna-aṭṭhakathā</name>
+ 	<altname>Visuddhajanavilāsinī</altname>
+ 	<note>Therīapadāna has no aṭṭhakathā</note>
+ 	<acad>Ap-a</acad>
+ 	<cstr>Ap1-a</cstr>
+ 	<cst4>Ap-a</cst4>
+ 	<srt>Ap-a1</srt>
+ 	<srt>Ap-a2</srt>
+ </ref>
+ <ref id="bv">
+ 	<name>Buddhavaṃsa</name>
+ 	<acad>Bv</acad>
+ 	<cstr>Bv</cstr>
+ 	<cst4>Bv</cst4>
+ 	<ptst>Bv</ptst>
+ 	<bjt>Bv</bjt>
+ 	<srt>Bv</srt>
+ 	<sc>Bv</sc>
+ </ref>
+ <ref id="bv-a">
+ 	<name>Buddhavaṃsa-aṭṭhakathā</name>
+ 	<altname>Madhuratthavilāsinī</altname>
+ 	<acad>Bv-a</acad>
+ 	<cstr>Bv-a</cstr>
+ 	<cst4>Bv-a</cst4>
+ 	<srt>Bv-a</srt>
+ </ref>
+ <ref id="cp">
+ 	<name>Cariyāpiṭaka</name>
+ 	<acad>Cp</acad>
+ 	<cstr>Cp</cstr>
+ 	<cst4>Cp</cst4>
+ 	<ptst>Cp</ptst>
+ 	<bjt>Cp</bjt>
+ 	<srt>Cp</srt>
+ 	<sc>Cp</sc>
+ </ref>
+ <ref id="cp-a">
+ 	<name>Cariyāpiṭaka-aṭṭhakathā</name>
+ 	<altname>Paramatthadīpanī</altname>
+ 	<acad>Cp-a</acad>
+ 	<cstr>Cp-a</cstr>
+ 	<cst4>Cp-a</cst4>
+ 	<srt>Cp-a</srt>
+ </ref>
+ <ref id="ja">
+ 	<name>Jātaka</name>
+ 	<note>In PTS edition, the Jātaka includes aṭṭhakathā</note>
+ 	<acad>Ja</acad>
+ 	<cstr>Ja</cstr>
+ 	<cst4>Ja1</cst4>
+ 	<cst4>Ja2</cst4>
+ 	<ptst>Ja1</ptst>
+ 	<ptst>Ja2</ptst>
+ 	<ptst>Ja3</ptst>
+ 	<ptst>Ja4</ptst>
+ 	<ptst>Ja5</ptst>
+ 	<ptst>Ja6</ptst>
+ 	<bjt>Ja1</bjt>
+ 	<bjt>Ja2</bjt>
+ 	<bjt>Ja3</bjt>
+ 	<bjt>Ja4</bjt>
+ 	<bjt>Ja5</bjt>
+ 	<bjt>Ja6</bjt>
+ 	<srt>Ja1</srt>
+ 	<srt>Ja2</srt>
+ 	<sc>Ja</sc>
+ </ref>
+ <ref id="ja-a1">
+ 	<name>Jātaka-aṭṭhakathā</name>
+ 	<note>In PTS edition, Jātaka-aṭṭhakathā is bundled with Jātaka</note>
+ 	<cstr>Ja-a1</cstr>
+ 	<cstr>Ja-a2</cstr>
+ 	<cstr>Ja-a3</cstr>
+ 	<cst4>Ja-a1</cst4>
+ 	<cst4>Ja-a2</cst4>
+ 	<cst4>Ja-a3</cst4>
+ 	<cst4>Ja-a4</cst4>
+ 	<cst4>Ja-a5</cst4>
+ 	<cst4>Ja-a6</cst4>
+ 	<cst4>Ja-a7</cst4>
+ 	<srt>Ja-a1</srt>
+ 	<srt>Ja-a2</srt>
+ 	<srt>Ja-a3</srt>
+ 	<srt>Ja-a4</srt>
+ 	<srt>Ja-a5</srt>
+ 	<srt>Ja-a6</srt>
+ 	<srt>Ja-a7</srt>
+ 	<srt>Ja-a8</srt>
+ 	<srt>Ja-a9</srt>
+ 	<srt>Ja-a10</srt>
+ </ref>
+ <ref id="nidd">
+ 	<name>Niddesa</name>
+ 	<note>Niddesa is divied into Mahāniddesa and Cullaniddesa</note>
+ 	<acad>Nidd</acad>
+ 	<cstr>Nidd1</cstr>
+ 	<cstr>Nidd2</cstr>
+ 	<cst4>Nidd1</cst4>
+ 	<cst4>Nidd2</cst4>
+ 	<ptst>Nidd1</ptst>
+ 	<ptst>Nidd2</ptst>
+ 	<bjt>Nidd1</bjt>
+ 	<bjt>Nidd2</bjt>
+ 	<srt>Nidd1</srt>
+ 	<srt>Nidd2</srt>
+ 	<sc>Mnd</sc>
+ 	<sc>Cnd</sc>
+ </ref>
+ <ref id="nidd-a">
+ 	<name>Niddesa-aṭṭhakathā</name>
+ 	<altname>Saddhammappajjotikā</altname>
+ 	<acad>Nidd-a</acad>
+ 	<cstr>Nidd1-a</cstr>
+ 	<cstr>Nidd2-a</cstr>
+ 	<cst4>Nidd1-a</cst4>
+ 	<cst4>Nidd2-a</cst4>
+ 	<srt>Nidd-a1</srt>
+ 	<srt>Nidd-a2</srt>
+ </ref>
+ <ref id="psm">
+ 	<name>Paṭisambhidāmagga</name>
+ 	<acad>Paṭis</acad>
+ 	<cstr>Psm</cstr>
+ 	<cst4>Psm</cst4>
+ 	<ptst>Paṭis1</ptst>
+ 	<ptst>Paṭis2</ptst>
+ 	<bjt>Psm1</bjt>
+ 	<bjt>Psm2</bjt>
+ 	<srt>Psm</srt>
+ 	<sc>Ps</sc>
+ </ref>
+ <ref id="psm-a">
+ 	<name>Paṭisambhidāmagga-aṭṭhakathā</name>
+ 	<altname>Saddhammappakāsinī</altname>
+ 	<acad>Paṭis-a</acad>
+ 	<cstr>Psm-a</cstr>
+ 	<cst4>Psm-a</cst4>
+ 	<srt>Psm-a1</srt>
+ 	<srt>Psm-a2</srt>
+ </ref>
+ <ref id="mil">
+ 	<name>Milindapañha</name>
+ 	<acad>Mil</acad>
+ 	<cstr>Mil</cstr>
+ 	<cst4>Mil</cst4>
+ 	<ptst>Mil</ptst>
+ 	<sc>Mil</sc>
+ </ref>
+ <ref id="nett">
+ 	<name>Nettippakaraṇa</name>
+ 	<acad>Nett</acad>
+ 	<cstr>Nett</cstr>
+ 	<cst4>Nett</cst4>
+ 	<sc>Ne</sc>
+ </ref>
+ <ref id="nett-a">
+ 	<name>Nettippakaraṇa-aṭṭhakathā</name>
+ 	<cstr>Nett-a</cstr>
+ 	<cst4>Nett-a</cst4>
+ </ref>
+ <ref id="nett-t">
+ 	<name>Nettippakaraṇa-ṭīkā</name>
+ 	<altname>Līnatthavaṇṇanā</altname>
+ 	<cstr>Nett-t</cstr>
+ 	<cst4>Nett-t</cst4>
+ </ref>
+ <ref id="nettv">
+ 	<name>Nettivibhāvinī</name>
+ 	<cstr>Nettv</cstr>
+ 	<cst4>Nettv</cst4>
+ </ref>
+ <ref id="ptkp">
+ 	<name>Peṭakopadesa</name>
+ 	<acad>Peṭ</acad>
+ 	<cstr>Ptkp</cstr>
+ 	<cst4>Ptkp</cst4>
+ 	<sc>Pe</sc>
+ </ref>
+ <ref id="vism">
+ 	<name>Visuddhimagga</name>
+ 	<acad>Vism</acad>
+ 	<cstr>Vism</cstr>
+ 	<cst4>Vism1</cst4>
+ 	<cst4>Vism2</cst4>
+ 	<ptst>Vism</ptst>
+ </ref>
+ <ref id="vism-t">
+ 	<name>Visuddhimagga-mahāṭīkā</name>
+ 	<note>In CST4 data, Vism-t3 is Visuddhimagga-nidānakathā (not included in CSTR)</note>
+ 	<acad>Vism-mhṭ</acad>
+ 	<cstr>Vism-t</cstr>
+ 	<cst4>Vism-t1</cst4>
+ 	<cst4>Vism-t2</cst4>
+ 	<cst4>Vism-t3</cst4>
+ </ref>
+ <ref id="dhs">
+ 	<name>Dhammasaṅgaṇī</name>
+ 	<acad>Dhs</acad>
+ 	<cstr>Dhs</cstr>
+ 	<cst4>Dhs</cst4>
+ 	<ptst>Dhs</ptst>
+ 	<bjt>Dhs</bjt>
+ 	<srt>Dhs</srt>
+ 	<sc>Ds</sc>
+ </ref>
+ <ref id="vbh">
+ 	<name>Vibhaṅga</name>
+ 	<acad>Vibh</acad>
+ 	<cstr>Vbh</cstr>
+ 	<cst4>Vbh</cst4>
+ 	<ptst>Vibh</ptst>
+ 	<bjt>Vbh1</bjt>
+ 	<bjt>Vbh2</bjt>
+ 	<srt>Vbh</srt>
+ 	<sc>Vb</sc>
+ </ref>
+ <ref id="dhk">
+ 	<name>Dhātukathā</name>
+ 	<acad>Dhātuk</acad>
+ 	<cstr>Dhk</cstr>
+ 	<cst4>Dhk</cst4>
+ 	<ptst>Dhātuk</ptst>
+ 	<bjt>Dhk</bjt>
+ 	<srt>Dhk</srt>
+ 	<sc>Dt</sc>
+ </ref>
+ <ref id="pp">
+ 	<name>Puggalapaññatti</name>
+ 	<acad>Pp</acad>
+ 	<cstr>Pp</cstr>
+ 	<cst4>Pp</cst4>
+ 	<ptst>Pp</ptst>
+ 	<bjt>Pp</bjt>
+ 	<srt>Pp</srt>
+ 	<sc>Pp</sc>
+ </ref>
+ <ref id="kv">
+ 	<name>Kathāvatthu</name>
+ 	<acad>Kv</acad>
+ 	<cstr>Kv</cstr>
+ 	<cst4>Kv</cst4>
+ 	<ptst>Kv</ptst>
+ 	<bjt>Kv1</bjt>
+ 	<bjt>Kv2</bjt>
+ 	<bjt>Kv3</bjt>
+ 	<srt>Kv</srt>
+ 	<sc>Kv</sc>
+ </ref>
+ <ref id="ym">
+ 	<name>Yamaka</name>
+ 	<acad>Yam</acad>
+ 	<cstr>Ym</cstr>
+ 	<cst4>Ym1</cst4>
+ 	<cst4>Ym2</cst4>
+ 	<cst4>Ym3</cst4>
+ 	<ptst>Yam1</ptst>
+ 	<ptst>Yam2</ptst>
+ 	<bjt>Ym1</bjt>
+ 	<bjt>Ym2</bjt>
+ 	<bjt>Ym3</bjt>
+ 	<srt>Ym1</srt>
+ 	<srt>Ym2</srt>
+ 	<sc>Ya</sc>
+ </ref>
+ <ref id="pt">
+ 	<name>Paṭṭhāna</name>
+ 	<note>Paṭṭhāna consists of Tikapaṭṭhāna, Dukapaṭṭhāna, and their combinations</note>
+ 	<acad>Paṭṭh</acad>
+ 	<acad>Tikap</acad>
+ 	<acad>Dukap</acad>
+ 	<cstr>Pt1</cstr>
+ 	<cstr>Pt2</cstr>
+ 	<cstr>Pt3</cstr>
+ 	<cst4>Pt1</cst4>
+ 	<cst4>Pt2</cst4>
+ 	<cst4>Pt3</cst4>
+ 	<cst4>Pt4</cst4>
+ 	<cst4>Pt5</cst4>
+ 	<ptst>Tikap1</ptst>
+ 	<ptst>Tikap2</ptst>
+ 	<ptst>Tikap3</ptst>
+ 	<ptst>Dukap</ptst>
+ 	<bjt>Pt1</bjt>
+ 	<bjt>Pt2</bjt>
+ 	<srt>Pt1</srt>
+ 	<srt>Pt2</srt>
+ 	<srt>Pt3</srt>
+ 	<srt>Pt4</srt>
+ 	<srt>Pt5</srt>
+ 	<srt>Pt6</srt>
+ 	<sc>Patthana</sc>
+ </ref>
+ <ref id="as">
+ 	<name>Aṭṭhasālinī</name>
+ 	<altname>Dhammasaṅgaṇī-aṭṭhakathā</altname>
+ 	<acad>As</acad>
+ 	<cstr>As</cstr>
+ 	<cst4>Dhs-a</cst4>
+ 	<srt>Dhs-a</srt>
+ </ref>
+ <ref id="vbh-a">
+ 	<name>Vibhaṅga-aṭṭhakathā</name>
+ 	<altname>Sammohavinodanī</altname>
+ 	<acad>Vibh-a</acad>
+ 	<cstr>Vbh-a</cstr>
+ 	<cst4>Vbh-a</cst4>
+ 	<srt>Vbh-a</srt>
+ </ref>
+ <ref id="dhk-a">
+ 	<name>Dhātukathā-aṭṭhakathā</name>
+ 	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
+ 	<cstr>Dhk-a</cstr>
+ 	<cst4>Dhk-a</cst4>
+ 	<srt>Dhk-a</srt>
+ </ref>
+ <ref id="pp-a">
+ 	<name>Puggalapaññatti-aṭṭhakathā</name>
+ 	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
+ 	<cstr>Pp-a</cstr>
+ 	<cst4>Pp-a</cst4>
+ 	<srt>Pp-a</srt>
+ </ref>
+ <ref id="kv-a">
+ 	<name>Kathāvatthu-aṭṭhakathā</name>
+ 	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
+ 	<cstr>Kv-a</cstr>
+ 	<cst4>Kv-a</cst4>
+ 	<srt>Kv-a</srt>
+ </ref>
+ <ref id="ym-a">
+ 	<name>Yamaka-aṭṭhakathā</name>
+ 	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
+ 	<cstr>Ym-a</cstr>
+ 	<cst4>Ym-a</cst4>
+ 	<srt>Ym-a</srt>
+ </ref>
+ <ref id="pt-a">
+ 	<name>Paṭṭhāna-aṭṭhakathā</name>
+ 	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
+ 	<cstr>Pt-a</cstr>
+ 	<cst4>Pt-a</cst4>
+ 	<srt>Pt-a</srt>
+ </ref>
+ <ref id="dhs-t">
+ 	<name>Dhammasaṅgaṇī-mūlaṭīkā</name>
+ 	<cstr>Dhs-t</cstr>
+ 	<cst4>Dhs-t</cst4>
+ </ref>
+ <ref id="dhs-at">
+ 	<name>Dhammasaṅgaṇī-anuṭīkā</name>
+ 	<cstr>Dhs-at</cstr>
+ 	<cst4>Dhs-at</cst4>
+ </ref>
+ <ref id="vbh-t">
+ 	<name>Vibhaṅga-mūlaṭīkā</name>
+ 	<cstr>Vbh-t</cstr>
+ 	<cst4>Vbh-t</cst4>
+ </ref>
+ <ref id="vbh-at">
+ 	<name>Vibhaṅga-anuṭīkā</name>
+ 	<note>In CST4 data, Vibhaṅga-anuṭīkā is bundled with Vibhaṅga-mūlaṭīkā</note>
+ 	<cstr>Vbh-at</cstr>
+ 	<cst4>Vbh-at</cst4>
+ </ref>
+ <ref id="dhk-t">
+ 	<name>Dhātukathā-mūlaṭīkā</name>
+ 	<note>In CST4 data, ṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-mūlaṭīkā</note>
+ 	<cstr>Dhk-t</cstr>
+ 	<cst4>Dhk-t</cst4>
+ </ref>
+ <ref id="dhk-at">
+ 	<name>Dhātukathā-anuṭīkā</name>
+ 	<note>In CST4 data, anuṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-anuṭīkā</note>
+ 	<cstr>Dhk-at</cstr>
+ 	<cst4>Dhk-at</cst4>
+ </ref>
+ <ref id="pp-t">
+ 	<name>Puggalapaññatti-mūlaṭīkā</name>
+ 	<note>In CST4 data, ṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-mūlaṭīkā</note>
+ 	<cstr>Pp-t</cstr>
+ 	<cst4>Pp-t</cst4>
+ </ref>
+ <ref id="pp-at">
+ 	<name>Puggalapaññatti-anuṭīkā</name>
+ 	<note>In CST4 data, anuṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-anuṭīkā</note>
+ 	<cstr>Pp-at</cstr>
+ 	<cst4>Pp-at</cst4>
+ </ref>
+ <ref id="kv-t">
+ 	<name>Kathāvatthu-mūlaṭīkā</name>
+ 	<note>In CST4 data, ṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-mūlaṭīkā</note>
+ 	<cstr>Kv-t</cstr>
+ 	<cst4>Kv-t</cst4>
+ </ref>
+ <ref id="kv-at">
+ 	<name>Kathāvatthu-anuṭīkā</name>
+ 	<note>In CST4 data, anuṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-anuṭīkā</note>
+ 	<cstr>Kv-at</cstr>
+ 	<cst4>Kv-at</cst4>
+ </ref>
+ <ref id="ym-t">
+ 	<name>Yamaka-mūlaṭīkā</name>
+ 	<note>In CST4 data, ṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-mūlaṭīkā</note>
+ 	<cstr>Ym-t</cstr>
+ 	<cst4>Ym-t</cst4>
+ </ref>
+ <ref id="ym-at">
+ 	<name>Yamaka-anuṭīkā</name>
+ 	<note>In CST4 data, anuṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-anuṭīkā</note>
+ 	<cstr>Ym-at</cstr>
+ 	<cst4>Ym-at</cst4>
+ </ref>
+ <ref id="pt-t">
+ 	<name>Paṭṭhāna-mūlaṭīkā</name>
+ 	<note>In CST4 data, ṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-mūlaṭīkā</note>
+ 	<cstr>Pt-t</cstr>
+ 	<cst4>Pt-t</cst4>
+ </ref>
+ <ref id="pt-at">
+ 	<name>Paṭṭhāna-anuṭīkā</name>
+ 	<note>In CST4 data, anuṭīkā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-anuṭīkā</note>
+ 	<cstr>Pt-at</cstr>
+ 	<cst4>Pt-at</cst4>
+ </ref>
+ <ref id="abhv">
+ 	<name>Abhidhammāvatāra</name>
+ 	<acad>Abhidh-av</acad>
+ 	<cstr>Abhv</cstr>
+ 	<cst4>Abhv</cst4>
+ </ref>
+ <ref id="abhv-pt">
+ 	<name>Abhidhammāvatāra-purāṇaṭīkā</name>
+ 	<note>In CST4 data, Abhidhammāvatāra-purāṇaṭīkā and Abhidhammāvatāra-abhinavaṭīkā are bundled together</note>
+ 	<cstr>Abhv-pt</cstr>
+ 	<cst4>Abhv-t</cst4>
+ </ref>
+ <ref id="abhv-nt">
+ 	<name>Abhidhammāvatāra-abhinavaṭīkā</name>
+ 	<note>In CST4 data, Abhidhammāvatāra-purāṇaṭīkā and Abhidhammāvatāra-abhinavaṭīkā are bundled together</note>
+ 	<cstr>Abhv-nt</cstr>
+ 	<cst4>Abhv-t</cst4>
+ </ref>
+ <ref id="abhs">
+ 	<name>Abhidhammatthasaṅgaha</name>
+ 	<acad>Abhidh-s</acad>
+ 	<cstr>Abhs</cstr>
+ 	<cst4>Abhs</cst4>
+ </ref>
+ <ref id="abhs-t">
+ 	<name>Abhidhammatthasaṅgaha-ṭīkā</name>
+ 	<altname>Abhidhammatthavibhāvinī</altname>
+ 	<note>In CST4 data, Abhidhammatthasaṅgaha and its ṭīkā are bundled together</note>
+ 	<cstr>Abhs-t</cstr>
+ 	<cst4>Abhs-t</cst4>
+ </ref>
+ <ref id="abhm">
+ 	<name>Abhidhammamātikā</name>
+ 	<cstr>Abhm</cstr>
+ 	<cst4>Abhm</cst4>
+ </ref>
+ <ref id="abhm-t">
+ 	<name>Abhidhammamātikā-ṭīkā</name>
+ 	<note>In CST4 data, Abhidhammamātikā and its ṭīkā are bundled together</note>
+ 	<cstr>Abhm-t</cstr>
+ 	<cst4>Abhm-t</cst4>
+ </ref>
+ <ref id="nrp">
+ 	<name>Nāmarūpapariccheda</name>
+ 	<note>In CST4 data, Nāmarūpapariccheda is bundled with Abhidhammāvatāra</note>
+ 	<acad>Nāmar-p</acad>
+ 	<cstr>Nrp</cstr>
+ </ref>
+ <ref id="pmv">
+ 	<name>Paramatthavinicchaya</name>
+ 	<note>In CST4 data, Paramatthavinicchaya is bundled with Abhidhammāvatāra</note>
+ 	<acad>Pm-vn</acad>
+ 	<cstr>Pmv</cstr>
+ </ref>
+ <ref id="scs">
+ 	<name>Saccasaṅkhepa</name>
+ 	<note>In CST4 data, Saccasaṅkhepa is bundled with Abhidhammāvatāra</note>
+ 	<acad>Sacc</acad>
+ 	<cstr>Scs</cstr>
+ </ref>
+ <ref id="niru">
+ 	<name>Niruttidīpanī</name>
+ 	<cst4>Niru</cst4>
+ 	<gram>Niru</gram>
+ </ref>
+ <ref id="pmd">
+ 	<name>Paramatthadīpanī</name>
+ 	<cst4>Pmd</cst4>
+ </ref>
+ <ref id="and">
+ 	<name>Anudīpanīpāṭha</name>
+ 	<cst4>And</cst4>
+ </ref>
+ <ref id="ptd">
+ 	<name>Paṭṭhānuddesa-dīpanīpāṭha</name>
+ 	<cst4>Ptd</cst4>
+ </ref>
+ <ref id="nmk">
+ 	<name>Namakkāra</name>
+ 	<cst4>Nmk</cst4>
+ </ref>
+ <ref id="mhp">
+ 	<name>Mahāpaṇāmapāṭha</name>
+ 	<cst4>Mhp</cst4>
+ </ref>
+ <ref id="lkhn">
+ 	<name>Lakkhaṇāto Buddhathomanāgāthā</name>
+ 	<cst4>Lkhn</cst4>
+ </ref>
+ <ref id="stv">
+ 	<name>Sutavandanā</name>
+ 	<cst4>Stv</cst4>
+ </ref>
+ <ref id="jlk">
+ 	<name>Jinālaṅkāra</name>
+ 	<cst4>Jlk</cst4>
+ </ref>
+ <ref id="kml">
+ 	<name>Kamalāñjali</name>
+ 	<cst4>Kml</cst4>
+ </ref>
+ <ref id="pjm">
+ 	<name>Pajjamadhu</name>
+ 	<cst4>Pjm</cst4>
+ </ref>
+ <ref id="bgv">
+ 	<name>Buddhaguṇagāthāvalī</name>
+ 	<cst4>Bgv</cst4>
+ </ref>
+ <ref id="cgv">
+ 	<name>Cūḷaganthavaṃsapāḷi</name>
+ 	<cst4>Cgv</cst4>
+ </ref>
+ <ref id="svp">
+ 	<name>Sāsanavaṃsappadīpikā</name>
+ 	<cst4>Svp</cst4>
+ </ref>
+ <ref id="mhv">
+ 	<name>Mahāvaṃsapāḷi</name>
+ 	<cst4>Mhv</cst4>
+ </ref>
+ <ref id="mogg">
+ 	<name>Moggallānabyākaraṇaṃ</name>
+ 	<cst4>Mogg</cst4>
+ 	<gram>Mogg:Payo</gram>
+ </ref>
+ <ref id="kacc">
+ 	<name>Kaccāyanabyākaraṇaṃ</name>
+ 	<acad>Kacc</acad>
+ 	<cst4>Kacc</cst4>
+ 	<gram>Kacc:Rūpa</gram>
+ </ref>
+ <ref id="sadd">
+ 	<name>Saddanītippakaraṇaṃ</name>
+ 	<note>Saddanīti has three parts: Padamālā, Dhātumālā, and Suttamālā</note>
+ 	<cst4>Sadd-Pad</cst4>
+ 	<cst4>Sadd-Dhā</cst4>
+ 	<gram>Sadd-Pad</gram>
+ 	<gram>Sadd-Dhā</gram>
+ 	<gram>Sadd-Sut</gram>
+ </ref>
+ <ref id="rupa">
+ 	<name>Padarūpasiddhi</name>
+ 	<cst4>Rūpa</cst4>
+ 	<gram>Kacc:Rūpa</gram>
+ </ref>
+ <ref id="panc-t">
+ 	<name>Moggallānapañcikāṭīkā</name>
+ 	<cst4>Pañc-t</cst4>
+ 	<gram>Pañc-t</gram>
+ </ref>
+ <ref id="payo">
+ 	<name>Payogasiddhi</name>
+ 	<cst4>Payo</cst4>
+ 	<gram>Mogg:Payo</gram>
+ </ref>
+ <ref id="vutt">
+ 	<name>Vuttodayaṃ</name>
+ 	<cst4>Vutt</cst4>
+ 	<gram>Vutt</gram>
+ </ref>
+ <ref id="abhidha">
+ 	<name>Abhidhānappadīpikā</name>
+ 	<cst4>Abhidhā</cst4>
+ 	<gram>Abhidhā</gram>
+ </ref>
+ <ref id="abhidha-t">
+ 	<name>Abhidhānappadīpikāṭīkā</name>
+ 	<cst4>Abhidhā-t</cst4>
+ </ref>
+ <ref id="subho">
+ 	<name>Subodhālaṅkāro</name>
+ 	<cst4>Subho</cst4>
+ 	<gram>Subho</gram>
+ </ref>
+ <ref id="subho-t">
+ 	<name>Subodhālaṅkāraṭīkā</name>
+ 	<cst4>Subho-t</cst4>
+ 	<gram>Subho-t</gram>
+ </ref>
+ <ref id="blv">
+ 	<name>Bālāvatāro</name>
+ 	<cst4>Blv</cst4>
+ </ref>
+ <ref id="dpv">
+ 	<name>Dīghanikāye (pu-vi)</name>
+ 	<cst4>D-pv</cst4>
+ </ref>
+ <ref id="mpv">
+ 	<name>Majjhimanikāye (pu-vi)</name>
+ 	<cst4>M-pv</cst4>
+ </ref>
+ <ref id="spv">
+ 	<name>Saṃyuttanikāye (pu-vi)</name>
+ 	<cst4>S-pv</cst4>
+ </ref>
+ <ref id="apv">
+ 	<name>Aṅguttaranikāye (pu-vi)</name>
+ 	<cst4>A-pv</cst4>
+ </ref>
+ <ref id="vinpv">
+ 	<name>Vinayapiṭake (pu-vi)</name>
+ 	<cst4>Vin-pv</cst4>
+ </ref>
+ <ref id="abhpv">
+ 	<name>Abhidhammapiṭake (pu-vi)</name>
+ 	<cst4>Abh-pv</cst4>
+ </ref>
+ <ref id="attpv">
+ 	<name>Aṭṭhakathā (pu-vi)</name>
+ 	<cst4>Att-pv</cst4>
+ </ref>
+ <ref id="kvd">
+ 	<name>Kavidappaṇanīti</name>
+ 	<cst4>Kvd</cst4>
+ </ref>
+ <ref id="nmj">
+ 	<name>Nītimañjarī</name>
+ 	<cst4>Nmj</cst4>
+ </ref>
+ <ref id="dhn">
+ 	<name>Dhammanīti</name>
+ 	<acad>Dhn</acad>
+ 	<cst4>Dhn</cst4>
+ </ref>
+ <ref id="mrn">
+ 	<name>Mahārahanīti</name>
+ 	<cst4>Mrn</cst4>
+ </ref>
+ <ref id="lkn">
+ 	<name>Lokanīti</name>
+ 	<acad>ln</acad>
+ 	<cst4>lkn</cst4>
+ </ref>
+ <ref id="stn">
+ 	<name>Suttantanīti</name>
+ 	<cst4>Stn</cst4>
+ </ref>
+ <ref id="srn">
+ 	<name>Sūrassatinīti</name>
+ 	<cst4>Srn</cst4>
+ </ref>
+ <ref id="cnn">
+ 	<name>Cāṇakyanīti</name>
+ 	<cst4>Cnn</cst4>
+ </ref>
+ <ref id="ndd">
+ 	<name>Naradakkhadīpanī</name>
+ 	<cst4>Ndd</cst4>
+ </ref>
+ <ref id="crd">
+ 	<name>Caturārakkhadīpanī</name>
+ 	<cst4>Crd</cst4>
+ </ref>
+ <ref id="rsv">
+ 	<name>Rasavāhinī</name>
+ 	<acad>Ras</acad>
+ 	<cst4>Rsv</cst4>
+ </ref>
+ <ref id="svs">
+ 	<name>Sīmavisodhanī</name>
+ 	<cst4>Svs</cst4>
+ </ref>
+ <ref id="vsg">
+ 	<name>Vessantaragīti</name>
+ 	<cst4>Vsg</cst4>
+ </ref>
+ <ref id="mvv">
+ 	<name>Moggallāna-vuttivivaraṇapañcikā</name>
+ 	<cst4>Mvv</cst4>
+ </ref>
+ <ref id="thv">
+ 	<name>Thūpavaṃsa</name>
+ 	<acad>Thūp</acad>
+ 	<cst4>Thv</cst4>
+ </ref>
+ <ref id="dthv">
+ 	<name>Dāṭhāvaṃsa</name>
+ 	<acad>Dāṭh</acad>
+ 	<cst4>Dthv</cst4>
+ </ref>
+ <ref id="dhpv">
+ 	<name>Dhātupāṭhavilāsinī</name>
+ 	<cst4>Dhpv</cst4>
+ </ref>
+ <ref id="dhv">
+ 	<name>Dhātuvaṃsa</name>
+ 	<cst4>Dhv</cst4>
+ </ref>
+ <ref id="hvv">
+ 	<name>Hatthavanagallavihāravaṃsa</name>
+ 	<cst4>Hvv</cst4>
+ </ref>
+ <ref id="jnc">
+ 	<name>Jinacarita</name>
+ 	<acad>Jina-c</acad>
+ 	<cst4>Jnc</cst4>
+ </ref>
+ <ref id="jvd">
+ 	<name>Jinavaṃsadīpaṃ</name>
+ 	<cst4>Jvd</cst4>
+ </ref>
+ <ref id="tkg">
+ 	<name>Telakaṭāhagāthā</name>
+ 	<acad>Tel</acad>
+ 	<cst4>Tkg</cst4>
+ </ref>
+ <ref id="mil-t">
+ 	<name>Milidaṭīkā</name>
+ 	<acad>Mil-ṭ</acad>
+ 	<cst4>Mil-t</cst4>
+ </ref>
+ <ref id="pdm">
+ 	<name>Padamañjarī</name>
+ 	<cst4>Pdm</cst4>
+ </ref>
+ <ref id="pds">
+ 	<name>Padasādhanaṃ</name>
+ 	<cst4>Pds</cst4>
+ </ref>
+ <ref id="sdb">
+ 	<name>Saddabindupakaraṇaṃ</name>
+ 	<cst4>Sdb</cst4>
+ </ref>
+ <ref id="dhmjs">
+ 	<name>Kaccāyana-dhātumañjusā</name>
+ 	<cst4>Dhmjs</cst4>
+ 	<gram>Dhmjs</gram>
+ </ref>
+ <ref id="skv">
+ 	<name>Sāmantakūṭavaṇṇanā</name>
+ 	<cst4>Skv</cst4>
+ </ref>
+ <ref id="dhatva">
+ 	<name>Dhātvatthasaṅgaha</name>
+ 	<gram>Dhātva</gram>
+ </ref>
+</references>

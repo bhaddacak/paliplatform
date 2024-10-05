@@ -1,0 +1,6 @@
+Search guide
+	1. This simple HTML search uses functionality of the web engine. So, it can do the job properly but in a limited way.
+	2. By default, the search is case-insensitive, and all diacritical marks are optional. To enable the exact search, use the case-sensitive toggle button provided.
+	3. For the next and previous search, using Ctrl-G and Ctrl-Shift-G is more convenient, yet easier to just use Enter and Shift-Enter.
+	4. As stated in the JavaScript documentation, whole-word searching is not implemented. The users has to work around by their own (see also the next item).
+	5. Searching with regular expressions is not possible here. For such a search, open the document in the Text Editor and use its search function instead.

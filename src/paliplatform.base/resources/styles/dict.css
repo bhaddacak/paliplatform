@@ -1,0 +1,5 @@
+body {font-size:90%; margin-right:2em;}
+.bookname {font-size:70%; font-weight:bold;}
+.hrule {width:100%; border-width:0 0 2px 0; border-style:dotted;}
+.linkbutton {font-size:80%; cursor:pointer; padding:2px; border-width:1px; border-style:dotted;}
+.linkbutton:hover {border-style:solid;}

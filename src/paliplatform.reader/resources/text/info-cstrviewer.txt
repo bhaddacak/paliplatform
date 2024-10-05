@@ -1,0 +1,4 @@
+CST-restructured reader guide
+	1. The right pane shows the document's information, including related documents (if any).
+	2. The document opened can be navigated by the left pane (if opened) with three criteria: by headings, by paragraph numbers, and by verses (only the first line). 
+	3. Related documents on the right pane can be opened as child viewers. These child viewers can be synchronized with their parent if the button is enabled (and the documents are linkable). Only paragraph numbers can be synchronized when selected in the parent viewer.
