@@ -222,6 +222,11 @@ final public class DictUtil {
 			}
 		}
 		final File ncpedCsv = new File(DictUtilities.DICTPATH + "ncped.csv");
+		for (final String[] arr : csvOut) {
+			for (int i = 0; i < arr.length; i++) {
+				arr[i] = Utilities.normalizeNiggahita(arr[i]);
+			}
+		}
 		Utilities.saveCSV(csvOut, ncpedCsv);
 		printLog("Writng out " + ncpedCsv.getPath());
 	}

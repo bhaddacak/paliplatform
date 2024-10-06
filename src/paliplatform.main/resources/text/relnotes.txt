@@ -36,6 +36,7 @@
   - The Pali Text Society's Pali-English Dictionary, T. W. Rhys Davids and W. Stede
   - A digital Version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
+  - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
   - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), CC-BY-NC 4.0
 ⊚ Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
 ⊚ Explanations and the list of Pāli prosody come from Vuttodayamañjarī (Thai) by Gandhasārābhivaṃsa, printed by Mahachulalongkorn Buddhist University, Nakhon Pathom, Thailand (2001)

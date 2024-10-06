@@ -185,6 +185,8 @@ public class Installer {
 
 	public static void unXZ(final File src, final File target) {
 		final String filename = src.getName();
+		if (!TEMPDIR.exists())
+			TEMPDIR.mkdir();
 		final File tarOut = new File(TEMPDIR, filename.substring(0, filename.lastIndexOf("."))); 
 		try (final InputStream fin = new FileInputStream(src);
 				final BufferedInputStream in = new BufferedInputStream(fin);
