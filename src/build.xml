@@ -3,7 +3,7 @@
 <project name="Pāli Platform 3" basedir=".." default="help">
 
 <property name="product.name" value="PaliPlatform"/>
-<property name="product.version" value="3.0.1"/>
+<property name="product.version" value="3.0.2"/>
 <property name="basename" value="paliplatform"/>
 <property name="launcher.name" value="PPLauncher"/>
 <property name="src.dir" value="src"/>
@@ -67,7 +67,7 @@ Instruction:
 	|       |--modules/
 	|       |--PPLaucher.exe
 	|       |--PPLaucher.jar
-	|       |--run.bat
+	|       |--run.cmd
 	|       |--run.sh
 	|       |--some other stuff...
 	|
@@ -75,55 +75,64 @@ Instruction:
 	|   |--modules/
 	|   |--jar/
 	| 
+	|--.git/
+	|--.gitignore
+	|--README.md
+	|--LICENSE
+
 	</echo>
 </target>
 
-<target name="clean-all"  description="Delete the build's directory">
+<target name="clean-all" description="Delete all the built artifacts">
 	<delete dir="${build.dir}"/>
 </target>
 
-<target name="clean-modules"  description="Delete the built modules">
+<target name="clean-modules" description="Delete the built modules">
 	<delete dir="${modules.dir}"/>
 </target>
 
-<target name="clean-base"  description="Delete the base's built classes">
+<target name="clean-base" description="Delete the base's built classes">
 	<delete dir="${modules.dir}/${basename}.base"/>
 </target>
 
-<target name="clean-main"  description="Delete the main's built classes">
+<target name="clean-main" description="Delete the main's built classes">
 	<delete dir="${modules.dir}/${basename}.main"/>
 </target>
 
-<target name="clean-dict"  description="Delete the dict's built classes">
+<target name="clean-dict" description="Delete the dict's built classes">
 	<delete dir="${modules.dir}/${basename}.dict"/>
 </target>
 
-<target name="clean-grammar"  description="Delete the grammar's built classes">
+<target name="clean-grammar" description="Delete the grammar's built classes">
 	<delete dir="${modules.dir}/${basename}.grammar"/>
 </target>
 
-<target name="clean-sentence"  description="Delete the sentence's built classes">
+<target name="clean-sentence" description="Delete the sentence's built classes">
 	<delete dir="${modules.dir}/${basename}.sentence"/>
 </target>
 
-<target name="clean-reader"  description="Delete the reader's built classes">
+<target name="clean-reader" description="Delete the reader's built classes">
 	<delete dir="${modules.dir}/${basename}.reader"/>
 </target>
 
-<target name="clean-lucene"  description="Delete the lucene's built classes">
+<target name="clean-lucene" description="Delete the lucene's built classes">
 	<delete dir="${modules.dir}/${basename}.lucene"/>
 </target>
 
-<target name="clean-dpd"  description="Delete the dpd's built classes">
+<target name="clean-dpd" description="Delete the dpd's built classes">
 	<delete dir="${modules.dir}/${basename}.dpd"/>
 </target>
 
-<target name="clean-jfx"  description="Delete the jfx's built classes">
+<target name="clean-jfx" description="Delete the jfx's built classes">
 	<delete dir="${modules.dir}/${basename}.jfx"/>
 </target>
 
-<target name="clean-launcher"  description="Delete the launcher's built classes">
+<target name="clean-launcher" description="Delete the launcher's built classes">
 	<delete dir="${modules.dir}/${basename}.launcher"/>
+</target>
+
+<target name="clean-jar" description="Delete the built jar files">
+	<delete dir="${jar.dir}"/>
 </target>
 
 <target name="lib.check">	

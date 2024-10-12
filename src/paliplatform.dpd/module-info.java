@@ -9,6 +9,4 @@ module paliplatform.dpd {
 	provides javafx.css.Styleable with
 		paliplatform.dpd.DpdMenu,
 		paliplatform.dpd.DpdToolBarCom;
-	provides paliplatform.base.DpdService with 
-		paliplatform.dpd.DpdServiceImp;
 }

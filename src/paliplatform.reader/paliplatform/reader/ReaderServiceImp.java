@@ -102,11 +102,5 @@ public class ReaderServiceImp implements ReaderService {
 		}
 	}
 
-	@Override
-	public void closeScDownloader() {
-		if (ReaderUtilities.scDownloaderOpened && ScDownloader.INSTANCE.isShowing())
-			ScDownloader.INSTANCE.hide();
-	}
-
 }
 

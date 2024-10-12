@@ -1,4 +1,5 @@
 Patch installer guide
 	1. When the program has minor updates, it may provide patches to install upon the current version.
-	2. Before downloading patches, make sure the Internet is available and update online information first (using the main Options menu).
+	2. Before downloading patches, make sure the Internet is available and update online information first (using the File menu).
 	3. The installation is destructive. This means the old files will be replaced, and the outdated components will be removed. So, it is a good idea to keep the program original archive to use as an emergency recovery.
+	4. After the installation the program will restart automatically. If not, please restart manually by using PPLauncher.exe or launch.cmd (Windows) or launch.sh (Linux or maxOS), because some clean-up has to be done.

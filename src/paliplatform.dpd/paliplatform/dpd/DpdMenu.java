@@ -68,7 +68,7 @@ public class DpdMenu extends Menu {
 			// This prevent exit error when the window stays opened.
 			// See also in DpdServiceImp and MainMenu.
 			DpdUtilities.downloaderOpened = true;
-			DpdDownloader.INSTANCE.showAndWait();
+			DpdDownloader.INSTANCE.display();
 		});
 		final CheckMenuItem lockDBMenuItem = new CheckMenuItem();
 		lockDBMenuItem.selectedProperty().bindBidirectional(DpdUtilities.ppdpdDBLocked);

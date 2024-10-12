@@ -61,9 +61,6 @@ final public class PaliPlatform extends Application {
 	static DictService dictServiceImp;
 	static ReaderService readerServiceImp;
 	static LuceneService luceneServiceImp;
-	static DpdService dpdServiceImp;
-	static List<Runnable> cleanUpList = new ArrayList<>();
-	public static boolean patchInstallerOpened = false;
 	public static final InfoPopup infoPopup = new InfoPopup();
 	
     @Override
@@ -120,6 +117,7 @@ final public class PaliPlatform extends Application {
 		infoPopup.setTextWidth(Utilities.getRelativeSize(42));
 
 		// prepare for macOS UI
+		// this seems no need for moderm Mac OS X
 		final boolean isMacOS = System.getProperty("mrj.version") != null;
 		if (isMacOS) {
 			System.setProperty("apple.laf.useScreenMenuBar", "true");
@@ -132,7 +130,6 @@ final public class PaliPlatform extends Application {
 		dictServiceImp = getDictService();
 		readerServiceImp = getReaderService();
 		luceneServiceImp = getLuceneService();
-		dpdServiceImp = getDpdService();
     }
     
     @Override
@@ -236,9 +233,6 @@ final public class PaliPlatform extends Application {
 			System.err.println(e);
 		}
 		Utilities.threadPool.shutdown();
-		for (final Runnable cleanUp : cleanUpList) {
-			cleanUp.run();
-		}
     }
 
 	static String getTextResource(final String filename) {
@@ -297,15 +291,6 @@ final public class PaliPlatform extends Application {
 		return ServiceLoader.load(LuceneService.class)
 				.stream()
 				.filter((Provider p) -> p.type().getName().equals("paliplatform.lucene.LuceneServiceImp"))
-				.map(Provider::get)
-				.findFirst()
-				.orElse(null);
-	}
-
-	private static DpdService getDpdService() {
-		return ServiceLoader.load(DpdService.class)
-				.stream()
-				.filter((Provider p) -> p.type().getName().equals("paliplatform.dpd.DpdServiceImp"))
 				.map(Provider::get)
 				.findFirst()
 				.orElse(null);
@@ -387,30 +372,43 @@ final public class PaliPlatform extends Application {
 	}
 
 	static void createDesktopLauncher() {
-		final String LINESEP = System.getProperty("line.separator");
-		final String HOME = System.getProperty("user.home");
-		final File desktop = new File(HOME + "/Desktop/");
-		if (!desktop.exists()) return;
-		final File launcher = new File(desktop, "PaliPlatform3.desktop");
-		final StringBuilder content = new StringBuilder();
-		content.append("[Desktop Entry]").append(LINESEP);
-		content.append("Encoding=UTF-8").append(LINESEP);
-		content.append("Version=1.0").append(LINESEP);
-		content.append("Name=Pali Platform 3").append(LINESEP);
-		content.append("GenericName=Pali Platform").append(LINESEP);
-		content.append("Exec=\"" + Utilities.ROOTDIR + "run.sh\"").append(LINESEP);
-		content.append("Terminal=false").append(LINESEP);
-		content.append("Icon=" + Utilities.ROOTDIR + "data/pic/lotustext.ico").append(LINESEP);
-		content.append("Type=Application").append(LINESEP);
-		content.append("Categories=Application;Education;").append(LINESEP);
-		content.append("Comment=Pali studies made enjoyable").append(LINESEP);
-		Utilities.saveText(content.toString(), launcher);
-		launcher.setExecutable(true);
-	}
-
-	static void closePatchInstaller() {
-		if (PaliPlatform.patchInstallerOpened && PatchInstaller.INSTANCE.isShowing())
-			PatchInstaller.INSTANCE.hide();
+		final String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.contains("linux")) {
+			final String LINESEP = System.getProperty("line.separator");
+			final String HOME = System.getProperty("user.home");
+			final File desktop = new File(HOME + "/Desktop/");
+			if (!desktop.exists()) return;
+			final File launcher = new File(desktop, "PaliPlatform3.desktop");
+			final StringBuilder content = new StringBuilder();
+			content.append("[Desktop Entry]").append(LINESEP);
+			content.append("Encoding=UTF-8").append(LINESEP);
+			content.append("Version=1.0").append(LINESEP);
+			content.append("Name=Pāli Platform 3").append(LINESEP);
+			content.append("GenericName=Pāli Platform").append(LINESEP);
+			content.append("Exec=\"" + Utilities.ROOTDIR + "run.sh\"").append(LINESEP);
+			content.append("Terminal=false").append(LINESEP);
+			content.append("Icon=" + Utilities.ROOTDIR + "data/pic/lotustext.ico").append(LINESEP);
+			content.append("Type=Application").append(LINESEP);
+			content.append("Categories=Application;Education;").append(LINESEP);
+			content.append("Comment=Pali studies made enjoyable").append(LINESEP);
+			Utilities.saveText(content.toString(), launcher);
+			launcher.setExecutable(true);
+		} else {
+			final String scriptName = osName.contains("windows")
+										? "winshort.cmd"
+										: osName.contains("mac")
+											? "./macshort.sh"
+											: "";
+			if (!scriptName.isEmpty()) {
+				try {
+					final Process proc = Runtime.getRuntime().exec(scriptName);
+					proc.waitFor();
+					System.out.println(proc);
+				} catch (InterruptedException | IOException e) {
+					System.err.println(e);
+				}
+			}
+		}
 	}
 
     static void about() {

@@ -72,14 +72,15 @@ class SystemInfo {
 	private SystemInfo() {
 		javaVersion = Runtime.Version.parse(System.getProperty("java.version"));
 		final String osArch = System.getProperty("os.arch").toLowerCase();
-		if (System.getProperty("mrj.version") != null) {
+		final String osName = System.getProperty("os.name").toLowerCase();
+		if (osName.startsWith("mac")) {
 			// macOS
 			osType = OsType.MAC;
 			archBit = ArchBit.BIT64;
 			processor = osArch.contains("aarch64") ? Processor.AARCH64 : Processor.X86;
 		} else {
 			archBit = System.getProperty("sun.arch.data.model").contains("32") ? ArchBit.BIT32 : ArchBit.BIT64;
-			if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+			if (osName.contains("windows")) {
 				// Windows
 				osType = OsType.WINDOWS;
 				processor = Processor.X86;
@@ -97,6 +98,14 @@ class SystemInfo {
 
 	public Runtime.Version getJavaVersion() {
 		return javaVersion;
+	}
+
+	public OsType getOsType() {
+		return osType;
+	}
+
+	public boolean isWindows() {
+		return osType == OsType.WINDOWS;
 	}
 
 	public Processor getProcessor() {
@@ -124,6 +133,7 @@ class SystemInfo {
 						result.put(Source.OTHER, List.of(JAVAFX_13));
 						break;
 					case WINDOWS:
+						result.put(Source.GLUON, List.of(JAVAFX_17A));
 						result.put(Source.MAVEN, List.of(JAVAFX_17A));
 						break;
 				}
@@ -131,7 +141,8 @@ class SystemInfo {
 		} else {
 			List<Runtime.Version> verList;
 			switch (osType) {
-				case MAC:
+				// case MAC: // Using JavaFX for mac causes the program exit unexpectedly.
+							// The best solution is using JRE bundled with JavaFX.
 				case WINDOWS:
 					if (javaVersion.compareTo(java17) < 0) {
 						verList = List.of(JAVAFX_17B);

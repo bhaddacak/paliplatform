@@ -61,26 +61,16 @@ class MainMenu extends MenuBar {
 		updateInfoMenuItem.setOnAction(actionEvent -> UrlProperties.INSTANCE.update());
 		final MenuItem patcherMenuItem = new MenuItem("_Patch Installer", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		patcherMenuItem.setMnemonicParsing(true);
-		patcherMenuItem.setOnAction(actionEvent -> {
-			// To prevent the error when program exits while the installer window is opening,
-			// we have to close the window before exiting by registering a clean-up action.
-			// See also, dpdMenu below and in DpdMenu.
-			PaliPlatform.patchInstallerOpened = true;
-			PaliPlatform.cleanUpList.add(() -> PaliPlatform.closePatchInstaller());
-			PatchInstaller.INSTANCE.showAndWait();
-		});
+		patcherMenuItem.setOnAction(actionEvent -> PatchInstaller.INSTANCE.display());
 		final MenuItem exitMenuItem = new MenuItem("E_xit", new TextIcon("power-off", TextIcon.IconSet.AWESOME));
 		exitMenuItem.setMnemonicParsing(true);
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN));
 		exitMenuItem.setOnAction(actionEvent -> PaliPlatform.exit(null));
+		final MenuItem desktopMenuItem = new MenuItem("Create desktop launcher", new TextIcon("rocket", TextIcon.IconSet.AWESOME));
+		desktopMenuItem.setOnAction(actionEvent -> PaliPlatform.createDesktopLauncher());
 		fileMenu.getItems().addAll(editorMenuItem, openTextMenuItem, 
-								new SeparatorMenuItem(), batchMenuItem, updateInfoMenuItem, patcherMenuItem);
-		if (System.getProperty("os.name").startsWith("Linux")) {
-			final MenuItem desktopMenuItem = new MenuItem("Create Linux desktop launcher", new TextIcon("rocket", TextIcon.IconSet.AWESOME));
-			desktopMenuItem.setOnAction(actionEvent -> PaliPlatform.createDesktopLauncher());
-			fileMenu.getItems().add(desktopMenuItem);
-		}
-		fileMenu.getItems().addAll(new SeparatorMenuItem(), exitMenuItem);
+								new SeparatorMenuItem(), batchMenuItem, updateInfoMenuItem, patcherMenuItem, desktopMenuItem, 
+								new SeparatorMenuItem(), exitMenuItem);
 		
 		// Option
 		Menu optionsMenu = new Menu("_Options");
@@ -123,9 +113,6 @@ class MainMenu extends MenuBar {
 		final Menu dpdMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.dpd.DpdMenu");
 		if (dpdMenu != null) {
 			getMenus().add(dpdMenu);
-			if (PaliPlatform.dpdServiceImp != null) {
-				PaliPlatform.cleanUpList.add(() -> PaliPlatform.dpdServiceImp.closeDownloader());
-			}
 		}
 		final Menu grammarMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.grammar.GrammarMenu");
 		if (grammarMenu != null) {
@@ -142,9 +129,6 @@ class MainMenu extends MenuBar {
 		final Menu readerMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.reader.ReaderMenu");
 		if (readerMenu != null) {
 			getMenus().add(readerMenu);
-			if (PaliPlatform.readerServiceImp != null) {
-				PaliPlatform.cleanUpList.add(() -> PaliPlatform.readerServiceImp.closeScDownloader());
-			}
 		}
 		final Menu luceneMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.lucene.LuceneMenu");
 		if (luceneMenu != null)

@@ -60,7 +60,7 @@ public class ReaderMenu extends Menu {
 			// This prevent exit error when the window stays opened.
 			// See also in ReaderServiceImp and MainMenu.
 			ReaderUtilities.scDownloaderOpened = true;
-			ScDownloader.INSTANCE.showAndWait();
+			ScDownloader.INSTANCE.display();
 		});
 		getItems().addAll(toctreeMenuItem, docfinderMenuItem, refTableMenuItem,
 						new SeparatorMenuItem(), scReaderMenuItem, downloadMenuItem);

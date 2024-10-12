@@ -28,7 +28,7 @@
 ⊚ DejaVu fonts 2.37 (https://dejavu-fonts.github.io/)
 ⊚ The JDK used is Amazon Corretto 11.0.24.8.1 (build 11.0.24+8-LTS) for Linux (i686), https://aws.amazon.com/corretto
 ⊚ JavaFX GUI toolkit (https://gluonhq.com/products/javafx), GPL 2.0
-⊚ Apache Ant 1.10.14 (https://ant.apache.org/), Apache License 2.0 
+⊚ Apache Ant 1.10.15 (https://ant.apache.org/), Apache License 2.0 
 ⊚ Launch4j 3.50, launcher creator for Windows (http://launch4j.sourceforge.net)
 ⊚ Dictionaries incorporated into the program are:
   - Concise Pāli-English Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-pe/index.htm
@@ -44,6 +44,12 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2024, Oct 12
+⊚ Pāli Platform 3.0 alpha2 is released
+⊚ Program's start-up issues fixed
+⊚ JavaFX installation fixed
+⊚ Patch installation fixed
+
 2024, Oct 5
 ⊚ Pāli Platform 3.0 alpha1 is a pre-release for test
 ⊚ CST-Restructured, CST4, PTS, etc. integrated

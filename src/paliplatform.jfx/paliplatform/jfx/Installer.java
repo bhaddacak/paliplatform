@@ -50,6 +50,7 @@ public class Installer {
 	private static final String MODULES = "modules";
 	public static final String MODDIR = MODULES + File.separator;
 	public static final String CACHEDIR = "cache" + File.separator;
+	public static final String BINDIR = "bin" + File.separator;
 	private static final File TEMPDIR = new File(ROOTDIR + CACHEDIR + "temp" + File.separator);
 
 	private Installer() {
@@ -73,9 +74,8 @@ public class Installer {
 	}
 
 	private static String getRootDir(final String[] args) throws Exception {
-		final boolean isWindows = System.getProperty("os.name").startsWith("Windows");
 		String classPath = URLDecoder.decode(Installer.class.getProtectionDomain().getCodeSource().getLocation().getPath(), StandardCharsets.UTF_8);
-		if (isWindows && classPath.startsWith("/"))
+		if (SystemInfo.INSTANCE.isWindows() && classPath.startsWith("/"))
 			classPath = classPath.substring(1);
 		String appPath = "";
 		if (args.length == 0){
@@ -168,10 +168,22 @@ public class Installer {
 	}
 
 	public static void removeAllNativeLib(final File targetDir) {
+		// Linux and macOS
 		if (targetDir.exists()) {
-			final File[] files = targetDir.listFiles((f, n) -> {
-				return n.endsWith(".so") || n.endsWith(".dylib") || n.toLowerCase().endsWith(".dll");
-			});
+			final File[] files = targetDir.listFiles((f, n) -> n.endsWith(".so") || n.endsWith(".dylib"));
+			for (final File f : files) {
+				f.delete();
+			}
+		}
+		// Windows
+		removeBinNativeLib();
+	}
+
+	public static void removeBinNativeLib() {
+		// for Windows
+		final File binDir = new File(BINDIR);
+		if (binDir.exists()) {
+			final File[] files = binDir.listFiles((f, n) -> n.toLowerCase().endsWith(".dll"));
 			for (final File f : files) {
 				f.delete();
 			}
@@ -299,15 +311,25 @@ public class Installer {
 					continue;
 				}
 				final String name = entry.getName();
-				if ((name.contains("/lib/") || name.contains("/bin/")) && !entry.isDirectory()) {
+				if (!entry.isDirectory()) {
 					final String shortName = name.substring(name.lastIndexOf("/") + 1);
-					if ("src.zip".equals(shortName)) continue;
-					filelist.append(shortName).append(LINESEP);
-					final File dest = new File(targetDir, shortName);
-					if (!targetDir.exists())
-						targetDir.mkdirs();
-					try (final OutputStream out = new FileOutputStream(dest)) {
-						IOUtils.copy(in, out);
+					File dir = null;
+					final File dest;
+					if (name.contains("/lib/")) {
+						if ("src.zip".equals(shortName)) continue;
+						filelist.append(shortName).append(LINESEP);
+						dir = targetDir;
+					} else if (name.contains("/bin/")) {
+						// only Windows places dll files in bin
+						dir = new File(BINDIR);
+					}
+					if (dir != null) {
+						if (!dir.exists())
+							dir.mkdirs();
+						dest = new File(dir, shortName);
+						try (final OutputStream out = new FileOutputStream(dest)) {
+							IOUtils.copy(in, out);
+						}
 					}
 				}
 			}

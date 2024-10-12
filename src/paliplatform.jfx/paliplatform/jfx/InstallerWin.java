@@ -78,7 +78,7 @@ public class InstallerWin extends JFrame {
 				try {
 					UIManager.setLookAndFeel(NIMBUS);
 				} catch (Exception e) {
-					System.err.println(e.toString());
+					System.err.println(e);
 				}
 			}
 			break;
@@ -239,11 +239,15 @@ public class InstallerWin extends JFrame {
 		add(statusBar, BorderLayout.SOUTH);
 
 		// other initializations
-		if (SystemInfo.INSTANCE.getProcessor() == SystemInfo.Processor.UNCERTAIN) {
+		if (SystemInfo.INSTANCE.getOsType() == SystemInfo.OsType.MAC) {
+			final String warnStr = "JavaFX installer does not work well with macOS." +
+						"\nPlease install a suitable JRE with JavaFX included.";
+			EventQueue.invokeLater(() -> JOptionPane.showMessageDialog(this, warnStr, "Warning", JOptionPane.WARNING_MESSAGE));
+		} else if (SystemInfo.INSTANCE.getProcessor() == SystemInfo.Processor.UNCERTAIN) {
 			final String warnStr = "The program cannot recognize this machine." +
-								"\nSo, it uses x86 achitecture as a fallback." +
-								"\nPlease consider installing JavaFX manually by yourself," +
-								"\nor using a suitable JRE with JavaFX included.";
+						"\nSo, it uses x86 achitecture as a fallback." +
+						"\nPlease consider installing JavaFX manually by yourself," +
+						"\nor using a suitable JRE with JavaFX included.";
 			EventQueue.invokeLater(() -> JOptionPane.showMessageDialog(this, warnStr, "Warning", JOptionPane.WARNING_MESSAGE));
 		}
 		setupTasks();
@@ -410,6 +414,10 @@ public class InstallerWin extends JFrame {
 				final File listFile = Installer.getJfxFileList(moddir);
 				if (listFile.exists()) {
 					Installer.removeFilesInList(moddir, listFile);
+					if (SystemInfo.INSTANCE.getOsType() == SystemInfo.OsType.WINDOWS) {
+						// in the case of Windows, the native lib resides in bin/ and not listed
+						Installer.removeBinNativeLib();
+					}
 					final String mess = "Deletion completed.";
 					JOptionPane.showMessageDialog(this, mess, "JavaFX Removed", JOptionPane.INFORMATION_MESSAGE);
 				} else {

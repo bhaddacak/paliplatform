@@ -34,6 +34,7 @@ public class DpdToolBarCom extends HBox {
 	public DpdToolBarCom() {
 		final Button dictButton = new Button("", new TextIcon("dpd", TextIcon.IconSet.CUSTOM));
 		dictButton.setTooltip(new Tooltip("DPD Dictionary"));
+		dictButton.disableProperty().bind(DpdUtilities.dpdAvailable.not());
 		dictButton.setOnAction(actionEvent -> DpdDictWin.INSTANCE.display());
 		getChildren().addAll(dictButton);
 	}

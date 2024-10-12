@@ -854,8 +854,6 @@ final public class ReaderUtilities {
 			final TransformerFactory tFactory = TransformerFactory.newInstance();
 			final StreamSource stylesource = new StreamSource(stylesheet);
 			final Transformer transformer = tFactory.newTransformer(stylesource);
-			// for test
-			//~ transformer.transform(new DOMSource(domDoc), new StreamResult(System.out));
 			final DOMSource source = new DOMSource(domDoc);
 			final StreamResult result = new StreamResult(writer);
 			transformer.transform(source, result);

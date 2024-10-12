@@ -10,7 +10,6 @@ module paliplatform.main {
 	uses paliplatform.base.DictService;
 	uses paliplatform.base.ReaderService;
 	uses paliplatform.base.LuceneService;
-	uses paliplatform.base.DpdService;
 	provides paliplatform.base.SimpleService with 
 		paliplatform.main.EditorLauncher,
 		paliplatform.main.DictSearch;

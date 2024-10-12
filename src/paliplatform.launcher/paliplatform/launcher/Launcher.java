@@ -28,7 +28,8 @@ import javax.swing.*;
 
 /** 
  * The launcher for Pāli Platform 3,
- * suitable for making an exe launcher for Windows.
+ * suitable for making an exe launcher for Windows
+ * and doing a clean-up start after patches installed.
  * @author J.R. Bhaddacak
  * @version 3.0
  * @since 3.0
@@ -36,17 +37,18 @@ import javax.swing.*;
 
 public class Launcher {
 	private static final String MODULES_DIR = "modules";
+	private static final boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
 
 	private Launcher() {
 	}
 	
 	public static void main(final String[] args) throws Exception {
 		final String rootdir = getRootDir();
+		removeDuplicatedModules(rootdir);
 		launch(rootdir);
 	}
 
 	private static String getRootDir() throws Exception {
-		final boolean isWindows = System.getProperty("os.name").startsWith("Windows");
 		String classPath = URLDecoder.decode(Launcher.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8");
 		if (isWindows && classPath.startsWith("/"))
 			classPath = classPath.substring(1);
@@ -67,6 +69,65 @@ public class Launcher {
 		return rootdir;
 	}
 
+	private static void removeDuplicatedModules(final String rootdir) {
+		final File moddir = new File(rootdir + MODULES_DIR);
+		if (!moddir.exists()) return;
+		final Map<String, ModuleDescriptor.Version> moduleMap = new HashMap<>();
+		final Map<String, File> fileMap = new HashMap<>();
+		final List<String> deleteList = new ArrayList<>();
+		final File[] modFiles = moddir.listFiles((f, n) -> n.toLowerCase().endsWith(".jar"));
+		for (final File f : modFiles) {
+			final String name = f.getName();
+			final String modname = getModuleNameFromFileName(name);
+			final ModuleDescriptor.Version modver = ModuleDescriptor.Version.parse(getModuleVersionFromFileName(name));
+			final String fileKey = modname + "-" + modver.toString();
+			fileMap.put(fileKey, f);
+			if (moduleMap.containsKey(modname)) {
+				final ModuleDescriptor.Version existing = moduleMap.get(modname);
+				if (existing.compareTo(modver) < 0) {
+					deleteList.add(modname + "-" + existing.toString());
+					moduleMap.put(modname, modver);
+				} else {
+					deleteList.add(fileKey);
+				}
+			} else {
+				moduleMap.put(modname, modver);
+			}
+		}
+		try {
+			for (final String k : deleteList) {
+				final File f = fileMap.get(k);
+				Files.delete(f.toPath());
+			}
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+	}
+
+	private static int getDelimPos(final String filename) {
+		int hpos = filename.indexOf("-");
+		while (hpos > -1 && hpos < filename.length() - 1 && !Character.isDigit(filename.charAt(hpos + 1))) {
+			hpos = filename.indexOf("-", hpos + 1);
+		}
+		return hpos;
+	}
+
+	private static String getModuleNameFromFileName(final String filename) {
+		final int hpos = getDelimPos(filename);
+		final String result = hpos < 0
+								? filename.substring(0, filename.lastIndexOf("."))
+								: filename.substring(0, hpos);
+		return result;
+	}
+
+	private static String getModuleVersionFromFileName(final String filename) {
+		final int hpos = getDelimPos(filename);
+		final String result = hpos < 0
+								? "0"
+								: filename.substring(hpos + 1, filename.lastIndexOf("."));
+		return result;
+	}
+
 	private static void launch(final String rootdir) throws Exception {
 		// find JavaFX in the system and local modules
 		final ModuleFinder sysMFinder = ModuleFinder.ofSystem();
@@ -74,7 +135,7 @@ public class Launcher {
 		final ModuleFinder locMFinder = ModuleFinder.of(Path.of(rootdir + File.separator + MODULES_DIR));
 		final Optional<ModuleReference> locOMRef = locMFinder.find("javafx.base");
 		if (sysOMRef.isPresent() || locOMRef.isPresent()) {
-			final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") ? "run.cmd" : "./run.sh";
+			final String cmd = isWindows ? "run.cmd" : "./run.sh";
 			final Process proc = Runtime.getRuntime().exec(cmd);
 			proc.waitFor();
 			System.out.println(proc);
@@ -83,7 +144,7 @@ public class Launcher {
 			final int ans = JOptionPane.showOptionDialog(null, "No JavaFX found, please install it first",
 					"Error: JavaFX not found", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[1]);
 			if (ans == 0) {
-				final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") ? "jfxinstall.cmd" : "./jfxinstall.sh";
+				final String cmd = isWindows ? "jfxinstall.cmd" : "./jfxinstall.sh";
 				final Process proc = Runtime.getRuntime().exec(cmd);
 				proc.waitFor();
 				System.out.println(proc);

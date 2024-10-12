@@ -121,6 +121,14 @@ public class ProgressiveDownloader extends Stage {
 		stateMap.put(DownloadTask.State.INSTALLED, 0);
 	}
 
+	public void display() {
+		if (this.isShowing()) {
+			this.toFront();
+		} else {
+			show();
+		}	
+	}
+
 	public static boolean isFormatValid(final String filename) {
 		return formatExtSet.stream().anyMatch(x -> filename.endsWith(x));
 	}

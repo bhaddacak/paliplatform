@@ -48,6 +48,10 @@ class InstallWorker extends SwingWorker<Boolean, Boolean> {
 			final File listFile = Installer.getJfxFileList(moddir);
 			if (listFile.exists()) {
 				Installer.removeFilesInList(moddir, listFile);
+				if (SystemInfo.INSTANCE.getOsType() == SystemInfo.OsType.WINDOWS) {
+					// in the case of Windows, the native lib resides in bin/ and not listed
+					Installer.removeBinNativeLib();
+				}
 			} else {
 				Installer.removeJavaFX(moddir);
 				Installer.removeAllNativeLib(moddir);

@@ -122,80 +122,21 @@ class PatchInstaller extends ProgressiveDownloader {
 			Utilities.settings.setProperty("latest-patch", ver);
 			MainProperties.INSTANCE.saveSettings();
 		}
-		removeDuplicatedModules();
-		askForRestart();
+		restart();
 	}
 
-	private void removeDuplicatedModules() {
-		// remove older versions after install
-		final File moddir = new File(Utilities.ROOTDIR + Utilities.MODPATH);
-		if (!moddir.exists()) return;
-		final File[] modFiles = moddir.listFiles((f, n) -> n.toLowerCase().endsWith("jar"));
-		for (final File f : modFiles) {
-			final String name = f.getName();
-			final String modname = getModuleNameFromFileName(name);
-			final ModuleDescriptor.Version modver = ModuleDescriptor.Version.parse(getModuleVersionFromFileName(name));
-			final String fileKey = modname + "-" + modver.toString();
-			fileMap.put(fileKey, f);
-			if (moduleMap.containsKey(modname)) {
-				final ModuleDescriptor.Version existing = moduleMap.get(modname);
-				if (existing.compareTo(modver) < 0) {
-					deleteList.add(modname + "-" + existing.toString());
-					moduleMap.put(modname, modver);
-				} else {
-					deleteList.add(fileKey);
-				}
-			} else {
-				moduleMap.put(modname, modver);
-			}
+	private void restart() {
+		try {
+			final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") 
+				? "launch.cmd"
+				: "./launch.sh";
+			final Process proc = Runtime.getRuntime().exec(cmd);
+			proc.waitFor();
+			System.out.println(proc);
+			Platform.exit();
+		} catch (InterruptedException | IOException e) {
+			System.err.println(e);
 		}
-		for (final String k : deleteList) {
-			fileMap.get(k).delete();
-		}
-	}
-
-	private static int getDelimPos(final String filename) {
-		int hpos = filename.indexOf("-");
-		while (hpos > -1 && hpos < filename.length() - 1 && !Character.isDigit(filename.charAt(hpos + 1))) {
-			hpos = filename.indexOf("-", hpos + 1);
-		}
-		return hpos;
-	}
-
-	private static String getModuleNameFromFileName(final String filename) {
-		final int hpos = getDelimPos(filename);
-		final String result = hpos < 0
-								? filename.substring(0, filename.lastIndexOf("."))
-								: filename.substring(0, hpos);
-		return result;
-	}
-
-	private static String getModuleVersionFromFileName(final String filename) {
-		final int hpos = getDelimPos(filename);
-		final String result = hpos < 0
-								? "0"
-								: filename.substring(hpos + 1, filename.lastIndexOf("."));
-		return result;
-	}
-
-	private void askForRestart() {
-		final ConfirmAlert restartAlert = new ConfirmAlert(this, ConfirmAlert.ConfirmType.RESTART);
-		final Optional<ButtonType> result = restartAlert.showAndWait();
-		if (result.isPresent()) {
-			if (result.get() == restartAlert.getConfirmButtonType()) {
-				try {
-					final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") 
-										? "run.cmd"
-										: "./run.sh";
-					final Process proc = Runtime.getRuntime().exec(cmd);
-					proc.waitFor();
-					System.out.println(proc);
-				} catch (InterruptedException | IOException e) {
-					System.err.println(e);
-				}
-				Platform.exit();
-			}
-		}	
 	}
 
 }

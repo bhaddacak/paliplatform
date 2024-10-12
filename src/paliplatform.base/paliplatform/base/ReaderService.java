@@ -32,6 +32,5 @@ public interface ReaderService {
 	Tab getTocTreeTab();
 	Tab getDocumentFinderTab();
 	void openDocument(String colId, String docId);
-	void closeScDownloader();
 }
 
