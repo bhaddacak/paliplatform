@@ -38,9 +38,10 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
-2024, Oct 
+2024, Oct 16
 ⊚ Pāli Platform 3.0 beta1 is released
 ⊚ Improvements on Pāli script transformation
+⊚ Several minor fixes
 
 2024, Oct 12
 ⊚ Pāli Platform 3.0 alpha2 is released
