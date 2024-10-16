@@ -1,13 +1,7 @@
-╭──────────╮
-│ Websites │
-╰──────────╯
-⊚ The author's base portal: https://bhaddacak.github.io
-⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
-⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
-⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured:
-    https://github.com/bhaddacak/cst-kit
-    https://bhaddacak.github.io/cstpage
-    https://bhaddacak.github.io/cst
+╭────────╮
+│ Thanks │
+╰────────╯
+⊚ Antonio Costanzo for investigating the Pāli script transliteration
 
 ╭─────────╮
 │ Credits │
@@ -34,7 +28,7 @@
   - Concise Pāli-English Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-pe/index.htm
   - Concise English-Pāli Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-ep/index.htm
   - The Pali Text Society's Pali-English Dictionary, T. W. Rhys Davids and W. Stede
-  - A digital Version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
+  - A digital version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
   - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
   - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), CC-BY-NC 4.0
@@ -44,6 +38,10 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2024, Oct 
+⊚ Pāli Platform 3.0 beta1 is released
+⊚ Improvements on Pāli script transformation
+
 2024, Oct 12
 ⊚ Pāli Platform 3.0 alpha2 is released
 ⊚ Program's start-up issues fixed
@@ -69,6 +67,17 @@
 
 2020, Jan 18 - 2021, Nov 20
 ⊚ Pāli Platform version 1, developed with Java 8 and Swing UI
+
+╭──────────╮
+│ Websites │
+╰──────────╯
+⊚ The author's base portal: https://bhaddacak.github.io
+⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
+⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
+⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured:
+    https://github.com/bhaddacak/cst-kit
+    https://bhaddacak.github.io/cstpage
+    https://bhaddacak.github.io/cst
 
 ╭─────────╮
 │ License │

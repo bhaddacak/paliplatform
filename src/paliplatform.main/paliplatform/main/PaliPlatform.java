@@ -52,6 +52,7 @@ import java.nio.charset.StandardCharsets;
  */
 final public class PaliPlatform extends Application {
 	public static final String PRODUCT_NAME = "Pāli Platform";
+	private static final String BASE_MODULE = "paliplatform-base";
 	static Scene scene;
 	static Stage stage;
 	static final TabPane tabPane = new TabPane();
@@ -80,7 +81,7 @@ final public class PaliPlatform extends Application {
 				appPath = classPath;
 			}
 			appPath = appPath.endsWith("/") ? appPath : appPath + "/";
-			final String moddir = "modules/";
+			final String moddir = Utilities.MODULES + "/";
 			appPath = appPath.endsWith(moddir)
 						? appPath.substring(0, appPath.lastIndexOf(moddir))
 						: appPath;
@@ -144,7 +145,11 @@ final public class PaliPlatform extends Application {
         root.setTop(topPart);
         
         // load preliminary data
-        releaseNotes = "Root directory: " + Utilities.ROOTDIR + "\n\n" + loadNotesInfo();
+		final String rootdir = "Root directory: " + Utilities.ROOTDIR + "\n";
+		final String baseVersion = "Base version: " + getBaseVersion() + "\n";
+		final String latestPatch = Utilities.settings.getProperty("latest-patch", "");
+		final String patchStr = latestPatch.isEmpty() ? "" : "Latest patch: " + latestPatch + "\n";
+        releaseNotes = rootdir + baseVersion + patchStr + "\n" + loadNotesInfo();
         
         // add persistent tabs
         final EnumMap<Utilities.WindowType, Tab> persisTabs = new EnumMap<>(Utilities.WindowType.class);
@@ -245,6 +250,15 @@ final public class PaliPlatform extends Application {
 			System.err.println(e);
 		}
 		return result;
+	}
+    
+	static String getBaseVersion() {
+		final File modDir = new File(Utilities.ROOTDIR + Utilities.MODPATH);
+		final String[] modArr = modDir.list((d, n) -> n.startsWith(BASE_MODULE));
+		final String version = modArr.length > 0
+						? modArr[0].substring(BASE_MODULE.length() + 1, modArr[0].length() - 4)
+						: "Unknown";
+		return version;
 	}
     
 	/**

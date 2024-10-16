@@ -790,6 +790,7 @@ public class PaliTextEditor extends BorderPane {
 				result = PaliCharTransformer.romanToKhmer(inputText);
 				break;
 			case MYANMAR:
+				PaliCharTransformer.setUsingMyanmarTallA(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
 				result = PaliCharTransformer.romanToMyanmar(inputText);
 				break;
 			case SINHALA:

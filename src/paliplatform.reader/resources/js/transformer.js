@@ -54,6 +54,7 @@ const khmerVowelsInd = [ '\u{17A2}', '\u{17B6}', '\u{17A5}', '\u{17A6}', '\u{17A
 const khmerVowelsDep = [ '\u{17A2}', '\u{17B6}', '\u{17B7}', '\u{17B8}', '\u{17BB}', '\u{17BC}', '\u{17C1}', '\u{17C4}' ];
 const khmerNumbers = [ '\u{17E0}', '\u{17E1}', '\u{17E2}', '\u{17E3}', '\u{17E4}', '\u{17E5}', '\u{17E6}', '\u{17E7}', '\u{17E8}', '\u{17E9}' ];
 const khmerPeriod = '\u{17D4}';
+const khmerKiller = '\u{17D1}';
 const khmerCoeng = '\u{17D2}';
 const khmerConsonants = [
 	'\u{1780}', '\u{1781}', '\u{1782}', '\u{1783}', '\u{1784}',
@@ -63,11 +64,14 @@ const khmerConsonants = [
 	'\u{1794}', '\u{1795}', '\u{1796}', '\u{1797}', '\u{1798}',
 	'\u{1799}', '\u{179A}', '\u{179B}', '\u{179C}', '\u{179F}', '\u{17A0}', '\u{17A1}', '\u{17C6}' ];
 // Myanmar set
+const myanmarTallA = '\u{102B}';
+const myanmarShortA = '\u{102C}';
 const myanmarVowelsInd = [ '\u{1021}', '\u{102C}', '\u{1023}', '\u{1024}', '\u{1025}', '\u{1026}', '\u{1027}', '\u{1029}' ];
-const myanmarVowelsDep = [ '\u{1021}', '\u{102B}', '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', '\u{1031}', '\u{1031}' ];
+const myanmarVowelsDep = [ '\u{1021}', myanmarTallA, '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', '\u{1031}', '\u{1031}' ];
 const myanmarNumbers = [ '\u{1040}', '\u{1041}', '\u{1042}', '\u{1043}', '\u{1044}', '\u{1045}', '\u{1046}', '\u{1047}', '\u{1048}', '\u{1049}' ];
 const myanmarPeriod = '\u{104B}';
 const myanmarVirama = '\u{1039}';
+const myanmarAsat = '\u{103A}';
 const myanmarConsonants = [
 	'\u{1000}', '\u{1001}', '\u{1002}', '\u{1003}', '\u{1004}',
 	'\u{1005}', '\u{1006}', '\u{1007}', '\u{1008}', '\u{100A}',
@@ -75,6 +79,13 @@ const myanmarConsonants = [
 	'\u{1010}', '\u{1011}', '\u{1012}', '\u{1013}', '\u{1014}',
 	'\u{1015}', '\u{1016}', '\u{1017}', '\u{1018}', '\u{1019}',
 	'\u{101A}', '\u{101B}', '\u{101C}', '\u{101D}', '\u{101E}', '\u{101F}', '\u{1020}', '\u{1036}' ];
+const myanmarToMedialMap = {
+	'\u{101A}': '\u{103B}',
+	'\u{101B}': '\u{103C}',
+	'\u{101D}': '\u{103D}',
+	'\u{101F}': '\u{103E}' };
+const myanmarSa = '\u{101E}';
+const myanmarGreatSa = '\u{103F}';
 // Sinhala set
 const sinhalaVowelsInd = [ '\u{0D85}', '\u{0D86}', '\u{0D89}', '\u{0D8A}', '\u{0D8B}', '\u{0D8C}', '\u{0D91}', '\u{0D94}' ];
 const sinhalaVowelsDep = [ '\u{0D85}', '\u{0DCF}', '\u{0DD2}', '\u{0DD3}', '\u{0DD4}', '\u{0DD6}', '\u{0DD9}', '\u{0DDC}' ];
@@ -103,6 +114,9 @@ const devaConsonants = [
 	'\u{092F}', '\u{0930}', '\u{0932}', '\u{0935}', '\u{0938}', '\u{0939}', '\u{0933}', '\u{0902}' ];
 
 // functions
+function useMyanmarA(isTall) {
+	myanmarVowelsDep[1] = isTall ? myanmarTallA : myanmarShortA;
+}
 function useAltThai() {
 	// the replacement of 0E0D (Yo-ying) and 0E10 (Tho-than)
 	const altPaliThaiChars = [ '\u{F70F}', '\u{F700}'];
@@ -196,10 +210,18 @@ function romanToThai(input, alsoNumber) {
 				// consonants
 				output += tch;
 				if(index < input.length-1) {
-					if(!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-						// double consonant needs bindu
-						output += thaiBindu;
+					if(!skipFlag) {
+						if (romanConsonants.indexOf(input[index+1]) >= 0) {
+							// double consonant needs bindu
+							output += thaiBindu;
+						} else if (romanVowels.indexOf(input[index+1]) == -1) {
+							// if not followed by a vowel, add bindu
+							output += thaiBindu;
+						}
 					}
+				} else {
+					// the last consonant, add bindu
+					output += thaiBindu;
 				}
 			} else {
 				// others
@@ -286,10 +308,18 @@ function romanToKhmer(input, alsoNumber) {
 				// consonants
 				output += kch;
 				if(index < input.length-1) {
-					if(!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-						// double consonant needs Coeng 0x17D2
-						output += khmerCoeng;
+					if(!skipFlag) {
+						if (romanConsonants.indexOf(input[index+1]) >= 0) {
+							// double consonant needs Coeng 0x17D2
+							output += khmerCoeng;
+						} else if (romanVowels.indexOf(input[index+1]) == -1) {
+							// if not followed by a vowel, add killer
+							output += khmerKiller;
+						}
 					}
+				} else {
+					// the last consonant, add killer
+					output += khmerKiller;
 				}
 			} else {
 				// others
@@ -370,10 +400,18 @@ function romanToMyanmar(input, alsoNumber) {
 				// consonants
 				output += mch;
 				if(index < input.length-1) {
-					if(!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-						// double consonant needs Virama
-						output += myanmarVirama;
+					if(!skipFlag) {
+						if (romanConsonants.indexOf(input[index+1]) >= 0) {
+							// double consonant needs Virama
+							output += myanmarVirama;
+						} else if (romanVowels.indexOf(input[index+1]) == -1) {
+							// if not followed by a vowel, add asat
+							output += myanmarAsat;
+						}
 					}
+				} else {
+					// the last consonant, add asat
+					output += myanmarAsat;
 				}
 			} else {
 				// others
@@ -382,6 +420,16 @@ function romanToMyanmar(input, alsoNumber) {
 		}
 		vindex = -1;
 	} // end for loop of each input character
+	return myanmarToMedialReplace(output);
+}
+function myanmarToMedialReplace(input) {
+	if (input === undefined) return '';
+	const sRe = new RegExp(myanmarSa + myanmarVirama + myanmarSa, 'g');
+	let output = input.replace(sRe, myanmarGreatSa);
+	for (const key in myanmarToMedialMap) {
+		let mRe = new RegExp(myanmarVirama + key, 'g');
+		output = output.replace(mRe, myanmarToMedialMap[key]);
+	}
 	return output;
 }
 function romanToSinhala(input, alsoNumber) {
@@ -441,10 +489,18 @@ function romanToSinhala(input, alsoNumber) {
 				// consonants
 				output += sch;
 				if(index < input.length-1) {
-					if(!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-						// double consonant needs Virama
-						output += sinhalaVirama;
+					if(!skipFlag) {
+						if (romanConsonants.indexOf(input[index+1]) >= 0) {
+							// double consonant needs Virama
+							output += sinhalaVirama;
+						} else if (romanVowels.indexOf(input[index+1]) == -1) {
+							// if not followed by a vowel, add virama
+							output += sinhalaVirama;
+						}
 					}
+				} else {
+					// the last consonant, add virama
+					output += sinhalaVirama;
 				}
 			} else {
 				// others
@@ -528,10 +584,18 @@ function romanToDevanagari(input, alsoNumber) {
 				// consonants
 				output += dch;
 				if(index < input.length-1) {
-					if(!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-						// double consonant needs Virama
-						output += devaVirama;
+					if(!skipFlag) {
+						if (romanConsonants.indexOf(input[index+1]) >= 0) {
+							// double consonant needs Virama
+							output += devaVirama;
+						} else if (romanVowelsForDeva.indexOf(input[index+1]) == -1) {
+							// if not followed by a vowel, add virama
+							output += devaVirama;
+						}
 					}
+				} else {
+					// the last consonant, add virama
+					output += devaVirama;
 				}
 			} else {
 				// others

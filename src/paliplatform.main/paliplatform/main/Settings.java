@@ -69,9 +69,13 @@ class Settings extends SingletonWindow {
 		cbExitAsk.setAllowIndeterminate(false);
 		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask")));
 		cbExitAsk.setOnAction(actionEvent -> Utilities.settings.setProperty("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
+		final CheckBox cbMyanmarTallA = new CheckBox("Always use Myanmar tall ā");
+		cbMyanmarTallA.setAllowIndeterminate(false);
+		cbMyanmarTallA.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
+		cbMyanmarTallA.setOnAction(actionEvent -> Utilities.settings.setProperty("myanmar-tall-aa", Boolean.toString(cbMyanmarTallA.isSelected())));
 		final CheckBox cbThaiAltChars = new CheckBox("Always use Thai's " + '\uF70F' + " and " + '\uF700' + " (This can cause search problems)");
 		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(Utilities.PaliScript.THAI));
-		cbThaiAltChars.setStyle("-fx-font-family:'"+flist.get(0)+"'");
+		cbThaiAltChars.setStyle("-fx-font-family:'" + flist.get(0) + "'");
 		cbThaiAltChars.setAllowIndeterminate(false);
 		cbThaiAltChars.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars")));
 		cbThaiAltChars.setOnAction(actionEvent -> Utilities.settings.setProperty("thai-alt-chars", Boolean.toString(cbThaiAltChars.isSelected())));
@@ -80,7 +84,7 @@ class Settings extends SingletonWindow {
 		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable")));
 		cbDpdLookup.setOnAction(actionEvent -> Utilities.settings.setProperty("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
 		generalBox.getChildren().addAll(cbExitAsk,
-										new Separator(), new Label("Script transformation"), cbThaiAltChars,
+										new Separator(), new Label("Script transformation"), cbMyanmarTallA, cbThaiAltChars,
 										new Separator(), new Label("DPD integration"), cbDpdLookup);
 		generalTab.setContent(generalBox);
 		
@@ -94,10 +98,12 @@ class Settings extends SingletonWindow {
 		final HBox defMethodBox = new HBox();
 		defMethodBox.setSpacing(5);
 		final ToggleGroup defMethodGroup = new ToggleGroup();
-		final RadioButton raUnusedChars = new RadioButton("Unused characters");
-		final RadioButton raCompChars = new RadioButton("Composite characters");
+		final RadioButton raUnusedChars = new RadioButton("Unused chars");
+		final RadioButton raCompChars = new RadioButton("Composite chars");
+		final RadioButton raNormal = new RadioButton("Normal");
 		raUnusedChars.setToggleGroup(defMethodGroup);
 		raCompChars.setToggleGroup(defMethodGroup);
+		raNormal.setToggleGroup(defMethodGroup);
 		raUnusedChars.setSelected(PaliTextInput.InputMethod.valueOf(Utilities.settings.getProperty("pali-input-method"))==PaliTextInput.InputMethod.UNUSED_CHARS);
 		raUnusedChars.setOnAction(actionEvent -> {
 			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
@@ -107,7 +113,11 @@ class Settings extends SingletonWindow {
 			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.COMPOSITE.toString());
 			MainProperties.INSTANCE.saveSettings();
 		});
-		defMethodBox.getChildren().addAll(new Label("Default input method: "), raUnusedChars, raCompChars);
+		raNormal.setOnAction(actionEvent -> {
+			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.NORMAL.toString());
+			MainProperties.INSTANCE.saveSettings();
+		});
+		defMethodBox.getChildren().addAll(new Label("Default input method: "), raUnusedChars, raCompChars, raNormal);
 		paliInputBox.getChildren().add(defMethodBox);
 		
 		final Hashtable<String, String> defaultTable = MainProperties.PaliInputProperties.INSTANCE.getDefaultTable();

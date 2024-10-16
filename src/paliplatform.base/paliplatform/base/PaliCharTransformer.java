@@ -75,6 +75,7 @@ public class PaliCharTransformer {
 	private static final char[] khmerVowelsDep = { '\u17A2', '\u17B6', '\u17B7', '\u17B8', '\u17BB', '\u17BC', '\u17C1', '\u17C4' };
 	public static final char[] khmerNumbers = { '\u17E0', '\u17E1', '\u17E2', '\u17E3', '\u17E4', '\u17E5', '\u17E6', '\u17E7', '\u17E8', '\u17E9' };
 	private static final char khmerPeriod = '\u17D4';
+	private static final char khmerKiller = '\u17D1';
 	private static final char khmerCoeng = '\u17D2';
 	public static final char[] khmerConsonants = {
 		'\u1780', '\u1781', '\u1782', '\u1783', '\u1784',
@@ -85,11 +86,15 @@ public class PaliCharTransformer {
 		'\u1799', '\u179A', '\u179B', '\u179C', '\u179F', '\u17A0', '\u17A1', '\u17C6' };
 //~ 		'\u179D', '\u179E', '\u17AB', '\u17AC', '\u17AE' };
 	// Myanmar set
-	public static final char[] myanmarVowelsInd = { '\u1021', '\u102C', '\u1023', '\u1024', '\u1025', '\u1026', '\u1027', '\u1029' };
-	private static final char[] myanmarVowelsDep = { '\u1021', '\u102B', '\u102D', '\u102E', '\u102F', '\u1030', '\u1031', '\u1031' };
+	private static final char myanmarTallA = '\u102B';
+	private static final char myanmarShortA = '\u102C';
+	private static char myanmarA = myanmarTallA;
+	public static final char[] myanmarVowelsInd = { '\u1021', myanmarShortA, '\u1023', '\u1024', '\u1025', '\u1026', '\u1027', '\u1029' };
+	private static final char[] myanmarVowelsDep = { '\u1021', myanmarA, '\u102D', '\u102E', '\u102F', '\u1030', '\u1031', '\u1031' };
 	public static final char[] myanmarNumbers = { '\u1040', '\u1041', '\u1042', '\u1043', '\u1044', '\u1045', '\u1046', '\u1047', '\u1048', '\u1049' };
 	private static final char myanmarPeriod = '\u104B';
 	private static final char myanmarVirama = '\u1039';
+	private static final char myanmarAsat = '\u103A';
 	public static final char[] myanmarConsonants = {
 		'\u1000', '\u1001', '\u1002', '\u1003', '\u1004',
 		'\u1005', '\u1006', '\u1007', '\u1008', '\u100A',
@@ -98,6 +103,18 @@ public class PaliCharTransformer {
 		'\u1015', '\u1016', '\u1017', '\u1018', '\u1019',
 		'\u101A', '\u101B', '\u101C', '\u101D', '\u101E', '\u101F', '\u1020', '\u1036' };
 //~ 		'\u1050', '\u1051', ' ', ' ', ' ' };
+	private static final Map<Character, Character> myanmarToMedialMap = Map.of(
+			'\u101A', '\u103B', // y
+			'\u101B', '\u103C', // r
+			'\u101D', '\u103D', // v
+			'\u101F', '\u103E' ); // h
+	private static final Map<Character, String> myanmarFromMedialMap = Map.of(
+			'\u103B', "" + myanmarVirama + '\u101A', 
+			'\u103C', "" + myanmarVirama + '\u101B', 
+			'\u103D', "" + myanmarVirama + '\u101D', 
+			'\u103E', "" + myanmarVirama + '\u101F' );
+	private static final char myanmarSa = '\u101E';
+	private static final char myanmarGreatSa = '\u103F';
 	// Sinhala set
 	public static final char[] sinhalaVowelsInd = { '\u0D85', '\u0D86', '\u0D89', '\u0D8A', '\u0D8B', '\u0D8C', '\u0D91', '\u0D94' };
 	private static final char[] sinhalaVowelsDep = { '\u0D85', '\u0DCF', '\u0DD2', '\u0DD3', '\u0DD4', '\u0DD6', '\u0DD9', '\u0DDC' };
@@ -146,6 +163,14 @@ public class PaliCharTransformer {
 			altThaiCharsMap.put('\uF70F', "ñ");
 			altThaiCharsMap.put('\uF700', "ṭ");
 		}
+	}
+	
+	/**
+	 * Sets up initial condition before Myanmar transformation is performed.
+	 */
+	public static void setUsingMyanmarTallA(final boolean useTall) {
+		myanmarA = useTall ? myanmarTallA : myanmarShortA;
+		myanmarVowelsDep[1] = myanmarA;
 	}
 	
 	public static void setIncludingNumbers(final boolean yn) {
@@ -239,10 +264,18 @@ public class PaliCharTransformer {
 					// consonants
 					output.append(tch);
 					if (index < input.length-1) {
-						if (!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs bindu
-							output.append(thaiBindu);
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs bindu
+								output.append(thaiBindu);
+							} else if (romanVowels.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add bindu
+								output.append(thaiBindu);
+							}
 						}
+					} else {
+						// the last consonant, add bindu
+						output.append(thaiBindu);
 					}
 				} else {
 					// others
@@ -440,10 +473,18 @@ public class PaliCharTransformer {
 					// consonants
 					output.append(kch);
 					if (index < input.length-1) {
-						if (!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Coeng 0x17D2
-							output.append(khmerCoeng);
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs Coeng 0x17D2
+								output.append(khmerCoeng);
+							} else if (romanVowels.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add killer
+								output.append(khmerKiller);
+							}
 						}
+					} else {
+						// the last consonant, add killer
+						output.append(khmerKiller);
 					}
 				} else {
 					// others
@@ -516,7 +557,7 @@ public class PaliCharTransformer {
 			// 2. consider how to put it
 			output.append(rch);
 			if (index < input.length-1) {
-				if (input[index+1] == khmerCoeng) {
+				if (input[index+1] == khmerCoeng || input[index+1] == khmerKiller) {
 					// skip Coeng
 					skipFlag = true;
 				} else if (consonantMap.get(kch) != null && kch != '\u17C6' && input[index+1] != '\u17B6' &&
@@ -606,10 +647,18 @@ public class PaliCharTransformer {
 					// consonants
 					output.append(mch);
 					if (index < input.length-1) {
-						if (!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
-							output.append(myanmarVirama);
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs Virama
+								output.append(myanmarVirama);
+							} else if (romanVowels.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add asat
+								output.append(myanmarAsat);
+							}
 						}
+					} else {
+						// the last consonant, add asat
+						output.append(myanmarAsat);
 					}
 				} else {
 					// others
@@ -618,12 +667,33 @@ public class PaliCharTransformer {
 			}
 			vindex = -1;
 		} // end for loop of each input character
-		return output.toString();
+		return myanmarToMedialReplace(output.toString());
+	}
+
+	private static String myanmarToMedialReplace(final String input) {
+		String result;
+		final String doubleSa = "" + myanmarSa + myanmarVirama + myanmarSa;
+		result = input.replace(doubleSa, "" + myanmarGreatSa);
+		for (final char ch : myanmarToMedialMap.keySet()) {
+			final String medCh = "" + myanmarVirama + ch;
+			result = result.replace(medCh, "" + myanmarToMedialMap.get(ch));
+		}
+		return result;
+	}
+	
+	private static String myanmarFromMedialReplace(final String input) {
+		String result;
+		final String doubleSa = "" + myanmarSa + myanmarVirama + myanmarSa;
+		result = input.replace("" + myanmarGreatSa, doubleSa);
+		for (final char medCh : myanmarFromMedialMap.keySet()) {
+			result = result.replace("" + medCh, myanmarFromMedialMap.get(medCh));
+		}
+		return result;
 	}
 	
 	public static String myanmarToRoman(final String str) {
 		final StringBuilder output = new StringBuilder();
-		char[] input = str.toLowerCase().toCharArray();
+		char[] input = myanmarFromMedialReplace(str.toLowerCase()).toCharArray();
 		// generate hash maps to ease the replacements
 		final Map<Character, Character> indVowelMap = new HashMap<>();
 		final Map<Character, Character> depVowelMap = new HashMap<>();
@@ -672,7 +742,7 @@ public class PaliCharTransformer {
 			} else if (mch == '\u1031') {
 				// dependent 'e' (and 'o')
 				if (index < input.length-1) {
-					if (input[index+1] == '\u102B'){ 
+					if (input[index+1] == myanmarA){ 
 						// if is it 'o'
 						rch = "o";
 						skipFlag = true;
@@ -682,7 +752,7 @@ public class PaliCharTransformer {
 				} else {
 					rch = "e";
 				}
-			} else if (mch == '\u102B' || mch == '\u102D' || mch == '\u102E' ||
+			} else if (mch == myanmarA || mch == '\u102D' || mch == '\u102E' ||
 					  mch == '\u102F' || mch == '\u1030') {
 				// other dependent vowels
 				rch = Character.toString(depVowelMap.get(mch));
@@ -695,10 +765,10 @@ public class PaliCharTransformer {
 			// 2. consider how to put it
 			output.append(rch);
 			if (index < input.length-1) {
-				if (input[index+1] == myanmarVirama) {
+				if (input[index+1] == myanmarVirama || input[index+1] == myanmarAsat) {
 					// skip Virama
 					skipFlag = true;
-				} else if (consonantMap.get(mch) != null && mch != '\u1036' && input[index+1] != '\u102B' &&
+				} else if (consonantMap.get(mch) != null && mch != '\u1036' && input[index+1] != myanmarA &&
 							input[index+1] != '\u102D' && input[index+1] != '\u102E' &&
 							input[index+1] != '\u102F' && input[index+1] != '\u1030' &&
 							input[index+1] != '\u1031') {
@@ -772,10 +842,18 @@ public class PaliCharTransformer {
 					// consonants
 					output.append(sch);
 					if (index < input.length-1) {
-						if (!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
-							output.append(sinhalaVirama);
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs Virama
+								output.append(sinhalaVirama);
+							} else if (romanVowels.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add virama
+								output.append(sinhalaVirama);
+							}
 						}
+					} else {
+						// the last consonant, add virama
+						output.append(sinhalaVirama);
 					}
 				} else {
 					// others
@@ -924,10 +1002,18 @@ public class PaliCharTransformer {
 					// consonants
 					output.append(dch);
 					if (index < input.length-1) {
-						if (!skipFlag && romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
-							output.append(devaVirama);
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs Virama
+								output.append(devaVirama);
+							} else if (romanVowelsForDeva.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add virama
+								output.append(devaVirama);
+							}
 						}
+					} else {
+						// the last consonant, add virama
+						output.append(devaVirama);
 					}
 				} else {
 					// others

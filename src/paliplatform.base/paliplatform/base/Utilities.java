@@ -74,7 +74,8 @@ final public class Utilities {
 	public static final String CSSDIR = "resources/styles/";
 	public static final String TXTDIR = "resources/text/";
 	public static final String JSDIR = "resources/js/";
-	public static final String MODPATH = "modules" + File.separator;
+	public static final String MODULES = "modules";
+	public static final String MODPATH = MODULES + File.separator;
 	public static final String CACHEPATH = "cache" + File.separator;
 	public static final String DATAPATH = "data" + File.separator;
 	public static final String DBPATH = DATAPATH + "db" + File.separator;

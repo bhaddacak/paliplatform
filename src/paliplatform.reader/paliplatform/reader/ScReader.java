@@ -356,6 +356,7 @@ public class ScReader extends PaliHtmlViewerBase {
 				result = PaliCharTransformer.romanToKhmer(normalized);
 				break;
 			case MYANMAR:
+				PaliCharTransformer.setUsingMyanmarTallA(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
 				result = PaliCharTransformer.romanToMyanmar(normalized);
 				break;
 			case SINHALA:

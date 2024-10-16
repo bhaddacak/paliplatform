@@ -686,7 +686,7 @@
  <docclass>mul</docclass>
  <ref>it</ref>
  <file>cst4roman_utf8/s0504m.mul.xml</file>
- <name>Udānapāḷi</name>
+ <name>Itivuttakapāḷi</name>
  <linkid>kn4</linkid>
 </text>
 <text id="kn4-a">
@@ -694,7 +694,7 @@
  <docclass>att</docclass>
  <ref>it-a</ref>
  <file>cst4roman_utf8/s0504a.att.xml</file>
- <name>Udāna-aṭṭhakathā</name>
+ <name>Itivuttaka-aṭṭhakathā</name>
  <linkid>kn4</linkid>
 </text>
 <text id="kn5">

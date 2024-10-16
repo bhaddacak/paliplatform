@@ -97,6 +97,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 						findNext(+1);
 				} else if (key == KeyCode.ESCAPE) {
 					clearFindInput();
+				} else if (key == KeyCode.SPACE && keyEvent.isControlDown()) {
+					findBox.getFindTextInput().rotateInputMethod();
 				}
 			}
 		});
@@ -224,7 +226,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	private void setTheme() {
-		String command = "setThemeBW('"+viewerTheme+"',"+(isBW?1:0)+");";
+		final String command = "setThemeBW('" + viewerTheme + "'," + (isBW ? 1 : 0) + ");";
 		webEngine.executeScript(command);
 	}
 	
@@ -239,6 +241,11 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	public void setViewerFont(final Utilities.PaliScript script) {
 		toolBar.resetFont(script);
+	}
+	
+	public void setLineHeight(final String percent) {
+		final String command = "setLineHeight('" + percent + "');";
+		webEngine.executeScript(command);
 	}
 	
 	public void updateClickedObject(final String text) {
@@ -452,7 +459,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	protected void findNext(final String query, final int direction) {
 		final int caseSensitive = findBox.isCaseSensitive() ? 1 : 0;
-		webEngine.executeScript("findNext('" + query + "'," + caseSensitive + "," + direction + ")");
+		final String properQuery = query.replace("'", "");
+		webEngine.executeScript("findNext('" + properQuery + "'," + caseSensitive + "," + direction + ")");
 	}
 	
 }

@@ -94,6 +94,7 @@ public class MainProperties {
 			settings.setProperty("exit-ask", "true");
 			settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
 			settings.setProperty("thai-alt-chars", "false");
+			settings.setProperty("myanmar-tall-aa", "true");
 			settings.setProperty("dictset", "CPED,");
 			settings.setProperty("dpd-decon-count", "750000");
 			settings.setProperty("dpd-dict-count", "400000");

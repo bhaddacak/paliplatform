@@ -36,7 +36,9 @@ import javax.swing.*;
  */
 
 public class Launcher {
-	private static final String MODULES_DIR = "modules";
+	private static final String MODULES = "modules";
+	private static final String WIN_EXE = "PPLauncher.exe";
+	private static final String WIN_NEW_EXE = "PPLauncher_new.exe";
 	private static final boolean isWindows = System.getProperty("os.name").toLowerCase().contains("windows");
 
 	private Launcher() {
@@ -45,7 +47,20 @@ public class Launcher {
 	public static void main(final String[] args) throws Exception {
 		final String rootdir = getRootDir();
 		removeDuplicatedModules(rootdir);
-		launch(rootdir);
+		if (isWindows) {
+			if (!newLauncherExists(rootdir)) {
+				launch(rootdir);
+			} else {
+				final String mess = "A newer launcher is found.\n" +
+					"Please remove the existing " + WIN_EXE + ".\n" +
+					"Rename " + WIN_NEW_EXE + " to " + WIN_EXE + ".\n" +
+					"And start again.";
+				JOptionPane.showMessageDialog(null, mess, "New launcher found", JOptionPane.INFORMATION_MESSAGE);
+				System.exit(1);
+			}
+		} else {
+			launch(rootdir);
+		}
 	}
 
 	private static String getRootDir() throws Exception {
@@ -58,7 +73,7 @@ public class Launcher {
 		} else {
 			appPath = classPath;
 		}
-		final String moddir = "modules/";
+		final String moddir = MODULES + "/";
 		appPath = appPath.endsWith("/") ? appPath : appPath + "/";
 		appPath = appPath.endsWith(moddir)
 					? appPath.substring(0, appPath.lastIndexOf(moddir))
@@ -69,8 +84,13 @@ public class Launcher {
 		return rootdir;
 	}
 
+	private static boolean newLauncherExists(final String rootdir) {
+		final File launcher = new File(rootdir + WIN_NEW_EXE);
+		return launcher.exists();
+	}
+
 	private static void removeDuplicatedModules(final String rootdir) {
-		final File moddir = new File(rootdir + MODULES_DIR);
+		final File moddir = new File(rootdir + MODULES);
 		if (!moddir.exists()) return;
 		final Map<String, ModuleDescriptor.Version> moduleMap = new HashMap<>();
 		final Map<String, File> fileMap = new HashMap<>();
@@ -132,7 +152,7 @@ public class Launcher {
 		// find JavaFX in the system and local modules
 		final ModuleFinder sysMFinder = ModuleFinder.ofSystem();
 		final Optional<ModuleReference> sysOMRef = sysMFinder.find("javafx.base");
-		final ModuleFinder locMFinder = ModuleFinder.of(Path.of(rootdir + File.separator + MODULES_DIR));
+		final ModuleFinder locMFinder = ModuleFinder.of(Path.of(rootdir + File.separator + MODULES));
 		final Optional<ModuleReference> locOMRef = locMFinder.find("javafx.base");
 		if (sysOMRef.isPresent() || locOMRef.isPresent()) {
 			final String cmd = isWindows ? "run.cmd" : "./run.sh";

@@ -81,6 +81,7 @@ import java.util.HashMap;
 		 put("eye-slash", '\uF070');
 		 put("folder", '\uF07B');
 		 put("folder-open", '\uF07C');
+		 put("arrows-up-down", '\uF07D');
 //~ 		 put("key", '\uF084');
 		 put("gears", '\uF085');
 		 put("heart", '\uF08A');

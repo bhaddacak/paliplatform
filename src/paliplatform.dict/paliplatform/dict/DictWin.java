@@ -234,6 +234,8 @@ public class DictWin extends BorderPane {
 						findResultNext(+1);
 				} else if (key == KeyCode.ESCAPE) {
 					clearFindInput();
+				} else if (key == KeyCode.SPACE && keyEvent.isControlDown()) {
+					findBox.getFindTextInput().rotateInputMethod();
 				}
 			}
 		});

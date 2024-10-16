@@ -74,9 +74,10 @@ function toRoman() {
 	document.body = workingBody;
 	addMouseListener();
 }
-function toNonRoman(lang, alsoNumber, useAlt) {
-	if(useAlt)
+function toNonRoman(lang, alsoNumber, useThAlt, useTallA) {
+	if(useThAlt)
 		useAltThai();
+	useMyanmarA(useTallA);
 	const workingBody = romanBody.cloneNode(true);
 	//const allNodes = workingBody.getElementsByTagName("P");
 	const allNodes = workingBody.childNodes;
@@ -123,7 +124,9 @@ function setThemeBW(theme, isBW) {
 		e.style.color = themeObj['referenceColor' + bw];
 	}
 }
-
+function setLineHeight(percent) {
+	document.body.style.lineHeight = percent;
+}
 /*
 document.addEventListener("DOMContentLoaded", e => {
 	document.body.addEventListener("copy", event => {
