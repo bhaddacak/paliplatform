@@ -2,7 +2,7 @@ Notes on SuttaCentral Reader
 	1. This is a simple tool to access (only) Pāli texts in the collection of SuttaCentral.
 	2. Because of the large number of files, this reader has its own navigator that can list all the texts marked by "root-pli-ms" and group them in a familiar way.
 	3. Additional details, such as sentence ids, variants, translations, comments, and reference, can be shown (if available) by the Options menu button.
-	4. All available languages, both for translation and comments, are listed and can be selected only one at a time. If the list is empty, there is no such information.
+	4. All available languages, both for translations and comments, are listed and can be selected only one at a time. If the list is empty, there is no such information.
 	5. By default, ṁ is converted to ṃ in the text. This makes less problems with the program's various facilities. The user, however, can change back to ṁ by the Options menu button. But this will break somehow the related functions that use ṃ internally. Document Finder and Dictionary lookup are exceptions which can (hopefully) work with both forms. 
 	6. The Pāli text can be displayed in various scripts. The fonts used here depend on the user's system. This is also true in the case of translation languages.
 	7. Data selected to display here are just the essense. There are a lot of things left out, such as textual side explanations. Please consult suttacentral.net directly for the full range of information.

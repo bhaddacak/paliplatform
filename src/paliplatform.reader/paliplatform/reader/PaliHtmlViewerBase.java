@@ -459,7 +459,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	protected void findNext(final String query, final int direction) {
 		final int caseSensitive = findBox.isCaseSensitive() ? 1 : 0;
-		final String properQuery = query.replace("'", "");
+		final String properQuery = query.replace("'", "\\u{0027}");
 		webEngine.executeScript("findNext('" + properQuery + "'," + caseSensitive + "," + direction + ")");
 	}
 	

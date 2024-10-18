@@ -57,6 +57,7 @@ public class PaliTextEditor extends BorderPane {
 	private final SimpleBooleanProperty saveable = new SimpleBooleanProperty(false);
 	private final CommonWorkingToolBar toolBar;
 	private final CheckMenuItem saveOnCloseMenuItem = new CheckMenuItem("Autosave on close");
+	private final CheckMenuItem noAskOnCloseMenuItem = new CheckMenuItem("Never ask on close");
 	final MenuItem findNextMenuItem = new MenuItem("Find _Next");
 	final MenuItem findPrevMenuItem = new MenuItem("Find Pre_v");	
 	private final FindReplaceBox findReplaceBox = new FindReplaceBox(this);
@@ -226,7 +227,7 @@ public class PaliTextEditor extends BorderPane {
 			final String sname = sc.toString();
 			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
 			if (sc == Utilities.PaliScript.ROMAN)
-				mitem.disableProperty().bind(currScript.isEqualTo(sc));
+				mitem.disableProperty().bind(currScript.isEqualTo(sc).or(currScript.isEqualTo(Utilities.PaliScript.MYANMAR)));
 			else
 				mitem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 			mitem.setOnAction(actionEvent -> convertTo(sc));
@@ -314,9 +315,12 @@ public class PaliTextEditor extends BorderPane {
 		// options menu
 		final Menu optionsMenu = new Menu("_Options");
 		saveOnCloseMenuItem.setSelected(false);
+		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
+		noAskOnCloseMenuItem.setOnAction(actionEvent -> 
+				Utilities.settings.setProperty("editor-close-ask", Boolean.toString(!noAskOnCloseMenuItem.isSelected())));
 		final CheckMenuItem wrapTextMenuItem = new CheckMenuItem("Wrap text");
 		wrapTextMenuItem.selectedProperty().bindBidirectional(area.wrapTextProperty());
-		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem);
+		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem, noAskOnCloseMenuItem);
 		
 		menuBar.getMenus().addAll(fileMenu, editMenu, toolsMenu, optionsMenu);
 		
@@ -445,6 +449,7 @@ public class PaliTextEditor extends BorderPane {
 		saveable.set(false);
 		area.setWrapText(true);
 		saveOnCloseMenuItem.setSelected(false);
+		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
 		searchTextFound.set(false);
 		regexMode = false;
 		findReplaceBox.clearInputs();
@@ -777,7 +782,6 @@ public class PaliTextEditor extends BorderPane {
 				switch (currScript.get()) {
 					case DEVANAGARI: result = PaliCharTransformer.devanagariToRoman(inputText); break;
 					case KHMER: result = PaliCharTransformer.khmerToRoman(inputText); break;
-					case MYANMAR: result = PaliCharTransformer.myanmarToRoman(inputText); break;
 					case SINHALA: result = PaliCharTransformer.sinhalaToRoman(inputText); break;
 					case THAI: result = PaliCharTransformer.thaiToRoman(inputText); break;
 					default: result = "";
@@ -1033,19 +1037,23 @@ public class PaliTextEditor extends BorderPane {
 				saveText();
 				if (stg != null) stg.hide();
 			} else {
-				final ConfirmAlert saveAlert = new ConfirmAlert(theStage.get(), ConfirmAlert.ConfirmType.SAVE);
-				final Optional<ButtonType> result = saveAlert.showAndWait();
-				if (result.isPresent()) {
-					if (result.get() == saveAlert.getConfirmButtonType()) {
-						saveText();
-						if (stg != null) stg.hide();
-					} else {
-						if (result.get() != saveAlert.getDiscardButtonType()) {
-							if (event != null) {
-								event.consume();
-							}
-						} else {
+				if (noAskOnCloseMenuItem.isSelected()) {
+					if (stg != null) stg.hide();
+				} else {
+					final ConfirmAlert saveAlert = new ConfirmAlert(theStage.get(), ConfirmAlert.ConfirmType.SAVE);
+					final Optional<ButtonType> result = saveAlert.showAndWait();
+					if (result.isPresent()) {
+						if (result.get() == saveAlert.getConfirmButtonType()) {
+							saveText();
 							if (stg != null) stg.hide();
+						} else {
+							if (result.get() != saveAlert.getDiscardButtonType()) {
+								if (event != null) {
+									event.consume();
+								}
+							} else {
+								if (stg != null) stg.hide();
+							}
 						}
 					}
 				}

@@ -9,3 +9,4 @@ A guide to batch transformation
 	8. Non-Roman scripts can only be transformed to Roman, otherwise transformation is not applied.
 	9. The option of number inclusion works only for transformation from Roman to other scripts (except Sinhala).
 	10. For Devanagari script, the transformation is least contaminated, for example, bars and double-bars are visually retained. For more information see help in the viewer of CST4 collection.
+	11. Conversion from Myanmar script is not supported.

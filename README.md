@@ -81,7 +81,7 @@ To make `PPLauncher.exe` you have to use `Launch4j`.
 5. In Splash, add a bitmap file (BMP, 24-bit without metadata);
 6. Hit the gear button (Build wrapper).
 
-### Where is test cases and JUnit?
+### Where are test cases and JUnit?
 I tried to use JUnit in the development, but I gave up eventually. One main reason is testing GUI applications with basic tools is really difficult. If you use `IntelliJ IDEA` or `Eclipse` or `NetBeans` and build the project with `Maven` or `Gradle`, it can be easier. For me testing the GUI with seeing and clicking is reliable enough. You have to be very conscious of what are you doing. Moreover, programming GUI with bare coding need a lot of patience and discipline. I call this way of doing *mindful programming*. New developers may try to build the project with modern tools. I just love the plain-and-simple way.
 
 ## Useful links

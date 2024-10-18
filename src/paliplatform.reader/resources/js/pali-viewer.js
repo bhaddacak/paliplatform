@@ -44,7 +44,6 @@ function createTextNodeList() {
 	// the textNodeList is used for script transformation;
 	// create only three levels of elements and bare text node
 	textNodeList = [];
-	//const allNodes = document.body.getElementsByTagName("P");
 	const allNodes = document.body.childNodes;
 	for(let i=0; i<allNodes.length; i++) {
 		const node_i = allNodes[i];
@@ -79,7 +78,6 @@ function toNonRoman(lang, alsoNumber, useThAlt, useTallA) {
 		useAltThai();
 	useMyanmarA(useTallA);
 	const workingBody = romanBody.cloneNode(true);
-	//const allNodes = workingBody.getElementsByTagName("P");
 	const allNodes = workingBody.childNodes;
 	for(const arr of textNodeList) {
 		const node = arr[1]<0 ? allNodes[arr[0]] :
@@ -127,11 +125,3 @@ function setThemeBW(theme, isBW) {
 function setLineHeight(percent) {
 	document.body.style.lineHeight = percent;
 }
-/*
-document.addEventListener("DOMContentLoaded", e => {
-	document.body.addEventListener("copy", event => {
-		console.log(window.getSelection().toString());
-		//~ console.log(event.target.textContent);
-	});
-});
-*/

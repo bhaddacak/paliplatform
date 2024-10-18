@@ -17,12 +17,6 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-/*
-function cstrInit() {
-	document.body.style.whiteSpace = "pre-wrap";
-}
-*/
-
 function jumpTo(point) {
 	const elm = document.getElementById('jumptarget-'+point);
 	if(elm !== null)

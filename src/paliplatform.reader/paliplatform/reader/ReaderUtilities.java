@@ -688,7 +688,7 @@ final public class ReaderUtilities {
 				if (stg == null) {
 					final ScReader reader = new ScReader(docId); 
 					stg = Utilities.openNewWindow(reader,
-							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/sc.png")), "SuttaCentral Reader");
+							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/sc.png")), "SuttaCentral Text Reader");
 					reader.setStage(stg);
 				} else {
 					final ScReader reader = (ScReader)stg.getScene().getRoot();

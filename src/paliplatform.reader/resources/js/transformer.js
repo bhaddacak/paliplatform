@@ -66,15 +66,16 @@ const khmerConsonants = [
 // Myanmar set
 const myanmarTallA = '\u{102B}';
 const myanmarShortA = '\u{102C}';
+let useMyanmarTallA = false;
 const myanmarVowelsInd = [ '\u{1021}', '\u{102C}', '\u{1023}', '\u{1024}', '\u{1025}', '\u{1026}', '\u{1027}', '\u{1029}' ];
-const myanmarVowelsDep = [ '\u{1021}', myanmarTallA, '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', '\u{1031}', '\u{1031}' ];
+const myanmarVowelsDep = [ '\u{1021}', myanmarShortA, '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', '\u{1031}', '\u{1031}' ];
 const myanmarNumbers = [ '\u{1040}', '\u{1041}', '\u{1042}', '\u{1043}', '\u{1044}', '\u{1045}', '\u{1046}', '\u{1047}', '\u{1048}', '\u{1049}' ];
 const myanmarPeriod = '\u{104B}';
 const myanmarVirama = '\u{1039}';
 const myanmarAsat = '\u{103A}';
 const myanmarConsonants = [
 	'\u{1000}', '\u{1001}', '\u{1002}', '\u{1003}', '\u{1004}',
-	'\u{1005}', '\u{1006}', '\u{1007}', '\u{1008}', '\u{100A}',
+	'\u{1005}', '\u{1006}', '\u{1007}', '\u{1008}', '\u{1009}',
 	'\u{100B}', '\u{100C}', '\u{100D}', '\u{100E}', '\u{100F}',
 	'\u{1010}', '\u{1011}', '\u{1012}', '\u{1013}', '\u{1014}',
 	'\u{1015}', '\u{1016}', '\u{1017}', '\u{1018}', '\u{1019}',
@@ -84,8 +85,30 @@ const myanmarToMedialMap = {
 	'\u{101B}': '\u{103C}',
 	'\u{101D}': '\u{103D}',
 	'\u{101F}': '\u{103E}' };
+const myanmarNya = '\u{1009}';
+const myanmarNnya = '\u{100A}';
 const myanmarSa = '\u{101E}';
 const myanmarGreatSa = '\u{103F}';
+const myanmarTallASet = [
+	'\u{1001}' + myanmarShortA,
+	'\u{1002}' + myanmarShortA,
+	'\u{1004}' + myanmarShortA,
+	'\u{1012}' + myanmarShortA,
+	'\u{1015}' + myanmarShortA,
+	'\u{101D}' + myanmarShortA,
+	'\u{1004}' + myanmarVirama + '\u{1001}' + myanmarShortA,
+	'\u{1004}' + myanmarVirama + '\u{1002}' + myanmarShortA,
+	'\u{1004}' + myanmarVirama + '\u{1004}' + myanmarShortA,
+	'\u{1012}' + myanmarVirama + '\u{1012}' + myanmarShortA,
+	'\u{1012}' + myanmarVirama + '\u{1013}' + myanmarShortA,
+	'\u{1012}' + myanmarVirama + '\u{1019}' + myanmarShortA,
+	'\u{1012}' + myanmarVirama + '\u{101D}' + myanmarShortA ];
+const myanmarShortASet = [
+	'\u{1000}' + myanmarVirama + '\u{1001}' + myanmarTallA,
+	'\u{1002}' + myanmarVirama + '\u{1002}' + myanmarTallA,
+	'\u{1015}' + myanmarVirama + '\u{1015}' + myanmarTallA,
+	'\u{1019}' + myanmarVirama + '\u{1015}' + myanmarTallA,
+	myanmarVirama + '\u{101D}' + myanmarTallA ];
 // Sinhala set
 const sinhalaVowelsInd = [ '\u{0D85}', '\u{0D86}', '\u{0D89}', '\u{0D8A}', '\u{0D8B}', '\u{0D8C}', '\u{0D91}', '\u{0D94}' ];
 const sinhalaVowelsDep = [ '\u{0D85}', '\u{0DCF}', '\u{0DD2}', '\u{0DD3}', '\u{0DD4}', '\u{0DD6}', '\u{0DD9}', '\u{0DDC}' ];
@@ -115,7 +138,7 @@ const devaConsonants = [
 
 // functions
 function useMyanmarA(isTall) {
-	myanmarVowelsDep[1] = isTall ? myanmarTallA : myanmarShortA;
+	useMyanmarTallA = isTall;
 }
 function useAltThai() {
 	// the replacement of 0E0D (Yo-ying) and 0E10 (Tho-than)
@@ -199,7 +222,6 @@ function romanToThai(input, alsoNumber) {
 					if(rch === 'e' || rch === 'o') {
 						// insert it before the last character
 						output = output.substring(0, output.length-1) + tch + output.substring(output.length-1);
-						//~ output.insert(output.length-1, tch);
 					} else if(rch != 'a') {
 						output += tch;
 					}
@@ -389,9 +411,37 @@ function romanToMyanmar(input, alsoNumber) {
 				} else {
 					// dependent vowels are used
 					if(rch != 'a') {
-						output += myanmarVowelsDep[vindex];
-						if(rch === 'o')
-							output += myanmarVowelsDep[1];
+						if(rch === 'e' || rch === 'o') {
+							// transposition is needed
+							let insInd = 0;
+							if(index >= 1) {
+								const lastCh = input[index-1];
+								if(lastCh == 'h') {
+									if(index >= 2) {
+										insInd = romanWithHChars.indexOf(input[index-2]) >= 0
+												? index >= 3 && romanConsonants.indexOf(input[index-3]) >= 0
+													? 3 // double consonants plus virama
+													: 1 // single character with h
+												: romanConsonants.indexOf(input[index-2]) >= 0
+													? 3 // double consonants plus virama
+													: 1; // single consonant
+									} else {
+										insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+												? 3 // double consonants plus virama
+												: 1; // single consonant
+									}
+								} else {
+									insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+												? 3 // double consonants plus virama
+												: 1; // single consonant
+								}
+							}
+							output = output.substring(0, output.length-insInd) + myanmarVowelsDep[vindex] + output.substring(output.length-insInd);
+							if(rch === 'o')
+								output += myanmarVowelsDep[1];
+						} else {
+							output += myanmarVowelsDep[vindex];
+						}
 					}
 				}
 			}
@@ -420,12 +470,35 @@ function romanToMyanmar(input, alsoNumber) {
 		}
 		vindex = -1;
 	} // end for loop of each input character
-	return myanmarToMedialReplace(output);
+	return toMyanmarProcess(output);
 }
-function myanmarToMedialReplace(input) {
+function processMyanmarA(input){
+	let output = input;
+	if (useMyanmarTallA) {
+		// all tall
+		const shortARe = new RegExp(myanmarShortA, 'g');
+		output = output.replace(shortARe, myanmarTallA);
+	} else {
+		// change to tall ā
+		for (const chs of myanmarTallASet) {
+			const shortARe = new RegExp(chs, 'g');
+			output = output.replace(shortARe, chs.slice(0, -1) + myanmarTallA);
+		}
+		// fix some back to short ā
+		for (const chs of myanmarShortASet) {
+			const tallARe = new RegExp(chs, 'g');
+			output = output.replace(tallARe, chs.slice(0, -1) + myanmarShortA);
+		}
+	}
+	return output;
+}
+function toMyanmarProcess(input) {
 	if (input === undefined) return '';
+	let output = processMyanmarA(input);
+	const nynyRe = new RegExp(myanmarNya + myanmarVirama + myanmarNya, 'g');
+	output = output.replace(nynyRe, myanmarNnya);
 	const sRe = new RegExp(myanmarSa + myanmarVirama + myanmarSa, 'g');
-	let output = input.replace(sRe, myanmarGreatSa);
+	output = output.replace(sRe, myanmarGreatSa);
 	for (const key in myanmarToMedialMap) {
 		let mRe = new RegExp(myanmarVirama + key, 'g');
 		output = output.replace(mRe, myanmarToMedialMap[key]);

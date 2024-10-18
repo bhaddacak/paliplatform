@@ -80,7 +80,6 @@ public class BatchScriptTransformer extends SingletonWindow {
 		cbAutodetect.setAllowIndeterminate(false);
 		cbAutodetect.setTooltip(new Tooltip("Auto-detect input script"));
 		cbAutodetect.setSelected(true);
-		cbAutodetect.setOnAction(actionEvent -> toggleAutodetect());
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_CENTER, true));
 		commonToolBar.getItems().addAll(cbAutodetect, helpButton);
@@ -103,7 +102,7 @@ public class BatchScriptTransformer extends SingletonWindow {
 		final MenuButton sourceScriptMenu = new MenuButton("Input script");
 		sourceScriptMenu.disableProperty().bind(cbAutodetect.selectedProperty());
 		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
-			if (sc.ordinal() == 0) continue;
+			if (sc.ordinal() == 0 || sc.ordinal() == 4) continue; // skip Unknown and Myanmar
 			final String sname = sc.toString();
 			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
 			mitem.setOnAction(actionEvent -> setSourceScript(sc));
@@ -232,9 +231,6 @@ public class BatchScriptTransformer extends SingletonWindow {
 		workingList.forEach(st -> st.setDone(false));
 	}
 
-	private void toggleAutodetect() {
-	}
-	
 	private void startConvert() {
 		workingList.forEach(st -> st.convert());
 	}
@@ -404,9 +400,6 @@ public class BatchScriptTransformer extends SingletonWindow {
 									break;
 								case KHMER:
 									tgtText = PaliCharTransformer.khmerToRoman(srcText);
-									break;
-								case MYANMAR:
-									tgtText = PaliCharTransformer.myanmarToRoman(srcText);
 									break;
 								case SINHALA:
 									tgtText = PaliCharTransformer.sinhalaToRoman(srcText);

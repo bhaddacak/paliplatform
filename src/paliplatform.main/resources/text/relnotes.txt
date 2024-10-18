@@ -1,7 +1,7 @@
 ╭────────╮
 │ Thanks │
 ╰────────╯
-⊚ Antonio Costanzo for investigating the Pāli script transliteration
+⊚ Antonio Costanzo for investigating the Pāli script transliteration and uncovering several bugs
 
 ╭─────────╮
 │ Credits │

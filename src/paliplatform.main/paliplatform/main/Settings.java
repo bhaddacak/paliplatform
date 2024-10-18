@@ -101,10 +101,14 @@ class Settings extends SingletonWindow {
 		final RadioButton raUnusedChars = new RadioButton("Unused chars");
 		final RadioButton raCompChars = new RadioButton("Composite chars");
 		final RadioButton raNormal = new RadioButton("Normal");
+		final Map<String, Toggle> textInputMap = Map.of(
+				PaliTextInput.InputMethod.UNUSED_CHARS.toString(), raUnusedChars,
+				PaliTextInput.InputMethod.COMPOSITE.toString(), raCompChars,
+				PaliTextInput.InputMethod.NORMAL.toString(), raNormal);
 		raUnusedChars.setToggleGroup(defMethodGroup);
 		raCompChars.setToggleGroup(defMethodGroup);
 		raNormal.setToggleGroup(defMethodGroup);
-		raUnusedChars.setSelected(PaliTextInput.InputMethod.valueOf(Utilities.settings.getProperty("pali-input-method"))==PaliTextInput.InputMethod.UNUSED_CHARS);
+		defMethodGroup.selectToggle(textInputMap.get(Utilities.settings.getProperty("pali-input-method")));
 		raUnusedChars.setOnAction(actionEvent -> {
 			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
 			MainProperties.INSTANCE.saveSettings();

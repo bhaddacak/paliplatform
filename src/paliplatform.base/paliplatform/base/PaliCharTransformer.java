@@ -88,16 +88,17 @@ public class PaliCharTransformer {
 	// Myanmar set
 	private static final char myanmarTallA = '\u102B';
 	private static final char myanmarShortA = '\u102C';
-	private static char myanmarA = myanmarTallA;
+	private static boolean useMyanmarTallA = false;
+//~ 	private static char myanmarA = myanmarTallA;
 	public static final char[] myanmarVowelsInd = { '\u1021', myanmarShortA, '\u1023', '\u1024', '\u1025', '\u1026', '\u1027', '\u1029' };
-	private static final char[] myanmarVowelsDep = { '\u1021', myanmarA, '\u102D', '\u102E', '\u102F', '\u1030', '\u1031', '\u1031' };
+	private static final char[] myanmarVowelsDep = { '\u1021', myanmarShortA, '\u102D', '\u102E', '\u102F', '\u1030', '\u1031', '\u1031' };
 	public static final char[] myanmarNumbers = { '\u1040', '\u1041', '\u1042', '\u1043', '\u1044', '\u1045', '\u1046', '\u1047', '\u1048', '\u1049' };
 	private static final char myanmarPeriod = '\u104B';
 	private static final char myanmarVirama = '\u1039';
 	private static final char myanmarAsat = '\u103A';
 	public static final char[] myanmarConsonants = {
 		'\u1000', '\u1001', '\u1002', '\u1003', '\u1004',
-		'\u1005', '\u1006', '\u1007', '\u1008', '\u100A',
+		'\u1005', '\u1006', '\u1007', '\u1008', '\u1009',
 		'\u100B', '\u100C', '\u100D', '\u100E', '\u100F',
 		'\u1010', '\u1011', '\u1012', '\u1013', '\u1014',
 		'\u1015', '\u1016', '\u1017', '\u1018', '\u1019',
@@ -113,8 +114,32 @@ public class PaliCharTransformer {
 			'\u103C', "" + myanmarVirama + '\u101B', 
 			'\u103D', "" + myanmarVirama + '\u101D', 
 			'\u103E', "" + myanmarVirama + '\u101F' );
+	private static final char myanmarNya = '\u1009';
+	private static final char myanmarNnya = '\u100A';
 	private static final char myanmarSa = '\u101E';
 	private static final char myanmarGreatSa = '\u103F';
+	private static final Set<String> myanmarTallASet = Set.of(
+			"" + '\u1001' + myanmarShortA, // kh
+			"" + '\u1002' + myanmarShortA, // g
+			"" + '\u1004' + myanmarShortA, // ṅ
+			"" + '\u1012' + myanmarShortA, // d
+			"" + '\u1015' + myanmarShortA, // p
+			"" + '\u101D' + myanmarShortA, // v
+			"" + '\u1004' + myanmarVirama + '\u1001' + myanmarShortA, // ṅkh
+			"" + '\u1004' + myanmarVirama + '\u1002' + myanmarShortA, // ṅg
+			"" + '\u1004' + myanmarVirama + '\u1004' + myanmarShortA, // ṅṅ
+			"" + '\u1012' + myanmarVirama + '\u1012' + myanmarShortA, // dd
+			"" + '\u1012' + myanmarVirama + '\u1013' + myanmarShortA, // ddh
+			"" + '\u1012' + myanmarVirama + '\u1019' + myanmarShortA, // dm
+			"" + '\u1012' + myanmarVirama + '\u101D' + myanmarShortA // dv
+			);
+	private static final Set<String> myanmarShortASet = Set.of(
+			"" + '\u1000' + myanmarVirama + '\u1001' + myanmarTallA, // kkh
+			"" + '\u1002' + myanmarVirama + '\u1002' + myanmarTallA, // gg
+			"" + '\u1015' + myanmarVirama + '\u1015' + myanmarTallA, // pp
+			"" + '\u1019' + myanmarVirama + '\u1015' + myanmarTallA, // mp
+			"" + myanmarVirama + '\u101D' + myanmarTallA // xv
+			);
 	// Sinhala set
 	public static final char[] sinhalaVowelsInd = { '\u0D85', '\u0D86', '\u0D89', '\u0D8A', '\u0D8B', '\u0D8C', '\u0D91', '\u0D94' };
 	private static final char[] sinhalaVowelsDep = { '\u0D85', '\u0DCF', '\u0DD2', '\u0DD3', '\u0DD4', '\u0DD6', '\u0DD9', '\u0DDC' };
@@ -169,8 +194,9 @@ public class PaliCharTransformer {
 	 * Sets up initial condition before Myanmar transformation is performed.
 	 */
 	public static void setUsingMyanmarTallA(final boolean useTall) {
-		myanmarA = useTall ? myanmarTallA : myanmarShortA;
-		myanmarVowelsDep[1] = myanmarA;
+		useMyanmarTallA = useTall;
+//~ 		myanmarA = useTall ? myanmarTallA : myanmarShortA;
+//~ 		myanmarVowelsDep[1] = myanmarA;
 	}
 	
 	public static void setIncludingNumbers(final boolean yn) {
@@ -351,7 +377,7 @@ public class PaliCharTransformer {
 				// 'e' and 'o', consider the next letter, (transposition is needed)
 				if (index < input.length-1) {
 					if (input[index+1] == '\u0E2D') {
-						// followed bt 'a', skip one char
+						// followed by 'a', skip one char
 						skipFlag = true;
 						output.append(rch);
 					} else {
@@ -583,7 +609,7 @@ public class PaliCharTransformer {
 		char mch;
 		int vindex = -1; // for vowels
 		boolean skipFlag = false;
-		for (int index = 0; index<input.length; index++) {
+		for (int index = 0; index < input.length; index++) {
 			if (skipFlag) {
 				skipFlag = false;
 				continue;
@@ -636,9 +662,37 @@ public class PaliCharTransformer {
 					} else {
 						// dependent vowels are used
 						if (rch != 'a') {
-							output.append(myanmarVowelsDep[vindex]);
-							if (rch == 'o')
-								output.append(myanmarVowelsDep[1]);
+							if (rch == 'e' || rch == 'o') {
+								// transposition is needed
+								int insInd = 0;
+								if (index >= 1) {
+									final char lastCh = input[index-1];
+									if (lastCh == 'h') {
+										if (index >= 2) {
+											insInd = romanWithHChars.indexOf(input[index-2]) >= 0
+													? index >= 3 && romanConsonants.indexOf(input[index-3]) >= 0
+														? 3 // double consonants plus virama
+														: 1 // single character with h
+													: romanConsonants.indexOf(input[index-2]) >= 0
+														? 3 // double consonants plus virama
+														: 1; // single consonant
+										} else {
+											insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+													? 3 // double consonants plus virama
+													: 1; // single consonant
+										}
+									} else {
+										insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+													? 3 // double consonants plus virama
+													: 1; // single consonant
+									}
+								}
+								output.insert(output.length() - insInd, myanmarVowelsDep[vindex]);
+								if (rch == 'o')
+									output.append(myanmarVowelsDep[1]);
+							} else {
+								output.append(myanmarVowelsDep[vindex]);
+							}
 						}
 					}
 				}
@@ -667,121 +721,38 @@ public class PaliCharTransformer {
 			}
 			vindex = -1;
 		} // end for loop of each input character
-		return myanmarToMedialReplace(output.toString());
+		return toMyanmarProcess(output.toString());
 	}
 
-	private static String myanmarToMedialReplace(final String input) {
-		String result;
+	private static String processMyanmarA(final String input) {
+		String result = input;
+		if (useMyanmarTallA) {
+			// all tall
+			result = result.replace("" + myanmarShortA, "" + myanmarTallA);
+		} else {
+			// change to tall ā
+			for (final String chs : myanmarTallASet) {
+				result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarTallA);
+			}
+			// fix some back to short
+			for (final String chs : myanmarShortASet) {
+				result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarShortA);
+			}
+		}
+		return result;
+	}
+
+	private static String toMyanmarProcess(final String input) {
+		String result = processMyanmarA(input);
+		final String doubleNya = "" + myanmarNya + myanmarVirama + myanmarNya;
+		result = result.replace(doubleNya, "" + myanmarNnya);
 		final String doubleSa = "" + myanmarSa + myanmarVirama + myanmarSa;
-		result = input.replace(doubleSa, "" + myanmarGreatSa);
+		result = result.replace(doubleSa, "" + myanmarGreatSa);
 		for (final char ch : myanmarToMedialMap.keySet()) {
 			final String medCh = "" + myanmarVirama + ch;
 			result = result.replace(medCh, "" + myanmarToMedialMap.get(ch));
 		}
 		return result;
-	}
-	
-	private static String myanmarFromMedialReplace(final String input) {
-		String result;
-		final String doubleSa = "" + myanmarSa + myanmarVirama + myanmarSa;
-		result = input.replace("" + myanmarGreatSa, doubleSa);
-		for (final char medCh : myanmarFromMedialMap.keySet()) {
-			result = result.replace("" + medCh, myanmarFromMedialMap.get(medCh));
-		}
-		return result;
-	}
-	
-	public static String myanmarToRoman(final String str) {
-		final StringBuilder output = new StringBuilder();
-		char[] input = myanmarFromMedialReplace(str.toLowerCase()).toCharArray();
-		// generate hash maps to ease the replacements
-		final Map<Character, Character> indVowelMap = new HashMap<>();
-		final Map<Character, Character> depVowelMap = new HashMap<>();
-		for (int i=0; i<myanmarVowelsInd.length; i++)
-			indVowelMap.put(myanmarVowelsInd[i], romanVowels.charAt(i));
-		for (int i=0; i<myanmarVowelsDep.length; i++)
-			depVowelMap.put(myanmarVowelsDep[i], romanVowels.charAt(i));
-		final Map<Character, String> consonantMap = new HashMap<>();
-		for (int i=0; i<myanmarConsonants.length; i++)
-			consonantMap.put(myanmarConsonants[i], romanConsonantsStr[i]);
-		String rch;
-		char mch;
-		int ind; // general purpose index
-		boolean skipFlag = false;
-		for (int index = 0; index<input.length; index++) {
-			if (skipFlag) {
-				skipFlag = false;
-				continue;
-			}
-			mch = input[index];
-			rch = Character.toString(mch); // in case of non-character
-			// 1. find Roman representation
-			if ((ind = Arrays.binarySearch(myanmarNumbers, mch)) >= 0) {
-				// numbers
-				rch = Character.toString(romanNumbers[ind]);
-			} else if (mch == myanmarPeriod) {
-				// period
-				rch = ".";
-			} else if (mch == '\u1023' || mch == '\u1024' || mch == '\u1025' ||
-					  mch == '\u1026' || mch == '\u1027' || mch == '\u1029') {
-				// independent vowel i, ī, u, ū, e, o
-				rch = Character.toString(indVowelMap.get(mch));
-			} else if (mch == '\u1021'){
-				// independent vowel a 
-				if (index < input.length-1) {
-					if (input[index+1] == '\u102C') {
-						// if it is ā
-						rch = Character.toString(indVowelMap.get(input[index+1]));
-						skipFlag = true;
-					} else {
-						rch = "a";
-					}
-				} else {
-					rch = "a";
-				}
-			} else if (mch == '\u1031') {
-				// dependent 'e' (and 'o')
-				if (index < input.length-1) {
-					if (input[index+1] == myanmarA){ 
-						// if is it 'o'
-						rch = "o";
-						skipFlag = true;
-					} else {
-						rch = "e";
-					}
-				} else {
-					rch = "e";
-				}
-			} else if (mch == myanmarA || mch == '\u102D' || mch == '\u102E' ||
-					  mch == '\u102F' || mch == '\u1030') {
-				// other dependent vowels
-				rch = Character.toString(depVowelMap.get(mch));
-			} else {
-				// consonants
-				rch = consonantMap.get(mch);
-				if (rch == null)
-					rch = Character.toString(mch);
-			}
-			// 2. consider how to put it
-			output.append(rch);
-			if (index < input.length-1) {
-				if (input[index+1] == myanmarVirama || input[index+1] == myanmarAsat) {
-					// skip Virama
-					skipFlag = true;
-				} else if (consonantMap.get(mch) != null && mch != '\u1036' && input[index+1] != myanmarA &&
-							input[index+1] != '\u102D' && input[index+1] != '\u102E' &&
-							input[index+1] != '\u102F' && input[index+1] != '\u1030' &&
-							input[index+1] != '\u1031') {
-					// double myanmar consonants, 'a' is added (not niggahita, not followed by vowels)
-					output.append('a');
-				}
-			} else {
-				// if the last char is a consonant, not a niggahita, add 'a'
-				if (consonantMap.get(mch) != null && mch != '\u1036')
-					output.append('a');
-			}
-		} // end for	
-		return output.toString();
 	}
 	
 	public static String romanToSinhala(final String str) {

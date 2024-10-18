@@ -92,9 +92,10 @@ public class MainProperties {
 			settings.setProperty("height", "" + DEFAULT_HEIGHT);
 			settings.setProperty("theme", "LIGHT");
 			settings.setProperty("exit-ask", "true");
+			settings.setProperty("editor-close-ask", "true");
 			settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
 			settings.setProperty("thai-alt-chars", "false");
-			settings.setProperty("myanmar-tall-aa", "true");
+			settings.setProperty("myanmar-tall-aa", "false");
 			settings.setProperty("dictset", "CPED,");
 			settings.setProperty("dpd-decon-count", "750000");
 			settings.setProperty("dpd-dict-count", "400000");
