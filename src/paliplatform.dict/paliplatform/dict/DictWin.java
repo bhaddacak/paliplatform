@@ -501,7 +501,7 @@ public class DictWin extends BorderPane {
 	}
 
 	public void setViewerFont(final String fontname) {
-		htmlViewer.webEngine.executeScript("setFont('" + fontname + "')");
+		htmlViewer.webEngine.executeScript("setFont('[\"" + fontname + "\"]')");
 	}
 
 	private void copyText() {

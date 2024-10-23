@@ -32,9 +32,9 @@ import javafx.scene.Node;
  * @since 2.0
  */
 class ViewerToolBar extends CommonWorkingToolBar {
-	ViewerToolBar(final Node node, final WebView webView) {
-		super(node);
-		final PaliHtmlViewerBase viewer = (PaliHtmlViewerBase)node;
+	ViewerToolBar(final WebView webView, final Node... nodes) {
+		super(nodes);
+		final PaliHtmlViewerBase viewer = (PaliHtmlViewerBase)nodes[0];
 		darkButton.setOnAction(actionEvent -> {
 			final Utilities.Theme theme = resetTheme();
 			viewer.setViewerTheme(theme.toString());

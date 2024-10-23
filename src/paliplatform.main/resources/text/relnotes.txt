@@ -20,6 +20,8 @@
 ⊚ XZ for Java (https://tukaani.org/xz/java.html), BSD Zero Clause License (0BSD) 
 ⊚ Icon images by Font Awesome 6 (https://fontawesome.com), Font Awesome Free License
 ⊚ DejaVu fonts 2.37 (https://dejavu-fonts.github.io/)
+⊚ Noto fonts (https://github.com/notofonts/noto-fonts), SIL Open Font License 1.1
+  - Noto Sans Myanmar 2.001 (modified)
 ⊚ The JDK used is Amazon Corretto 11.0.24.8.1 (build 11.0.24+8-LTS) for Linux (i686), https://aws.amazon.com/corretto
 ⊚ JavaFX GUI toolkit (https://gluonhq.com/products/javafx), GPL 2.0
 ⊚ Apache Ant 1.10.15 (https://ant.apache.org/), Apache License 2.0 
@@ -38,6 +40,11 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2024, Oct 23
+⊚ Pāli Platform 3.0 beta2 is released
+⊚ Improvements on Myanmar script transformation
+⊚ Several minor fixes
+
 2024, Oct 16
 ⊚ Pāli Platform 3.0 beta1 is released
 ⊚ Improvements on Pāli script transformation

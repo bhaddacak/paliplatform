@@ -23,6 +23,9 @@ const romanVowelsForDeva = "aāiīuūeēoō";
 const romanConsonants = "kgṅcjñṭḍṇtdnpbmyrlvshḷśṣṛṝḹ";
 const romanWithHChars = "bcdgjkptḍṭ";
 const romanNumbers = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
+const romanBar = "|";
+const romanDoubleBar = '\u{2016}';
+const romanAbbrSign = '\u{2024}';
 const romanConsonantsChr = [
 	'k', 'x', 'g', 'x', 'ṅ',
 	'c', 'x', 'j', 'x', 'ñ',
@@ -42,6 +45,7 @@ const thaiVowels = [ '\u{0E2D}', '\u{0E32}', '\u{0E34}', '\u{0E35}', '\u{0E38}',
 const thaiNumbers = [ '\u{0E50}', '\u{0E51}', '\u{0E52}', '\u{0E53}', '\u{0E54}', '\u{0E55}', '\u{0E56}', '\u{0E57}', '\u{0E58}', '\u{0E59}' ];
 const thaiBindu = '\u{0E3A}';
 const thaiPeriod = '\u{0E2F}';
+const thaiDoublePeriod = '\u{0E5A}';
 const thaiConsonants = [
 	'\u{0E01}', '\u{0E02}', '\u{0E04}', '\u{0E06}', '\u{0E07}',
 	'\u{0E08}', '\u{0E09}', '\u{0E0A}', '\u{0E0C}', '\u{0E0D}',
@@ -53,9 +57,10 @@ const thaiConsonants = [
 const khmerVowelsInd = [ '\u{17A2}', '\u{17B6}', '\u{17A5}', '\u{17A6}', '\u{17A7}', '\u{17A9}', '\u{17AF}', '\u{17B1}' ];
 const khmerVowelsDep = [ '\u{17A2}', '\u{17B6}', '\u{17B7}', '\u{17B8}', '\u{17BB}', '\u{17BC}', '\u{17C1}', '\u{17C4}' ];
 const khmerNumbers = [ '\u{17E0}', '\u{17E1}', '\u{17E2}', '\u{17E3}', '\u{17E4}', '\u{17E5}', '\u{17E6}', '\u{17E7}', '\u{17E8}', '\u{17E9}' ];
-const khmerPeriod = '\u{17D4}';
 const khmerKiller = '\u{17D1}';
 const khmerCoeng = '\u{17D2}';
+const khmerPeriod = '\u{17D4}';
+const khmerDoublePeriod = '\u{17D5}';
 const khmerConsonants = [
 	'\u{1780}', '\u{1781}', '\u{1782}', '\u{1783}', '\u{1784}',
 	'\u{1785}', '\u{1786}', '\u{1787}', '\u{1788}', '\u{1789}',
@@ -66,13 +71,15 @@ const khmerConsonants = [
 // Myanmar set
 const myanmarTallA = '\u{102B}';
 const myanmarShortA = '\u{102C}';
-let useMyanmarTallA = false;
+const myanmarSpecialE = '\u{102A}';
+//const myanmarDepE = '\u{1031}'; thsi causes problem, not used
 const myanmarVowelsInd = [ '\u{1021}', '\u{102C}', '\u{1023}', '\u{1024}', '\u{1025}', '\u{1026}', '\u{1027}', '\u{1029}' ];
-const myanmarVowelsDep = [ '\u{1021}', myanmarShortA, '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', '\u{1031}', '\u{1031}' ];
+const myanmarVowelsDep = [ '\u{1021}', myanmarShortA, '\u{102D}', '\u{102E}', '\u{102F}', '\u{1030}', myanmarSpecialE, myanmarSpecialE ];
 const myanmarNumbers = [ '\u{1040}', '\u{1041}', '\u{1042}', '\u{1043}', '\u{1044}', '\u{1045}', '\u{1046}', '\u{1047}', '\u{1048}', '\u{1049}' ];
-const myanmarPeriod = '\u{104B}';
 const myanmarVirama = '\u{1039}';
 const myanmarAsat = '\u{103A}';
+const myanmarPeriod = '\u{104A}';
+const myanmarDoublePeriod = '\u{104B}';
 const myanmarConsonants = [
 	'\u{1000}', '\u{1001}', '\u{1002}', '\u{1003}', '\u{1004}',
 	'\u{1005}', '\u{1006}', '\u{1007}', '\u{1008}', '\u{1009}',
@@ -137,9 +144,6 @@ const devaConsonants = [
 	'\u{092F}', '\u{0930}', '\u{0932}', '\u{0935}', '\u{0938}', '\u{0939}', '\u{0933}', '\u{0902}' ];
 
 // functions
-function useMyanmarA(isTall) {
-	useMyanmarTallA = isTall;
-}
 function useAltThai() {
 	// the replacement of 0E0D (Yo-ying) and 0E10 (Tho-than)
 	const altPaliThaiChars = [ '\u{F70F}', '\u{F700}'];
@@ -167,6 +171,12 @@ function romanToThai(input, alsoNumber) {
 		} else if(rch === '.') {
 			// period is hard to differentiate from a normal dot, so retain as dot;
 			tch = '.';
+		} else if (rch === romanBar) {
+			// single bar is changed to single danda
+			tch = thaiPeriod;
+		} else if (rch === romanDoubleBar) {
+			// double bar is changed to double danda
+			tch = thaiDoublePeriod;
 		} else if(rch === 'x') {
 			// reserved character
 			tch = rch;
@@ -275,6 +285,12 @@ function romanToKhmer(input, alsoNumber) {
 		} else if(rch === '.') {
 			// period is retained as dot
 			kch = '.';
+		} else if (rch === romanBar) {
+			// single bar is changed to single danda
+			kch = khmerPeriod;
+		} else if (rch === romanDoubleBar) {
+			// double bar is changed to double danda
+			kch = khmerDoublePeriod;
 		} else if(rch === 'x') {
 			// reserved character
 			kch = rch;
@@ -373,6 +389,12 @@ function romanToMyanmar(input, alsoNumber) {
 		} else if(rch === '.') {
 			// period is retained as dot
 			mch = '.';
+		} else if (rch === romanBar) {
+			// single bar is changed to single danda
+			mch = myanmarPeriod;
+		} else if (rch === romanDoubleBar) {
+			// double bar is changed to double danda
+			mch = myanmarDoublePeriod;
 		} else if(rch === 'x') {
 			// reserved character
 			mch = rch;
@@ -474,21 +496,15 @@ function romanToMyanmar(input, alsoNumber) {
 }
 function processMyanmarA(input){
 	let output = input;
-	if (useMyanmarTallA) {
-		// all tall
-		const shortARe = new RegExp(myanmarShortA, 'g');
-		output = output.replace(shortARe, myanmarTallA);
-	} else {
-		// change to tall ā
-		for (const chs of myanmarTallASet) {
-			const shortARe = new RegExp(chs, 'g');
-			output = output.replace(shortARe, chs.slice(0, -1) + myanmarTallA);
-		}
-		// fix some back to short ā
-		for (const chs of myanmarShortASet) {
-			const tallARe = new RegExp(chs, 'g');
-			output = output.replace(tallARe, chs.slice(0, -1) + myanmarShortA);
-		}
+	// change to tall ā
+	for (const chs of myanmarTallASet) {
+		const shortARe = new RegExp(chs, 'g');
+		output = output.replace(shortARe, chs.slice(0, -1) + myanmarTallA);
+	}
+	// fix some back to short ā
+	for (const chs of myanmarShortASet) {
+		const tallARe = new RegExp(chs, 'g');
+		output = output.replace(tallARe, chs.slice(0, -1) + myanmarShortA);
 	}
 	return output;
 }
@@ -605,13 +621,13 @@ function romanToDevanagari(input, alsoNumber) {
 		} else if(rch === '.') {
 			// period is retained as dot
 			dch = '.';
-		} else if(rch === '|') {
+		} else if(rch === romanBar) {
 			// single bar is changed to single danda
 			dch = devaPeriod;
-		} else if(rch === '\u{2016}') {
+		} else if(rch === romanDoubleBar) {
 			// double bar is changed to double danda
 			dch = devaDoublePeriod;
-		} else if(rch === '\u{2024}') {
+		} else if(rch === romanAbbrSign) {
 			// one dot leader is changed to abbreviation sign
 			dch = devaAbbrev;
 		} else if(rch === 'x') {

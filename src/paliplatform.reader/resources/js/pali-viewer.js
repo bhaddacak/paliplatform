@@ -73,26 +73,26 @@ function toRoman() {
 	document.body = workingBody;
 	addMouseListener();
 }
-function toNonRoman(lang, alsoNumber, useThAlt, useTallA) {
+function toNonRoman(lang, alsoNumber, useThAlt, isLinux) {
 	if(useThAlt)
 		useAltThai();
-	useMyanmarA(useTallA);
 	const workingBody = romanBody.cloneNode(true);
 	const allNodes = workingBody.childNodes;
 	for(const arr of textNodeList) {
 		const node = arr[1]<0 ? allNodes[arr[0]] :
 					arr[2]<0 ? allNodes[arr[0]].childNodes[arr[1]] :
 					allNodes[arr[0]].childNodes[arr[1]].childNodes[arr[2]];
-		if(lang === "THAI")
+		if(lang === "THAI") {
 			node.textContent = romanToThai(node.textContent.toLowerCase(), alsoNumber);
-		else if(lang === "KHMER")
+		} else if(lang === "KHMER") {
 			node.textContent = romanToKhmer(node.textContent.toLowerCase(), alsoNumber);
-		else if(lang === "MYANMAR")
+		} else if(lang === "MYANMAR") {
 			node.textContent = romanToMyanmar(node.textContent.toLowerCase(), alsoNumber);
-		else if(lang === "SINHALA")
+		} else if(lang === "SINHALA") {
 			node.textContent = romanToSinhala(node.textContent.toLowerCase(), alsoNumber);
-		else if(lang === "DEVANAGARI")		
+		} else if(lang === "DEVANAGARI") {	
 			node.textContent = romanToDevanagari(node.textContent.toLowerCase(), alsoNumber);
+		}
 	}
 	document.body = workingBody;
 }

@@ -42,6 +42,7 @@ public class DictServiceImp implements DictService {
 	@Override
 	public Tab getDictTab() {
 		dictTab = new Tab("Dictionaries");
+		dictTab.disableProperty().bind(DictUtilities.someDictAvailable.not());
 		dictTab.setClosable(false);
 		final TextIcon dictIcon = new TextIcon("book", TextIcon.IconSet.AWESOME);
 		dictTab.setGraphic(dictIcon);

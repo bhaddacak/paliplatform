@@ -115,7 +115,7 @@ public class PaliTextEditor extends BorderPane {
 				event.consume();
 			}
 		});
-		toolBar = new CommonWorkingToolBar(area);
+		toolBar = new CommonWorkingToolBar(area, findInputCombo, replaceInputCombo);
 		if (args[0] instanceof File) {
 			if (args.length > 1)
 				afterSaveCallback = (Runnable)args[1];
@@ -794,7 +794,6 @@ public class PaliTextEditor extends BorderPane {
 				result = PaliCharTransformer.romanToKhmer(inputText);
 				break;
 			case MYANMAR:
-				PaliCharTransformer.setUsingMyanmarTallA(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
 				result = PaliCharTransformer.romanToMyanmar(inputText);
 				break;
 			case SINHALA:

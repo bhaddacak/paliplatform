@@ -8,6 +8,7 @@ module paliplatform.base {
 	requires org.apache.commons.csv;
 	requires org.apache.commons.compress;
 	requires org.tukaani.xz;
+	requires com.h2database;
 	exports paliplatform.base;
 	uses paliplatform.base.SimpleService;
 }

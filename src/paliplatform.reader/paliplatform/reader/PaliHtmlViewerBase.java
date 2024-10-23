@@ -139,7 +139,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			}
 		});		
 		// add main toolbar
-		toolBar = new ViewerToolBar(this, webView);
+		toolBar = new ViewerToolBar(webView, this, findInput);
 		// configure some buttons first
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save selection as text"));
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveSelection());
@@ -236,7 +236,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	
 	public void setViewerFont(final String fontname) {
 		toolBar.setFontMenu(fontname);
-		webEngine.executeScript("setFont('" + fontname + "')");
+		webEngine.executeScript("setFont('[\"" + fontname + "\"]')");
 	}
 
 	public void setViewerFont(final Utilities.PaliScript script) {

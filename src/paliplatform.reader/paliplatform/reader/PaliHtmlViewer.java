@@ -125,8 +125,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 			command = "toRoman()";
 		} else {
 			final boolean useThaiAlt = Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars"));
-			final boolean useMyanmarTallA = Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa"));
-			command = "toNonRoman('" + toScript.toString() + "'," + withNum + "," + (useThaiAlt?1:0) + "," + (useMyanmarTallA?1:0) + ")";
+			final boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
+			command = "toNonRoman('" + toScript.toString() + "'," + withNum + "," + (useThaiAlt?1:0) + "," + (isLinux?1:0) + ")";
 		}
 		if (fromScript == Utilities.PaliScript.ROMAN)
 			webEngine.executeScript("saveRomanBody()");

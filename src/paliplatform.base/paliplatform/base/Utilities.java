@@ -92,6 +92,7 @@ final public class Utilities {
 	public static String FONTSANS = FONT_FALLBACK;
 	public static String FONTMONO = FONT_FALLBACK;
 	public static String FONTMONOBOLD = FONT_FALLBACK;
+	public static String FONTMYAN = FONT_FALLBACK;
 	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹṁṃṅṇṛṝṣṭēō";
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
@@ -266,8 +267,13 @@ final public class Utilities {
 			final String dburl = "jdbc:h2:" + dbdir + db.getName() + ";DB_CLOSE_ON_EXIT=FALSE";
 			result = DriverManager.getConnection(dburl, "sa", "");
 			result.setAutoCommit(true);
-		} catch (IOException | SQLException e) {
+		} catch (IOException e) {
 			System.err.println(e);
+		} catch (SQLException e) {
+			System.err.println(e);
+			// this can protect the running of multiple instances
+			if (e instanceof org.h2.jdbc.JdbcSQLNonTransientConnectionException)
+				Platform.exit();
 		}
 		return result;
 	}
@@ -386,12 +392,17 @@ final public class Utilities {
 		final Font fontMonoBold = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Bold.ttf"), 0);
 		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
+		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "NotoSansMyanmarPP-Regular.ttf"), 0);
+		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
+		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "NotoSansMyanmarPP-Bold.ttf"), 0);
 		if (fontSans != null)
 			paliFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontSerif != null)
 			paliFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
 		if (fontMono != null)
 			paliFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
+		if (fontMyan != null)
+			paliFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
 		// read external fonts
 		loadExternalFonts();
 	}

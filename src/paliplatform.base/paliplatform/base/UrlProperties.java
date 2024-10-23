@@ -36,7 +36,7 @@ public class UrlProperties {
 	public static final String URL_PROPS_FILE = "pp3urls.properties";
 	public static final String MAIN_URL = "https://raw.githubusercontent.com/bhaddacak/paliplatform/main/"; // hardcode
 //~ 	public static final String MAIN_URL = "http://localhost:8000/"; // for test
-	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/digitalpalidictionary/releases/download/v0.1.20240720/dpd.db.tar.bz2";
+	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/dpd-db/releases/download/v0.2.20241017/dpd.db.tar.bz2";
 	private static final String DEF_SC_DATA_URL = "https://github.com/suttacentral/bilara-data/archive/refs/heads/published.zip";
 	private static final String NCPED_URL = "https://raw.githubusercontent.com/suttacentral/sc-data/refs/heads/main/dictionaries/simple/en/pli2en_ncped.json";
 	private static final String PTSPED_URL = "https://github.com/vpnry/ptsped/raw/refs/heads/main/tabfiles/Tabfile_PTSPED-2021.zip";

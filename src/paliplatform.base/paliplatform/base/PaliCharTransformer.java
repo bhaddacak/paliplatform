@@ -33,6 +33,9 @@ public class PaliCharTransformer {
 	public static final String romanConsonants = "kgṅcjñṭḍṇtdnpbmyrlvshḷ"; //śṣṛṝḹ";
 	private static final String romanWithHChars = "bcdgjkptḍṭ";
 	public static final char[] romanNumbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+	private static final char romanBar = '|';
+	private static final char romanDoubleBar = '\u2016';
+	private static final char romanAbbrSign = '\u2024';
 	public static final char[] romanConsonantsChr = { 	
 		'k', 'x', 'g', 'x', 'ṅ',
 		'c', 'x', 'j', 'x', 'ñ',
@@ -56,6 +59,7 @@ public class PaliCharTransformer {
 	public static final char[] thaiNumbers = { '\u0E50', '\u0E51', '\u0E52', '\u0E53', '\u0E54', '\u0E55', '\u0E56', '\u0E57', '\u0E58', '\u0E59' };
 	private static final char thaiBindu = '\u0E3A';
 	private static final char thaiPeriod = '\u0E2F';
+	private static final char thaiDoublePeriod = '\u0E5A';
 	public static final char[] thaiConsonants = {
 		'\u0E01', '\u0E02', '\u0E04', '\u0E06', '\u0E07',
 		'\u0E08', '\u0E09', '\u0E0A', '\u0E0C', '\u0E0D',
@@ -74,9 +78,10 @@ public class PaliCharTransformer {
 	public static final char[] khmerVowelsInd = { '\u17A2', '\u17B6', '\u17A5', '\u17A6', '\u17A7', '\u17A9', '\u17AF', '\u17B1' };
 	private static final char[] khmerVowelsDep = { '\u17A2', '\u17B6', '\u17B7', '\u17B8', '\u17BB', '\u17BC', '\u17C1', '\u17C4' };
 	public static final char[] khmerNumbers = { '\u17E0', '\u17E1', '\u17E2', '\u17E3', '\u17E4', '\u17E5', '\u17E6', '\u17E7', '\u17E8', '\u17E9' };
-	private static final char khmerPeriod = '\u17D4';
 	private static final char khmerKiller = '\u17D1';
 	private static final char khmerCoeng = '\u17D2';
+	private static final char khmerPeriod = '\u17D4';
+	private static final char khmerDoublePeriod = '\u17D5';
 	public static final char[] khmerConsonants = {
 		'\u1780', '\u1781', '\u1782', '\u1783', '\u1784',
 		'\u1785', '\u1786', '\u1787', '\u1788', '\u1789',
@@ -88,14 +93,15 @@ public class PaliCharTransformer {
 	// Myanmar set
 	private static final char myanmarTallA = '\u102B';
 	private static final char myanmarShortA = '\u102C';
-	private static boolean useMyanmarTallA = false;
-//~ 	private static char myanmarA = myanmarTallA;
+	private static final char myanmarSpecialE = '\u102A';
+//~ 	private static final char myanmarDepE = '\u1031'; // this causes problem, not used
 	public static final char[] myanmarVowelsInd = { '\u1021', myanmarShortA, '\u1023', '\u1024', '\u1025', '\u1026', '\u1027', '\u1029' };
-	private static final char[] myanmarVowelsDep = { '\u1021', myanmarShortA, '\u102D', '\u102E', '\u102F', '\u1030', '\u1031', '\u1031' };
+	private static final char[] myanmarVowelsDep = { '\u1021', myanmarShortA, '\u102D', '\u102E', '\u102F', '\u1030', myanmarSpecialE, myanmarSpecialE };
 	public static final char[] myanmarNumbers = { '\u1040', '\u1041', '\u1042', '\u1043', '\u1044', '\u1045', '\u1046', '\u1047', '\u1048', '\u1049' };
-	private static final char myanmarPeriod = '\u104B';
 	private static final char myanmarVirama = '\u1039';
 	private static final char myanmarAsat = '\u103A';
+	private static final char myanmarPeriod = '\u104A';
+	private static final char myanmarDoublePeriod = '\u104B';
 	public static final char[] myanmarConsonants = {
 		'\u1000', '\u1001', '\u1002', '\u1003', '\u1004',
 		'\u1005', '\u1006', '\u1007', '\u1008', '\u1009',
@@ -174,7 +180,7 @@ public class PaliCharTransformer {
 	}
 	
 	/**
-	 * Sets up initial condition before Thai transformation is performed.
+	 * Sets up initial condition before Thai transformation.
 	 */
 	public static void setUsingAltThaiChars(final boolean useAlt) {
 		if (useAlt) {
@@ -188,15 +194,6 @@ public class PaliCharTransformer {
 			altThaiCharsMap.put('\uF70F', "ñ");
 			altThaiCharsMap.put('\uF700', "ṭ");
 		}
-	}
-	
-	/**
-	 * Sets up initial condition before Myanmar transformation is performed.
-	 */
-	public static void setUsingMyanmarTallA(final boolean useTall) {
-		useMyanmarTallA = useTall;
-//~ 		myanmarA = useTall ? myanmarTallA : myanmarShortA;
-//~ 		myanmarVowelsDep[1] = myanmarA;
 	}
 	
 	public static void setIncludingNumbers(final boolean yn) {
@@ -225,6 +222,12 @@ public class PaliCharTransformer {
 			} else if (rch == '.') {
 				// period is hard to differentiate from a normal dot, so retain as dot;
 				tch = '.';
+			} else if (rch == romanBar) {
+				// single bar is changed to single danda
+				tch = thaiPeriod;
+			} else if (rch == romanDoubleBar) {
+				// double bar is changed to double danda
+				tch = thaiDoublePeriod;
 			} else if (rch == 'x') {
 				// reserved character
 				tch = rch;
@@ -340,8 +343,11 @@ public class PaliCharTransformer {
 				// numbers
 				rch = Character.toString(romanNumbers[ind]);
 			} else if (tch == thaiPeriod) {
-				// period
-				rch = ".";
+				// bar
+				rch = "" + romanBar;
+			} else if (tch == thaiDoublePeriod) {
+				// double bar
+				rch = "" + romanDoubleBar;
 			} else if (tch == '\u0E40' || tch == '\u0E42') {
 				// vowel e and o
 				rch = Character.toString(vowelMap.get(tch));
@@ -444,6 +450,12 @@ public class PaliCharTransformer {
 			} else if (rch == '.') {
 				// period is retained as dot
 				kch = '.';
+			} else if (rch == romanBar) {
+				// single bar is changed to single danda
+				kch = khmerPeriod;
+			} else if (rch == romanDoubleBar) {
+				// double bar is changed to double danda
+				kch = khmerDoublePeriod;
 			} else if (rch == 'x') {
 				// reserved character
 				kch = rch;
@@ -551,8 +563,11 @@ public class PaliCharTransformer {
 				// numbers
 				rch = Character.toString(romanNumbers[ind]);
 			} else if (kch == khmerPeriod) {
-				// period
-				rch = ".";
+				// single bar
+				rch = "" + romanBar;
+			} else if (kch == khmerDoublePeriod) {
+				// double bar
+				rch = "" + romanDoubleBar;
 			} else if (kch == '\u17A5' || kch == '\u17A6' || kch == '\u17A7' ||
 					  kch == '\u17A9' || kch == '\u17AF' || kch == '\u17B1') {
 				// independent vowel i, ī, u, ū, e, o
@@ -624,6 +639,12 @@ public class PaliCharTransformer {
 			} else if (rch == '.') {
 				// period is retained as dot
 				mch = '.';
+			} else if (rch == romanBar) {
+				// single bar is changed to single danda
+				mch = myanmarPeriod;
+			} else if (rch == romanDoubleBar) {
+				// double bar is changed to double danda
+				mch = myanmarDoublePeriod;
 			} else if (rch == 'x') {
 				// reserved character
 				mch = rch;
@@ -726,18 +747,13 @@ public class PaliCharTransformer {
 
 	private static String processMyanmarA(final String input) {
 		String result = input;
-		if (useMyanmarTallA) {
-			// all tall
-			result = result.replace("" + myanmarShortA, "" + myanmarTallA);
-		} else {
-			// change to tall ā
-			for (final String chs : myanmarTallASet) {
-				result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarTallA);
-			}
-			// fix some back to short
-			for (final String chs : myanmarShortASet) {
-				result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarShortA);
-			}
+		// change to tall ā
+		for (final String chs : myanmarTallASet) {
+			result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarTallA);
+		}
+		// fix some back to short
+		for (final String chs : myanmarShortASet) {
+			result = result.replace(chs, chs.substring(0, chs.length() - 1) + myanmarShortA);
 		}
 		return result;
 	}
@@ -921,13 +937,13 @@ public class PaliCharTransformer {
 			} else if (rch == '.') {
 				// period is retained as dot
 				dch = '.';
-			} else if (rch == '|') {
+			} else if (rch == romanBar) {
 				// single bar is changed to single danda
 				dch = devaPeriod;
-			} else if (rch == '\u2016') {
+			} else if (rch == romanDoubleBar) {
 				// double bar is changed to double danda
 				dch = devaDoublePeriod;
-			} else if (rch == '\u2024') {
+			} else if (rch == romanAbbrSign) {
 				// one dot leader is changed to abbreviation sign
 				dch = devaAbbrev;
 			} else if (rch == 'x') {
@@ -1026,13 +1042,13 @@ public class PaliCharTransformer {
 				rch = Character.toString(romanNumbers[ind]);
 			} else if (dch == devaPeriod) {
 				// single bar
-				rch = "|";
+				rch = "" + romanBar;
 			} else if (dch == devaDoublePeriod) {
 				// double bar
-				rch = "" + '\u2016';
+				rch = "" + romanDoubleBar;
 			} else if (dch == devaAbbrev) {
 				// abbreviation sign
-				rch = "" + '\u2024';
+				rch = "" + romanAbbrSign;
 			} else if (dch == '\u0905' || dch == '\u0906' ||
 					dch == '\u0907' || dch == '\u0908' ||
 					dch == '\u0909' || dch == '\u090A' ||

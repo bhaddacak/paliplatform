@@ -30,6 +30,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Worker;
+import netscape.javascript.JSObject;
 
 /** 
  * The HTML viewer of SuttaCentral Pāli texts.
@@ -69,11 +71,23 @@ public class ScReader extends PaliHtmlViewerBase {
 	private final CheckMenuItem useMDotAboveMenuItem = new CheckMenuItem("Use ṁ");
 	private final ChoiceBox<String> transLangChoice = new ChoiceBox<>();
 	private final ToggleGroup scriptLangGroup = new ToggleGroup();
+	private Utilities.PaliScript currFontScript = Utilities.PaliScript.ROMAN; // for Myanmar and the rest
 	private ScDocument currDoc = null;
 
 	public ScReader(final String docId) {
 		super();
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.SC_CSS).toExternalForm());
+		// Set the member for the browser's window object after the document loads
+		final ViewerFXHandler fxHandler = new ViewerFXHandler(this);
+	 	webEngine.getLoadWorker().stateProperty().addListener((prop, oldState, newState) -> {
+			if (newState == Worker.State.SUCCEEDED) {
+				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
+				jsWindow.setMember("fxHandler", fxHandler);
+				webEngine.executeScript("init(0)");
+				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerFont(currFontScript);
+			}
+		});		
 		// set up tool bar
 		final Button toggleLeftPaneButton = new Button("", new TextIcon("left-pane", TextIcon.IconSet.CUSTOM));
 		toggleLeftPaneButton.setTooltip(new Tooltip("Left pane on/off"));
@@ -205,6 +219,7 @@ public class ScReader extends PaliHtmlViewerBase {
 			useMDotAboveMenuItem.setSelected(false);
 			nikayaChoice.getSelectionModel().select(1);
 			scriptLangGroup.selectToggle(scriptLangGroup.getToggles().get(0));
+			suttaSelectorListView.getSelectionModel().select(0);
 			if (splitPane.getItems().size() > 1)
 				splitPane.setDividerPositions(INIT_DIVIDER_POSITION);
 			if (docId.isEmpty()) {
@@ -259,6 +274,15 @@ public class ScReader extends PaliHtmlViewerBase {
 
 	private void updateContent() {
 		if (currDoc == null) return;
+		final Utilities.PaliScript script = (Utilities.PaliScript)scriptLangGroup.getSelectedToggle().getUserData();
+		if (script == Utilities.PaliScript.MYANMAR) {
+			// only Myanmar use custom fonts
+			currFontScript = script;
+			toolBar.setupFontMenu(script);
+		} else {
+			currFontScript = Utilities.PaliScript.ROMAN;
+			toolBar.setupFontMenu(Utilities.PaliScript.ROMAN);
+		}
 		pageBody = formatText(currDoc);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody);
 		setContent(pageContent);
@@ -356,7 +380,6 @@ public class ScReader extends PaliHtmlViewerBase {
 				result = PaliCharTransformer.romanToKhmer(normalized);
 				break;
 			case MYANMAR:
-				PaliCharTransformer.setUsingMyanmarTallA(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
 				result = PaliCharTransformer.romanToMyanmar(normalized);
 				break;
 			case SINHALA:

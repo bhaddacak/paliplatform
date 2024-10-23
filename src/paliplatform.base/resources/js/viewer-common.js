@@ -55,9 +55,14 @@ const lightThemeObj = {
 	"referenceColorBW": "black"
 };
 // functions
-function setFont(fontname) {
-//~ 	window.fxHandler.debugPrint("debug: " + fontname);
-	document.body.style.fontFamily = fontname;
+function setFont(fontnameJson) {
+	const fonts = JSON.parse(fontnameJson);
+	let fontNames = "";
+	for(const f of fonts) {
+		fontNames += "'" + f + "',";
+	}
+ 	//window.fxHandler.debugPrint("debug: " + fontNames);
+	document.body.style.fontFamily = fontNames.slice(0, -1);
 }
 function setThemeCommon(theme) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;

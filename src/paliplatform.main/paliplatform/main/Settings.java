@@ -69,10 +69,6 @@ class Settings extends SingletonWindow {
 		cbExitAsk.setAllowIndeterminate(false);
 		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask")));
 		cbExitAsk.setOnAction(actionEvent -> Utilities.settings.setProperty("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
-		final CheckBox cbMyanmarTallA = new CheckBox("Always use Myanmar tall ā");
-		cbMyanmarTallA.setAllowIndeterminate(false);
-		cbMyanmarTallA.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("myanmar-tall-aa")));
-		cbMyanmarTallA.setOnAction(actionEvent -> Utilities.settings.setProperty("myanmar-tall-aa", Boolean.toString(cbMyanmarTallA.isSelected())));
 		final CheckBox cbThaiAltChars = new CheckBox("Always use Thai's " + '\uF70F' + " and " + '\uF700' + " (This can cause search problems)");
 		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(Utilities.PaliScript.THAI));
 		cbThaiAltChars.setStyle("-fx-font-family:'" + flist.get(0) + "'");
@@ -84,7 +80,7 @@ class Settings extends SingletonWindow {
 		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable")));
 		cbDpdLookup.setOnAction(actionEvent -> Utilities.settings.setProperty("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
 		generalBox.getChildren().addAll(cbExitAsk,
-										new Separator(), new Label("Script transformation"), cbMyanmarTallA, cbThaiAltChars,
+										new Separator(), new Label("Script transformation"), cbThaiAltChars,
 										new Separator(), new Label("DPD integration"), cbDpdLookup);
 		generalTab.setContent(generalBox);
 		
