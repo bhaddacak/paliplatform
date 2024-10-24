@@ -187,7 +187,7 @@ function romanToThai(input, alsoNumber) {
 			// is consonants
 			for(let i=0; i<romanConsonantsChr.length; i++) {
 				if(rch === romanConsonantsChr[i]) {
-					if(index < input.length-2) {
+					if(index < input.length-1) {
 						// if the character has 'h'
 						if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] === 'h')
 							skipFlag = true;
@@ -250,6 +250,20 @@ function romanToThai(input, alsoNumber) {
 							// if not followed by a vowel, add bindu
 							output += thaiBindu;
 						}
+					} else {
+						// characters with h
+						if (index < input.length-2) {
+							if (romanConsonants.indexOf(input[index+2]) >= 0) {
+								// double consonant needs bindu
+								output += thaiBindu;
+							} else if (romanVowels.indexOf(input[index+2]) == -1) {
+								// if not followed by a vowel, add bindu
+								output += thaiBindu;
+							}
+						} else {
+							// the last consonant, add bindu
+							output += thaiBindu;
+						}
 					}
 				} else {
 					// the last consonant, add bindu
@@ -301,7 +315,7 @@ function romanToKhmer(input, alsoNumber) {
 			// is consonants
 			for(let i=0; i<romanConsonantsChr.length; i++) {
 				if(rch === romanConsonantsChr[i]) {
-					if(index < input.length-2) {
+					if(index < input.length-1) {
 						// if the character has 'h'
 						if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] === 'h')
 							skipFlag = true;
@@ -348,10 +362,24 @@ function romanToKhmer(input, alsoNumber) {
 				if(index < input.length-1) {
 					if(!skipFlag) {
 						if (romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Coeng 0x17D2
+							// double consonant needs coeng 0x17D2
 							output += khmerCoeng;
 						} else if (romanVowels.indexOf(input[index+1]) == -1) {
 							// if not followed by a vowel, add killer
+							output += khmerKiller;
+						}
+					} else {
+						// characters with h
+						if (index < input.length-2) {
+							if (romanConsonants.indexOf(input[index+2]) >= 0) {
+								// double consonant needs coeng
+								output += khmerCoeng;
+							} else if (romanVowels.indexOf(input[index+2]) == -1) {
+								// if not followed by a vowel, add killer
+								output += khmerKiller;
+							}
+						} else {
+							// the last consonant, add killer
 							output += khmerKiller;
 						}
 					}
@@ -405,7 +433,7 @@ function romanToMyanmar(input, alsoNumber) {
 			// is consonants
 			for(let i=0; i<romanConsonantsChr.length; i++) {
 				if(rch === romanConsonantsChr[i]) {
-					if(index < input.length-2) {
+					if(index < input.length-1) {
 						// if the character has 'h'
 						if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] === 'h')
 							skipFlag = true;
@@ -453,9 +481,21 @@ function romanToMyanmar(input, alsoNumber) {
 												: 1; // single consonant
 									}
 								} else {
-									insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+									if(index >= 3) {
+										insInd = romanConsonants.indexOf(input[index-2]) >= 0
+												? input[index-2] == 'h'
+													? index >= 4 && romanConsonants.indexOf(input[index-4]) >= 0
+														? 5 // triple consonants plus virama
+														: 3 // double consonants plus virama
+													: romanConsonants.indexOf(input[index-3]) >= 0
+														? 5 // triple consonants plus virama
+														: 3 // double consonants plus virama
+												: 1; // single consonant
+									} else {
+										insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
 												? 3 // double consonants plus virama
 												: 1; // single consonant
+									}
 								}
 							}
 							output = output.substring(0, output.length-insInd) + myanmarVowelsDep[vindex] + output.substring(output.length-insInd);
@@ -474,10 +514,24 @@ function romanToMyanmar(input, alsoNumber) {
 				if(index < input.length-1) {
 					if(!skipFlag) {
 						if (romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
+							// double consonant needs virama
 							output += myanmarVirama;
 						} else if (romanVowels.indexOf(input[index+1]) == -1) {
 							// if not followed by a vowel, add asat
+							output += myanmarAsat;
+						}
+					} else {
+						// characters with h
+						if (index < input.length-2) {
+							if (romanConsonants.indexOf(input[index+2]) >= 0) {
+								// double consonant needs virama
+								output += myanmarVirama;
+							} else if (romanVowels.indexOf(input[index+2]) == -1) {
+								// if not followed by a vowel, add asat
+								output += myanmarAsat;
+							}
+						} else {
+							// the last consonant, add asat
 							output += myanmarAsat;
 						}
 					}
@@ -545,7 +599,7 @@ function romanToSinhala(input, alsoNumber) {
 			// is consonants
 			for(let i=0; i<romanConsonantsChr.length; i++) {
 				if(rch === romanConsonantsChr[i]) {
-					if(index < input.length-2) {
+					if(index < input.length-1) {
 						// if the character has 'h'
 						if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] === 'h')
 							skipFlag = true;
@@ -580,10 +634,24 @@ function romanToSinhala(input, alsoNumber) {
 				if(index < input.length-1) {
 					if(!skipFlag) {
 						if (romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
+							// double consonant needs virama
 							output += sinhalaVirama;
 						} else if (romanVowels.indexOf(input[index+1]) == -1) {
 							// if not followed by a vowel, add virama
+							output += sinhalaVirama;
+						}
+					} else {
+						// characters with h
+						if (index < input.length-2) {
+							if (romanConsonants.indexOf(input[index+2]) >= 0) {
+								// double consonant needs virama
+								output += sinhalaVirama;
+							} else if (romanVowels.indexOf(input[index+2]) == -1) {
+								// if not followed by a vowel, add virama
+								output += sinhalaVirama;
+							}
+						} else {
+							// the last consonant, add virama
 							output += sinhalaVirama;
 						}
 					}
@@ -640,7 +708,7 @@ function romanToDevanagari(input, alsoNumber) {
 			// is consonants
 			for(let i=0; i<romanConsonantsChr.length; i++) {
 				if(rch === romanConsonantsChr[i]) {
-					if(index < input.length-2) {
+					if(index < input.length-1) {
 						// if the character has 'h'
 						if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] === 'h')
 							skipFlag = true;
@@ -675,10 +743,24 @@ function romanToDevanagari(input, alsoNumber) {
 				if(index < input.length-1) {
 					if(!skipFlag) {
 						if (romanConsonants.indexOf(input[index+1]) >= 0) {
-							// double consonant needs Virama
+							// double consonant needs virama
 							output += devaVirama;
 						} else if (romanVowelsForDeva.indexOf(input[index+1]) == -1) {
 							// if not followed by a vowel, add virama
+							output += devaVirama;
+						}
+					} else {
+						// characters with h
+						if (index < input.length-2) {
+							if (romanConsonants.indexOf(input[index+2]) >= 0) {
+								// double consonant needs virama
+								output += devaVirama;
+							} else if (romanVowels.indexOf(input[index+2]) == -1) {
+								// if not followed by a vowel, add virama
+								output += devaVirama;
+							}
+						} else {
+							// the last consonant, add virama
 							output += devaVirama;
 						}
 					}

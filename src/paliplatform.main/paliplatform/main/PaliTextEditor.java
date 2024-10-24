@@ -129,7 +129,7 @@ public class PaliTextEditor extends BorderPane {
 				currScript.set(Utilities.PaliScript.valueOf(strScript));
 				final String content = args.length<2 ? "" : (String)args[1];
 				setContent(content);
-				toolBar.setupFontMenu(currScript.get());
+				setupFontMenu();
 			}
 		}
 		// add menu and toolbar on the top
@@ -396,6 +396,11 @@ public class PaliTextEditor extends BorderPane {
 		area.setText(text);
 	}
 
+	public void setupFontMenu() {
+		toolBar.setupFontMenu(currScript.get());
+		resetFont();
+	}
+
 	private void openAFile() {
 		if (saveable.get()) {
 			if (saveOnCloseMenuItem.isSelected()) {
@@ -435,7 +440,7 @@ public class PaliTextEditor extends BorderPane {
 			textInput.changeInputMethod(PaliTextInput.InputMethod.NONE);
 			final String content = Utilities.getTextFileContent(file);
 			currScript.set(Utilities.testLanguage(content));
-			toolBar.setupFontMenu(currScript.get());
+			setupFontMenu();
 			area.setText(content);
 			textInput.changeInputMethod(saveInputMethod);
 			success = true;

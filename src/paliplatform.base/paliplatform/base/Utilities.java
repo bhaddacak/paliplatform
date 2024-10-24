@@ -392,9 +392,9 @@ final public class Utilities {
 		final Font fontMonoBold = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Bold.ttf"), 0);
 		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
-		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "NotoSansMyanmarPP-Regular.ttf"), 0);
+		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Regular.ttf"), 0);
 		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
-		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "NotoSansMyanmarPP-Bold.ttf"), 0);
+		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Bold.ttf"), 0);
 		if (fontSans != null)
 			paliFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontSerif != null)

@@ -355,6 +355,7 @@ final public class PaliPlatform extends Application {
 								editor.clearEditor(script);
 								final String content = args.length<2 ? "" : (String)args[1];
 								editor.setContent(content);
+								editor.setupFontMenu();
 								Utilities.showExistingWindow(stg);
 							}
 						}

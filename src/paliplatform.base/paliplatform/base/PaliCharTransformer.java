@@ -120,6 +120,7 @@ public class PaliCharTransformer {
 			'\u103C', "" + myanmarVirama + '\u101B', 
 			'\u103D', "" + myanmarVirama + '\u101D', 
 			'\u103E', "" + myanmarVirama + '\u101F' );
+	private static final char myanmarNga = '\u1004';
 	private static final char myanmarNya = '\u1009';
 	private static final char myanmarNnya = '\u100A';
 	private static final char myanmarSa = '\u101E';
@@ -238,12 +239,12 @@ public class PaliCharTransformer {
 				// is consonants
 				for (int i=0; i<romanConsonantsChr.length; i++) {
 					if (rch == romanConsonantsChr[i]) {
-						if (index < input.length-2) {
+						if (index < input.length-1) {
 							// if the character has 'h'
 							if (romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
 								skipFlag = true;
 						}
-						tch = skipFlag? thaiConsonants[i+1]: thaiConsonants[i];
+						tch = skipFlag ? thaiConsonants[i+1] : thaiConsonants[i];
 						break;
 					}
 				} // end for loop of finding pali consonant
@@ -299,6 +300,20 @@ public class PaliCharTransformer {
 								output.append(thaiBindu);
 							} else if (romanVowels.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add bindu
+								output.append(thaiBindu);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs bindu
+									output.append(thaiBindu);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add bindu
+									output.append(thaiBindu);
+								}
+							} else {
+								// the last consonant, add bindu
 								output.append(thaiBindu);
 							}
 						}
@@ -466,12 +481,12 @@ public class PaliCharTransformer {
 				// is consonants
 				for (int i=0; i<romanConsonantsChr.length; i++) {
 					if (rch == romanConsonantsChr[i]) {
-						if (index < input.length-2) {
+						if (index < input.length-1) {
 							// if the character has 'h'
 							if (romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
 								skipFlag = true;
 						}
-						kch = skipFlag? khmerConsonants[i+1]: khmerConsonants[i];
+						kch = skipFlag ? khmerConsonants[i+1] : khmerConsonants[i];
 						break;
 					}
 				} // end for loop of finding pali consonant
@@ -513,10 +528,24 @@ public class PaliCharTransformer {
 					if (index < input.length-1) {
 						if (!skipFlag) {
 							if (romanConsonants.indexOf(input[index+1]) >= 0) {
-								// double consonant needs Coeng 0x17D2
+								// double consonant needs coeng 0x17D2
 								output.append(khmerCoeng);
 							} else if (romanVowels.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add killer
+								output.append(khmerKiller);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs coeng
+									output.append(khmerCoeng);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add killer
+									output.append(khmerKiller);
+								}
+							} else {
+								// the last consonant, add killer
 								output.append(khmerKiller);
 							}
 						}
@@ -655,12 +684,12 @@ public class PaliCharTransformer {
 				// is consonants
 				for (int i=0; i<romanConsonantsChr.length; i++) {
 					if (rch == romanConsonantsChr[i]) {
-						if (index < input.length-2) {
+						if (index < input.length-1) {
 							// if the character has 'h'
 							if (romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
 								skipFlag = true;
 						}
-						mch = skipFlag? myanmarConsonants[i+1]: myanmarConsonants[i];
+						mch = skipFlag ? myanmarConsonants[i+1] : myanmarConsonants[i];
 						break;
 					}
 				} // end for loop of finding pali consonant
@@ -693,7 +722,7 @@ public class PaliCharTransformer {
 											insInd = romanWithHChars.indexOf(input[index-2]) >= 0
 													? index >= 3 && romanConsonants.indexOf(input[index-3]) >= 0
 														? 3 // double consonants plus virama
-														: 1 // single character with h
+														: 1 // single consonant
 													: romanConsonants.indexOf(input[index-2]) >= 0
 														? 3 // double consonants plus virama
 														: 1; // single consonant
@@ -703,9 +732,21 @@ public class PaliCharTransformer {
 													: 1; // single consonant
 										}
 									} else {
-										insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
+										if (index >= 3) {
+											insInd = romanConsonants.indexOf(input[index-2]) >= 0
+													? input[index-2] == 'h'
+														? index >= 4 && romanConsonants.indexOf(input[index-4]) >= 0
+															? 5 // triple consonants plus virama
+															: 3 // double consonants plus virama
+														: romanConsonants.indexOf(input[index-3]) >= 0
+															? 5 // triple consonants plus virama
+															: 3 // double consonants plus virama
+													: 1; // single consonant
+										} else {
+											insInd = index >= 2 && romanConsonants.indexOf(input[index-2]) >= 0
 													? 3 // double consonants plus virama
 													: 1; // single consonant
+										}
 									}
 								}
 								output.insert(output.length() - insInd, myanmarVowelsDep[vindex]);
@@ -724,10 +765,24 @@ public class PaliCharTransformer {
 					if (index < input.length-1) {
 						if (!skipFlag) {
 							if (romanConsonants.indexOf(input[index+1]) >= 0) {
-								// double consonant needs Virama
+								// double consonant needs virama
 								output.append(myanmarVirama);
 							} else if (romanVowels.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add asat
+								output.append(myanmarAsat);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs virama
+									output.append(myanmarVirama);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add asat
+									output.append(myanmarAsat);
+								}
+							} else {
+								// the last consonant, add asat
 								output.append(myanmarAsat);
 							}
 						}
@@ -796,12 +851,12 @@ public class PaliCharTransformer {
 				// is consonants
 				for (int i=0; i<romanConsonantsChr.length; i++) {
 					if (rch == romanConsonantsChr[i]) {
-						if (index < input.length-2) {
+						if (index < input.length-1) {
 							// if the character has 'h'
 							if (romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
 								skipFlag = true;
 						}
-						sch = skipFlag? sinhalaConsonants[i+1]: sinhalaConsonants[i];
+						sch = skipFlag ? sinhalaConsonants[i+1] : sinhalaConsonants[i];
 						break;
 					}
 				} // end for loop of finding pali consonant
@@ -831,10 +886,24 @@ public class PaliCharTransformer {
 					if (index < input.length-1) {
 						if (!skipFlag) {
 							if (romanConsonants.indexOf(input[index+1]) >= 0) {
-								// double consonant needs Virama
+								// double consonant needs virama
 								output.append(sinhalaVirama);
 							} else if (romanVowels.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add virama
+								output.append(sinhalaVirama);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs virama
+									output.append(sinhalaVirama);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add virama
+									output.append(sinhalaVirama);
+								}
+							} else {
+								// the last consonant, add virama
 								output.append(sinhalaVirama);
 							}
 						}
@@ -956,12 +1025,12 @@ public class PaliCharTransformer {
 				// is consonants
 				for (int i=0; i<romanConsonantsChr.length; i++) {
 					if (rch == romanConsonantsChr[i]) {
-						if (index < input.length-2) {
+						if (index < input.length-1) {
 							// if the character has 'h'
 							if (romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
 								skipFlag = true;
 						}
-						dch = skipFlag? devaConsonants[i+1]: devaConsonants[i];
+						dch = skipFlag ? devaConsonants[i+1] : devaConsonants[i];
 						break;
 					}
 				} // end for loop of finding pali consonant
@@ -991,10 +1060,24 @@ public class PaliCharTransformer {
 					if (index < input.length-1) {
 						if (!skipFlag) {
 							if (romanConsonants.indexOf(input[index+1]) >= 0) {
-								// double consonant needs Virama
+								// double consonant needs virama
 								output.append(devaVirama);
 							} else if (romanVowelsForDeva.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add virama
+								output.append(devaVirama);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs virama
+									output.append(devaVirama);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add virama
+									output.append(devaVirama);
+								}
+							} else {
+								// the last consonant, add virama
 								output.append(devaVirama);
 							}
 						}
