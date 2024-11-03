@@ -3097,7 +3097,7 @@
  <cscdfile>s0510m2.mul12</cscdfile>
  <cscdfile>s0510m2.mul13</cscdfile>
  <description>The Apadānas spoken by monks</description>
- <commentary>ap-a1</commentary>
+ <commentary>ap1-a</commentary>
  <linkable>true</linkable>
 </text>
 <text id="ap2">
@@ -3392,7 +3392,7 @@
  <cscdfile>s0515m.mul14</cscdfile>
  <cscdfile>s0515m.mul15</cscdfile>
  <description>The great explanations</description>
- <commentary>nidd-a1</commentary>
+ <commentary>nidd1-a</commentary>
  <linkable>true</linkable>
 </text>
 <text id="nidd2">
@@ -3406,7 +3406,7 @@
  <cscdfile>s0516m.mul1</cscdfile>
  <cscdfile>s0516m.mul2</cscdfile>
  <description>The small explanations</description>
- <commentary>nidd-a2</commentary>
+ <commentary>nidd2-a</commentary>
  <linkable>true</linkable>
 </text>
 <text id="nidd1-a">

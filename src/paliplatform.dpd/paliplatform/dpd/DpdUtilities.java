@@ -409,9 +409,9 @@ final public class DpdUtilities {
 			rootKeyButton.setOnAction(actionEvent -> DpdRootWin.INSTANCE.display(rootKey));		
 			result.getChildren().addAll(DpdUtilities.createInfoTextFlowWithButton("Root: ", rootKey, rootKeyButton));
 		}
-		final String stem = hw.getStem();
-		if (DpdHeadWordBase.hasData(stem))
-			result.getChildren().add(DpdUtilities.createInfoTextFlow("Stem: ", stem));
+//~ 		final String stem = hw.getStem();
+//~ 		if (DpdHeadWordBase.hasData(stem))
+//~ 			result.getChildren().add(DpdUtilities.createInfoTextFlow("Stem: ", stem));
 		final String construction = hw.getConstruction();
 		if (DpdHeadWordBase.hasData(construction))
 			result.getChildren().add(DpdUtilities.createInfoTextFlow("Con.: ", construction));

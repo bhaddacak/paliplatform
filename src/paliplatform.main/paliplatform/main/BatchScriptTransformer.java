@@ -110,7 +110,7 @@ public class BatchScriptTransformer extends SingletonWindow {
 		}
 		final MenuButton targetScriptMenu = new MenuButton("Output script");
 		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
-			if (sc.ordinal() == 0) continue;
+			if (sc.ordinal() == 0 || sc.ordinal() == 4) continue; // skip Unknown and Myanmar
 			final String sname = sc.toString();
 			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
 			mitem.setOnAction(actionEvent -> setTargetScript(sc));
@@ -381,9 +381,6 @@ public class BatchScriptTransformer extends SingletonWindow {
 								break;
 							case KHMER:
 								tgtText = PaliCharTransformer.romanToKhmer(srcText);
-								break;
-							case MYANMAR:
-								tgtText = PaliCharTransformer.romanToMyanmar(srcText);
 								break;
 							case SINHALA:
 								tgtText = PaliCharTransformer.romanToSinhala(srcText);

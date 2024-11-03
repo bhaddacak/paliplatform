@@ -217,50 +217,47 @@ public class PaliTextEditor extends BorderPane {
 		editMenu.getItems().addAll(undoMenuItem, redoMenuItem, 
 									new SeparatorMenuItem(), cutMenuItem, copyMenuItem, pasteMenuItem,
 									new SeparatorMenuItem(), findMenuItem, findNextMenuItem, findPrevMenuItem, replaceMenuItem);
-		// tools menu
-		final Menu toolsMenu = new Menu("_Tools");
-		toolsMenu.setMnemonicParsing(true);
-		final Menu convertToMenu = new Menu("Con_vert to");
-		convertToMenu.setMnemonicParsing(true);
+		// convert menu
+		final Menu convertMenu = new Menu("_Convert to");
+		convertMenu.setMnemonicParsing(true);
+		convertMenu.disableProperty().bind(currScript.isEqualTo(Utilities.PaliScript.MYANMAR));
 		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
 			if (sc.ordinal() == 0) continue;
 			final String sname = sc.toString();
 			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
 			if (sc == Utilities.PaliScript.ROMAN)
-				mitem.disableProperty().bind(currScript.isEqualTo(sc).or(currScript.isEqualTo(Utilities.PaliScript.MYANMAR)));
+				mitem.disableProperty().bind(currScript.isEqualTo(sc));
 			else
 				mitem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 			mitem.setOnAction(actionEvent -> convertTo(sc));
-			convertToMenu.getItems().add(mitem);
+			convertMenu.getItems().add(mitem);
 		}
+		// tools menu
+		final Menu toolsMenu = new Menu("_Tools");
+		toolsMenu.setMnemonicParsing(true);
+		toolsMenu.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		final MenuItem composeMenuItem = new MenuItem("_Compose characters");
 		composeMenuItem.setMnemonicParsing(true);
-		composeMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		composeMenuItem.setOnAction(actionEvent -> composeChars(true));	
 		final MenuItem decomposeMenuItem = new MenuItem("_Decompose characters");
 		decomposeMenuItem.setMnemonicParsing(true);
-		decomposeMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		decomposeMenuItem.setOnAction(actionEvent -> composeChars(false));	
 		final MenuItem removeAccentsMenuItem = new MenuItem("_Remove diacritics");
 		removeAccentsMenuItem.setMnemonicParsing(true);
-		removeAccentsMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		removeAccentsMenuItem.setOnAction(actionEvent -> removeAccents());	
 		final MenuItem familiarMenuItem = new MenuItem("Re_format CST4 text");
 		familiarMenuItem.setMnemonicParsing(true);
-		familiarMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		familiarMenuItem.setOnAction(actionEvent -> reformatCST4());	
 		final MenuItem calMetersMenuItem = new MenuItem("Calculate _meters");
 		calMetersMenuItem.setMnemonicParsing(true);
-		calMetersMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
-		toolsMenu.getItems().addAll(convertToMenu, composeMenuItem, decomposeMenuItem, removeAccentsMenuItem, familiarMenuItem,
+		toolsMenu.getItems().addAll(composeMenuItem, decomposeMenuItem, removeAccentsMenuItem, familiarMenuItem,
 									new SeparatorMenuItem(), calMetersMenuItem);
 
 		final SimpleService verseAnalyzer = (SimpleService)PaliPlatform.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
 		if (verseAnalyzer != null) {
 			final MenuItem analyzeMenuItem = new MenuItem("_Analyze the stanza/text");
 			analyzeMenuItem.setMnemonicParsing(true);
-			analyzeMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 			analyzeMenuItem.setOnAction(actionEvent -> openAnalyzer(verseAnalyzer));
 			toolsMenu.getItems().add(analyzeMenuItem);
 		}
@@ -268,36 +265,27 @@ public class PaliTextEditor extends BorderPane {
 		if (textReader != null) {
 			final MenuItem readTextMenuItem = new MenuItem("Read _text");
 			readTextMenuItem.setMnemonicParsing(true);
-			readTextMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 			readTextMenuItem.setOnAction(actionEvent -> openReader(textReader));
 			toolsMenu.getItems().add(readTextMenuItem);
 		}
 		final MenuItem changeMdotAboveMenuItem = new MenuItem("Change ṃ to ṁ");
-		changeMdotAboveMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		changeMdotAboveMenuItem.setOnAction(actionEvent -> replaceChar('ṃ', 'ṁ'));
 		final MenuItem changeMdotBelowMenuItem = new MenuItem("Change ṁ to ṃ");
-		changeMdotBelowMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		changeMdotBelowMenuItem.setOnAction(actionEvent -> replaceChar('ṁ', 'ṃ'));
 		final MenuItem toUpperCaseMenuItem = new MenuItem("Change to _uppercase");
 		toUpperCaseMenuItem.setMnemonicParsing(true);
-		toUpperCaseMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		toUpperCaseMenuItem.setOnAction(actionEvent -> changeCase(true));
 		final MenuItem toLowerCaseMenuItem = new MenuItem("Change to _lowercase");
 		toLowerCaseMenuItem.setMnemonicParsing(true);
-		toLowerCaseMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		toLowerCaseMenuItem.setOnAction(actionEvent -> changeCase(false));
 		final MenuItem toSentCaseMenuItem = new MenuItem("Change to _sentence case");
 		toSentCaseMenuItem.setMnemonicParsing(true);
-		toSentCaseMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		toSentCaseMenuItem.setOnAction(actionEvent -> changeToSentCase());
 		final MenuItem sortAscMenuItem = new MenuItem("Sort ascendingly");
-		sortAscMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		sortAscMenuItem.setOnAction(actionEvent -> paliSort(true));
 		final MenuItem sortDesMenuItem = new MenuItem("Sort descendingly");
-		sortDesMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		sortDesMenuItem.setOnAction(actionEvent -> paliSort(false));
 		final Menu paliToTexMenu = new Menu("Pāli to TeX");
-		paliToTexMenu.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		final MenuItem simpleP2TMenuItem = new MenuItem("Style 1: \\~n");
 		simpleP2TMenuItem.setOnAction(actionEvent -> paliToTex(TexConvertMode.SIMPLE));
 		final MenuItem bracesP2TMenuItem = new MenuItem("Style 2: \\~{n}");
@@ -306,7 +294,6 @@ public class PaliTextEditor extends BorderPane {
 		withaP2TMenuItem.setOnAction(actionEvent -> paliToTex(TexConvertMode.WITH_A));
 		paliToTexMenu.getItems().addAll(simpleP2TMenuItem, bracesP2TMenuItem, withaP2TMenuItem);
 		final MenuItem texToPaliMenuItem = new MenuItem("TeX to Pāli");
-		texToPaliMenuItem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		texToPaliMenuItem.setOnAction(actionEvent -> texToPali());
 		toolsMenu.getItems().addAll(new SeparatorMenuItem(), changeMdotAboveMenuItem, changeMdotBelowMenuItem,
 									toUpperCaseMenuItem, toLowerCaseMenuItem, toSentCaseMenuItem,
@@ -322,7 +309,7 @@ public class PaliTextEditor extends BorderPane {
 		wrapTextMenuItem.selectedProperty().bindBidirectional(area.wrapTextProperty());
 		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem, noAskOnCloseMenuItem);
 		
-		menuBar.getMenus().addAll(fileMenu, editMenu, toolsMenu, optionsMenu);
+		menuBar.getMenus().addAll(fileMenu, editMenu, convertMenu, toolsMenu, optionsMenu);
 		
 		// tool bar
 		Platform.runLater(() -> toolBar.resetFont(currScript.get()));

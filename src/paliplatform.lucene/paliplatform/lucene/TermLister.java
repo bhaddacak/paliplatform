@@ -499,6 +499,7 @@ public class TermLister extends BorderPane {
 			fixedInfoLabel.setText("");
 		} else {
 			String searchText = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
+			searchText = searchText.replace("'", "");
 			final Corpus.Collection col = Corpus.Collection.valueOf(tabName.substring(0, tabName.indexOf("_")).toUpperCase());
 			if (col == Corpus.Collection.SC)
 				searchText = Utilities.changeToScNiggahita(searchText);
@@ -511,6 +512,8 @@ public class TermLister extends BorderPane {
 				shownResultList.addAll(filterByCharGroup(result));
 			updateFixedInfo(tabName);
 		}
+		if (shownResultList.isEmpty())
+			shownResultList.add(new SimpleTermFreqProp("", 0, 0));
 		table.setItems(shownResultList);
 		setupTable(tabName);
 	}
