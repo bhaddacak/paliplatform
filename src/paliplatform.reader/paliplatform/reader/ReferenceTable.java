@@ -1,7 +1,7 @@
 /*
  * ReferenceTable.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,21 +158,16 @@ public class ReferenceTable extends SingletonWindow {
 		cst4Col.setReorderable(false);
 		cst4Col.setComparator(Utilities.paliComparator);
 		cst4Col.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
-		final TableColumn<RefOutput, String> scCol = new TableColumn<>("SC");
-		scCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).scProperty().getName()));
-		scCol.setReorderable(false);
-		scCol.setComparator(Utilities.paliComparator);
-		scCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
-		final TableColumn<RefOutput, String> ptstCol = new TableColumn<>("PTST");
-		ptstCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).ptstProperty().getName()));
-		ptstCol.setReorderable(false);
-		ptstCol.setComparator(Utilities.paliComparator);
-		ptstCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
 		final TableColumn<RefOutput, String> bjtCol = new TableColumn<>("BJT");
 		bjtCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).bjtProperty().getName()));
 		bjtCol.setReorderable(false);
 		bjtCol.setComparator(Utilities.paliComparator);
 		bjtCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
+		final TableColumn<RefOutput, String> ptstCol = new TableColumn<>("PTST");
+		ptstCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).ptstProperty().getName()));
+		ptstCol.setReorderable(false);
+		ptstCol.setComparator(Utilities.paliComparator);
+		ptstCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
 		final TableColumn<RefOutput, String> srtCol = new TableColumn<>("SRT");
 		srtCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).srtProperty().getName()));
 		srtCol.setReorderable(false);
@@ -183,16 +178,21 @@ public class ReferenceTable extends SingletonWindow {
 		gramCol.setReorderable(false);
 		gramCol.setComparator(Utilities.paliComparator);
 		gramCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
+		final TableColumn<RefOutput, String> scCol = new TableColumn<>("SC");
+		scCol.setCellValueFactory(new PropertyValueFactory<>(outputList.get(0).scProperty().getName()));
+		scCol.setReorderable(false);
+		scCol.setComparator(Utilities.paliComparator);
+		scCol.prefWidthProperty().bind(mainPane.widthProperty().divide(11));
 		table.getColumns().clear();
 		table.getColumns().add(nameCol);
 		table.getColumns().add(acadCol);
 		table.getColumns().add(cstrCol);	
 		table.getColumns().add(cst4Col);	
-		table.getColumns().add(scCol);	
-		table.getColumns().add(ptstCol);	
 		table.getColumns().add(bjtCol);	
+		table.getColumns().add(ptstCol);	
 		table.getColumns().add(srtCol);	
 		table.getColumns().add(gramCol);	
+		table.getColumns().add(scCol);	
 	}
 
 	private void showDetail() {

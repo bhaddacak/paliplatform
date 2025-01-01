@@ -1,7 +1,7 @@
 /*
  * TermLister.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -624,7 +624,8 @@ public class TermLister extends BorderPane {
 		if (lsTable == null) return;
 		final LuceneIndex index = lsTable.getIndex();
 		if (index == null) return;
-		final boolean showGathaFreq = Corpus.hasFullStructure(index.getCollection());
+		final Corpus.Collection col = index.getCollection();
+		final boolean showGathaFreq = Corpus.hasAlmostFullButNotes(col) || Corpus.hasFullStructure(col);
 		final double totalCW = showGathaFreq ? 11 : 9;
 		final double termCW = showGathaFreq ? 7 : 6.5;
 		table.getColumns().clear();

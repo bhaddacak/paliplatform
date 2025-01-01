@@ -56,12 +56,7 @@ public class ReaderMenu extends Menu {
 		scReaderMenuItem.disableProperty().bind(ReaderUtilities.suttaCentralAvailable.not());
 		scReaderMenuItem.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.VIEWER_SC, null));
 		final MenuItem downloadMenuItem = new MenuItem("Download SuttaCentral data", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
-		downloadMenuItem.setOnAction(actionEvent -> {
-			// This prevent exit error when the window stays opened.
-			// See also in ReaderServiceImp and MainMenu.
-			ReaderUtilities.scDownloaderOpened = true;
-			ScDownloader.INSTANCE.display();
-		});
+		downloadMenuItem.setOnAction(actionEvent -> ScDownloader.INSTANCE.display());
 		getItems().addAll(toctreeMenuItem, docfinderMenuItem, refTableMenuItem,
 						new SeparatorMenuItem(), scReaderMenuItem, downloadMenuItem);
 	}

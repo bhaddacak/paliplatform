@@ -9,8 +9,14 @@
  	<cst4>Vin2</cst4>
  	<ptst>Vin3</ptst>
  	<ptst>Vin4</ptst>
- 	<bjt>Buv1</bjt>
- 	<bjt>Buv2</bjt>
+ 	<bjt>VP-Prj</bjt>
+ 	<bjt>VP-Prj-2-3</bjt>
+ 	<bjt>VP-Prj-3</bjt>
+ 	<bjt>VP-Prj-3-4</bjt>
+ 	<bjt>VP-Prj-4</bjt>
+ 	<bjt>VP-Pct</bjt>
+ 	<bjt>VP-Pct-1-1-5</bjt>
+ 	<bjt>VP-Pct-1-2</bjt>
  	<srt>Buv1</srt>
  	<srt>Buv2</srt>
  	<sc>Bu-vb</sc>
@@ -20,7 +26,8 @@
  	<cstr>Biv</cstr>
  	<cst4>Vin2</cst4>
  	<ptst>Vin4</ptst>
- 	<bjt>Biv</bjt>
+ 	<bjt>VP-Pct-2</bjt>
+ 	<bjt>VP-Pct-2-4</bjt>
  	<srt>Biv</srt>
  	<sc>Bi-vb</sc>
  </ref>
@@ -29,20 +36,26 @@
  	<cstr>Mv</cstr>
  	<cst4>Vin3</cst4>
  	<ptst>Vin1</ptst>
- 	<bjt>Mv1</bjt>
- 	<bjt>Mv2</bjt>
+ 	<bjt>VP-Mv</bjt>
+ 	<bjt>VP-Mv-2</bjt>
+ 	<bjt>VP-Mv-4</bjt>
+ 	<bjt>VP-Mv-6</bjt>
+ 	<bjt>VP-Mv-7</bjt>
+ 	<bjt>VP-Mv-9</bjt>
  	<srt>Mv1</srt>
  	<srt>Mv2</srt>
  	<sc>Kd</sc>
  </ref>
  <ref id="cv">
  	<name>Cūḷavagga</name>
- 	<altname>Cullavaggo</altname>
+ 	<altname>Cullavagga</altname>
  	<cstr>Cv</cstr>
  	<cst4>Vin4</cst4>
  	<ptst>Vin2</ptst>
- 	<bjt>Cv1</bjt>
- 	<bjt>Cv2</bjt>
+ 	<bjt>VP-Cv</bjt>
+ 	<bjt>VP-Cv-3</bjt>
+ 	<bjt>VP-Cv-5</bjt>
+ 	<bjt>VP-Cv-8</bjt>
  	<srt>Cv1</srt>
  	<srt>Cv2</srt>
  	<sc>Kd</sc>
@@ -52,8 +65,10 @@
  	<cstr>Pvr</cstr>
  	<cst4>Vin5</cst4>
  	<ptst>Vin5</ptst>
- 	<bjt>Pvr1</bjt>
- 	<bjt>Pvr2</bjt>
+ 	<bjt>VP-Pv</bjt>
+ 	<bjt>VP-Pv-2</bjt>
+ 	<bjt>VP-Pv-5</bjt>
+ 	<bjt>VP-Pv-14</bjt>
  	<srt>Pvr</srt>
  	<sc>Pvr</sc>
  </ref>
@@ -93,6 +108,13 @@
  	<ptst>Sp5</ptst>
  	<ptst>Sp6</ptst>
  	<ptst>Sp7</ptst>
+ 	<bjt>Atta-VP-Prj</bjt>
+ 	<bjt>Atta-VP-Prj-2</bjt>
+ 	<bjt>Atta-VP-Prj-3</bjt>
+ 	<bjt>Atta-VP-Pct</bjt>
+ 	<bjt>Atta-VP-Mv</bjt>
+ 	<bjt>Atta-VP-Cv</bjt>
+ 	<bjt>Atta-VP-Pv</bjt>
  	<srt>Sp1</srt>
  	<srt>Sp2</srt>
  	<srt>Sp3</srt>
@@ -233,9 +255,17 @@
  	<ptst>D1</ptst>
  	<ptst>D2</ptst>
  	<ptst>D3</ptst>
- 	<bjt>D1</bjt>
- 	<bjt>D2</bjt>
- 	<bjt>D3</bjt>
+ 	<bjt>DN-1</bjt>
+ 	<bjt>DN-1-3</bjt>
+ 	<bjt>DN-1-6</bjt>
+ 	<bjt>DN-1-11</bjt>
+ 	<bjt>DN-2</bjt>
+ 	<bjt>DN-2-3</bjt>
+ 	<bjt>DN-2-4</bjt>
+ 	<bjt>DN-2-7</bjt>
+ 	<bjt>DN-3</bjt>
+ 	<bjt>DN-3-5</bjt>
+ 	<bjt>DN-3-10</bjt>
  	<srt>D1</srt>
  	<srt>D2</srt>
  	<srt>D3</srt>
@@ -251,6 +281,11 @@
  	<cst4>DN1-a</cst4>
  	<cst4>DN2-a</cst4>
  	<cst4>DN3-a</cst4>
+ 	<bjt>Atta-DN-1</bjt>
+ 	<bjt>Atta-DN-1-2</bjt>
+ 	<bjt>Atta-DN-2</bjt>
+ 	<bjt>Atta-DN-2-4</bjt>
+ 	<bjt>Atta-DN-3</bjt>
  	<srt>D-a1</srt>
  	<srt>D-a2</srt>
  	<srt>D-a3</srt>
@@ -286,9 +321,21 @@
  	<ptst>M1</ptst>
  	<ptst>M2</ptst>
  	<ptst>M3</ptst>
- 	<bjt>M1</bjt>
- 	<bjt>M2</bjt>
- 	<bjt>M3</bjt>
+ 	<bjt>MN-1</bjt>
+ 	<bjt>MN-1-2</bjt>
+ 	<bjt>MN-1-3</bjt>
+ 	<bjt>MN-1-4</bjt>
+ 	<bjt>MN-1-5</bjt>
+ 	<bjt>MN-2</bjt>
+ 	<bjt>MN-2-2</bjt>
+ 	<bjt>MN-2-3</bjt>
+ 	<bjt>MN-2-4</bjt>
+ 	<bjt>MN-2-5</bjt>
+ 	<bjt>MN-3</bjt>
+ 	<bjt>MN-3-2</bjt>
+ 	<bjt>MN-3-3</bjt>
+ 	<bjt>MN-3-4</bjt>
+ 	<bjt>MN-3-5</bjt>
  	<srt>M1</srt>
  	<srt>M2</srt>
  	<srt>M3</srt>
@@ -304,6 +351,13 @@
  	<cst4>MN1-a</cst4>
  	<cst4>MN2-a</cst4>
  	<cst4>MN3-a</cst4>
+ 	<bjt>Atta-MN-1</bjt>
+ 	<bjt>Atta-MN-1-1-6</bjt>
+ 	<bjt>Atta-MN-1-2</bjt>
+ 	<bjt>Atta-MN-1-4</bjt>
+ 	<bjt>Atta-MN-2</bjt>
+ 	<bjt>Atta-MN-2-3</bjt>
+ 	<bjt>Atta-MN-3</bjt>
  	<srt>M-a1</srt>
  	<srt>M-a2</srt>
  	<srt>M-a3</srt>
@@ -338,12 +392,29 @@
  	<ptst>S3</ptst>
  	<ptst>S4</ptst>
  	<ptst>S5</ptst>
- 	<bjt>S1</bjt>
- 	<bjt>S2</bjt>
- 	<bjt>S3</bjt>
- 	<bjt>S4</bjt>
- 	<bjt>S5</bjt>
- 	<bjt>S6</bjt>
+ 	<bjt>SN-1</bjt>
+ 	<bjt>SN-1-3</bjt>
+ 	<bjt>SN-1-7</bjt>
+ 	<bjt>SN-2</bjt>
+ 	<bjt>SN-2-1-5</bjt>
+ 	<bjt>SN-2-2</bjt>
+ 	<bjt>SN-2-5</bjt>
+ 	<bjt>SN-3</bjt>
+ 	<bjt>SN-3-1-2</bjt>
+ 	<bjt>SN-3-1-3</bjt>
+ 	<bjt>SN-3-2</bjt>
+ 	<bjt>SN-3-7</bjt>
+ 	<bjt>SN-4</bjt>
+ 	<bjt>SN-4-1-12</bjt>
+ 	<bjt>SN-4-2</bjt>
+ 	<bjt>SN-4-8</bjt>
+ 	<bjt>SN-5</bjt>
+ 	<bjt>SN-5-2</bjt>
+ 	<bjt>SN-5-3</bjt>
+ 	<bjt>SN-5-4</bjt>
+ 	<bjt>SN-5-7</bjt>
+ 	<bjt>SN-5-11</bjt>
+ 	<bjt>SN-5-12</bjt>
  	<srt>S1</srt>
  	<srt>S2</srt>
  	<srt>S3</srt>
@@ -365,6 +436,12 @@
  	<cst4>SN3-a</cst4>
  	<cst4>SN4-a</cst4>
  	<cst4>SN5-a</cst4>
+ 	<bjt>Atta-SN-1</bjt>
+ 	<bjt>Atta-SN-1-5</bjt>
+ 	<bjt>Atta-SN-2</bjt>
+ 	<bjt>Atta-SN-3</bjt>
+ 	<bjt>Atta-SN-4</bjt>
+ 	<bjt>Atta-SN-5</bjt>
  	<srt>S-a1</srt>
  	<srt>S-a2</srt>
  	<srt>S-a3</srt>
@@ -415,12 +492,34 @@
  	<ptst>A3</ptst>
  	<ptst>A4</ptst>
  	<ptst>A5</ptst>
- 	<bjt>A1</bjt>
- 	<bjt>A2</bjt>
- 	<bjt>A3</bjt>
- 	<bjt>A4</bjt>
- 	<bjt>A5</bjt>
- 	<bjt>A6</bjt>
+ 	<bjt>AN-1</bjt>
+ 	<bjt>AN-2</bjt>
+ 	<bjt>AN-3</bjt>
+ 	<bjt>AN-3-2</bjt>
+ 	<bjt>AN-3-3</bjt>
+ 	<bjt>AN-4</bjt>
+ 	<bjt>AN-4-2</bjt>
+ 	<bjt>AN-4-3</bjt>
+ 	<bjt>AN-4-4</bjt>
+ 	<bjt>AN-4-5</bjt>
+ 	<bjt>AN-5</bjt>
+ 	<bjt>AN-5-2</bjt>
+ 	<bjt>AN-5-3</bjt>
+ 	<bjt>AN-5-4</bjt>
+ 	<bjt>AN-5-5</bjt>
+ 	<bjt>AN-6</bjt>
+ 	<bjt>AN-6-2</bjt>
+ 	<bjt>AN-7</bjt>
+ 	<bjt>AN-7-2</bjt>
+ 	<bjt>AN-8</bjt>
+ 	<bjt>AN-8-2</bjt>
+ 	<bjt>AN-9</bjt>
+ 	<bjt>AN-10</bjt>
+ 	<bjt>AN-10-2</bjt>
+ 	<bjt>AN-10-3</bjt>
+ 	<bjt>AN-10-4</bjt>
+ 	<bjt>AN-10-5</bjt>
+ 	<bjt>AN-11</bjt>
  	<srt>A1</srt>
  	<srt>A2</srt>
  	<srt>A3</srt>
@@ -454,6 +553,19 @@
  	<cst4>AN9-a</cst4>
  	<cst4>AN10-a</cst4>
  	<cst4>AN11-a</cst4>
+ 	<bjt>Atta-AN-1</bjt>
+ 	<bjt>Atta-AN-1-14-3</bjt>
+ 	<bjt>Atta-AN-1-15</bjt>
+ 	<bjt>Atta-AN-2</bjt>
+ 	<bjt>Atta-AN-3</bjt>
+ 	<bjt>Atta-AN-4</bjt>
+ 	<bjt>Atta-AN-5</bjt>
+ 	<bjt>Atta-AN-6</bjt>
+ 	<bjt>Atta-AN-7</bjt>
+ 	<bjt>Atta-AN-8</bjt>
+ 	<bjt>Atta-AN-9</bjt>
+ 	<bjt>Atta-AN-10</bjt>
+ 	<bjt>Atta-AN-11</bjt>
  	<srt>A-a1</srt>
  	<srt>A-a2</srt>
  	<srt>A-a3</srt>
@@ -490,7 +602,7 @@
  	<cstr>Khp</cstr>
  	<cst4>Khp</cst4>
  	<ptst>Khp</ptst>
- 	<bjt>Khp</bjt>
+ 	<bjt>KN-Khp</bjt>
  	<srt>Khp</srt>
  	<sc>Kp</sc>
  </ref>
@@ -499,6 +611,7 @@
  	<altname>Paramatthajotikā</altname>
  	<cstr>Khp-a</cstr>
  	<cst4>Khp-a</cst4>
+ 	<bjt>Atta-KN-Khp</bjt>
  	<srt>Khp-a</srt>
  </ref>
  <ref id="dhp">
@@ -507,7 +620,7 @@
  	<cstr>Dhp</cstr>
  	<cst4>Dhp</cst4>
  	<ptst>Dhp</ptst>
- 	<bjt>Dhp</bjt>
+ 	<bjt>KN-Dhp</bjt>
  	<srt>Dhp</srt>
  	<sc>Dhp</sc>
  </ref>
@@ -516,6 +629,10 @@
  	<acad>Dhp-a</acad>
  	<cstr>Dhp-a</cstr>
  	<cst4>Dhp-a</cst4>
+ 	<bjt>Atta-KN-Dhp</bjt>
+ 	<bjt>Atta-KN-Dhp-4</bjt>
+ 	<bjt>Atta-KN-Dhp-9</bjt>
+ 	<bjt>Atta-KN-Dhp-19</bjt>
  	<srt>Dhp-a1</srt>
  	<srt>Dhp-a2</srt>
  </ref>
@@ -525,7 +642,7 @@
  	<cstr>Ud</cstr>
  	<cst4>Ud</cst4>
  	<ptst>Ud</ptst>
- 	<bjt>Ud</bjt>
+ 	<bjt>KN-Ud</bjt>
  	<srt>Ud</srt>
  	<sc>Ud</sc>
  </ref>
@@ -535,6 +652,8 @@
  	<acad>Ud-a</acad>
  	<cstr>Ud-a</cstr>
  	<cst4>Ud-a</cst4>
+ 	<bjt>Atta-KN-Ud</bjt>
+ 	<bjt>Atta-KN-Ud-4</bjt>
  	<srt>Ud-a</srt>
  </ref>
  <ref id="it">
@@ -543,7 +662,7 @@
  	<cstr>It</cstr>
  	<cst4>It</cst4>
  	<ptst>It</ptst>
- 	<bjt>It</bjt>
+ 	<bjt>KN-Iti</bjt>
  	<srt>It</srt>
  	<sc>Iti</sc>
  </ref>
@@ -553,6 +672,8 @@
  	<acad>It-a</acad>
  	<cstr>It-a</cstr>
  	<cst4>It-a</cst4>
+ 	<bjt>Atta-KN-Iti</bjt>
+ 	<bjt>Atta-KN-Iti-3</bjt>
  	<srt>It-a</srt>
  </ref>
  <ref id="snp">
@@ -561,7 +682,11 @@
  	<cstr>Snp</cstr>
  	<cst4>Snp</cst4>
  	<ptst>Sn</ptst>
- 	<bjt>Snp</bjt>
+ 	<bjt>KN-Snp</bjt>
+ 	<bjt>KN-Snp-2</bjt>
+ 	<bjt>KN-Snp-3</bjt>
+ 	<bjt>KN-Snp-4</bjt>
+ 	<bjt>KN-Snp-5</bjt>
  	<srt>Snp</srt>
  	<sc>Snp</sc>
  </ref>
@@ -571,6 +696,9 @@
  	<acad>Pj</acad>
  	<cstr>Snp-a</cstr>
  	<cst4>Snp-a</cst4>
+ 	<bjt>Atta-KN-Snp</bjt>
+ 	<bjt>Atta-KN-Snp-2</bjt>
+ 	<bjt>Atta-KN-Snp-3</bjt>
  	<srt>Snp-a1</srt>
  	<srt>Snp-a2</srt>
  </ref>
@@ -580,7 +708,7 @@
  	<cstr>Vv</cstr>
  	<cst4>Vv</cst4>
  	<ptst>Vv</ptst>
- 	<bjt>Vv</bjt>
+ 	<bjt>KN-Vv</bjt>
  	<srt>Vv</srt>
  	<sc>Vv</sc>
  </ref>
@@ -590,6 +718,8 @@
  	<acad>Vv-a</acad>
  	<cstr>Vv-a</cstr>
  	<cst4>Vv-a</cst4>
+ 	<bjt>Atta-KN-Vv</bjt>
+ 	<bjt>Atta-KN-Vv-4</bjt>
  	<srt>Vv-a</srt>
  </ref>
  <ref id="pv">
@@ -598,7 +728,7 @@
  	<cstr>Pv</cstr>
  	<cst4>Pv</cst4>
  	<ptst>Pv</ptst>
- 	<bjt>Pv</bjt>
+ 	<bjt>KN-Pv</bjt>
  	<srt>Pv</srt>
  	<sc>Pv</sc>
  </ref>
@@ -608,6 +738,7 @@
  	<acad>Pv-a</acad>
  	<cstr>Pv-a</cstr>
  	<cst4>Pv-a</cst4>
+ 	<bjt>Atta-KN-Pv</bjt>
  	<srt>Pv-a</srt>
  </ref>
  <ref id="thag">
@@ -616,7 +747,8 @@
  	<cstr>Thag</cstr>
  	<cst4>Thag</cst4>
  	<ptst>Th</ptst>
- 	<bjt>Thag</bjt>
+ 	<bjt>KN-Thag</bjt>
+ 	<bjt>KN-Thag-11</bjt>
  	<srt>Thag</srt>
  	<sc>Thag</sc>
  </ref>
@@ -627,6 +759,10 @@
  	<cstr>Thag-a</cstr>
  	<cst4>Thag-a1</cst4>
  	<cst4>Thag-a2</cst4>
+ 	<bjt>Atta-KN-Thag</bjt>
+ 	<bjt>Atta-KN-Thag-2</bjt>
+ 	<bjt>Atta-KN-Thag-5</bjt>
+ 	<bjt>Atta-KN-Thag-15</bjt>
  	<srt>Thag-a1</srt>
  	<srt>Thag-a2</srt>
  </ref>
@@ -636,7 +772,7 @@
  	<cstr>Thig</cstr>
  	<cst4>Thig</cst4>
  	<ptst>Thī</ptst>
- 	<bjt>Thig</bjt>
+ 	<bjt>KN-Thig</bjt>
  	<srt>Thig</srt>
  	<sc>Thig</sc>
  </ref>
@@ -646,6 +782,7 @@
  	<acad>Thī-a</acad>
  	<cstr>Thig-a</cstr>
  	<cst4>Thig-a</cst4>
+ 	<bjt>Atta-KN-Thig</bjt>
  	<srt>Thig-a</srt>
  </ref>
  <ref id="ap">
@@ -657,9 +794,15 @@
  	<cst4>Ap1</cst4>
  	<cst4>Ap2</cst4>
  	<ptst>Ap</ptst>
- 	<bjt>Ap1</bjt>
- 	<bjt>Ap2</bjt>
- 	<bjt>Ap3</bjt>
+ 	<bjt>KN-Ap</bjt>
+ 	<bjt>KN-Ap-1-5</bjt>
+ 	<bjt>KN-Ap-1-19</bjt>
+ 	<bjt>KN-Ap-1-33</bjt>
+ 	<bjt>KN-Ap-1-41</bjt>
+ 	<bjt>KN-Ap-1-45</bjt>
+ 	<bjt>KN-Ap-1-53</bjt>
+ 	<bjt>KN-Ap-1-53</bjt>
+ 	<bjt>KN-Ap-2</bjt>
  	<srt>Ap1</srt>
  	<srt>Ap2</srt>
  	<sc>Tha-ap</sc>
@@ -672,6 +815,8 @@
  	<acad>Ap-a</acad>
  	<cstr>Ap1-a</cstr>
  	<cst4>Ap-a</cst4>
+ 	<bjt>Atta-KN-Ap</bjt>
+ 	<bjt>Atta-KN-Ap-1-2</bjt>
  	<srt>Ap-a1</srt>
  	<srt>Ap-a2</srt>
  </ref>
@@ -681,7 +826,7 @@
  	<cstr>Bv</cstr>
  	<cst4>Bv</cst4>
  	<ptst>Bv</ptst>
- 	<bjt>Bv</bjt>
+ 	<bjt>KN-Bv</bjt>
  	<srt>Bv</srt>
  	<sc>Bv</sc>
  </ref>
@@ -691,6 +836,7 @@
  	<acad>Bv-a</acad>
  	<cstr>Bv-a</cstr>
  	<cst4>Bv-a</cst4>
+ 	<bjt>Atta-KN-Bv</bjt>
  	<srt>Bv-a</srt>
  </ref>
  <ref id="cp">
@@ -699,7 +845,7 @@
  	<cstr>Cp</cstr>
  	<cst4>Cp</cst4>
  	<ptst>Cp</ptst>
- 	<bjt>Cp</bjt>
+ 	<bjt>KN-Cp</bjt>
  	<srt>Cp</srt>
  	<sc>Cp</sc>
  </ref>
@@ -709,6 +855,8 @@
  	<acad>Cp-a</acad>
  	<cstr>Cp-a</cstr>
  	<cst4>Cp-a</cst4>
+ 	<bjt>Atta-KN-Cp</bjt>
+ 	<bjt>Atta-KN-Cp-3</bjt>
  	<srt>Cp-a</srt>
  </ref>
  <ref id="ja">
@@ -724,12 +872,14 @@
  	<ptst>Ja4</ptst>
  	<ptst>Ja5</ptst>
  	<ptst>Ja6</ptst>
- 	<bjt>Ja1</bjt>
- 	<bjt>Ja2</bjt>
- 	<bjt>Ja3</bjt>
- 	<bjt>Ja4</bjt>
- 	<bjt>Ja5</bjt>
- 	<bjt>Ja6</bjt>
+ 	<bjt>KN-Jat</bjt>
+ 	<bjt>KN-Jat-5</bjt>
+ 	<bjt>KN-Jat-11</bjt>
+ 	<bjt>KN-Jat-15</bjt>
+ 	<bjt>KN-Jat-18</bjt>
+ 	<bjt>KN-Jat-22</bjt>
+ 	<bjt>KN-Jat-22-6</bjt>
+ 	<bjt>KN-Jat-22-10</bjt>
  	<srt>Ja1</srt>
  	<srt>Ja2</srt>
  	<sc>Ja</sc>
@@ -747,6 +897,19 @@
  	<cst4>Ja-a5</cst4>
  	<cst4>Ja-a6</cst4>
  	<cst4>Ja-a7</cst4>
+ 	<bjt>Atta-KN-Jat</bjt>
+ 	<bjt>Atta-KN-Jat-1-6</bjt>
+ 	<bjt>Atta-KN-Jat-2</bjt>
+ 	<bjt>Atta-KN-Jat-3</bjt>
+ 	<bjt>Atta-KN-Jat-4</bjt>
+ 	<bjt>Atta-KN-Jat-6</bjt>
+ 	<bjt>Atta-KN-Jat-9</bjt>
+ 	<bjt>Atta-KN-Jat-14</bjt>
+ 	<bjt>Atta-KN-Jat-17</bjt>
+ 	<bjt>Atta-KN-Jat-21</bjt>
+ 	<bjt>Atta-KN-Jat-22</bjt>
+ 	<bjt>Atta-KN-Jat-22-5</bjt>
+ 	<bjt>Atta-KN-Jat-22-9</bjt>
  	<srt>Ja-a1</srt>
  	<srt>Ja-a2</srt>
  	<srt>Ja-a3</srt>
@@ -768,8 +931,12 @@
  	<cst4>Nidd2</cst4>
  	<ptst>Nidd1</ptst>
  	<ptst>Nidd2</ptst>
- 	<bjt>Nidd1</bjt>
- 	<bjt>Nidd2</bjt>
+ 	<bjt>KN-Mn</bjt>
+ 	<bjt>KN-Mn-6</bjt>
+ 	<bjt>KN-Mn-14</bjt>
+ 	<bjt>KN-Nc</bjt>
+ 	<bjt>KN-Nc-5</bjt>
+ 	<bjt>KN-Nc-18</bjt>
  	<srt>Nidd1</srt>
  	<srt>Nidd2</srt>
  	<sc>Mnd</sc>
@@ -783,6 +950,9 @@
  	<cstr>Nidd2-a</cstr>
  	<cst4>Nidd1-a</cst4>
  	<cst4>Nidd2-a</cst4>
+ 	<bjt>Atta-KN-Mn</bjt>
+ 	<bjt>Atta-KN-Mn-6</bjt>
+ 	<bjt>Atta-KN-Nc</bjt>
  	<srt>Nidd-a1</srt>
  	<srt>Nidd-a2</srt>
  </ref>
@@ -793,8 +963,15 @@
  	<cst4>Psm</cst4>
  	<ptst>Paṭis1</ptst>
  	<ptst>Paṭis2</ptst>
- 	<bjt>Psm1</bjt>
- 	<bjt>Psm2</bjt>
+ 	<bjt>KN-Ps</bjt>
+ 	<bjt>KN-Ps-1-1-17</bjt>
+ 	<bjt>KN-Ps-1-2</bjt>
+ 	<bjt>KN-Ps-1-3</bjt>
+ 	<bjt>KN-Ps-1-4</bjt>
+ 	<bjt>KN-Ps-1-5</bjt>
+ 	<bjt>KN-Ps-1-6</bjt>
+ 	<bjt>KN-Ps-2</bjt>
+ 	<bjt>KN-Ps-3</bjt>
  	<srt>Psm</srt>
  	<sc>Ps</sc>
  </ref>
@@ -804,6 +981,10 @@
  	<acad>Paṭis-a</acad>
  	<cstr>Psm-a</cstr>
  	<cst4>Psm-a</cst4>
+ 	<bjt>Atta-KN-Ps</bjt>
+ 	<bjt>Atta-KN-Ps-1-1-2</bjt>
+ 	<bjt>Atta-KN-Ps-1-2</bjt>
+ 	<bjt>Atta-KN-Ps-2</bjt>
  	<srt>Psm-a1</srt>
  	<srt>Psm-a2</srt>
  </ref>
@@ -820,12 +1001,15 @@
  	<acad>Nett</acad>
  	<cstr>Nett</cstr>
  	<cst4>Nett</cst4>
+ 	<bjt>KN-Nett</bjt>
+ 	<bjt>KN-Nett-3-3</bjt>
  	<sc>Ne</sc>
  </ref>
  <ref id="nett-a">
  	<name>Nettippakaraṇa-aṭṭhakathā</name>
  	<cstr>Nett-a</cstr>
  	<cst4>Nett-a</cst4>
+ 	<bjt>Atta-KN-Nett</bjt>
  </ref>
  <ref id="nett-t">
  	<name>Nettippakaraṇa-ṭīkā</name>
@@ -843,6 +1027,8 @@
  	<acad>Peṭ</acad>
  	<cstr>Ptkp</cstr>
  	<cst4>Ptkp</cst4>
+ 	<bjt>KN-Petk</bjt>
+ 	<bjt>KN-Petk-6</bjt>
  	<sc>Pe</sc>
  </ref>
  <ref id="vism">
@@ -852,6 +1038,8 @@
  	<cst4>Vism1</cst4>
  	<cst4>Vism2</cst4>
  	<ptst>Vism</ptst>
+ 	<bjt>Anya-Vm</bjt>
+ 	<bjt>Anya-Vm-12</bjt>
  </ref>
  <ref id="vism-t">
  	<name>Visuddhimagga-mahāṭīkā</name>
@@ -868,7 +1056,9 @@
  	<cstr>Dhs</cstr>
  	<cst4>Dhs</cst4>
  	<ptst>Dhs</ptst>
- 	<bjt>Dhs</bjt>
+ 	<bjt>AP-Dhs</bjt>
+ 	<bjt>AP-Dhs-3</bjt>
+ 	<bjt>AP-Dhs-5</bjt>
  	<srt>Dhs</srt>
  	<sc>Ds</sc>
  </ref>
@@ -878,8 +1068,12 @@
  	<cstr>Vbh</cstr>
  	<cst4>Vbh</cst4>
  	<ptst>Vibh</ptst>
- 	<bjt>Vbh1</bjt>
- 	<bjt>Vbh2</bjt>
+ 	<bjt>AP-Vbh</bjt>
+ 	<bjt>AP-Vbh-2</bjt>
+ 	<bjt>AP-Vbh-6</bjt>
+ 	<bjt>AP-Vbh-10</bjt>
+ 	<bjt>AP-Vbh-14</bjt>
+ 	<bjt>AP-Vbh-17</bjt>
  	<srt>Vbh</srt>
  	<sc>Vb</sc>
  </ref>
@@ -889,7 +1083,7 @@
  	<cstr>Dhk</cstr>
  	<cst4>Dhk</cst4>
  	<ptst>Dhātuk</ptst>
- 	<bjt>Dhk</bjt>
+ 	<bjt>AP-Dhk</bjt>
  	<srt>Dhk</srt>
  	<sc>Dt</sc>
  </ref>
@@ -899,7 +1093,7 @@
  	<cstr>Pp</cstr>
  	<cst4>Pp</cst4>
  	<ptst>Pp</ptst>
- 	<bjt>Pp</bjt>
+ 	<bjt>AP-Pug</bjt>
  	<srt>Pp</srt>
  	<sc>Pp</sc>
  </ref>
@@ -909,9 +1103,15 @@
  	<cstr>Kv</cstr>
  	<cst4>Kv</cst4>
  	<ptst>Kv</ptst>
- 	<bjt>Kv1</bjt>
- 	<bjt>Kv2</bjt>
- 	<bjt>Kv3</bjt>
+ 	<bjt>AP-Kvu</bjt>
+ 	<bjt>AP-Kvu-1-2</bjt>
+ 	<bjt>AP-Kvu-2</bjt>
+ 	<bjt>AP-Kvu-3</bjt>
+ 	<bjt>AP-Kvu-5</bjt>
+ 	<bjt>AP-Kvu-8</bjt>
+ 	<bjt>AP-Kvu-11</bjt>
+ 	<bjt>AP-Kvu-15</bjt>
+ 	<bjt>AP-Kvu-19</bjt>
  	<srt>Kv</srt>
  	<sc>Kv</sc>
  </ref>
@@ -924,9 +1124,17 @@
  	<cst4>Ym3</cst4>
  	<ptst>Yam1</ptst>
  	<ptst>Yam2</ptst>
- 	<bjt>Ym1</bjt>
- 	<bjt>Ym2</bjt>
- 	<bjt>Ym3</bjt>
+ 	<bjt>AP-Yam</bjt>
+ 	<bjt>AP-Yam-3</bjt>
+ 	<bjt>AP-Yam-4</bjt>
+ 	<bjt>AP-Yam-6</bjt>
+ 	<bjt>AP-Yam-7</bjt>
+ 	<bjt>AP-Yam-7-5</bjt>
+ 	<bjt>AP-Yam-8</bjt>
+ 	<bjt>AP-Yam-10</bjt>
+ 	<bjt>AP-Yam-10-3</bjt>
+ 	<bjt>AP-Yam-10-3-4</bjt>
+ 	<bjt>AP-Yam-10-4</bjt>
  	<srt>Ym1</srt>
  	<srt>Ym2</srt>
  	<sc>Ya</sc>
@@ -949,8 +1157,13 @@
  	<ptst>Tikap2</ptst>
  	<ptst>Tikap3</ptst>
  	<ptst>Dukap</ptst>
- 	<bjt>Pt1</bjt>
- 	<bjt>Pt2</bjt>
+ 	<bjt>AP-Pat</bjt>
+ 	<bjt>AP-Pat-1-12</bjt>
+ 	<bjt>AP-Pat-2</bjt>
+ 	<bjt>AP-Pat-2-47</bjt>
+ 	<bjt>AP-Pat-2-83</bjt>
+ 	<bjt>AP-Pat-3</bjt>
+ 	<bjt>AP-Pat-4</bjt>
  	<srt>Pt1</srt>
  	<srt>Pt2</srt>
  	<srt>Pt3</srt>
@@ -965,6 +1178,8 @@
  	<acad>As</acad>
  	<cstr>As</cstr>
  	<cst4>Dhs-a</cst4>
+ 	<bjt>Atta-AP-Dhs</bjt>
+ 	<bjt>Atta-AP-Dhs-3</bjt>
  	<srt>Dhs-a</srt>
  </ref>
  <ref id="vbh-a">
@@ -973,6 +1188,8 @@
  	<acad>Vibh-a</acad>
  	<cstr>Vbh-a</cstr>
  	<cst4>Vbh-a</cst4>
+ 	<bjt>Atta-AP-Vbh</bjt>
+ 	<bjt>Atta-AP-Vbh-8</bjt>
  	<srt>Vbh-a</srt>
  </ref>
  <ref id="dhk-a">
@@ -980,6 +1197,7 @@
  	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
  	<cstr>Dhk-a</cstr>
  	<cst4>Dhk-a</cst4>
+ 	<bjt>Atta-AP-Dhk</bjt>
  	<srt>Dhk-a</srt>
  </ref>
  <ref id="pp-a">
@@ -987,6 +1205,7 @@
  	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
  	<cstr>Pp-a</cstr>
  	<cst4>Pp-a</cst4>
+ 	<bjt>Atta-AP-Pug</bjt>
  	<srt>Pp-a</srt>
  </ref>
  <ref id="kv-a">
@@ -994,6 +1213,7 @@
  	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
  	<cstr>Kv-a</cstr>
  	<cst4>Kv-a</cst4>
+ 	<bjt>Atta-AP-Kvu</bjt>
  	<srt>Kv-a</srt>
  </ref>
  <ref id="ym-a">
@@ -1001,6 +1221,7 @@
  	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
  	<cstr>Ym-a</cstr>
  	<cst4>Ym-a</cst4>
+ 	<bjt>Atta-AP-Yam</bjt>
  	<srt>Ym-a</srt>
  </ref>
  <ref id="pt-a">
@@ -1008,6 +1229,7 @@
  	<note>Aṭṭhakathā of the five books of Abhidhamma are bundled as Pañcapakaraṇa-aṭṭhakathā</note>
  	<cstr>Pt-a</cstr>
  	<cst4>Pt-a</cst4>
+ 	<bjt>Atta-AP-Pat</bjt>
  	<srt>Pt-a</srt>
  </ref>
  <ref id="dhs-t">
@@ -1262,7 +1484,7 @@
  	<cst4>Abhidhā-t</cst4>
  </ref>
  <ref id="subho">
- 	<name>Subodhālaṅkāro</name>
+ 	<name>Subodhālaṅkāra</name>
  	<cst4>Subho</cst4>
  	<gram>Subho</gram>
  </ref>
@@ -1272,7 +1494,7 @@
  	<gram>Subho-t</gram>
  </ref>
  <ref id="blv">
- 	<name>Bālāvatāro</name>
+ 	<name>Bālāvatāra</name>
  	<cst4>Blv</cst4>
  </ref>
  <ref id="dpv">

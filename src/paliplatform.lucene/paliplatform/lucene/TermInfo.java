@@ -38,6 +38,7 @@ public class TermInfo {
 		GATHA1, GATHA2, GATHA3, GATHALAST,
 		H2, H3, H4, H5, H6, // used in CSTR
 		PART, GROUP, SUBGROUP, ENDPART, ENDGROUP, ENDSUBGROUP, STRONG, // used in CSTR
+		HEADING, GATHA, // used in BJT
 		NOTE, BOLD; // excluding PARANUM, HANGNUM, PB, and DOT in CST4
 		public static final Field[] values = Field.values();
 		private static final Map<Corpus.Collection, List<Field>> fieldListMap = new EnumMap<>(Corpus.Collection.class);
@@ -64,6 +65,11 @@ public class TermInfo {
 			final Set<String> cst4Set = fieldListMap.get(Corpus.Collection.CST4).stream()
 										.map(Field::toString).collect(Collectors.toSet());
 			fieldSetMap.put(Corpus.Collection.CST4, cst4Set);
+			// for BJT (bodytext = paragraph)
+			fieldListMap.put(Corpus.Collection.BJT, List.of(BODYTEXT, HEADING, CENTRE, UNINDENTED, GATHA, BOLD));
+			final Set<String> bjtSet = fieldListMap.get(Corpus.Collection.BJT).stream()
+										.map(Field::toString).collect(Collectors.toSet());
+			fieldSetMap.put(Corpus.Collection.BJT, bjtSet);
 			// for SRT
 			fieldListMap.put(Corpus.Collection.SRT, List.of(BODYTEXT, NOTE));
 			final Set<String> srtSet = fieldListMap.get(Corpus.Collection.SRT).stream()

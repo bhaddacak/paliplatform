@@ -60,6 +60,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 	private final CheckMenuItem niruMenuItem = new CheckMenuItem("Niruttidīpanī");
 	private final InfoPopup helpPopup = new InfoPopup();
 	private GrammarText gramText;
+	private GrammarText.GrammarBook currBookId;
 	private String recentJS = "";
 
 	public GramHtmlViewer(final TocTreeNode node) {
@@ -173,7 +174,12 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		displayScript.set(Utilities.PaliScript.ROMAN);
 	}
 
+	private void setupContent() {
+		setupContent(currBookId);
+	}
+
 	private void setupContent(final GrammarText.GrammarBook bookId) {
+		currBookId = bookId;
 		final String body;
 		final List<GrammarText.GrammarBook> extras = new ArrayList<>();
 		if (bookId == GrammarText.GrammarBook.MOGG) {
@@ -261,7 +267,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 			final GrammarText.GrammarBook bookId = gramText.isDual()
 													? (GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData()
 													: gramText.getFirstBook();
-			heartButton.setOnAction(actionEvent -> setupContent(bookId));
+			heartButton.setOnAction(actionEvent -> setupContent());
 			contextToolBar.getChildren().add(heartButton);
 		}
 	}

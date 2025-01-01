@@ -1,7 +1,7 @@
 /*
  * PaliTextEditor.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -838,7 +838,7 @@ public class PaliTextEditor extends BorderPane {
 		String text = Normalizer.normalize(input, Form.NFD);
 		final int len = text.length();
 		text = text.replace("" + '\u2016', "|"); // change double bar to '|' first
-		text = text.replace("" + '\u2024', "."); // change one dot leader to period
+		text = text.replace("" + '\u00B7', "."); // change one dot leader to period
 		final StringBuilder output = new StringBuilder(len);
 		text.lines().forEach(line -> {
 			if (line.indexOf("|") > -1 ) {

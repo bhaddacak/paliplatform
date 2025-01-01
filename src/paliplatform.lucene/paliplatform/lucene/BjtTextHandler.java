@@ -1,7 +1,7 @@
 /*
  * BjtTextHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,14 +19,15 @@
 
 package paliplatform.lucene;
 
+import paliplatform.reader.*;
 import java.util.*;
+import java.util.regex.*;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 /** 
  * The indexing handler of texts in BJT collection.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.1
  * @since 3.0
  */
  
@@ -44,25 +45,32 @@ class BjtTextHandler implements TextHandler {
 
 	@Override
 	public void processStream(final InputStream input) {
-		final Scanner in = new Scanner(input, StandardCharsets.UTF_8);
-		boolean startFlag = false;
-		final StringBuilder bodyText = textMap.get(TermInfo.Field.BODYTEXT);
-		while (in.hasNextLine()) {
-			String line = in.nextLine().trim();
-			if (!startFlag) {
-				startFlag = line.equals("<!--text-start-->");
-				continue;
+		try {
+			final List<BjtPage> pages = ReaderUtilities.getBjtPages(input);
+			final Pattern boldPatt = Pattern.compile("\\*\\*(.*?)\\*\\*");
+			for (final BjtPage page : pages) {
+				final List<BjtPage.Element> entries = page.getEntries();
+				for (final BjtPage.Element elem : entries) {
+					final String text = elem.getText().replace("\n", " ");
+					final Matcher boldMatcher = boldPatt.matcher(text);
+					while (boldMatcher.find())
+						textMap.get(TermInfo.Field.BOLD).append(" " + boldMatcher.group(1) + " ");
+					if (elem.getType() == BjtPage.Type.HEADING) {
+						textMap.get(TermInfo.Field.HEADING).append(" " + text + " ");
+					} else if (elem.getType() == BjtPage.Type.CENTERED) {
+						textMap.get(TermInfo.Field.CENTRE).append(" " + text + " ");
+					} else if (elem.getType() == BjtPage.Type.UNINDENTED) {
+						textMap.get(TermInfo.Field.UNINDENTED).append(" " + text + " ");
+					} else if (elem.getType() == BjtPage.Type.PARAGRAPH) {
+						textMap.get(TermInfo.Field.BODYTEXT).append(" " + text + " ");
+					} else if (elem.getType() == BjtPage.Type.GATHA) {
+						textMap.get(TermInfo.Field.GATHA).append(" " + text + " ");
+					}
+				}
 			}
-			if (line.isEmpty()) continue;
-			if (line.startsWith("<!--")) continue;
-			line = line.replaceAll("</?.*?>", "").trim(); // remove all tags
-			line = line.replaceAll("\\[ *\\\\.*?/ *\\]", ""); // remove format strings
-			// The text is full of non-Pali that cannot be removed.
-			// So, this collection is heavily contaminated.
-			// all text is bodytext
-			bodyText.append(" " + line + " ");
+		} catch (IOException e) {
+			System.err.println(e);
 		}
-		in.close();
 	}
 
 }

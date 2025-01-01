@@ -30,7 +30,6 @@ import java.util.*;
  * @since 3.0
  */
 class DpdHeadWord extends DpdHeadWordBase {
-	private String stem = "";
 	private String notes = "";
 	private String familyWord = "";
 	private String familyIdiom = "";
@@ -39,14 +38,6 @@ class DpdHeadWord extends DpdHeadWordBase {
 
 	public DpdHeadWord(final String term) {
 		super(term);
-	}
-
-	public void setStem(final String text) {
-		stem = text;
-	}
-
-	public String getStem() {
-		return stem;
 	}
 
 	public void setNotes(final String text) {

@@ -97,7 +97,7 @@ public class MainProperties {
 			settings.setProperty("thai-alt-chars", "false");
 			settings.setProperty("dictset", "CPED,");
 			settings.setProperty("dpd-decon-count", "850000");
-			settings.setProperty("dpd-dict-count", "400000");
+			settings.setProperty("dpd-dict-count", "420000");
 			settings.setProperty("dpd-head-count", "80000");
 			settings.setProperty("dpd-lookup-enable", "true");
 			// set up default Pali input method properties

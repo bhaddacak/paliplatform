@@ -1,7 +1,7 @@
 /*
  * CorpusSelectorBox.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -124,8 +124,10 @@ public class CorpusSelectorBox extends HBox {
 	}
 
 	private void updateBoldAvailable() {
-		if (currCorpus != null)
-			boldAvailable.set(Corpus.hasFullStructure(currCorpus.getCollection()));
+		if (currCorpus != null) {
+			final Corpus.Collection col = currCorpus.getCollection();
+			boldAvailable.set(Corpus.hasFullStructure(col) || Corpus.hasAlmostFullButNotes(col));
+		}
 	}
 
 	public Pattern getFileFilterPattern() {

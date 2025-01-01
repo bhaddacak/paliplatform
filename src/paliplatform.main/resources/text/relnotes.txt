@@ -7,9 +7,10 @@
 │ Credits │
 ╰─────────╯
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured is based on Chaṭṭha Saṅgāyana CD published by Vipassana Research Institute (VRI) via tipitaka.org
-⊚ Chaṭṭha Saṅgāyana Tipiṭaka 4 data are bundled with the CST4 (see tipitaka.org)
+⊚ Chaṭṭha Saṅgāyana Tipiṭaka 4 data formerly bundled with the CST4 (see tipitaka.org), recently corrected in https://github.com/vipassanatech/tipitaka-xml
 ⊚ SuttaCentral Bilara data (https://github.com/suttacentral)
-⊚ PTS and BJT edition come from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.htm)
+⊚ BJT edition is converted from Sinhala script available at https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text, maintained by Path Nirvana Foundation (https://pathnirvana.org)
+⊚ PTS edition comes from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.htm)
 ⊚ Siam Rath Tipiṭaka is converted from Thai (http://www.learntripitaka.com)
 ⊚ Some grammar texts are converted from Thai (https://sites.google.com/view/palipage)
 ⊚ Apache Lucene 9 (https://lucene.apache.org), Apache License 2.0
@@ -34,13 +35,21 @@
   - A digital version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
   - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
-  - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), CC-BY-NC 4.0
-⊚ Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
+  - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), please check the license at its website
+⊚ Saddanīti Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
 ⊚ Explanations and the list of Pāli prosody come from Vuttodayamañjarī (Thai) by Gandhasārābhivaṃsa, printed by Mahachulalongkorn Buddhist University, Nakhon Pathom, Thailand (2001)
 
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2025, Jan 1
+⊚ The release of Pāli Platform 3.0 RC1
+⊚ CST4 XML data corrected version used
+⊚ CSTR data corrected according to CST4 XML
+⊚ New BJT collection
+⊚ DPD DB applicability test added
+⊚ Several additions, changes, updates and fixes
+
 2024, Oct 23
 ⊚ Pāli Platform 3.0 beta2 is released
 ⊚ Improvements on Myanmar script transformation
@@ -82,17 +91,22 @@
 ╰──────────╯
 ⊚ The author's base portal: https://bhaddacak.github.io
 ⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
+⊚ Pāli Platform 3's own page: https://bhaddacak.github.io/platform3
 ⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured:
     https://github.com/bhaddacak/cst-kit
     https://bhaddacak.github.io/cstpage
     https://bhaddacak.github.io/cst
+⊚ Tipiṭaka Kit for CST4 and BJT
+    https://github.com/bhaddacak/tipitaka-kit
+⊚ Tipiṭaka Correction Report
+    https://bhaddacak.github.io/correport
 
 ╭─────────╮
 │ License │
 ╰─────────╯
 
-Copyright 2023-2024 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
+Copyright 2023-2025 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

@@ -1,7 +1,7 @@
 /*
  * PaliCharTransformer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ public class PaliCharTransformer {
 	public static final char[] romanNumbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 	private static final char romanBar = '|';
 	private static final char romanDoubleBar = '\u2016';
-	private static final char romanAbbrSign = '\u2024';
+	private static final char romanAbbrSign = '\u00B7';
 	public static final char[] romanConsonantsChr = { 	
 		'k', 'x', 'g', 'x', 'ṅ',
 		'c', 'x', 'j', 'x', 'ñ',
@@ -93,10 +93,11 @@ public class PaliCharTransformer {
 	// Myanmar set
 	private static final char myanmarTallA = '\u102B';
 	private static final char myanmarShortA = '\u102C';
+	private static final char myanmarDepE = '\u1031'; // this causes problem, not used in displaying
 	private static final char myanmarSpecialE = '\u102A';
-//~ 	private static final char myanmarDepE = '\u1031'; // this causes problem, not used
 	public static final char[] myanmarVowelsInd = { '\u1021', myanmarShortA, '\u1023', '\u1024', '\u1025', '\u1026', '\u1027', '\u1029' };
 	private static final char[] myanmarVowelsDep = { '\u1021', myanmarShortA, '\u102D', '\u102E', '\u102F', '\u1030', myanmarSpecialE, myanmarSpecialE };
+	private static final char[] myanmarVowelsDepStraight = { '\u1021', myanmarShortA, '\u102D', '\u102E', '\u102F', '\u1030', myanmarDepE, myanmarDepE };
 	public static final char[] myanmarNumbers = { '\u1040', '\u1041', '\u1042', '\u1043', '\u1044', '\u1045', '\u1046', '\u1047', '\u1048', '\u1049' };
 	private static final char myanmarVirama = '\u1039';
 	private static final char myanmarAsat = '\u103A';
@@ -645,7 +646,11 @@ public class PaliCharTransformer {
 		} // end for
 		return output.toString();
 	}
-
+	
+	/**
+	 * Converts text in Roman script to Myanmar.
+	 * This is for internal display only.
+	 */
 	public static String romanToMyanmar(final String str) {
 		final StringBuilder output = new StringBuilder();
 		char[] input = str.toLowerCase().toCharArray();
@@ -766,7 +771,10 @@ public class PaliCharTransformer {
 						if (!skipFlag) {
 							if (romanConsonants.indexOf(input[index+1]) >= 0) {
 								// double consonant needs virama
-								output.append(myanmarVirama);
+								if (rch == 'ṅ')
+									output.append(myanmarAsat).append(myanmarVirama);
+								else
+									output.append(myanmarVirama);
 							} else if (romanVowels.indexOf(input[index+1]) == -1) {
 								// if not followed by a vowel, add asat
 								output.append(myanmarAsat);
@@ -824,6 +832,129 @@ public class PaliCharTransformer {
 			result = result.replace(medCh, "" + myanmarToMedialMap.get(ch));
 		}
 		return result;
+	}
+	
+	/**
+	 * Converts text in Roman script to Myanmar in a straight way.
+	 * This is for external script transformation, like in BatchScriptTransformer.
+	 * The conversion is not identical to that by CST4, especially the use of
+	 * short and tall ā, but close enough.
+	 */
+	public static String romanToMyanmarStraight(final String str) {
+		final StringBuilder output = new StringBuilder();
+		char[] input = str.toLowerCase().toCharArray();
+		char rch;
+		char mch;
+		int vindex = -1; // for vowels
+		boolean skipFlag = false;
+		for(int index = 0; index<input.length; index++) {
+			if(skipFlag) {
+				skipFlag = false;
+				continue;
+			}
+			rch = input[index];
+			mch = rch; // in case of non-character
+			// 1. find Myanmar representation of the character first
+			if(Character.isDigit(rch)) {
+				// is number
+				if(alsoNumber)
+					mch = myanmarNumbers[Character.digit(rch, 10)];
+			} else if(rch == '.') {
+				// period is retained as dot
+				mch = '.';
+			} else if (rch == romanBar) {
+				// single bar is changed to single danda
+				mch = myanmarPeriod;
+			} else if (rch == romanDoubleBar) {
+				// double bar is changed to double danda
+				mch = myanmarDoublePeriod;
+			} else if(rch == 'x') {
+				// reserved character
+				mch = rch;
+			} else if((vindex = romanVowels.indexOf(rch)) >= 0) {
+				// is vowels
+				mch = myanmarVowelsInd[vindex];
+			} else {
+				// is consonants
+				for(int i=0; i<romanConsonantsChr.length; i++) {
+					if(rch == romanConsonantsChr[i]) {
+						if(index < input.length-2) {
+							// if the character has 'h'
+							if(romanWithHChars.indexOf(rch) >= 0 && input[index+1] == 'h')
+								skipFlag = true;
+						}
+						mch = skipFlag? myanmarConsonants[i+1]: myanmarConsonants[i];
+						break;
+					}
+				} // end for loop of finding pali consonant
+			}
+			// 2. consider how to put it
+			if(vindex >= 0) {
+				// vowels
+				if(output.length() == 0) {
+					// to prevent index out of bound
+					// independent vowels
+					if(rch == 'ā')
+						output.append(myanmarVowelsInd[0]);
+					output.append(mch);
+				} else {
+					// look at the preceeding character; if it is not a consonant, independent vowels are used
+					if(romanConsonants.indexOf(input[index-1]) < 0) {
+						if(rch == 'ā')
+							output.append(myanmarVowelsInd[0]);
+						output.append(mch);
+					} else {
+						// dependent vowels are used
+						if(rch != 'a') {
+							output.append(myanmarVowelsDepStraight[vindex]);
+							if(rch == 'o')
+								output.append(myanmarVowelsDepStraight[1]);
+						}
+					}
+				}
+			} else {
+				if(romanConsonants.indexOf(rch) >= 0) {
+					// consonants
+					output.append(mch);
+					if(index < input.length-1) {
+						if (!skipFlag) {
+							if (romanConsonants.indexOf(input[index+1]) >= 0) {
+								// double consonant needs virama or asat (in case of ṅ)
+								if (rch == 'ṅ')
+									output.append(myanmarAsat).append(myanmarVirama);
+								else
+									output.append(myanmarVirama);
+							} else if (romanVowels.indexOf(input[index+1]) == -1) {
+								// if not followed by a vowel, add asat
+								output.append(myanmarAsat);
+							}
+						} else {
+							// characters with h
+							if (index < input.length-2) {
+								if (romanConsonants.indexOf(input[index+2]) >= 0) {
+									// double consonant needs virama
+									output.append(myanmarVirama);
+								} else if (romanVowels.indexOf(input[index+2]) == -1) {
+									// if not followed by a vowel, add asat
+									output.append(myanmarAsat);
+								}
+							} else {
+								// the last consonant, add asat
+								output.append(myanmarAsat);
+							}
+						}
+					} else {
+						// the last consonant, add asat
+						output.append(myanmarAsat);
+					}
+				} else {
+					// others
+					output.append(mch);
+				}
+			}
+			vindex = -1;
+		} // end for loop of each input character
+		return toMyanmarProcess(output.toString());
 	}
 	
 	public static String romanToSinhala(final String str) {

@@ -52,6 +52,9 @@ final public class DpdUtil {
 			case "-v":
 				printVersion();
 				break;
+			case "-t":
+				testApplicability();
+				break;
 //~ 			case "-a":
 //~ 				final int max = args.length < 2 ? 4 : Integer.parseInt(args[1]);
 //~ 				saveAtoms(max);
@@ -71,6 +74,7 @@ final public class DpdUtil {
 		help.append("  Commands:").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("        General options:").append(LINESEP);
+		help.append("        -t\tTest for DPD database applicability").append(LINESEP);
 		help.append("        -v\tShow DPD database version").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
@@ -142,6 +146,22 @@ final public class DpdUtil {
 		rs.close();
 		stmt.close();
 		finish();
+		final long endTime = System.currentTimeMillis();
+		printTime(endTime - startTime);
+	}
+
+	public static void testApplicability() throws SQLException {
+		final long startTime = System.currentTimeMillis();
+		if (!dpdInit()) return;
+		final List<String> result = DpdUtilities.checkApplicability();
+		finish();
+		if (result.isEmpty()) {
+			printLog("OK: DPD DB is suitable enough to use");
+		} else {
+			for (final String err : result)
+				printLog("Error: " + err);
+			printLog("Error: DPD DB is not suitable to use, try it with your own risk");
+		}
 		final long endTime = System.currentTimeMillis();
 		printTime(endTime - startTime);
 	}

@@ -279,7 +279,6 @@ public class DpdDictWin extends SingletonWindow {
 		result.append("Email: ").append(infoMap.get("email")).append("\n");
 		result.append("Website: ").append(infoMap.get("website")).append("\n");
 		result.append("Github: ").append(infoMap.get("github")).append("\n");
-		result.append("Copyright: ").append("CC-BY-NC 4.0\n");
 		return result.toString();
 	}
 

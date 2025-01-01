@@ -496,21 +496,21 @@
 <text id="thag-a1">
  <group>sut</group>
  <docclass>att</docclass>
- <ref>thag-a1</ref>
+ <ref>Thag-a1</ref>
  <file>attha/25.txt</file>
  <name>25. Paramatthadīpanī Theragāthāvaṇṇanā 1</name>
 </text>
 <text id="thag-a2">
  <group>sut</group>
  <docclass>att</docclass>
- <ref>thag-a2</ref>
+ <ref>Thag-a2</ref>
  <file>attha/26.txt</file>
  <name>26. Paramatthadīpanī Theragāthāvaṇṇanā 2</name>
 </text>
 <text id="thig-a">
  <group>sut</group>
  <docclass>att</docclass>
- <ref>thig-a</ref>
+ <ref>Thig-a</ref>
  <file>attha/27.txt</file>
  <name>27. Paramatthadīpanī Therīgāthāvaṇṇanā</name>
 </text>
@@ -601,14 +601,14 @@
 <text id="psm-a1">
  <group>sut</group>
  <docclass>att</docclass>
- <ref>psm-a1</ref>
+ <ref>Psm-a1</ref>
  <file>attha/40.txt</file>
  <name>40. Saddhammappakāsinī Paṭisambhidāmaggavaṇṇanā 1</name>
 </text>
 <text id="psm-a2">
  <group>sut</group>
  <docclass>att</docclass>
- <ref>psm-a2</ref>
+ <ref>Psm-a2</ref>
  <file>attha/41.txt</file>
  <name>41. Saddhammappakāsinī Paṭisambhidāmaggavaṇṇanā 2</name>
 </text>
@@ -643,7 +643,7 @@
 <text id="dhs-a">
  <group>abh</group>
  <docclass>att</docclass>
- <ref>dhs-a</ref>
+ <ref>Dhs-a</ref>
  <file>attha/46.txt</file>
  <name>46. Aṭṭhasālinī Dhammasaṅgaṇīvaṇṇanā</name>
 </text>

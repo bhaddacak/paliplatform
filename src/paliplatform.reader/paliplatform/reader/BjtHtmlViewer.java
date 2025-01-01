@@ -1,7 +1,7 @@
 /*
- * CstrHtmlViewer.java
+ * BjtHtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,6 @@ import java.util.regex.*;
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
-import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
@@ -37,14 +36,23 @@ import javafx.beans.property.*;
 import javafx.geometry.Pos;
 
 /** 
- * The viewer of CST-restructured Pali texts. 
+ * The viewer of BJT Pali texts. 
  * 
  * @author J.R. Bhaddacak
  * @version 3.0
  * @since 3.0
  */
-public class CstrHtmlViewer extends PaliHtmlViewer {
-	private static enum LeftListType { HEADING, PARANUM, GATHA }
+public class BjtHtmlViewer extends PaliHtmlViewer {
+	private static enum LeftListType { 
+		HEADING_TEXT("h"), HEADING_NUM("n"), PAGE("p"), GATHA("g");
+		private String abbr;
+		private LeftListType(final String ch) {
+			abbr = ch;
+		}
+		public String getAbbr() {
+			return abbr;
+		}
+	}
 	static final double DIVIDER_POSITION_LEFT = 0.2;
 	static final double DIVIDER_POSITION_RIGHT = 0.8;
 	private final SplitPane splitPane = new SplitPane();
@@ -52,24 +60,21 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	private final BorderPane leftPane = new BorderPane();
 	private final ObservableList<String> docTocList = FXCollections.<String>observableArrayList();
 	private final ListView<String> docTocListView;
-	private final List<String[]> headList = new ArrayList<>();
-	private final List<String> pnumList = new ArrayList<>();
+	private final List<String[]> headTextList = new ArrayList<>();
+	private final List<String> headNumList = new ArrayList<>();
+	private final List<String> pageList = new ArrayList<>();
 	private final List<String> gathaList = new ArrayList<>();
-	private final Map<String, Stage> childViewerMap = new HashMap<>();
-	private final ToggleButton showNoteButton;
-	private final ToggleButton syncButton = new ToggleButton("", new TextIcon("link", TextIcon.IconSet.AWESOME));
-	private LeftListType currLeftListType = LeftListType.HEADING;
-	private static Map<String, DocumentInfo> cstrInfoMap;
-	private CstrInfo nodeInfo;
-	private boolean showNotes = true;
+	private LeftListType currLeftListType = LeftListType.HEADING_TEXT;
+	private static Map<String, DocumentInfo> bjtInfoMap;
+	private BjtInfo nodeInfo;
 	private String recentJS = "";
 
-	public CstrHtmlViewer(final TocTreeNode node) {
+	public BjtHtmlViewer(final TocTreeNode node) {
 		super(node);
-		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.CSTR_CSS).toExternalForm());
+		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.BJT_CSS).toExternalForm());
 
-		if (cstrInfoMap == null)
-			cstrInfoMap = node.getCorpus().getDocInfoMap();
+		if (bjtInfoMap == null)
+			bjtInfoMap = node.getCorpus().getDocInfoMap();
 		nodeInfo = getNodeInfo();
 		
 		// prepare the left pane's content (for the right pane see init())
@@ -98,34 +103,34 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		docTocListView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
 			final int ind = docTocListView.getSelectionModel().getSelectedIndex();
 			if (ind >= 0) {
-				final String prefix = "" + currLeftListType.toString().toLowerCase().charAt(0);
+				final String prefix = "" + currLeftListType.getAbbr();
 				final String command = "jumpTo('" + prefix + ind + "')";
 				webEngine.executeScript(command);
 				recentJS = command;
-				if (isSyncSelected()) {
-					// also sync child windows (only for paranum)
-					synchronizeChildViewers();
-				}
 			}
 		});
 		// add left pane's toolbar
 		final ToolBar leftpaneToolbar = new ToolBar();
-		final ToggleButton leftHeadingButton = new ToggleButton("", new TextIcon("heading", TextIcon.IconSet.AWESOME));
-		leftHeadingButton.setTooltip(new Tooltip("Heading list"));
-		leftHeadingButton.setOnAction(actionEvent -> setDocToc(LeftListType.HEADING));
-		final ToggleButton leftParnumButton = new ToggleButton("", new TextIcon("paragraph", TextIcon.IconSet.AWESOME));
-		leftParnumButton.setTooltip(new Tooltip("Paragraph number list"));
-		leftParnumButton.setOnAction(actionEvent -> setDocToc(LeftListType.PARANUM));
+		final ToggleButton leftTextHeadingButton = new ToggleButton("", new TextIcon("H", TextIcon.IconSet.AWESOME));
+		leftTextHeadingButton.setTooltip(new Tooltip("Text heading list"));
+		leftTextHeadingButton.setOnAction(actionEvent -> setDocToc(LeftListType.HEADING_TEXT));
+		final ToggleButton leftNumHeadingButton = new ToggleButton("", new TextIcon("N", TextIcon.IconSet.AWESOME));
+		leftNumHeadingButton.setTooltip(new Tooltip("Number heading list"));
+		leftNumHeadingButton.setOnAction(actionEvent -> setDocToc(LeftListType.HEADING_NUM));
+		final ToggleButton leftPageButton = new ToggleButton("", new TextIcon("hashtag", TextIcon.IconSet.AWESOME));
+		leftPageButton.setTooltip(new Tooltip("Page number list"));
+		leftPageButton.setOnAction(actionEvent -> setDocToc(LeftListType.PAGE));
 		final ToggleButton leftGathaButton = new ToggleButton("", new TextIcon("music", TextIcon.IconSet.AWESOME));
 		leftGathaButton.setTooltip(new Tooltip("Stanza list"));
 		leftGathaButton.setOnAction(actionEvent -> setDocToc(LeftListType.GATHA));
 		final ToggleGroup leftListTypeGroup = new ToggleGroup();
-		leftListTypeGroup.getToggles().addAll(leftHeadingButton, leftParnumButton, leftGathaButton);
+		leftListTypeGroup.getToggles().addAll(leftTextHeadingButton, leftNumHeadingButton, leftPageButton, leftGathaButton);
 		leftListTypeGroup.selectToggle(
-			currLeftListType==LeftListType.HEADING ? leftHeadingButton :
-			currLeftListType==LeftListType.PARANUM ? leftParnumButton :
+			currLeftListType==LeftListType.HEADING_TEXT ? leftTextHeadingButton :
+			currLeftListType==LeftListType.HEADING_NUM ? leftNumHeadingButton :
+			currLeftListType==LeftListType.PAGE ? leftPageButton :
 			leftGathaButton);
-		leftpaneToolbar.getItems().addAll(leftHeadingButton, leftParnumButton, leftGathaButton);
+		leftpaneToolbar.getItems().addAll(leftTextHeadingButton, leftNumHeadingButton, leftPageButton, leftGathaButton);
 		// set left components
 		leftPane.setTop(leftpaneToolbar);
 		leftPane.setCenter(docTocListView);
@@ -203,47 +208,31 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 			if (recentJS.length() > 0)
 				webEngine.executeScript(recentJS);
 		});
-		showNoteButton = new ToggleButton("", new TextIcon("note-sticky", TextIcon.IconSet.AWESOME));
-		showNoteButton.setTooltip(new Tooltip("Show/hide redactional notes"));
-		showNoteButton.setSelected(showNotes);
-		showNoteButton.setOnAction(actionEvent -> {
-			final boolean selected = showNoteButton.isSelected();
-			showNotes = selected;
-			setShowNotes();
-		});
-		syncButton.setTooltip(new Tooltip("Make child viewers synchronized on/off"));
-		syncButton.setSelected(true);
-		syncButton.setDisable(!nodeInfo.isLinkable());
-		syncButton.setOnAction(actionEvent -> {
-			if (isSyncSelected())
-				synchronizeChildViewers();
-		});
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> helpInfoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		toolBar.getItems().addAll(new Separator(), toggleLeftPaneButton, toggleFullViewButton, toggleRightPaneButton
-								, new Separator(), recentJumpButton, showNoteButton, syncButton
+								, new Separator(), recentJumpButton
 								, new Separator(), helpButton
 								);
 
 		setCenter(splitPane);
-		helpInfoPopup.setContentWithText(ReaderUtilities.getTextResource("info-cstrviewer.txt"));
-		helpInfoPopup.setTextWidth(Utilities.getRelativeSize(34));
+		helpInfoPopup.setContentWithText(ReaderUtilities.getTextResource("info-bjtviewer.txt"));
+		helpInfoPopup.setTextWidth(Utilities.getRelativeSize(28));
 		init(node);
 	}
 
 	public void init(final TocTreeNode node) {
 		super.init(node);
 		Platform.runLater(() ->	{
-			showNoteButton.setSelected(true);
 			rightPane.setCenter(createInfoBox());
 			loadContent();
 			initFindInput();
 		});
 	}
 
-	private CstrInfo getNodeInfo() {
+	private BjtInfo getNodeInfo() {
 		final String nodeId = thisDoc.getNodeId();
-		return (CstrInfo)cstrInfoMap.get(nodeId);
+		return (BjtInfo)bjtInfoMap.get(nodeId);
 	}
 
 	private VBox createInfoBox() {
@@ -286,9 +275,9 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		String title;
 		if (!upperLinks.isEmpty()) {
 			for (final String id : upperLinks) {
-				final CstrInfo cinfo = (CstrInfo)cstrInfoMap.get(id);
-				final String textName = cinfo.getTextName();
-				final String ref = cinfo.getRef();
+				final BjtInfo binfo = (BjtInfo)bjtInfoMap.get(id);
+				final String textName = binfo.getTextName();
+				final String ref = binfo.getRef();
 				title = textName + " (" + ref + ")";
 				links.add(new StringPair(title, id));
 			}
@@ -337,36 +326,14 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		final MenuItem openMenuItem = new MenuItem("Open");
 		openMenuItem.setOnAction(actionEvent -> {
 			final StringPair selected = relLinkInfoListView.getSelectionModel().getSelectedItem();
-			// check for the already opened first
 			final String id = selected.getSecond();
-			final Stage existing = childViewerMap.get(id);
-			boolean openNewOne = false;
-			if (existing != null) {
-				// check whether it is the right doc
-				final CstrHtmlViewer viewer = (CstrHtmlViewer)existing.getScene().getRoot();
-				final TocTreeNode docNode = viewer.getDocNode();
-				if (id.equals(docNode.getNodeId())) {
-					// if there it is, just show the existing
-					existing.show();
-					existing.toFront();
-				} else {
-					childViewerMap.remove(existing);
-					openNewOne = true;
-				}
-			} else {
-				openNewOne = true;
-			}
-			if (openNewOne) {
-				final CstrInfo cinfo = (CstrInfo)cstrInfoMap.get(id);
-				String textName = selected.getFirst();
-				if (textName.indexOf(" ") == 1)
-					textName = textName.substring(2);
-				final TocTreeNode ttn = new SimpleTocTreeNode(corpus, id, textName, cinfo.getFileNameWithExt());
-				if (Utilities.checkFileExistence(ttn.getNodeFile())) {
-					final Stage childViewer = ReaderUtilities.openPaliHtmlViewer(ttn);
-					childViewerMap.put(id, childViewer);
-				}
-			}
+			final BjtInfo binfo = (BjtInfo)bjtInfoMap.get(id);
+			String textName = selected.getFirst();
+			if (textName.indexOf(" ") == 1)
+				textName = textName.substring(2);
+			final TocTreeNode ttn = new SimpleTocTreeNode(corpus, id, textName, binfo.getFileNameWithExt());
+			if (Utilities.checkFileExistence(ttn.getNodeFile()))
+				ReaderUtilities.openPaliHtmlViewer(ttn);
 		});
 		relLinkPopupMenu.getItems().addAll(openMenuItem);
 		// add mouse listener
@@ -385,79 +352,103 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		return resultBox;
 	}
 
-	public boolean isSyncSelected() {
-		return syncButton.isSelected();
-	}
-
 	public void loadContent() {
-		final String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile());
-		pageBody = formatText(bodyText);
+		final List<BjtPage> pages = ReaderUtilities.getBjtPages(thisDoc.getNodeFileName());
+		pageBody = formatText(pages);
 		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
-		final String cstrJS = ReaderUtilities.getStringResource(ReaderUtilities.CSTR_JS);
-		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + cstrJS);
+		final String bjtJS = ReaderUtilities.getStringResource(ReaderUtilities.BJT_JS);
+		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + bjtJS);
 		setContent(pageContent);
 	}
 
-	private String formatText(final String text) {
-		headList.clear();
-		pnumList.clear();
+	private static String processText(final String text) {
+		final Pattern boldPatt = Pattern.compile("\\*\\*(.*?)\\*\\*");
+		final Matcher boldMatcher = boldPatt.matcher(text);
+		String result = boldMatcher.replaceAll("<b>$1</b>");
+		result = removeMarkDown(result, false);
+		result = result.replace("\n", "<br>");
+		return result;
+	}
+
+	private static String removeMarkDown(final String text, boolean isAll) {
+		String result = text.replace("__", "");
+		result = result.replace("$$", "");
+		if (isAll)
+			result = result.replace("**", "");
+		return result;
+	}
+
+	private String formatText(final List<BjtPage> pages) {
+		headTextList.clear();
+		headNumList.clear();
+		pageList.clear();
 		gathaList.clear();
 		final StringBuilder result = new StringBuilder();
-		final String[] lines = text.split("\\n");
-		final Pattern headPatt = Pattern.compile("^<h([0-9])>(.*?)</h\\1>");
-		final Pattern pnumPatt = Pattern.compile("^([0-9:-]+)\\. *(.*)$");
-		final Pattern notePatt = Pattern.compile("(\\[.*?\\])");
+		final Pattern hnumPatt = Pattern.compile("[0-9. -]+");
+		String idStr = "";
+		String classStr = "";
+		String text = "";
+		int level = 0;
+		String[] headArray; // [text, level]
+		int pageCounter = 0;
 		int headCounter = 0;
-		int pnumCounter = 0;
+		int hnumCounter = 0;
 		int gathaCounter = 0;
-		for (final String line : lines) {
-			String thisLine = "";
-			if (line.startsWith("<!--")) continue;
-			if (line.trim().isEmpty()) continue;
-			// note in []
-			thisLine = notePatt.matcher(line).replaceAll("<span class='note'>$1</span>");
-			final Matcher headMatcher = headPatt.matcher(thisLine);
-			if (headMatcher.matches()) {
-				// all h
-				final String headLevelStr = headMatcher.group(1);
-				final int headLevel = Integer.parseInt(headLevelStr);
-				final String headText = headMatcher.group(2);
-				String idStr = "";
-				if (headLevel > 2 && headLevel < 6) {
-					// show only h3, h4, h5 in the heading nav
-					final String[] headItem = new String[] { headText, headLevelStr, "" + headCounter };
-					headList.add(headItem);
-					idStr = " id='jumptarget-h" + headCounter + "'";
-					headCounter++;
-				}
-				result.append("<h" + headLevel + idStr + ">" + headText + "</h" + headLevelStr + ">").append("\n");
-			} else if (thisLine.startsWith("<div")) {
-				// all div
-				if (thisLine.indexOf("class=\"gatha1\"") > -1) {
-					// for gatha nav, use only gatha1
-					// remove notes first
-					String gathaStr = thisLine.replaceAll("<span class='note'>.*?</span>", "");
-					gathaStr = gathaStr.replaceAll("</?b>", "").replaceAll("</?div.*?>", "").trim();
-					gathaList.add(gathaStr);
-					final String theLine = thisLine.replaceFirst("^<div ", "<div id='jumptarget-g" + gathaCounter + "' ");
+		for (final BjtPage page : pages) {
+			final int pnum = page.getPageNum();
+			pageList.add("" + pnum);
+			classStr = " class='bjt-page'";
+			idStr = " id='jumptarget-p" + pageCounter + "'";
+			pageCounter++;
+			result.append("<p" + classStr + idStr + ">[" + pnum + "]</p>").append("\n");
+			final List<BjtPage.Element> entries = page.getEntries();
+			for (final BjtPage.Element elem : entries) {
+				if (elem.getType() == BjtPage.Type.HEADING) {
+					text = removeMarkDown(elem.getText(), true);
+					level = elem.getLevel();
+					final Matcher hnumMatcher = hnumPatt.matcher(text);
+					if (hnumMatcher.matches()) {
+						headNumList.add(text);
+						idStr = " id='jumptarget-n" + hnumCounter + "'";
+						hnumCounter++;
+					} else {
+						headArray = new String[] { text, "" + level };
+						headTextList.add(headArray);
+						idStr = " id='jumptarget-h" + headCounter + "'";
+						headCounter++;
+					}
+					classStr = " class='bjt-heading" + level + "'";
+					result.append("<p" + classStr + idStr + ">" + text + "</p>").append("\n");
+				} else if (elem.getType() == BjtPage.Type.CENTERED) {
+					text = processText(elem.getText());
+					final Matcher hnumMatcher = hnumPatt.matcher(text);
+					if (hnumMatcher.matches()) {
+						headNumList.add(text);
+						idStr = " id='jumptarget-n" + hnumCounter + "'";
+						hnumCounter++;
+					} else {
+						idStr = "";
+					}
+					classStr = " class='bjt-centered'";
+					result.append("<p" + classStr + idStr + ">" + text + "</p>").append("\n");
+				} else if (elem.getType() == BjtPage.Type.UNINDENTED) {
+					text = processText(elem.getText());
+					classStr = " class='bjt-unindented'";
+					result.append("<p" + classStr + ">" + text + "</p>").append("\n");
+				} else if (elem.getType() == BjtPage.Type.PARAGRAPH) {
+					text = processText(elem.getText());
+					classStr = " class='bjt-paragraph'";
+					result.append("<p" + classStr + ">" + text + "</p>").append("\n");
+				} else if (elem.getType() == BjtPage.Type.GATHA) {
+					text = elem.getText();
+					final String first = text.split("\\n")[0];
+					gathaList.add(removeMarkDown(first, true));
+					text = processText(text);
+					classStr = " class='bjt-gatha'";
+					idStr = " id='jumptarget-g" + gathaCounter + "'";
 					gathaCounter++;
-					result.append(theLine).append("\n");
-				} else {
-					result.append(thisLine).append("\n");
+					result.append("<p" + classStr + idStr + ">" + text + "</p>").append("\n");
 				}
-			} else {
-				// text body
-				// test for paranum first
-				final Matcher pnumMatcher = pnumPatt.matcher(thisLine);
-				String theLine = thisLine;
-				if (pnumMatcher.matches()) {
-					final String pnumStr = pnumMatcher.group(1);
-					final String paraText = pnumMatcher.group(2);
-					pnumList.add(pnumStr);
-					theLine = "<span class='paranum' id='jumptarget-p" + pnumCounter + "'>" + pnumStr + "</span>. " + paraText;
-					pnumCounter++;
-				}
-				result.append("<p class='bodytext'>").append(theLine).append("</p>").append("\n");
 			}
 		}
 		return result.toString();
@@ -474,41 +465,32 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		super.clearContent();
 	}
 
-	private static String getUpperRelativeDoc(final String id) {
-		return cstrInfoMap.values().stream()
-						.filter(x -> ((CstrInfo)x).hasCommentary(id))
-						.map(x -> ((CstrInfo)x).getId())
-						.findFirst()
-						.orElse("");
-	}
-
 	private static List<String> getUpperRelativeDocChain(final String id) {
-		final LinkedList<String> result = new LinkedList<>();
-		String upperId = getUpperRelativeDoc(id);
-		while (!upperId.isEmpty()) {
-			result.addFirst(upperId);
-			upperId = getUpperRelativeDoc(upperId);
-		}
-		return result;
+		return bjtInfoMap.values().stream()
+						.filter(x -> ((BjtInfo)x).hasCommentary(id))
+						.map(x -> ((BjtInfo)x).getId())
+						.collect(Collectors.toList());
 	}
 
 	private void setDocToc(final LeftListType listType) {
 		currLeftListType = listType;
 		final List<String> docToc = new ArrayList<>();
-		if (listType == LeftListType.HEADING) {
-			for (final String[] headItem : headList) {
+		if (listType == LeftListType.HEADING_TEXT) {
+			for (final String[] headItem : headTextList) {
 				final int level = Integer.parseInt(headItem[1]);
 				String spaces = " ";
-				int start = 3;
-				while (level - start > 0) {
+				int start = 5;
+				while (start - level > 0) {
 					spaces = spaces + " ";
-					start++;
+					start--;
 				}
-				final String indent = level > 3 ? spaces : "";
+				final String indent = level < 5 ? spaces : "";
 				docToc.add(indent + headItem[0]);
 			}
-		} else if (listType == LeftListType.PARANUM) {
-			docToc.addAll(pnumList);
+		} else if (listType == LeftListType.HEADING_NUM) {
+			docToc.addAll(headNumList);
+		} else if (listType == LeftListType.PAGE) {
+			docToc.addAll(pageList);
 		} else if (listType == LeftListType.GATHA) {
 			docToc.addAll(gathaList);
 		}
@@ -517,52 +499,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	}
 
 	public void updateClickedObject(final String text) {
-		String result = text.trim();
-		result = result.length() > 1
-					? showNotes
-						? result
-						: result.replaceAll("\\[.*?\\]", "")
-					: "";
-		clickedText.set(result);
-	}
-
-	private void setShowNotes() {
-		webEngine.executeScript("showNotes("+(showNotes?1:0)+")");
-	}
-	
-	private void synchronizeChildViewers() {
-		if (currLeftListType != LeftListType.PARANUM) return;
-		int ind = docTocListView.getSelectionModel().getSelectedIndex();
-		if (ind < 0)
-			ind = 0;
-		final String pnumStr = docTocList.get(ind);
-		synchronizeChildViewers(pnumStr);
-	}
-
-	public void synchronizeChildViewers(final String pnumStr) {
-		if (!nodeInfo.isLinkable()) return;
-		for (final Stage win : childViewerMap.values()) {
-			final CstrHtmlViewer viewer = (CstrHtmlViewer)win.getScene().getRoot();
-			viewer.gotoParaNum(pnumStr);
-			if (viewer.isSyncSelected())
-				viewer.synchronizeChildViewers(pnumStr);
-		}
-	}
-
-	public void gotoParaNum(final String targetPnum) {
-		final ParaNum target = new ParaNum(targetPnum);
-		int idToGo = -1;
-		for (int i = 0; i < pnumList.size(); i++) {
-			final ParaNum pnum = new ParaNum(pnumList.get(i));
-			if (pnum.hasCoverageOf(target)) {
-				idToGo = i;
-				break;
-			}
-		}
-		if (idToGo > 0) {
-			final String command = "jumpTo('p" + idToGo + "')";
-			webEngine.executeScript(command);
-		}
+		clickedText.set(text.trim());
 	}
 
 	// inner classes
@@ -577,7 +514,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 			addBranches();
 		}
 		private void addBranches() {
-			final CstrInfo nodeInfo = (CstrInfo)cstrInfoMap.get(nodeId);
+			final BjtInfo nodeInfo = (BjtInfo)bjtInfoMap.get(nodeId);
 			final List<String> comList = nodeInfo.getCommentaries();
 			final int childLevel = level + 1;
 			for (final String comId : comList) {
@@ -618,65 +555,13 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 					indent += "   ";
 					start++;
 				}
-				final CstrInfo cinfo = (CstrInfo)cstrInfoMap.get(id);
-				final String textName = cinfo.getTextName();
-				final String ref = cinfo.getRef();
+				final BjtInfo binfo = (BjtInfo)bjtInfoMap.get(id);
+				final String textName = binfo.getTextName();
+				final String ref = binfo.getRef();
 				final String fullName = textName + " (" + ref + ")";
 				result.add(new StringPair(indent + ReaderUtilities.bulletMap.get(level) + " " + fullName, id));
 			}
 			return result;
-		}
-	}
-
-	static class ParaNum {
-		private final int start;
-		private final int end;
-		private final int group;
-		public ParaNum (final String input) {
-			// input might be in range with group number,
-			// for example, 20-99:1 or just a single number
-			final int colonPos = input.indexOf(":");
-			group = colonPos > -1 ? Integer.parseInt(input.substring(colonPos + 1)) : 0;
-			final String numBare = colonPos > -1 ? input.substring(0, colonPos) : input;
-			final int hyPos = numBare.indexOf("-");
-			final String[] numArr = hyPos > -1 ? numBare.split("-") : new String[] { numBare, numBare };
-			start = Integer.parseInt(numArr[0]);
-			end = Integer.parseInt(numArr[1]);
-		}
-		public int getStart() {
-			return start;
-		}
-		public int getEnd() {
-			return end;
-		}
-		public boolean isAtomic() {
-			return start == end;
-		}
-		public boolean hasGroup() {
-			return group != 0;
-		}
-		public boolean hasCoverageOf(final ParaNum pnum) {
-			boolean result = false;
-			if (pnum.isAtomic()) {
-				result = hasCoverageOf(pnum.getStart());
-			} else {
-				final int pStart = pnum.getStart();
-				final int pEnd = pnum.getEnd();
-				if (isAtomic())
-					result = hasCoverageOf(pStart) || hasCoverageOf(pEnd);
-				else
-					result = hasCoverageOf(pStart) && hasCoverageOf(pEnd);
-			}
-			return result;
-		}
-		public boolean hasCoverageOf(final int num) {
-			return num >= start && num <= end;
-		}
-		@Override
-		public String toString() {
-			final String grpStr = group == 0 ? "" : ":" + group;
-			final String numStr = start == end ? "" + start : start + "-" + end;
-			return numStr + grpStr;
 		}
 	}
 

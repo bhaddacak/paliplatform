@@ -1,7 +1,7 @@
 /*
  * FieldSelectorBox.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -113,12 +113,14 @@ public class FieldSelectorBox extends VBox {
 				selectorMap.put(TermInfo.Field.ENDGROUP, sel);
 				selectorMap.put(TermInfo.Field.ENDSUBGROUP, sel);
 				selectorMap.put(TermInfo.Field.STRONG, sel);
+				selectorMap.put(TermInfo.Field.HEADING, sel);
 				break;
 			case GATHA:
 				selectorMap.put(TermInfo.Field.GATHA1, sel);
 				selectorMap.put(TermInfo.Field.GATHA2, sel);
 				selectorMap.put(TermInfo.Field.GATHA3, sel);
 				selectorMap.put(TermInfo.Field.GATHALAST, sel);
+				selectorMap.put(TermInfo.Field.GATHA, sel);
 				break;
 			case NOTE:
 				selectorMap.put(TermInfo.Field.NOTE, sel);

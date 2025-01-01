@@ -22,15 +22,6 @@ function jumpTo(point) {
 	if(elm !== null)
 		elm.scrollIntoView();
 }
-function jumpToParaNum(num) {
-	const elms = document.getElementsByClassName('paranum');
-	for(const e of elms) {
-		if(e.innerHTML === num) {
-			e.scrollIntoView();
-			break;
-		}
-	}
-}
 function showNotes(yn) {
 	const elms = document.getElementsByClassName('note');
 	for(const e of elms) {

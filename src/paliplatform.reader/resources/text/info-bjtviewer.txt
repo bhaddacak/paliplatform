@@ -1,0 +1,3 @@
+BJT reader guide
+	1. The right pane shows the document's information, including related documents (if any).
+	2. The document opened can be navigated by the left pane (if opened) with four criteria: by text headings, by number headings, by page numbers, and by verses (only the first line). 

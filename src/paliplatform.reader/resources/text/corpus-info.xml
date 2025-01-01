@@ -19,7 +19,7 @@
 		<url>https://bhaddacak.github.io/cst</url>
 	</corpus>
 	<corpus>
-		<name>CST4 Data</name>
+		<name>CST4 Data (Tipitaka.org XML)</name>
 		<shortname>CST4 Data</shortname>
 		<root>cst4</root>
 		<infofile>cst4-info.xml</infofile>
@@ -42,24 +42,31 @@
 		<extrasubgroup>Texts in Nīti group:Nīti-gantha-saṅgaho:niti</extrasubgroup>
 		<extrasubgroup>Miscellaneous texts:Pakiṇṇaka-gantha-saṅgaho:pak</extrasubgroup>
 		<extrasubgroup>Texts in Sihala collection:Sihaḷa-gantha-saṅgaho:sin</extrasubgroup>
-		<description>The main distribution of the Chaṭṭha Saṅgāyana Tipiṭaka as bundled in CST4, cleanly converted from Devanagari to Roman script with least contamination by J.R. Bhaddacak</description>
+		<description>The main distribution of the Chaṭṭha Saṅgāyana Tipiṭaka as bundled in CST4 and corrected in Tipitaka-XML, cleanly converted from Devanagari to Roman script with least contamination by J.R. Bhaddacak</description>
 		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
 		<url>http://tipitaka.org</url>
+		<url>https://github.com/vipassanatech/tipitaka-xml</url>
+		<url>https://github.com/bhaddacak/tipitaka-kit</url>
 	</corpus>
 	<corpus>
-		<name>SuttaCentral</name>
-		<shortname>SuttaCentral</shortname>
-		<root>sc</root>
+		<name>Buddha Jayanthi Tripitaka</name>
+		<shortname>BJT</shortname>
+		<root>bjt</root>
+		<infofile>bjt-info.xml</infofile>
 		<inarchive>true</inarchive>
-		<zipfile>bilara-data-published.zip</zipfile>
-		<transformable>false</transformable>
-		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
-		<textbasket>The Suttanta:Suttantapiṭaka:sut</textbasket>
-		<textbasket>The Abhidhamma:Abhidhammapiṭaka:abh</textbasket>
-		<description>A decent source of Pāli texts and translations</description>
-		<copyright>Creative Commons Zero (CC0 1.0 Universal) (http://creativecommons.org/publicdomain/zero/1.0/)</copyright>
-		<url>https://suttacentral.net</url>
-		<url>https://github.com/suttacentral</url>
+		<zipfile>bjt_pali.zip</zipfile>
+		<transformable>true</transformable>
+		<textbasket>Vinayapiṭaka::vin</textbasket>
+		<textbasket>Suttantapiṭaka::sut</textbasket>
+		<textbasket>Abhidhammapiṭaka::abh</textbasket>
+		<textclass>Main texts:Mūla:mul</textclass>
+		<textclass>Commentaries:Aṭṭhakathā:att</textclass>
+		<extragroup>Others (Extras):Añña:ext</extragroup>
+		<description>The Pāli part of a digital version of BJT, maintained by Path Nirvana Foundation, converted from Sinhala to Roman script by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<url>https://pathnirvana.org</url>
+		<url>https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text</url>
+		<url>https://github.com/bhaddacak/tipitaka-kit</url>
 	</corpus>
 	<corpus>
 		<name>The Pali Text Society Tipiṭaka</name>
@@ -78,23 +85,8 @@
 		<url>http://gretil.sub.uni-goettingen.de/gretil.htm</url>
 	</corpus>
 	<corpus>
-		<name>Buddha Jayanti Tipiṭaka</name>
-		<shortname>BJT Tipiṭaka</shortname>
-		<root>bjt</root>
-		<infofile>bjt-info.xml</infofile>
-		<inarchive>true</inarchive>
-		<zipfile>gretil_bjt.zip</zipfile>
-		<transformable>false</transformable>
-		<textbasket>Vinayapiṭaka::vin</textbasket>
-		<textbasket>Suttantapiṭaka::sut</textbasket>
-		<textbasket>Abhidhammapiṭaka::abh</textbasket>
-		<description>From GRETIL's collection, input by the Sri Lanka Tripitaka Project</description>
-		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
-		<url>http://gretil.sub.uni-goettingen.de/gretil.htm</url>
-	</corpus>
-	<corpus>
 		<name>Siam Rath Tipiṭaka</name>
-		<shortname>SRT Tipiṭaka</shortname>
+		<shortname>SRT</shortname>
 		<root>srt</root>
 		<infofile>srt-info.xml</infofile>
 		<inarchive>true</inarchive>
@@ -121,5 +113,20 @@
 		<description>Prepared by J.R. Bhaddacak</description>
 		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
 		<url>https://bhaddacak.github.io/grammarbooks</url>
+	</corpus>
+	<corpus>
+		<name>SuttaCentral</name>
+		<shortname>SuttaCentral</shortname>
+		<root>sc</root>
+		<inarchive>true</inarchive>
+		<zipfile>bilara-data-published.zip</zipfile>
+		<transformable>false</transformable>
+		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
+		<textbasket>The Suttanta:Suttantapiṭaka:sut</textbasket>
+		<textbasket>The Abhidhamma:Abhidhammapiṭaka:abh</textbasket>
+		<description>A decent source of Pāli texts and translations</description>
+		<copyright>Creative Commons Zero (CC0 1.0 Universal) (http://creativecommons.org/publicdomain/zero/1.0/)</copyright>
+		<url>https://suttacentral.net</url>
+		<url>https://github.com/suttacentral</url>
 	</corpus>
 </corpora>

@@ -139,8 +139,8 @@ final public class Utilities {
 		LISTER("TermLister"), DICT("DictWin"), EDITOR("PaliTextEditor"),
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
-		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), VIEWER_GRAM("GramHtmlViewer"),
-		VIEWER_SC("ScReader");
+		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
+		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader");
 		public static final WindowType[] types = values();
 		private final String windowClassName;
 		private WindowType(final String className) {

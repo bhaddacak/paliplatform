@@ -1,387 +1,3103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection>
-<text id="buv1">
+<text id="vp-prj">
  <group>vin</group>
- <ref>Buv1</ref>
- <file>bjt/1_tipit/1_vin/paraji_u.htm</file>
- <name>Pārājikapāḷi Bhikkhuvibhaṅgo</name>
+ <docclass>mul</docclass>
+ <ref>vp-prj</ref>
+ <file>bjt_pali/vp-prj.json</file>
+ <name>Pārājikapāḷi 1/5</name>
+ <altname>Bhikkhuvibhaṅga 1/8</altname>
+ <pagestart>2</pagestart>
+ <pageend>150</pageend>
+ <description>The Vinaya of Bhikkhu, Pārājika 1-2</description>
+ <commentary>atta-vp-prj-2</commentary>
 </text>
-<text id="buv2">
+<text id="vp-prj-2-3">
  <group>vin</group>
- <ref>Buv2</ref>
- <file>bjt/1_tipit/1_vin/pacitt_u.htm</file>
- <name>Pācittiyapāḷi Bhikkhuvibhaṅgo</name>
+ <docclass>mul</docclass>
+ <ref>vp-prj-2-3</ref>
+ <file>bjt_pali/vp-prj-2-3.json</file>
+ <name>Pārājikapāḷi 2/5</name>
+ <altname>Bhikkhuvibhaṅga 2/8</altname>
+ <pagestart>152</pagestart>
+ <pageend>254</pageend>
+ <description>The Vinaya of Bhikkhu, Pārājika 3-4</description>
+ <commentary>atta-vp-prj-2</commentary>
 </text>
-<text id="biv">
+<text id="vp-prj-3">
  <group>vin</group>
- <ref>Biv</ref>
- <file>bjt/1_tipit/1_vin/bivibh_u.htm</file>
- <name>Bhikkhunīvibhaṅgo</name>
+ <docclass>mul</docclass>
+ <ref>vp-prj-3</ref>
+ <file>bjt_pali/vp-prj-3.json</file>
+ <name>Pārājikapāḷi 3/5</name>
+ <altname>Bhikkhuvibhaṅga 3/8</altname>
+ <pagestart>256</pagestart>
+ <pageend>328</pageend>
+ <description>The Vinaya of Bhikkhu, Saṅghādisesa 1-3</description>
+ <commentary>atta-vp-prj-3</commentary>
 </text>
-<text id="mv1">
+<text id="vp-prj-3-4">
  <group>vin</group>
- <ref>Mv1</ref>
- <file>bjt/1_tipit/1_vin/mahavg1u.htm</file>
- <name>Mahāvaggapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>vp-prj-3-4</ref>
+ <file>bjt_pali/vp-prj-3-4.json</file>
+ <name>Pārājikapāḷi 4/5</name>
+ <altname>Bhikkhuvibhaṅga 4/8</altname>
+ <pagestart>330</pagestart>
+ <pageend>482</pageend>
+ <description>The Vinaya of Bhikkhu, Saṅghādisesa 4-13</description>
+ <commentary>atta-vp-prj-3</commentary>
 </text>
-<text id="mv2">
+<text id="vp-prj-4">
  <group>vin</group>
- <ref>Mv2</ref>
- <file>bjt/1_tipit/1_vin/mahavg2u.htm</file>
- <name>Mahāvaggapāḷi 2</name>
+ <docclass>mul</docclass>
+ <ref>vp-prj-4</ref>
+ <file>bjt_pali/vp-prj-4.json</file>
+ <name>Pārājikapāḷi 5/5</name>
+ <altname>Bhikkhuvibhaṅga 5/8</altname>
+ <pagestart>484</pagestart>
+ <pageend>640</pageend>
+ <description>The Vinaya of Bhikkhu, Aniyata, Nissaggiyapācittiya 1-30</description>
+ <commentary>atta-vp-prj-3</commentary>
 </text>
-<text id="cv1">
+<text id="vp-pct">
  <group>vin</group>
- <ref>Cv1</ref>
- <file>bjt/1_tipit/1_vin/cullav1u.htm</file>
- <name>Cullavaggapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>vp-pct</ref>
+ <file>bjt_pali/vp-pct.json</file>
+ <name>Pācittiyapāḷi 1/5</name>
+ <altname>Bhikkhuvibhaṅga 6/8</altname>
+ <pagestart>2</pagestart>
+ <pageend>250</pageend>
+ <description>The Vinaya of Bhikkhu, Pācittiya 1-40</description>
+ <commentary>atta-vp-pct</commentary>
 </text>
-<text id="cv2">
+<text id="vp-pct-1-1-5">
  <group>vin</group>
- <ref>Cv2</ref>
- <file>bjt/1_tipit/1_vin/cullav2u.htm</file>
- <name>Cullavaggapāḷi 2</name>
+ <docclass>mul</docclass>
+ <ref>vp-pct-1-1-5</ref>
+ <file>bjt_pali/vp-pct-1-1-5.json</file>
+ <name>Pācittiyapāḷi 2/5</name>
+ <altname>Bhikkhuvibhaṅga 7/8</altname>
+ <pagestart>252</pagestart>
+ <pageend>462</pageend>
+ <description>The Vinaya of Bhikkhu, Pācittiya 41-92</description>
+ <commentary>atta-vp-pct</commentary>
 </text>
-<text id="pvr1">
+<text id="vp-pct-1-2">
  <group>vin</group>
- <ref>Pvr1</ref>
- <file>bjt/1_tipit/1_vin/pariva1u.htm</file>
- <name>Parivārapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>vp-pct-1-2</ref>
+ <file>bjt_pali/vp-pct-1-2.json</file>
+ <name>Pācittiyapāḷi 3/5</name>
+ <altname>Bhikkhuvibhaṅga 8/8</altname>
+ <pagestart>464</pagestart>
+ <pageend>558</pageend>
+ <description>The Vinaya of Bhikkhu, Pāṭidesanīya, Sekhiya, Adhikaraṇasamatha</description>
+ <commentary>atta-vp-pct</commentary>
 </text>
-<text id="pvr2">
+<text id="vp-pct-2">
  <group>vin</group>
- <ref>Pvr2</ref>
- <file>bjt/1_tipit/1_vin/pariva2u.htm</file>
- <name>Parivārapāḷi 2</name>
+ <docclass>mul</docclass>
+ <ref>vp-pct-2</ref>
+ <file>bjt_pali/vp-pct-2.json</file>
+ <name>Pācittiyapāḷi 4/5</name>
+ <altname>Bhikkhunīvibhaṅgo 1/2</altname>
+ <pagestart>2</pagestart>
+ <pageend>132</pageend>
+ <description>The Vinaya of Bhikkhunī, Pārājika to Nissaggiyapācittiya</description>
 </text>
-<text id="d1">
- <group>sut</group>
- <ref>D1</ref>
- <file>bjt/1_tipit/2_sut/1_digh/dighan1u.htm</file>
- <name>Dīghanikāyo 1</name>
+<text id="vp-pct-2-4">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-pct-2-4</ref>
+ <file>bjt_pali/vp-pct-2-4.json</file>
+ <name>Pācittiyapāḷi 5/5</name>
+ <altname>Bhikkhunīvibhaṅgo 2/2</altname>
+ <pagestart>134</pagestart>
+ <pageend>382</pageend>
+ <description>The Vinaya of Bhikkhunī, Pācittiya to Adhikaraṇasamatha</description>
 </text>
-<text id="d2">
- <group>sut</group>
- <ref>D2</ref>
- <file>bjt/1_tipit/2_sut/1_digh/dighan2u.htm</file>
- <name>Dīghanikāyo 2</name>
+<text id="vp-mv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv</ref>
+ <file>bjt_pali/vp-mv.json</file>
+ <name>Mahāvaggapāḷi 1/6</name>
+ <pagestart>2</pagestart>
+ <pageend>246</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 1</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="d3">
- <group>sut</group>
- <ref>D3</ref>
- <file>bjt/1_tipit/2_sut/1_digh/dighan3u.htm</file>
- <name>Dīghanikāyo 3</name>
+<text id="vp-mv-2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv-2</ref>
+ <file>bjt_pali/vp-mv-2.json</file>
+ <name>Mahāvaggapāḷi 2/6</name>
+ <pagestart>248</pagestart>
+ <pageend>392</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 2-3</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="m1">
- <group>sut</group>
- <ref>M1</ref>
- <file>bjt/1_tipit/2_sut/2_majjh/majjhi1u.htm</file>
- <name>Majjhimanikāyo 1</name>
+<text id="vp-mv-4">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv-4</ref>
+ <file>bjt_pali/vp-mv-4.json</file>
+ <name>Mahāvaggapāḷi 3/6</name>
+ <pagestart>394</pagestart>
+ <pageend>516</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 4-5</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="m2">
- <group>sut</group>
- <ref>M2</ref>
- <file>bjt/1_tipit/2_sut/2_majjh/majjhi2u.htm</file>
- <name>Majjhimanikāyo 2</name>
+<text id="vp-mv-6">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv-6</ref>
+ <file>bjt_pali/vp-mv-6.json</file>
+ <name>Mahāvaggapāḷi 4/6</name>
+ <pagestart>520</pagestart>
+ <pageend>626</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 6</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="m3">
- <group>sut</group>
- <ref>M3</ref>
- <file>bjt/1_tipit/2_sut/2_majjh/majjhi3u.htm</file>
- <name>Majjhimanikāyo 3</name>
+<text id="vp-mv-7">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv-7</ref>
+ <file>bjt_pali/vp-mv-7.json</file>
+ <name>Mahāvaggapāḷi 5/6</name>
+ <pagestart>628</pagestart>
+ <pageend>754</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 7-8</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="s1">
- <group>sut</group>
- <ref>S1</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut1u.htm</file>
- <name>Saṃyuttanikāyo 1</name>
+<text id="vp-mv-9">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-mv-9</ref>
+ <file>bjt_pali/vp-mv-9.json</file>
+ <name>Mahāvaggapāḷi 6/6</name>
+ <pagestart>756</pagestart>
+ <pageend>894</pageend>
+ <description>Major topics in the Vinaya, Khandhaka 9-10</description>
+ <commentary>atta-vp-mv</commentary>
 </text>
-<text id="s2">
- <group>sut</group>
- <ref>S2</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut2u.htm</file>
- <name>Saṃyuttanikāyo 2</name>
+<text id="vp-cv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-cv</ref>
+ <file>bjt_pali/vp-cv.json</file>
+ <name>Cullavaggapāḷi I 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>194</pageend>
+ <description>Minor topics in the Vinaya, Khandhaka 1-2</description>
+ <commentary>atta-vp-cv</commentary>
 </text>
-<text id="s3">
- <group>sut</group>
- <ref>S3</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut3u.htm</file>
- <name>Saṃyuttanikāyo 3</name>
+<text id="vp-cv-3">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-cv-3</ref>
+ <file>bjt_pali/vp-cv-3.json</file>
+ <name>Cullavaggapāḷi I 2/2</name>
+ <pagestart>196</pagestart>
+ <pageend>434</pageend>
+ <description>Minor topics in the Vinaya, Khandhaka 3-4</description>
+ <commentary>atta-vp-cv</commentary>
 </text>
-<text id="s4">
- <group>sut</group>
- <ref>S4</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut4u.htm</file>
- <name>Saṃyuttanikāyo 4</name>
+<text id="vp-cv-5">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-cv-5</ref>
+ <file>bjt_pali/vp-cv-5.json</file>
+ <name>Cullavaggapāḷi II 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>332</pageend>
+ <description>Minor topics in the Vinaya, Khandhaka 5-7</description>
+ <commentary>atta-vp-cv</commentary>
 </text>
-<text id="s5">
- <group>sut</group>
- <ref>S5</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut5u.htm</file>
- <name>Saṃyuttanikāyo 5-1</name>
+<text id="vp-cv-8">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-cv-8</ref>
+ <file>bjt_pali/vp-cv-8.json</file>
+ <name>Cullavaggapāḷi II 2/2</name>
+ <pagestart>334</pagestart>
+ <pageend>598</pageend>
+ <description>Minor topics in the Vinaya, Khandhaka 8-12</description>
+ <commentary>atta-vp-cv</commentary>
 </text>
-<text id="s6">
- <group>sut</group>
- <ref>S6</ref>
- <file>bjt/1_tipit/2_sut/3_samyu/samyut6u.htm</file>
- <name>Saṃyuttanikāyo 5-2</name>
+<text id="vp-pv">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-pv</ref>
+ <file>bjt_pali/vp-pv.json</file>
+ <name>Parivārapāḷi I 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>186</pageend>
+ <description>Miscellaneous topics in the Vinaya, Mahāvibhaṅga</description>
+ <commentary>atta-vp-pv</commentary>
 </text>
-<text id="a1">
- <group>sut</group>
- <ref>A1</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt1u.htm</file>
- <name>Aṅguttaranikāyo 1</name>
+<text id="vp-pv-2">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-pv-2</ref>
+ <file>bjt_pali/vp-pv-2.json</file>
+ <name>Parivārapāḷi I 2/2</name>
+ <pagestart>188</pagestart>
+ <pageend>382</pageend>
+ <description>Miscellaneous topics in the Vinaya, Bhikkhunīvibhaṅga</description>
+ <commentary>atta-vp-pv</commentary>
 </text>
-<text id="a2">
- <group>sut</group>
- <ref>A2</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt2u.htm</file>
- <name>Aṅguttaranikāyo 2</name>
+<text id="vp-pv-5">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-pv-5</ref>
+ <file>bjt_pali/vp-pv-5.json</file>
+ <name>Parivārapāḷi II 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>148</pageend>
+ <description>Miscellaneous topics in the Vinaya, Khandhakapucchā to Cūḷasaṅgāma</description>
+ <commentary>atta-vp-pv</commentary>
 </text>
-<text id="a3">
- <group>sut</group>
- <ref>A3</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt3u.htm</file>
- <name>Aṅguttaranikāyo 3</name>
+<text id="vp-pv-14">
+ <group>vin</group>
+ <docclass>mul</docclass>
+ <ref>vp-pv-14</ref>
+ <file>bjt_pali/vp-pv-14.json</file>
+ <name>Parivārapāḷi II 2/2</name>
+ <pagestart>150</pagestart>
+ <pageend>318</pageend>
+ <description>Miscellaneous topics in the Vinaya, Mahāsaṅgāmo onward</description>
+ <commentary>atta-vp-pv</commentary>
 </text>
-<text id="a4">
+<text id="dn-1">
  <group>sut</group>
- <ref>A4</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt4u.htm</file>
- <name>Aṅguttaranikāyo 4</name>
+ <docclass>mul</docclass>
+ <ref>dn-1</ref>
+ <file>bjt_pali/dn-1.json</file>
+ <name>Dīghanikāya, Sīlakkhandhavagga 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>148</pageend>
+ <description>The Sīlakkhandhavagga of the long discourses, DN 1-2</description>
+ <commentary>atta-dn-1</commentary>
+ <commentary>atta-dn-1-2</commentary>
 </text>
-<text id="a5">
+<text id="dn-1-3">
  <group>sut</group>
- <ref>A5</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt5u.htm</file>
- <name>Aṅguttaranikāyo 5</name>
+ <docclass>mul</docclass>
+ <ref>dn-1-3</ref>
+ <file>bjt_pali/dn-1-3.json</file>
+ <name>Dīghanikāya, Sīlakkhandhavagga 2/4</name>
+ <pagestart>150</pagestart>
+ <pageend>322</pageend>
+ <description>The Sīlakkhandhavagga of the long discourses, DN 3-5</description>
+ <commentary>atta-dn-1-2</commentary>
 </text>
-<text id="a6">
+<text id="dn-1-6">
  <group>sut</group>
- <ref>A6</ref>
- <file>bjt/1_tipit/2_sut/4_angu/angutt6u.htm</file>
- <name>Aṅguttaranikāyo 6</name>
+ <docclass>mul</docclass>
+ <ref>dn-1-6</ref>
+ <file>bjt_pali/dn-1-6.json</file>
+ <name>Dīghanikāya, Sīlakkhandhavagga 3/4</name>
+ <pagestart>324</pagestart>
+ <pageend>482</pageend>
+ <description>The Sīlakkhandhavagga of the long discourses, DN 6-10</description>
+ <commentary>atta-dn-1-2</commentary>
 </text>
-<text id="khp">
+<text id="dn-1-11">
  <group>sut</group>
- <ref>Khp</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/khuddaku.htm</file>
+ <docclass>mul</docclass>
+ <ref>dn-1-11</ref>
+ <file>bjt_pali/dn-1-11.json</file>
+ <name>Dīghanikāya, Sīlakkhandhavagga 4/4</name>
+ <pagestart>484</pagestart>
+ <pageend>642</pageend>
+ <description>The Sīlakkhandhavagga of the long discourses, DN 11-13</description>
+ <commentary>atta-dn-1-2</commentary>
+</text>
+<text id="dn-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-2</ref>
+ <file>bjt_pali/dn-2.json</file>
+ <name>Dīghanikāya, Mahāvagga 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>108</pageend>
+ <description>The Mahāvagga of the long discourses, DN 14-15</description>
+ <commentary>atta-dn-2</commentary>
+</text>
+<text id="dn-2-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-2-3</ref>
+ <file>bjt_pali/dn-2-3.json</file>
+ <name>Dīghanikāya, Mahāvagga 2/4</name>
+ <pagestart>110</pagestart>
+ <pageend>264</pageend>
+ <description>The Mahāvagga of the long discourses, DN 16</description>
+ <commentary>atta-dn-2</commentary>
+</text>
+<text id="dn-2-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-2-4</ref>
+ <file>bjt_pali/dn-2-4.json</file>
+ <name>Dīghanikāya, Mahāvagga 3/4</name>
+ <pagestart>266</pagestart>
+ <pageend>380</pageend>
+ <description>The Mahāvagga of the long discourses, DN 17-19</description>
+ <commentary>atta-dn-2-4</commentary>
+</text>
+<text id="dn-2-7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-2-7</ref>
+ <file>bjt_pali/dn-2-7.json</file>
+ <name>Dīghanikāya, Mahāvagga 4/4</name>
+ <pagestart>382</pagestart>
+ <pageend>564</pageend>
+ <description>The Mahāvagga of the long discourses, DN 20-23</description>
+ <commentary>atta-dn-2-4</commentary>
+</text>
+<text id="dn-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-3</ref>
+ <file>bjt_pali/dn-3.json</file>
+ <name>Dīghanikāya, Pāthikavagga 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>164</pageend>
+ <description>The Pāthikavagga of the long discourses, DN 24-27</description>
+ <commentary>atta-dn-3</commentary>
+</text>
+<text id="dn-3-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-3-5</ref>
+ <file>bjt_pali/dn-3-5.json</file>
+ <name>Dīghanikāya, Pāthikavagga 2/3</name>
+ <pagestart>166</pagestart>
+ <pageend>350</pageend>
+ <description>The Pāthikavagga of the long discourses, DN 28-32</description>
+ <commentary>atta-dn-3</commentary>
+</text>
+<text id="dn-3-10">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>dn-3-10</ref>
+ <file>bjt_pali/dn-3-10.json</file>
+ <name>Dīghanikāya, Pāthikavagga 3/3</name>
+ <pagestart>352</pagestart>
+ <pageend>544</pageend>
+ <description>The Pāthikavagga of the long discourses, DN 33-34</description>
+ <commentary>atta-dn-3</commentary>
+</text>
+<text id="mn-1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-1</ref>
+ <file>bjt_pali/mn-1.json</file>
+ <name>Majjhimanikāya, Mūlapaṇṇāsa 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>154</pageend>
+ <description>The first fifty of the middle-length discourses, MN 1-10</description>
+ <commentary>atta-mn-1</commentary>
+ <commentary>atta-mn-1-1-6</commentary>
+</text>
+<text id="mn-1-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-1-2</ref>
+ <file>bjt_pali/mn-1-2.json</file>
+ <name>Majjhimanikāya, Mūlapaṇṇāsa 2/5</name>
+ <pagestart>154</pagestart>
+ <pageend>308</pageend>
+ <description>The first fifty of the middle-length discourses, MN 11-20</description>
+ <commentary>atta-mn-1-2</commentary>
+</text>
+<text id="mn-1-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-1-3</ref>
+ <file>bjt_pali/mn-1-3.json</file>
+ <name>Majjhimanikāya, Mūlapaṇṇāsa 3/5</name>
+ <pagestart>308</pagestart>
+ <pageend>492</pageend>
+ <description>The first fifty of the middle-length discourses, MN 21-30</description>
+ <commentary>atta-mn-1-2</commentary>
+</text>
+<text id="mn-1-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-1-4</ref>
+ <file>bjt_pali/mn-1-4.json</file>
+ <name>Majjhimanikāya, Mūlapaṇṇāsa 4/5</name>
+ <pagestart>494</pagestart>
+ <pageend>660</pageend>
+ <description>The first fifty of the middle-length discourses, MN 31-40</description>
+ <commentary>atta-mn-1-4</commentary>
+</text>
+<text id="mn-1-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-1-5</ref>
+ <file>bjt_pali/mn-1-5.json</file>
+ <name>Majjhimanikāya, Mūlapaṇṇāsa 5/5</name>
+ <pagestart>662</pagestart>
+ <pageend>790</pageend>
+ <description>The first fifty of the middle-length discourses, MN 41-50</description>
+ <commentary>atta-mn-1-4</commentary>
+</text>
+<text id="mn-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-2</ref>
+ <file>bjt_pali/mn-2.json</file>
+ <name>Majjhimanikāya, Majjhimapaṇṇāsa 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>128</pageend>
+ <description>The middle fifty of the middle-length discourses, MN 51-60</description>
+ <commentary>atta-mn-2</commentary>
+</text>
+<text id="mn-2-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-2-2</ref>
+ <file>bjt_pali/mn-2-2.json</file>
+ <name>Majjhimanikāya, Majjhimapaṇṇāsa 2/5</name>
+ <pagestart>130</pagestart>
+ <pageend>250</pageend>
+ <description>The middle fifty of the middle-length discourses, MN 61-70</description>
+ <commentary>atta-mn-2</commentary>
+</text>
+<text id="mn-2-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-2-3</ref>
+ <file>bjt_pali/mn-2-3.json</file>
+ <name>Majjhimanikāya, Majjhimapaṇṇāsa 3/5</name>
+ <pagestart>252</pagestart>
+ <pageend>402</pageend>
+ <description>The middle fifty of the middle-length discourses, MN 71-80</description>
+ <commentary>atta-mn-2-3</commentary>
+</text>
+<text id="mn-2-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-2-4</ref>
+ <file>bjt_pali/mn-2-4.json</file>
+ <name>Majjhimanikāya, Majjhimapaṇṇāsa 4/5</name>
+ <pagestart>404</pagestart>
+ <pageend>574</pageend>
+ <description>The middle fifty of the middle-length discourses, MN 81-90</description>
+ <commentary>atta-mn-2-3</commentary>
+</text>
+<text id="mn-2-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-2-5</ref>
+ <file>bjt_pali/mn-2-5.json</file>
+ <name>Majjhimanikāya, Majjhimapaṇṇāsa 5/5</name>
+ <pagestart>576</pagestart>
+ <pageend>760</pageend>
+ <description>The middle fifty of the middle-length discourses, MN 91-100</description>
+ <commentary>atta-mn-2-3</commentary>
+</text>
+<text id="mn-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-3</ref>
+ <file>bjt_pali/mn-3.json</file>
+ <name>Majjhimanikāya, Uparipaṇṇāsa 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>132</pageend>
+ <description>The last fifty of the middle-length discourses, MN 101-110</description>
+ <commentary>atta-mn-3</commentary>
+</text>
+<text id="mn-3-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-3-2</ref>
+ <file>bjt_pali/mn-3-2.json</file>
+ <name>Majjhimanikāya, Uparipaṇṇāsa 2/5</name>
+ <pagestart>134</pagestart>
+ <pageend>262</pageend>
+ <description>The last fifty of the middle-length discourses, MN 111-120</description>
+ <commentary>atta-mn-3</commentary>
+</text>
+<text id="mn-3-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-3-3</ref>
+ <file>bjt_pali/mn-3-3.json</file>
+ <name>Majjhimanikāya, Uparipaṇṇāsa 3/5</name>
+ <pagestart>264</pagestart>
+ <pageend>396</pageend>
+ <description>The last fifty of the middle-length discourses, MN 121-130</description>
+ <commentary>atta-mn-3</commentary>
+</text>
+<text id="mn-3-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-3-4</ref>
+ <file>bjt_pali/mn-3-4.json</file>
+ <name>Majjhimanikāya, Uparipaṇṇāsa 4/5</name>
+ <pagestart>398</pagestart>
+ <pageend>526</pageend>
+ <description>The last fifty of the middle-length discourses, MN 131-142</description>
+ <commentary>atta-mn-3</commentary>
+</text>
+<text id="mn-3-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>mn-3-5</ref>
+ <file>bjt_pali/mn-3-5.json</file>
+ <name>Majjhimanikāya, Uparipaṇṇāsa 5/5</name>
+ <pagestart>528</pagestart>
+ <pageend>624</pageend>
+ <description>The last fifty of the middle-length discourses, MN 143-152</description>
+ <commentary>atta-mn-3</commentary>
+</text>
+<text id="sn-1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-1</ref>
+ <file>bjt_pali/sn-1.json</file>
+ <name>Saṃyuttanikāya, Sagāthavagga 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>128</pageend>
+ <description>The Sagāthāvagga of the connected discourses, Saṃyutta 1-2</description>
+ <commentary>atta-sn-1</commentary>
+</text>
+<text id="sn-1-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-1-3</ref>
+ <file>bjt_pali/sn-1-3.json</file>
+ <name>Saṃyuttanikāya, Sagāthavagga 2/3</name>
+ <pagestart>130</pagestart>
+ <pageend>284</pageend>
+ <description>The Sagāthāvagga of the connected discourses, Saṃyutta 3-6</description>
+ <commentary>atta-sn-1</commentary>
+ <commentary>atta-sn-1-5</commentary>
+</text>
+<text id="sn-1-7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-1-7</ref>
+ <file>bjt_pali/sn-1-7.json</file>
+ <name>Saṃyuttanikāya, Sagāthavagga 3/3</name>
+ <pagestart>286</pagestart>
+ <pageend>428</pageend>
+ <description>The Sagāthāvagga of the connected discourses, Saṃyutta 7-11</description>
+ <commentary>atta-sn-1-5</commentary>
+</text>
+<text id="sn-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-2</ref>
+ <file>bjt_pali/sn-2.json</file>
+ <name>Saṃyuttanikāya, Nidānavagga 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>104</pageend>
+ <description>The Nidānavagga of the connected discourses, Saṃyutta 12 (1-40)</description>
+ <commentary>atta-sn-2</commentary>
+</text>
+<text id="sn-2-1-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-2-1-5</ref>
+ <file>bjt_pali/sn-2-1-5.json</file>
+ <name>Saṃyuttanikāya, Nidānavagga 2/4</name>
+ <pagestart>106</pagestart>
+ <pageend>220</pageend>
+ <description>The Nidānavagga of the connected discourses, Saṃyutta 12 (41-213), 13</description>
+ <commentary>atta-sn-2</commentary>
+</text>
+<text id="sn-2-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-2-2</ref>
+ <file>bjt_pali/sn-2-2.json</file>
+ <name>Saṃyuttanikāya, Nidānavagga 3/4</name>
+ <pagestart>222</pagestart>
+ <pageend>342</pageend>
+ <description>The Nidānavagga of the connected discourses, Saṃyutta 14-16</description>
+ <commentary>atta-sn-2</commentary>
+</text>
+<text id="sn-2-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-2-5</ref>
+ <file>bjt_pali/sn-2-5.json</file>
+ <name>Saṃyuttanikāya, Nidānavagga 4/4</name>
+ <pagestart>344</pagestart>
+ <pageend>440</pageend>
+ <description>The Nidānavagga of the connected discourses, Saṃyutta 17-21</description>
+ <commentary>atta-sn-2</commentary>
+</text>
+<text id="sn-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-3</ref>
+ <file>bjt_pali/sn-3.json</file>
+ <name>Saṃyuttanikāya, Khandhavagga 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>92</pageend>
+ <description>The Nidānavagga of the connected discourses, Saṃyutta 22 (1-52)</description>
+ <commentary>atta-sn-3</commentary>
+</text>
+<text id="sn-3-1-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-3-1-2</ref>
+ <file>bjt_pali/sn-3-1-2.json</file>
+ <name>Saṃyuttanikāya, Khandhavagga 2/5</name>
+ <pagestart>94</pagestart>
+ <pageend>270</pageend>
+ <description>The Khandhavagga of the connected discourses, Saṃyutta 22 (53-102)</description>
+ <commentary>atta-sn-3</commentary>
+</text>
+<text id="sn-3-1-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-3-1-3</ref>
+ <file>bjt_pali/sn-3-1-3.json</file>
+ <name>Saṃyuttanikāya, Khandhavagga 3/5</name>
+ <pagestart>272</pagestart>
+ <pageend>338</pageend>
+ <description>The Khandhavagga of the connected discourses, Saṃyutta 22 (103-159)</description>
+ <commentary>atta-sn-3</commentary>
+</text>
+<text id="sn-3-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-3-2</ref>
+ <file>bjt_pali/sn-3-2.json</file>
+ <name>Saṃyuttanikāya, Khandhavagga 4/5</name>
+ <pagestart>340</pagestart>
+ <pageend>464</pageend>
+ <description>The Khandhavagga of the connected discourses, Saṃyutta 23-27</description>
+ <commentary>atta-sn-3</commentary>
+</text>
+<text id="sn-3-7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-3-7</ref>
+ <file>bjt_pali/sn-3-7.json</file>
+ <name>Saṃyuttanikāya, Khandhavagga 5/5</name>
+ <pagestart>466</pagestart>
+ <pageend>572</pageend>
+ <description>The Khandhavagga of the connected discourses, Saṃyutta 28-34</description>
+ <commentary>atta-sn-3</commentary>
+</text>
+<text id="sn-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-4</ref>
+ <file>bjt_pali/sn-4.json</file>
+ <name>Saṃyuttanikāya, Saḷāyatanavagga 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>192</pageend>
+ <description>The Saḷāyatanavagga of the connected discourses, Saṃyutta 35 (1-113)</description>
+ <commentary>atta-sn-4</commentary>
+</text>
+<text id="sn-4-1-12">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-4-1-12</ref>
+ <file>bjt_pali/sn-4-1-12.json</file>
+ <name>Saṃyuttanikāya, Saḷāyatanavagga 2/4</name>
+ <pagestart>194</pagestart>
+ <pageend>388</pageend>
+ <description>The Saḷāyatanavagga of the connected discourses, Saṃyutta 35 (114-248)</description>
+ <commentary>atta-sn-4</commentary>
+</text>
+<text id="sn-4-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-4-2</ref>
+ <file>bjt_pali/sn-4-2.json</file>
+ <name>Saṃyuttanikāya, Saḷāyatanavagga 3/4</name>
+ <pagestart>390</pagestart>
+ <pageend>554</pageend>
+ <description>The Saḷāyatanavagga of the connected discourses, Saṃyutta 36-41</description>
+ <commentary>atta-sn-4</commentary>
+</text>
+<text id="sn-4-8">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-4-8</ref>
+ <file>bjt_pali/sn-4-8.json</file>
+ <name>Saṃyuttanikāya, Saḷāyatanavagga 4/4</name>
+ <pagestart>556</pagestart>
+ <pageend>708</pageend>
+ <description>The Saḷāyatanavagga of the connected discourses, Saṃyutta 42-44</description>
+ <commentary>atta-sn-4</commentary>
+</text>
+<text id="sn-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5</ref>
+ <file>bjt_pali/sn-5.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga I 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>138</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 45</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-2</ref>
+ <file>bjt_pali/sn-5-2.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga I 2/4</name>
+ <pagestart>140</pagestart>
+ <pageend>258</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 46</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-3</ref>
+ <file>bjt_pali/sn-5-3.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga I 3/4</name>
+ <pagestart>260</pagestart>
+ <pageend>344</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 47</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-4</ref>
+ <file>bjt_pali/sn-5-4.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga I 4/4</name>
+ <pagestart>346</pagestart>
+ <pageend>442</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 48-50</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-7</ref>
+ <file>bjt_pali/sn-5-7.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga II 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>136</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 51-52</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-11">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-11</ref>
+ <file>bjt_pali/sn-5-11.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga II 2/3</name>
+ <pagestart>138</pagestart>
+ <pageend>258</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 53-55</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="sn-5-12">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>sn-5-12</ref>
+ <file>bjt_pali/sn-5-12.json</file>
+ <name>Saṃyuttanikāya, Mahāvagga II 3/3</name>
+ <pagestart>260</pagestart>
+ <pageend>360</pageend>
+ <description>The Mahāvagga of the connected discourses, Saṃyutta 56</description>
+ <commentary>atta-sn-5</commentary>
+</text>
+<text id="an-1">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-1</ref>
+ <file>bjt_pali/an-1.json</file>
+ <name>Aṅguttaranikāya, Ekakanipāta</name>
+ <pagestart>2</pagestart>
+ <pageend>94</pageend>
+ <description>The group of the ones in the numerical discourses</description>
+ <commentary>atta-an-1</commentary>
+ <commentary>atta-an-1-14-3</commentary>
+ <commentary>atta-an-1-15</commentary>
+</text>
+<text id="an-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-2</ref>
+ <file>bjt_pali/an-2.json</file>
+ <name>Aṅguttaranikāya, Dukanipāta</name>
+ <pagestart>96</pagestart>
+ <pageend>194</pageend>
+ <description>The group of the twos in the numerical discourses</description>
+ <commentary>atta-an-2</commentary>
+</text>
+<text id="an-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-3</ref>
+ <file>bjt_pali/an-3.json</file>
+ <name>Aṅguttaranikāya, Tikanipāta 1/3</name>
+ <pagestart>196</pagestart>
+ <pageend>278</pageend>
+ <description>The group of the threes in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-3</commentary>
+</text>
+<text id="an-3-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-3-2</ref>
+ <file>bjt_pali/an-3-2.json</file>
+ <name>Aṅguttaranikāya, Tikanipāta 2/3</name>
+ <pagestart>280</pagestart>
+ <pageend>458</pageend>
+ <description>The group of the threes in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-3</commentary>
+</text>
+<text id="an-3-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-3-3</ref>
+ <file>bjt_pali/an-3-3.json</file>
+ <name>Aṅguttaranikāya, Tikanipāta 3/3</name>
+ <pagestart>460</pagestart>
+ <pageend>554</pageend>
+ <description>The group of the threes in the numerical discourses (the third fifty)</description>
+ <commentary>atta-an-3</commentary>
+</text>
+<text id="an-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-4</ref>
+ <file>bjt_pali/an-4.json</file>
+ <name>Aṅguttaranikāya, Catukkanipāta 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>104</pageend>
+ <description>The group of the fours in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-4</commentary>
+</text>
+<text id="an-4-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-4-2</ref>
+ <file>bjt_pali/an-4-2.json</file>
+ <name>Aṅguttaranikāya, Catukkanipāta 2/5</name>
+ <pagestart>106</pagestart>
+ <pageend>194</pageend>
+ <description>The group of the fours in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-4</commentary>
+</text>
+<text id="an-4-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-4-3</ref>
+ <file>bjt_pali/an-4-3.json</file>
+ <name>Aṅguttaranikāya, Catukkanipāta 3/5</name>
+ <pagestart>196</pagestart>
+ <pageend>272</pageend>
+ <description>The group of the fours in the numerical discourses (the third fifty)</description>
+ <commentary>atta-an-4</commentary>
+</text>
+<text id="an-4-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-4-4</ref>
+ <file>bjt_pali/an-4-4.json</file>
+ <name>Aṅguttaranikāya, Catukkanipāta 4/5</name>
+ <pagestart>274</pagestart>
+ <pageend>412</pageend>
+ <description>The group of the fours in the numerical discourses (the fourth fifty)</description>
+ <commentary>atta-an-4</commentary>
+</text>
+<text id="an-4-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-4-5</ref>
+ <file>bjt_pali/an-4-5.json</file>
+ <name>Aṅguttaranikāya, Catukkanipāta 5/5</name>
+ <pagestart>414</pagestart>
+ <pageend>496</pageend>
+ <description>The group of the fours in the numerical discourses (the fifth great fifty)</description>
+ <commentary>atta-an-4</commentary>
+</text>
+<text id="an-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-5</ref>
+ <file>bjt_pali/an-5.json</file>
+ <name>Aṅguttaranikāya, Pañcakanipāta 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>98</pageend>
+ <description>The group of the fives in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-5</commentary>
+</text>
+<text id="an-5-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-5-2</ref>
+ <file>bjt_pali/an-5-2.json</file>
+ <name>Aṅguttaranikāya, Pañcakanipāta 2/5</name>
+ <pagestart>100</pagestart>
+ <pageend>200</pageend>
+ <description>The group of the fives in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-5</commentary>
+</text>
+<text id="an-5-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-5-3</ref>
+ <file>bjt_pali/an-5-3.json</file>
+ <name>Aṅguttaranikāya, Pañcakanipāta 3/5</name>
+ <pagestart>202</pagestart>
+ <pageend>282</pageend>
+ <description>The group of the fives in the numerical discourses (the third fifty)</description>
+ <commentary>atta-an-5</commentary>
+</text>
+<text id="an-5-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-5-4</ref>
+ <file>bjt_pali/an-5-4.json</file>
+ <name>Aṅguttaranikāya, Pañcakanipāta 4/5</name>
+ <pagestart>284</pagestart>
+ <pageend>396</pageend>
+ <description>The group of the fives in the numerical discourses (the fourth fifty)</description>
+ <commentary>atta-an-5</commentary>
+</text>
+<text id="an-5-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-5-5</ref>
+ <file>bjt_pali/an-5-5.json</file>
+ <name>Aṅguttaranikāya, Pañcakanipāta 5/5</name>
+ <pagestart>398</pagestart>
+ <pageend>468</pageend>
+ <description>The group of the fives in the numerical discourses (the fifth fifty)</description>
+ <commentary>atta-an-5</commentary>
+</text>
+<text id="an-6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-6</ref>
+ <file>bjt_pali/an-6.json</file>
+ <name>Aṅguttaranikāya, Chakkanipāta 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>150</pageend>
+ <description>The group of the sixes in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-6</commentary>
+</text>
+<text id="an-6-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-6-2</ref>
+ <file>bjt_pali/an-6-2.json</file>
+ <name>Aṅguttaranikāya, Chakkanipāta 2/2</name>
+ <pagestart>152</pagestart>
+ <pageend>274</pageend>
+ <description>The group of the sixes in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-6</commentary>
+</text>
+<text id="an-7">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-7</ref>
+ <file>bjt_pali/an-7.json</file>
+ <name>Aṅguttaranikāya, Sattakanipāta 1/2</name>
+ <pagestart>278</pagestart>
+ <pageend>378</pageend>
+ <description>The group of the sevens in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-7</commentary>
+</text>
+<text id="an-7-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-7-2</ref>
+ <file>bjt_pali/an-7-2.json</file>
+ <name>Aṅguttaranikāya, Sattakanipāta 2/2</name>
+ <pagestart>380</pagestart>
+ <pageend>502</pageend>
+ <description>The group of the sevens in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-7</commentary>
+</text>
+<text id="an-8">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-8</ref>
+ <file>bjt_pali/an-8.json</file>
+ <name>Aṅguttaranikāya, Aṭṭhakanipāta 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>218</pageend>
+ <description>The group of the eights in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-8</commentary>
+</text>
+<text id="an-8-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-8-2</ref>
+ <file>bjt_pali/an-8-2.json</file>
+ <name>Aṅguttaranikāya, Aṭṭhakanipāta 2/2</name>
+ <pagestart>220</pagestart>
+ <pageend>364</pageend>
+ <description>The group of the eights in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-8</commentary>
+</text>
+<text id="an-9">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-9</ref>
+ <file>bjt_pali/an-9.json</file>
+ <name>Aṅguttaranikāya, Navakanipāta</name>
+ <pagestart>366</pagestart>
+ <pageend>572</pageend>
+ <description>The group of the nines in the numerical discourses</description>
+ <commentary>atta-an-9</commentary>
+</text>
+<text id="an-10">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-10</ref>
+ <file>bjt_pali/an-10.json</file>
+ <name>Aṅguttaranikāya, Dasakanipāta 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>164</pageend>
+ <description>The group of the tens in the numerical discourses (the first fifty)</description>
+ <commentary>atta-an-10</commentary>
+</text>
+<text id="an-10-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-10-2</ref>
+ <file>bjt_pali/an-10-2.json</file>
+ <name>Aṅguttaranikāya, Dasakanipāta 2/5</name>
+ <pagestart>166</pagestart>
+ <pageend>376</pageend>
+ <description>The group of the tens in the numerical discourses (the second fifty)</description>
+ <commentary>atta-an-10</commentary>
+</text>
+<text id="an-10-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-10-3</ref>
+ <file>bjt_pali/an-10-3.json</file>
+ <name>Aṅguttaranikāya, Dasakanipāta 3/5</name>
+ <pagestart>378</pagestart>
+ <pageend>450</pageend>
+ <description>The group of the tens in the numerical discourses (the third fifty)</description>
+ <commentary>atta-an-10</commentary>
+</text>
+<text id="an-10-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-10-4</ref>
+ <file>bjt_pali/an-10-4.json</file>
+ <name>Aṅguttaranikāya, Dasakanipāta 4/5</name>
+ <pagestart>452</pagestart>
+ <pageend>518</pageend>
+ <description>The group of the tens in the numerical discourses (the fourth fifty)</description>
+ <commentary>atta-an-10</commentary>
+</text>
+<text id="an-10-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-10-5</ref>
+ <file>bjt_pali/an-10-5.json</file>
+ <name>Aṅguttaranikāya, Dasakanipāta 5/5</name>
+ <pagestart>520</pagestart>
+ <pageend>582</pageend>
+ <description>The group of the tens in the numerical discourses (the extra fifty)</description>
+ <commentary>atta-an-10</commentary>
+</text>
+<text id="an-11">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>an-11</ref>
+ <file>bjt_pali/an-11.json</file>
+ <name>Aṅguttaranikāya, Ekādasakanipāta</name>
+ <pagestart>584</pagestart>
+ <pageend>682</pageend>
+ <description>The group of the elevens in the numerical discourses</description>
+ <commentary>atta-an-11</commentary>
+</text>
+<text id="kn-khp">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-khp</ref>
+ <file>bjt_pali/kn-khp.json</file>
  <name>Khuddakapāṭhapāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>22</pageend>
+ <description>The short recitations</description>
+ <commentary>atta-kn-khp</commentary>
 </text>
-<text id="dhp">
+<text id="kn-dhp">
  <group>sut</group>
- <ref>Dhp</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/dhamma1u.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-dhp</ref>
+ <file>bjt_pali/kn-dhp.json</file>
  <name>Dhammapadapāḷi</name>
+ <pagestart>26</pagestart>
+ <pageend>128</pageend>
+ <description>The Dhammapada</description>
+ <commentary>atta-kn-dhp</commentary>
+ <commentary>atta-kn-dhp-4</commentary>
+ <commentary>atta-kn-dhp-9</commentary>
+ <commentary>atta-kn-dhp-19</commentary>
 </text>
-<text id="ud">
+<text id="kn-ud">
  <group>sut</group>
- <ref>Ud</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/udana_u.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-ud</ref>
+ <file>bjt_pali/kn-ud.json</file>
  <name>Udānapāḷi</name>
+ <pagestart>130</pagestart>
+ <pageend>316</pageend>
+ <description>The inspired utterances</description>
+ <commentary>atta-kn-ud</commentary>
+ <commentary>atta-kn-ud-4</commentary>
 </text>
-<text id="it">
+<text id="kn-iti">
  <group>sut</group>
- <ref>It</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/itivuttu.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-iti</ref>
+ <file>bjt_pali/kn-iti.json</file>
  <name>Itivuttakapāḷi</name>
+ <pagestart>318</pagestart>
+ <pageend>484</pageend>
+ <description>The ‘thus spoken’</description>
+ <commentary>atta-kn-iti</commentary>
+ <commentary>atta-kn-iti-3</commentary>
 </text>
-<text id="snp">
+<text id="kn-snp">
  <group>sut</group>
- <ref>Snp</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/suttaniu.htm</file>
- <name>Suttanipāto</name>
+ <docclass>mul</docclass>
+ <ref>kn-snp</ref>
+ <file>bjt_pali/kn-snp.json</file>
+ <name>Suttanipāta 1/5</name>
+ <pagestart>2</pagestart>
+ <pageend>66</pageend>
+ <description>The groups of discourses (Uragavagga)</description>
+ <commentary>atta-kn-snp</commentary>
 </text>
-<text id="vv">
+<text id="kn-snp-2">
  <group>sut</group>
- <ref>Vv</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/vimanavu.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-snp-2</ref>
+ <file>bjt_pali/kn-snp-2.json</file>
+ <name>Suttanipāta 2/5</name>
+ <pagestart>68</pagestart>
+ <pageend>120</pageend>
+ <description>The groups of discourses (Cullavagga)</description>
+ <commentary>atta-kn-snp-2</commentary>
+</text>
+<text id="kn-snp-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-snp-3</ref>
+ <file>bjt_pali/kn-snp-3.json</file>
+ <name>Suttanipāta 3/5</name>
+ <pagestart>122</pagestart>
+ <pageend>240</pageend>
+ <description>The groups of discourses (Mahāvagga)</description>
+ <commentary>atta-kn-snp-3</commentary>
+</text>
+<text id="kn-snp-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-snp-4</ref>
+ <file>bjt_pali/kn-snp-4.json</file>
+ <name>Suttanipāta 4/5</name>
+ <pagestart>242</pagestart>
+ <pageend>304</pageend>
+ <description>The groups of discourses (Aṭṭhakavagga)</description>
+ <commentary>atta-kn-snp-3</commentary>
+</text>
+<text id="kn-snp-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-snp-5</ref>
+ <file>bjt_pali/kn-snp-5.json</file>
+ <name>Suttanipāta 5/5</name>
+ <pagestart>306</pagestart>
+ <pageend>352</pageend>
+ <description>The groups of discourses (Pārāyanavagga)</description>
+ <commentary>atta-kn-snp-3</commentary>
+</text>
+<text id="kn-vv">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-vv</ref>
+ <file>bjt_pali/kn-vv.json</file>
  <name>Vimānavatthupāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>218</pageend>
+ <description>The stories of heavenly palaces</description>
+ <commentary>atta-kn-vv</commentary>
+ <commentary>atta-kn-vv-4</commentary>
 </text>
-<text id="pv">
+<text id="kn-pv">
  <group>sut</group>
- <ref>Pv</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/petavatu.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-pv</ref>
+ <file>bjt_pali/kn-pv.json</file>
  <name>Petavatthupāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>160</pageend>
+ <description>The stories of ghosts</description>
+ <commentary>atta-kn-pv</commentary>
 </text>
-<text id="thag">
+<text id="kn-thag">
  <group>sut</group>
- <ref>Thag</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/theragau.htm</file>
- <name>Theragāthāpāḷi</name>
+ <docclass>mul</docclass>
+ <ref>kn-thag</ref>
+ <file>bjt_pali/kn-thag.json</file>
+ <name>Theragāthāpāḷi 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>162</pageend>
+ <description>The verses spoken by monks, Ekanipāta-Dasakanipāta</description>
+ <commentary>atta-kn-thag</commentary>
+ <commentary>atta-kn-thag-2</commentary>
+ <commentary>atta-kn-thag-5</commentary>
 </text>
-<text id="thig">
+<text id="kn-thag-11">
  <group>sut</group>
- <ref>Thig</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/therigau.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-thag-11</ref>
+ <file>bjt_pali/kn-thag-11.json</file>
+ <name>Theragāthāpāḷi 2/2</name>
+ <pagestart>164</pagestart>
+ <pageend>286</pageend>
+ <description>The verses spoken by monks, Ekādasanipāta-Mahānipāta</description>
+ <commentary>atta-kn-thag-5</commentary>
+ <commentary>atta-kn-thag-15</commentary>
+</text>
+<text id="kn-thig">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-thig</ref>
+ <file>bjt_pali/kn-thig.json</file>
  <name>Therīgāthāpāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>110</pageend>
+ <description>The verses spoken by nuns</description>
+ <commentary>atta-kn-thig</commentary>
 </text>
-<text id="ap1">
+<text id="kn-ap">
  <group>sut</group>
- <ref>Ap1</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/apadan1u.htm</file>
- <name>Apadānapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>kn-ap</ref>
+ <file>bjt_pali/kn-ap.json</file>
+ <name>Theraapadānapāḷi I 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>160</pageend>
+ <description>The Apadānas spoken by monks, Vagga 1-4</description>
+ <commentary>atta-kn-ap</commentary>
+ <commentary>atta-kn-ap-1-2</commentary>
 </text>
-<text id="ap2">
+<text id="kn-ap-1-5">
  <group>sut</group>
- <ref>Ap2</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/apadan2u.htm</file>
- <name>Apadānapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-5</ref>
+ <file>bjt_pali/kn-ap-1-5.json</file>
+ <name>Theraapadānapāḷi I 2/4</name>
+ <pagestart>162</pagestart>
+ <pageend>328</pageend>
+ <description>The Apadānas spoken by monks, Vagga 5-18</description>
+ <commentary>atta-kn-ap-1-2</commentary>
 </text>
-<text id="ap3">
+<text id="kn-ap-1-19">
  <group>sut</group>
- <ref>Ap3</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/apadan3u.htm</file>
- <name>Apadānapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-19</ref>
+ <file>bjt_pali/kn-ap-1-19.json</file>
+ <name>Theraapadānapāḷi I 3/4</name>
+ <pagestart>330</pagestart>
+ <pageend>458</pageend>
+ <description>The Apadānas spoken by monks, Vagga 19-32</description>
+ <commentary>atta-kn-ap-1-2</commentary>
 </text>
-<text id="bv">
+<text id="kn-ap-1-33">
  <group>sut</group>
- <ref>Bv</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/buddhavu.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-33</ref>
+ <file>bjt_pali/kn-ap-1-33.json</file>
+ <name>Theraapadānapāḷi I 4/4</name>
+ <pagestart>460</pagestart>
+ <pageend>628</pageend>
+ <description>The Apadānas spoken by monks, Vagga 33-40</description>
+ <commentary>atta-kn-ap-1-2</commentary>
+</text>
+<text id="kn-ap-1-41">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-41</ref>
+ <file>bjt_pali/kn-ap-1-41.json</file>
+ <name>Theraapadānapāḷi II 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>128</pageend>
+ <description>The Apadānas spoken by monks, Vagga 41-44</description>
+ <commentary>atta-kn-ap-1-2</commentary>
+</text>
+<text id="kn-ap-1-45">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-45</ref>
+ <file>bjt_pali/kn-ap-1-45.json</file>
+ <name>Theraapadānapāḷi II 2/3</name>
+ <pagestart>130</pagestart>
+ <pageend>268</pageend>
+ <description>The Apadānas spoken by monks, Vagga 45-52</description>
+ <commentary>atta-kn-ap-1-2</commentary>
+</text>
+<text id="kn-ap-1-53">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ap-1-53</ref>
+ <file>bjt_pali/kn-ap-1-53.json</file>
+ <name>Theraapadānapāḷi II 3/3</name>
+ <pagestart>270</pagestart>
+ <pageend>416</pageend>
+ <description>The Apadānas spoken by monks, Vagga 53-56</description>
+ <commentary>atta-kn-ap-1-2</commentary>
+</text>
+<text id="kn-ap-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ap-2</ref>
+ <file>bjt_pali/kn-ap-2.json</file>
+ <name>Therīapadānapāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>218</pageend>
+ <description>The Apadānas spoken by nuns</description>
+</text>
+<text id="kn-bv">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-bv</ref>
+ <file>bjt_pali/kn-bv.json</file>
  <name>Buddhavaṃsapāḷi</name>
+ <pagestart>2</pagestart>
+ <pageend>246</pageend>
+ <description>The lineage of the Buddhas</description>
+ <commentary>atta-kn-bv</commentary>
 </text>
-<text id="cp">
+<text id="kn-cp">
  <group>sut</group>
- <ref>Cp</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/cariyapu.htm</file>
+ <docclass>mul</docclass>
+ <ref>kn-cp</ref>
+ <file>bjt_pali/kn-cp.json</file>
  <name>Cariyāpiṭakapāḷi</name>
+ <pagestart>250</pagestart>
+ <pageend>326</pageend>
+ <description>The basket of conduct</description>
+ <commentary>atta-kn-cp</commentary>
+ <commentary>atta-kn-cp-3</commentary>
 </text>
-<text id="ja1">
+<text id="kn-jat">
  <group>sut</group>
- <ref>Ja1</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka1u.htm</file>
- <name>Jātakapāḷi 1</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat</ref>
+ <file>bjt_pali/kn-jat.json</file>
+ <name>Jātakapāḷi I 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>204</pageend>
+ <description>The birth stories, Nipāta 1-4</description>
+ <commentary>atta-kn-jat</commentary>
+ <commentary>atta-kn-jat-1-6</commentary>
+ <commentary>atta-kn-jat-2</commentary>
+ <commentary>atta-kn-jat-3</commentary>
+ <commentary>atta-kn-jat-4</commentary>
 </text>
-<text id="ja2">
+<text id="kn-jat-5">
  <group>sut</group>
- <ref>Ja2</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka2u.htm</file>
- <name>Jātakapāḷi 2</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-5</ref>
+ <file>bjt_pali/kn-jat-5.json</file>
+ <name>Jātakapāḷi I 2/3</name>
+ <pagestart>206</pagestart>
+ <pageend>386</pageend>
+ <description>The birth stories, Nipāta 5-10</description>
+ <commentary>atta-kn-jat-4</commentary>
+ <commentary>atta-kn-jat-6</commentary>
+ <commentary>atta-kn-jat-9</commentary>
 </text>
-<text id="ja3">
+<text id="kn-jat-11">
  <group>sut</group>
- <ref>Ja3</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka3u.htm</file>
- <name>Jātakapāḷi 3</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-11</ref>
+ <file>bjt_pali/kn-jat-11.json</file>
+ <name>Jātakapāḷi I 3/3</name>
+ <pagestart>388</pagestart>
+ <pageend>534</pageend>
+ <description>The birth stories, Nipāta 11-14</description>
+ <commentary>atta-kn-jat-9</commentary>
+ <commentary>atta-kn-jat-14</commentary>
 </text>
-<text id="ja4">
+<text id="kn-jat-15">
  <group>sut</group>
- <ref>Ja4</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka4u.htm</file>
- <name>Jātakapāḷi 4</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-15</ref>
+ <file>bjt_pali/kn-jat-15.json</file>
+ <name>Jātakapāḷi II 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>216</pageend>
+ <description>The birth stories, Nipāta 15-17</description>
+ <commentary>atta-kn-jat-14</commentary>
+ <commentary>atta-kn-jat-17</commentary>
 </text>
-<text id="ja5">
+<text id="kn-jat-18">
  <group>sut</group>
- <ref>Ja5</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka5u.htm</file>
- <name>Jātakapāḷi 5</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-18</ref>
+ <file>bjt_pali/kn-jat-18.json</file>
+ <name>Jātakapāḷi II 2/2</name>
+ <pagestart>218</pagestart>
+ <pageend>440</pageend>
+ <description>The birth stories, Nipāta 18-21</description>
+ <commentary>atta-kn-jat-17</commentary>
+ <commentary>atta-kn-jat-21</commentary>
 </text>
-<text id="ja6">
+<text id="kn-jat-22">
  <group>sut</group>
- <ref>Ja6</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/jataka6u.htm</file>
- <name>Jātakapāḷi 6</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-22</ref>
+ <file>bjt_pali/kn-jat-22.json</file>
+ <name>Jātakapāḷi III 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>146</pageend>
+ <description>The birth stories, Nipāta 22 (1-5)</description>
+ <commentary>atta-kn-jat-22</commentary>
+ <commentary>atta-kn-jat-22-5</commentary>
 </text>
-<text id="nidd1">
+<text id="kn-jat-22-6">
  <group>sut</group>
- <ref>Nidd1</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/mahanidu.htm</file>
- <name>Mahāniddesapāḷi</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-22-6</ref>
+ <file>bjt_pali/kn-jat-22-6.json</file>
+ <name>Jātakapāḷi III 2/3</name>
+ <pagestart>148</pagestart>
+ <pageend>352</pageend>
+ <description>The birth stories, Nipāta 22 (6-9)</description>
+ <commentary>atta-kn-jat-22-5</commentary>
+ <commentary>atta-kn-jat-22-9</commentary>
 </text>
-<text id="nidd2">
+<text id="kn-jat-22-10">
  <group>sut</group>
- <ref>Nidd2</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/cullaniu.htm</file>
- <name>Cullaniddesapāḷi</name>
+ <docclass>mul</docclass>
+ <ref>kn-jat-22-10</ref>
+ <file>bjt_pali/kn-jat-22-10.json</file>
+ <name>Jātakapāḷi III 3/3</name>
+ <pagestart>354</pagestart>
+ <pageend>486</pageend>
+ <description>The birth stories, Nipāta 22 (10)</description>
+ <commentary>atta-kn-jat-22-9</commentary>
 </text>
-<text id="psm1">
+<text id="kn-mn">
  <group>sut</group>
- <ref>Psm1</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/patisa1u.htm</file>
- <name>Paṭisambhidāmaggo 1</name>
+ <docclass>mul</docclass>
+ <ref>kn-mn</ref>
+ <file>bjt_pali/kn-mn.json</file>
+ <name>Mahāniddesapāḷi 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>160</pageend>
+ <description>The great explanations (1-5)</description>
+ <commentary>atta-kn-mn</commentary>
 </text>
-<text id="psm2">
+<text id="kn-mn-6">
  <group>sut</group>
- <ref>Psm2</ref>
- <file>bjt/1_tipit/2_sut/5_khudd/patisa2u.htm</file>
- <name>Paṭisambhidāmaggo 2</name>
+ <docclass>mul</docclass>
+ <ref>kn-mn-6</ref>
+ <file>bjt_pali/kn-mn-6.json</file>
+ <name>Mahāniddesapāḷi 2/3</name>
+ <pagestart>162</pagestart>
+ <pageend>464</pageend>
+ <description>The great explanations (6-13)</description>
+ <commentary>atta-kn-mn-6</commentary>
 </text>
-<text id="dhs">
- <group>abh</group>
- <ref>Dhs</ref>
- <file>bjt/1_tipit/3_abh/dhamsanu.htm</file>
- <name>Dhammasaṅgaṇippakaraṇaṃ</name>
+<text id="kn-mn-14">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-mn-14</ref>
+ <file>bjt_pali/kn-mn-14.json</file>
+ <name>Mahāniddesapāḷi 3/3</name>
+ <pagestart>466</pagestart>
+ <pageend>730</pageend>
+ <description>The great explanations (14-16)</description>
+ <commentary>atta-kn-mn-6</commentary>
 </text>
-<text id="vbh1">
- <group>abh</group>
- <ref>Vbh1</ref>
- <file>bjt/1_tipit/3_abh/vibhan1u.htm</file>
- <name>Vibhaṅgappakaraṇaṃ 1</name>
+<text id="kn-nc">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-nc</ref>
+ <file>bjt_pali/kn-nc.json</file>
+ <name>Cullaniddesapāḷi 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>192</pageend>
+ <description>The small explanations (1-4)</description>
+ <commentary>atta-kn-nc</commentary>
 </text>
-<text id="vbh2">
- <group>abh</group>
- <ref>Vbh2</ref>
- <file>bjt/1_tipit/3_abh/vibhan2u.htm</file>
- <name>Vibhaṅgappakaraṇaṃ 2</name>
+<text id="kn-nc-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-nc-5</ref>
+ <file>bjt_pali/kn-nc-5.json</file>
+ <name>Cullaniddesapāḷi 2/3</name>
+ <pagestart>194</pagestart>
+ <pageend>480</pageend>
+ <description>The small explanations (5-17)</description>
+ <commentary>atta-kn-nc</commentary>
 </text>
-<text id="dhk">
- <group>abh</group>
- <ref>Dhk</ref>
- <file>bjt/1_tipit/3_abh/dhatukau.htm</file>
- <name>Dhātukathāppakaraṇaṃ</name>
+<text id="kn-nc-18">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-nc-18</ref>
+ <file>bjt_pali/kn-nc-18.json</file>
+ <name>Cullaniddesapāḷi 3/3</name>
+ <pagestart>482</pagestart>
+ <pageend>632</pageend>
+ <description>The small explanations (khaggavisāṇa suttaniddesa)</description>
+ <commentary>atta-kn-nc</commentary>
 </text>
-<text id="pp">
- <group>abh</group>
- <ref>Pp</ref>
- <file>bjt/1_tipit/3_abh/puggalau.htm</file>
- <name>Puggalapaññattippakaraṇaṃ</name>
+<text id="kn-ps">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps</ref>
+ <file>bjt_pali/kn-ps.json</file>
+ <name>Paṭisambhidāmagga I 1/7</name>
+ <pagestart>2</pagestart>
+ <pageend>146</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps</commentary>
+ <commentary>atta-kn-ps-1-1-2</commentary>
 </text>
-<text id="kv1">
- <group>abh</group>
- <ref>Kv1</ref>
- <file>bjt/1_tipit/3_abh/kathav1u.htm</file>
- <name>Kathāvatthuppakaraṇaṃ 1</name>
+<text id="kn-ps-1-1-17">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-1-17</ref>
+ <file>bjt_pali/kn-ps-1-1-17.json</file>
+ <name>Paṭisambhidāmagga I 2/7</name>
+ <pagestart>148</pagestart>
+ <pageend>248</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-1-2</commentary>
 </text>
-<text id="kv2">
- <group>abh</group>
- <ref>Kv2</ref>
- <file>bjt/1_tipit/3_abh/kathav2u.htm</file>
- <name>Kathāvatthuppakaraṇaṃ 2</name>
+<text id="kn-ps-1-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-2</ref>
+ <file>bjt_pali/kn-ps-1-2.json</file>
+ <name>Paṭisambhidāmagga I 3/7</name>
+ <pagestart>250</pagestart>
+ <pageend>306</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-2</commentary>
 </text>
-<text id="kv3">
- <group>abh</group>
- <ref>Kv3</ref>
- <file>bjt/1_tipit/3_abh/kathav3u.htm</file>
- <name>Kathāvatthuppakaraṇaṃ 3</name>
+<text id="kn-ps-1-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-3</ref>
+ <file>bjt_pali/kn-ps-1-3.json</file>
+ <name>Paṭisambhidāmagga I 4/7</name>
+ <pagestart>308</pagestart>
+ <pageend>376</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-2</commentary>
 </text>
-<text id="ym1">
- <group>abh</group>
- <ref>Ym1</ref>
- <file>bjt/1_tipit/3_abh/yamaka1u.htm</file>
- <name>Yamakappakaraṇaṃ 1</name>
+<text id="kn-ps-1-4">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-4</ref>
+ <file>bjt_pali/kn-ps-1-4.json</file>
+ <name>Paṭisambhidāmagga I 5/7</name>
+ <pagestart>378</pagestart>
+ <pageend>434</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-2</commentary>
 </text>
-<text id="ym2">
- <group>abh</group>
- <ref>Ym2</ref>
- <file>bjt/1_tipit/3_abh/yamaka2u.htm</file>
- <name>Yamakappakaraṇaṃ 2</name>
+<text id="kn-ps-1-5">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-5</ref>
+ <file>bjt_pali/kn-ps-1-5.json</file>
+ <name>Paṭisambhidāmagga I 6/7</name>
+ <pagestart>436</pagestart>
+ <pageend>494</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-2</commentary>
 </text>
-<text id="ym3">
- <group>abh</group>
- <ref>Ym3</ref>
- <file>bjt/1_tipit/3_abh/yamaka3u.htm</file>
- <name>Yamakappakaraṇaṃ 3</name>
+<text id="kn-ps-1-6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-1-6</ref>
+ <file>bjt_pali/kn-ps-1-6.json</file>
+ <name>Paṭisambhidāmagga I 7/7</name>
+ <pagestart>496</pagestart>
+ <pageend>520</pageend>
+ <description>The path of discrimination, Mahāvagga</description>
+ <commentary>atta-kn-ps-1-2</commentary>
 </text>
-<text id="pt1">
- <group>abh</group>
- <ref>Pt1</ref>
- <file>bjt/1_tipit/3_abh/pattha1u.htm</file>
- <name>Paṭṭhānappakaraṇaṃ 1</name>
+<text id="kn-ps-2">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-2</ref>
+ <file>bjt_pali/kn-ps-2.json</file>
+ <name>Paṭisambhidāmagga II 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>152</pageend>
+ <description>The path of discrimination, Yuganaddhavagga</description>
+ <commentary>atta-kn-ps-2</commentary>
 </text>
-<text id="pt2">
+<text id="kn-ps-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-ps-3</ref>
+ <file>bjt_pali/kn-ps-3.json</file>
+ <name>Paṭisambhidāmagga II 2/2</name>
+ <pagestart>154</pagestart>
+ <pageend>244</pageend>
+ <description>The path of discrimination, Paññāvagga</description>
+ <commentary>atta-kn-ps-2</commentary>
+</text>
+<text id="kn-nett">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-nett</ref>
+ <file>bjt_pali/kn-nett.json</file>
+ <name>Nettippakaraṇa 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>156</pageend>
+ <description>The ‘guide’ (1-3.2)</description>
+ <commentary>atta-kn-nett</commentary>
+</text>
+<text id="kn-nett-3-3">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-nett-3-3</ref>
+ <file>bjt_pali/kn-nett-3-3.json</file>
+ <name>Nettippakaraṇa 2/2</name>
+ <pagestart>158</pagestart>
+ <pageend>288</pageend>
+ <description>The ‘guide’ (3.3-3.4)</description>
+ <commentary>atta-kn-nett</commentary>
+</text>
+<text id="kn-petk">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-petk</ref>
+ <file>bjt_pali/kn-petk.json</file>
+ <name>Peṭakopadesa 1/2</name>
+ <pagestart>2</pagestart>
+ <pageend>144</pageend>
+ <description>The older kind of ‘guide’ (1-5)</description>
+</text>
+<text id="kn-petk-6">
+ <group>sut</group>
+ <docclass>mul</docclass>
+ <ref>kn-petk-6</ref>
+ <file>bjt_pali/kn-petk-6.json</file>
+ <name>Peṭakopadesa 2/2</name>
+ <pagestart>146</pagestart>
+ <pageend>330</pageend>
+ <description>The older kind of ‘guide’ (6-8)</description>
+</text>
+<text id="ap-dhs">
  <group>abh</group>
- <ref>Pt2</ref>
- <file>bjt/1_tipit/3_abh/pattha2u.htm</file>
- <name>Paṭṭhānappakaraṇaṃ 2</name>
+ <docclass>mul</docclass>
+ <ref>ap-dhs</ref>
+ <file>bjt_pali/ap-dhs.json</file>
+ <name>Dhammasaṅgaṇippakaraṇa 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>254</pageend>
+ <description>The collection of ‘dhammas’, Cittuppādakaṇḍa</description>
+ <commentary>atta-ap-dhs</commentary>
+</text>
+<text id="ap-dhs-3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-dhs-3</ref>
+ <file>bjt_pali/ap-dhs-3.json</file>
+ <name>Dhammasaṅgaṇippakaraṇa 2/3</name>
+ <pagestart>256</pagestart>
+ <pageend>498</pageend>
+ <description>The collection of ‘dhammas’, Rūpakaṇḍa-Nikkhepakaṇḍa</description>
+ <commentary>atta-ap-dhs-3</commentary>
+</text>
+<text id="ap-dhs-5">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-dhs-5</ref>
+ <file>bjt_pali/ap-dhs-5.json</file>
+ <name>Dhammasaṅgaṇippakaraṇa 3/3</name>
+ <pagestart>500</pagestart>
+ <pageend>560</pageend>
+ <description>The collection of ‘dhammas’, Aṭṭhakathākaṇḍa</description>
+ <commentary>atta-ap-dhs-3</commentary>
+</text>
+<text id="ap-vbh">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh</ref>
+ <file>bjt_pali/ap-vbh.json</file>
+ <name>Vibhaṅgappakaraṇa I 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>122</pageend>
+ <description>The analysis of ‘dhammas’, Khandhavibhaṅga</description>
+ <commentary>atta-ap-vbh</commentary>
+</text>
+<text id="ap-vbh-2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh-2</ref>
+ <file>bjt_pali/ap-vbh-2.json</file>
+ <name>Vibhaṅgappakaraṇa I 2/3</name>
+ <pagestart>124</pagestart>
+ <pageend>242</pageend>
+ <description>The analysis of ‘dhammas’, Āyatanavibhaṅga-Indriyavibhaṅga</description>
+ <commentary>atta-ap-vbh</commentary>
+</text>
+<text id="ap-vbh-6">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh-6</ref>
+ <file>bjt_pali/ap-vbh-6.json</file>
+ <name>Vibhaṅgappakaraṇa I 3/3</name>
+ <pagestart>244</pagestart>
+ <pageend>400</pageend>
+ <description>The analysis of ‘dhammas’, Paṭiccasamuppādavibhaṅga-Iddhipādavibhaṅga</description>
+ <commentary>atta-ap-vbh</commentary>
+ <commentary>atta-ap-vbh-8</commentary>
+</text>
+<text id="ap-vbh-10">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh-10</ref>
+ <file>bjt_pali/ap-vbh-10.json</file>
+ <name>Vibhaṅgappakaraṇa II 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>102</pageend>
+ <description>The analysis of ‘dhammas’, Bojjhaṅgavibhaṅga-Maggavibhaṅga</description>
+ <commentary>atta-ap-vbh-8</commentary>
+</text>
+<text id="ap-vbh-14">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh-14</ref>
+ <file>bjt_pali/ap-vbh-14.json</file>
+ <name>Vibhaṅgappakaraṇa II 2/3</name>
+ <pagestart>104</pagestart>
+ <pageend>192</pageend>
+ <description>The analysis of ‘dhammas’, Paṭisambhidāvibhaṅga-Ñāṇavibhaṅga</description>
+ <commentary>atta-ap-vbh-8</commentary>
+</text>
+<text id="ap-vbh-17">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-vbh-17</ref>
+ <file>bjt_pali/ap-vbh-17.json</file>
+ <name>Vibhaṅgappakaraṇa II 3/3</name>
+ <pagestart>194</pagestart>
+ <pageend>328</pageend>
+ <description>The analysis of ‘dhammas’, Khuddakavatthuvibhaṅga-Dhammahadayavibhaṅga</description>
+ <commentary>atta-ap-vbh-8</commentary>
+</text>
+<text id="ap-dhk">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-dhk</ref>
+ <file>bjt_pali/ap-dhk.json</file>
+ <name>Dhātukathāppakaraṇa</name>
+ <pagestart>2</pagestart>
+ <pageend>236</pageend>
+ <description>The discourse on ‘elements’</description>
+ <commentary>atta-ap-dhk</commentary>
+</text>
+<text id="ap-pug">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pug</ref>
+ <file>bjt_pali/ap-pug.json</file>
+ <name>Puggalapaññattippakaraṇa</name>
+ <pagestart>240</pagestart>
+ <pageend>410</pageend>
+ <description>The concepts of ‘person’</description>
+ <commentary>atta-ap-pug</commentary>
+</text>
+<text id="ap-kvu">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu</ref>
+ <file>bjt_pali/ap-kvu.json</file>
+ <name>Kathāvatthuppakaraṇa I 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>188</pageend>
+ <description>The text dealing with disputes (1.1)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-1-2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-1-2</ref>
+ <file>bjt_pali/ap-kvu-1-2.json</file>
+ <name>Kathāvatthuppakaraṇa I 2/3</name>
+ <pagestart>190</pagestart>
+ <pageend>422</pageend>
+ <description>The text dealing with disputes (1.2-1.10)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-2</ref>
+ <file>bjt_pali/ap-kvu-2.json</file>
+ <name>Kathāvatthuppakaraṇa I 3/3</name>
+ <pagestart>424</pagestart>
+ <pageend>578</pageend>
+ <description>The text dealing with disputes (2.1-2.11)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-3</ref>
+ <file>bjt_pali/ap-kvu-3.json</file>
+ <name>Kathāvatthuppakaraṇa II 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>182</pageend>
+ <description>The text dealing with disputes (3.1-4.10)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-5">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-5</ref>
+ <file>bjt_pali/ap-kvu-5.json</file>
+ <name>Kathāvatthuppakaraṇa II 2/3</name>
+ <pagestart>184</pagestart>
+ <pageend>334</pageend>
+ <description>The text dealing with disputes (5.1-7.10)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-8">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-8</ref>
+ <file>bjt_pali/ap-kvu-8.json</file>
+ <name>Kathāvatthuppakaraṇa II 3/3</name>
+ <pagestart>336</pagestart>
+ <pageend>562</pageend>
+ <description>The text dealing with disputes (8.1-10.11)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-11">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-11</ref>
+ <file>bjt_pali/ap-kvu-11.json</file>
+ <name>Kathāvatthuppakaraṇa III 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>176</pageend>
+ <description>The text dealing with disputes (11.1-14.9)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-15">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-15</ref>
+ <file>bjt_pali/ap-kvu-15.json</file>
+ <name>Kathāvatthuppakaraṇa III 2/3</name>
+ <pagestart>178</pagestart>
+ <pageend>368</pageend>
+ <description>The text dealing with disputes (15.1-18.9)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-kvu-19">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-kvu-19</ref>
+ <file>bjt_pali/ap-kvu-19.json</file>
+ <name>Kathāvatthuppakaraṇa III 3/3</name>
+ <pagestart>370</pagestart>
+ <pageend>518</pageend>
+ <description>The text dealing with disputes (19.1-23.5)</description>
+ <commentary>atta-ap-kvu</commentary>
+</text>
+<text id="ap-yam">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam</ref>
+ <file>bjt_pali/ap-yam.json</file>
+ <name>Yamakappakaraṇa I 1/3</name>
+ <pagestart>2</pagestart>
+ <pageend>138</pageend>
+ <description>The ‘pairs’ (1-2)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-3</ref>
+ <file>bjt_pali/ap-yam-3.json</file>
+ <name>Yamakappakaraṇa I 2/3</name>
+ <pagestart>140</pagestart>
+ <pageend>412</pageend>
+ <description>The ‘pairs’ (3)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-4</ref>
+ <file>bjt_pali/ap-yam-4.json</file>
+ <name>Yamakappakaraṇa I 3/3</name>
+ <pagestart>414</pagestart>
+ <pageend>552</pageend>
+ <description>The ‘pairs’ (4-5)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-6">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-6</ref>
+ <file>bjt_pali/ap-yam-6.json</file>
+ <name>Yamakappakaraṇa II 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>116</pageend>
+ <description>The ‘pairs’ (6)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-7">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-7</ref>
+ <file>bjt_pali/ap-yam-7.json</file>
+ <name>Yamakappakaraṇa II 2/4</name>
+ <pagestart>118</pagestart>
+ <pageend>392</pageend>
+ <description>The ‘pairs’ (7)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-7-5">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-7-5</ref>
+ <file>bjt_pali/ap-yam-7-5.json</file>
+ <name>Yamakappakaraṇa II 3/4</name>
+ <pagestart>394</pagestart>
+ <pageend>598</pageend>
+ <description>The ‘pairs’ (7)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-8">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-8</ref>
+ <file>bjt_pali/ap-yam-8.json</file>
+ <name>Yamakappakaraṇa II 4/4</name>
+ <pagestart>600</pagestart>
+ <pageend>798</pageend>
+ <description>The ‘pairs’ (8-9)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-10">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-10</ref>
+ <file>bjt_pali/ap-yam-10.json</file>
+ <name>Yamakappakaraṇa III 1/4</name>
+ <pagestart>2</pagestart>
+ <pageend>78</pageend>
+ <description>The ‘pairs’ (10)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-10-3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-10-3</ref>
+ <file>bjt_pali/ap-yam-10-3.json</file>
+ <name>Yamakappakaraṇa III 2/4</name>
+ <pagestart>80</pagestart>
+ <pageend>296</pageend>
+ <description>The ‘pairs’ (10)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-10-3-4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-10-3-4</ref>
+ <file>bjt_pali/ap-yam-10-3-4.json</file>
+ <name>Yamakappakaraṇa III 3/4</name>
+ <pagestart>298</pagestart>
+ <pageend>486</pageend>
+ <description>The ‘pairs’ (10)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-yam-10-4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-yam-10-4</ref>
+ <file>bjt_pali/ap-yam-10-4.json</file>
+ <name>Yamakappakaraṇa III 4/4</name>
+ <pagestart>488</pagestart>
+ <pageend>536</pageend>
+ <description>The ‘pairs’ (10)</description>
+ <commentary>atta-ap-yam</commentary>
+</text>
+<text id="ap-pat">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat</ref>
+ <file>bjt_pali/ap-pat.json</file>
+ <name>Paṭṭhānappakaraṇa 1/7</name>
+ <pagestart>1</pagestart>
+ <pageend>527</pageend>
+ <description>The conditional relations, Tikapaṭṭhāna 1</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-1-12">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-1-12</ref>
+ <file>bjt_pali/ap-pat-1-12.json</file>
+ <name>Paṭṭhānappakaraṇa 2/7</name>
+ <pagestart>529</pagestart>
+ <pageend>741</pageend>
+ <description>The conditional relations, Tikapaṭṭhāna 2</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-2">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-2</ref>
+ <file>bjt_pali/ap-pat-2.json</file>
+ <name>Paṭṭhānappakaraṇa 3/7</name>
+ <pagestart>742</pagestart>
+ <pageend>953</pageend>
+ <description>The conditional relations, Dukapaṭṭhāna (1-56)</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-2-47">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-2-47</ref>
+ <file>bjt_pali/ap-pat-2-47.json</file>
+ <name>Paṭṭhānappakaraṇa 4/7</name>
+ <pagestart>954</pagestart>
+ <pageend>1136</pageend>
+ <description>The conditional relations, Dukapaṭṭhāna (57-92)</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-2-83">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-2-83</ref>
+ <file>bjt_pali/ap-pat-2-83.json</file>
+ <name>Paṭṭhānappakaraṇa 5/7</name>
+ <pagestart>1137</pagestart>
+ <pageend>1174</pageend>
+ <description>The conditional relations, Dukapaṭṭhāna (93-100)</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-3">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-3</ref>
+ <file>bjt_pali/ap-pat-3.json</file>
+ <name>Paṭṭhānappakaraṇa 6/7</name>
+ <pagestart>1175</pagestart>
+ <pageend>1311</pageend>
+ <description>The conditional relations, Dukatikapaṭṭhāna</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="ap-pat-4">
+ <group>abh</group>
+ <docclass>mul</docclass>
+ <ref>ap-pat-4</ref>
+ <file>bjt_pali/ap-pat-4.json</file>
+ <name>Paṭṭhānappakaraṇa 7/7</name>
+ <pagestart>1312</pagestart>
+ <pageend>1661</pageend>
+ <description>The conditional relations, Tikadukapaṭṭhāna</description>
+ <commentary>atta-ap-pat</commentary>
+</text>
+<text id="atta-vp-prj">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-prj</ref>
+ <file>bjt_pali/atta-vp-prj.json</file>
+ <name>Pārājikakaṇḍa-aṭṭhakathā 1/3</name>
+ <pagestart>1</pagestart>
+ <pageend>253</pageend>
+ <description>The commentary to Vinaya of Bhikkhu, Introduction</description>
+</text>
+<text id="atta-vp-prj-2">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-prj-2</ref>
+ <file>bjt_pali/atta-vp-prj-2.json</file>
+ <name>Pārājikakaṇḍa-aṭṭhakathā 2/3</name>
+ <pagestart>255</pagestart>
+ <pageend>695</pageend>
+ <description>The commentary to Vinaya of Bhikkhu, Pārājika</description>
+</text>
+<text id="atta-vp-prj-3">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-prj-3</ref>
+ <file>bjt_pali/atta-vp-prj-3.json</file>
+ <name>Pārājikakaṇḍa-aṭṭhakathā 3/3</name>
+ <pagestart>697</pagestart>
+ <pageend>1027</pageend>
+ <description>The commentary to Vinaya of Bhikkhu, Pārājika-Nissaggiyapācittiya</description>
+</text>
+<text id="atta-vp-pct">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-pct</ref>
+ <file>bjt_pali/atta-vp-pct.json</file>
+ <name>Pācittiya-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>331</pageend>
+ <description>The commentary to Vinaya of Bhikkhu, Pācittiya-Adhikaraṇasamatha</description>
+</text>
+<text id="atta-vp-mv">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-mv</ref>
+ <file>bjt_pali/atta-vp-mv.json</file>
+ <name>Mahāvagga-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>313</pageend>
+ <description>The commentary to Major topics in the Vinaya</description>
+</text>
+<text id="atta-vp-cv">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-cv</ref>
+ <file>bjt_pali/atta-vp-cv.json</file>
+ <name>Cūḷavagga-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>205</pageend>
+ <description>The commentary to Minor topics in the Vinaya</description>
+</text>
+<text id="atta-vp-pv">
+ <group>vin</group>
+ <docclass>att</docclass>
+ <ref>atta-vp-pv</ref>
+ <file>bjt_pali/atta-vp-pv.json</file>
+ <name>Parivāra-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>191</pageend>
+ <description>The commentary to Miscellaneous topics in the Vinaya</description>
+</text>
+<text id="atta-dn-1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-dn-1</ref>
+ <file>bjt_pali/atta-dn-1.json</file>
+ <name>Sīlakkhandhavaggaṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>191</pageend>
+ <description>The commentary to Sīlakkhandhavagga of the long discourses (1)</description>
+</text>
+<text id="atta-dn-1-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-dn-1-2</ref>
+ <file>bjt_pali/atta-dn-1-2.json</file>
+ <name>Sīlakkhandhavaggaṭṭhakathā 2/2</name>
+ <pagestart>191</pagestart>
+ <pageend>523</pageend>
+ <description>The commentary to Sīlakkhandhavagga of the long discourses (2-13)</description>
+</text>
+<text id="atta-dn-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-dn-2</ref>
+ <file>bjt_pali/atta-dn-2.json</file>
+ <name>Mahāvaggaṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>327</pageend>
+ <description>The commentary to Mahāvagga of the long discourses (14-16)</description>
+</text>
+<text id="atta-dn-2-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-dn-2-4</ref>
+ <file>bjt_pali/atta-dn-2-4.json</file>
+ <name>Mahāvaggaṭṭhakathā 2/2</name>
+ <pagestart>329</pagestart>
+ <pageend>671</pageend>
+ <description>The commentary to Mahāvagga of the long discourses (17-23)</description>
+</text>
+<text id="atta-dn-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-dn-3</ref>
+ <file>bjt_pali/atta-dn-3.json</file>
+ <name>Pāthīkavaggaṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>439</pageend>
+ <description>The commentary to Pāthīkavagga of the long discourses (24-34)</description>
+</text>
+<text id="atta-mn-1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-1</ref>
+ <file>bjt_pali/atta-mn-1.json</file>
+ <name>Mūlapaṇṇāsa-aṭṭhakathā I 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>243</pageend>
+ <description>The commentary to first fifty of the middle-length discourses (1-5)</description>
+</text>
+<text id="atta-mn-1-1-6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-1-1-6</ref>
+ <file>bjt_pali/atta-mn-1-1-6.json</file>
+ <name>Mūlapaṇṇāsa-aṭṭhakathā I 2/2</name>
+ <pagestart>245</pagestart>
+ <pageend>479</pageend>
+ <description>The commentary to first fifty of the middle-length discourses (6-10)</description>
+</text>
+<text id="atta-mn-1-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-1-2</ref>
+ <file>bjt_pali/atta-mn-1-2.json</file>
+ <name>Mūlapaṇṇāsa-aṭṭhakathā II 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>357</pageend>
+ <description>The commentary to first fifty of the middle-length discourses (11-30)</description>
+</text>
+<text id="atta-mn-1-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-1-4</ref>
+ <file>bjt_pali/atta-mn-1-4.json</file>
+ <name>Mūlapaṇṇāsa-aṭṭhakathā II 2/2</name>
+ <pagestart>359</pagestart>
+ <pageend>639</pageend>
+ <description>The commentary to first fifty of the middle-length discourses (31-50)</description>
+</text>
+<text id="atta-mn-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-2</ref>
+ <file>bjt_pali/atta-mn-2.json</file>
+ <name>Majjhimapaṇṇāsa-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>209</pageend>
+ <description>The commentary to middle fifty of the middle-length discourses (51-70)</description>
+</text>
+<text id="atta-mn-2-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-2-3</ref>
+ <file>bjt_pali/atta-mn-2-3.json</file>
+ <name>Majjhimapaṇṇāsa-aṭṭhakathā 3/2</name>
+ <pagestart>211</pagestart>
+ <pageend>477</pageend>
+ <description>The commentary to middle fifty of the middle-length discourses (71-100)</description>
+</text>
+<text id="atta-mn-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-mn-3</ref>
+ <file>bjt_pali/atta-mn-3.json</file>
+ <name>Uparipaṇṇāsa-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>385</pageend>
+ <description>The commentary to last fifty of the middle-length discourses (101-152)</description>
+</text>
+<text id="atta-sn-1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-1</ref>
+ <file>bjt_pali/atta-sn-1.json</file>
+ <name>Sagāthāvagga-aṭṭhakathā 1/2</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 1</altname>
+ <pagestart>1</pagestart>
+ <pageend>255</pageend>
+ <description>The commentary to Sagāthāvagga of the connected discourses (1-4)</description>
+</text>
+<text id="atta-sn-1-5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-1-5</ref>
+ <file>bjt_pali/atta-sn-1-5.json</file>
+ <name>Sagāthāvagga-aṭṭhakathā 2/2</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 1</altname>
+ <pagestart>257</pagestart>
+ <pageend>487</pageend>
+ <description>The commentary to Sagāthāvagga of the connected discourses (5-11)</description>
+</text>
+<text id="atta-sn-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-2</ref>
+ <file>bjt_pali/atta-sn-2.json</file>
+ <name>Nidānavagga-aṭṭhakathā</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 2</altname>
+ <pagestart>1</pagestart>
+ <pageend>395</pageend>
+ <description>The commentary to Nidānavagga of the connected discourses (12-21)</description>
+</text>
+<text id="atta-sn-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-3</ref>
+ <file>bjt_pali/atta-sn-3.json</file>
+ <name>Khandhavagga-aṭṭhakathā</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 3</altname>
+ <pagestart>1</pagestart>
+ <pageend>177</pageend>
+ <description>The commentary to Khandhavagga of the connected discourses (22-34)</description>
+</text>
+<text id="atta-sn-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-4</ref>
+ <file>bjt_pali/atta-sn-4.json</file>
+ <name>Saḷāyatanavagga-aṭṭhakathā</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 4</altname>
+ <pagestart>1</pagestart>
+ <pageend>205</pageend>
+ <description>The commentary to Saḷāyatanavagga of the connected discourses (35-44)</description>
+</text>
+<text id="atta-sn-5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-sn-5</ref>
+ <file>bjt_pali/atta-sn-5.json</file>
+ <name>Mahāvagga-aṭṭhakathā</name>
+ <altname>Saṃyuttanikāya-aṭṭhakathā 5</altname>
+ <pagestart>1</pagestart>
+ <pageend>269</pageend>
+ <description>The commentary to Mahāvagga of the connected discourses (45-56)</description>
+</text>
+<text id="atta-an-1">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-1</ref>
+ <file>bjt_pali/atta-an-1.json</file>
+ <name>Ekakanipāta-aṭṭhakathā 1/3</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 1</altname>
+ <pagestart>1</pagestart>
+ <pageend>307</pageend>
+ <description>The commentary to group of the ones in the numerical discourses</description>
+</text>
+<text id="atta-an-1-14-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-1-14-3</ref>
+ <file>bjt_pali/atta-an-1-14-3.json</file>
+ <name>Ekakanipāta-aṭṭhakathā 2/3</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 1</altname>
+ <pagestart>307</pagestart>
+ <pageend>543</pageend>
+ <description>The commentary to group of the ones in the numerical discourses</description>
+</text>
+<text id="atta-an-1-15">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-1-15</ref>
+ <file>bjt_pali/atta-an-1-15.json</file>
+ <name>Ekakanipāta-aṭṭhakathā 3/3</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 1</altname>
+ <pagestart>543</pagestart>
+ <pageend>647</pageend>
+ <description>The commentary to group of the ones in the numerical discourses</description>
+</text>
+<text id="atta-an-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-2</ref>
+ <file>bjt_pali/atta-an-2.json</file>
+ <name>Dukanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 2</altname>
+ <pagestart>1</pagestart>
+ <pageend>97</pageend>
+ <description>The commentary to group of the twos in the numerical discourses</description>
+</text>
+<text id="atta-an-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-3</ref>
+ <file>bjt_pali/atta-an-3.json</file>
+ <name>Tikanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 3</altname>
+ <pagestart>1</pagestart>
+ <pageend>269</pageend>
+ <description>The commentary to group of the threes in the numerical discourses</description>
+</text>
+<text id="atta-an-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-4</ref>
+ <file>bjt_pali/atta-an-4.json</file>
+ <name>Catukkanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 4</altname>
+ <pagestart>1</pagestart>
+ <pageend>221</pageend>
+ <description>The commentary to group of the fours in the numerical discourses</description>
+</text>
+<text id="atta-an-5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-5</ref>
+ <file>bjt_pali/atta-an-5.json</file>
+ <name>Pañcakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 5</altname>
+ <pagestart>1</pagestart>
+ <pageend>121</pageend>
+ <description>The commentary to group of the fives in the numerical discourses</description>
+</text>
+<text id="atta-an-6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-6</ref>
+ <file>bjt_pali/atta-an-6.json</file>
+ <name>Chakkanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 6</altname>
+ <pagestart>1</pagestart>
+ <pageend>85</pageend>
+ <description>The commentary to group of the sixes in the numerical discourses</description>
+</text>
+<text id="atta-an-7">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-7</ref>
+ <file>bjt_pali/atta-an-7.json</file>
+ <name>Sattakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 7</altname>
+ <pagestart>1</pagestart>
+ <pageend>71</pageend>
+ <description>The commentary to group of the sevens in the numerical discourses</description>
+</text>
+<text id="atta-an-8">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-8</ref>
+ <file>bjt_pali/atta-an-8.json</file>
+ <name>Aṭṭhakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 8</altname>
+ <pagestart>1</pagestart>
+ <pageend>91</pageend>
+ <description>The commentary to group of the eights in the numerical discourses</description>
+</text>
+<text id="atta-an-9">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-9</ref>
+ <file>bjt_pali/atta-an-9.json</file>
+ <name>Navakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 9</altname>
+ <pagestart>1</pagestart>
+ <pageend>41</pageend>
+ <description>The commentary to group of the nines in the numerical discourses</description>
+</text>
+<text id="atta-an-10">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-10</ref>
+ <file>bjt_pali/atta-an-10.json</file>
+ <name>Dasakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 10</altname>
+ <pagestart>1</pagestart>
+ <pageend>77</pageend>
+ <description>The commentary to group of the tens in the numerical discourses</description>
+</text>
+<text id="atta-an-11">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-an-11</ref>
+ <file>bjt_pali/atta-an-11.json</file>
+ <name>Ekādasakanipāta-aṭṭhakathā</name>
+ <altname>Aṅguttaranikāya-aṭṭhakathā 11</altname>
+ <pagestart>1</pagestart>
+ <pageend>21</pageend>
+ <description>The commentary to group of the elevens in the numerical discourses</description>
+</text>
+<text id="atta-kn-khp">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-khp</ref>
+ <file>bjt_pali/atta-kn-khp.json</file>
+ <name>Khuddakapāṭha-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>323</pageend>
+ <description>The commentary to short recitations</description>
+</text>
+<text id="atta-kn-dhp">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-dhp</ref>
+ <file>bjt_pali/atta-kn-dhp.json</file>
+ <name>Dhammapada-aṭṭhakathā 1/4</name>
+ <pagestart>1</pagestart>
+ <pageend>303</pageend>
+ <description>The commentary to Dhammapada, Vagga 1-3</description>
+</text>
+<text id="atta-kn-dhp-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-dhp-4</ref>
+ <file>bjt_pali/atta-kn-dhp-4.json</file>
+ <name>Dhammapada-aṭṭhakathā 2/4</name>
+ <pagestart>303</pagestart>
+ <pageend>645</pageend>
+ <description>The commentary to Dhammapada, Vagga 4-8</description>
+</text>
+<text id="atta-kn-dhp-9">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-dhp-9</ref>
+ <file>bjt_pali/atta-kn-dhp-9.json</file>
+ <name>Dhammapada-aṭṭhakathā 3/4</name>
+ <pagestart>645</pagestart>
+ <pageend>975</pageend>
+ <description>The commentary to Dhammapada, Vagga 9-18</description>
+</text>
+<text id="atta-kn-dhp-19">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-dhp-19</ref>
+ <file>bjt_pali/atta-kn-dhp-19.json</file>
+ <name>Dhammapada-aṭṭhakathā 4/4</name>
+ <pagestart>975</pagestart>
+ <pageend>1273</pageend>
+ <description>The commentary to Dhammapada, Vagga 19-26</description>
+</text>
+<text id="atta-kn-ud">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ud</ref>
+ <file>bjt_pali/atta-kn-ud.json</file>
+ <name>Udāna-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>297</pageend>
+ <description>The commentary to inspired utterances, Vagga 1-3</description>
+</text>
+<text id="atta-kn-ud-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ud-4</ref>
+ <file>bjt_pali/atta-kn-ud-4.json</file>
+ <name>Udāna-aṭṭhakathā 2/2</name>
+ <pagestart>299</pagestart>
+ <pageend>605</pageend>
+ <description>The commentary to inspired utterances, Vagga 4-8</description>
+</text>
+<text id="atta-kn-iti">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-iti</ref>
+ <file>bjt_pali/atta-kn-iti.json</file>
+ <name>Itivuttaka-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>257</pageend>
+ <description>The commentary to ‘thus spoken’, Nipāta 1-2</description>
+</text>
+<text id="atta-kn-iti-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-iti-3</ref>
+ <file>bjt_pali/atta-kn-iti-3.json</file>
+ <name>Itivuttaka-aṭṭhakathā 2/2</name>
+ <pagestart>259</pagestart>
+ <pageend>529</pageend>
+ <description>The commentary to ‘thus spoken’, Nipāta 3-4</description>
+</text>
+<text id="atta-kn-snp">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-snp</ref>
+ <file>bjt_pali/atta-kn-snp.json</file>
+ <name>Suttanipāta-aṭṭhakathā 1/3</name>
+ <pagestart>1</pagestart>
+ <pageend>389</pageend>
+ <description>The commentary to groups of discourses (Uragavagga)</description>
+</text>
+<text id="atta-kn-snp-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-snp-2</ref>
+ <file>bjt_pali/atta-kn-snp-2.json</file>
+ <name>Suttanipāta-aṭṭhakathā 2/3</name>
+ <pagestart>391</pagestart>
+ <pageend>637</pageend>
+ <description>The commentary to groups of discourses (Cullavagga)</description>
+</text>
+<text id="atta-kn-snp-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-snp-3</ref>
+ <file>bjt_pali/atta-kn-snp-3.json</file>
+ <name>Suttanipāta-aṭṭhakathā 3/3</name>
+ <pagestart>639</pagestart>
+ <pageend>965</pageend>
+ <description>The commentary to groups of discourses (Mahāvagga-Pārāyanavagga)</description>
+</text>
+<text id="atta-kn-vv">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-vv</ref>
+ <file>bjt_pali/atta-kn-vv.json</file>
+ <name>Vimānavatthu-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>209</pageend>
+ <description>The commentary to stories of heavenly palaces, Vagga 1-3</description>
+</text>
+<text id="atta-kn-vv-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-vv-4</ref>
+ <file>bjt_pali/atta-kn-vv-4.json</file>
+ <name>Vimānavatthu-aṭṭhakathā 2/2</name>
+ <pagestart>211</pagestart>
+ <pageend>429</pageend>
+ <description>The commentary to stories of heavenly palaces, Vagga 4-7</description>
+</text>
+<text id="atta-kn-pv">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-pv</ref>
+ <file>bjt_pali/atta-kn-pv.json</file>
+ <name>Petavatthu-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>371</pageend>
+ <description>The commentary to stories of ghosts</description>
+</text>
+<text id="atta-kn-thag">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-thag</ref>
+ <file>bjt_pali/atta-kn-thag.json</file>
+ <name>Theragāthā-aṭṭhakathā I 1/3</name>
+ <pagestart>1</pagestart>
+ <pageend>401</pageend>
+ <description>The commentary to verses spoken by monks, Ekanipāta</description>
+</text>
+<text id="atta-kn-thag-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-thag-2</ref>
+ <file>bjt_pali/atta-kn-thag-2.json</file>
+ <name>Theragāthā-aṭṭhakathā I 2/3</name>
+ <pagestart>403</pagestart>
+ <pageend>699</pageend>
+ <description>The commentary to verses spoken by monks, Dukanipāta-Catukkanipāta</description>
+</text>
+<text id="atta-kn-thag-5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-thag-5</ref>
+ <file>bjt_pali/atta-kn-thag-5.json</file>
+ <name>Theragāthā-aṭṭhakathā I 3/3</name>
+ <pagestart>701</pagestart>
+ <pageend>1005</pageend>
+ <description>The commentary to verses spoken by monks, pañcakanipāta-cuddasanipāta</description>
+</text>
+<text id="atta-kn-thag-15">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-thag-15</ref>
+ <file>bjt_pali/atta-kn-thag-15.json</file>
+ <name>Theragāthā-aṭṭhakathā II</name>
+ <pagestart>1</pagestart>
+ <pageend>449</pageend>
+ <description>The commentary to verses spoken by monks, soḷasanipāta-mahānipāta</description>
+</text>
+<text id="atta-kn-thig">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-thig</ref>
+ <file>bjt_pali/atta-kn-thig.json</file>
+ <name>Therīgāthā-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>451</pageend>
+ <description>The commentary to verses spoken by nuns</description>
+</text>
+<text id="atta-kn-ap">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ap</ref>
+ <file>bjt_pali/atta-kn-ap.json</file>
+ <name>Apadāna-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>535</pageend>
+ <description>The commentary to Apadānas spoken by monks, Vagga 1</description>
+</text>
+<text id="atta-kn-ap-1-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ap-1-2</ref>
+ <file>bjt_pali/atta-kn-ap-1-2.json</file>
+ <name>Apadāna-aṭṭhakathā 2/2</name>
+ <pagestart>537</pagestart>
+ <pageend>967</pageend>
+ <description>The commentary to Apadānas spoken by monks, Vagga 2-56</description>
+</text>
+<text id="atta-kn-bv">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-bv</ref>
+ <file>bjt_pali/atta-kn-bv.json</file>
+ <name>Buddhavaṃsa-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>505</pageend>
+ <description>The commentary to lineage of the Buddhas</description>
+</text>
+<text id="atta-kn-cp">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-cp</ref>
+ <file>bjt_pali/atta-kn-cp.json</file>
+ <name>Cariyāpiṭaka-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>263</pageend>
+ <description>The commentary to basket of conduct, Pāramitā 1-2</description>
+</text>
+<text id="atta-kn-cp-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-cp-3</ref>
+ <file>bjt_pali/atta-kn-cp-3.json</file>
+ <name>Cariyāpiṭaka-aṭṭhakathā 2/2</name>
+ <pagestart>265</pagestart>
+ <pageend>495</pageend>
+ <description>The commentary to basket of conduct, Pāramitā 3-7</description>
+</text>
+<text id="atta-kn-jat">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat</ref>
+ <file>bjt_pali/atta-kn-jat.json</file>
+ <name>Jātaka-aṭṭhakathā I 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>417</pageend>
+ <description>The commentary to birth stories, Nipāta 1, Vagga 1-5</description>
+</text>
+<text id="atta-kn-jat-1-6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-1-6</ref>
+ <file>bjt_pali/atta-kn-jat-1-6.json</file>
+ <name>Jātaka-aṭṭhakathā I 2/2</name>
+ <pagestart>419</pagestart>
+ <pageend>795</pageend>
+ <description>The commentary to birth stories, Nipāta 1, Vagga 6-15</description>
+</text>
+<text id="atta-kn-jat-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-2</ref>
+ <file>bjt_pali/atta-kn-jat-2.json</file>
+ <name>Jātaka-aṭṭhakathā II 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>365</pageend>
+ <description>The commentary to birth stories, Nipāta 2</description>
+</text>
+<text id="atta-kn-jat-3">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-3</ref>
+ <file>bjt_pali/atta-kn-jat-3.json</file>
+ <name>Jātaka-aṭṭhakathā II 2/2</name>
+ <pagestart>367</pagestart>
+ <pageend>601</pageend>
+ <description>The commentary to birth stories, Nipāta 3</description>
+</text>
+<text id="atta-kn-jat-4">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-4</ref>
+ <file>bjt_pali/atta-kn-jat-4.json</file>
+ <name>Jātaka-aṭṭhakathā III 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>299</pageend>
+ <description>The commentary to birth stories, Nipāta 4-5</description>
+</text>
+<text id="atta-kn-jat-6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-6</ref>
+ <file>bjt_pali/atta-kn-jat-6.json</file>
+ <name>Jātaka-aṭṭhakathā III 2/2</name>
+ <pagestart>301</pagestart>
+ <pageend>653</pageend>
+ <description>The commentary to birth stories, Nipāta 6-8</description>
+</text>
+<text id="atta-kn-jat-9">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-9</ref>
+ <file>bjt_pali/atta-kn-jat-9.json</file>
+ <name>Jātaka-aṭṭhakathā IV</name>
+ <pagestart>1</pagestart>
+ <pageend>461</pageend>
+ <description>The commentary to birth stories, Nipāta 9-13</description>
+</text>
+<text id="atta-kn-jat-14">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-14</ref>
+ <file>bjt_pali/atta-kn-jat-14.json</file>
+ <name>Jātaka-aṭṭhakathā V</name>
+ <pagestart>1</pagestart>
+ <pageend>465</pageend>
+ <description>The commentary to birth stories, Nipāta 14-16</description>
+</text>
+<text id="atta-kn-jat-17">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-17</ref>
+ <file>bjt_pali/atta-kn-jat-17.json</file>
+ <name>Jātaka-aṭṭhakathā VI 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>339</pageend>
+ <description>The commentary to birth stories, Nipāta 17-20</description>
+</text>
+<text id="atta-kn-jat-21">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-21</ref>
+ <file>bjt_pali/atta-kn-jat-21.json</file>
+ <name>Jātaka-aṭṭhakathā VI 2/2</name>
+ <pagestart>341</pagestart>
+ <pageend>611</pageend>
+ <description>The commentary to birth stories, Nipāta 21</description>
+</text>
+<text id="atta-kn-jat-22">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-22</ref>
+ <file>bjt_pali/atta-kn-jat-22.json</file>
+ <name>Jātaka-aṭṭhakathā VII</name>
+ <pagestart>1</pagestart>
+ <pageend>223</pageend>
+ <description>The commentary to birth stories, Nipāta 22 (1-4)</description>
+</text>
+<text id="atta-kn-jat-22-5">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-22-5</ref>
+ <file>bjt_pali/atta-kn-jat-22-5.json</file>
+ <name>Jātaka-aṭṭhakathā VIII 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>309</pageend>
+ <description>The commentary to birth stories, Nipāta 22 (5-8)</description>
+</text>
+<text id="atta-kn-jat-22-9">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-jat-22-9</ref>
+ <file>bjt_pali/atta-kn-jat-22-9.json</file>
+ <name>Jātaka-aṭṭhakathā VIII 2/2</name>
+ <pagestart>311</pagestart>
+ <pageend>751</pageend>
+ <description>The commentary to birth stories, Nipāta 22 (9-10)</description>
+</text>
+<text id="atta-kn-mn">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-mn</ref>
+ <file>bjt_pali/atta-kn-mn.json</file>
+ <name>Mahāniddesa-aṭṭhakathā 1/2</name>
+ <pagestart>1</pagestart>
+ <pageend>341</pageend>
+ <description>The commentary to great explanations (1-5)</description>
+</text>
+<text id="atta-kn-mn-6">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-mn-6</ref>
+ <file>bjt_pali/atta-kn-mn-6.json</file>
+ <name>Mahāniddesa-aṭṭhakathā 2/2</name>
+ <pagestart>343</pagestart>
+ <pageend>671</pageend>
+ <description>The commentary to great explanations (6-16)</description>
+</text>
+<text id="atta-kn-nc">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-nc</ref>
+ <file>bjt_pali/atta-kn-nc.json</file>
+ <name>Cūḷaniddesa-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>221</pageend>
+ <description>The commentary to small explanations</description>
+</text>
+<text id="atta-kn-ps">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ps</ref>
+ <file>bjt_pali/atta-kn-ps.json</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā 1/4</name>
+ <pagestart>1</pagestart>
+ <pageend>287</pageend>
+ <description>The commentary to path of discrimination, Mahāvagga</description>
+</text>
+<text id="atta-kn-ps-1-1-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ps-1-1-2</ref>
+ <file>bjt_pali/atta-kn-ps-1-1-2.json</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā 2/4</name>
+ <pagestart>289</pagestart>
+ <pageend>587</pageend>
+ <description>The commentary to path of discrimination, Mahāvagga</description>
+</text>
+<text id="atta-kn-ps-1-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ps-1-2</ref>
+ <file>bjt_pali/atta-kn-ps-1-2.json</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā 3/4</name>
+ <pagestart>589</pagestart>
+ <pageend>813</pageend>
+ <description>The commentary to path of discrimination, Mahāvagga</description>
+</text>
+<text id="atta-kn-ps-2">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-ps-2</ref>
+ <file>bjt_pali/atta-kn-ps-2.json</file>
+ <name>Paṭisambhidāmagga-aṭṭhakathā 4/4</name>
+ <pagestart>815</pagestart>
+ <pageend>1027</pageend>
+ <description>The commentary to path of discrimination, Yuganaddhavagga-Paññāvagga</description>
+</text>
+<text id="atta-kn-nett">
+ <group>sut</group>
+ <docclass>att</docclass>
+ <ref>atta-kn-nett</ref>
+ <file>bjt_pali/atta-kn-nett.json</file>
+ <name>Nettippakaraṇa-aṭṭhakathā</name>
+ <pagestart>1</pagestart>
+ <pageend>455</pageend>
+ <description>The commentary to ‘guide’</description>
+</text>
+<text id="atta-ap-dhs">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-dhs</ref>
+ <file>bjt_pali/atta-ap-dhs.json</file>
+ <name>Dhammasaṅgaṇī-aṭṭhakathā 1/2</name>
+ <altname>Aṭṭhasālinī</altname>
+ <pagestart>1</pagestart>
+ <pageend>521</pageend>
+ <description>The commentary to collection of ‘dhammas’, Cittuppādakaṇḍa</description>
+</text>
+<text id="atta-ap-dhs-3">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-dhs-3</ref>
+ <file>bjt_pali/atta-ap-dhs-3.json</file>
+ <name>Dhammasaṅgaṇī-aṭṭhakathā 2/2</name>
+ <altname>Aṭṭhasālinī</altname>
+ <pagestart>523</pagestart>
+ <pageend>707</pageend>
+ <description>The commentary to collection of ‘dhammas’, Rūpakaṇḍa-Aṭṭhakathākaṇḍa</description>
+</text>
+<text id="atta-ap-vbh">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-vbh</ref>
+ <file>bjt_pali/atta-ap-vbh.json</file>
+ <name>Vibhaṅga-aṭṭhakathā 1/2</name>
+ <altname>Sammohavinodanī</altname>
+ <pagestart>1</pagestart>
+ <pageend>429</pageend>
+ <description>The commentary to analysis of ‘dhammas’, Khandhavibhaṅga-Satipaṭṭhānavibhaṅga</description>
+</text>
+<text id="atta-ap-vbh-8">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-vbh-8</ref>
+ <file>bjt_pali/atta-ap-vbh-8.json</file>
+ <name>Vibhaṅga-aṭṭhakathā 2/2</name>
+ <altname>Sammohavinodanī</altname>
+ <pagestart>431</pagestart>
+ <pageend>785</pageend>
+ <description>The commentary to analysis of ‘dhammas’, Sammappadhānavibhaṅga-Dhammahadayavibhaṅga</description>
+</text>
+<text id="atta-ap-dhk">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-dhk</ref>
+ <file>bjt_pali/atta-ap-dhk.json</file>
+ <name>Dhātukathā-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <pagestart>1</pagestart>
+ <pageend>31</pageend>
+ <description>The commentary to discourse on ‘elements’</description>
+</text>
+<text id="atta-ap-pug">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-pug</ref>
+ <file>bjt_pali/atta-ap-pug.json</file>
+ <name>Puggalapaññatti-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <pagestart>1</pagestart>
+ <pageend>125</pageend>
+ <description>The commentary to concepts of ‘person’</description>
+</text>
+<text id="atta-ap-kvu">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-kvu</ref>
+ <file>bjt_pali/atta-ap-kvu.json</file>
+ <name>Kathāvatthu-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <pagestart>1</pagestart>
+ <pageend>239</pageend>
+ <description>The commentary to the text dealing with disputes</description>
+</text>
+<text id="atta-ap-yam">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-yam</ref>
+ <file>bjt_pali/atta-ap-yam.json</file>
+ <name>Yamakappakaraṇa-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <pagestart>1</pagestart>
+ <pageend>77</pageend>
+ <description>The commentary to ‘pairs’</description>
+</text>
+<text id="atta-ap-pat">
+ <group>abh</group>
+ <docclass>att</docclass>
+ <ref>atta-ap-pat</ref>
+ <file>bjt_pali/atta-ap-pat.json</file>
+ <name>Paṭṭhānappakaraṇa-aṭṭhakathā</name>
+ <altname>Pañcapakaraṇa-aṭṭhakathā</altname>
+ <pagestart>1</pagestart>
+ <pageend>237</pageend>
+ <description>The commentary to conditional relations</description>
+</text>
+<text id="anya-vm">
+ <group>ext</group>
+ <ref>anya-vm</ref>
+ <file>bjt_pali/anya-vm.json</file>
+ <name>Visuddhimagga I</name>
+ <pagestart>1</pagestart>
+ <pageend>551</pageend>
+ <description>The path of purification, Chapter 1-11</description>
+</text>
+<text id="anya-vm-12">
+ <group>ext</group>
+ <ref>anya-vm-12</ref>
+ <file>bjt_pali/anya-vm-12.json</file>
+ <name>Visuddhimagga II</name>
+ <pagestart>1</pagestart>
+ <pageend>535</pageend>
+ <description>The path of purification, Chapter 12-23</description>
 </text>
 </collection>

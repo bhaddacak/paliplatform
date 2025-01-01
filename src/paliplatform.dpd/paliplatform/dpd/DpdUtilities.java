@@ -71,7 +71,6 @@ final public class DpdUtilities {
 			return key;
 		}
 	}
-	public static boolean downloaderOpened = false;
 	public static final String TXTDIR = "resources/text/";
 	public static final String LINESEP = System.getProperty("line.separator");
 	public static final int DEF_MAX_RESULT = 500;
@@ -231,29 +230,6 @@ final public class DpdUtilities {
 		return result;
 	}
 
-	static List<StringPair> getDecompositionList() {
-		final List<StringPair> result = new ArrayList<>();
-		final java.sql.Connection conn = Utilities.SQLiteDB.DPD.getConnection();
-		if (conn == null) return result;
-		ResultSet resultSet = null;
-		Statement statement = null;
-        try {
-			statement = conn.createStatement();
-			final String select = "SELECT lookup_key,decompositor FROM lookup WHERE decompositor != '';";
-			resultSet = statement.executeQuery(select);
-			while (resultSet.next()) {
-				final String key = resultSet.getString("lookup_key");
-				final String decon = resultSet.getString("decompositor");
-				final StringPair pair = new StringPair(key, decon);
-				result.add(pair);
-			}
-			System.out.println(result.size());
-        } catch (SQLException e) {
-            System.err.println(e);
-        }
-		return result;
-	}
-
 	static List<List<String>> readJsonArray(final String text) throws IOException {
 		final List<List<String>> result = new ArrayList<>();
 		final JsonReader reader = new JsonReader(new StringReader(text));
@@ -307,7 +283,7 @@ final public class DpdUtilities {
 			}
 			final String select = "SELECT " +
 				"lemma_1,pos,grammar,verb,trans,plus_case,meaning_1,meaning_2,meaning_lit,sanskrit," +
-				"root_key,stem,construction,notes,family_word,family_idioms,family_compound,family_set " +
+				"root_key,construction,notes,family_word,family_idioms,family_compound,family_set " +
 				"FROM dpd_headwords " + where + ";"; 
 			final Statement stmt = dpdConn.createStatement();
 			final ResultSet res = stmt.executeQuery(select);
@@ -322,7 +298,6 @@ final public class DpdUtilities {
 				hw.setMeaningLit(res.getString("meaning_lit"));
 				hw.setSanskrit(res.getString("sanskrit"));
 				hw.setRootKey(res.getString("root_key"));
-				hw.setStem(res.getString("stem"));
 				hw.setConstruction(res.getString("construction"));
 				hw.setNotes(res.getString("notes"));
 				hw.setFamilyWord(res.getString("family_word"));
@@ -409,9 +384,6 @@ final public class DpdUtilities {
 			rootKeyButton.setOnAction(actionEvent -> DpdRootWin.INSTANCE.display(rootKey));		
 			result.getChildren().addAll(DpdUtilities.createInfoTextFlowWithButton("Root: ", rootKey, rootKeyButton));
 		}
-//~ 		final String stem = hw.getStem();
-//~ 		if (DpdHeadWordBase.hasData(stem))
-//~ 			result.getChildren().add(DpdUtilities.createInfoTextFlow("Stem: ", stem));
 		final String construction = hw.getConstruction();
 		if (DpdHeadWordBase.hasData(construction))
 			result.getChildren().add(DpdUtilities.createInfoTextFlow("Con.: ", construction));
@@ -492,6 +464,160 @@ final public class DpdUtilities {
 		}
 		result.append(LINESEP);
 		return result.toString();
+	}
+
+	static void testDpdDb() {
+		final List<String> result = checkApplicability();
+		if (result.isEmpty()) {
+			Utilities.displayAlert(Alert.AlertType.INFORMATION, "DPD database is suitable to use");
+		} else {
+			final String mess = "The structure of DPD DB has been changed\n" +
+								"in some part(s). It is not suitable to use.\n" +
+								"Please use the former version instead.";
+			Utilities.displayAlert(Alert.AlertType.WARNING, mess);
+		}
+	}
+	
+	/**
+	 * Checks the DPD database structure whether it is applicable
+	 * to the program.
+	 */
+	static List<String> checkApplicability() {
+		final List<String> errMessage = new ArrayList<>();
+		java.sql.Connection dpdConn = null;
+		// 1. check db_info
+		boolean dbinfoOK = false;
+		final Map<String, Boolean> dbInfoMap = new HashMap<>();
+		dbInfoMap.put("author", false);
+		dbInfoMap.put("dpd_release_version", false);
+		dbInfoMap.put("email", false);
+		dbInfoMap.put("github", false);
+		dbInfoMap.put("website", false);
+		try {
+			dpdConn = Utilities.SQLiteDB.DPD.getConnection();
+			if (dpdConn != null) {
+				final String select = "SELECT * FROM db_info;";
+				final Statement stmt = dpdConn.createStatement();
+				final ResultSet res = stmt.executeQuery(select);
+				while (res.next()) {
+					final String key = res.getString("key").toLowerCase();
+					if (dbInfoMap.containsKey(key))
+						dbInfoMap.put(key, true);
+				}
+				res.close();
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		dbinfoOK = dbInfoMap.values().stream().reduce(true, (x, y) -> x && y);
+		if (!dbinfoOK)
+			errMessage.add("The structure of 'db_info' has been changed");
+		// 2. check lookup
+		boolean lookupOK = false;
+		try {
+			if (dpdConn != null) {
+				final String select = "SELECT lookup_key,headwords,deconstructor FROM lookup WHERE headwords != '' AND deconstructor != '' LIMIT 1;";
+				final Statement stmt = dpdConn.createStatement();
+				final ResultSet res = stmt.executeQuery(select);
+				if (res.next()) {
+					final String head = res.getString("headwords").trim();
+					final String decon = res.getString("deconstructor").trim();
+					lookupOK = head.startsWith("[") && head.endsWith("]") && decon.startsWith("[") && decon.endsWith("]");
+				}
+				res.close();
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		if (!lookupOK)
+			errMessage.add("The structure of 'lookup' has been changed");
+		// 3. check dpd_headwords
+		boolean headwordsOK = false;
+		try {
+			if (dpdConn != null) {
+				final String select = "SELECT " +
+					"lemma_1,pos,grammar,verb,trans,plus_case,meaning_1,meaning_2,meaning_lit,sanskrit," +
+					"root_key,construction,notes,family_word,family_idioms,family_compound,family_set " +
+					"FROM dpd_headwords LIMIT 1;"; 
+				final Statement stmt = dpdConn.createStatement();
+				final ResultSet res = stmt.executeQuery(select);
+				headwordsOK = res.next();
+				res.close();
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		if (!headwordsOK)
+			errMessage.add("The structure of 'dpd_headwords' has been changed");
+		// 4. check dpd_roots
+		boolean rootsOK = false;
+		try {
+			if (dpdConn != null) {
+			final String select = "SELECT root,root_group,root_sign,root_meaning," +
+				  "sanskrit_root,sanskrit_root_meaning,root_example," + 
+				  "dhatupatha_root,dhatupatha_pali,dhatupatha_english," +
+				  "dhatumanjusa_root,dhatumanjusa_pali,dhatumanjusa_english," +
+				  "dhatumala_root,dhatumala_pali,dhatumala_english," +
+				  "panini_root,panini_sanskrit,panini_english," +
+				  "note,root_matrix" +
+				  " FROM dpd_roots LIMIT 1;";
+				final Statement stmt = dpdConn.createStatement();
+				final ResultSet res = stmt.executeQuery(select);
+				rootsOK = res.next();
+				res.close();
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		if (!rootsOK)
+			errMessage.add("The structure of 'dpd_roots' has been changed");
+		// 5. check family_root
+		boolean famRootOK = false;
+		try {
+			if (dpdConn != null) {
+				final String select = "SELECT root_family,root_key,data FROM family_root LIMIT 1;";
+				final Statement stmt = dpdConn.createStatement();
+				final ResultSet res = stmt.executeQuery(select);
+				if (res.next()) {
+					final String data = res.getString("data").trim();
+					famRootOK = data.startsWith("[") && data.endsWith("]");
+				}
+				res.close();
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		if (!famRootOK)
+			errMessage.add("The structure of 'family_root' has been changed");
+		// 6. check term families
+		Map<TermFamily, Boolean> famOKMap = new EnumMap<>(TermFamily.class);
+		for (final TermFamily family : TermFamily.values) {
+			famOKMap.put(family, false);
+			try {
+				if (dpdConn != null) {
+					final String select = "SELECT " + family.getKey() + ",data FROM " + family.getTableName() + " LIMIT 1;";
+					final Statement stmt = dpdConn.createStatement();
+					final ResultSet res = stmt.executeQuery(select);
+					if (res.next()) {
+						final String data = res.getString("data").trim();
+						famOKMap.put(family, data.startsWith("[") && data.endsWith("]"));
+					}
+					res.close();
+					stmt.close();
+				}
+			} catch (SQLException e) {
+				System.err.println(e);
+			}
+			if (!famOKMap.get(family))
+				errMessage.add("The structure of '" + family.getTableName() + "' has been changed");
+		}	
+		// return the result, empty string for OK
+		return errMessage;
 	}
 
 }

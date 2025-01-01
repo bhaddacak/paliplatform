@@ -1,7 +1,7 @@
 /*
  * Corpus.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,13 +36,13 @@ import javafx.scene.control.TreeItem;
 
 public class Corpus {
 	public static enum Collection {
-		CSTR, CST4, SC, PTST, BJT, SRT, GRAM; // must correspond with corpus root's name
+		CSTR, CST4, BJT, SC, PTST, SRT, GRAM; // must correspond with corpus root's name
 		public static final Collection[] values = values();
-		public static final Map<String, Collection> idMap = Map.of("cstr", CSTR, "cst4", CST4, "sc", SC, "ptst", PTST,
-															"bjt", BJT, "srt", SRT, "gram", GRAM);
-		public static final Set<Collection> hasDMSASet = Set.of(CSTR, CST4, SC, PTST, BJT, SRT);
+		public static final Map<String, Collection> idMap = Map.of("cstr", CSTR, "cst4", CST4, "bjt", BJT, "ptst", PTST,
+															"srt", SRT, "gram", GRAM, "sc", SC);
+		public static final Set<Collection> hasDMSASet = Set.of(CSTR, CST4, BJT, PTST, SRT, SC);
 		public static final Comparator<String> colComparator = new Comparator<String>() {
-			private final List<String> colList = List.of("cstr", "cst4", "sc", "ptst", "bjt", "srt", "gram");
+			private final List<String> colList = List.of("cstr", "cst4", "bjt", "ptst", "srt", "gram", "sc");
 			@Override
 			public int compare(final String name1, final String name2) {
 				return colList.indexOf(name1.toLowerCase()) - colList.indexOf(name2.toLowerCase());
@@ -55,11 +55,11 @@ public class Corpus {
 	public static final TextGroup tgVDMSA = new SimpleTextGroup("The Vinaya and 4 main Nikāyas (VDMSA):Vin + DMSA mūla:vdmsa");
 	private static final String NOT_WORD_CSTR = "!()+,-.:;=?[]–‘’“”…";
 	private static final String NOT_WORD_CST4 = "!()+,-.;=?[]|–‖‘’…";
-	private static final String NOT_WORD_SC = "(),-./:;<>?[]~–—‘’“”…";
+	private static final String NOT_WORD_BJT = "!\"$()*,-./:;<>?[]\\_{}–‘’“”†‡…";
 	private static final String NOT_WORD_PTST = "!\"#$%&'()*+,-./:;=?[]^_{|}~§";
-	private static final String NOT_WORD_BJT = "!\"#%'()*+,-./:;=?@[]\\_{}";
 	private static final String NOT_WORD_SRT = "!\"#'()*,-./:;=?[]_";
 	private static final String NOT_WORD_GRAM = "!()*+,-.:;=?[]–‘’“”…";
+	private static final String NOT_WORD_SC = "(),-./:;<>?[]~–—‘’“”…";
 	private static final String SPACES = " \t\n\f\r";
 	private final String corpusName;
 	private String shortName;
@@ -380,12 +380,10 @@ public class Corpus {
 	}
 
 	public String getPageString() {
-		// used for PTS and BJT edition from GRETIL, also SRT edition
+		// used for PTS edition from GRETIL, BJT, and SRT
 		final String result;
 		if (collection == Collection.PTST || collection == Collection.SRT)
 			result = "[page";
-		else if (collection == Collection.BJT)
-			result = "[bjt page";
 		else
 			result = "[";
 		return result;
@@ -393,6 +391,10 @@ public class Corpus {
 
 	public static boolean hasFullStructure(final Collection col) {
 		return col == Collection.CSTR || col == Collection.CST4;
+	}
+
+	public static boolean hasAlmostFullButNotes(final Collection col) {
+		return col == Collection.BJT;
 	}
 
 	public static boolean hasOnlyBodyTextAndHead(final Collection col) {
@@ -408,11 +410,11 @@ public class Corpus {
 		switch (col) {
 			case CSTR: result = NOT_WORD_CSTR + result; break;
 			case CST4: result = NOT_WORD_CST4 + result; break;
-			case SC: result = NOT_WORD_SC + result; break;
-			case PTST: result = NOT_WORD_PTST + result; break;
 			case BJT: result = NOT_WORD_BJT + result; break;
+			case PTST: result = NOT_WORD_PTST + result; break;
 			case SRT: result = NOT_WORD_SRT + result; break;
 			case GRAM: result = NOT_WORD_GRAM + result; break;
+			case SC: result = NOT_WORD_SC + result; break;
 		}
 		return result;
 	}
@@ -422,11 +424,11 @@ public class Corpus {
 		switch (col) {
 			case CSTR: result = NOT_WORD_CSTR; break;
 			case CST4: result = NOT_WORD_CST4; break;
-			case SC: result = NOT_WORD_SC; break;
-			case PTST: result = NOT_WORD_PTST; break;
 			case BJT: result = NOT_WORD_BJT; break;
+			case PTST: result = NOT_WORD_PTST; break;
 			case SRT: result = NOT_WORD_SRT; break;
 			case GRAM: result = NOT_WORD_GRAM; break;
+			case SC: result = NOT_WORD_SC; break;
 		}
 		// Brackets are problematic when mixed with other tokens,
 		// so we have to remove them first, and use them separately.

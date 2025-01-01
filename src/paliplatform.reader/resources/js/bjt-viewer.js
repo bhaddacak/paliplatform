@@ -1,5 +1,5 @@
 /*
- * cstr-viewer.js
+ * bjt-viewer.js
  *
  * Copyright (C) 2023-2024 J. R. Bhaddacak 
  *
@@ -21,10 +21,4 @@ function jumpTo(point) {
 	const elm = document.getElementById('jumptarget-'+point);
 	if(elm !== null)
 		elm.scrollIntoView();
-}
-function showNotes(yn) {
-	const elms = document.getElementsByClassName('note');
-	for(const e of elms) {
-		e.style.display = yn ? 'inline' : 'none';
-	}
 }

@@ -1,6 +1,5 @@
 Notes on the text
-	1. The collections of PTS and BJT tipitaka are taken from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.html), with several HTML fixes after careful validations. The text is not changed but the display is slightly modified to make it easier to navigate.
+	1. The collection of PTS tipitaka is taken from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.html), with several HTML fixes after careful validations. The text is not changed but the display is slightly modified to make it easier to navigate.
 	2. The PTS texts have 2 versions: one is in the book's layout format with notes, and another is in dehyphenated format without notes (more suitable for search).
-	3. The BJT texts have only the floating text version, and only the main Pali texts are available. There are page references to the BJT printed edition, as well as to the PTS edition.
-	4. Please see the Front Matter for the text's information and the copyright notice.
-	5. The referencing system used in the PTS texts conforms to the standard abbreviations of the PTS publications. Whereas for the BJT texts, the revised system used in CST Restructured is used instead.
+	3. Please see the Front Matter for the text's information and the copyright notice.
+	4. The referencing system used in the PTS texts conforms to the standard abbreviations of the PTS publications.

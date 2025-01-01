@@ -1,7 +1,7 @@
 /*
  * ReaderUtilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,7 @@ import com.google.gson.stream.*;
  */
 final public class ReaderUtilities {
 	private static final String LINESEP = System.getProperty("line.separator");
+	public static final Map<Integer, String> bulletMap = Map.of(0, "»", 1, "•", 2, "‣", 3, "›", 4, "‐"); 
 	public static final String TEXTPATH = Utilities.DATAPATH + "text" + File.separator;
 	public static final String TXTDIR = "resources/text/";
 	public static final String CSSDIR = "resources/styles/";
@@ -69,11 +70,13 @@ final public class ReaderUtilities {
 	public static final String CSTR_CSS = CSSDIR + "cstr.css";
 	public static final String CST4_CSS = CSSDIR + "cst4.css";
 	public static final String CST4_XSL = CSSDIR + "cst4.xsl";
+	public static final String BJT_CSS = CSSDIR + "bjt.css";
 	public static final String SC_CSS = CSSDIR + "sc.css";
 	public static final String PALI_JS = JSDIR + "pali-viewer.js"; // used by all PaliHtmlViewer
 	public static final String CSTR_JS = JSDIR + "cstr-viewer.js"; // used only by CSTR
 	public static final String CST4_JS = JSDIR + "cst4-viewer.js"; // used only by CST4
-	public static final String GRETIL_JS = JSDIR + "gretil-viewer.js"; // used only by PTS & BJT
+	public static final String BJT_JS = JSDIR + "bjt-viewer.js"; // used only by BJT
+	public static final String GRETIL_JS = JSDIR + "gretil-viewer.js"; // used only by PTS
 	public static final String SRT_JS = JSDIR + "srt-viewer.js"; // used only by SRT
 	public static final String GRAM_JS = JSDIR + "gram-viewer.js"; // used only by gram books
 	public static final String TRANSFORMER_JS = JSDIR + "transformer.js"; // used by all PaliHtmlViewer
@@ -99,7 +102,6 @@ final public class ReaderUtilities {
 	public static List<Reference> referenceList;
 	public static Map<String, String> scSuttaInfoMap = new HashMap<>();
 	public static Comparator<String> gramSutRefComparator;
-	public static boolean scDownloaderOpened = false;
 
 	public static Comparator<String> getReferenceComparator(final Corpus corpus) {
 		Comparator<String> result = Utilities.alphanumComparator;
@@ -447,10 +449,13 @@ final public class ReaderUtilities {
 
 	private static DocumentInfo readBjtInfo(final Element elm, final Corpus corpus) {
 		final String id = elm.getAttribute("id");
-		final SimpleDocumentInfo bjtInfo = new BjtInfo(corpus, id);
+		final BjtInfo bjtInfo = new BjtInfo(corpus, id);
 		final NodeList groups = elm.getElementsByTagName("group");
 		final String group = groups.getLength() > 0 ? getTextNodeContent((Element) groups.item(0)) : "";
 		bjtInfo.setGroup(group);
+		final NodeList docClasses = elm.getElementsByTagName("docclass");
+		final String docClass = docClasses.getLength() > 0 ? getTextNodeContent((Element) docClasses.item(0)) : "";
+		bjtInfo.setDocClass(docClass);
 		final NodeList refs = elm.getElementsByTagName("ref");
 		final String ref = refs.getLength() > 0 ? getTextNodeContent((Element) refs.item(0)) : "";
 		bjtInfo.setRef(ref);
@@ -460,6 +465,13 @@ final public class ReaderUtilities {
 		final NodeList textNames = elm.getElementsByTagName("name");
 		final String textName = textNames.getLength() > 0 ? getTextNodeContent((Element) textNames.item(0)) : "";
 		bjtInfo.setTextName(textName);
+		final NodeList altNames = elm.getElementsByTagName("altname");
+		bjtInfo.addAllAltNames(getTextNodeContentList(altNames));
+		final NodeList descriptions = elm.getElementsByTagName("description");
+		final String description = descriptions.getLength() > 0 ? getTextNodeContent((Element) descriptions.item(0)) : "";
+		bjtInfo.setDescription(description);
+		final NodeList commentaries = elm.getElementsByTagName("commentary");
+		bjtInfo.addAllCommentaries(getTextNodeContentList(commentaries));
 		bjtInfo.setSummary();
 		return bjtInfo;
 	}
@@ -637,6 +649,7 @@ final public class ReaderUtilities {
 			case VIEWER:
 			case VIEWER_CSTR:
 			case VIEWER_CST4:
+			case VIEWER_BJT:
 			case VIEWER_GRETIL:
 			case VIEWER_SRT:
 			case VIEWER_GRAM:
@@ -649,7 +662,9 @@ final public class ReaderUtilities {
 							viewer = new CstrHtmlViewer(node);
 						else if (nodeColl == Corpus.Collection.CST4)
 							viewer = new Cst4HtmlViewer(node);
-						else if (nodeColl == Corpus.Collection.PTST || nodeColl == Corpus.Collection.BJT)
+						else if (nodeColl == Corpus.Collection.BJT)
+							viewer = new BjtHtmlViewer(node);
+						else if (nodeColl == Corpus.Collection.PTST)
 							viewer = new GretilHtmlViewer(node);
 						else if (nodeColl == Corpus.Collection.SRT)
 							viewer = new SrtHtmlViewer(node);
@@ -666,7 +681,9 @@ final public class ReaderUtilities {
 							viewer = (CstrHtmlViewer)stg.getScene().getRoot();
 						else if (nodeColl == Corpus.Collection.CST4)
 							viewer = (Cst4HtmlViewer)stg.getScene().getRoot();
-						else if (nodeColl == Corpus.Collection.PTST || nodeColl == Corpus.Collection.BJT)
+						else if (nodeColl == Corpus.Collection.BJT)
+							viewer = (BjtHtmlViewer)stg.getScene().getRoot();
+						else if (nodeColl == Corpus.Collection.PTST)
 							viewer = (GretilHtmlViewer)stg.getScene().getRoot();
 						else if (nodeColl == Corpus.Collection.SRT)
 							viewer = (SrtHtmlViewer)stg.getScene().getRoot();
@@ -718,8 +735,9 @@ final public class ReaderUtilities {
 				type = Utilities.WindowType.VIEWER_CSTR; break;
 			case CST4: 
 				type = Utilities.WindowType.VIEWER_CST4; break;
-			case PTST: 
 			case BJT:
+				type = Utilities.WindowType.VIEWER_BJT; break;
+			case PTST: 
 				type = Utilities.WindowType.VIEWER_GRETIL; break;
 			case SRT:
 				type = Utilities.WindowType.VIEWER_SRT; break;
@@ -992,6 +1010,100 @@ final public class ReaderUtilities {
 		result.put("lang", langs);
 		result.put("auth", authors);
 		return result;
+	}
+
+	private static List<BjtPage> readBjtPages(final JsonReader reader) throws IOException {
+		final List<BjtPage> result = new ArrayList<>();
+		reader.beginArray();
+		while (reader.hasNext()) {
+			reader.beginObject();
+			BjtPage page = null;
+			while (reader.hasNext()) {
+				final String pageProp = reader.nextName();
+				if (pageProp.equalsIgnoreCase("pagenum")) {
+					final int num = reader.nextInt();
+					page = new BjtPage(num);
+				} else if (pageProp.equals("pali") && page != null) {
+					reader.beginObject();
+					while (reader.hasNext()) {
+						final String paliProp = reader.nextName();
+						if (paliProp.equals("entries")) {
+							readBjtPageEntries(reader, page);
+						} else {
+							reader.skipValue();
+						}
+					}
+					reader.endObject();
+				} else {
+					reader.skipValue();
+				}
+			}
+			if (page != null)
+				result.add(page);
+			reader.endObject();
+		}
+		reader.endArray();
+		return result;
+	}
+
+	private static void readBjtPageEntries(final JsonReader reader, final BjtPage page) throws IOException {
+		reader.beginArray();
+		while (reader.hasNext()) {
+			reader.beginObject();
+			String type = "";
+			String text = "";
+			int level = 0;
+			while (reader.hasNext()) {
+				final String name = reader.nextName();
+				if (name.equals("type")) {
+					type = reader.nextString().toLowerCase();
+				} else if (name.equals("text")) {
+					text = reader.nextString();
+				} else if (name.equals("level")) {
+					level = reader.nextInt();
+				} else {
+					reader.skipValue();
+				}
+			}
+			if (!type.isEmpty())
+				page.addEntry(type, text, level);
+			reader.endObject();
+		}
+		reader.endArray();
+	}
+
+	public static List<BjtPage> getBjtPages(final InputStream input) throws IOException {
+		List<BjtPage> result = null;
+		final JsonReader reader = new JsonReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+		try {
+			reader.beginObject();
+			while (reader.hasNext()) {
+				final String name = reader.nextName();
+				if (name.equals("pages")) {
+					result = readBjtPages(reader);
+				} else {
+					reader.skipValue();
+				}
+			}
+			reader.endObject();
+		} finally {
+			reader.close();
+		}
+		return result == null ? Collections.emptyList() : result;
+	}
+	
+	public static List<BjtPage> getBjtPages(final String fname) {
+		List<BjtPage> result = null;
+		try {
+			final ZipFile zip = new ZipFile(corpusMap.get(Corpus.Collection.BJT).getZipFile());
+			final ZipEntry entry = zip.getEntry(fname);
+			if (entry != null)
+				result = getBjtPages(zip.getInputStream(entry));
+			zip.close();
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+		return result == null ? Collections.emptyList() : result;
 	}
 
 	public static String makeHTML(final String textBody, final String jsBody) {

@@ -63,20 +63,18 @@ public class DpdMenu extends Menu {
 		familyMenuItem.setMnemonicParsing(true);
 		familyMenuItem.disableProperty().bind(DpdUtilities.dpdAvailable.not());
 		familyMenuItem.setOnAction(actionEvent -> FamilyWin.INSTANCE.display());
+		final MenuItem checkDBMenuItem = new MenuItem("Check DB Applicability", new TextIcon("stethoscope", TextIcon.IconSet.AWESOME));
+		checkDBMenuItem.disableProperty().bind(DpdUtilities.dpdAvailable.not());
+		checkDBMenuItem.setOnAction(actionEvent -> DpdUtilities.testDpdDb());
 		final MenuItem downloadMenuItem = new MenuItem("Download DPD database", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
-		downloadMenuItem.setOnAction(actionEvent -> {
-			// This prevent exit error when the window stays opened.
-			// See also in DpdServiceImp and MainMenu.
-			DpdUtilities.downloaderOpened = true;
-			DpdDownloader.INSTANCE.display();
-		});
+		downloadMenuItem.setOnAction(actionEvent -> DpdDownloader.INSTANCE.display());
 		final CheckMenuItem lockDBMenuItem = new CheckMenuItem();
 		lockDBMenuItem.selectedProperty().bindBidirectional(DpdUtilities.ppdpdDBLocked);
 		lockDBMenuItem.textProperty().bindBidirectional(DpdUtilities.ppdpdDBLockString);
 		lockDBMenuItem.graphicProperty().bindBidirectional(DpdUtilities.ppdpdDBLockIcon);
 		lockDBMenuItem.setOnAction(actionEvent -> DpdUtilities.lockPpdpdDB(lockDBMenuItem.isSelected()));
 		getItems().addAll(dictMenuItem, deconMenuItem, headwordMenuItem, dpdRootMenuItem, familyMenuItem,
-						new SeparatorMenuItem(), downloadMenuItem, lockDBMenuItem);
+						new SeparatorMenuItem(), checkDBMenuItem, downloadMenuItem, lockDBMenuItem);
 	}
 
 }

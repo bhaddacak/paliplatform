@@ -169,10 +169,10 @@ Kacc 168, 203. sabbato naṃ saṃ sānaṃ.
 Kacc 169, 117. rājassa rāju sunaṃhisu ca.
 Kacc 170, 220. sabbassimasse vā.
 Kacc 171, 219. animi nāmhi ca.
-Kacc 172, 218. anapuṃsakassāyaṃ simhī.
+Kacc 172, 218. anapuṃsakassāyaṃ simhi.
 Kacc 173, 223. amussa mo saṃ.
 Kacc 174, 211. etatesaṃ to.
-Kacc 157, 212. tassa vā nattaṃ sabbattha.
+Kacc 175, 212. tassa vā nattaṃ sabbattha.
 Kacc 176, 213. sasmāsmiṃsaṃsāsvattaṃ.
 Kacc 177, 221. imasaddassa ca.
 Kacc 178, 22. sabbato ko.
@@ -183,7 +183,7 @@ Kacc 182, 97. sassa co.
 Kacc 183, 48. etesamo lope.
 Kacc 184, 96. sa sare vāgamo.
 Kacc 185, 112. santasaddassa so te bo cante.
-Kacc 196, 107. simhigacchantādīnaṃ ntasaddo aṃ.
+Kacc 186, 107. simhigacchantādīnaṃ ntasaddo aṃ.
 Kacc 187, 108. sesesu ntuva.
 Kacc 188, 115. brahmatta sakha rājādito amānaṃ.
 Kacc 189, 113. syā ca.
@@ -234,7 +234,7 @@ Kacc 233, 264. e tothesu ca.
 Kacc 234, 265. imassi thaṃ dāni ha to dhesu ca.
 Kacc 235, 281. adhunāmhi ca.
 Kacc 236, 280. eta rahimhi.
-Kacc 237, 176. itthīyato āpaccayo.
+Kacc 237, 176. itthiyamato āpaccayo.
 Kacc 238, 187. nadādito vā ī.
 Kacc 239, 190. ṇava ṇika ṇeyya ṇa ntuhi.
 Kacc 240, 193. pati bhikkhurājīkārantehi inī.
@@ -273,33 +273,33 @@ Kacc 272, 309. dhātunā mānamupasaggayogādvīsvapi ca.
 Kacc 273, 310. rakkhaṇatthānamicchitaṃ.
 Kacc 274, 311. yena vā’ dassanaṃ.
 Kacc 275, 312. dūranti kaddha kāla nimmāna tvālopadisāyogavibhattārappayogasuddhappamocana hetu vivittappamāṇa pubbayogabandhana guṇavacana pañha kathana thokākattūsu ca.
-Kacc 276, 302. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
+Kacc 276, 84, 302. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
 Kacc 277, 303. silāgha hanu ṭhā sapa dhāra piha kudha duhissosūya rādhikkha paccāsuṇa anupatigiṇa pubbakattārocanattha tadattha tumatthālamattha maññānādarappāṇini, gatyatthakammani, āsīsattha sammuti bhiyya sattamyatthesu ca.
-Kacc 178, 320. yodhāro tamokāsaṃ.
-Kacc 279, 292. yena vā kayirate taṃ karaṇaṃ.
-Kacc 280, 285. yaṃ karoti taṃ kammaṃ.
-Kacc 281, 294. yo karoti sa kattā.
+Kacc 278, 93, 320. yodhāro tamokāsaṃ.
+Kacc 279, 82, 292. yena vā kayirate taṃ karaṇaṃ.
+Kacc 280, 75, 285. yaṃ karoti taṃ kammaṃ.
+Kacc 281, 77, 294. yo karoti sa kattā.
 Kacc 282, 295. yo kāreti sa hetu.
-Kacc 283, 316. yassa vā pariggaho taṃ sāmī.
-Kacc 284, 283. liṅgatthe paṭhamā.
+Kacc 283, 91, 316. yassa vā pariggaho taṃ sāmī.
+Kacc 284, 65, 283. liṅgatthe paṭhamā.
 Kacc 285, 70. ālapane ca.
-Kacc 286, 291. karaṇe tatiyā.
+Kacc 286, 83, 291. karaṇe tatiyā.
 Kacc 287, 299. sahādiyoge ca.
-Kacc 288, 293. kattari ca.
+Kacc 288, 78, 293. kattari ca.
 Kacc 289, 297. hetvatthe ca.
 Kacc 290, 298. sattamyatthe ca.
 Kacc 291, 299. yenaṅgavikāro.
 Kacc 292, 300. visesane ca.
-Kacc 293, 301. sampadāne catutthī.
+Kacc 293, 85, 301. sampadāne catutthī.
 Kacc 294, 305. namoyogādīsvapi ca.
-Kacc 295, 307. apādāne pañcamī.
+Kacc 295, 89, 307. apādāne pañcamī.
 Kacc 296, 314. kāraṇatthe ca.
-Kacc 297, 284. kammatthe dutiyā.
+Kacc 297, 76, 284. kammatthe dutiyā.
 Kacc 298, 287. kāladdhānamaccantasaṃyoge.
 Kacc 299, 288. kammappavadhanīyayutte.
 Kacc 300, 286. gati buddhi bhuja paṭha hara kara sayādīnaṃ kārite vā.
-Kacc 301, 215. sāmismiṃ chaṭṭhī.
-Kacc 302, 319. okāse sattamī.
+Kacc 301, 92, 315. sāmismiṃ chaṭṭhī.
+Kacc 302, 94, 319. okāse sattamī.
 Kacc 303, 321. sāmissarādhipati dāyāda sakkhīpatibhū pasutakusalehi ca.
 Kacc 304, 322. niddhāraṇe ca.
 Kacc 305, 323. anādare ca.
@@ -345,7 +345,7 @@ Kacc 344, 361. vāṇa’pacce.
 Kacc 345, 366. ṇāyana ṇāna vacchādito.
 Kacc 346, 367. ṇeyyo kattikādīhi.
 Kacc 347, 368. ato ṇi vā.
-Kacc 148, 371. ṇavo’ pakvādīhi.
+Kacc 348, 371. ṇavo’ pakvādīhi.
 Kacc 349, 372. ṇera vidhavādito.
 Kacc 350, 373. yena vā saṃsaṭṭhaṃ tarati carati vahati ṇiko.
 Kacc 351, 374. tamadhīte tenakatādi sannidhāna niyoga sippa bhaṇḍa jīvikatthesu ca.
@@ -363,7 +363,7 @@ Kacc 362, 389. ramaṇīyādito kaṇ.
 Kacc 363, 390. visese taratamisikiyiṭṭhā.
 Kacc 364, 398. tadassatthīti vī ca.
 Kacc 365, 399. tapādito sī.
-Kacc 266, 400. daṇḍādito ikaī.
+Kacc 366, 400. daṇḍādito ikaī.
 Kacc 367, 401. madhvādito ro.
 Kacc 368, 402. guṇādito vantu.
 Kacc 369, 403. satyādīhi mantu.
@@ -556,7 +556,7 @@ Kacc 555, 612. atīte tatavantutāvī.
 Kacc 556, 622. bhāvakammesu ta.
 Kacc 557, 606. budhagamāditthe kattari.
 Kacc 558, 602. jito ina sabbattha.
-Kacc 556, 603. supato ca.
+Kacc 559, 603. supato ca.
 Kacc 560, 604. īsaṃdusūhi kha.
 Kacc 561, 636. icchatthesu samānakattukesu tave tuṃ vā.
 Kacc 562, 638. arahasakkādīsu ca.
@@ -665,7 +665,7 @@ Kacc 664, 674. khādāmagamānaṃ khandha’ndha gandhā.
 Kacc 665, 675. paṭādīhyalaṃ.
 Kacc 666, 676. puthassa puthupathāmo vā.
 Kacc 667, 677. sasvādīhi tudavo.
-Kacc 668, 678. jhādīhi īvaro.
+Kacc 668, 678. cyādīhi īvaro.
 Kacc 669, 679. munādīhi ci.
 Kacc 670, 680. vidādīhyūro.
 Kacc 671, 681. hanādīhi ṇunutavo.
@@ -1578,7 +1578,7 @@ Mogg 2.162. lthupitādīnamase.
 Mogg 2.163. namhi vā.
 Mogg 2.164. ā.
 Mogg 2.165. salopo.
-Mogg 2.166. suhisvāraṅa.
+Mogg 2.166. suhisvāraṅ.
 Mogg 2.167. najjāyosmāma.
 Mogg 2.168. ṭi katimhā.
 Mogg 2.169. ṭa pañcādīhi cuddasahi.
@@ -3142,7 +3142,7 @@ Niru 35. byañjane dīgharassā [ka. 25, 26; nī. 35, 36, 64, 71, 165, 179].
 Niru 36. yuvaṇṇānameo luttā [ka. 14; rū. 16; nī. 34].
 Niru 37. yavā sare [ka. 18, 19, 21, 45; nī. 44, 46, 47, 51, 58].
 Niru 38. eonaṃ [ka. 17, 18; rū. 19, 20; nī. 43, 44].
-Niru 39. yuvaṇṇānamiyaṅuvaṅa [moga. 5-136 (yuvaṇṇāna miya ṅu va ṅa sare)].
+Niru 39. yuvaṇṇānamiyaṅuvaṅa [moga. 5-136 (yuvaṇṇāna miyaṅuvaṅa sare)].
 Niru 40. vitisseve vā [rū. 33 (piṭṭhe)].
 Niru 41. eonama vaṇṇe [ka. 27; rū. 39; nī. 66, 163-4].
 Niru 42. gossāvaṅa [ka. 22, 78; rū. 28; nī. 52, 229].
@@ -3287,7 +3287,7 @@ Niru 180. yomhi vā kvaci [ka. 97; rū. 156; nī. 260].
 Niru 181. jantādito no ca [ka. 119; rū. 155; nī. 294; ‘jantvādito’ (bahūsu)].
 Niru 182. ltupitādīnamā simhi [ka. 299; rū. 158; nī. 411].
 Niru 183. ltupitādīnamase [ka. 200; rū. 159; nī. 412].
-Niru 184. āraṅsmā [ka. 205; rū. 160; nī. 421].
+Niru 184. āraṅasmā [ka. 205; rū. 160; nī. 421].
 Niru 185. ge a ca [ka. 246; rū. 73; nī. 476, 478-9].
 Niru 186. ṭoṭe vā [ka. 205; rū. 260; nī. 421].
 Niru 187. ṭā nāsmānaṃ [ka. 207, 270; rū. 161, 120; nī. 42, 542].

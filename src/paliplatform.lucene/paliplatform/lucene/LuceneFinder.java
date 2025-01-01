@@ -1,7 +1,7 @@
 /*
  * LuceneFinder.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -520,9 +520,12 @@ public class LuceneFinder extends BorderPane {
 		currCorpus = ReaderUtilities.corpusMap.get(col);
 		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.BOLD, currIndex.isBoldAvailable());
 		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.BODY, true);
-		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.NOTE, Corpus.hasOnlyBodyTextAndNotes(col) || Corpus.hasFullStructure(col));
-		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.HEAD, Corpus.hasOnlyBodyTextAndHead(col) || Corpus.hasFullStructure(col));
-		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.GATHA, Corpus.hasFullStructure(col));
+		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.NOTE, 
+				Corpus.hasOnlyBodyTextAndNotes(col) || Corpus.hasFullStructure(col));
+		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.HEAD, 
+				Corpus.hasOnlyBodyTextAndHead(col) || Corpus.hasAlmostFullButNotes(col) || Corpus.hasFullStructure(col));
+		fieldOptionsBox.setFieldAvailable(FieldSelectorBox.SimpleField.GATHA, 
+				Corpus.hasAlmostFullButNotes(col) || Corpus.hasFullStructure(col));
 		statusInfo.setText(currIndex.getIndexInfo());
 		search();
 	}
