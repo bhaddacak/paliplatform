@@ -62,8 +62,8 @@
 		<textclass>Main texts:Mūla:mul</textclass>
 		<textclass>Commentaries:Aṭṭhakathā:att</textclass>
 		<extragroup>Others (Extras):Añña:ext</extragroup>
-		<description>The Pāli part of a digital version of BJT, maintained by Path Nirvana Foundation, converted from Sinhala to Roman script by J.R. Bhaddacak</description>
-		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
+		<description>The Pāli part of a digital version of tipitaka.lk's BJT, maintained by Path Nirvana Foundation, converted from Sinhala to Roman script by J.R. Bhaddacak</description>
+		<copyright>Creative Commons Attribution-NoDerivatives 4.0 (http://creativecommons.org/licenses/by-nd/4.0/)</copyright>
 		<url>https://pathnirvana.org</url>
 		<url>https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text</url>
 		<url>https://github.com/bhaddacak/tipitaka-kit</url>

@@ -9,7 +9,7 @@
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured is based on Chaṭṭha Saṅgāyana CD published by Vipassana Research Institute (VRI) via tipitaka.org
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka 4 data formerly bundled with the CST4 (see tipitaka.org), recently corrected in https://github.com/vipassanatech/tipitaka-xml
 ⊚ SuttaCentral Bilara data (https://github.com/suttacentral)
-⊚ BJT edition is converted from Sinhala script available at https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text, maintained by Path Nirvana Foundation (https://pathnirvana.org)
+⊚ BJT edition of tipitaka.lk is converted from Sinhala script available at https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text, maintained by Path Nirvana Foundation (https://pathnirvana.org)
 ⊚ PTS edition comes from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.htm)
 ⊚ Siam Rath Tipiṭaka is converted from Thai (http://www.learntripitaka.com)
 ⊚ Some grammar texts are converted from Thai (https://sites.google.com/view/palipage)
@@ -42,6 +42,10 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2025, Jan 2
+⊚ The release of Pāli Platform 3.0 RC2
+⊚ BJT unedited version restored
+
 2025, Jan 1
 ⊚ The release of Pāli Platform 3.0 RC1
 ⊚ CST4 XML data corrected version used
