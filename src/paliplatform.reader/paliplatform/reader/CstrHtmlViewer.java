@@ -1,7 +1,7 @@
 /*
  * CstrHtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -271,7 +271,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		selfInfoBox.getChildren().add(fileNameLbl);
 		final String descStr = nodeInfo.getDescription();
 		if (!descStr.isEmpty()) {
-			final Label descLbl = new Label("» " + descStr);
+			final Label descLbl = new Label("‣ " + descStr);
 			descLbl.setWrapText(true);
 			descLbl.setStyle("-fx-font-size:0.9em;");
 			selfInfoBox.getChildren().add(descLbl);

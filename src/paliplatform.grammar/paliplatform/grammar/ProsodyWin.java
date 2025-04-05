@@ -1,7 +1,7 @@
 /*
  * ProsodyWin.java
  *
- * Copyright (C) 2023 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -196,7 +196,7 @@ public final class ProsodyWin extends BorderPane {
 		}
 	}
 	
-	private void reset() {
+	public void reset() {
 		stanza = null;
 		glPatterns = null;
 		resetGathaHitScore();
@@ -272,7 +272,7 @@ public final class ProsodyWin extends BorderPane {
 	}
 	
 	private void showGathaRule(final ProsodyOutput pout) {
-		final Gatha gt = gathaList.stream().filter(x -> x.getID()==pout.idProperty().get()).findFirst().get();
+		final Gatha gt = gathaList.stream().filter(x -> x.getID() == pout.getGathaId()).findFirst().get();
 		if (gt != null) {
 			final String rule = gt.getRule();
 			formulaText.setText(rule + " (" + gt.getMeasureNum() + ")");
@@ -679,7 +679,7 @@ public final class ProsodyWin extends BorderPane {
 		final String rule = formulaText.getText();
 		if (!rule.isEmpty()) {
 			final ProsodyOutput selected = table.getSelectionModel().getSelectedItem();
-			result.append(selected.idProperty().get()).append(" ").append(selected.nameProperty().get()).append(" = ");
+			result.append(selected.getGathaId()).append(" ").append(selected.nameProperty().get()).append(" = ");
 			result.append(rule).append(System.getProperty("line.separator"));
 			result.append(System.getProperty("line.separator"));
 		}
@@ -689,7 +689,7 @@ public final class ProsodyWin extends BorderPane {
 		result.append(System.getProperty("line.separator"));
 		for (int i=0; i<table.getItems().size(); i++){
 			final ProsodyOutput pout = table.getItems().get(i);
-			final Integer id = pout.idProperty().get();
+			final Integer id = pout.getGathaId();
 			result.append(id.toString()).append(Utilities.csvDelimiter);
 			final String name = pout.nameProperty().get();
 			result.append(name).append(Utilities.csvDelimiter);
@@ -808,14 +808,20 @@ public final class ProsodyWin extends BorderPane {
 				gtype = "";
 			}
 			final String rf = gatha.getRefId();
-			final String gref = rf.isEmpty() ? "" : rf + ". " + gatha.getRefParaNum();
-			idProperty().set(gatha.getID());
+			final String gref = rf.isEmpty() ? "" : rf + " " + gatha.getRefParaNum();
+			idProperty().set(gatha.getID() + 1); // id shown starts with 1 not 0
 			nameProperty().set(gatha.getName());
 			typeProperty().set(gtype);
 			refProperty().set(gref);
 			scoreProperty().set(gatha.getHitScore());
 		}
 		
+		// for real id, subtract by one
+		public int getGathaId() {
+			return idProperty().get() - 1;
+		}
+		
+		// for showing in the table only
 		public IntegerProperty idProperty() {
 			if (id == null)
 				id = new SimpleIntegerProperty(this, "id");

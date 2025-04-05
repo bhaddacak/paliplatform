@@ -1,7 +1,7 @@
 /*
  * TocTreeWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,8 +48,7 @@ public class TocTreeWin extends BorderPane {
 			for (final Corpus cp : ReaderUtilities.corpusMap.values()) {
 				if (cp.getCollection() == Corpus.Collection.SC) continue;
 				if (!cp.isAvailable()) continue;
-				cp.setupTreeNodeValue();
-				final TreeItem<TocTreeNode> node = cp.getTreeNode();
+				final TreeItem<TocTreeNode> node = cp.createTreeNode();
 				treeBase.getChildren().add(node);
 			}
 		}

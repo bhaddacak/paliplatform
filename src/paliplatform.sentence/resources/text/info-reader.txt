@@ -6,3 +6,4 @@ A guide to Pāli Sentence Reader
 	5. The reader also helps cutting common joined (sandhi) words by the list provided. This list can also be edited by the user. (No data from DPD deconstructor are used here.)
 	6. The sentence displayed can also be edited to get better explanations, for example, cutting long compounds to make their parts recognizable or cutting complex sandhi words or making certain corrections.
 	7. If a sentence has translations, the lightbulb at the toolbar will turn green. The user can see the translations by open translation pane. Translations can be added and edited. For detailed operations, see Sentence Manager. For more information, see the user's manual.
+	8. For the sentence cutting mechanism, see the Sentence part of Settings.

@@ -1,7 +1,7 @@
 /*
  * GramTextHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,11 +57,11 @@ class GramTextHandler implements TextHandler {
 				// heading H2 - H5
 				final TermInfo.Field fld = TermInfo.Field.valueOf(hMatcher.group(1).toUpperCase());
 				if (fld != null)
-					textMap.get(fld).append(" " + hMatcher.group(2).replaceAll("</?.*?>", "").trim() + " ");
+					textMap.get(fld).append(" " + hMatcher.group(2).replaceAll("</?.*?>", "").trim() + " ").append("\n");
 			} else {
 				// otherwise bodytext
 				line = line.replaceAll("</?.*?>", "").trim(); // remove all tags
-				bodyText.append(" " + line + " ");
+				bodyText.append(" " + line + " \n");
 			}
 		}
 		in.close();

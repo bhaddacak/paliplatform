@@ -107,6 +107,7 @@ I tried to use JUnit in the development, but I gave up eventually. One main reas
 - [Works by J.R. Bhaddacak](https://bhaddacak.github.io)
 - [Pāli Platform's page](https://bhaddacak.github.io/paliplatform)
 - [Page of Pāli Platform 3](https://bhaddacak.github.io/platform3)
+- [A collection of Sentences](https://github.com/bhaddacak/pp2-sentences)
 - The author's email: `bhaddacak` at `proton` dot `me`
 
 ## License

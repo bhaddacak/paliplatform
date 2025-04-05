@@ -65,7 +65,7 @@ public class Sentence {
 		else
 			hash = strHash;
 		text = bareText;
-		edit = editText.replace("--", Utilities.DASH);
+		edit = editText.replace("--", Utilities.DASH_N);
 		transMap = new HashMap<>();
 		sentDir = Utilities.ROOTDIR + SentenceUtilities.SENTENCESPATH + SentenceUtilities.SENTENCESMAIN;
 		sentFile = new File(sentDir + hash + ".json");
@@ -93,7 +93,7 @@ public class Sentence {
 	}
 
 	public void setEditText(final String edit) {
-		this.edit = edit.replace("--", Utilities.DASH);
+		this.edit = edit.replace("--", Utilities.DASH_N);
 	}
 
 	public void restoreEdit() {
@@ -126,7 +126,7 @@ public class Sentence {
 			}
 			final String strTmp = token.substring(start, end + 1);
 			// separate dash, ? and !
-			final String[] strTokens = strTmp.replace(Utilities.DASH, " " + Utilities.DASH + " ")
+			final String[] strTokens = strTmp.replace(Utilities.DASH_N, " " + Utilities.DASH_N + " ")
 										.replaceAll("(\\?+)", " ? ")
 										.replaceAll("(\\!+)", " ! ")
 										.split(" +");

@@ -12,5 +12,7 @@ module paliplatform.main {
 	uses paliplatform.base.LuceneService;
 	provides paliplatform.base.SimpleService with 
 		paliplatform.main.EditorLauncher,
-		paliplatform.main.DictSearch;
+		paliplatform.main.DictSearch,
+		paliplatform.main.DocFinderSearch,
+		paliplatform.main.LuceneFinderSearch;
 }

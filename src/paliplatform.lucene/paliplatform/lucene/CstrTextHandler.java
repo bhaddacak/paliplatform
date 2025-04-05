@@ -1,7 +1,7 @@
 /*
  * CstrTextHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,11 +54,11 @@ class CstrTextHandler implements TextHandler {
 				line = line.replaceAll("</?strong>", ""); // remove strong tags (no related field)
 				final Matcher noteMatcher = notePatt.matcher(line);
 				while (noteMatcher.find())
-					textMap.get(TermInfo.Field.NOTE).append(" " + noteMatcher.group(1) + " ");
+					textMap.get(TermInfo.Field.NOTE).append(" " + noteMatcher.group(1) + " \n");
 				line = noteMatcher.replaceAll(" "); // remove notes
 				final Matcher boldMatcher = boldPatt.matcher(line);
 				while (boldMatcher.find())
-					textMap.get(TermInfo.Field.BOLD).append(" " + boldMatcher.group(1) + " ");
+					textMap.get(TermInfo.Field.BOLD).append(" " + boldMatcher.group(1) + " \n");
 				line = line.replaceAll("</?b>", ""); // remove bold tags
 				if (line.startsWith("<")) {
 					// headings
@@ -66,17 +66,17 @@ class CstrTextHandler implements TextHandler {
 					if (hMatcher.find()) {
 						final TermInfo.Field fld = TermInfo.Field.valueOf(hMatcher.group(1).toUpperCase());
 						if (fld != null)
-							textMap.get(fld).append(" " + hMatcher.group(2) + " ");
+							textMap.get(fld).append(" " + hMatcher.group(2) + " \n");
 					}
 					final Matcher classMatcher = classPatt.matcher(line);
 					if (classMatcher.find()) {
 						final TermInfo.Field fld = TermInfo.Field.valueOf(classMatcher.group(1).toUpperCase());
 						if (fld != null)
-							textMap.get(fld).append(" " + classMatcher.group(2) + " ");
+							textMap.get(fld).append(" " + classMatcher.group(2) + " \n");
 					}
 				} else {
 					// text body
-					textMap.get(TermInfo.Field.BODYTEXT).append(" " + line + " ");
+					textMap.get(TermInfo.Field.BODYTEXT).append(" " + line + " \n");
 				}
 			}
 			in.close();

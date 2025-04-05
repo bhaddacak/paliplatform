@@ -1,7 +1,7 @@
 /*
  * DpdMenu.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ public class DpdMenu extends Menu {
 		familyMenuItem.setMnemonicParsing(true);
 		familyMenuItem.disableProperty().bind(DpdUtilities.dpdAvailable.not());
 		familyMenuItem.setOnAction(actionEvent -> FamilyWin.INSTANCE.display());
-		final MenuItem checkDBMenuItem = new MenuItem("Check DB Applicability", new TextIcon("stethoscope", TextIcon.IconSet.AWESOME));
+		final MenuItem checkDBMenuItem = new MenuItem("Check DB applicability", new TextIcon("stethoscope", TextIcon.IconSet.AWESOME));
 		checkDBMenuItem.disableProperty().bind(DpdUtilities.dpdAvailable.not());
 		checkDBMenuItem.setOnAction(actionEvent -> DpdUtilities.testDpdDb());
 		final MenuItem downloadMenuItem = new MenuItem("Download DPD database", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));

@@ -1,7 +1,7 @@
 /*
  * SentenceUtilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,12 +63,14 @@ final public class SentenceUtilities {
 	}
 
 	public static void openWindow(final Utilities.WindowType win, final Object[] args) {
-		final Stage stg = Utilities.getOpenedWindow(win.getWindowClassName());
+		Stage stg = Utilities.getOpenedWindow(win.getWindowClassName());
 		switch (win) {
 			case READER:
 				if (stg == null) {
-					Utilities.openNewWindow(new SentenceReader(args), 
-						new Image(SentenceUtilities.class.getResourceAsStream("resources/images/book-open.png")), SentenceReader.TITLE);
+					final SentenceReader reader = new SentenceReader(args);
+					stg = Utilities.openNewWindow(reader,
+							new Image(SentenceUtilities.class.getResourceAsStream("resources/images/book-open.png")), SentenceReader.TITLE);
+					reader.setStage(stg);
 				} else {
 					final SentenceReader reader = (SentenceReader)stg.getScene().getRoot();
 					reader.init(args);

@@ -8,7 +8,7 @@
 ╰─────────╯
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured is based on Chaṭṭha Saṅgāyana CD published by Vipassana Research Institute (VRI) via tipitaka.org
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka 4 data formerly bundled with the CST4 (see tipitaka.org), recently corrected in https://github.com/vipassanatech/tipitaka-xml
-⊚ SuttaCentral Bilara data (https://github.com/suttacentral)
+⊚ SuttaCentral Bilara data (https://github.com/suttacentral/bilara-data)
 ⊚ BJT edition of tipitaka.lk is converted from Sinhala script available at https://github.com/pathnirvana/tipitaka.lk/tree/master/public/static/text, maintained by Path Nirvana Foundation (https://pathnirvana.org)
 ⊚ PTS edition comes from GRETIL (http://gretil.sub.uni-goettingen.de/gretil.htm)
 ⊚ Siam Rath Tipiṭaka is converted from Thai (http://www.learntripitaka.com)
@@ -42,26 +42,24 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
-2025, Jan 2
-⊚ The release of Pāli Platform 3.0 RC2
-⊚ BJT unedited version restored
+2025, Apr 5
+⊚ Base version 3.0.8 released
+⊚ The end of testing phase
+⊚ Substantial improvements and fixes
+⊚ The user's manual bundled
 
-2025, Jan 1
-⊚ The release of Pāli Platform 3.0 RC1
+2025, Jan 1-2
+⊚ Transitional phase of release candidates started
 ⊚ CST4 XML data corrected version used
 ⊚ CSTR data corrected according to CST4 XML
 ⊚ New BJT collection
 ⊚ DPD DB applicability test added
 ⊚ Several additions, changes, updates and fixes
 
-2024, Oct 23
-⊚ Pāli Platform 3.0 beta2 is released
-⊚ Improvements on Myanmar script transformation
-⊚ Several minor fixes
-
-2024, Oct 16
-⊚ Pāli Platform 3.0 beta1 is released
+2024, Oct 16-23
+⊚ Transitional phase of beta releases started
 ⊚ Improvements on Pāli script transformation
+⊚ Improvements on Myanmar script transformation
 ⊚ Several minor fixes
 
 2024, Oct 12

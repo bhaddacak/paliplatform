@@ -1,7 +1,0 @@
-A guide to Tokenizer
-	1. This tool can list all terms in selected documents and show their frequency. Document weighting is also calculated to facilitate search function.
-	2. Documents can be added by drag-and-drop from a TOC Tree window, or the context menu form the main window. After documents are added, the user has to press Process button to see the list or begin searching.
-	3. Keep in mind that the tokenization keeps lowercase terms and capitalized ones separately, but the list can merge them together. This option can be changed by the user.
-	4. The list can be filtered by fields (corresponding to CSCD XML structure) and patterns (see filtering help for more information).
-	5. Once processed, terms can be searched by using similarity calculation. Only complete terms are allowed in the query, but they can be added from the list. The results are ranked by similarity score.
-	6. The search results also include zero-scored documents that have the query terms. This means that terms can be searched even only one document is included, but the result can be overwhelming. If a document contains several query words in one line (the number of adjacent words can be adjusted), it can be ranked higher than high-scored results.

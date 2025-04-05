@@ -1,7 +1,7 @@
 /*
  * Settings.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,7 +69,7 @@ class Settings extends SingletonWindow {
 		cbExitAsk.setAllowIndeterminate(false);
 		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask")));
 		cbExitAsk.setOnAction(actionEvent -> Utilities.settings.setProperty("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
-		final CheckBox cbThaiAltChars = new CheckBox("Always use Thai's " + '\uF70F' + " and " + '\uF700' + " (This can cause search problems)");
+		final CheckBox cbThaiAltChars = new CheckBox("Always use Thai's Yo Ying (" + '\uF70F' + ") and Tho Than (" + '\uF700' + ") without lower part");
 		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(Utilities.PaliScript.THAI));
 		cbThaiAltChars.setStyle("-fx-font-family:'" + flist.get(0) + "'");
 		cbThaiAltChars.setAllowIndeterminate(false);
@@ -80,7 +80,8 @@ class Settings extends SingletonWindow {
 		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable")));
 		cbDpdLookup.setOnAction(actionEvent -> Utilities.settings.setProperty("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
 		generalBox.getChildren().addAll(cbExitAsk,
-										new Separator(), new Label("Script transformation"), cbThaiAltChars,
+										new Separator(), new Label("Script transformation"),
+										cbThaiAltChars, new Label("(This can cause search problems)"),
 										new Separator(), new Label("DPD integration"), cbDpdLookup);
 		generalTab.setContent(generalBox);
 		
@@ -224,9 +225,14 @@ class Settings extends SingletonWindow {
 		
 		// add tabs
 		tabPane.getTabs().addAll(generalTab, paliInputTab);
+		// dictionaries
 		final Tab dictTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.dict.DictSettingTab");
 		if (dictTab != null)
 			tabPane.getTabs().add(dictTab);
+		// sentence
+		final Tab sentTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.sentence.SentenceSettingTab");
+		if (sentTab != null)
+			tabPane.getTabs().add(sentTab);
 		
 		// close button
 		final Button close = new Button("Close");

@@ -1,7 +1,7 @@
 /*
  * SrtTextHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,17 +59,17 @@ class SrtTextHandler implements TextHandler {
 				// notes
 				line = line.replace("#", "").trim();
 				line = line.replaceFirst("-$", "^"); // add a token for dehyphenation
-				noteText.append(" " + line + " ");
+				noteText.append(" " + line + " \n");
 			} else {
 				// bodytext
 				line = line.replaceFirst("-$", "^"); // add a token for dehyphenation
-				bodyText.append(" " + line + " ");
+				bodyText.append(" " + line + " \n");
 			}
 		}
 		in.close();
 		// dehyphenation
-		textMap.get(TermInfo.Field.NOTE).append(noteText.toString().replaceAll("\\^ +", ""));
-		textMap.get(TermInfo.Field.BODYTEXT).append(bodyText.toString().replaceAll("\\^ +", ""));
+		textMap.get(TermInfo.Field.NOTE).append(noteText.toString().replaceAll("\\^ +", "")).append("\n");
+		textMap.get(TermInfo.Field.BODYTEXT).append(bodyText.toString().replaceAll("\\^ +", "")).append("\n");
 	}
 
 }

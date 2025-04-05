@@ -1,7 +1,7 @@
 /*
  * SentenceReader.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -534,36 +534,49 @@ public class SentenceReader extends BorderPane {
 		}
 		return result;
 	}
+
+	private static List<Sentence> breakDownSentences(final String text) {
+		final String SEP = "\u001F"; // unit separator
+		final String[] tokens = text.replace(Utilities.DASH_M, Utilities.DASH_N).split(Utilities.REX_NON_PALI_PUNC_FULL);
+		final String capResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-cap"))
+									? Arrays.stream(tokens)
+											.map(x -> Character.isUpperCase(x.charAt(0)) ? SEP + x : x)
+											.collect(Collectors.joining(" "))
+									: Arrays.stream(tokens).collect(Collectors.joining(" "));
+		final String barResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-bar"))
+									? capResultStr.replace("|", "" + SEP).replace("‖", SEP)
+									: capResultStr.replace("|", " ").replace("‖", " ");
+		final String dotResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-dot"))
+									? barResultStr.replace(".", SEP)
+									: barResultStr.replace(".", " ");
+		final String colonResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-colon"))
+									? dotResultStr.replace(":", SEP)
+									: dotResultStr.replace(":", " ");
+		final String semicolonResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-semicolon"))
+									? colonResultStr.replace(";", SEP)
+									: colonResultStr.replace(";", " ");
+		final String dashResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-dash"))
+									? semicolonResultStr.replace(Utilities.DASH_N, SEP)
+									: semicolonResultStr;
+		final String[] sents = dashResultStr.split(SEP);
+		final List<Sentence> result = new ArrayList<>();
+		for (final String sent : sents) {
+			final String[] words = sent.split(" +");
+			final List<String> wlist = Arrays.stream(words)
+										.map(x -> x.trim())
+										.filter(x -> !x.isEmpty())
+										.collect(Collectors.toList());
+			if (!wlist.isEmpty())
+				result.add(createSentence(wlist));
+		}
+		return result;
+	}
 	
 	private void addText(final String text) {
 		sentenceList.clear();
+		sentenceList.addAll(breakDownSentences(text));
 		isSenEditedMap.clear();
 		seqEdited.set(true);
-		final String[] tokens = text.split(Utilities.REX_NON_PALI_PUNC);
-		// separate sentences by detecting capitalized terms
-		final List<Integer> capIndList = new ArrayList<>();
-		for (int i = 0; i < tokens.length; i++) {
-			final String str = tokens[i].trim();
-			if (!str.isEmpty() && Character.isUpperCase(str.charAt(0)))
-				capIndList.add(i);
-		}
-		int savInd = 0;
-		for (final Integer ind : capIndList) {
-			final List<String> wlist = new ArrayList<>();
-			for (int k = savInd; k < ind; k++)
-				if (!tokens[k].isEmpty())
-					wlist.add(tokens[k]);
-			if (!wlist.isEmpty())
-				sentenceList.add(createSentence(wlist));
-			savInd = ind;
-		}
-		// the last sentence toward the end
-		final List<String> wlistl = new ArrayList<>();
-		for (int k = savInd; k < tokens.length; k++)
-			if (!tokens[k].isEmpty())
-				wlistl.add(tokens[k]);
-		if (!wlistl.isEmpty())
-			sentenceList.add(createSentence(wlistl));
 		setupSpinner();
 	}
 
@@ -586,11 +599,15 @@ public class SentenceReader extends BorderPane {
 		}
 	}
 
-	private Sentence createSentence(final List<String> wordList) {
-		final String bareText = wordList.stream().filter(x -> !x.equals(Utilities.DASH))
-								.map(x -> x.replace(Utilities.DASH, "").replaceAll("-+", "").replaceAll("\\?+", "").replaceAll("\\!+", ""))
+	private static Sentence createSentence(final List<String> wordList) {
+		String bareText = wordList.stream().filter(x -> !x.equals(Utilities.DASH_N))
+								.map(x -> x.replace(Utilities.DASH_N, "").replaceAll("-+", "").replaceAll("\\?+", "").replaceAll("\\!+", ""))
 								.collect(Collectors.joining(" "));
-		final String editText = wordList.stream().collect(Collectors.joining(" "));
+		String editText = wordList.stream().collect(Collectors.joining(" "));
+		if (Boolean.parseBoolean(Utilities.settings.getProperty("sentence-normalize"))) {
+			bareText = bareText.toLowerCase();
+			editText = editText.toLowerCase();
+		}
 		final String hash = SentenceUtilities.MD5Sum(bareText);
 		final Sentence sent = new Sentence(hash, bareText, editText);
 		sent.load();
@@ -992,9 +1009,8 @@ public class SentenceReader extends BorderPane {
 			final Alert alert = new Alert(AlertType.INFORMATION);
 			alert.initOwner(theStage);
 			alert.setHeaderText(null);
-			alert.setContentText("There is no translation variant in this directory.\n"
-								+ "To add a new one, create it in Sentence Manager.\n"
-								+ "Then select 'Update variant list' from menu.");
+			alert.setContentText("No translation variant in this directory, create one in Sentence Manager, "
+								+ "and select 'Update variant list' from menu.");
 			alert.showAndWait();
 			return;
 		}
@@ -1098,7 +1114,7 @@ public class SentenceReader extends BorderPane {
 			return;
 		final int senInd = sentenceSpinner.getValue() - 1;
 		final Sentence sent = sentenceList.get(senInd);
-		editArea.setText(sent.getEditText().replace(Utilities.DASH, "--"));
+		editArea.setText(sent.getEditText().replace(Utilities.DASH_N, "--"));
 	}
 
 	private void updateEditTransArea() {
@@ -1173,9 +1189,10 @@ public class SentenceReader extends BorderPane {
 	}
 
 	private void saveSequence() {
-		if (sequencePath.isEmpty())
+		if (sequencePath.isEmpty()) {
 			sequencePath = getOutputSequencePath();
-		if (!sequencePath.isEmpty()) {
+			saveSequenceAs(sequencePath);
+		} else {
 			storeEverySentence();
 			Utilities.saveText(getSentenceSequence(), new File(sequencePath));
 			updateFixedInfo();
@@ -1185,6 +1202,10 @@ public class SentenceReader extends BorderPane {
 
 	private void saveSequenceAs() {
 		final String seqPath = getOutputSequencePath();
+		saveSequenceAs(seqPath);
+	}
+
+	private void saveSequenceAs(final String seqPath) {
 		if (!seqPath.isEmpty()) {
 			final String sentPath = seqPath.substring(0, seqPath.lastIndexOf(File.separator) + 1);
 			if (storeEverySentenceAs(sentPath)) {

@@ -71,6 +71,7 @@ public class PaliTextEditor extends BorderPane {
 	private boolean wholeWord = false;
 	private boolean regexSearch = false;
 	private boolean regexMode = false;
+	private boolean replaceMode = false;
 	private SimpleBooleanProperty searchTextFound = new SimpleBooleanProperty(false);
 	private int currFoundIndex = 0;
 	private SimpleObjectProperty<Utilities.PaliScript> currScript = new SimpleObjectProperty<>(Utilities.PaliScript.ROMAN);
@@ -327,20 +328,22 @@ public class PaliTextEditor extends BorderPane {
 		findReplaceBox.getReplaceAllButton().setOnAction(actionEvent -> replaceAll());
 		findReplaceBox.getPrevButton().setOnAction(actionEvent -> findNext(-1));
 		findReplaceBox.getNextButton().setOnAction(actionEvent -> findNext(+1));
+		findReplaceBox.getCaseSensitiveMenuItem().setOnAction(actionEvent -> startSearch());
+		findReplaceBox.getWholeWordMenuItem().setOnAction(actionEvent -> startSearch());
+		findReplaceBox.getRegexMenuItem().setOnAction(actionEvent -> {
+			findReplaceBox.clearOptionsForRegex();
+			startSearch();
+		});
 		findReplaceBox.getCloseButton().setOnAction(actionEvent -> setBottom(null));
 		findInputCombo.setOnShowing(e -> recordQuery(findReplaceBox.getFindTextInput()));
 		findInput.textProperty().addListener((obs, oldValue, newValue) -> {
-			if (!(wholeWord || regexSearch))
-				startImmediateSearch(Normalizer.normalize(newValue, Form.NFC));
+			startSearch();
 		});
 		findInputCombo.setOnKeyPressed(keyEvent -> {
 			if (keyEvent.getEventType() == KeyEvent.KEY_PRESSED) {
 				final KeyCode key = keyEvent.getCode();
 				if (key == KeyCode.ENTER) {
-					if (wholeWord || regexSearch)
-						doRegExFind();
-					else
-						findNext(+1);
+					startSearch();
 				} else if (key == KeyCode.ESCAPE) {
 					clearFindInput();
 				}
@@ -444,6 +447,7 @@ public class PaliTextEditor extends BorderPane {
 		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
 		searchTextFound.set(false);
 		regexMode = false;
+		replaceMode = false;
 		findReplaceBox.clearInputs();
 		findReplaceBox.clearOptions();
 		setBottom(null);
@@ -584,18 +588,19 @@ public class PaliTextEditor extends BorderPane {
 		wholeWord = findReplaceBox.wholeWordProperty().get();
 		regexSearch = findReplaceBox.regexSearchProperty().get();
 		setDisableNextPrev(wholeWord || regexSearch);
+		replaceMode = false;
 		if (wholeWord || regexSearch) {
 			doRegExFind();
 		} else {
 			final String strInput = findInput.getText();
 			if (!strInput.isEmpty()) {
 				final String strQuery = Normalizer.normalize(strInput, Form.NFC);
-				startImmediateSearch(strQuery);
+				startSimpleSearch(strQuery);
 			}
 		}
 	}
 	
-	private void startImmediateSearch(final String query) {
+	private void startSimpleSearch(final String query) {
 		regexMode = false;
 		searchTextFound.set(false);
 		currFoundIndex = 0;
@@ -607,25 +612,30 @@ public class PaliTextEditor extends BorderPane {
 		int foundPos = -1;
 		if (caseSensitive) {
 			// case sensitive search
-			foundPos = direction>0 ? area.getText().indexOf(strToFind, currFoundIndex) : area.getText().lastIndexOf(strToFind, currFoundIndex);
+			foundPos = direction > 0 ? area.getText().indexOf(strToFind, currFoundIndex) : area.getText().lastIndexOf(strToFind, currFoundIndex);
 		} else {
 			// case insentitive search
 			final String query = strToFind.toLowerCase();
 			final String lowerCaseText = area.getText().toLowerCase();
-			foundPos = direction>0 ? lowerCaseText.indexOf(query, currFoundIndex) : lowerCaseText.lastIndexOf(query, currFoundIndex);
+			foundPos = direction > 0 ? lowerCaseText.indexOf(query, currFoundIndex) : lowerCaseText.lastIndexOf(query, currFoundIndex);
 		}
 		if (foundPos > -1) {
 			searchTextFound.set(true);
 			area.selectRange(foundPos, foundPos+strToFind.length());
 			currFoundIndex = foundPos;
 		} else {
-			if (searchTextFound.get()) {
-				// circle the search
-				currFoundIndex = direction>0 ? 0 : area.getLength();
-				search(strToFind, direction);
+			if (replaceMode) {
+				searchTextFound.set(false);
+				replaceMode = false;
 			} else {
-				area.deselect();
-				showMessage("Not found");
+				if (searchTextFound.get()) {
+					// circle the search, when at the last return to the first
+					currFoundIndex = direction > 0 ? 0 : area.getLength();
+					search(strToFind, direction);
+				} else {
+					area.deselect();
+					showMessage("Not found");
+				}
 			}
 		}
 	}
@@ -667,7 +677,7 @@ public class PaliTextEditor extends BorderPane {
 				showMessage("Not found");
 			} else {
 				searchTextFound.set(true);
-				findFirst();
+				findRegExFirst();
 			}
 		} catch (PatternSyntaxException e) {
 			searchTextFound.set(false);
@@ -676,7 +686,7 @@ public class PaliTextEditor extends BorderPane {
 		}
 	}
 	
-	private void findFirst() {
+	private void findRegExFirst() {
 		final int[] pos = regexFindResult.get(currFoundIndex);
 		area.selectRange(pos[0], pos[1]);
 		setDisableNextPrev(false);		
@@ -702,6 +712,7 @@ public class PaliTextEditor extends BorderPane {
 	
 	public void replaceFirst() {
 		if (!area.getSelectedText().isEmpty()) {
+			replaceMode = true;
 			final String replacement = Normalizer.normalize(replaceInput.getText(), Form.NFC);
 			area.replaceSelection(replacement);
 			if (regexMode)

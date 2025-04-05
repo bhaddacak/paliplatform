@@ -4,4 +4,4 @@ Effective search guide
 	3. Whole-word and RegEx search do not immediate, so the Enter key or Find button has to be pressed.
 	4. For the next and previous search, using Ctrl-G and Ctrl-Shift-G is more convenient.
 	5. Technically, the whole-word search uses regular expression internally, but do not try to add an extra pattern to the query.
-	6. RegEx search is not meant to be comprehensive; simple patterns work fine, e.g. [Dd]hamm(aṃ|o|ā). Searching non-character symbols can get unexpected results. In the HTML Viewer, the main viewer of Pāli text, the escape starter (\) has to be doubled, e.g. \\d, yet the results are unexpected sometimes. In the Text Editor, the doubling is not applied.
+	6. RegEx search is not meant to be comprehensive; simple patterns work fine, e.g. [Dd]hamm(aṃ|o|ā). Searching non-character symbols can get unexpected results.

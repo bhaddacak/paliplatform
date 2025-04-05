@@ -1,7 +1,7 @@
 /*
  * PaliPlatform.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ final public class PaliPlatform extends Application {
 	static Scene scene;
 	static Stage stage;
 	static final TabPane tabPane = new TabPane();
+	static final Map<Utilities.WindowType, Tab> persisTabs = new EnumMap<>(Utilities.WindowType.class);
 	static String releaseNotes = "";
 	static Map<String, Styleable> styleableServiceMap;
 	static Map<String, SimpleService> simpleServiceMap;
@@ -151,9 +152,6 @@ final public class PaliPlatform extends Application {
 		final String patchStr = latestPatch.isEmpty() ? "" : "Latest patch: " + latestPatch + "\n";
         releaseNotes = rootdir + baseVersion + patchStr + "\n" + loadNotesInfo();
         
-        // add persistent tabs
-        final EnumMap<Utilities.WindowType, Tab> persisTabs = new EnumMap<>(Utilities.WindowType.class);
-		
         // Editor tab, always present
 		final Tab editorTab = new Tab("Editor");
 		editorTab.setClosable(false);
@@ -368,6 +366,30 @@ final public class PaliPlatform extends Application {
 	public static void showDict(final String term) {
 		if (dictServiceImp != null) {
 			dictServiceImp.searchTerm(term);
+			final Tab dictTab = persisTabs.get(Utilities.WindowType.DICT);
+			if (dictTab != null) {
+				tabPane.getSelectionModel().select(dictTab);
+			}
+		}
+	}
+	
+	public static void showDocFinder(final String term) {
+		if (readerServiceImp != null) {
+			readerServiceImp.searchTerm(term);
+			final Tab docFinderTab = persisTabs.get(Utilities.WindowType.FINDER);
+			if (docFinderTab != null) {
+				tabPane.getSelectionModel().select(docFinderTab);
+			}
+		}
+	}
+	
+	public static void showLuceneFinder(final String term) {
+		if (luceneServiceImp != null) {
+			luceneServiceImp.searchTerm(term);
+			final Tab luceneFinderTab = persisTabs.get(Utilities.WindowType.LUCENE);
+			if (luceneFinderTab != null) {
+				tabPane.getSelectionModel().select(luceneFinderTab);
+			}
 		}
 	}
 	

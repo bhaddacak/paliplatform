@@ -1,7 +1,7 @@
 /*
  * DeclensionWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,8 +72,8 @@ public class DeclensionWin extends BorderPane {
 	private final ListView<String> wordListView = new ListView<>(wordList);
 	private final ObservableList<DeclensionOutput> outputList = FXCollections.<DeclensionOutput>observableArrayList();
 	private final TableView<DeclensionOutput> table = new TableView<>();	
-	private final EnumMap<Mode, Toggle> toggleMap = new EnumMap<>(Mode.class);
-	private final EnumMap<Mode, HBox> toolbarMap = new EnumMap<>(Mode.class);
+	private final Map<Mode, Toggle> toggleMap = new EnumMap<>(Mode.class);
+	private final Map<Mode, HBox> toolbarMap = new EnumMap<>(Mode.class);
 	private final BorderPane mainPane = new BorderPane();
 	private final SplitPane splitPane = new SplitPane();
 	private final VBox wordFreqPane = new VBox();

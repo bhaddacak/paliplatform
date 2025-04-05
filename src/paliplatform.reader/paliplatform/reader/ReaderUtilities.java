@@ -61,7 +61,7 @@ import com.google.gson.stream.*;
  */
 final public class ReaderUtilities {
 	private static final String LINESEP = System.getProperty("line.separator");
-	public static final Map<Integer, String> bulletMap = Map.of(0, "»", 1, "•", 2, "‣", 3, "›", 4, "‐"); 
+	public static final Map<Integer, String> bulletMap = Map.of(0, "•", 1, "‣", 2, "›", 3, "‐", 4, "»"); 
 	public static final String TEXTPATH = Utilities.DATAPATH + "text" + File.separator;
 	public static final String TXTDIR = "resources/text/";
 	public static final String CSSDIR = "resources/styles/";
@@ -84,7 +84,7 @@ final public class ReaderUtilities {
 	public static final String ROOT_DEF = TXTDIR + "rootdef.xml";
 	public static final String REF_DATA = TXTDIR + "references.xml";
 	public static final String GRAM_SUT = "gramsut.txt";
-	public static final String GRAM_SUT_XREF = "gramsutxref.csv";
+	public static final String GRAM_SUT_XREF = "gramsutniruxref.csv";
 	public static final String NIRU_TO_MOGG = "nirumogg.csv";
 	public static final String SCPATH = TEXTPATH + "sc" + File.separator;
 	public static final String BILARA_DATA = "bilara-data-published.zip";
@@ -98,7 +98,8 @@ final public class ReaderUtilities {
 	public static ObservableList<String> corpusAbbrList =  FXCollections.observableArrayList();
 	public static List<RootDef> rootList;
 	public static List<GrammarSutta> gramSutList;
-	public static List<String> gramSutXrefList;
+	public static List<String> gramSutNiruXrefList;
+	public static Map<String, Set<String>> gramSutXrefMap; // map to shortId
 	public static List<Reference> referenceList;
 	public static Map<String, String> scSuttaInfoMap = new HashMap<>();
 	public static Comparator<String> gramSutRefComparator;
@@ -551,16 +552,109 @@ final public class ReaderUtilities {
 	}
 
 	public static void updateGramSutList() {
-		// read Xref first
-		gramSutXrefList = ReaderUtilities.getTextResourceAsList(ReaderUtilities.GRAM_SUT_XREF);
+		// read Niru Xref first
+		gramSutNiruXrefList = ReaderUtilities.getTextResourceAsList(ReaderUtilities.GRAM_SUT_XREF);
 		final String gsText = ReaderUtilities.getTextResource(ReaderUtilities.GRAM_SUT);
 		final String[] lines = gsText.split("\\r?\\n");
 		gramSutList = new ArrayList<>();
+		gramSutXrefMap = new HashMap<>();
 		for (final String line : lines) {
 			final String theLine = line.trim();
 			if (theLine.isEmpty()) continue;
 			final GrammarSutta gsut = new GrammarSutta(theLine);
 		   gramSutList.add(gsut);
+		}
+		// process Xref data
+		// process Mogg <--> Niru map first
+		for (final String line : gramSutNiruXrefList) {
+			final int npos = line.indexOf("n");
+			final int mpos = line.indexOf("m");
+			if ( npos > -1 && mpos > -1) {
+				final String nRef = line.substring(npos, line.indexOf(",", npos));
+				final String mRef = line.substring(mpos, line.indexOf(",", mpos));
+				gramSutXrefMap.put(mRef, Set.of(nRef));
+				gramSutXrefMap.put(nRef, Set.of(mRef));
+			}
+		}
+		// process Kacc <--> Rupa and Mogg <--> Payo <--> Niru
+		for (final GrammarSutta gsut : gramSutList) {
+			final String sutLine = gsut.getOriginal();
+			final String shortRef = gsut.getShortRef();
+			final int dpos = sutLine.indexOf(".");
+			final char refCh = shortRef.charAt(0);
+			if (refCh == 'k') {
+				// Kacc and Rupa case
+				final String kRef = shortRef;
+				final int cpos = sutLine.indexOf(",");
+				final String[] rRefs = sutLine.substring(cpos + 1, dpos).split(",");
+				final Set<String> rRefSet = new HashSet<>();
+				for (final String rRef : rRefs)
+					rRefSet.add("r" + rRef.trim());
+				gramSutXrefMap.put(kRef, rRefSet);
+				rRefSet.forEach(r -> {
+					final Set<String> kRefSet = gramSutXrefMap.getOrDefault(r, new HashSet<>());
+					kRefSet.add(kRef);
+					gramSutXrefMap.put(r, kRefSet);
+				});
+			} else if (refCh == 'r') {
+				// Rupa case, fill up missing cases, not in Kacc-Rupa relations
+				final String rRef = shortRef;
+				gramSutXrefMap.putIfAbsent(rRef, new HashSet<>());
+			} else if (refCh == 'm') {
+				// Mogg case, fill up missing cases, not in Mogg-Niru relations
+				final String mRef = shortRef;
+				gramSutXrefMap.putIfAbsent(mRef, new HashSet<>());
+			} else if (refCh == 'p') {
+				// Payo case, also add to Mogg
+				final String pRef = shortRef;
+				final int secondDotPos = sutLine.indexOf(".", dpos + 1);
+				final String mRef = "m" + sutLine.substring(sutLine.indexOf("]") + 1, secondDotPos).trim();
+				final Set<String> mRefSet = new HashSet<>(gramSutXrefMap.getOrDefault(mRef, new HashSet<>()));
+				mRefSet.add(pRef);
+				gramSutXrefMap.put(mRef, mRefSet);
+				final Set<String> pRefSet = new HashSet<>();
+				mRefSet.forEach(x -> {
+					if (x.startsWith("n"))
+						pRefSet.add(x);
+				});
+				pRefSet.add(mRef);
+				gramSutXrefMap.put(pRef, pRefSet);
+			} else if (refCh == 'n') {
+				// Niru case, add Payo ref
+				final String nRef = shortRef;
+				final Set<String> nRefSet = new HashSet<>(gramSutXrefMap.getOrDefault(nRef, new HashSet<>()));
+				final Set<String> payoSet = new HashSet<>();
+				for (final String ref2Mogg : nRefSet) {
+					final Set<String> mRefSet = gramSutXrefMap.getOrDefault(ref2Mogg, new HashSet<>());
+					for (final String mRef : mRefSet) {
+						if (mRef.startsWith("p"))
+							payoSet.add(mRef);
+					}
+				}
+				nRefSet.addAll(payoSet);
+				gramSutXrefMap.put(nRef, nRefSet);
+			}
+		}
+		// add Simple Xref for each grammar sutta	
+		for (final GrammarSutta gsut : gramSutList) {
+			gsut.addXref(GrammarSutta.RefType.SIMPLE, gramSutXrefMap.get(gsut.getShortRef()));
+		}
+		// add NiruXref for Niru's grammar suttas
+		final Set<String> nXrefSet = new HashSet<>();
+		for (final String line : gramSutNiruXrefList) {
+			nXrefSet.clear();
+			for (final GrammarSutta gsut : gramSutList) {
+				final String ref = gsut.getShortRef();
+				if (!ref.startsWith("n")) continue;
+				if (line.startsWith(ref + ",")) {
+					final String[] lineRefs = line.split(",");
+					for (final String lref : lineRefs) {
+						if (lref.startsWith("n") || lref.startsWith("m")) continue; // not include Niru and Mogg
+						nXrefSet.add(lref);
+					}
+					gsut.addXref(GrammarSutta.RefType.NIRU, nXrefSet);
+				}
+			}
 		}
 	}
 

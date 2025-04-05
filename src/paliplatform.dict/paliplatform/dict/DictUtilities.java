@@ -1,7 +1,7 @@
 /*
  * DictUtilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@ final public class DictUtilities {
 	public static final String TXTDIR = "resources/text/";
 	public static final String CUSTOM_DICT = "customdict.txt";
 	public static final String SANDHI_LIST = "sandhi.txt";
-	public static final EnumMap<DictBook, SimpleBooleanProperty> dictAvailMap = new EnumMap<>(DictBook.class);
+	public static final Map<DictBook, SimpleBooleanProperty> dictAvailMap = new EnumMap<>(DictBook.class);
 	public static final SimpleBooleanProperty someDictAvailable = new SimpleBooleanProperty(false);
 	public static final SimpleBooleanProperty dictDBLocked = new SimpleBooleanProperty(false);
 	public static final SimpleObjectProperty<Node> dictDBLockIcon = new SimpleObjectProperty<>(null);

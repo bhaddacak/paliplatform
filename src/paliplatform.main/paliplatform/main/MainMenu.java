@@ -42,14 +42,12 @@ class MainMenu extends MenuBar {
 		fileMenu.setMnemonicParsing(true);
 		final MenuItem openTextMenuItem = new MenuItem("_Open a text file", new TextIcon("file-arrow-up", TextIcon.IconSet.AWESOME));
 		openTextMenuItem.setMnemonicParsing(true);
-		openTextMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.O, KeyCombination.SHORTCUT_DOWN));
 		openTextMenuItem.setOnAction(actionEvent -> {
 			final Object[] args = {""};
 			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
 		});
 		final MenuItem editorMenuItem = new MenuItem("Edit a _new text file", new TextIcon("pencil", TextIcon.IconSet.AWESOME));
 		editorMenuItem.setMnemonicParsing(true);
-		editorMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
 		editorMenuItem.setOnAction(actionEvent -> {
 			final Object[] args = {"ROMAN"};
 			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);

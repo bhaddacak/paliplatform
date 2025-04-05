@@ -97,5 +97,12 @@ public class LuceneServiceImp implements LuceneService {
 			return Collections.emptyList();
 	}
 
+	@Override
+	public void searchTerm(final String term) {
+		if (finderWin != null) {
+			((LuceneFinder)finderWin).setSearchInput(term);
+		}
+	}
+
 }
 

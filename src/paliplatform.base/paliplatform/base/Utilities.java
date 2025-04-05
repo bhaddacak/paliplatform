@@ -1,7 +1,7 @@
 /*
  * Utilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -97,18 +97,20 @@ final public class Utilities {
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_PUNC = "[^A-Za-z" + PALI_ALL_CHARS + "?!–-]+";
+	public static final String REX_NON_PALI_PUNC_FULL = "[^A-Za-z" + PALI_ALL_CHARS + "?!–-‖|.:;]+";
 	public static final String PALI_NOUN_ENDINGS = "aāiīuū";
 	public static final String PALI_VOWELS = "aāiīuūeo";
 	public static final String PALI_LAHU_VOWELS = "aiu";
 	public static final String PALI_LONG_VOWELS = "āīū";
 	public static final String PALI_CONSONANTS = "kgṅcjñṭḍṇtdnpbmyrlvshḷ";
 	public static final String WITH_H_CHARS = "bcdgjkptḍṭ";
-	public static final String DASH = "–";
+	public static final String DASH_N = "–";
+	public static final String DASH_M = "—";
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
 	public static final Map<PaliScript, Set<String>> paliFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliTextInput.InputMethod, HashMap<String, String>> paliInputCharMap = new EnumMap<>(PaliTextInput.InputMethod.class);
-	public static final EnumMap<PpdpdTable, SimpleBooleanProperty> ppdpdAvailMap = new EnumMap<>(PpdpdTable.class);
+	public static final Map<PpdpdTable, SimpleBooleanProperty> ppdpdAvailMap = new EnumMap<>(PpdpdTable.class);
 	public static final Map<Character, List<String>> texConvMap = new HashMap<>();
 	public static final Map<Character, String> meterPatternMap = new HashMap<>();
 	// moved from main

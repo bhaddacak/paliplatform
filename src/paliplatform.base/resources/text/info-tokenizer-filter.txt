@@ -1,6 +1,0 @@
-Term filter guide
-	1. There are four modes of term filtering: (1) Simple mode, (2) Wildcard mode, (3) Regular expression mode, and (4) Filter by meter. These can be selected by the option menu.
-	2. In (default) Simple mode, only terms starting with the user's input text are shown. This mode, albeit simple, is case sensitive.
-	3. In Wildcard mode, special characters, ? (any one letter) and * (any letters or none), are also allowed. For example, to see only terms having 2 letters, type ??; to see only term ending with 'o', type *o; to see terms having double c in them, type *cc*.
-	4. In Regular expression mode, the user can enter regex pattern directly. For example, to see 'Atha', 'atho' or 'Attha', 'attho', type [Aa](t|tt)h[ao] or [Aa]t{1,2}[ao]. Keep in mind that complex patterns may give unexpected results.
-	5. In Filter by meter, the user can find terms that match the input meter pattern. The valid input (case-sensitive) is, in any combination: 1, 2, 4, l, g, n, s, j, b, m, N, S, J, Y, B, R, T, M, and L. At syllable level, l (lahu) and g (garu) should be used, for example, llg can match 'bhagavā' but 112 can match both 'bhagavā' or 'bhagavati'. For more information, see Prosody window. 

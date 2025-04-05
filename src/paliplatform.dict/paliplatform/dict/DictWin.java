@@ -1,7 +1,7 @@
 /*
  * DictWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ public class DictWin extends BorderPane {
 	private final PaliTextInput searchInput = new PaliTextInput(PaliTextInput.InputType.COMBO);
 	private final ComboBox<String> searchComboBox;
 	private final TextField searchTextField;
-	private final EnumMap<DictBook, CheckBox> dictCBMap = new EnumMap<>(DictBook.class);
+	private final Map<DictBook, CheckBox> dictCBMap = new EnumMap<>(DictBook.class);
 	private final Set<DictBook> dictSet = EnumSet.noneOf(DictBook.class);
 	private final ObservableList<String> resultList = FXCollections.<String>observableArrayList();
 	private final ListView<String> resultListView = new ListView<>(resultList);

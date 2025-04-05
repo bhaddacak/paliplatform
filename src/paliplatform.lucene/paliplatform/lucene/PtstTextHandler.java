@@ -1,7 +1,7 @@
 /*
  * PtstTextHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,7 +60,7 @@ class PtstTextHandler implements TextHandler {
 			line = line.replace("[page ", "[");
 			line = line.replace("[... content straddling page break has been moved to the page above ...]", "");
 			// all text is bodytext
-			bodyText.append(" " + line + " ");
+			bodyText.append(" " + line + " \n");
 		}
 		in.close();
 	}

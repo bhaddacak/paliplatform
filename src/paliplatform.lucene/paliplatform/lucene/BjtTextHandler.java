@@ -54,17 +54,17 @@ class BjtTextHandler implements TextHandler {
 					final String text = elem.getText().replace("\n", " ");
 					final Matcher boldMatcher = boldPatt.matcher(text);
 					while (boldMatcher.find())
-						textMap.get(TermInfo.Field.BOLD).append(" " + boldMatcher.group(1) + " ");
+						textMap.get(TermInfo.Field.BOLD).append(" " + boldMatcher.group(1) + " \n");
 					if (elem.getType() == BjtPage.Type.HEADING) {
-						textMap.get(TermInfo.Field.HEADING).append(" " + text + " ");
+						textMap.get(TermInfo.Field.HEADING).append(" " + text + " \n");
 					} else if (elem.getType() == BjtPage.Type.CENTERED) {
-						textMap.get(TermInfo.Field.CENTRE).append(" " + text + " ");
+						textMap.get(TermInfo.Field.CENTRE).append(" " + text + " \n");
 					} else if (elem.getType() == BjtPage.Type.UNINDENTED) {
-						textMap.get(TermInfo.Field.UNINDENTED).append(" " + text + " ");
+						textMap.get(TermInfo.Field.UNINDENTED).append(" " + text + " \n");
 					} else if (elem.getType() == BjtPage.Type.PARAGRAPH) {
-						textMap.get(TermInfo.Field.BODYTEXT).append(" " + text + " ");
+						textMap.get(TermInfo.Field.BODYTEXT).append(" " + text + " \n");
 					} else if (elem.getType() == BjtPage.Type.GATHA) {
-						textMap.get(TermInfo.Field.GATHA).append(" " + text + " ");
+						textMap.get(TermInfo.Field.GATHA).append(" " + text + " \n");
 					}
 				}
 			}

@@ -11,6 +11,7 @@ module paliplatform.sentence {
 	provides paliplatform.base.SimpleService with 
 		paliplatform.sentence.ReaderLauncher;
 	provides javafx.css.Styleable with
-		paliplatform.sentence.SentenceMenu;
+		paliplatform.sentence.SentenceMenu,
+		paliplatform.sentence.SentenceSettingTab;
 	opens paliplatform.sentence to javafx.base;
 }

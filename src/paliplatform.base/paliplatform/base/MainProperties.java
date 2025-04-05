@@ -1,7 +1,7 @@
 /*
  * MainProperties.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,6 +100,13 @@ public class MainProperties {
 			settings.setProperty("dpd-dict-count", "420000");
 			settings.setProperty("dpd-head-count", "80000");
 			settings.setProperty("dpd-lookup-enable", "true");
+			settings.setProperty("sentence-normalize", "true");
+			settings.setProperty("sentence-use-cap", "true");
+			settings.setProperty("sentence-use-bar", "true");
+			settings.setProperty("sentence-use-dot", "true");
+			settings.setProperty("sentence-use-colon", "true");
+			settings.setProperty("sentence-use-semicolon", "true");
+			settings.setProperty("sentence-use-dash", "true");
 			// set up default Pali input method properties
 			Hashtable<String,String> defTable = PaliInputProperties.INSTANCE.getDefaultTable();
 			for (Enumeration<String> k = defTable.keys(); k.hasMoreElements();) {

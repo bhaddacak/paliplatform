@@ -586,6 +586,10 @@ public class LuceneFinder extends BorderPane {
 		}
 	}
 
+	public void setSearchInput(final String text) {
+		searchTextField.setText(text);
+	}
+
 	private void clearSearch() {
 		searchTextField.clear();
 	}
@@ -738,7 +742,7 @@ public class LuceneFinder extends BorderPane {
 								final String[] tmps = frags[j].split("\n");
 								for (final String s : tmps) {
 									if (s.contains("{")) {
-										resultText.append("» ").append(s).append("...\n");
+										resultText.append("‣ ").append(s).append("...\n");
 									}
 								}
 							}
@@ -818,54 +822,46 @@ public class LuceneFinder extends BorderPane {
 		} // end if
 		// (2) find the words' position line by line, then generate the string output
 		final StringBuilder result = new StringBuilder();
-		for (final String line : text.split("\n")) {
-			final Map<Integer, String> fragPosMap = new HashMap<>();
+		String lineOutput = "";
+		boolean found = false;
+		final String[] lines = text.split("\n");
+		for (final String line : lines) {
+			lineOutput = line;
+			found = false;
 			final String wb = "\\b";
+			// enclose each word with {}
 			for (final String s : wlist) {
-				final Pattern patt = Pattern.compile(wb + s);
-				final Matcher matcher = patt.matcher(line);
-				while (matcher.find())
-					fragPosMap.put(matcher.start(), matcher.group());
+				final Pattern patt = Pattern.compile(wb + s + wb);
+				final Matcher matcher = patt.matcher(lineOutput);
+				if (matcher.find()) {
+					lineOutput = matcher.replaceAll("{" + matcher.group() + "}");
+					found = true;
+				}
 			}
-			if (!fragPosMap.isEmpty()) {
-				final List<Integer> posList = new ArrayList<>(fragPosMap.keySet());
-				posList.sort(Integer::compare);
-				if (isWholeLine) {
-					result.append("» ");
-					int ind = 0;
-					for (final Integer i : posList) {
-						final String before = line.substring(ind, i);
-						result.append(before).append("{");
-						final String word = fragPosMap.get(i);
-						result.append(word).append("}");
-						ind = ind + before.length() + word.length();
+			if (found) {
+				if (!isWholeLine) {
+					// if not whole line, truncate the line
+					final int padding = 20; // padding at start and end
+					final int firstOpenB = lineOutput.indexOf("{"); // start of the first word
+					if (firstOpenB > padding) {
+						lineOutput = "..." + lineOutput.substring(firstOpenB - padding);
 					}
-					result.append(line.substring(ind, line.length())).append("\n");
-				} else {
-					final int window = 45;
-					for (int i = 0; i < posList.size(); i++) {
-						int ind = 0;
-						int pos = posList.get(i);
-						result.append("» ");
-						if (pos - ind > window) {
-							ind = pos - window;
-							result.append("...");
-						}
-						final String before = line.substring(ind, pos);
-						result.append(before).append("{");
-						final String word = fragPosMap.get(pos);
-						result.append(word).append("}");
-						ind = ind + before.length() + word.length();
-						int nextPos;
-							nextPos = line.length();
-						String elip = "";
-						if (nextPos - ind > window) {
-							nextPos = ind + window;
-							elip = "...";
-						}
-						result.append(line.substring(ind, nextPos)).append(elip).append("\n");
+					final int lastCloseB = lineOutput.lastIndexOf("}"); // end of the last word
+					if (lastCloseB < lineOutput.length() - padding) {
+						lineOutput = lineOutput.substring(0, lastCloseB + padding) + "...";
+					}
+					// if the result is still too long, truncate it in the middle, also compensate {}, if cut
+					if (lineOutput.length() > 100) {
+						final int firstCloseB = lineOutput.indexOf("}");
+						final int lastOpenB = lineOutput.lastIndexOf("{");
+						final String firstPart = lineOutput.substring(0, firstCloseB + padding);
+						final String fpEndB = firstPart.lastIndexOf("{") > firstPart.lastIndexOf("}") ? "}" : "";
+						final String lastPart = lineOutput.substring(lastOpenB - padding);
+						final String lpEndB = lastPart.indexOf("{") > lastPart.indexOf("}") ? "{" : "";
+						lineOutput = firstPart + fpEndB + "..." + lpEndB + lastPart;
 					}
 				}
+				result.append("› " + lineOutput + "\n");
 			}
 		}
 		return result.toString();

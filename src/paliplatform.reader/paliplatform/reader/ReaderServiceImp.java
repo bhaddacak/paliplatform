@@ -1,7 +1,7 @@
 /*
  * ReaderServiceImp.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,6 +99,13 @@ public class ReaderServiceImp implements ReaderService {
 			final TocTreeNode node = dinfo.toTocTreeNode();
 			if (Utilities.checkFileExistence(node.getNodeFile()))
 				ReaderUtilities.openPaliHtmlViewer(node);
+		}
+	}
+
+	@Override
+	public void searchTerm(final String term) {
+		if (documentFinder != null) {
+			((DocumentFinder)documentFinder).setSearchInput(term);
 		}
 	}
 

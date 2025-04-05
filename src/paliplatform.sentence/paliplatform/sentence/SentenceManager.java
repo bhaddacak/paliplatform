@@ -1,7 +1,7 @@
 /*
  * SentenceManager.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -991,7 +991,7 @@ public class SentenceManager extends SingletonWindow {
 			final Alert alert = new Alert(AlertType.INFORMATION);
 			alert.initOwner(this);
 			alert.setHeaderText(null);
-			alert.setContentText("There is no variant to select.\nPlease create one first.");
+			alert.setContentText("No variant to select, create one first.");
 			alert.showAndWait();
 			return;
 		}
@@ -1078,7 +1078,8 @@ public class SentenceManager extends SingletonWindow {
 		final SentenceOutput sentOut = sentTable.getSelectionModel().getSelectedItem();
 		if (sentOut == null) return;
 		final ConfirmAlert delAlert = new ConfirmAlert(this, ConfirmAlert.ConfirmType.DELETE);
-		delAlert.setMessage("A sentence file will be deleted.\nThis causes related sequence files to be updated.\nAre you sane to do this?");
+		delAlert.setMessage("A sentence file will be deleted. This causes related sequence files to be updated. "
+							+ "Do it cautiously.");
 		final Optional<ButtonType> response = delAlert.showAndWait();
 		if (response.isPresent()) {
 			if (response.get() == delAlert.getConfirmButtonType()) {
@@ -1255,8 +1256,8 @@ public class SentenceManager extends SingletonWindow {
 		final boolean doAsk = variOut.transCountProperty().get() > 0;
 		if (doAsk) {
 			final ConfirmAlert delAlert = new ConfirmAlert(this, ConfirmAlert.ConfirmType.DELETE);
-			delAlert.setContentText("All translations under '" + variName + "' will be deleted.\n" + 
-					"Related files in this directory will be updated. Sure?");
+			delAlert.setContentText("All translations under '" + variName + "' will be deleted. "
+									+ "Related files in this directory will be updated. Sure?");
 			final Optional<ButtonType> response = delAlert.showAndWait();
 			if (response.isPresent()) {
 				if (response.get() == delAlert.getConfirmButtonType())

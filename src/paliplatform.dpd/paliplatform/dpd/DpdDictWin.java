@@ -1,7 +1,7 @@
 /*
  * DpdDictWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@ public class DpdDictWin extends SingletonWindow {
 		searchMethodGroup.selectToggle(searchMethodGroup.getToggles().get(0));
         searchMethodGroup.selectedToggleProperty().addListener(observable -> showResult());
 		final ChoiceBox<Integer> maxResultChoice = new ChoiceBox<>();
-		maxResultChoice.setTooltip(new Tooltip("Maximum result"));
+		maxResultChoice.setTooltip(new Tooltip("Maximum results"));
 		maxResultChoice.getItems().addAll(DpdUtilities.MAXLIST);
 		maxResultChoice.getSelectionModel().select(1);
 		maxResultChoice.setOnAction(actionEvent -> {

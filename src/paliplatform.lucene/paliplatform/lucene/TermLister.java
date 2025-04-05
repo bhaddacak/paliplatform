@@ -226,16 +226,20 @@ public class TermLister extends BorderPane {
 		filterHelpButton.setOnAction(actionEvent -> filterHelpPopup.showPopup(filterHelpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		searchToolBar.getItems().addAll(searchTextField, searchTextInput.getClearButton(),
 									searchTextInput.getMethodButton(), filterOptionMenu,
-									new Separator(), firstCharGroupChoice, new Label(Utilities.DASH), lastCharGroupChoice, zeroResetButton, 
+									new Separator(), firstCharGroupChoice, new Label(Utilities.DASH_N), lastCharGroupChoice, zeroResetButton, 
 									new Separator(), filterHelpButton);
 		mainPane.setTop(searchToolBar);
 		// set up table at the center
 		final ContextMenu tablePopupMenu = new ContextMenu();
+		final MenuItem copyTermMenuItem = new MenuItem("Copy the word");
+		copyTermMenuItem.setOnAction(actionEvent -> copyTerm());
 		final MenuItem sendToDictMenuItem = new MenuItem("Send to Dictionaries");
 		sendToDictMenuItem.setOnAction(actionEvent -> sendTermToDict());
-		final MenuItem sendToFinderMenuItem = new MenuItem("Send to Document Finder");
-		sendToFinderMenuItem.setOnAction(actionEvent -> sendTermToFinder());
-		tablePopupMenu.getItems().addAll(sendToDictMenuItem, sendToFinderMenuItem);
+		final MenuItem sendToDocFinderMenuItem = new MenuItem("Send to Document Finder");
+		sendToDocFinderMenuItem.setOnAction(actionEvent -> sendTermToDocFinder());
+		final MenuItem sendToLuceneFinderMenuItem = new MenuItem("Send to Lucene Finder");
+		sendToLuceneFinderMenuItem.setOnAction(actionEvent -> sendTermToLuceneFinder());
+		tablePopupMenu.getItems().addAll(copyTermMenuItem, sendToDictMenuItem, sendToDocFinderMenuItem, sendToLuceneFinderMenuItem);
 		table.setContextMenu(tablePopupMenu);
 		table.setOnDragDetected(mouseEvent -> {
 			final SimpleTermFreqProp selected = (SimpleTermFreqProp)table.getSelectionModel().getSelectedItem();
@@ -288,6 +292,8 @@ public class TermLister extends BorderPane {
 		});
 
 		// some other initialization
+		if (LuceneUtilities.simpleServiceMap == null) 
+			LuceneUtilities.simpleServiceMap = LuceneUtilities.getSimpleServices();
 		initToolBars();
 		Utilities.createMeterPatternMap();
 		mainHelpPopup.setContentWithText(LuceneUtilities.getTextResource("info-lister.txt"));
@@ -504,8 +510,8 @@ public class TermLister extends BorderPane {
 			if (col == Corpus.Collection.SC)
 				searchText = Utilities.changeToScNiggahita(searchText);
 			final List<SimpleTermFreqProp> result = currFilterMode == FilterMode.METER
-				? filterByMeter(getTermListFromDB(tabName), searchText)
-				: getTermListFromDB(tabName, searchText);
+													? filterByMeter(getTermListFromDB(tabName), searchText)
+													: getTermListFromDB(tabName, searchText);
 			if (result == null || result.isEmpty())
 				shownResultList.add(new SimpleTermFreqProp("", 0, 0));
 			else
@@ -712,12 +718,45 @@ public class TermLister extends BorderPane {
 		return result;
 	}
 
-	private void sendTermToDict() {
+	private void copyTerm() {
 		final SimpleTermFreqProp tf = table.getSelectionModel().getSelectedItem();
+		final String term = tf.termProperty().get();
+		if (!term.isEmpty()) {
+			Utilities.copyText(term);
+		}
 	}
 
-	private void sendTermToFinder() {
+	private void sendTermToDict() {
 		final SimpleTermFreqProp tf = table.getSelectionModel().getSelectedItem();
+		final String term = tf.termProperty().get();
+		if (!term.isEmpty()) {
+			final SimpleService dictSearch = (SimpleService)LuceneUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
+			if (dictSearch != null) {
+				dictSearch.process(term);
+			}
+		}
+	}
+
+	private void sendTermToDocFinder() {
+		final SimpleTermFreqProp tf = table.getSelectionModel().getSelectedItem();
+		final String term = tf.termProperty().get();
+		if (!term.isEmpty()) {
+			final SimpleService docFinderSearch = (SimpleService)LuceneUtilities.simpleServiceMap.get("paliplatform.main.DocFinderSearch");
+			if (docFinderSearch != null) {
+				docFinderSearch.process(term);
+			}
+		}
+	}
+
+	private void sendTermToLuceneFinder() {
+		final SimpleTermFreqProp tf = table.getSelectionModel().getSelectedItem();
+		final String term = tf.termProperty().get();
+		if (!term.isEmpty()) {
+			final SimpleService luceneFinderSearch = (SimpleService)LuceneUtilities.simpleServiceMap.get("paliplatform.main.LuceneFinderSearch");
+			if (luceneFinderSearch != null) {
+				luceneFinderSearch.process(term);
+			}
+		}
 	}
 
 	private List<String[]> makeCSV() {
@@ -747,7 +786,7 @@ public class TermLister extends BorderPane {
 	}
 	
 	private void saveCSV() {
-		Utilities.saveCSV(makeCSV(), "simplelist.csv");
+		Utilities.saveCSV(makeCSV(), "termlist.csv");
 	}
 
 	// inner classes

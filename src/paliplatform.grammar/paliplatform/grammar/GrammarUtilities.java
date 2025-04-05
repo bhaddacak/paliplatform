@@ -1,7 +1,7 @@
 /*
  * GrammarUtilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -111,8 +111,12 @@ final public class GrammarUtilities {
 						new Image(GrammarUtilities.class.getResourceAsStream("resources/images/music.png")), "Prosody");
 				} else {
 					final ProsodyWin prosWin = (ProsodyWin)stg.getScene().getRoot();
-					final String text = (String)args[0];
-					prosWin.analyze(text);
+					if (args == null) {
+						prosWin.reset();
+					} else {
+						final String text = (String)args[0];
+						prosWin.analyze(text);
+					}
 					Utilities.showExistingWindow(stg);
 				}
 				break;

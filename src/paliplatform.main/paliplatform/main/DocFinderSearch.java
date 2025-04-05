@@ -1,5 +1,5 @@
 /*
- * LuceneService.java
+ * DocFinderSearch.java
  *
  * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
@@ -17,24 +17,33 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.base;
+package paliplatform.main;
 
-import java.util.List;
-import java.util.Set;
-import javafx.scene.control.Tab;
+import paliplatform.base.*;
 
 /** 
- * The service interface used by Lucene module.
+ * The service used for searching a term in Document Finder tab, if available. 
+ * This service in turn uses ReaderService.
  * @author J.R. Bhaddacak
  * @version 3.0
  * @since 3.0
  */
+public class DocFinderSearch implements SimpleService {
+	public DocFinderSearch() {
+	}
+	
+	@Override
+	public boolean process(final Object arg) {
+		final String term = (String)arg;
+		PaliPlatform.showDocFinder(term);
+		return true;
+	}
 
-public interface LuceneService {
-	Tab getLuceneTab();
-	Tab getListerTab();
-	List<String> getListerTableNameList();
-	List<String> getTermFreqList(String tabName, Set<String> wordSet);
-	void searchTerm(String term);
+	@Override
+	public boolean processArray(final Object[] args) {
+		return true;
+	}
+
 }
+
 

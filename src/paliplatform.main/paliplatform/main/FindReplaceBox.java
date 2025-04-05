@@ -1,7 +1,7 @@
 /*
  * FindReplaceBox.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,6 +55,9 @@ public class FindReplaceBox extends VBox {
 	private final Button closeButton = new Button("", new TextIcon("xmark", TextIcon.IconSet.AWESOME));
 	private final Button clearFindButton;
 	private final Button clearReplaceButton;
+	private final CheckMenuItem caseSensitiveMenuItem = new CheckMenuItem("Case sensitive");
+	private final CheckMenuItem wholeWordMenuItem = new CheckMenuItem("Whole word");
+	private final CheckMenuItem regexMenuItem = new CheckMenuItem("Regular expression");
 	private final Popup messagePopup = new Popup();
 	private final Label messageText = new Label("");
 	private final InfoPopup infoPopup = new InfoPopup();
@@ -78,15 +81,12 @@ public class FindReplaceBox extends VBox {
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.OVER_RIGHT, true));
 		final MenuButton findOptionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
 		findOptionsMenu.setTooltip(new Tooltip("Options"));
-		final CheckMenuItem caseSensitivityMenuItem = new CheckMenuItem("Case sensitive");
-		caseSensitivityMenuItem.disableProperty().bind(regexSearch);
-		caseSensitivityMenuItem.selectedProperty().bindBidirectional(caseSensitive);
-		final CheckMenuItem wholeWordMenuItem = new CheckMenuItem("Whole word");
+		caseSensitiveMenuItem.disableProperty().bind(regexSearch);
+		caseSensitiveMenuItem.selectedProperty().bindBidirectional(caseSensitive);
 		wholeWordMenuItem.disableProperty().bind(regexSearch);
 		wholeWordMenuItem.selectedProperty().bindBidirectional(wholeWord);
-		final CheckMenuItem regexMenuItem = new CheckMenuItem("Regular expression");
 		regexMenuItem.selectedProperty().bindBidirectional(regexSearch);
-		findOptionsMenu.getItems().addAll(caseSensitivityMenuItem, wholeWordMenuItem, regexMenuItem);
+		findOptionsMenu.getItems().addAll(caseSensitiveMenuItem, wholeWordMenuItem, regexMenuItem);
 		final HBox findBox = new HBox();
 		findBox.getChildren().addAll(findComboBox, clearFindButton, findTextInput.getMethodButton(),
 									new Separator(), findButton, prevButton, nextButton, 
@@ -179,6 +179,18 @@ public class FindReplaceBox extends VBox {
 		return clearReplaceButton;
 	}
 	
+	public MenuItem getCaseSensitiveMenuItem() {
+		return caseSensitiveMenuItem;
+	}
+	
+	public MenuItem getWholeWordMenuItem() {
+		return wholeWordMenuItem;
+	}
+	
+	public MenuItem getRegexMenuItem() {
+		return regexMenuItem;
+	}
+	
 	public SimpleBooleanProperty caseSensitiveProperty() {
 		return caseSensitive;
 	}
@@ -199,9 +211,13 @@ public class FindReplaceBox extends VBox {
 	}
 	
 	public void clearOptions() {
+		clearOptionsForRegex();
+		regexSearch.set(false);
+	}
+	
+	public void clearOptionsForRegex() {
 		caseSensitive.set(false);
 		wholeWord.set(false);
-		regexSearch.set(false);
 	}
 	
 	public void showReplace(final boolean isShown) {

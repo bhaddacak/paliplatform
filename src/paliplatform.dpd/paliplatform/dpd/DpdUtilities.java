@@ -1,7 +1,7 @@
 /*
  * DpdUtilities.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -395,7 +395,7 @@ final public class DpdUtilities {
 		if (DpdHeadWordBase.hasData(setFamily)) {
 			result.getChildren().addAll(DpdUtilities.createInfoTextFlow("Set: ", setFamily));
 		}
-		final String notes = hw.getNotes();
+		final String notes = stripTags(hw.getNotes());
 		if (DpdHeadWordBase.hasData(notes))
 			result.getChildren().add(DpdUtilities.createInfoTextFlow("Notes: ", notes));
 		final String familyWord = hw.getFamilyWord();

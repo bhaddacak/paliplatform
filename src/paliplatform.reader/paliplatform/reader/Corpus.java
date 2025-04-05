@@ -79,9 +79,8 @@ public class Corpus {
 	private final List<String> urlList = new ArrayList<>();
 	private final Map<String, DocumentInfo> docInfoMap; // document information map (to doc id)
 	private final int size; // number of docs
-	private final TreeItem<TocTreeNode> treeNode;
-	private final Map<DocumentInfo.SuttaGroup, TreeItem<TocTreeNode>> suttantaGroupMap = new EnumMap<>(DocumentInfo.SuttaGroup.class);
-	private final Map<String, TreeItem<TocTreeNode>> extraSubgroupMap = new HashMap<>(); // for CST4 only
+	private Map<DocumentInfo.SuttaGroup, TreeItem<TocTreeNode>> suttantaGroupMap;
+	private Map<String, TreeItem<TocTreeNode>> extraSubgroupMap; // for CST4 only
 
 	public Corpus(final String name, final String root, final String infoname, final String inArchiveStr) {
 		corpusName = name;
@@ -94,9 +93,6 @@ public class Corpus {
 						? ReaderUtilities.loadScDocInfoMap(this)
 						: ReaderUtilities.loadDocInfoMap(this, infoFileName);
 		size = docInfoMap.size();
-		treeNode = new TreeItem<>(); 
-		treeNode.setGraphic(new TextIcon("folder", TextIcon.IconSet.AWESOME));
-		// setupTreeNodeValue() is required after the corpus is instantiated
 	}
 
 	public String getName() {
@@ -281,13 +277,12 @@ public class Corpus {
 		return result.toString();
 	}
 
-	public TreeItem<TocTreeNode> getTreeNode() {
-		return treeNode;
-	}
-
-	public void setupTreeNodeValue() {
+	public TreeItem<TocTreeNode> createTreeNode() {
+		final TreeItem<TocTreeNode> treeNode = new TreeItem<>();
+		treeNode.setGraphic(new TextIcon("folder", TextIcon.IconSet.AWESOME));
 		treeNode.setValue(new SimpleTocTreeNode(this));
-		suttantaGroupMap.clear();
+		suttantaGroupMap = new EnumMap<>(DocumentInfo.SuttaGroup.class);
+		extraSubgroupMap = new HashMap<>();
 		if (basketGroupList.isEmpty()) {
 			addDocsToNode(treeNode, null, null);
 		} else {
@@ -331,6 +326,7 @@ public class Corpus {
 			}
 			treeNode.getChildren().add(eNode);
 		}
+		return treeNode;
 	}
 
 	private void addSuttaGroups(final TreeItem<TocTreeNode> node) {

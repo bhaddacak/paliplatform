@@ -1,7 +1,7 @@
 /*
  * GramSutFinder.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,11 +55,15 @@ public class GramSutFinder extends SingletonWindow {
 	private final TextField searchTextField;
 	private final ObservableList<SuttaOutput> outputList = FXCollections.<SuttaOutput>observableArrayList();
 	private final VBox toolBarBox = new VBox();
-	private final HBox optionToolBar = new HBox();
+	private final HBox selectorToolBar = new HBox();
+//~ 	private final RadioButton SimpleXrefButton = new RadioButton("Simple");
+	private final CheckMenuItem includeNiruXrefMenuItem = new CheckMenuItem("Include Niru Xref");
+	private final CheckMenuItem includeNiruNoteMenuItem = new CheckMenuItem("Include Niru Notes");
 	private final CheckBox cbNotes = new CheckBox("Notes");
 	private final Set<GrammarText.GrammarBook> bookSelectorSet = EnumSet.noneOf(GrammarText.GrammarBook.class);
 	private final ContextMenu popupMenu = new ContextMenu();											
 	private final Map<GrammarText.GrammarBook, CheckBox> bookCheckBoxMap = new EnumMap<>(GrammarText.GrammarBook.class);
+//~ 	private GrammarSutta.RefType currXrefType = GrammarSutta.RefType.SIMPLE;
 	
 	private GramSutFinder() {
 		windowWidth = Utilities.getRelativeSize(66);
@@ -83,21 +87,41 @@ public class GramSutFinder extends SingletonWindow {
 			final String text = Normalizer.normalize(newValue.trim(), Form.NFC);
 			setOutputList(text);
 		});
-		// notes checkbox
-		cbNotes.setSelected(false);
-		cbNotes.setTooltip(new Tooltip("Show notes"));
-		cbNotes.setOnAction(actionEvent -> setOutputList());
-		// option button
-		final Button optionButton = new Button("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));
-		optionButton.setTooltip(new Tooltip("Inclusion options"));
-		optionButton.setOnAction(actionEvent -> toggleOption());
+		// book selector button
+		final Button openSelectorButton = new Button("", new TextIcon("list-check", TextIcon.IconSet.AWESOME));
+		openSelectorButton.setTooltip(new Tooltip("Book selectors"));
+		openSelectorButton.setOnAction(actionEvent -> toggleSelector());
+		// option menu button
+		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
+		optionsMenu.setTooltip(new Tooltip("Options"));
+		includeNiruXrefMenuItem.setOnAction(actionEvent -> setOutputList());
+		includeNiruNoteMenuItem.setOnAction(actionEvent -> setOutputList());
+		optionsMenu.getItems().addAll(includeNiruXrefMenuItem, includeNiruNoteMenuItem);
+//~ 		// Xref type radios
+//~ 		final ToggleGroup xrefTypeGroup = new ToggleGroup();
+//~ 		SimpleXrefButton.setTooltip(new Tooltip("Simple Xref"));
+//~ 		SimpleXrefButton.setToggleGroup(xrefTypeGroup);
+//~ 		final RadioButton NiruXrefButton = new RadioButton("Niru");
+//~ 		NiruXrefButton.setTooltip(new Tooltip("Xref from Niruttidīpanī"));
+//~ 		NiruXrefButton.setToggleGroup(xrefTypeGroup);
+//~ 		xrefTypeGroup.selectToggle(SimpleXrefButton);
+//~ 		xrefTypeGroup.selectedToggleProperty().addListener((observable) -> {
+//~ 			currXrefType = xrefTypeGroup.getSelectedToggle() == SimpleXrefButton
+//~ 							? GrammarSutta.RefType.SIMPLE
+//~ 							: GrammarSutta.RefType.NIRU;
+//~ 			setOutputList();
+//~ 		});	
+//~ 		// notes checkbox
+//~ 		cbNotes.setSelected(false);
+//~ 		cbNotes.setTooltip(new Tooltip("Show notes (Niruttidīpanī only)"));
+//~ 		cbNotes.setOnAction(actionEvent -> setOutputList());
 		// help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		toolBar.getItems().addAll(new Separator(), searchTextField, searchTextInput.getClearButton(),
-								searchTextInput.getMethodButton(), cbNotes, optionButton, helpButton);
+								searchTextInput.getMethodButton(), openSelectorButton, optionsMenu, helpButton);
 		// prepare for option toolbar
-		optionToolBar.setPadding(new Insets(3));
+		selectorToolBar.setPadding(new Insets(3));
 		// book selectors
 		bookSelectorSet.addAll(GrammarSutta.bookMap.values());
 		final List<GrammarText.GrammarBook> bookList = GrammarSutta.bookMap.values().stream()
@@ -108,7 +132,7 @@ public class GramSutFinder extends SingletonWindow {
 			cb.setSelected(bookSelectorSet.contains(gbook));
 			cb.setOnAction(actionEvent -> selectBook(gbook, cb.isSelected()));
 			bookCheckBoxMap.put(gbook, cb);
-			optionToolBar.getChildren().add(cb);
+			selectorToolBar.getChildren().add(cb);
 		}
 		final Button allButton = new Button("All");
 		allButton.setPadding(new Insets(2));
@@ -116,7 +140,7 @@ public class GramSutFinder extends SingletonWindow {
 		final Button noneButton = new Button("None");
 		noneButton.setPadding(new Insets(2));
 		noneButton.setOnAction(actionEvent -> selectAllBook(false));
-		optionToolBar.getChildren().addAll(allButton, noneButton);
+		selectorToolBar.getChildren().addAll(allButton, noneButton);
 
 		toolBarBox.getChildren().add(toolBar);
 		mainPane.setTop(toolBarBox);
@@ -152,11 +176,11 @@ public class GramSutFinder extends SingletonWindow {
 		infoPopup.setTextWidth(Utilities.getRelativeSize(32));
 	}
 
-	private void toggleOption() {
+	private void toggleSelector() {
 		if (toolBarBox.getChildren().size() > 1)
-			toolBarBox.getChildren().remove(optionToolBar);
+			toolBarBox.getChildren().remove(selectorToolBar);
 		else
-			toolBarBox.getChildren().add(optionToolBar);
+			toolBarBox.getChildren().add(selectorToolBar);
 	}
 
 	private void selectBook(final GrammarText.GrammarBook book, final boolean doAdd) {
@@ -192,11 +216,11 @@ public class GramSutFinder extends SingletonWindow {
 			output = workingList;
 		} else {
 			output = workingList.stream()
-					.filter(x -> x.getOriginal().contains(filter) || x.hasXref(filter))
+					.filter(x -> x.getOriginal().contains(filter) || x.xrefContains(filter))
 					.collect(Collectors.toList());
 		}
 		for (final GrammarSutta st : output)
-			outputList.add(new SuttaOutput(st, cbNotes.isSelected()));
+			outputList.add(new SuttaOutput(st, includeNiruXrefMenuItem.isSelected(), includeNiruNoteMenuItem.isSelected()));
 		// show item count
 		final int count = outputList.size();
 		final String s = count <= 1 ? "" : "s";
@@ -229,7 +253,12 @@ public class GramSutFinder extends SingletonWindow {
 		final SuttaOutput selected = table.getSelectionModel().getSelectedItem();
 		if (selected == null) return;
 		final GrammarSutta sutta = selected.getGramSut();
-		final String seeAlso = sutta.getXrefString().isEmpty() ? "" : " See also: " + sutta.getXrefString();
+		final String xrefSimpleStr = sutta.getXrefString(GrammarSutta.RefType.SIMPLE);
+		final String xrefNiruStr = sutta.getXrefString(GrammarSutta.RefType.NIRU);
+		final String andStr = xrefNiruStr.isEmpty() ? "" : " and ";
+		final String seeAlso = xrefSimpleStr.isEmpty() && xrefNiruStr.isEmpty()
+								? ""
+								: " See also: " + xrefSimpleStr + andStr + xrefNiruStr;
 		message.setText(sutta.getOriginal() + seeAlso);
 	}
 
@@ -282,11 +311,19 @@ public class GramSutFinder extends SingletonWindow {
 		private StringProperty xref;
 		private final GrammarSutta gramSut;
 		
-		public SuttaOutput(final GrammarSutta gsut, final boolean withNotes) {
+		public SuttaOutput(final GrammarSutta gsut, final boolean withNiruXref, final boolean withNotes) {
 			gramSut = gsut;
 			refProperty().set(gsut.getFullRef());
 			suttaProperty().set(gsut.getSuttaBody(withNotes));
-			xrefProperty().set(gsut.getXrefString());
+			final String simpleXref = gsut.getXrefString(GrammarSutta.RefType.SIMPLE);
+			final String niruXref = withNiruXref ? gsut.getXrefString(GrammarSutta.RefType.NIRU) : "";
+			final String commaStr = simpleXref.isEmpty() ? "" : ", ";
+			final String xrefStr = simpleXref.isEmpty() && niruXref.isEmpty()
+									? ""
+									: niruXref.isEmpty()
+										? simpleXref
+										: simpleXref + commaStr + niruXref;
+			xrefProperty().set(xrefStr);
 		}
 		
 		public StringProperty refProperty() {

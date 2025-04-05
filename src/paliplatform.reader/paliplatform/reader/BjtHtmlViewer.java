@@ -260,7 +260,7 @@ public class BjtHtmlViewer extends PaliHtmlViewer {
 		selfInfoBox.getChildren().add(fileNameLbl);
 		final String descStr = nodeInfo.getDescription();
 		if (!descStr.isEmpty()) {
-			final Label descLbl = new Label("» " + descStr);
+			final Label descLbl = new Label("‣ " + descStr);
 			descLbl.setWrapText(true);
 			descLbl.setStyle("-fx-font-size:0.9em;");
 			selfInfoBox.getChildren().add(descLbl);
