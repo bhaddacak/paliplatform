@@ -273,7 +273,8 @@ public class Corpus {
 		result.append(corpusName).append("\n");
 		result.append(description).append("\n\n");
 		result.append("Copyright: " + copyright).append("\n\n");
-		result.append("URL(s):\n" + urlList.stream().collect(Collectors.joining("\n"))).append("\n");
+		if (!urlList.isEmpty())
+			result.append("URL(s):\n" + urlList.stream().collect(Collectors.joining("\n"))).append("\n");
 		return result.toString();
 	}
 

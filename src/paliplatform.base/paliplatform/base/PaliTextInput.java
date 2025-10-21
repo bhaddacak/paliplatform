@@ -1,7 +1,7 @@
 /*
  * PaliTextInput.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +25,13 @@ import java.util.function.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.collections.*;
+import javafx.geometry.Insets;
 import javafx.beans.property.SimpleBooleanProperty;
 
 /** 
  * General Pali text input.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public class PaliTextInput {
@@ -137,6 +138,7 @@ public class PaliTextInput {
 		resetInputMethod();
 		// config default action for buttons
 		clearButton.setOnAction(actionEvent -> input.clear());
+		methodButton.setPadding(new Insets(3));
 		methodButton.setOnAction(actionEvent -> rotateInputMethod());	
 	}
 	

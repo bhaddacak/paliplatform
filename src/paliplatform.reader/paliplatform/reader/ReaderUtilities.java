@@ -56,7 +56,7 @@ import com.google.gson.stream.*;
 /** 
  * The utility factory for the Reader module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 final public class ReaderUtilities {
@@ -583,23 +583,25 @@ final public class ReaderUtilities {
 			final int dpos = sutLine.indexOf(".");
 			final char refCh = shortRef.charAt(0);
 			if (refCh == 'k') {
-				// Kacc and Rupa case
+				// Kacc num format = xxx:yyy [aaa], possibly [aaa, bbb] or [x]
 				final String kRef = shortRef;
-				final int cpos = sutLine.indexOf(",");
-				final String[] rRefs = sutLine.substring(cpos + 1, dpos).split(",");
+				final int bpos1 = sutLine.indexOf("[");
+				final int bpos2 = sutLine.indexOf("]");
+				final String[] rRefs = sutLine.substring(bpos1 + 1, bpos2).split(",");
 				final Set<String> rRefSet = new HashSet<>();
-				for (final String rRef : rRefs)
-					rRefSet.add("r" + rRef.trim());
+				for (final String rRef : rRefs) {
+					if (rRef.indexOf('x') < 0)
+						rRefSet.add("r" + rRef.trim());
+				}
 				gramSutXrefMap.put(kRef, rRefSet);
-				rRefSet.forEach(r -> {
-					final Set<String> kRefSet = gramSutXrefMap.getOrDefault(r, new HashSet<>());
-					kRefSet.add(kRef);
-					gramSutXrefMap.put(r, kRefSet);
-				});
 			} else if (refCh == 'r') {
-				// Rupa case, fill up missing cases, not in Kacc-Rupa relations
+				// Rūpa num format = aaa [xxx:yyy]
 				final String rRef = shortRef;
-				gramSutXrefMap.putIfAbsent(rRef, new HashSet<>());
+				final int bpos1 = sutLine.indexOf("[");
+				final int bpos2 = sutLine.indexOf("]");
+				final String kRef = sutLine.substring(bpos1 + 1, bpos2);
+				final Set<String> kRefSet = Set.of("k" + kRef);
+				gramSutXrefMap.put(rRef, kRefSet);
 			} else if (refCh == 'm') {
 				// Mogg case, fill up missing cases, not in Mogg-Niru relations
 				final String mRef = shortRef;
@@ -723,6 +725,7 @@ final public class ReaderUtilities {
 
 	public static Stage openWindow(final Utilities.WindowType win, final Object[] args) {
 		Stage stg = Utilities.getOpenedWindow(win.getWindowClassName());
+		final String strToLocate = args != null && args.length > 1 ? (String)args[1] : "";
 		switch (win) {
 			case TOCTREE:
 				if (stg == null) {
@@ -735,7 +738,7 @@ final public class ReaderUtilities {
 			case FINDER:
 				if (stg == null) {
 					stg = Utilities.openNewWindow(new DocumentFinder(), 
-							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/magnifying-glass.png")), "Document Finder");
+							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/binoculars.png")), "Document Finder");
 				} else {
 					Utilities.showExistingWindow(stg);
 				}
@@ -753,17 +756,17 @@ final public class ReaderUtilities {
 				final Corpus.Collection nodeColl = node.getCorpus().getCollection();
 				if (stg == null) {
 						if (nodeColl == Corpus.Collection.CSTR)
-							viewer = new CstrHtmlViewer(node);
+							viewer = new CstrHtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.CST4)
-							viewer = new Cst4HtmlViewer(node);
+							viewer = new Cst4HtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.BJT)
-							viewer = new BjtHtmlViewer(node);
+							viewer = new BjtHtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.PTST)
-							viewer = new GretilHtmlViewer(node);
+							viewer = new GretilHtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.SRT)
-							viewer = new SrtHtmlViewer(node);
+							viewer = new SrtHtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.GRAM)
-							viewer = new GramHtmlViewer(node);
+							viewer = new GramHtmlViewer(node, strToLocate);
 						else
 							viewer = new PaliHtmlViewer(node);
 						stg = Utilities.openNewWindow(viewer, 
@@ -786,24 +789,24 @@ final public class ReaderUtilities {
 						else
 							viewer = (PaliHtmlViewer)stg.getScene().getRoot();
 						if (nodeColl == Corpus.Collection.CSTR)
-							((CstrHtmlViewer)viewer).init(node);
+							((CstrHtmlViewer)viewer).init(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.CST4)
-							((Cst4HtmlViewer)viewer).init(node);
+							((Cst4HtmlViewer)viewer).init(node, strToLocate);
 						else
-							viewer.init(node);
+							viewer.init(node, strToLocate);
 					Utilities.showExistingWindow(stg);
 				}
 				break;
 			case VIEWER_SC:
 				final String docId = args == null ? "" : (String)args[0];
 				if (stg == null) {
-					final ScReader reader = new ScReader(docId); 
+					final ScReader reader = new ScReader(docId, strToLocate); 
 					stg = Utilities.openNewWindow(reader,
 							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/sc.png")), "SuttaCentral Text Reader");
 					reader.setStage(stg);
 				} else {
 					final ScReader reader = (ScReader)stg.getScene().getRoot();
-					reader.init(docId);
+					reader.init(docId, strToLocate);
 					Utilities.showExistingWindow(stg);
 				}
 				break;
@@ -816,9 +819,20 @@ final public class ReaderUtilities {
 		return openViewer(node.getCorpus().getCollection(), args);
 	}
 
+	public static Stage openPaliHtmlViewer(final TocTreeNode node, final String strToLocate) {
+		final Object[] args = { node, strToLocate };
+		return openViewer(node.getCorpus().getCollection(), args);
+	}
+
 	public static Stage openScReader(final Corpus.Collection col, final DocumentInfo dinfo) {
 		String docId = dinfo.getId();
 		final Object[] args = { docId };
+		return openViewer(col, args);
+	}
+
+	public static Stage openScReader(final Corpus.Collection col, final DocumentInfo dinfo, final String strToLocate) {
+		String docId = dinfo.getId();
+		final Object[] args = { docId, strToLocate };
 		return openViewer(col, args);
 	}
 

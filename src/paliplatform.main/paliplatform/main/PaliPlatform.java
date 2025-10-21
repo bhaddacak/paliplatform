@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 final public class PaliPlatform extends Application {
@@ -63,7 +63,7 @@ final public class PaliPlatform extends Application {
 	static DictService dictServiceImp;
 	static ReaderService readerServiceImp;
 	static LuceneService luceneServiceImp;
-	public static final InfoPopup infoPopup = new InfoPopup();
+	public static InfoPopup infoPopup;
 	
     @Override
     public void init() throws Exception {
@@ -104,6 +104,7 @@ final public class PaliPlatform extends Application {
 		Utilities.settings = MainProperties.INSTANCE.getSettings();
 		Utilities.setupPaliInputCharMap();
 		Utilities.urls = UrlProperties.INSTANCE.getUrlProps();
+		Utilities.iconSize = Utilities.IconSize.valueOf(Utilities.settings.getProperty("iconsize"));
 
 		// initialize font map
 		Utilities.initializeFontMap();
@@ -115,6 +116,7 @@ final public class PaliPlatform extends Application {
 		Utilities.initializeStringConverter();
 
 		// prepare info popup
+		infoPopup = new InfoPopup();
 		infoPopup.setContentWithText(getTextResource("info-quick-starter.txt"));
 		infoPopup.setTextWidth(Utilities.getRelativeSize(42));
 
@@ -192,6 +194,14 @@ final public class PaliPlatform extends Application {
 		for (final Utilities.WindowType wt : Utilities.WindowType.types) {
 			final Tab tab = persisTabs.get(wt);
 			if (tab != null) {
+				switch (Utilities.iconSize) {
+					case BIG:
+						tab.setStyle("-fx-padding: 0.3em"); break;
+					case BIGGER:
+						tab.setStyle("-fx-padding: 0.5em"); break;
+					case BIGGEST:
+						tab.setStyle("-fx-padding: 0.8em"); break;
+				}
 				tabPane.getTabs().add(tab);
 			}
 		}

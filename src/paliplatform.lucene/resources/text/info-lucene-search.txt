@@ -4,5 +4,5 @@ Lucene Finder's searching guide
 	3. Plus (+) and minus (-) mean 'include' and 'exclude' the term. The absence of both means optional. For example, '+dhammo -vinayo buddho' expects dhammo not vinayo; buddho is optional.
 	4. To search an exact phrase, enter the query in double quotes.
 	5. To search adjacent words, use double quotes with tilde (~). For example, "dhamma vinayo"~3 can search the two terms within 3 adjacent words apart.
-	6. To enter a regular expression query, enclose it with a pair of slashes (/-/). For example, /damm[oā]/ can search either dhammo, or dhammā.
+	6. To enter a regular expression query, enclose it with a pair of slashes (/-/). For example, /dhamm[oā]/ can search either dhammo, or dhammā. In this mode, do not use a greedy pattern /dhamm.*/, but use /dhamm.*?/ instead.
 	7. For more details of search syntax, see the user's manual.

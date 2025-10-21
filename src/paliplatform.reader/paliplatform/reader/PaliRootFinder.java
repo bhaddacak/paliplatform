@@ -43,7 +43,7 @@ import javafx.collections.ObservableList;
  * The window showing all Pali roots with search function.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class PaliRootFinder extends SingletonWindow {
@@ -326,13 +326,18 @@ public class PaliRootFinder extends SingletonWindow {
 	}
 	
 	private void openDoc() {
-		final String bookId = ((RootDef)popupMenu.getUserData()).getBook().toString().toLowerCase();
+		final RootDef rootDef = (RootDef)popupMenu.getUserData();
+		final String bookId = rootDef.getBook().toString().toLowerCase();
+		final int refNum = rootDef.getRefNum();
+		final String strRefNum = rootDef.getBook() == RootDef.RootBook.SADDDHA
+									? "[" + refNum + "]"
+									: refNum + ".";
 		final Corpus cp = ReaderUtilities.corpusMap.get(Corpus.Collection.GRAM);
 		final DocumentInfo dinfo = cp.getDocInfo(bookId);
 		if (dinfo != null && !dinfo.getFileNameWithExt().isEmpty()) {
 			final TocTreeNode node = dinfo.toTocTreeNode();
 			if (Utilities.checkFileExistence(node.getNodeFile()))
-				ReaderUtilities.openPaliHtmlViewer(node);
+				ReaderUtilities.openPaliHtmlViewer(node, strRefNum);
 		}
 	}
 

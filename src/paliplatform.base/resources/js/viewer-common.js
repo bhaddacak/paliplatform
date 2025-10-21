@@ -1,7 +1,7 @@
 /*
  * viewer-common.js
  *
- * Copyright (C) 2023 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,6 +105,9 @@ function openNewDict(term) {
 function findNext(query, caseSensitive, direction) {
 	const backWard = parseInt(direction) < 0 ? true : false;
 	simpleSearch(query, caseSensitive, backWard);
+}
+function findSingleQuiet(query) {
+	window.find(query, true, false, true, false, false, false);
 }
 function simpleSearch(query, caseSensitive, backWard) {
 	const found = window.find(query, caseSensitive, backWard, true, false, false, false);

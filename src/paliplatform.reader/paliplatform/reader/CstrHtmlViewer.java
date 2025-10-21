@@ -35,12 +35,13 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.beans.property.*;
 import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 /** 
  * The viewer of CST-restructured Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class CstrHtmlViewer extends PaliHtmlViewer {
@@ -64,7 +65,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	private boolean showNotes = true;
 	private String recentJS = "";
 
-	public CstrHtmlViewer(final TocTreeNode node) {
+	public CstrHtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.CSTR_CSS).toExternalForm());
 
@@ -228,16 +229,18 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		setCenter(splitPane);
 		helpInfoPopup.setContentWithText(ReaderUtilities.getTextResource("info-cstrviewer.txt"));
 		helpInfoPopup.setTextWidth(Utilities.getRelativeSize(34));
-		init(node);
+		init(node, strToLocate);
 	}
 
-	public void init(final TocTreeNode node) {
+	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
 		Platform.runLater(() ->	{
 			showNoteButton.setSelected(true);
 			rightPane.setCenter(createInfoBox());
 			loadContent();
 			initFindInput();
+			if (!strToLocate.isEmpty())
+				setInitialStringToLocate(strToLocate);
 		});
 	}
 
@@ -247,33 +250,52 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	}
 
 	private VBox createInfoBox() {
+		final StringBuilder infoContent = new StringBuilder(); // for clipboard copy
 		final VBox selfInfoBox = new VBox();
 		final String nodeId = thisDoc.getNodeId();
 		final Corpus corpus = thisDoc.getCorpus();
 		nodeInfo = getNodeInfo();
+		final AnchorPane groupClassBar = new AnchorPane();
 		final Label groupClassLbl = new Label(nodeInfo.getGroupStr() + " (" + corpus.getRootName().toUpperCase() + ")");
 		groupClassLbl.setStyle("-fx-font-size:0.8em;");
-		final VBox groupClassBox = new VBox(groupClassLbl); 
-		groupClassBox.setAlignment(Pos.TOP_CENTER);
+		infoContent.append(groupClassLbl.getText()).append("\n");
+		final Button copyButton = new Button("", new TextIcon("copy", TextIcon.IconSet.AWESOME, Utilities.IconSize.SMALL));
+		copyButton.setPadding(new Insets(2));
+		copyButton.setTooltip(new Tooltip("Copy information"));
+		copyButton.setOnAction(actionEvent -> {
+			final Clipboard clipboard = Clipboard.getSystemClipboard();
+			final ClipboardContent content = new ClipboardContent();
+			content.putString(infoContent.toString());
+			clipboard.setContent(content);
+		});
+		AnchorPane.setTopAnchor(groupClassLbl, 0.0);
+		AnchorPane.setLeftAnchor(groupClassLbl, 0.0);
+		AnchorPane.setTopAnchor(copyButton, 0.0);
+		AnchorPane.setRightAnchor(copyButton, 0.0);
+		groupClassBar.getChildren().addAll(groupClassLbl, copyButton);
 		final String nodeName = thisDoc.getNodeName();
 		final Label textNameLbl = new Label(nodeName);
 		textNameLbl.getStyleClass().add("emphasized");
-		selfInfoBox.getChildren().addAll(groupClassBox, textNameLbl);
+		infoContent.append(textNameLbl.getText()).append("\n");
+		selfInfoBox.getChildren().addAll(groupClassBar, textNameLbl);
 		final List<String> altNames = nodeInfo.getAltNames();
 		if (!altNames.isEmpty()) {
 			final String altNameStr = altNames.stream().collect(Collectors.joining(", "));
 			final Label altNameLbl = new Label("  [" + altNameStr + "]");
 			altNameLbl.setStyle("-fx-font-size:0.9em;");
+			infoContent.append(altNameLbl.getText()).append("\n");
 			selfInfoBox.getChildren().add(altNameLbl);
 		}
 		final Label fileNameLbl = new Label("  File: " + nodeInfo.getFileNameWithExt());
 		fileNameLbl.setStyle("-fx-font-size:0.8em;");
+		infoContent.append(fileNameLbl.getText()).append("\n");
 		selfInfoBox.getChildren().add(fileNameLbl);
 		final String descStr = nodeInfo.getDescription();
 		if (!descStr.isEmpty()) {
 			final Label descLbl = new Label("‣ " + descStr);
 			descLbl.setWrapText(true);
 			descLbl.setStyle("-fx-font-size:0.9em;");
+			infoContent.append(descLbl.getText()).append("\n");
 			selfInfoBox.getChildren().add(descLbl);
 		}
 		// add relative links information

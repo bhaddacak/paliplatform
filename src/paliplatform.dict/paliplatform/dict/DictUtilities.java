@@ -48,7 +48,7 @@ import com.google.gson.Gson;
 /** 
  * The utility factory for the Dict module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 final public class DictUtilities {
@@ -72,7 +72,8 @@ final public class DictUtilities {
 	public static enum DictBook {
 		CPED("Concise Pāli-English Dictionary"), CEPD("Concise English-Pāli Dictionary"),
 		NCPED("New Concise Pāli-English Dictionary"), PTSD("PTS Pāli-English Dictionary"),
-		DPPN("Dictionary of Pāli Proper Names"), MDPD("Mini Digital Pāḷi Dictionary");
+		DPPN("Dictionary of Pāli Proper Names"), MDPD("Mini Digital Pāḷi Dictionary"),
+		CONE("Margaret Cone's Dictionary of Pāli");;
 		public static final DictBook[] books = values();
 		public final String bookName;
 		public final String csvName;
@@ -257,6 +258,10 @@ final public class DictUtilities {
 				prop.set(true);
 		});
 		dictAvailMap.get(DictBook.MDPD).bind(Utilities.ppdpdAvailMap.get(Utilities.PpdpdTable.MINIDPD));
+		final boolean coneAvailable = Utilities.isDBPresent(Utilities.H2DB.CONE);
+		if (Utilities.isDBWritable(Utilities.H2DB.CONE))
+			Utilities.setDBWritable(Utilities.H2DB.CONE, false);
+		dictAvailMap.get(DictBook.CONE).bind(new SimpleBooleanProperty(coneAvailable));
 		someDictAvailable.set(dictAvailMap.values().stream().anyMatch(x -> x.get()));
 	}
 
@@ -335,7 +340,8 @@ final public class DictUtilities {
 				if (work != null)
 					taskMap.put(dic, CompletableFuture.runAsync(work, Utilities.threadPool));
 			} else {
-				failed.add(dic);
+				if (dic != DictBook.CONE)
+					failed.add(dic);
 			}
 		}
 		if (failed.isEmpty()) {
@@ -506,6 +512,26 @@ final public class DictUtilities {
 		final List<String> meanings = new ArrayList<>();
 		final String query = "SELECT MEANING FROM " + dic.toString() + " WHERE TERM = '" + term + "';";
 		final java.sql.Connection conn = Utilities.H2DB.DICT.getConnection();
+		try {
+			if (conn != null) {
+				final Statement stmt = conn.createStatement();
+				final ResultSet rs = stmt.executeQuery(query);
+				while (rs.next()) {
+					meanings.add(rs.getString(1));
+				}
+				rs.close();		
+				stmt.close();
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		return meanings;	
+	}
+
+	public static List<String> lookUpConeFromDB(final String term) {
+		final List<String> meanings = new ArrayList<>();
+		final String query = "SELECT MEANING FROM DICT WHERE TERM = '|" + term + "';";
+		final java.sql.Connection conn = Utilities.H2DB.CONE.getConnection();
 		try {
 			if (conn != null) {
 				final Statement stmt = conn.createStatement();

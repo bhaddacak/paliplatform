@@ -1,7 +1,7 @@
 /*
  * SimpleDocumentInfo.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ import javafx.beans.property.*;
 /** 
  * The simplest information class for a document in the collections.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 
@@ -42,6 +42,7 @@ public class SimpleDocumentInfo implements DocumentInfo {
 	private StringProperty refProp;
 	private StringProperty fileNameProp;
 	private IntegerProperty searchResultCountProp;
+	private List<String> matchResults;
 
 	public SimpleDocumentInfo(final Corpus corp, final String idStr) {
 		corpus = corp;
@@ -147,6 +148,16 @@ public class SimpleDocumentInfo implements DocumentInfo {
 		if (searchResultCountProp == null)
 			searchResultCountProp = new SimpleIntegerProperty(this, "searchResultCountProp");
 		return searchResultCountProp;
+	}
+
+	@Override
+	public void setMatchResult(final List<String> result) {
+		matchResults = result;
+	}
+
+	@Override
+	public List<String> getMatchResult() {
+		return matchResults == null ? Collections.emptyList() : matchResults;
 	}
 
 	@Override

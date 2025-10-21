@@ -1,7 +1,7 @@
 /*
  * DictUtil.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
 import java.net.*;
+import java.sql.*;
 import com.google.gson.stream.*;
 
 /** 
@@ -36,7 +37,7 @@ import com.google.gson.stream.*;
  * $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 final public class DictUtil {
@@ -52,6 +53,7 @@ final public class DictUtil {
 			printHelpAndExit();
 		}
 		String opt = "";
+		String param = "";
 		switch (args[0]) {
 			case "list":
 				printUrls();
@@ -66,6 +68,15 @@ final public class DictUtil {
 					getPtsped(true);
 				} else if (opt.equals("-px")) {
 					getPtsped(false);
+				} else {
+					printHelpAndExit();
+				}
+				break;
+			case "create":
+				opt = args.length > 1 ? args[1] : "";
+				param = args.length > 2 ? args[2] : "";
+				if (opt.equals("-c") && !param.isEmpty()) {
+					createConeDB(param);
 				} else {
 					printHelpAndExit();
 				}
@@ -92,6 +103,8 @@ final public class DictUtil {
 		help.append("        -nx\tMake NCPED CSV (skip download if the file exists)").append(LINESEP);
 		help.append("        -p\tDownload PTSPED and make its CSV").append(LINESEP);
 		help.append("        -px\tMake PTSPED CSV (skip download if the file exists)").append(LINESEP);
+		help.append("    create\tCreate data/db").append(LINESEP);
+		help.append("        -c <tabfile>\tCreate Margaret Cone's dict DB with a tabfile").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
@@ -330,6 +343,51 @@ final public class DictUtil {
 		final File ptspedCsv = new File(DictUtilities.DICTPATH + "ptsd.csv");
 		Utilities.saveCSV(csvOut, ptspedCsv);
 		printLog("Writng out " + ptspedCsv.getPath());
+	}
+
+	private static void createConeDB(final String tabfileName) throws Exception {
+		final File tabfile = new File(tabfileName);
+		if (!tabfile.exists()) {
+			printLog("Tabfile not found, operation aborted");
+			System.exit(0);
+		}
+		final Utilities.H2DB coneDB = Utilities.H2DB.CONE;
+		final String dbName = coneDB.getNameWithExt();
+		if (Utilities.isDBPresent(coneDB)) {
+			printLog(dbName + " already existed, operation aborted");
+			System.exit(0);
+		} else {
+			printLog("Reading tabfile...");
+			final List<String> tabData = Files.readAllLines(tabfile.toPath(), StandardCharsets.UTF_8);
+			final int total = tabData.size();
+			printLog(total + " records read");
+			printLog("Initializing DB...");
+			Utilities.initializeConeDB();
+			final java.sql.Connection conn = coneDB.getConnection();
+			final String create = "CREATE TABLE DICT (" +
+				"ID INT PRIMARY KEY," +
+				"TERM VARCHAR(255) NOT NULL," +
+				"MEANING CLOB);";
+			Utilities.executeSQL(conn, create);
+			final String insert = "INSERT INTO DICT VALUES(?, ?, ?);";
+			final PreparedStatement pstm = conn.prepareStatement(insert);
+			for (int i = 0; i < total; i++) {
+				pstm.setInt(1, i + 1);
+				final String[] item = tabData.get(i).split("\t");
+				final String term = "|" + item[0];
+				pstm.setString(2, term);
+				pstm.setString(3, item[1]);
+				pstm.executeUpdate();
+				if ((i + 1) % 2000 == 0 || i == total - 1)
+					printLog((i + 1) + "/" + total + " records created");
+			}
+			pstm.close();
+			printLog("Creating index...");
+			final String index = "CREATE INDEX IDX_DICT ON DICT(TERM);";
+			Utilities.executeSQL(conn, index);
+			printLog(dbName + " creation done");
+			conn.close();
+		}
 	}
 
 	// inner classes

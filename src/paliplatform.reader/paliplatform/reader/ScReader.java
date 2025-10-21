@@ -72,9 +72,10 @@ public class ScReader extends PaliHtmlViewerBase {
 	private final ChoiceBox<String> transLangChoice = new ChoiceBox<>();
 	private final ToggleGroup scriptLangGroup = new ToggleGroup();
 	private Utilities.PaliScript currFontScript = Utilities.PaliScript.ROMAN; // for Myanmar and the rest
+	private String initialStringToLocate = "";
 	private ScDocument currDoc = null;
 
-	public ScReader(final String docId) {
+	public ScReader(final String docId, final String strToLocate) {
 		super();
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.SC_CSS).toExternalForm());
 		// Set the member for the browser's window object after the document loads
@@ -84,6 +85,8 @@ public class ScReader extends PaliHtmlViewerBase {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
 				webEngine.executeScript("init(0)");
+				if (!initialStringToLocate.isEmpty())
+					findSingle(initialStringToLocate);
 				setViewerTheme(Utilities.settings.getProperty("theme"));
 				setViewerFont(currFontScript);
 			}
@@ -198,10 +201,10 @@ public class ScReader extends PaliHtmlViewerBase {
 		// initialization
 		helpInfoPopup.setContentWithText(ReaderUtilities.getTextResource("info-screader.txt"));
 		helpInfoPopup.setTextWidth(Utilities.getRelativeSize(36));
-		init(docId);
+		init(docId, strToLocate);
 	}
 	
-	public void init(final String docId) {
+	public void init(final String docId, final String strToLocate) {
 		super.init();
 		if (!ReaderUtilities.scHeadFile.exists())
 			ReaderUtilities.createScHeads();
@@ -228,6 +231,9 @@ public class ScReader extends PaliHtmlViewerBase {
 			} else {
 				loadContent(new StringPair(docId, ""), false);
 			}
+			initFindInput();
+			if (!strToLocate.isEmpty())
+				setInitialStringToLocate(strToLocate);
 		});
 	}
 
@@ -235,6 +241,11 @@ public class ScReader extends PaliHtmlViewerBase {
 		final String id = pair.getFirst();
 		String info = pair.getSecond();
 		return ScDocument.getTextName(id, info);
+	}
+
+	public void setInitialStringToLocate(final String token) {
+		initialStringToLocate = token;
+		setFindInputText(token);
 	}
 
 	private void loadContent(final StringPair item, final boolean useNav) {

@@ -1,7 +1,7 @@
 /*
  * Sentence.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import com.google.gson.stream.*;
 /** 
  * The representation of a Pali sentence, used in SentenceManager.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public class Sentence {
@@ -61,7 +61,7 @@ public class Sentence {
 
 	public Sentence(final String strHash, final String bareText, final String editText) {
 		if (strHash.isEmpty())
-			hash = SentenceUtilities.MD5Sum(bareText);
+			hash = Utilities.MD5Sum(bareText);
 		else
 			hash = strHash;
 		text = bareText;
@@ -206,7 +206,7 @@ public class Sentence {
 	}
 
 	public boolean isValid() {
-		return hash.equals(SentenceUtilities.MD5Sum(text));
+		return hash.equals(Utilities.MD5Sum(text));
 	}
 
 	public File getFile() {

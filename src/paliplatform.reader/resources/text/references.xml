@@ -1437,13 +1437,13 @@
  <ref id="mogg">
  	<name>Moggallānabyākaraṇaṃ</name>
  	<cst4>Mogg</cst4>
- 	<gram>Mogg:Payo</gram>
+ 	<gram>Mogg</gram>
  </ref>
  <ref id="kacc">
  	<name>Kaccāyanabyākaraṇaṃ</name>
  	<acad>Kacc</acad>
  	<cst4>Kacc</cst4>
- 	<gram>Kacc:Rūpa</gram>
+ 	<gram>Kacc</gram>
  </ref>
  <ref id="sadd">
  	<name>Saddanītippakaraṇaṃ</name>
@@ -1457,7 +1457,7 @@
  <ref id="rupa">
  	<name>Padarūpasiddhi</name>
  	<cst4>Rūpa</cst4>
- 	<gram>Kacc:Rūpa</gram>
+ 	<gram>Rūpa</gram>
  </ref>
  <ref id="panc-t">
  	<name>Moggallānapañcikāṭīkā</name>
@@ -1467,7 +1467,7 @@
  <ref id="payo">
  	<name>Payogasiddhi</name>
  	<cst4>Payo</cst4>
- 	<gram>Mogg:Payo</gram>
+ 	<gram>Payo</gram>
  </ref>
  <ref id="vutt">
  	<name>Vuttodayaṃ</name>
@@ -1496,6 +1496,7 @@
  <ref id="blv">
  	<name>Bālāvatāra</name>
  	<cst4>Blv</cst4>
+ 	<gram>Blv</gram>
  </ref>
  <ref id="dpv">
  	<name>Dīghanikāye (pu-vi)</name>
@@ -1649,5 +1650,13 @@
  <ref id="dhatva">
  	<name>Dhātvatthasaṅgaha</name>
  	<gram>Dhātva</gram>
+ </ref>
+ <ref id="mmd">
+ 	<name>Mukhamattadīpanī (Nyāsa)</name>
+ 	<gram>Mmd</gram>
+ </ref>
+ <ref id="kaccsn">
+	<name>Kaccāyanasuttaniddesa</name>
+ 	<gram>Kacc-sn</gram>
  </ref>
 </references>

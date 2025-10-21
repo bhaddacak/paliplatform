@@ -1,7 +1,7 @@
 /*
  * InfoPopup.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ import java.io.IOException;
 /** 
  * General information popup, normally used for a specific guideline.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public class InfoPopup extends Popup {
@@ -49,6 +49,7 @@ public class InfoPopup extends Popup {
 		final AnchorPane titleBar = new AnchorPane();
 		final Button copyButton = new Button("", new TextIcon("copy", TextIcon.IconSet.AWESOME));
 		copyButton.setTooltip(new Tooltip("Copy all text in the box"));
+		copyButton.setPadding(new Insets(5));
 		copyButton.setOnAction(actionEvent -> copyContent());
 		AnchorPane.setTopAnchor(title, 0.0);
 		AnchorPane.setLeftAnchor(title, 0.0);

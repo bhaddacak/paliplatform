@@ -28,7 +28,7 @@ import java.util.stream.*;
  * The representation of a grammatical sutta.
  * This is mainly used in GramSutFinder. 
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class GrammarSutta {
@@ -58,9 +58,11 @@ public class GrammarSutta {
 		book = bookMap.get(bookName);
 		final int firstDotPos = input.indexOf(".");
 		final int bodyStart;
-		if (book == GrammarText.GrammarBook.KACC) {
+		if (book == GrammarText.GrammarBook.KACC || book == GrammarText.GrammarBook.RUPA) {
+			// Kacc num format = xxx:yyy [aaa], possibly [aaa, bbb] or [x]
+			// Rūpa num format = aaa [xxx:yyy]
 			suttaNumber = input.substring(sPos + 1, input.indexOf("."));
-			bodyStart = input.charAt(firstDotPos + 1) == '.' ? firstDotPos + 3 : firstDotPos + 2;
+			bodyStart = firstDotPos + 2;
 		} else if (book == GrammarText.GrammarBook.MOGG || book == GrammarText.GrammarBook.PAYO) {
 			// these two have decimal form
 			final int secondDotPos = input.indexOf(".", firstDotPos + 1);
@@ -71,11 +73,10 @@ public class GrammarSutta {
 			bodyStart = firstDotPos + 2;
 		}
 		suttaBody = input.substring(bodyStart);
-		final String shortNum = book == GrammarText.GrammarBook.KACC
-								? suttaNumber.substring(0, suttaNumber.indexOf(",")) // Kacc uses only before comma
+		final String shortNum = book == GrammarText.GrammarBook.KACC || book == GrammarText.GrammarBook.RUPA
+								? suttaNumber.substring(0, suttaNumber.indexOf(" ")) // Kacc and Rūpa uses only the first part
 								: book == GrammarText.GrammarBook.PAYO
 									? suttaNumber.substring(suttaNumber.indexOf("[") + 1, suttaNumber.indexOf("]")) // Payo uses number in brackets
-//~ 									? suttaNumber.substring(suttaNumber.indexOf("]") + 2) // Payo uses Mogg number
 									: suttaNumber;
 		shortRef = Character.toLowerCase(book.toString().charAt(0)) + shortNum;
 		original = input;
@@ -83,9 +84,6 @@ public class GrammarSutta {
 			ReaderUtilities.gramSutRefComparator = ReaderUtilities.getReferenceComparator(ReaderUtilities.corpusMap.get(Corpus.Collection.GRAM));
 		for (final RefType rtype : RefType.values) {
 			xrefMap.put(rtype, new HashSet<>());
-//~ 			xrefMap.put(rtype, processXref(shortRef, rtype));
-//~ 			final String refStr = xrefMap.get(rtype).stream().sorted(ReaderUtilities.gramSutRefComparator).collect(Collectors.joining(", "));
-//~ 			xrefStringMap.put(rtype, refStr);
 		}
 	}
 
@@ -112,6 +110,10 @@ public class GrammarSutta {
 		return shortRef;
 	}
 
+	public String getSuttaNumber() {
+		return suttaNumber;
+	}
+
 	public String getOriginal() {
 		return original;
 	}
@@ -136,19 +138,5 @@ public class GrammarSutta {
 		boolean result = xrefMap.get(RefType.SIMPLE).stream().filter(x -> x.indexOf(needle) > -1).findFirst().isPresent();
 		return result ? result : xrefMap.get(RefType.NIRU).stream().filter(x -> x.indexOf(needle) > -1).findFirst().isPresent();
 	}
-
-//~ 	private static Set<String> processXref(final String ref, final RefType rtype) {
-//~ 		final Set<String> result = new HashSet<>();
-//~ 		if (rtype == RefType.NIRU) {
-//~ 			final String thisRef = ref.startsWith("p") ? "m" + ref.substring(1) + "," : ref + ","; // Payo uses Mogg
-//~ 			for (final String line : ReaderUtilities.gramSutNiruXrefList) {
-//~ 				if (line.contains(thisRef)) {
-//~ 					result.addAll(Arrays.asList(line.split(",")));
-//~ 				}
-//~ 			}
-//~ 		} else {
-//~ 		}
-//~ 		return result;
-//~ 	}
 
 }

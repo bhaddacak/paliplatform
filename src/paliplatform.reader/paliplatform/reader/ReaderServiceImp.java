@@ -30,7 +30,7 @@ import javafx.scene.layout.HBox;
 /** 
  * An implementation of Reader service.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class ReaderServiceImp implements ReaderService {
@@ -67,7 +67,7 @@ public class ReaderServiceImp implements ReaderService {
 	public Tab getDocumentFinderTab() {
 		docFinderTab = new Tab("Document Finder");
 		docFinderTab.setClosable(false);
-		final TextIcon findIcon = new TextIcon("magnifying-glass", TextIcon.IconSet.AWESOME);
+		final TextIcon findIcon = new TextIcon("binoculars", TextIcon.IconSet.AWESOME);
 		docFinderTab.setGraphic(findIcon);
 		final Button loadButton = new Button("Load");
 		loadButton.setDisable(ReaderUtilities.corpusMap == null || ReaderUtilities.corpusMap.isEmpty());
@@ -86,7 +86,7 @@ public class ReaderServiceImp implements ReaderService {
 	}
 
 	@Override
-	public void openDocument(final String colId, final String docId) {
+	public void openDocument(final String colId, final String docId, final String strToLocate) {
 		final Corpus.Collection col = Corpus.Collection.valueOf(colId.toUpperCase());
 		final Corpus cp = ReaderUtilities.corpusMap.get(col);
 		if (cp == null || !cp.isAvailable()) return;
@@ -94,11 +94,18 @@ public class ReaderServiceImp implements ReaderService {
 		final DocumentInfo dinfo = docInfoMap.get(docId);
 		if (dinfo == null) return;
 		if (col == Corpus.Collection.SC) {
-			ReaderUtilities.openScReader(col, dinfo);
+			if (strToLocate.isEmpty())
+				ReaderUtilities.openScReader(col, dinfo);
+			else
+				ReaderUtilities.openScReader(col, dinfo, strToLocate);
 		} else {
 			final TocTreeNode node = dinfo.toTocTreeNode();
-			if (Utilities.checkFileExistence(node.getNodeFile()))
-				ReaderUtilities.openPaliHtmlViewer(node);
+			if (Utilities.checkFileExistence(node.getNodeFile())) {
+				if (strToLocate.isEmpty())
+					ReaderUtilities.openPaliHtmlViewer(node);
+				else
+					ReaderUtilities.openPaliHtmlViewer(node, strToLocate);
+			}
 		}
 	}
 

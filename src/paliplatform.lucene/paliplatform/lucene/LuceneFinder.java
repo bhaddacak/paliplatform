@@ -70,7 +70,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 /** 
  * Advanced document finder using Apache Lucene.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public class LuceneFinder extends BorderPane {
@@ -254,7 +254,7 @@ public class LuceneFinder extends BorderPane {
 		openDocMenuItem.setOnAction(actionEvent -> openCurrentDoc());
 		searchResultPopupMenu.getItems().addAll(openDocMenuItem);
 		// init
-		setPrefWidth(Utilities.getRelativeSize(60));
+		setPrefWidth(Utilities.getRelativeSize(61));
 		setPrefHeight(Utilities.getRelativeSize(32));
 		if (LuceneUtilities.simpleServiceMap == null) 
 			LuceneUtilities.simpleServiceMap = LuceneUtilities.getSimpleServices();
@@ -650,64 +650,62 @@ public class LuceneFinder extends BorderPane {
 		final Map<Integer, Map<TermInfo.Field, StringBuilder>> resultTextMap = new HashMap<>();
 		final Corpus.Collection col = currCorpus.getCollection();
 		try {
-			if (showSearchDetailButton.isSelected()) {
-				// prepare text of each result
-				if (col == Corpus.Collection.CSTR) {
-					for (final SearchOutput so : outputList) {
-						final int docID = so.getDocID();
-						if (!resultTextMap.containsKey(docID)) {
-							final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
-							final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
-							final File docFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + currCorpus.getRootName() + File.separator, filename);
-							final TextHandler handler = new CstrTextHandler(textMap);
-							handler.processFile(docFile);
-							resultTextMap.put(docID, textMap);
-						}
+			// prepare text of each result
+			if (col == Corpus.Collection.CSTR) {
+				for (final SearchOutput so : outputList) {
+					final int docID = so.getDocID();
+					if (!resultTextMap.containsKey(docID)) {
+						final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
+						final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
+						final File docFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + currCorpus.getRootName() + File.separator, filename);
+						final TextHandler handler = new CstrTextHandler(textMap);
+						handler.processFile(docFile);
+						resultTextMap.put(docID, textMap);
 					}
-				} else if (col == Corpus.Collection.CST4) {
-					final SAXParserFactory spf = SAXParserFactory.newInstance();
-					final SAXParser saxParser = spf.newSAXParser();
-					final ZipFile zip = new ZipFile(currCorpus.getZipFile());
-					for (final SearchOutput so : outputList) {
-						final int docID = so.getDocID();
-						if (!resultTextMap.containsKey(docID)) {
-							final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
-							final DefaultHandler handler = new Cst4SAXHandler(textMap);
-							final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
-							final ZipEntry entry = zip.getEntry(filename);
-							if (entry != null)
-								saxParser.parse(zip.getInputStream(entry), handler);
-							resultTextMap.put(docID, textMap);
-						}
-					}
-					zip.close();
-				} else if (col == Corpus.Collection.SC || col == Corpus.Collection.PTST || col == Corpus.Collection.BJT
-							|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM) {
-					final ZipFile zip = new ZipFile(currCorpus.getZipFile());
-					for (final SearchOutput so : outputList) {
-						final int docID = so.getDocID();
-						if (!resultTextMap.containsKey(docID)) {
-							final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
-							final TextHandler handler;
-							if (col == Corpus.Collection.SC)
-								handler = new ScTextHandler(textMap);
-							else if (col == Corpus.Collection.PTST)
-								handler = new PtstTextHandler(textMap);
-							else if (col == Corpus.Collection.BJT)
-								handler = new BjtTextHandler(textMap);
-							else if (col == Corpus.Collection.SRT)
-								handler = new SrtTextHandler(textMap);
-							else
-								handler = new GramTextHandler(textMap);
-							final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
-							final ZipEntry entry = zip.getEntry(filename);
-							if (entry != null)
-								handler.processStream(zip.getInputStream(entry));
-							resultTextMap.put(docID, textMap);
-						}
-					}
-					zip.close();
 				}
+			} else if (col == Corpus.Collection.CST4) {
+				final SAXParserFactory spf = SAXParserFactory.newInstance();
+				final SAXParser saxParser = spf.newSAXParser();
+				final ZipFile zip = new ZipFile(currCorpus.getZipFile());
+				for (final SearchOutput so : outputList) {
+					final int docID = so.getDocID();
+					if (!resultTextMap.containsKey(docID)) {
+						final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
+						final DefaultHandler handler = new Cst4SAXHandler(textMap);
+						final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
+						final ZipEntry entry = zip.getEntry(filename);
+						if (entry != null)
+							saxParser.parse(zip.getInputStream(entry), handler);
+						resultTextMap.put(docID, textMap);
+					}
+				}
+				zip.close();
+			} else if (col == Corpus.Collection.SC || col == Corpus.Collection.PTST || col == Corpus.Collection.BJT
+						|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM) {
+				final ZipFile zip = new ZipFile(currCorpus.getZipFile());
+				for (final SearchOutput so : outputList) {
+					final int docID = so.getDocID();
+					if (!resultTextMap.containsKey(docID)) {
+						final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
+						final TextHandler handler;
+						if (col == Corpus.Collection.SC)
+							handler = new ScTextHandler(textMap);
+						else if (col == Corpus.Collection.PTST)
+							handler = new PtstTextHandler(textMap);
+						else if (col == Corpus.Collection.BJT)
+							handler = new BjtTextHandler(textMap);
+						else if (col == Corpus.Collection.SRT)
+							handler = new SrtTextHandler(textMap);
+						else
+							handler = new GramTextHandler(textMap);
+						final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
+						final ZipEntry entry = zip.getEntry(filename);
+						if (entry != null)
+							handler.processStream(zip.getInputStream(entry));
+						resultTextMap.put(docID, textMap);
+					}
+				}
+				zip.close();
 			}
 			final Analyzer analyzer = new PaliIndexAnalyzer(currCorpus);
 			for (int i = 0; i < outputList.size(); i++) {       
@@ -719,13 +717,15 @@ public class LuceneFinder extends BorderPane {
 				final String docInfoStr = docInfo.getTextName() + 
 										String.format(" [Score: %.4f] (%s)", soutput.getScore(), soutput.getField().getTag());
 				final TitledPane tpane;
+				final String text = resultTextMap.get(soutput.getDocID()).get(soutput.getField()).toString()
+												.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
+				final List<String> queryList = makeQueryList(strQuery);
+				final List<String> matchedTerms = getMatchedTerms(text, queryList);
 				if (showSearchDetailButton.isSelected()) {
 					final StringBuilder resultText = new StringBuilder();
-					final String text = resultTextMap.get(soutput.getDocID()).get(soutput.getField()).toString()
-													.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
 					if (showWholeLineMenuItem.isSelected()) {
 						// use custom fragmenter
-						resultText.append(getFragmentManually(text, strQuery, true));
+						resultText.append(getFragmentManually(text, queryList, true));
 					} else {
 						// use Lucene fragmenter
 						final QueryParser parser = new QueryParser(soutput.getField().getTag(), analyzer);
@@ -748,7 +748,7 @@ public class LuceneFinder extends BorderPane {
 							}
 						} else {
 							// highlighter fails, use custom fragmenter instead
-							resultText.append(getFragmentManually(text, strQuery, false));
+							resultText.append(getFragmentManually(text, queryList, false));
 						}
 					}
 					tpane = new TitledPane(docInfoStr, createTextFlow(resultText.toString()));
@@ -757,6 +757,7 @@ public class LuceneFinder extends BorderPane {
 					tpane = new TitledPane(docInfoStr, null); 
 					tpane.setCollapsible(false);
 				}
+				docInfo.setMatchResult(matchedTerms);
 				tpane.setUserData(docInfo);
 				tpane.setContextMenu(searchResultPopupMenu);
 				tpane.setOnContextMenuRequested(cmevent -> {
@@ -770,13 +771,12 @@ public class LuceneFinder extends BorderPane {
 		}
 	}
 
-	private String getFragmentManually(final String text, final String strQuery, final boolean isWholeLine) {
-		// (1) generate query word list (those need highlight)
-		final List<String> wlist = new ArrayList<>();
+	private List<String> makeQueryList(final String strQuery) {
+		final List<String> result = new ArrayList<>();
 		if (strQuery.charAt(0) == '/' && strQuery.charAt(strQuery.length()-1) == '/') {
 			// it is regex query, take it as a whole
 			final String rxStr = strQuery.substring(1, strQuery.length()-1);
-			wlist.add(rxStr);
+			result.add(rxStr);
 		} else {
 			String strProcessed;
 			strProcessed = strQuery.replaceAll("[&+|/!^~(){}\\[\\]\\-\\\\]", " "); // strip off symbols
@@ -804,7 +804,7 @@ public class LuceneFinder extends BorderPane {
 						qStr = qStr.substring(0, qqInd).trim();
 					
 				}
-				wlist.add(qStr);
+				result.add(qStr);
 			} else {
 				for (final String qs : strProcessed.split("\\s+")) {
 					String q = qs;
@@ -814,31 +814,45 @@ public class LuceneFinder extends BorderPane {
 					if (q.isEmpty()) continue;
 					if (q.endsWith("AND") || q.endsWith("OR") || q.endsWith("NOT"))
 						continue;
-					wlist.add(q);
+					result.add(q);
 					if (!Character.isUpperCase(q.charAt(0)))
-						wlist.add(Character.toUpperCase(q.charAt(0)) + q.substring(1));
+						result.add(Character.toUpperCase(q.charAt(0)) + q.substring(1));
 				} // end for
 			} // end if
 		} // end if
-		// (2) find the words' position line by line, then generate the string output
+		return result;	
+	}
+
+	private List<String> getMatchedTerms(final String text, final List<String> queryList) {
+		final List<String> result = new ArrayList<>();
+		final String wb = "\\b"; // use word boundary
+		for (final String q : queryList) {
+			final Pattern patt = Pattern.compile(wb + q + wb);
+			final Matcher matcher = patt.matcher(text);
+			if (matcher.find()) {
+				result.add(matcher.group());
+			}
+		}
+		return result;
+	}
+
+	private String getFragmentManually(final String text, final List<String> queryList, final boolean isWholeLine) {
+		// find the words' position line by line, then generate the string output
 		final StringBuilder result = new StringBuilder();
 		String lineOutput = "";
 		boolean found = false;
 		final String[] lines = text.split("\n");
 		for (final String line : lines) {
 			lineOutput = line;
-			found = false;
-			final String wb = "\\b";
-			// enclose each word with {}
-			for (final String s : wlist) {
-				final Pattern patt = Pattern.compile(wb + s + wb);
-				final Matcher matcher = patt.matcher(lineOutput);
-				if (matcher.find()) {
-					lineOutput = matcher.replaceAll("{" + matcher.group() + "}");
-					found = true;
-				}
-			}
+			final List<String> matchRes = getMatchedTerms(lineOutput, queryList);
+			found = !matchRes.isEmpty();
 			if (found) {
+				// enclose each matched word with {}
+				final Set<String> matchResSet = new LinkedHashSet<>(matchRes);
+				for (final String t : matchResSet) {
+					final String tOK = t.length() > 100 ? t.substring(0, 80) + "..." : t;
+					lineOutput = lineOutput.replaceAll(t, "{" + tOK + "}");
+				}
 				if (!isWholeLine) {
 					// if not whole line, truncate the line
 					final int padding = 20; // padding at start and end
@@ -850,15 +864,18 @@ public class LuceneFinder extends BorderPane {
 					if (lastCloseB < lineOutput.length() - padding) {
 						lineOutput = lineOutput.substring(0, lastCloseB + padding) + "...";
 					}
-					// if the result is still too long, truncate it in the middle, also compensate {}, if cut
+					// If the result is still too long, truncate it in the middle, also compensate {}, if cut.
 					if (lineOutput.length() > 100) {
 						final int firstCloseB = lineOutput.indexOf("}");
 						final int lastOpenB = lineOutput.lastIndexOf("{");
-						final String firstPart = lineOutput.substring(0, firstCloseB + padding);
-						final String fpEndB = firstPart.lastIndexOf("{") > firstPart.lastIndexOf("}") ? "}" : "";
-						final String lastPart = lineOutput.substring(lastOpenB - padding);
-						final String lpEndB = lastPart.indexOf("{") > lastPart.indexOf("}") ? "{" : "";
-						lineOutput = firstPart + fpEndB + "..." + lpEndB + lastPart;
+						if (firstOpenB != lastOpenB) {
+							// multiple terms found
+							final String firstPart = lineOutput.substring(0, firstCloseB + padding);
+							final String fpEndB = firstPart.lastIndexOf("{") > firstPart.lastIndexOf("}") ? "}" : "";
+							final String lastPart = lineOutput.substring(lastOpenB - padding);
+							final String lpEndB = lastPart.indexOf("{") > lastPart.indexOf("}") ? "{" : "";
+							lineOutput = firstPart + fpEndB + "..." + lpEndB + lastPart;
+						}
 					}
 				}
 				result.append("› " + lineOutput + "\n");
@@ -918,11 +935,18 @@ public class LuceneFinder extends BorderPane {
 	private void openCurrentDoc() {
 		if (currSelectedDoc != null) {
 			final Corpus.Collection col = currCorpus.getCollection();
+			final List<String> findRes = currSelectedDoc.getMatchResult();
 			if (col == Corpus.Collection.SC) {
-				ReaderUtilities.openScReader(col, currSelectedDoc);
+				if (findRes.isEmpty())
+					ReaderUtilities.openScReader(col, currSelectedDoc);
+				else
+					ReaderUtilities.openScReader(col, currSelectedDoc, findRes.get(0));
 			} else {
 				final TocTreeNode ttn = currSelectedDoc.toTocTreeNode();
-				ReaderUtilities.openPaliHtmlViewer(ttn);
+				if (findRes.isEmpty())
+					ReaderUtilities.openPaliHtmlViewer(ttn);
+				else
+					ReaderUtilities.openPaliHtmlViewer(ttn, findRes.get(0));
 			}
 		}
 	}

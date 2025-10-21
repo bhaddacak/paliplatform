@@ -62,11 +62,11 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.0";
+	public static final String VERSION = "3.2";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -124,6 +124,7 @@ final public class Utilities {
 	public static StringConverter<Integer> integerStringConverter;
 	public static ExecutorService threadPool;
 	public static double defBaseFontSize;
+	public static IconSize iconSize = IconSize.NORMAL;
 	// enums
 	public static enum PaliScript {
 		UNKNOWN, ROMAN, DEVANAGARI, KHMER, MYANMAR, SINHALA, THAI;
@@ -135,6 +136,17 @@ final public class Utilities {
 	}
 	public static enum Theme {
 		LIGHT, DARK
+	}
+	public static enum IconSize {
+		SMALL(1.0), NORMAL(1.2), BIG(1.5), BIGGER(1.8), BIGGEST(2.4);
+		public static final IconSize[] values = values();
+		private final double size;
+		private IconSize(final double s) {
+			size = s;
+		}
+		public double getSize() {
+			return size;
+		}
 	}
 	public static enum WindowType {
 		TOCTREE("TocTreeWin"), FINDER("DocumentFinder"), LUCENE("LuceneFinder"),
@@ -163,9 +175,9 @@ final public class Utilities {
 		}
 	}
 	public static enum H2DB {
-		DICT("ppdict"), LISTER("pplister"), PPDPD("ppdpd");
+		DICT("ppdict"), CONE("ppcone"), LISTER("pplister"), PPDPD("ppdpd");
 		private final String name;
-		private static final java.sql.Connection[] connection = new java.sql.Connection[3];
+		private static final java.sql.Connection[] connection = new java.sql.Connection[4];
 		private H2DB(final String name) {
 			this.name = name;
 		}
@@ -242,6 +254,12 @@ final public class Utilities {
 
     public static void initializeDictDB() {
 		initializeH2DB(H2DB.DICT);
+		if (isDBPresent(H2DB.CONE))
+			initializeConeDB();
+	}
+
+    public static void initializeConeDB() {
+		initializeH2DB(H2DB.CONE);
 	}
 
     public static void initializeListerDB() {
@@ -278,6 +296,12 @@ final public class Utilities {
 				Platform.exit();
 		}
 		return result;
+	}
+
+	public static boolean isDBPresent(final H2DB db) {
+		final String dbdir = getDBDir();
+		final File dbfile = new File(dbdir + db.getNameWithExt());
+		return dbfile.exists();
 	}
 
 	public static boolean isDBWritable(final H2DB db) {
@@ -1275,6 +1299,19 @@ final public class Utilities {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
+	}
+
+	public static String MD5Sum(final String text) {
+		final StringBuilder result = new StringBuilder();
+		try {
+			final MessageDigest md = MessageDigest.getInstance("MD5");
+			final byte[] dg = md.digest(text.getBytes("UTF-8"));
+			for (final byte b : dg)
+				result.append(String.format("%x", b));
+		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+			System.err.println(e);
+		}
+		return result.toString();
 	}
 
 }

@@ -112,7 +112,7 @@ I tried to use JUnit in the development, but I gave up eventually. One main reas
 
 ## License
 ```
-Copyright 2023-2024 J.R. Bhaddacak
+Copyright 2023-2025 J.R. Bhaddacak
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

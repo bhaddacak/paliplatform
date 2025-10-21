@@ -1,7 +1,7 @@
 /*
  * SimpleFindBox.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import javafx.collections.*;
 /** 
  * The simple find box used in HTML viewers.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class SimpleFindBox extends VBox {
@@ -47,6 +47,7 @@ public class SimpleFindBox extends VBox {
 	private final Label messageText = new Label("");
 	private final ToggleButton caseSensitiveButton = new ToggleButton("", new TextIcon("C", TextIcon.IconSet.AWESOME));
 	private final InfoPopup infoPopup = new InfoPopup();
+	private boolean suspended = false;
 	
 	public SimpleFindBox(final Node node) {
 		hostNode = node;
@@ -138,6 +139,14 @@ public class SimpleFindBox extends VBox {
 	private void hideMessage() {
 		messagePopup.hide();
 	}
-	
+
+	public void setSuspended(final boolean yn) {
+		suspended = yn;
+	}
+
+	public boolean isSuspended() {
+		return suspended;
+	}
+
 }
 

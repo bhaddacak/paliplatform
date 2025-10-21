@@ -1,7 +1,7 @@
 /* 
  * GrammarText.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,18 +23,21 @@ import paliplatform.base.*;
 
 import java.util.*;
 import java.util.regex.*;
+import java.util.stream.*;
 
 /** 
  * The representation of a grammar textbook.
  * A dual book may be the case.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class GrammarText {
 	public static enum GrammarBook {
-		UNKNOWN("Unknown"), KACC("Kacc"), RUPA("Rūpa"), DHMJS("Dhmjs"),
-		MOGG("Mogg"), PAYO("Payo"), PANCT("Pañc-t"), NIRU("Niru"),
+		UNKNOWN("Unknown"),
+		// the items correspond to text 'id' in docinfo
+		KACC("Kacc"), RUPA("Rūpa"), MMD("Mmd"), KACCSN("Kacc-sn"), BLV("Blv"), DHMJS("Dhmjs"),
+		MOGG("Mogg"), PAYO("Payo"), MOGGPT("Mogg-pt"), NIRU("Niru"),
 		SADDPAD("Sadd-Pad"), SADDDHA("Sadd-Dhā"), SADDSUT("Sadd-Sut"),
 		ABHIDHA("Abhidhā"), ABHIDHAT("Abhidhā-t"),
 		SUBHO("Subho"), SUBHOT("Subho-t"), VUTT("Vutt"), DHATVA("Dhātva");
@@ -48,104 +51,69 @@ public class GrammarText {
 		public String getFirstChar() {
 			return "" + Character.toLowerCase(ref.charAt(0));
 		}
-		public String getBundleId() {
-			final String result;
-			if (this == KACC || this == RUPA)
-				result = "kaccrupa";
-			else if (this == MOGG || this == PAYO)
-				result = "moggpayo";
-			else
-				result = toString().toLowerCase();
+		public String getBookId() {
+			// this is equivalent to docid
+			return toString().toLowerCase();
+		}
+		public List<GrammarBook> getRelatedBooks() {
+			final List<GrammarBook> result;
+			if (this == KACC) {
+				result = List.of(RUPA, MMD, KACCSN, BLV);
+			} else if (this == MOGG) {
+				result = List.of(PAYO, MOGGPT, NIRU);
+			} else if (this == ABHIDHA) {
+				result = List.of(ABHIDHAT);
+			} else {
+				result = Collections.emptyList();
+			}
 			return result;
 		}
 	}
 	private static final String REX_HEAD = "^<h([0-9])>(.*?)</h\\1>";
-	private static final List<String> dualTextList = List.of("kaccrupa", "moggpayo", "abhidha");
-	private static final List<String> hasFormulaList = List.of("kaccrupa", "moggpayo", "panct", "niru", "sadddha", "saddsut");
+	private static final List<String> hasFormulaList = List.of("kacc", "rupa", "mmd", "kaccsn", "blv", "mogg", "payo", "moggpt", "niru", "sadddha", "saddsut");
 	private static final List<GrammarBook> notHasBoldNumber = List.of(
 			GrammarBook.DHMJS, GrammarBook.NIRU, GrammarBook.ABHIDHA, GrammarBook.ABHIDHAT,
 			GrammarBook.SUBHO, GrammarBook.SUBHOT, GrammarBook.VUTT, GrammarBook.DHATVA
 			);
 	private final TocTreeNode node;
-	private final List<GrammarBook> bookList;
+	private final GrammarBook gramBook;
 	private final Map<GrammarBook, String> nameMap = new EnumMap<>(GrammarBook.class);
 	private final Map<GrammarBook, String> textMap = new EnumMap<>(GrammarBook.class);
 	private final Map<GrammarBook, List<String[]>> headListMap = new EnumMap<>(GrammarBook.class);
 	private final Map<GrammarBook, List<String>> numListMap = new EnumMap<>(GrammarBook.class);
 	private final Map<GrammarBook, Map<String, String>> formulaListMap = new EnumMap<>(GrammarBook.class);
 	private final Map<GrammarBook, Map<String, String>> suttaListMap = new EnumMap<>(GrammarBook.class);
-	private final Map<GrammarBook, Map<String, List<String>>> translationMap = new EnumMap<>(GrammarBook.class);
-	private final Map<GrammarBook, Map<String, List<String>>> extraTransMap = new EnumMap<>(GrammarBook.class);
+	private final Map<GrammarBook, Map<String, List<String>>> numTransMap = new EnumMap<>(GrammarBook.class);
 
 	public GrammarText(final TocTreeNode node, final String rawText) {
 		this.node = node;
 		// set up key list and text
 		final String id = node.getNodeId();
-		if (dualTextList.indexOf(id) > -1) {
-			final GrammarBook firstId, secondId;
-			if (id.equals("abhidha")) {
-				firstId = GrammarBook.ABHIDHA;
-				secondId = GrammarBook.ABHIDHAT;
-			} else {
-				firstId = GrammarBook.valueOf(id.substring(0, 4).toUpperCase());
-				secondId = GrammarBook.valueOf(id.substring(4).toUpperCase());
-			}
-			bookList = Arrays.asList(firstId, secondId);
-			final int secondPos = rawText.indexOf(getDelimString(id));
-			textMap.put(firstId, formatTextFull(firstId, rawText.substring(0, secondPos)));
-			textMap.put(secondId, formatTextFull(secondId, rawText.substring(secondPos)));
-			makeSuttaList(firstId);
-			makeSuttaList(secondId);
-			makeTranslationMap(id);
-		} else {
-			if (id.equals("niru"))
-				makeTranslationMap(id);
-			final GrammarBook bookId = GrammarBook.valueOf(id.toUpperCase());
-			bookList = Arrays.asList(bookId);
-			final String text = bookId == GrammarBook.DHMJS
-								? formatTextNoFormulaStrongHead(bookId, rawText)
-								: bookId == GrammarBook.SADDPAD
-									? formatTextNoFormulaNoNumber(bookId, rawText)
-									: formatTextFull(bookId, rawText);
-			textMap.put(bookId, text);
-
-		}
+		gramBook = GrammarBook.valueOf(id.toUpperCase());
+		if (gramBook == GrammarBook.NIRU)
+			makeTranslationMap(gramBook);
+		final String text = gramBook == GrammarBook.DHMJS
+							? formatTextNoFormulaStrongHead(gramBook, rawText)
+							: gramBook == GrammarBook.SADDPAD
+								? formatTextNoFormulaNoNumber(gramBook, rawText)
+								: formatTextFull(gramBook, rawText);
+		textMap.put(gramBook, text);
 		// set up name list
 		final String textName = node.getNodeName();
 		final int parenPos = textName.lastIndexOf("(");
 		final String nameFull = parenPos > -1 ? textName.substring(0, parenPos).trim() : textName;
-		if (bookList.size() == 1) {
-			nameMap.put(bookList.get(0), nameFull);
-		} else {
-			final String[] names = nameFull.split(" ");
-			nameMap.put(bookList.get(0), names.length > 0 ? names[0] : "");
-			nameMap.put(bookList.get(1), names.length > 1 ? names[1] : "");
-		}
-	}
-
-	private static String getDelimString(final String id) {
-		final String result;
-		if (id.equals("kaccrupa"))
-			result = "<!--rupasiddhi-->";
-		else if (id.equals("moggpayo"))
-			result = "<!--payogasiddhi-->";
-		else if (id.equals("abhidha"))
-			result = "<!--abhidhanatika-->";
-		else
-			result = "";
-		return result;
+		nameMap.put(gramBook, nameFull);
 	}
 
 	private void readExtraBook(final GrammarBook bookId) {
-		if (node.getNodeId().equals("moggpayo")) {
-			final String id = bookId.toString().toLowerCase();
-			final Corpus corpus = node.getCorpus();
-			final DocumentInfo docInfo = corpus.getDocInfo(id);
-			final String text = ReaderUtilities.readTextFromZip(docInfo.getFileNameWithExt(), corpus);
-			textMap.put(bookId, formatTextFull(bookId, text));
-			makeSuttaList(bookId);
-			if (bookId == GrammarBook.NIRU)
-				makeTranslationMap(id);
+		final String id = bookId.toString().toLowerCase();
+		final Corpus corpus = node.getCorpus();
+		final DocumentInfo docInfo = corpus.getDocInfo(id);
+		final String text = ReaderUtilities.readTextFromZip(docInfo.getFileNameWithExt(), corpus);
+		textMap.put(bookId, formatTextFull(bookId, text));
+		makeSuttaList(bookId);
+		if (bookId == GrammarBook.NIRU || bookId == GrammarBook.ABHIDHAT) {
+			makeTranslationMap(bookId);
 		}
 	}
 
@@ -203,8 +171,8 @@ public class GrammarText {
 	}
 
 	private String insertMoggNumber(final String niruNum, final String line) {
-		if (!extraTransMap.containsKey(GrammarBook.NIRU)) return line;
-		final List<String> moggNumList = extraTransMap.get(GrammarBook.NIRU).get(niruNum);
+		if (!numTransMap.containsKey(GrammarBook.NIRU)) return line;
+		final List<String> moggNumList = numTransMap.get(GrammarBook.NIRU).get(niruNum);
 		if (moggNumList == null || moggNumList.isEmpty()) return line;
 		final String moggNum = moggNumList.get(0);
 		final String moggRef = " (Mogg <b>" + moggNum + "</b>)";
@@ -284,8 +252,12 @@ public class GrammarText {
 	private String getNumberPatternString(final GrammarBook bookId) {
 		final String result;
 		if (hasBoldNumber(bookId)) {
-			if (bookId == GrammarBook.KACC || bookId == GrammarBook.RUPA) {
-				result = "^<b>\\d+[.,].*";
+			if (bookId == GrammarBook.KACC || bookId == GrammarBook.MMD) {
+				result = "^<b>\\d+:[0-9x].*";
+			} else if (bookId == GrammarBook.RUPA || bookId == GrammarBook.BLV) {
+				result = "^<b>\\d+ .*";
+			} else if (bookId == GrammarBook.KACCSN) {
+				result = "^<b>Kacc_\\d+\\..*";
 			} else if (bookId == GrammarBook.MOGG || bookId == GrammarBook.PAYO) {
 				result = "^<b>[\\[0-9]+.*";
 			} else if (bookId == GrammarBook.SADDDHA) {
@@ -311,7 +283,7 @@ public class GrammarText {
 		}
 		if (hasBoldNumber(bookId)) {
 			final int gpos = theLine.indexOf(">");
-			if (bookId == GrammarBook.MOGG || bookId == GrammarBook.PAYO || bookId == GrammarBook.PANCT) {
+			if (bookId == GrammarBook.MOGG || bookId == GrammarBook.PAYO || bookId == GrammarBook.MOGGPT) {
 				final int firstDotPos = theLine.indexOf(".");
 				result = theLine.substring(gpos + 1, theLine.indexOf(".", firstDotPos + 1));
 			} else if (bookId == GrammarBook.SADDDHA) {
@@ -370,50 +342,8 @@ public class GrammarText {
 		return result;
 	}
 
-	private void makeTranslationMap(final String id) {
-		if (id.equals("kaccrupa")) {
-			// Kacc contains Rupa sutta numbers, so use Kacc
-			final List<String> numList = numListMap.get(GrammarBook.KACC);
-			final Map<String, List<String>> kMap = new HashMap<>();
-			final Map<String, List<String>> rMap = new HashMap<>();
-			for (final String snum : numList) {
-				final List<String> k2rList = new ArrayList<>();
-				final String ksut = snum;
-				final String[] rsuts = snum.split(",");
-				for (int i = 1; i < rsuts.length; i++) {
-					// start from the second number in Kacc sutta number, indicating Rupa sutta number
-					final String rsut = rsuts[i].trim();
-					if (rsut.matches("\\d+")) {
-						k2rList.add(rsut);
-					}
-					final List<String> r2kList = rMap.containsKey(rsut) ? rMap.get(rsut) : new ArrayList<>();
-					r2kList.add(ksut);
-					rMap.put(rsut, r2kList);
-				}
-				kMap.put(ksut, k2rList);
-			}
-			translationMap.put(GrammarBook.KACC, kMap);
-			translationMap.put(GrammarBook.RUPA, rMap);
-		} else if (id.equals("moggpayo")) {
-			// Payo contains Mogg sutta numbers, so use Payo
-			final List<String> numList = numListMap.get(GrammarBook.PAYO);
-			final Map<String, List<String>> mMap = new HashMap<>();
-			final Map<String, List<String>> pMap = new HashMap<>();
-			for (final String snum : numList) {
-				// use the whole as Payo number
-				final String psut = snum;
-				// extract Mogg number after [xxx]
-				final String msut = snum.substring(snum.indexOf("]") + 2);
-				final List<String> m2pList = new ArrayList<>();
-				m2pList.add(psut);
-				mMap.put(msut, m2pList);
-				final List<String> p2mList = new ArrayList<>();
-				p2mList.add(msut);
-				pMap.put(psut, p2mList);
-			}
-			translationMap.put(GrammarBook.MOGG, mMap);
-			translationMap.put(GrammarBook.PAYO, pMap);
-		} else if (id.equals("niru")) {
+	private void makeTranslationMap(final GrammarBook bookId) {
+		if (bookId == GrammarBook.NIRU) {
 			// for Niru to Mogg, read from csv file
 			final String nmText = ReaderUtilities.getTextResource(ReaderUtilities.NIRU_TO_MOGG);
 			final String[] lines = nmText.split("\\r?\\n");
@@ -433,9 +363,9 @@ public class GrammarText {
 				m2nList.add(nNum);
 				mMap.put(mNum, m2nList);
 			}
-			extraTransMap.put(GrammarBook.MOGG, mMap);
-			extraTransMap.put(GrammarBook.NIRU, nMap);
-		} else if (id.equals("abhidha")) {
+			numTransMap.put(GrammarBook.MOGG, mMap);
+			numTransMap.put(GrammarBook.NIRU, nMap);
+		} else if (bookId == GrammarBook.ABHIDHAT) {
 			// Abhidhā-t has some numbers in range, so create from this
 			final List<String> numList = numListMap.get(GrammarBook.ABHIDHAT);
 			final Map<String, List<String>> aMap = new HashMap<>();
@@ -461,8 +391,8 @@ public class GrammarText {
 					tMap.put(num, t2aList);
 				}
 			}
-			translationMap.put(GrammarBook.ABHIDHA, aMap);
-			translationMap.put(GrammarBook.ABHIDHAT, tMap);
+			numTransMap.put(GrammarBook.ABHIDHA, aMap);
+			numTransMap.put(GrammarBook.ABHIDHAT, tMap);
 		}
 	}
 
@@ -470,32 +400,13 @@ public class GrammarText {
 		return !textMap.isEmpty();
 	}
 
-	public boolean isDual() {
-		return textMap.size() >= 2;
-	}
-
 	public boolean hasSuttaFormula() {
 		final String id = node.getNodeId();
 		return hasFormulaList.indexOf(id) > -1;
 	}
 
-	public List<GrammarBook> getBookList() {
-		return bookList;
-	}
-
-	public GrammarBook getFirstBook() {
-		return bookList == null ? GrammarBook.UNKNOWN : bookList.get(0);
-	}
-
-	private GrammarBook getOtherBook(final GrammarBook bookId) {
-		final GrammarBook result;
-		if (bookList == null) {
-			result = GrammarBook.UNKNOWN;
-		} else {
-			final int ind = bookList.indexOf(bookId);
-			result = ind == -1 ? GrammarBook.UNKNOWN : bookList.get((ind + 1) % 2);
-		}
-		return result;
+	public GrammarBook getBook() {
+		return gramBook;
 	}
 
 	public String getBookName(final GrammarBook bookId) {
@@ -507,30 +418,30 @@ public class GrammarText {
 	}
 
 	public String getText() {
-		return getFirstText();
+		return getText(gramBook);
 	}
 
-	public String getText(final GrammarBook bookId, final boolean combineTwoBooks, final List<GrammarBook> extraBooks) {
+	public String getText(final GrammarBook bookId) {
+		return textMap.containsKey(bookId) ? textMap.get(bookId) : "";
+	}
+
+	public String getText(final GrammarBook bookId, final List<GrammarBook> extraBooks) {
 		final String result;
-		if (combineTwoBooks) {
-			if (!extraBooks.isEmpty()) {
-				for (final GrammarBook book : extraBooks) {
-					if (!textMap.containsKey(book))
-						readExtraBook(book);
+		if (!extraBooks.isEmpty()) {
+			for (final GrammarBook book : extraBooks) {
+				if (!textMap.containsKey(book)) {
+					readExtraBook(book);
 				}
 			}
-			result = combineTextOfTwoBooks(bookId, extraBooks);
+			result = combineBooks(bookId, extraBooks);
 		} else {
 			result = textMap.containsKey(bookId) ? textMap.get(bookId) : "";
 		}
 		return result;
 	}
 
-	private String combineTextOfTwoBooks(final GrammarBook bookId, final List<GrammarBook> extraBooks) {
+	private String combineBooks(final GrammarBook bookId, final List<GrammarBook> extraBooks) {
 		final String text = textMap.get(bookId);
-		final GrammarBook otherBook = getOtherBook(bookId);
-		if (otherBook == GrammarBook.UNKNOWN)
-			return text;
 		final StringBuilder result = new StringBuilder();
 		final String[] lines = text.split("\\r?\\n");
 		final String pattStr = "^<a.*?/>" + getNumberPatternString(bookId).substring(1);
@@ -544,20 +455,13 @@ public class GrammarText {
 				sutNum = getNumberFromLine(bookId, line);
 			}
 			if (line.startsWith("</p>") && numFound) {
-				final Map<String, String> otherSuttaMap = suttaListMap.get(getOtherBook(bookId));
-				final Map<String, List<String>> otherMap = translationMap.get(bookId);
-				result.append(line).append("\n");
-				if (otherMap.containsKey(sutNum) && !otherMap.get(sutNum).isEmpty()) {
-					result.append("\n<blockquote>\n");
-					final String otherLabel = extraBooks.isEmpty() ? "" : "<div>[" + otherBook.getRef() + "]</div>\n";
-					for (final String osnum : otherMap.get(sutNum)) {
-						result.append(otherLabel + otherSuttaMap.get(osnum)).append("\n");
+				if (!extraBooks.isEmpty()) {
+					final String extraBooksText = getExtraBookSutta(bookId, sutNum, extraBooks);
+					if (!extraBooksText.isEmpty()) {
+						result.append("\n<blockquote>\n");
+						result.append(extraBooksText);
+						result.append("\n</blockquote>\n");
 					}
-					if (!extraBooks.isEmpty()) {
-						// only in Mogg case, panc-t and niru can be added
-						result.append(getExtraBookSutta(sutNum, extraBooks));
-					}
-					result.append("\n</blockquote>\n");
 				}
 				numFound = false;
 			} else {
@@ -567,25 +471,12 @@ public class GrammarText {
 		return result.toString();
 	}
 
-	public String getFirstText() {
-		final String result;
-		if (!bookList.isEmpty())
-			result = textMap.get(bookList.get(0));
-		else
-			result = "";
-		return result;
-	}
-
 	public List<String[]> getHeadList() {
-		return getFirstHeadList();
+		return headListMap.get(gramBook);
 	}
 
 	public List<String[]> getHeadList(final GrammarBook bookId) {
 		return headListMap.containsKey(bookId) ? headListMap.get(bookId) : Collections.emptyList();
-	}
-
-	public List<String[]> getFirstHeadList() {
-		return headListMap.get(bookList.get(0));
 	}
 
 	public List<String> getNumList() {
@@ -597,37 +488,27 @@ public class GrammarText {
 	}
 
 	public List<String> getFirstNumList() {
-		return numListMap.isEmpty() ? Collections.emptyList() : numListMap.get(bookList.get(0));
+		return numListMap.isEmpty() ? Collections.emptyList() : numListMap.get(gramBook);
 	}
 
-	public String getFormulaListAsString(final GrammarBook bookId, final boolean combineTwoBooks, final List<GrammarBook> extraBooks) {
+	public String getFormulaListAsString(final GrammarBook bookId, final List<GrammarBook> extraBooks) {
 		final StringBuilder result = new StringBuilder();
 		final List<String> numList = numListMap.get(bookId);
 		final Map<String, String> formulaMap = formulaListMap.get(bookId);
-		if (combineTwoBooks) {
-			if (!extraBooks.isEmpty()) {
-				for (final GrammarBook book : extraBooks) {
-					if (!textMap.containsKey(book))
-						readExtraBook(book);
+		if (!extraBooks.isEmpty()) {
+			for (final GrammarBook book : extraBooks) {
+				if (!textMap.containsKey(book)) {
+					readExtraBook(book);
 				}
 			}
-			final GrammarBook otherBook = getOtherBook(bookId);
-			final Map<String, String> otherFormulaMap = formulaListMap.get(otherBook);
-			final Map<String, List<String>> otherMap = translationMap.get(bookId);
 			for (final String snum : numList) {
 				final String formula = formulaMap.get(snum);
 				result.append("\n<div>\n");
 				result.append(formula).append("\n");
-				if (otherMap.containsKey(snum) && !otherMap.get(snum).isEmpty()) {
+				final String extraBooksFormula = getExtraBookFormula(bookId, snum, extraBooks);
+				if (!extraBooksFormula.isEmpty()) {
 					result.append("\n<blockquote>\n");
-					final String otherLabel = extraBooks.isEmpty() ? "" : otherBook.getRef() + ": ";
-					for (final String osnum : otherMap.get(snum)) {
-						result.append(otherLabel + otherFormulaMap.get(osnum)).append("\n");
-					}
-					if (!extraBooks.isEmpty()) {
-						// only in Mogg case, panc-t and niru can be added
-						result.append(getExtraBookFormula(snum, extraBooks));
-					}
+					result.append(extraBooksFormula);
 					result.append("\n</blockquote>\n");
 				}
 				result.append("\n</div>\n");
@@ -639,52 +520,91 @@ public class GrammarText {
 		return result.toString();
 	}
 
-	private String getExtraBookFormula(final String suttaNum, final List<GrammarBook> extraBooks) {
+	private String getExtraBookFormula(final GrammarBook bookId, final String suttaNum, final List<GrammarBook> extraBooks) {
 		final StringBuilder result = new StringBuilder();
-		final Map<String, List<String>> moggNiruMap;
-		if (extraBooks.indexOf(GrammarBook.NIRU) > -1)
-			moggNiruMap = extraTransMap.get(GrammarBook.MOGG);
-		else
-			moggNiruMap = Collections.emptyMap();
 		for (final GrammarBook book : extraBooks) {
 			final Map<String, String> formulaMap = formulaListMap.get(book);
-			final String sNum;
-			if (book == GrammarBook.NIRU && moggNiruMap.containsKey(suttaNum)) {
-				sNum = moggNiruMap.get(suttaNum).get(0);
-			} else {
-				sNum = suttaNum;
+			final String sNum = bookId == GrammarBook.KACC
+								? suttaNum.substring(0, suttaNum.indexOf(" ")) // for Kacc get only xxx:yyy part
+								: suttaNum;
+			final List<String> formulaList = new ArrayList<>();
+			final List<String> numList = getRelatedSuttaNumbers(bookId, book, sNum);
+			for (final String num : numList) {
+				formulaList.add(formulaMap.get(num));
 			}
-			final String formula = formulaMap.get(sNum);
-			if (formula != null && !formula.isEmpty()) {
-				final String label = book.getRef() + ": ";
-				result.append(label).append(formula).append("\n");
+			if (!formulaList.isEmpty()) {
+				for (final String formula : formulaList) {
+					final String label = book.getRef() + ": ";
+					result.append(label).append(formula).append("\n");
+				}
 			}
 		}
 		return result.toString();
 	}
 
-	private String getExtraBookSutta(final String suttaNum, final List<GrammarBook> extraBooks) {
+	private String getExtraBookSutta(final GrammarBook bookId, final String suttaNum, final List<GrammarBook> extraBooks) {
 		final StringBuilder result = new StringBuilder();
-		final Map<String, List<String>> moggNiruMap;
-		if (extraBooks.indexOf(GrammarBook.NIRU) > -1)
-			moggNiruMap = extraTransMap.get(GrammarBook.MOGG);
-		else
-			moggNiruMap = Collections.emptyMap();
 		for (final GrammarBook book : extraBooks) {
 			final Map<String, String> suttaMap = suttaListMap.get(book);
-			final String sNum;
-			if (book == GrammarBook.NIRU && moggNiruMap.containsKey(suttaNum)) {
-				sNum = moggNiruMap.get(suttaNum).get(0);
-			} else {
-				sNum = suttaNum;
+			final String sNum = bookId == GrammarBook.KACC
+								? suttaNum.substring(0, suttaNum.indexOf(" ")) // for Kacc get only xxx:yyy part
+								: suttaNum;
+			final List<String> suttaList = new ArrayList<>();
+			final List<String> numList = getRelatedSuttaNumbers(bookId, book, sNum);
+			for (final String num : numList) {
+				suttaList.add(suttaMap.get(num));
 			}
-			final String sutta = suttaMap.get(sNum);
-			if (sutta != null && !sutta.isEmpty()) {
-				final String label = "<div>[" + book.getRef() + "]</div>\n";
-				result.append("<hr>\n").append(label).append(sutta).append("\n");
+			if (!suttaList.isEmpty()) {
+				for (final String sutta : suttaList) {
+					final String label = "<span>[" + book.getRef() + "]</span>\n";
+					result.append("<hr>\n").append(label).append(sutta).append("\n");
+				}
 			}
 		}
+		if (result.indexOf("<hr>") == 0)
+			result.delete(0, 5); // remove leading hr
 		return result.toString();
+	}
+
+	private List<String> getRelatedSuttaNumbers(final GrammarBook srcBook, final GrammarBook tgtBook, final String numStr) {
+		final List<String> result = new ArrayList<>();
+		if (srcBook == GrammarBook.KACC) {
+			if (tgtBook == GrammarBook.RUPA || tgtBook == GrammarBook.BLV) {
+				final String tgtNum = "[" + numStr + "]";
+				result.addAll(numListMap.get(tgtBook).stream()
+									.filter(x -> x.contains(tgtNum))
+									.collect(Collectors.toList()));
+			} else if (tgtBook == GrammarBook.MMD) {
+				result.addAll(numListMap.get(tgtBook).stream()
+									.filter(x -> x.equals(numStr))
+									.collect(Collectors.toList()));
+			} else if (tgtBook == GrammarBook.KACCSN) {
+				// for Kacc-sn use only the first number
+				final String knum = numStr.substring(0, numStr.indexOf(":"));
+				result.addAll(numListMap.get(tgtBook).stream()
+									.filter(x -> x.equals("Kacc_" + knum))
+									.collect(Collectors.toList()));
+			}
+		} else if (srcBook == GrammarBook.MOGG) {
+			if (tgtBook == GrammarBook.PAYO) {
+				result.addAll(numListMap.get(tgtBook).stream()
+									.filter(x -> x.endsWith(" " + numStr))
+									.collect(Collectors.toList()));
+			} else if (tgtBook == GrammarBook.MOGGPT) {
+				result.addAll(numListMap.get(tgtBook).stream()
+									.filter(x -> x.equals(numStr))
+									.collect(Collectors.toList()));
+			} else if (tgtBook == GrammarBook.NIRU) {
+				final Map<String, List<String>> moggNiruMap = numTransMap.get(GrammarBook.MOGG);
+				if (moggNiruMap.containsKey(numStr))
+				result.addAll(moggNiruMap.get(numStr));
+			}
+		} else if (srcBook == GrammarBook.ABHIDHA) {
+			final Map<String, List<String>> abhMap = numTransMap.get(GrammarBook.ABHIDHA);
+			if (abhMap.containsKey(numStr))
+			result.addAll(abhMap.get(numStr));
+		}
+		return result;
 	}
 
 }

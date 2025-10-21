@@ -1,7 +1,7 @@
 /*
  * TextIcon.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import javafx.scene.text.*;
 /** 
  * TextIcon utilizes FontAwesome and custom icons displayed in menus and buttons.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public final class TextIcon extends Text {
@@ -40,6 +40,10 @@ public final class TextIcon extends Text {
 	}
 	
 	public TextIcon(final String key, final IconSet set) {
+		this(key, set, Utilities.iconSize);
+	}
+
+	public TextIcon(final String key, final IconSet set, final Utilities.IconSize size) {
 		iconName = key;
 		iconSet = set;
 		String icon = null;
@@ -55,32 +59,15 @@ public final class TextIcon extends Text {
 		}
 		if (icon != null) {
 			setText(icon);
-			setFont(Font.font(iconSet.fontName));
+			setFont(Font.font(iconSet.fontName, Utilities.getRelativeSize(size.getSize())));
 		} else {
 			setText("");
 		}
 		getStyleClass().add("shape");
 	}
 	
-	public TextIcon(final String key, final IconSet set, final double scale) {
-		this(key, set);
-		setScale(scale);
-	}
-
-	public String getIconName() {
-		return iconName;
-	}
-
-	public void setScale(final double factor) {
-		final double currSize = getFont().getSize();
-		setSize(currSize*factor);
-	}
-
-	public void setSize(final double size) {
-		setFont(Font.font(iconSet.fontName, size));
-	}
-
 	public void setColor(final String color) {
 		setStyle("-fx-fill:" + color);
 	}
+
 }

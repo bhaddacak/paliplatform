@@ -24,14 +24,14 @@ import javafx.scene.control.Tab;
 /** 
  * The service interface used by Reader module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 
 public interface ReaderService {
 	Tab getTocTreeTab();
 	Tab getDocumentFinderTab();
-	void openDocument(String colId, String docId);
+	void openDocument(String colId, String docId, String strToLocate);
 	void searchTerm(String term);
 }
 

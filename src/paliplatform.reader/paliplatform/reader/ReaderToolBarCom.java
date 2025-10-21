@@ -1,7 +1,7 @@
 /*
  * ReaderToolBarCom.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import javafx.scene.layout.HBox;
 /** 
  * The tool bar component for Reader module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class ReaderToolBarCom extends HBox {
@@ -35,7 +35,7 @@ public class ReaderToolBarCom extends HBox {
 		final Button toctreeButton = new Button("", new TextIcon("folder-tree", TextIcon.IconSet.AWESOME));
 		toctreeButton.setTooltip(new Tooltip("TOC Tree"));
 		toctreeButton.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.TOCTREE, null));
-		final Button docfinderButton = new Button("", new TextIcon("magnifying-glass", TextIcon.IconSet.AWESOME));
+		final Button docfinderButton = new Button("", new TextIcon("binoculars", TextIcon.IconSet.AWESOME));
 		docfinderButton.setTooltip(new Tooltip("Document Finder"));
 		docfinderButton.disableProperty().bind(ReaderUtilities.corpusAvailable.not());
 		docfinderButton.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.FINDER, null));

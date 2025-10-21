@@ -1,7 +1,7 @@
 /*
  * DpdDownloader.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import javafx.scene.control.*;
 /** 
  * The downloader dialog for DPD database. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 class DpdDownloader extends ProgressiveDownloader {

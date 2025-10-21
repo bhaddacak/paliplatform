@@ -1,5 +1,5 @@
 DPD database download guide
-	1. This tool downloads 'dpd.db.tar.bz2' from the latest release and installs it to the program.
+	1. This tool downloads 'dpd.db.tar.bz2' from the provided address and installs it to the program.
 	2. Since the database is huge (~2GB), it takes time to unpack.
 	3. Make sure that the latest version is in the cache before skipping the download, otherwise the existing version will be unpacked again.
 	4. Once the unpacking gets started, there is no way to stop it. You have to wait until it gets done.

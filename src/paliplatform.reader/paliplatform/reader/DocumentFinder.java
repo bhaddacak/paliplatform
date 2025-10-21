@@ -78,6 +78,17 @@ public class DocumentFinder extends BorderPane {
 		resultList.add(new DummyDocumentInfo());
 		table.setItems(resultList);
 		table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		table.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+			final DocumentInfo selItem = newValue;
+			if (selItem != null) {
+				// show content search result, if any
+				final Set<String> findRes = new LinkedHashSet<>(selItem.getMatchResult());
+				if (!findRes.isEmpty()) {
+					final String res = findRes.stream().collect(Collectors.joining("; "));
+					statusMessage.setText(res);
+				}
+			}
+		});
 		setupTable();
 		// add context menu
 		final ContextMenu popupMenu = new ContextMenu();
@@ -402,9 +413,15 @@ public class DocumentFinder extends BorderPane {
 								if (!docInfo.isInTextGroup(selTextGroup)) continue;
 								final ZipEntry entry = zip.getEntry(docInfo.getFileNameWithExt());
 								final Scanner in = new Scanner(zip.getInputStream(entry), StandardCharsets.UTF_8);
-								foundCount = in.findAll(searchPatt).count();
+								final List<String> findResList = new ArrayList<>();
+								String findRes;
+								while((findRes = in.findWithinHorizon(searchPatt, 0)) != null) {
+									findResList.add(findRes);
+								}
+								foundCount = findResList.size();
 								if (foundCount > 0) {
 									docInfo.searchResultCountProperty().set((int)foundCount);
+									docInfo.setMatchResult(findResList);
 									resultList.add(docInfo);
 								}
 								in.close();
@@ -420,9 +437,15 @@ public class DocumentFinder extends BorderPane {
 								// only gz file is supported by now
 								if (!docFile.getName().toLowerCase().endsWith(".gz")) continue;
 								final Scanner in = new Scanner(new GZIPInputStream(new FileInputStream(docFile)), StandardCharsets.UTF_8);
-								foundCount = in.findAll(searchPatt).count();
+								final List<String> findResList = new ArrayList<>();
+								String findRes;
+								while((findRes = in.findWithinHorizon(searchPatt, 0)) != null) {
+									findResList.add(findRes);
+								}
+								foundCount = findResList.size();
 								if (foundCount > 0) {
 									docInfo.searchResultCountProperty().set((int)foundCount);
+									docInfo.setMatchResult(findResList);
 									resultList.add(docInfo);
 								}
 								in.close();
@@ -468,12 +491,20 @@ public class DocumentFinder extends BorderPane {
 		final DocumentInfo dinfo = table.getSelectionModel().getSelectedItem();
 		if (dinfo != null && !dinfo.getFileNameWithExt().isEmpty()) {
 			final Corpus.Collection col = Corpus.Collection.valueOf(dinfo.corpusProperty().get());
+			final List<String> findRes = dinfo.getMatchResult();
 			if (col == Corpus.Collection.SC) {
-				ReaderUtilities.openScReader(col, dinfo);
+				if (findRes.isEmpty())
+					ReaderUtilities.openScReader(col, dinfo);
+				else
+					ReaderUtilities.openScReader(col, dinfo, findRes.get(0));
 			} else {
 				final TocTreeNode node = dinfo.toTocTreeNode();
-				if (Utilities.checkFileExistence(node.getNodeFile()))
-					ReaderUtilities.openPaliHtmlViewer(node);
+				if (Utilities.checkFileExistence(node.getNodeFile())) {
+					if (findRes.isEmpty())
+						ReaderUtilities.openPaliHtmlViewer(node);
+					else
+						ReaderUtilities.openPaliHtmlViewer(node, findRes.get(0));
+				}
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 /*
  * DocumentInfo.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ package paliplatform.reader;
 
 import paliplatform.base.Utilities;
 
+import java.util.List;
 import java.util.Comparator;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.IntegerProperty;
@@ -27,7 +28,7 @@ import javafx.beans.property.IntegerProperty;
 /** 
  * The interface of document information used mainly in DocumentFinder.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 
@@ -55,6 +56,8 @@ public interface DocumentInfo {
 	StringProperty refProperty();
 	StringProperty fileNameProperty();
 	IntegerProperty searchResultCountProperty();
+	void setMatchResult(List<String> result);
+	List<String> getMatchResult();
 	boolean containsInfo(final String query);
 	boolean isInTextGroup(final TextGroup tg);
 	TocTreeNode toTocTreeNode();

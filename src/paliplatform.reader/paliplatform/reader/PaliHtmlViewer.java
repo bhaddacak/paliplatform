@@ -1,7 +1,7 @@
 /*
  * PaliHtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ import netscape.javascript.JSObject;
 /** 
  * The generic viewer of HTML Pali texts.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.1
  */
 public class PaliHtmlViewer extends PaliHtmlViewerBase {
@@ -38,6 +38,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 	private final List<RadioMenuItem> scriptRadioMenu = new ArrayList<>();
 	private ToggleButton toggleNumberButton;
 	private boolean alsoConvertNumber = false;
+	private String initialStringToLocate = "";
 
 	public PaliHtmlViewer(final TocTreeNode node) {
 		super();
@@ -50,6 +51,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
 				webEngine.executeScript("init(" + transformable + ")");
+				if (!initialStringToLocate.isEmpty())
+					findSingle(initialStringToLocate);
 				setViewerTheme(Utilities.settings.getProperty("theme"));
 				setViewerFont();
 			}
@@ -102,8 +105,19 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 			theStage.setTitle(node.getNodeName());
 	}
 
+	public void init(final TocTreeNode node, final String strToLocate) {
+		init(node);
+		if (!strToLocate.isEmpty())
+			setInitialStringToLocate(strToLocate);
+	}
+
 	public TocTreeNode getDocNode() {
 		return thisDoc;
+	}
+
+	public void setInitialStringToLocate(final String token) {
+		initialStringToLocate = token;
+		setFindInputText(token);
 	}
 
 	public void clearContent() {

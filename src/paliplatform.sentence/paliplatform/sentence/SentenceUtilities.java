@@ -27,15 +27,13 @@ import java.util.ServiceLoader.Provider;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
 /** 
  * The utility factory for the Sentence module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 final public class SentenceUtilities {
@@ -78,19 +76,6 @@ final public class SentenceUtilities {
 				}
 				break;
 		}
-	}
-
-	public static String MD5Sum(final String text) {
-		final StringBuilder result = new StringBuilder();
-		try {
-			final MessageDigest md = MessageDigest.getInstance("MD5");
-			final byte[] dg = md.digest(text.getBytes("UTF-8"));
-			for (final byte b : dg)
-				result.append(String.format("%x", b));
-		} catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-			System.err.println(e);
-		}
-		return result.toString();
 	}
 
 }

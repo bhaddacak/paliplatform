@@ -1,7 +1,7 @@
 /*
  * MainMenu.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import javafx.scene.input.KeyCode;
  * The main menu bar including some action controllers.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 class MainMenu extends MenuBar {
@@ -72,6 +72,7 @@ class MainMenu extends MenuBar {
 		
 		// Option
 		Menu optionsMenu = new Menu("_Options");
+		optionsMenu.setMnemonicParsing(true);
 		final Menu themeMenu = new Menu("Global _theme");
 		themeMenu.setMnemonicParsing(true);
 		final ToggleGroup themeGroup = new ToggleGroup();
@@ -90,10 +91,28 @@ class MainMenu extends MenuBar {
 				PaliPlatform.refreshTheme();
 			}
         });		
-		optionsMenu.setMnemonicParsing(true);
+		final Menu butsizeMenu = new Menu("_Icon size");
+		butsizeMenu.setMnemonicParsing(true);
+		final ToggleGroup butsizeGroup = new ToggleGroup();
+		for (Utilities.IconSize s : Utilities.IconSize.values){
+			final String sName = s.toString();
+			final RadioMenuItem bsizeItem = new RadioMenuItem(sName.charAt(0) + sName.substring(1).toLowerCase());
+			bsizeItem.setToggleGroup(butsizeGroup);
+			bsizeItem.setSelected(bsizeItem.getText().toUpperCase().equals(Utilities.settings.getProperty("iconsize")));
+			butsizeMenu.getItems().add(bsizeItem);
+		}
+        butsizeGroup.selectedToggleProperty().addListener((observable) -> {
+			if (butsizeGroup.getSelectedToggle() != null) {
+				final RadioMenuItem selected = (RadioMenuItem)butsizeGroup.getSelectedToggle();
+				final String t = selected.getText().toUpperCase();
+				Utilities.settings.setProperty("iconsize", "" + t);
+				MainProperties.INSTANCE.saveSettings();
+				Utilities.displayAlert(Alert.AlertType.WARNING, "Please restart the program to make effective");
+			}
+        });		
 		final MenuItem settingsMenuItem = new MenuItem("Settings", new TextIcon("gear", TextIcon.IconSet.AWESOME));
 		settingsMenuItem.setOnAction(actionEvent -> Settings.INSTANCE.display());
-		optionsMenu.getItems().addAll(themeMenu, settingsMenuItem);
+		optionsMenu.getItems().addAll(themeMenu, butsizeMenu, settingsMenuItem);
 		
 		// Help
 		final Menu helpMenu = new Menu("_Help");

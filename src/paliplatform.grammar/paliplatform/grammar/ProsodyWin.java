@@ -41,7 +41,7 @@ import javafx.geometry.*;
 /** 
  * Prosody window analyzes prosodic patterns of a selected stanza.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public final class ProsodyWin extends BorderPane {
@@ -664,8 +664,9 @@ public final class ProsodyWin extends BorderPane {
 		final ProsodyOutput pdout = table.getSelectionModel().getSelectedItem();
 		if (pdout != null) {
 			final String refId = pdout.getGatha().getRefId().toLowerCase();
-		if (GrammarUtilities.readerServiceImp != null)
-			GrammarUtilities.readerServiceImp.openDocument("GRAM", refId);
+			final int refGathaNum = pdout.getGatha().getRefParaNum();
+			if (GrammarUtilities.readerServiceImp != null)
+				GrammarUtilities.readerServiceImp.openDocument("GRAM", refId, refGathaNum + ".");
 		}
 	}
 

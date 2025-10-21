@@ -1,7 +1,7 @@
 /*
  * SrtHtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
 /** 
  * The viewer of Siam Rath Tipitaka.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class SrtHtmlViewer extends PaliHtmlViewer {
@@ -63,7 +63,7 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 	private final ToggleButton dehyphenButton = new ToggleButton("", new TextIcon("screwdriver-wrench", TextIcon.IconSet.AWESOME));
 	private final InfoPopup helpPopup = new InfoPopup();
 
-	public SrtHtmlViewer(final TocTreeNode node) {
+	public SrtHtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
 		final ViewerFXHandler fxHandler = new ViewerFXHandler(this);
 		webEngine.getLoadWorker().stateProperty().addListener((prop, oldState, newState) -> {
@@ -125,15 +125,17 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 		// compose SplitPane, the left pane is not shown at start
 		splitPane.getItems().addAll(textPane);	
 		setCenter(splitPane);
-		init(node);
+		init(node, strToLocate);
 	}
 
-	public void init(final TocTreeNode node) {
+	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
 		Platform.runLater(() ->	{
 			dehyphenButton.setSelected(false);
 			loadContent();
 			initFindInput();
+			if (!strToLocate.isEmpty())
+				setInitialStringToLocate(strToLocate);
 		});
 	}
 

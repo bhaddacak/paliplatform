@@ -1,7 +1,7 @@
 /*
  * GramHtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,13 +38,14 @@ import javafx.geometry.Orientation;
  * The viewer of Pali grammar books.
  * 
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class GramHtmlViewer extends PaliHtmlViewer {
 	private static enum LeftListType { HEADING, NUMBER }
 	private static final String INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
 	private static final String BR = "<br>";
+	private static final String BULLET = "&bull;";
 	static final double DIVIDER_POSITION_LEFT = 0.2;
 	private final SplitPane splitPane = new SplitPane();
 	private final BorderPane leftPane = new BorderPane();
@@ -52,18 +53,14 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 	private final ListView<String> docNavListView;
 	private LeftListType currLeftListType = LeftListType.HEADING;
 	private final HBox contextToolBar = new HBox();
-	private final ToggleGroup textSelector = new ToggleGroup();
-	private final ToggleButton combineButton = new ToggleButton("", new TextIcon("handshake-angle", TextIcon.IconSet.AWESOME));
 	private final ToggleButton heartButton = new ToggleButton("", new TextIcon("heart", TextIcon.IconSet.AWESOME));
 	private final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
-	private final CheckMenuItem pancMenuItem = new CheckMenuItem("Moggallānapañcikā");
-	private final CheckMenuItem niruMenuItem = new CheckMenuItem("Niruttidīpanī");
+	private final List<CheckMenuItem> relatedBookMenuList = new ArrayList<>();
 	private final InfoPopup helpPopup = new InfoPopup();
 	private GrammarText gramText;
-	private GrammarText.GrammarBook currBookId;
 	private String recentJS = "";
 
-	public GramHtmlViewer(final TocTreeNode node) {
+	public GramHtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
 		// prepare the left pane's content
 		docNavListView = new ListView<>(docNavList);
@@ -140,22 +137,21 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		// compose SplitPane, the left pane is not shown at start
 		splitPane.getItems().addAll(textPane);	
 		setCenter(splitPane);
-		init(node);
+		init(node, strToLocate);
 	}
 
-	public void init(final TocTreeNode node) {
+	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
 		Platform.runLater(() ->	{
 			contextToolBar.getChildren().clear();
-			textSelector.getToggles().clear();
 			optionsMenu.getItems().clear();
-			combineButton.setSelected(false);
+			relatedBookMenuList.clear();
 			heartButton.setSelected(false);
-			pancMenuItem.setSelected(false);
-			niruMenuItem.setSelected(false);
 			loadContent();
 			setupContextToolBar();
 			initFindInput();
+			if (!strToLocate.isEmpty())
+				setInitialStringToLocate(strToLocate);
 		});
 	}
 
@@ -163,35 +159,22 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		String filename =  thisDoc.getNodeFileName();
 		final Corpus corpus = thisDoc.getCorpus();
 		gramText = new GrammarText(thisDoc, ReaderUtilities.readTextFromZip(filename, corpus));
-		if (textSelector.getToggles().size() > 0)
-			loadContent((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData());
-		else
-			setupContent(gramText.getFirstBook());
-	}
-
-	private void loadContent(final GrammarText.GrammarBook bookId) {
-		setupContent(bookId);
+		setupContent();
 		displayScript.set(Utilities.PaliScript.ROMAN);
 	}
 
 	private void setupContent() {
-		setupContent(currBookId);
-	}
-
-	private void setupContent(final GrammarText.GrammarBook bookId) {
-		currBookId = bookId;
+		final GrammarText.GrammarBook bookId = gramText.getBook();
 		final String body;
 		final List<GrammarText.GrammarBook> extras = new ArrayList<>();
-		if (bookId == GrammarText.GrammarBook.MOGG) {
-			if (pancMenuItem.isSelected())
-				extras.add(GrammarText.GrammarBook.PANCT);
-			if (niruMenuItem.isSelected())
-				extras.add(GrammarText.GrammarBook.NIRU);
+		for (final CheckMenuItem related : relatedBookMenuList) {
+			if (related.isSelected())
+				extras.add((GrammarText.GrammarBook)related.getUserData());
 		}
 		if (heartButton.isSelected()) {
-			body = formatDisplay(gramText.getFormulaListAsString(bookId, combineButton.isSelected(), extras));
+			body = formatDisplay(gramText.getFormulaListAsString(bookId, extras));
 		} else {
-			body = formatDisplay(gramText.getText(bookId, combineButton.isSelected(), extras));
+			body = formatDisplay(gramText.getText(bookId, extras));
 		}
 		pageBody = "<body>\n" + body + "\n</body>";
 		final String gramJS = ReaderUtilities.getStringResource(ReaderUtilities.GRAM_JS);
@@ -204,8 +187,9 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		final StringBuilder result = new StringBuilder();
 		final String head = "<h3 id='texthead' style='text-align:center;'>" + thisDoc.getNodeName() + "</h3>\n";
 		result.append(head);
+		final String descStr = ((SimpleDocumentInfo)thisDoc.getCorpus().getDocInfo(thisDoc.getNodeId())).getDescription();
 		final String desc = "<blockquote><p>"
-						+ ((SimpleDocumentInfo)thisDoc.getCorpus().getDocInfo(thisDoc.getNodeId())).getDescription()
+						+ formatDescription(descStr)
 						+ "</p></blockquote>\n";
 		result.append(desc);
 		final String[] lines = text.split("\\r?\\n");
@@ -223,6 +207,11 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		return result.toString();
 	}
 
+	private String formatDescription(final String text) {
+		return text.replaceAll("\\\\n", BR + INDENT + BULLET) // change \n to <br> and indent and bullet
+					.replaceAll("\\*(.*?)\\*", "<b>$1</b>"); // change *_* to <b>_</b>
+	}
+
 	public void clearContent() {
 		docNavListView.scrollTo(0);
 		final ObservableList<Node> ol = splitPane.getItems();
@@ -233,42 +222,29 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 
 	private void setupContextToolBar() {
 		if (gramText == null) return;
-		if (gramText.isDual()) {
-			final List<GrammarText.GrammarBook> bookList = gramText.getBookList();
-			final List<RadioButton> textRadioList = new ArrayList<>();
-			for (final GrammarText.GrammarBook book : bookList) {
-				final RadioButton refRadio = new RadioButton(book.getRef());
-				refRadio.setTooltip(new Tooltip(gramText.getBookName(book)));
-				refRadio.setUserData(book);
-				refRadio.setOnAction(actionEvent -> loadContent(book));
-				textRadioList.add(refRadio);
-			}
-			if (!textRadioList.isEmpty()) {
-				textSelector.getToggles().addAll(textRadioList);
-				textRadioList.get(0).setSelected(true);
-				contextToolBar.getChildren().add(new Separator(Orientation.VERTICAL));
-				contextToolBar.getChildren().addAll(textRadioList);
-			}
-			combineButton.setTooltip(new Tooltip("Show two books together"));
-			combineButton.setOnAction(actionEvent -> setupContent((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData()));
-			contextToolBar.getChildren().add(combineButton);
-			if (thisDoc.getNodeId().equals("moggpayo")) {
-				optionsMenu.setTooltip(new Tooltip("Additional books"));
-				pancMenuItem.setSelected(false);
-				pancMenuItem.setOnAction(actionEvent -> setupContent((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData()));
-				niruMenuItem.setSelected(false);
-				niruMenuItem.setOnAction(actionEvent -> setupContent((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData()));
-				optionsMenu.getItems().addAll(pancMenuItem, niruMenuItem);
-				contextToolBar.getChildren().add(optionsMenu);
-			}
-		}
+		final GrammarText.GrammarBook bookId = gramText.getBook();
 		if (gramText.hasSuttaFormula()) {
 			heartButton.setTooltip(new Tooltip("Show only sutta heads/formulae"));
-			final GrammarText.GrammarBook bookId = gramText.isDual()
-													? (GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData()
-													: gramText.getFirstBook();
 			heartButton.setOnAction(actionEvent -> setupContent());
 			contextToolBar.getChildren().add(heartButton);
+		}
+		final List<GrammarText.GrammarBook> relatedBooks = bookId.getRelatedBooks();
+		if (!relatedBooks.isEmpty()) {
+			optionsMenu.setTooltip(new Tooltip("Related books"));
+			final Corpus corpus = thisDoc.getCorpus();
+			for (final GrammarText.GrammarBook book : relatedBooks) {
+				final CheckMenuItem menuItem = new CheckMenuItem(corpus.getDocInfo(book.getBookId()).getTextName());
+				menuItem.setUserData(book);
+				menuItem.setOnAction(actionEvent -> setupContent());
+				optionsMenu.getItems().add(menuItem);
+				relatedBookMenuList.add(menuItem);
+			}
+			final MenuItem allMenuItem = new MenuItem("Include all");
+			allMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(true)); setupContent();});
+			final MenuItem noneMenuItem = new MenuItem("Include none");
+			noneMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(false)); setupContent();});
+			optionsMenu.getItems().addAll(new SeparatorMenuItem(), allMenuItem, noneMenuItem);
+			contextToolBar.getChildren().add(optionsMenu);
 		}
 	}
 
@@ -276,9 +252,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		currLeftListType = listType;
 		final List<String> docNav = new ArrayList<>();
 		if (listType == LeftListType.HEADING) {
-			final List<String[]> headList = textSelector.getToggles().size() > 0
-											? gramText.getHeadList((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData())
-											: gramText.getHeadList();
+			final List<String[]> headList = gramText.getHeadList();
 			for (final String[] headItem : headList) {
 				final int level = Integer.parseInt(headItem[1]);
 				String spaces = " ";
@@ -291,9 +265,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 				docNav.add(indent + headItem[0]);
 			}
 		} else if (listType == LeftListType.NUMBER) {
-			final List<String> numList = textSelector.getToggles().size() > 0
-											? gramText.getNumList((GrammarText.GrammarBook)textSelector.getSelectedToggle().getUserData())
-											: gramText.getNumList();
+			final List<String> numList = gramText.getNumList();
 			docNav.addAll(numList);
 		}
 		docNavList.setAll(docNav);

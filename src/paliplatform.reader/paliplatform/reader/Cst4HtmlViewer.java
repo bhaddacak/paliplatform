@@ -1,7 +1,7 @@
 /*
  * Cst4HtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,22 +30,20 @@ import org.w3c.dom.html.HTMLElement;
 import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
 import javafx.scene.input.*;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.beans.property.*;
 import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 /** 
  * The viewer of Pali texts in CST4 collection.
  * The format is XML agreeable to VRI's CSCD compilation format.
  * Transformation from XML to HTML is done by XSLT.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class Cst4HtmlViewer extends PaliHtmlViewer {
@@ -67,7 +65,7 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 	private boolean showXref = false;
 	private String recentJS = "";
 
-	public Cst4HtmlViewer(final TocTreeNode node) {
+	public Cst4HtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.CST4_CSS).toExternalForm());
 		
@@ -230,34 +228,55 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 		setCenter(splitPane);
 		helpInfoPopup.setContentWithText(ReaderUtilities.getTextResource("info-cst4viewer.txt"));
 		helpInfoPopup.setTextWidth(Utilities.getRelativeSize(38));
-		init(node);
+		init(node, strToLocate);
 	}
 
-	public void init(final TocTreeNode node) {
+	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
 		Platform.runLater(() ->	{
 			showNoteButton.setSelected(true);
 			showXRefButton.setSelected(false);
 			rightPane.setCenter(createInfoBox());
 			loadContent();
+			initFindInput();
+			if (!strToLocate.isEmpty())
+				setInitialStringToLocate(strToLocate);
 		});
 	}
 
 	private VBox createInfoBox() {
+		final StringBuilder infoContent = new StringBuilder(); // for clipboard copy
 		final VBox selfInfoBox = new VBox();
 		final String nodeId = thisDoc.getNodeId();
 		final Corpus corpus = thisDoc.getCorpus();
 		final Cst4Info nodeInfo = (Cst4Info)cst4InfoMap.get(nodeId);
+		final AnchorPane groupClassBar = new AnchorPane();
 		final Label groupClassLbl = new Label(nodeInfo.getGroupStr() + " (" + corpus.getRootName().toUpperCase() + ")");
 		groupClassLbl.setStyle("-fx-font-size:0.8em;");
-		final VBox groupClassBox = new VBox(groupClassLbl); 
-		groupClassBox.setAlignment(Pos.TOP_CENTER);
+		infoContent.append(groupClassLbl.getText()).append("\n");
+		final Button copyButton = new Button("", new TextIcon("copy", TextIcon.IconSet.AWESOME, Utilities.IconSize.SMALL));
+		copyButton.setPadding(new Insets(2));
+		copyButton.setTooltip(new Tooltip("Copy information"));
+		copyButton.setOnAction(actionEvent -> {
+			final Clipboard clipboard = Clipboard.getSystemClipboard();
+			final ClipboardContent content = new ClipboardContent();
+			content.putString(infoContent.toString());
+			clipboard.setContent(content);
+		});
+		AnchorPane.setTopAnchor(groupClassLbl, 0.0);
+		AnchorPane.setLeftAnchor(groupClassLbl, 0.0);
+		AnchorPane.setTopAnchor(copyButton, 0.0);
+		AnchorPane.setRightAnchor(copyButton, 0.0);
+		groupClassBar.getChildren().addAll(groupClassLbl, copyButton);
 		final String nodeName = thisDoc.getNodeName();
 		final Label textNameLbl = new Label(nodeName);
 		textNameLbl.getStyleClass().add("emphasized");
-		selfInfoBox.getChildren().addAll(groupClassBox, textNameLbl);
-		final Label fileNameLbl = new Label("  File: " + nodeInfo.getFileNameWithExt());
+		infoContent.append(textNameLbl.getText()).append("\n");
+		selfInfoBox.getChildren().addAll(groupClassBar, textNameLbl);
+		final String fname = nodeInfo.getFileNameWithExt();
+		final Label fileNameLbl = new Label("  File: " + fname.substring(fname.lastIndexOf("/") + 1));
 		fileNameLbl.setStyle("-fx-font-size:0.8em;");
+		infoContent.append(fileNameLbl.getText()).append("\n");
 		selfInfoBox.getChildren().add(fileNameLbl);
 		// add relative links information
 		final String currLinkId = nodeInfo.getLinkId();

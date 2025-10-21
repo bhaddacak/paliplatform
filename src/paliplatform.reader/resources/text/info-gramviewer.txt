@@ -1,4 +1,6 @@
 Notes on Pāli grammar books
-	1. All grammar books have their web version in https://bhaddacak.github.io/grammarbooks, which are somewhat more handy to use.
-	2. The text of Kaccāyana, Rūpasiddhi, Saddanīti Suttamālā, and Abhidhānappadīpikā are converted from Thai script available at 'Palipage' (https://sites.google.com/view/palipage).
+	1. The text of Kaccāyana, Rūpasiddhi, Mukhamattadīpanī, Saddanīti Suttamālā, and Abhidhānappadīpikā are converted from Thai script available at 'Palipage' (https://sites.google.com/view/palipage).
+	2. Kaccāyanasuttaniddesa is taken from GRETIL with some adjustments.
 	3. Other texts are taken from the Chaṭṭha Saṅgāyana collection with rearrangement and some editing.
+	4. Specific information of each book can be found in the viewer.
+	5. Only Kaccāyana, Moggallāna, and Abhidhānappadīpikā have related books viewable in corresponding suttas. Try option button when available.

@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection>
-<text id="kaccrupa">
- <ref>Kacc:Rūpa</ref>
- <file>gram/kaccrupa.txt</file>
- <name>Kaccāyanabyākaraṇaṃ Padarūpasiddhi ca</name>
- <description>The main texts used by the tradition of Kaccāyana school of Pāli grammar.</description>
+<text id="kacc">
+ <ref>Kacc</ref>
+ <file>gram/kacc.txt</file>
+ <name>Kaccāyanabyākaraṇaṃ</name>
+ <description>The oldest text of Pāli grammar by Kaccāyana, substantially edited by J.R. Bhaddacak.\nThe running numbers have two systems, totally 675 (others) and 673 (Myammar), separated by a colon.\nThe numbers in brackets are of Padarūpasiddhi.\nAn 'x' marks an absence.</description>
+</text>
+<text id="rupa">
+ <ref>Rūpa</ref>
+ <file>gram/rupa.txt</file>
+ <name>Padarūpasiddhi</name>
+ <description>The most well-known explanation on Kaccāyana by Buddhappiya.\nThe numbers in brackets are of Kaccāyana.</description>
+</text>
+<text id="mmd">
+ <ref>Mmd</ref>
+ <file>gram/mmd.txt</file>
+ <name>Mukhamattadīpanī (Nyāsa)</name>
+ <description>A substantial commentary on Kaccāyana by Vimalabuddhi.</description>
+</text>
+<text id="kaccsn">
+ <ref>Kacc-sn</ref>
+ <file>gram/kaccsn.txt</file>
+ <name>Kaccāyanasuttaniddesa</name>
+ <description>An explanation on Kaccāyana by Saddhammajotipāla (Chapata).\nThis text is based on the edtion by M. Medhankara: The Kachchayanasuttaniddesa, Colombo, 1915, digitized by Niedersächsische Staats - und Universitätsbibliothek Göttingen, transcribed by Aleix Ruiz Falqués, Cambridge (UK), May 2013.\nThe source is avialable at GRETIL, but this version is reformatted and slightly cleaned up by J.R. Bhaddacak.\n*WARNING*: A serious reading of this should be carefully checked with the printed edition.</description>
+</text>
+<text id="blv">
+ <ref>Blv</ref>
+ <file>gram/blv.txt</file>
+ <name>Bālāvatāra</name>
+ <description>A simplified explanation of Kaccāyana by Dhammakitti, targeting youth learners.\nThe numbers in brackets are of Kaccāyana.</description>
 </text>
 <text id="dhmjs">
  <ref>Dhmjs</ref>
@@ -12,15 +36,21 @@
  <name>Kaccāyana-dhātumañjūsā</name>
  <description>The collection of roots used by the Kaccāyana school, edited by J.R. Bhaddacak.</description>
 </text>
-<text id="moggpayo">
- <ref>Mogg:Payo</ref>
- <file>gram/moggpayo.txt</file>
- <name>Moggallānabyākaraṇaṃ Payogasiddhi ca</name>
- <description>The main texts used by the tradition of Moggallāna school of Pāli grammar.</description>
+<text id="mogg">
+ <ref>Mogg</ref>
+ <file>gram/mogg.txt</file>
+ <name>Moggallānabyākaraṇaṃ</name>
+ <description>The text of Pāli grammar by Moggallāna.</description>
 </text>
-<text id="panct">
- <ref>Pañc-t</ref>
- <file>gram/panct.txt</file>
+<text id="payo">
+ <ref>Payo</ref>
+ <file>gram/payo.txt</file>
+ <name>Payogasiddhi</name>
+ <description>Madhaṅkara's explanation on Moggallānabyākaraṇa.</description>
+</text>
+<text id="moggpt">
+ <ref>Mogg-pt</ref>
+ <file>gram/moggpt.txt</file>
  <name>Moggallānapañcikāṭīkā</name>
  <description>The subcommentary on Moggallānapañcikā.</description>
 </text>
@@ -28,7 +58,7 @@
  <ref>Niru</ref>
  <file>gram/niru.txt</file>
  <name>Niruttidīpanī</name>
- <description>Leḍī Sayāḍo's commentary on Moggallānabyākaraṇa.</description>
+ <description>Ñāṇadhaja, Leḍī Sayāḍo's explanation on Moggallānabyākaraṇa.</description>
 </text>
 <text id="saddpad">
  <ref>Sadd-Pad</ref>
@@ -51,8 +81,14 @@
 <text id="abhidha">
  <ref>Abhidhā</ref>
  <file>gram/abhidha.txt</file>
- <name>Abhidhānappadīpikā Ṭīkā ca</name>
- <description>The first Pāli lexicography with its commentary.</description>
+ <name>Abhidhānappadīpikā</name>
+ <description>The first Pāli lexicography, ascribed to Moggallāna.</description>
+</text>
+<text id="abhidhat">
+ <ref>Abhidhā-t</ref>
+ <file>gram/abhidhat.txt</file>
+ <name>Abhidhānappadīpikāṭīkā</name>
+ <description>An explanation on Abhidhānappadīpikā.</description>
 </text>
 <text id="subho">
  <ref>Subho</ref>

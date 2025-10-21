@@ -1,7 +1,7 @@
 /*
  * LetterWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ import javafx.beans.property.*;
  * The window showing Pali letters in various scripts.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 2.0
  */
 public final class LetterWin extends SingletonWindow {
@@ -253,12 +253,12 @@ public final class LetterWin extends SingletonWindow {
 		bigChar.textProperty().bind(selectedChar);
 		bigChar.getStyleClass().add("bigchar");
 		// add - and + buttons to resize the big char
-		final Label minusLabel = new Label("", new TextIcon("circle-minus", TextIcon.IconSet.AWESOME, 1.3));
+		final Label minusLabel = new Label("", new TextIcon("circle-minus", TextIcon.IconSet.AWESOME, Utilities.IconSize.BIG));
 		minusLabel.getStyleClass().add("labelbutton");
 		minusLabel.setOnMouseClicked(mouseEvent -> resizeBigChar(-100));
 		StackPane.setAlignment(minusLabel, Pos.TOP_LEFT);
 		StackPane.setMargin(minusLabel, new Insets(5, 0, 0, 5));
-		final Label plusLabel = new Label("", new TextIcon("circle-plus", TextIcon.IconSet.AWESOME, 1.3));
+		final Label plusLabel = new Label("", new TextIcon("circle-plus", TextIcon.IconSet.AWESOME, Utilities.IconSize.BIG));
 		plusLabel.getStyleClass().add("labelbutton");
 		plusLabel.setOnMouseClicked(mouseEvent -> resizeBigChar(+100));
 		StackPane.setAlignment(plusLabel, Pos.TOP_RIGHT);

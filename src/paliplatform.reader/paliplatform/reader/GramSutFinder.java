@@ -43,7 +43,7 @@ import javafx.collections.ObservableList;
  * The window showing all Pali grammatical sutta with search function.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class GramSutFinder extends SingletonWindow {
@@ -56,14 +56,12 @@ public class GramSutFinder extends SingletonWindow {
 	private final ObservableList<SuttaOutput> outputList = FXCollections.<SuttaOutput>observableArrayList();
 	private final VBox toolBarBox = new VBox();
 	private final HBox selectorToolBar = new HBox();
-//~ 	private final RadioButton SimpleXrefButton = new RadioButton("Simple");
 	private final CheckMenuItem includeNiruXrefMenuItem = new CheckMenuItem("Include Niru Xref");
 	private final CheckMenuItem includeNiruNoteMenuItem = new CheckMenuItem("Include Niru Notes");
 	private final CheckBox cbNotes = new CheckBox("Notes");
 	private final Set<GrammarText.GrammarBook> bookSelectorSet = EnumSet.noneOf(GrammarText.GrammarBook.class);
 	private final ContextMenu popupMenu = new ContextMenu();											
 	private final Map<GrammarText.GrammarBook, CheckBox> bookCheckBoxMap = new EnumMap<>(GrammarText.GrammarBook.class);
-//~ 	private GrammarSutta.RefType currXrefType = GrammarSutta.RefType.SIMPLE;
 	
 	private GramSutFinder() {
 		windowWidth = Utilities.getRelativeSize(66);
@@ -97,24 +95,6 @@ public class GramSutFinder extends SingletonWindow {
 		includeNiruXrefMenuItem.setOnAction(actionEvent -> setOutputList());
 		includeNiruNoteMenuItem.setOnAction(actionEvent -> setOutputList());
 		optionsMenu.getItems().addAll(includeNiruXrefMenuItem, includeNiruNoteMenuItem);
-//~ 		// Xref type radios
-//~ 		final ToggleGroup xrefTypeGroup = new ToggleGroup();
-//~ 		SimpleXrefButton.setTooltip(new Tooltip("Simple Xref"));
-//~ 		SimpleXrefButton.setToggleGroup(xrefTypeGroup);
-//~ 		final RadioButton NiruXrefButton = new RadioButton("Niru");
-//~ 		NiruXrefButton.setTooltip(new Tooltip("Xref from Niruttidīpanī"));
-//~ 		NiruXrefButton.setToggleGroup(xrefTypeGroup);
-//~ 		xrefTypeGroup.selectToggle(SimpleXrefButton);
-//~ 		xrefTypeGroup.selectedToggleProperty().addListener((observable) -> {
-//~ 			currXrefType = xrefTypeGroup.getSelectedToggle() == SimpleXrefButton
-//~ 							? GrammarSutta.RefType.SIMPLE
-//~ 							: GrammarSutta.RefType.NIRU;
-//~ 			setOutputList();
-//~ 		});	
-//~ 		// notes checkbox
-//~ 		cbNotes.setSelected(false);
-//~ 		cbNotes.setTooltip(new Tooltip("Show notes (Niruttidīpanī only)"));
-//~ 		cbNotes.setOnAction(actionEvent -> setOutputList());
 		// help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
@@ -265,13 +245,15 @@ public class GramSutFinder extends SingletonWindow {
 	private void openDoc() {
 		final SuttaOutput selected = table.getSelectionModel().getSelectedItem();
 		if (selected == null) return;
-		final String bookId = selected.getGramSut().getBook().getBundleId();
+		final GrammarSutta gramSut = selected.getGramSut();
+		final String bookId = gramSut.getBook().getBookId();
+		final String sutNum = gramSut.getSuttaNumber() + ". ";
 		final Corpus cp = ReaderUtilities.corpusMap.get(Corpus.Collection.GRAM);
 		final DocumentInfo dinfo = cp.getDocInfo(bookId);
 		if (dinfo != null && !dinfo.getFileNameWithExt().isEmpty()) {
 			final TocTreeNode node = dinfo.toTocTreeNode();
 			if (Utilities.checkFileExistence(node.getNodeFile()))
-				ReaderUtilities.openPaliHtmlViewer(node);
+				ReaderUtilities.openPaliHtmlViewer(node, sutNum);
 		}
 	}
 

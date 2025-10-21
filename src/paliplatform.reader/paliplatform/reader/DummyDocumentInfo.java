@@ -1,7 +1,7 @@
 /*
  * DummyDocumentInfo.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,15 @@
 
 package paliplatform.reader;
 
+import java.util.List;
+import java.util.Collections;
 import java.util.Comparator;
 import javafx.beans.property.*;
 
 /** 
  * The dummy class for DocumentInfo.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 
@@ -95,6 +97,15 @@ public class DummyDocumentInfo implements DocumentInfo {
 		return searchResultCount;
 	}
 	
+	@Override
+	public void setMatchResult(final List<String> result) {
+	}
+
+	@Override
+	public List<String> getMatchResult() {
+		return Collections.emptyList();
+	}
+
 	@Override
 	public boolean containsInfo(final String query) {
 		return true;

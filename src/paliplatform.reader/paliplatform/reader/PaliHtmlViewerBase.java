@@ -1,7 +1,7 @@
 /*
  * PaliHtmlViewerBase.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -103,7 +103,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			}
 		});
 		findInput.textProperty().addListener((obs, oldValue, newValue) -> {
-			if (!newValue.isEmpty())
+			if (!newValue.isEmpty() && !findBox.isSuspended())
 				findNext(Normalizer.normalize(newValue, Form.NFC), +1);
 		});
 		// add find box first, and remove it (in init); this makes the focus request possible		
@@ -439,6 +439,13 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		findBox.init();
 	}
 	
+	protected void setFindInputText(final String text) {
+		findBox.setSuspended(true);
+		findInput.setText(text);
+		findBox.setSuspended(false);
+		searchTextFound.set(false);
+	}	
+	
 	private void clearFindInput() {
 		findInput.clear();
 		searchTextFound.set(false);
@@ -461,6 +468,11 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		final int caseSensitive = findBox.isCaseSensitive() ? 1 : 0;
 		final String properQuery = query.replace("'", "\\u{0027}");
 		webEngine.executeScript("findNext('" + properQuery + "'," + caseSensitive + "," + direction + ")");
+	}
+	
+	protected void findSingle(final String query) {
+		final String properQuery = query.replace("'", "\\u{0027}");
+		webEngine.executeScript("findSingleQuiet('" + properQuery + "'" + ")");
 	}
 	
 }

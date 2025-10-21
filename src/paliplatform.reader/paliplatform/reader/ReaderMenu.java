@@ -1,7 +1,7 @@
 /*
  * ReaderMenu.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ import javafx.scene.input.KeyCode;
 /** 
  * The menu items for Reader module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.2
  * @since 3.0
  */
 public class ReaderMenu extends Menu {
@@ -44,7 +44,7 @@ public class ReaderMenu extends Menu {
 		final MenuItem toctreeMenuItem = new MenuItem("_TOC Tree", new TextIcon("folder-tree", TextIcon.IconSet.AWESOME));
 		toctreeMenuItem.setMnemonicParsing(true);
 		toctreeMenuItem.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.TOCTREE, null));
-		final MenuItem docfinderMenuItem = new MenuItem("_Document Finder", new TextIcon("magnifying-glass", TextIcon.IconSet.AWESOME));
+		final MenuItem docfinderMenuItem = new MenuItem("_Document Finder", new TextIcon("binoculars", TextIcon.IconSet.AWESOME));
 		docfinderMenuItem.setMnemonicParsing(true);
 		docfinderMenuItem.disableProperty().bind(ReaderUtilities.corpusAvailable.not());
 		docfinderMenuItem.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.FINDER, null));

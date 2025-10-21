@@ -1,1360 +1,1362 @@
-Kacc 1, 1. attho akkharasaññāto.
-Kacc 2, 2. akkharāpādayo ekacattālīsaṃ.
-Kacc 3, 3. tatthodantā sarā aṭṭha.
-Kacc 4, 4. lahumattā tayo rassā.
-Kacc 5, 5. aññe dīghā.
-Kacc 6, 8. sesā byañjanā.
-Kacc 7, 9. vaggā pañcapañcaso mantā.
-Kacc 8, 10. aṃ iti niggahitaṃ.
-Kacc 9, 11. parasamaññā payoge.
-Kacc 10, 12. pubbamadhoṭhita massaraṃ sarena viyojaye.
-Kacc 11, 14. naye paraṃ yutte.
-Kacc 12, 13. sarā sare lopaṃ.
-Kacc 13, 15. vā paro asarūpā.
-Kacc 14, 16. kvacāsavaṇṇaṃ lutte.
-Kacc 15, 17. dīghaṃ.
-Kacc 16, 18. pubbo ca.
-Kacc 17, 19. yamedantassādeso.
-Kacc 18, 20. vamodudantānaṃ.
-Kacc 19, 22. sabbo caṃ ti.
-Kacc 20, 27. do dhassa ca.
-Kacc 21, 21. ivaṇṇo yaṃ navā.
-Kacc 22, 28. evādissa ri pubbo ca rasso.
-Kacc 23, 26. sarā pakati byañjane.
-Kacc 24, 35. sare kvaci.
-Kacc 25, 37. dīghaṃ.
-Kacc 26, 38. rassaṃ.
-Kacc 27, 39. lopañca tatrākāro.
-Kacc 28, 40. para dvebhāvo ṭhāne.
-Kacc 29, 42. vagge ghosāghosānaṃ tatiyapaṭhamā.
-Kacc 30, 58. aṃ byañjane niggahitaṃ.
-Kacc 31, 49. vaggantaṃ vā vagge.
-Kacc 32, 50. ehe ñaṃ.
-Kacc 33, 50. saye ca.
-Kacc 34, 52. madā sare.
-Kacc 35, 34. ya va ma da na ta ra lā cāgamā.
-Kacc 36, 47. kvaci o byañjane.
-Kacc 37, 57. niggahitañca.
-Kacc 38, 53. kvaci lopaṃ.
-Kacc 39, 54. byañjane ca.
-Kacc 40, 55. paro vā saro.
-Kacc 41, 56. byañjano ca visaññogo.
-Kacc 42, 32. go sare puthassāgamo kvaci.
-Kacc 43, 33. pāssa canto rasso.
-Kacc 44, 24. abbho abhi.
-Kacc 45, 25. ajjho adhi.
-Kacc 46, 26. te na vā ivaṇṇe.
-Kacc 47, 23. atissa cantassa.
-Kacc 48, 43. kvaci paṭi patissa.
-Kacc 49, 44. puthassu byañjane.
-Kacc 50, 45. o avassa.
-Kacc 51, 59. anupadiṭṭhānaṃ vuttayogato.
-Kacc 52, 60. jinavacanayuttaṃ hi.
-Kacc 53, 61. liṅgañca nippajjate.
-Kacc 54, 62. tato ca vibhattiyo.
-Kacc 55, 63. si yo, aṃ yo, nā hi, sa naṃ, smā hi, sa naṃ, smiṃ su.
-Kacc 56, 64. tadanuparodhena.
-Kacc 57, 71. ālapane si ga sañño.
-Kacc 58, 29. ivaṇṇuvaṇṇā jhalā.
-Kacc 59, 182. te itthikhyā po.
-Kacc 60, 177. ā gho.
-Kacc 61, 86. sāgamo se.
-Kacc 62, 206. saṃsāsvekavacanesu ca.
-Kacc 63, 217. etimāsami.
-Kacc 64, 216. tassā vā.
-Kacc 65, 215. tato sassa ssāya.
-Kacc 66, 205. gho rassaṃ.
-Kacc 67, 229. no ca dvādito naṃmhi.
-Kacc 68, 184. amā pato smiṃsmānaṃ vā.
-Kacc 69, 186. ādito o ca.
-Kacc 70, 30. jhalānamiyuvā sare vā.
-Kacc 71, 505. yavakārā ca.
-Kacc 72, 185. pasaññassa ca.
-Kacc 73, 174. gāva se.
-Kacc 74, 169. yosu ca.
-Kacc 75, 170. avamhi ca.
-Kacc 76, 171. āvassu vā.
-Kacc 77, 175. tato namaṃ patimhā lutte ca samāse.
-Kacc 78, 3. osare ca.
-Kacc 79, 46. tabbiparītūpapade byañjane ca.
-Kacc 80, 173. goṇa naṃmhi vā.
-Kacc 81, 172. suhināsu ca.
-Kacc 82, 149. aṃmo niggahitaṃ jhalapehi.
-Kacc 83, 67. saralopo’ mādesa paccayādimhi saralope tu pakati.
-Kacc 84, 144. aghorassamekavacanayosvapi ca.
-Kacc 85, 150. na sismimanapuṃsakāni.
-Kacc 86, 227. ubhādito naminnaṃ.
-Kacc 87, 231. iṇṇamiṇṇannaṃ tīhi saṅkhyāhi.
-Kacc 88, 147. yosu katanikāralopesu dīghaṃ.
-Kacc 89, 87. sunaṃhisu ca.
-Kacc 90, 252. pañcādīnamattaṃ.
-Kacc 91, 194. patissinīmhi.
-Kacc 92, 100. ntussanto yosu ca.
-Kacc 93, 106. sabbassa vā aṃsesu.
-Kacc 94, 105. simhi vā.
-Kacc 95, 145. aggissini.
-Kacc 96, 148. yosvakatarasso jho.
-Kacc 97, 156. vevosu lo ca.
-Kacc 98, 186. mātulādīnamānattamīkāre.
-Kacc 99, 81. smāhismiṃnaṃmhābhimhivā.
-Kacc 100, 214. na timehi katākārehi.
-Kacc 101, 80. suhisvakāro e.
-Kacc 102, 202. sabbanāmānaṃ naṃmhi ca.
-Kacc 103, 79. ato nena.
-Kacc 104, 66. so.
-Kacc 105,.. so vā.
-Kacc 106, 313. dīghorehi.
-Kacc 107, 69. sabbayonīnamāe.
-Kacc 108, 90. smāsmiṃnaṃ vā.
-Kacc 109, 304. āya catutthekavacanassa tu.
-Kacc 110, 201. tayo neva ca sabbanāmehi.
-Kacc 111, 179. ghato nādīnaṃ.
-Kacc 112, 183. pato yā.
-Kacc 113, 132. sakhato gasse vā.
-Kacc 114, 178. ghate ca.
-Kacc 115, 181. na ammādito.
-Kacc 116, 157. akatarassā lato yvālapanassa vevo.
-Kacc 117, 124. jhalato sassano vā.
-Kacc 118, 146. ghapato ca yonaṃ lopo.
-Kacc 119, 155. lato vokāro ca.
-Kacc 120, 243. amhassa mamaṃ sapibhattissa se.
-Kacc 121, 233. mayaṃ yomhi paṭhame.
-Kacc 122, 99. ntussa nto.
-Kacc 123, 103. ntassa se vā.
-Kacc 124, 98. ā simhi.
-Kacc 125, 198. aṃ napuṃsake.
-Kacc 126, 101. avaṇṇā ca ge.
-Kacc 127, 102. to ti tā sa smiṃ nāsu.
-Kacc 128, 104. naṃmhi taṃ vā.
-Kacc 129, 222. imassidamaṃsisu napuṃsake.
-Kacc 138, 225. amussāduṃ.
-Kacc 131,.. itthipumanapuṃsakasaṅkhyaṃ.
-Kacc 132, 228. yosu dvinnaṃ dve ca.
-Kacc 133, 230. ti catunnaṃ tisso catasso tayo cattāro tīṇi cattāri.
-Kacc 134, 251. pañcādīnamakāro.
-Kacc 135, 118. rājassa rañño rājino se.
-Kacc 136, 119. raññaṃ naṃmhi vā.
-Kacc 137, 116. nāmhiraññā vā.
-Kacc 138, 121. smiṃmhi raññe rājini.
-Kacc 139, 245. tumhākaṃ tayimayi.
-Kacc 140, 232. tvamahaṃ simhi ca.
-Kacc 141, 241. tava mamase.
-Kacc 142, 242. tuyhaṃ mayhañca.
-Kacc 143, 235. taṃ mamaṃmhi.
-Kacc 144, 234. tavaṃ mamañca navā.
-Kacc 145, 238. nāmhī tayā mayā.
-Kacc 146, 236. tumhassa tuvaṃ tvamaṃmhi.
-Kacc 147, 246. padato dutiyā catutthī chaṭṭhīsu vono.
-Kacc 148, 247. temekavacanesu ca.
-Kacc 149, 148. na aṃmhi.
-Kacc 150, 249. vā tatiye ca.
-Kacc 151, 250. bahuvacanesu vono.
-Kacc 152, 236. pumantassā simhi.
-Kacc 153, 138. amālapanekavacane.
-Kacc 154,.. samāse ca vibhāsā.
-Kacc 155, 137. yosvāno.
-Kacc 156, 142. āne smiṃmhi vā.
-Kacc 157, 140. hivibhattimhi ca.
-Kacc 158, 143. susmimā vā.
-Kacc 156, 139. unāmhi ca.
-Kacc 160, 167. a kammantassa ca.
-Kacc 161, 244. tumha’mhehi namākaṃ.
-Kacc 162, 237. vā yvappaṭhamo.
-Kacc 163, 240. sassaṃ.
-Kacc 164, 200. sabbanāma’kārate paṭhamo.
-Kacc 165, 208. dvandaṭṭhā vā.
-Kacc 166, 209. nāññaṃ sabbanāmikaṃ.
-Kacc 167, 210. bahubbīhimhi ca.
-Kacc 168, 203. sabbato naṃ saṃ sānaṃ.
-Kacc 169, 117. rājassa rāju sunaṃhisu ca.
-Kacc 170, 220. sabbassimasse vā.
-Kacc 171, 219. animi nāmhi ca.
-Kacc 172, 218. anapuṃsakassāyaṃ simhi.
-Kacc 173, 223. amussa mo saṃ.
-Kacc 174, 211. etatesaṃ to.
-Kacc 175, 212. tassa vā nattaṃ sabbattha.
-Kacc 176, 213. sasmāsmiṃsaṃsāsvattaṃ.
-Kacc 177, 221. imasaddassa ca.
-Kacc 178, 22. sabbato ko.
-Kacc 179, 204. yapato smiṃsānaṃ saṃsā.
-Kacc 180, 207. netāhi smimāya yā.
-Kacc 181, 95. manogaṇādito smiṃnānamiā.
-Kacc 182, 97. sassa co.
-Kacc 183, 48. etesamo lope.
-Kacc 184, 96. sa sare vāgamo.
-Kacc 185, 112. santasaddassa so te bo cante.
-Kacc 186, 107. simhigacchantādīnaṃ ntasaddo aṃ.
-Kacc 187, 108. sesesu ntuva.
-Kacc 188, 115. brahmatta sakha rājādito amānaṃ.
-Kacc 189, 113. syā ca.
-Kacc 190, 114. yonamāno.
-Kacc 191, 130. sakhato cāyo no.
-Kacc 192, 135. smime.
-Kacc 193, 122. brahmato gassa ca.
-Kacc 194, 131. sakhantassi no nā naṃ sesu.
-Kacc 195, 134. āro himhi vā.
-Kacc 196, 133. sunamaṃsu vā.
-Kacc 197, 125. brahmato tu smiṃ ni.
-Kacc 198, 123. uttaṃ sanāsu.
-Kacc 199, 158. satthupitādīnamā sismiṃ silopo ca.
-Kacc 200, 159. aññesvārattaṃ.
-Kacc 201, 163. vā naṃmhi.
-Kacc 202, 164. satthunattañca.
-Kacc 203, 162. usasmiṃ salopo ca.
-Kacc 204, 167. sakkamandhātādīnañca.
-Kacc 205, 160. tato yonamo tu.
-Kacc 206, 165. tato smimi.
-Kacc 207, 161. nā ā.
-Kacc 208, 166. āro rassamikāre.
-Kacc 209, 168. pitādīnamasimhi.
-Kacc 210, 239. tayātayīnaṃ takāro tvattaṃ vā.
-Kacc 211, 126. attanto hismi’manattaṃ.
-Kacc 212, 329. tato smiṃni.
-Kacc 213, 127. sassa no.
-Kacc 214, 128. smā nā.
-Kacc 215, 141. jhalato ca.
-Kacc 216, 180. ghapato smiṃ yaṃ vā.
-Kacc 217, 199. yonaṃ ni napuṃsakehi.
-Kacc 218, 196. ato niccaṃ.
-Kacc 219, 196. siṃ.
-Kacc 220, 74. sesato lopaṃ gasipi.
-Kacc 221, 282. sabbāsamāvuso pasagganipātādīhi ca.
-Kacc 222, 342. pumassa liṅgādīsu samāsesu.
-Kacc 223, 188. aṃ yamīto pasaññato.
-Kacc 224, 153. naṃ jhato katarassā.
-Kacc 225, 151. yonaṃ no.
-Kacc 226, 154. smiṃ ni.
-Kacc 227, 270. kissa kave ca.
-Kacc 228, 272. ku hiṃhaṃsu ca.
-Kacc 229, 226. sesesu ca.
-Kacc 230, 262. tratothesu ca.
-Kacc 231, 263. sabbassetassa,kāro vā.
-Kacc 232, 267. tre niccaṃ.
-Kacc 233, 264. e tothesu ca.
-Kacc 234, 265. imassi thaṃ dāni ha to dhesu ca.
-Kacc 235, 281. adhunāmhi ca.
-Kacc 236, 280. eta rahimhi.
-Kacc 237, 176. itthiyamato āpaccayo.
-Kacc 238, 187. nadādito vā ī.
-Kacc 239, 190. ṇava ṇika ṇeyya ṇa ntuhi.
-Kacc 240, 193. pati bhikkhurājīkārantehi inī.
-Kacc 241, 191. ntussa tamīkāre.
-Kacc 242, 192. bhavato bhoto.
-Kacc 243, 110. bho ge tu.
-Kacc 244, 72. akārapitādyantānamā.
-Kacc 245, 152. jhalapā rassaṃ.
-Kacc 246, 73. ākāro vā.
-Kacc 247, 261. tvādayo vibhattisaññāyo.
-Kacc 248, 260. kvaci to pañcamyatthe.
-Kacc 249, 266. tra tha sattamiyā sabbanāmehi.
-Kacc 250, 268. sabbato dhi.
-Kacc 251, 269. kiṃ smā vo.
-Kacc 252, 271. hiṃ haṃ hiñcanaṃ.
-Kacc 253, 273. tamhā ca.
-Kacc 254, 274. imasmā ha dhā ca.
-Kacc 255, 275. yato hiṃ.
-Kacc 256,.. kāle.
-Kacc 257, 279. kiṃsabbaññekayakuhidādācanaṃ.
-Kacc 258, 278. tamhā dāni ca.
-Kacc 259, 279. imasmā rahi dhunā dāni ca.
-Kacc 260, 277. sabbassa so dāmhi vā.
-Kacc 261, 369. avaṇṇo ye lopañca.
-Kacc 262, 391. vuḍḍhassa jo iyiṭṭhesu.
-Kacc 263, 392. pasatthassa so ca.
-Kacc 264, 393. antikassa nedo.
-Kacc 265, 394. bāḷhassa sādho.
-Kacc 266, 395. appassa kaṇa.
-Kacc 267, 396. yuvānañca.
-Kacc 268, 397. vantumantu vīnañca lopo.
-Kacc 269, 401. yavataṃ ta la ṇa dakārānaṃ byañjanāni ca la ña ja kārattaṃ.
-Kacc 270, 120. amha tumhanturāja brahmatta sakhasatthu pitādīhismā nāva.
-Kacc 271, 88, 308. yasmā dapeti bhayamādatte vā tadapādānaṃ.
-Kacc 272, 309. dhātunā mānamupasaggayogādvīsvapi ca.
-Kacc 273, 310. rakkhaṇatthānamicchitaṃ.
-Kacc 274, 311. yena vā’ dassanaṃ.
-Kacc 275, 312. dūranti kaddha kāla nimmāna tvālopadisāyogavibhattārappayogasuddhappamocana hetu vivittappamāṇa pubbayogabandhana guṇavacana pañha kathana thokākattūsu ca.
-Kacc 276, 84, 302. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
-Kacc 277, 303. silāgha hanu ṭhā sapa dhāra piha kudha duhissosūya rādhikkha paccāsuṇa anupatigiṇa pubbakattārocanattha tadattha tumatthālamattha maññānādarappāṇini, gatyatthakammani, āsīsattha sammuti bhiyya sattamyatthesu ca.
-Kacc 278, 93, 320. yodhāro tamokāsaṃ.
-Kacc 279, 82, 292. yena vā kayirate taṃ karaṇaṃ.
-Kacc 280, 75, 285. yaṃ karoti taṃ kammaṃ.
-Kacc 281, 77, 294. yo karoti sa kattā.
-Kacc 282, 295. yo kāreti sa hetu.
-Kacc 283, 91, 316. yassa vā pariggaho taṃ sāmī.
-Kacc 284, 65, 283. liṅgatthe paṭhamā.
-Kacc 285, 70. ālapane ca.
-Kacc 286, 83, 291. karaṇe tatiyā.
-Kacc 287, 299. sahādiyoge ca.
-Kacc 288, 78, 293. kattari ca.
-Kacc 289, 297. hetvatthe ca.
-Kacc 290, 298. sattamyatthe ca.
-Kacc 291, 299. yenaṅgavikāro.
-Kacc 292, 300. visesane ca.
-Kacc 293, 85, 301. sampadāne catutthī.
-Kacc 294, 305. namoyogādīsvapi ca.
-Kacc 295, 89, 307. apādāne pañcamī.
-Kacc 296, 314. kāraṇatthe ca.
-Kacc 297, 76, 284. kammatthe dutiyā.
-Kacc 298, 287. kāladdhānamaccantasaṃyoge.
-Kacc 299, 288. kammappavadhanīyayutte.
-Kacc 300, 286. gati buddhi bhuja paṭha hara kara sayādīnaṃ kārite vā.
-Kacc 301, 92, 315. sāmismiṃ chaṭṭhī.
-Kacc 302, 94, 319. okāse sattamī.
-Kacc 303, 321. sāmissarādhipati dāyāda sakkhīpatibhū pasutakusalehi ca.
-Kacc 304, 322. niddhāraṇe ca.
-Kacc 305, 323. anādare ca.
-Kacc 306, 289. kvaci dutiyā chaṭṭhīnamatthe.
-Kacc 307, 290. tatiyāsattamīnañca.
-Kacc 308, 317. chaṭṭhī ca.
-Kacc 309, 318. dutiyāpañcamīnañca.
-Kacc 310, 324. kamma karaṇa nimittatthesu sattamī.
-Kacc 311, 325. sampadāne ca.
-Kacc 312, 326. pañcamyatthe ca.
-Kacc 313, 327. kālabhāvesu ca.
-Kacc 314, 328. upa’jhādhikissaravacane.
-Kacc 315, 329. maṇḍitu’ssukkesu tatiyā.
-Kacc 316, 331. nāmānaṃ samāso yuttattho.
-Kacc 317, 332. tesaṃ vibhattiyo lopā ca.
-Kacc 318, 333. pakati cassa sarantassa.
-Kacc 319, 330. upasagganipātapubbako abyayībhāvo.
-Kacc 320, 335. so napuṃsakaliṅgo.
-Kacc 321, 349. digussekattaṃ.
-Kacc 322, 359. tathā dvande pāṇi tūriya yoggasenaṅgakhuddajantuka vividhaviruddha visabhāgatthādīnañca.
-Kacc 323, 360. vibhāsā rukkha tiṇa pasukha na dhañña janapadādīnañca.
-Kacc 324, 339. dvipade tulyādhikaraṇe kammadhārayo.
-Kacc 325, 348. saṅkhyāpubbo digu.
-Kacc 326, 341. ubhe tappurisā.
-Kacc 327, 351. amādayo parapadebhi.
-Kacc 328, 352. aññapadatthesu bahubbīhi.
-Kacc 329, 357. nāmānaṃ samuccayo dvando.
-Kacc 330, 340. mahataṃ mahā tulyādhikaraṇe pade.
-Kacc 331, 353. itthiyaṃ bhāsitapumitthī pumāva ce.
-Kacc 332, 343. kammadhārayasaññe ca.
-Kacc 333, 344. attaṃ nassa tappurise.
-Kacc 334, 345. sare an.
-Kacc 335, 346. kada kussa.
-Kacc 336, 347. kā’ppatthesu ca.
-Kacc 337, 350. kvaci samāsantagatānamakāranto.
-Kacc 338, 356. nadimhā ca.
-Kacc 339, 358. jāyāya tudaṃ jāni patimhi.
-Kacc 340, 355. dhanumhā ca.
-Kacc 341, 336. aṃ vibhattīnamakārantā abyayībhāvā.
-Kacc 342, 337. saro rasso napuṃsake.
-Kacc 343, 338. aññasmā lopo ca.
-Kacc 344, 361. vāṇa’pacce.
-Kacc 345, 366. ṇāyana ṇāna vacchādito.
-Kacc 346, 367. ṇeyyo kattikādīhi.
-Kacc 347, 368. ato ṇi vā.
-Kacc 348, 371. ṇavo’ pakvādīhi.
-Kacc 349, 372. ṇera vidhavādito.
-Kacc 350, 373. yena vā saṃsaṭṭhaṃ tarati carati vahati ṇiko.
-Kacc 351, 374. tamadhīte tenakatādi sannidhāna niyoga sippa bhaṇḍa jīvikatthesu ca.
-Kacc 352, 376. ṇa rāgā tasse damaññatthesu ca.
-Kacc 353, 378. jātādīnamimiyā ca.
-Kacc 354, 379. samūhatthe kaṇa ṇā.
-Kacc 355, 380. gāma jana bandhu sahāyādīhitā.
-Kacc 356, 381. tadassa ṭhānamiyo ca.
-Kacc 357, 382. upamatthāyitattaṃ.
-Kacc 358, 383. tannissitatthe lo.
-Kacc 359, 384. ālu tabbahule.
-Kacc 360, 387. ṇya tta tā bhāve tu.
-Kacc 361, 388. ṇa visamādīhi.
-Kacc 362, 389. ramaṇīyādito kaṇ.
-Kacc 363, 390. visese taratamisikiyiṭṭhā.
-Kacc 364, 398. tadassatthīti vī ca.
-Kacc 365, 399. tapādito sī.
-Kacc 366, 400. daṇḍādito ikaī.
-Kacc 367, 401. madhvādito ro.
-Kacc 368, 402. guṇādito vantu.
-Kacc 369, 403. satyādīhi mantu.
-Kacc 370, 405. saddhādito ṇa.
-Kacc 371, 404. āyussukārāsa mantumhi.
-Kacc 372, 385. tappakativacane mayo.
-Kacc 373, 406. saṅkhyāpūraṇe mo.
-Kacc 374, 408. sa chassavā.
-Kacc 375, 412. ekādito dasassī.
-Kacc 376, 257. dase so niccañca.
-Kacc 377,.. ante niggahitañca.
-Kacc 378, 414. ti ca.
-Kacc 379, 258. la darānaṃ.
-Kacc 380, 255. vīsati dasesu bā dvissa tu.
-Kacc 381, 254. ekādito dassa ra saṅkhyāne.
-Kacc 382, 259. aṭṭhādito ca.
-Kacc 383, 253. dvekaṭṭhānamākāro vā.
-Kacc 384, 407. catucchehī tha ṭhā.
-Kacc 385, 409. dvitīhi tiyo.
-Kacc 386, 410. tiye dutāpi ca.
-Kacc 387, 411. tesamaḍḍhūpapadena aḍḍhuḍḍha divaḍḍha diyaḍḍhaḍḍhatiyā.
-Kacc 388, 68. sarūpānamekasesvasakiṃ.
-Kacc 389, 413. gaṇane dasassa dviticatupañcachasattaaṭṭhanavakānaṃ vī ti cattāra paññā cha sattāsanavā yosu, yonañcīsamāsaṃ ṭhi ri tī tuti.
-Kacc 390, 256. catūpapadassa lopo tuttarapadādicassa cucopi navā.
-Kacc 391, 423. yadanupapannā nipātanā sijjhanti.
-Kacc 392, 418. dvādito ko’nekattheca.
-Kacc 393, 415. dasadasakaṃ sataṃ dasakānaṃ sataṃ sahassañca yomhi.
-Kacc 394, 416. yāva taduttari dasaguṇitañca.
-Kacc 395, 417. sakanāmehi.
-Kacc 396, 363. tesaṃ ṇo lopaṃ.
-Kacc 397, 420. vibhāge dhā ca.
-Kacc 398, 421. sabbanāmehi pakāravacane tu thā.
-Kacc 399, 422. kimimehi thaṃ.
-Kacc 400, 364. vuddhādisarassa vā’saṃyogantassa saṇe ca.
-Kacc 401, 375. māyūnamāgamo ṭhāne.
-Kacc 402, 377. āttañca.
-Kacc 403, 354. kvacādimajjhuttarānaṃ dīgharassā paccayesu ca.
-Kacc 404, 370. tesu vuddhilopāgamavikāraviparītādesā ca.
-Kacc 405, 365. ayuvaṇṇānañcāyo vuddhi.
-Kacc 406, 429. atha pubbāni vibhattīnaṃ cha parassapadāni.
-Kacc 407, 439. parāṇyattanopadāni.
-Kacc 408, 431. dve dve paṭhama majjhimuttamapurisā.
-Kacc 409, 441. sabbesamekābhidhāne paro puriso.
-Kacc 410, 432. nāmamhi payujjamānepi tulyādhikaraṇe paṭhamo.
-Kacc 411, 436. tumhe majjhimo.
-Kacc 412, 437. amhe uttamo.
-Kacc 413, 427. kāle.
-Kacc 414, 428. vattamānā paccuppanne.
-Kacc 415, 451. āṇatyā siṭṭhe’nuttakāle pañcamī.
-Kacc 416, 454. anumatiparikappatthesu sattamī.
-Kacc 417, 460. apaccakkhe parokkhātīte.
-Kacc 418, 456. hiyyopabhuti paccakkhe hiyyattanī.
-Kacc 419, 469. samīpe’jjatanī.
-Kacc 420, 471. māyoge sabbakāle ca.
-Kacc 421, 473. anāgate bhavissantī.
-Kacc 422, 475. kriyātipanne’tīte kālātipatti.
-Kacc 423, 426. vattamānā ti anti, si tha, mi ma, te ante, se vhe, e mhe.
-Kacc 424, 450. pañcamī tu antu, hi tha, mi ma, taṃ antaṃ, ssu vho, e āmase.
-Kacc 425, 453. sattamī eyya eyyuṃ, eyyā si eyyā tha, eyyāmi eyyāma, etha eraṃ, etho eyyāvho, eyyaṃ eyyāmhe.
-Kacc 426, 459. parokkhā a u e ttha, aṃ mha, ttha re, ttho vho, iṃ mhe.
-Kacc 427, 455. hiyyattanī ā ū, o ttha, aṃ mhā, ttha tthuṃ, se vhaṃ, iṃ mhase.
-Kacc 428, 468. ajjatanī ī uṃ, o ttha, iṃ mhā, ā ū, se vhaṃ, aṃ mhe.
-Kacc 429, 472. bhavissantī ssati ssanti, ssasi ssatha, ssāmi ssāma, ssate ssante, ssase ssavhe, ssaṃ ssāmhe.
-Kacc 430, 373. kālātipatti ssā ssaṃsu, sse ssatha, ssaṃ ssāmhā, ssatha ssisu, ssase ssavhe, ssiṃ ssāmhase.
-Kacc 431, 458. hiyyattanī sattamī pañcamī vattamānā sabbadhātukaṃ.
-Kacc 432, 362. dhātuliṅgehi parā paccayā.
-Kacc 433, 528. tija gupa kita māne hi kha cha sā vā.
-Kacc 434, 534. bhuja ghasa hara su pādīhi tumicchatthesu.
-Kacc 435, 536. āya nāmato kattūpamānādācāre.
-Kacc 436, 537. īyūpamānā ca.
-Kacc 437, 538. nāmamhā’tticchatthe.
-Kacc 438, 540. dhātūhi ṇe ṇaya ṇāpe ṇāpayā kāritāni hetvatthe.
-Kacc 439, 539. dhāturūpe nāmasmā ṇayo ca.
-Kacc 440, 445. bhāvakammesu yo.
-Kacc 441, 447. tassa cavaggayakāravakārattaṃ sadhātvantassa.
-Kacc 442, 448. ivaṇṇāgamo vā.
-Kacc 443, 449. pubbarūpañca.
-Kacc 444, 501. tathā kattari ca.
-Kacc 445, 433. bhūvādito a.
-Kacc 446, 509. rudhādito niggahitapubbañca.
-Kacc 447, 510. divādito yo.
-Kacc 448, 512. svādito ṇu ṇā uṇā ca.
-Kacc 449, 513. kiyādito nā.
-Kacc 450, 517. gahādito ppa ṇhā.
-Kacc 451, 520. tanādito oyirā.
-Kacc 452, 525. curādito, ṇe ṇayā.
-Kacc 453, 444. attanopadāni bhāve ca kammani.
-Kacc 454, 440. kattari ca.
-Kacc 455, 530. dhātuppaccayehi vibhattiyo.
-Kacc 456, 430. kattari parassapadaṃ.
-Kacc 457, 424. bhūvādayo dhātavo.
-Kacc 458, 461. kvacādivaṇṇānamekassarānaṃ dvebhāvo.
-Kacc 459, 462. pubbo’bbhāso.
-Kacc 460, 506. rasso.
-Kacc 461, 464. dutiyacatutthānaṃ paṭhamatatiyā.
-Kacc 462, 476. kavaggassa cavaggo.
-Kacc 463, 532. mānakitānaṃ vatattaṃ vā.
-Kacc 464, 504. hassa jo.
-Kacc 465, 463. antassivaṇṇākāro vā.
-Kacc 466, 489. niggahitañca.
-Kacc 467, 533. tato pāmānānaṃ vā maṃ sesu.
-Kacc 468, 462. ṭhā tiṭṭho.
-Kacc 469, 494. pā pivo.
-Kacc 470, 514. ñāssa jā jaṃ nā.
-Kacc 471, 483. disassa passa dissa dakkhā vā.
-Kacc 472, 531. byañjanantassa co chapaccayesu ca.
-Kacc 473, 529. ko khe ca.
-Kacc 474, 535. harassa gī se.
-Kacc 475, 565. brūbhūnamāhabhūvā parokkhāyaṃ.
-Kacc 476, 442. gamissanto ccho vā sabbāsu.
-Kacc 477, 479. vacassajjatanimhi makāro o.
-Kacc 478, 438. akāro dīghaṃ himimesu.
-Kacc 479, 452. hi lopaṃ vā.
-Kacc 480, 490. hotissarehohe bhavissantimhi ssassa ca.
-Kacc 481, 524. karassa sapaccayassa kāho.
-Kacc 482, 508. dādantassaṃ mimesu.
-Kacc 483, 527. asaṃyogantassa vuddhi kārite.
-Kacc 484, 542. ghaṭādīnaṃ vā.
-Kacc 485, 434. aññesu ca.
-Kacc 486, 543. guha dusānaṃ dīghaṃ.
-Kacc 487, 478. vaca vasa vahādīnamukāro vassa ye.
-Kacc 488, 481. ha vipariyayo lo vā.
-Kacc 489, 519. gahassa ghe ppe.
-Kacc 490, 518. halo po ṇhāmhi.
-Kacc 491, 523. karassa kāsattamajjatanimhi.
-Kacc 492, 499. asasmā mimānaṃ mhimhā’ ntalopo ca.
-Kacc 493, 498. thassa tthattaṃ.
-Kacc 494, 495. tissa tthittaṃ.
-Kacc 495, 500. tussa tthuttaṃ.
-Kacc 496, 497. simhi ca.
-Kacc 497, 477. labhasmā ī iṃnaṃ ttha tthaṃ.
-Kacc 498, 480. kusasmā dī cchi.
-Kacc 499, 507. dādhātussa dajjaṃ.
-Kacc 500, 486. vadassa vajjaṃ.
-Kacc 501, 443. gamissa ghammaṃ.
-Kacc 502, 493. yamhi dā dhā mā ṭhā hā pā mahamathādīnamī.
-Kacc 503, 485. yajassādissi.
-Kacc 504, 470. sabbato uṃ iṃsu.
-Kacc 505, 482. jara marānaṃ jīra jiyya miyyā vā.
-Kacc 506, 496. sabbatthā’ sassādilopo ca.
-Kacc 507, 501. asabbadhātuke bhū.
-Kacc 508, 515. eyyassa ñāto iyā ñā.
-Kacc 509, 516. nāssa lopo yakārattaṃ.
-Kacc 510, 487. lopañcettamakāro.
-Kacc 511, 521. uttamokāro.
-Kacc 512, 522. karassākāro ca.
-Kacc 513, 435. o ava sare.
-Kacc 514, 491. e aya.
-Kacc 515, 541. te āvāyā kārite.
-Kacc 516, 466. ikārāgamo asabbadhātukamhi.
-Kacc 517, 488. kvaci dhātuvibhattipaccayānaṃ dīghaviparītādesalopāgamā ca.
-Kacc 518, 446. attanopadāni parassapadattaṃ.
-Kacc 519, 457. akārāgamo hiyyattanīajjatanīkālātipattīsu.
-Kacc 520, 502. brūto ī timhi.
-Kacc 521, 425. dhātussanto lopo’nekasarassa.
-Kacc 522, 476. isuyamūnamanto ccho vā.
-Kacc 523, 526. kāritānaṃ ṇo lopaṃ.
-Kacc 524, 561. dhātuyā kammādimhi ṇo.
-Kacc 525, 565. saññāyama nu.
-Kacc 526, 567. pure dadā ca iṃ.
-Kacc 527, 568. sabbato ṇvu tvāvī vā.
-Kacc 528, 577. visa ruja padādito ṇa.
-Kacc 529, 580. bhāve ca.
-Kacc 530, 584. kvi ca.
-Kacc 531, 589. dharādīhi rammo.
-Kacc 532, 590. tassīlādīsu ṇītvāvī ca.
-Kacc 533, 591. sadda ku dha cala maṇḍattharudhādīhi yu.
-Kacc 534, 562. pārādigamimhā rū.
-Kacc 535, 593. bhikkhādito ca.
-Kacc 536, 594. hanatyādīnaṃ ṇuko.
-Kacc 537, 566. nu niggahitaṃ padante.
-Kacc 538, 595. saṃhanāññāya vā ro gho.
-Kacc 539, 558. ramhi ranto rādi no.
-Kacc 540, 545. bhāvakammesu tabbānīyā.
-Kacc 541, 552. ṇyo ca.
-Kacc 542, 557. karamhā ricca.
-Kacc 543, 555. bhūto’bba.
-Kacc 544, 556. vada mada gamu yuja garahākārādīhi jja mma gga yheyyā gāro vā.
-Kacc 545, 548. te kiccā.
-Kacc 546, 562. aññe kita.
-Kacc 547, 596. nandādīhi yu.
-Kacc 548, 597. kattukaraṇapadesesu ca.
-Kacc 549, 550. rahādito ṇa.
-Kacc 550, 546. ṇādayo tekālikā.
-Kacc 551, 598. saññāyaṃ dā dhāto i.
-Kacc 552, 609. ti kita cāsiṭṭhe.
-Kacc 553, 599. itthiyamatiyavo vā.
-Kacc 554, 601. karato ririya.
-Kacc 555, 612. atīte tatavantutāvī.
-Kacc 556, 622. bhāvakammesu ta.
-Kacc 557, 606. budhagamāditthe kattari.
-Kacc 558, 602. jito ina sabbattha.
-Kacc 559, 603. supato ca.
-Kacc 560, 604. īsaṃdusūhi kha.
-Kacc 561, 636. icchatthesu samānakattukesu tave tuṃ vā.
-Kacc 562, 638. arahasakkādīsu ca.
-Kacc 563, 639. pattavacane alamatthesu ca.
-Kacc 564, 640. pubbakāle’ kakattukānaṃ tuna tvāna tvā vā.
-Kacc 565, 646. vattamāne mānantā.
-Kacc 566, 574. sāsādīhi ratthu.
-Kacc 567, 575. pātito ritu.
-Kacc 568, 576. mānādīhi rātu.
-Kacc 569, 610. āgamā tuko.
-Kacc 570, 611. bhabbe ika.
-Kacc 571, 624. paccayādaniṭṭhā nipātanā sijjhanti.
-Kacc 572, 625. sāsa disato tassa riṭṭho ca.
-Kacc 573, 626. sādisanta puccha bhanja hansādīhi ṭṭho.
-Kacc 574, 613. vasato uṭṭha.
-Kacc 575, 614. vassa vā vu.
-Kacc 576, 607. dhaḍhabhahehi dhaḍhā ca.
-Kacc 577, 628. bhanjato ggo ca.
-Kacc 578, 560. bhujādīnamanto no dvi ca.
-Kacc 579, 629. vaca vāvu.
-Kacc 580, 630. gupādīnañca.
-Kacc 581, 616. tarādīhi iṇṇo.
-Kacc 582, 631. bhidādito inna anna īṇā vā.
-Kacc 583, 617. susa paca sakato kkha kkā ca.
-Kacc 584, 618. pakkamādīhi nto ca.
-Kacc 585, 619. janādīnamā timhi ca.
-Kacc 586, 600. gama khana hana ramādīnamanto.
-Kacc 587, 632. rakāro ca.
-Kacc 588, 620. ṭhāpānami ī ca.
-Kacc 589, 621. hantehi ho hassa ḷo vā adahanahānaṃ.
-Kacc 590, 579. ṇamhiranjassa jo bhāvakaraṇesu.
-Kacc 591, 544. hanassa ghāto.
-Kacc 592, 503. vadho vā sabbattha.
-Kacc 593, 564. ākārantānamāyo.
-Kacc 594, 582. pura samupa parīhi karotissa kha kharā vā tapaccayesu ca.
-Kacc 595, 637. tave tunādīsu kā.
-Kacc 596, 551. gama khana hanādīnaṃ tuṃ tabbādīsu na.
-Kacc 597, 641. sabbehi tunādīnaṃ yo.
-Kacc 598, 643. canantehi raccaṃ.
-Kacc 599, 644. disā svāna svāntalopo ca.
-Kacc 600, 645. mahadabhehi mma yha jja bbha ddhā ca.
-Kacc 601, 334. taddhitasamāsakitakā nāmaṃ vā’ tave tunādīsu ca.
-Kacc 602, 6. dumhi garu.
-Kacc 603, 7. dīgho ca.
-Kacc 604, 684. akkharehi kāra.
-Kacc 605, 647. yathāgamamikāro.
-Kacc 606, 642. dadhantato yo kvaci.
-Kacc 607, 578. niggahita saṃyogādi no.
-Kacc 608, 623. sabbattha ge gī.
-Kacc 609, 484. sadassa sīdattaṃ.
-Kacc 610, 627. yajassa sarassi ṭṭhe.
-Kacc 611, 608. hacatutthānamantānaṃ do dhe.
-Kacc 612, 615. ḍo ḍhakāre.
-Kacc 613, 583. gahassa ghara ṇe vā.
-Kacc 614, 581. dahassa do ḷaṃ.
-Kacc 615, 586. dhātvantassa lopo kvimhi.
-Kacc 616, 587. vidante ū.
-Kacc 617, 633. namakarānamantānaṃ niyuttatamhi.
-Kacc 618, 571. na kagattaṃ cajā ṇvumhi.
-Kacc 619, 573. karassa ca tattaṃ tusmiṃ.
-Kacc 620, 549. tuṃ tuna tabbesu vā.
-Kacc 621, 553. kāritaṃ viya ṇānubandho.
-Kacc 622, 570. anakā yu-ṇvūnaṃ.
-Kacc 623, 554. kagā cajānaṃ.
-Kacc 624, 563. kattari kit.
-Kacc 625, 605. bhāvakammesu kicca kta khatthā.
-Kacc 626, 634. kammani dutiyāyaṃ kto.
-Kacc 627, 652. khyādīhi man ma ca to vā.
-Kacc 628, 653. samādīhi tha mā.
-Kacc 629, 569. gahassu’padhasse vā.
-Kacc 630, 654. masussa sussa cchara ccherā.
-Kacc 631, 655. āpubbacarassa ca.
-Kacc 632, 656. ala kala salehi layā.
-Kacc 633, 657. yāṇa lāṇā.
-Kacc 634, 658. mathissa thassa lo ca.
-Kacc 635, 559. pesātisaggapattakālesukiccā.
-Kacc 636, 659. avassakā’dhamiṇesu ṇī ca.
-Kacc 637,.. arahasakkādīhi tuṃ.
-Kacc 638, 660. vajādīhipabbajjādayo nippajjante.
-Kacc 639, 585. kvilopo ca.
-Kacc 640,.. sacajānaṃ kagā ṇānubandhe.
-Kacc 641, 572. nudādīhi yuṇvūnamanānanākānanakā sakāritehi ca.
-Kacc 642, 588. i ya ta ma ki e sāna’mantassaro dīghaṃ kvaci disassa guṇaṃ do raṃ sakkhī ca.
-Kacc 643, 635. bhyādīhi mati budhi pūjādīhi ca kto.
-Kacc 644, 661. vepu sī dava vamu ku dā bhū hvādīhi thu ttima ṇimā nibbatte.
-Kacc 645, 662. akkose namhāni.
-Kacc 646, 419. ekādito sakissa kkhattuṃ.
-Kacc 647, 663. sunassunassoṇa vānuvānūnunakhunānā.
-Kacc 648, 664. taruṇassa susu ca.
-Kacc 649, 665. yuvassuvassuvuvānunūnā.
-Kacc 650, 651. kāle vattamānātīte ṇvādayo.
-Kacc 651, 647. tavissati gamādīhi ṇī ghiṇ.
-Kacc 652, 648. kriyāyaṃ ṇvu tavo.
-Kacc 653, 306. bhāvavācimhi catutthī.
-Kacc 654, 649. kammani ṇo.
-Kacc 655, 650. sese ssaṃ ntumānānā.
-Kacc 656, 666. chavādīti tatraṇa.
-Kacc 657, 667. vadādīhi ṇitto gaṇe.
-Kacc 658, 668. midādīhi ttitiyo.
-Kacc 659, 669. usu ranja daṃsānaṃ daṃsassa daḍḍhoḍha ṭhā ca.
-Kacc 660, 670. sūvusānamūvusānamato tho ca.
-Kacc 661, 671. ranjudādīhi dha didda kirā kvaci jadalopo ca.
-Kacc 662, 672. paṭito hissa heraṇ hīraṇ.
-Kacc 663, 673. kaḍyādīhi ko.
-Kacc 664, 674. khādāmagamānaṃ khandha’ndha gandhā.
-Kacc 665, 675. paṭādīhyalaṃ.
-Kacc 666, 676. puthassa puthupathāmo vā.
-Kacc 667, 677. sasvādīhi tudavo.
-Kacc 668, 678. cyādīhi īvaro.
-Kacc 669, 679. munādīhi ci.
-Kacc 670, 680. vidādīhyūro.
-Kacc 671, 681. hanādīhi ṇunutavo.
-Kacc 672, 682. kuṭādīhi ṭho.
-Kacc 673, 683. manu pūra suṇādīhi ussa nusisā.
-Rūpa 1. attho akkharasaññāto.
-Rūpa 2. akkharāpādayo ekacattālīsaṃ.
-Rūpa 3. tatthodantā sarā aṭṭha.
-Rūpa 4. lahumattā tayo rassā.
-Rūpa 5. aññedīghā.
-Rūpa 6. dumhi garu.
-Rūpa 7. dīgho ca.
-Rūpa 8. sesā byañjanā.
-Rūpa 9. vaggā pañcapañcaso mantā.
-Rūpa 10. aṃ iti niggahītaṃ.
-Rūpa 11. parasamaññā payoge.
-Rūpa 12. pubbamadhoṭhitamassaraṃ sarena viyojaye.
-Rūpa 13. sarā sare lopaṃ.
-Rūpa 14. naye paraṃ yutte.
-Rūpa 15. vā paro asarūpā.
-Rūpa 16. kvacāsavaṇṇaṃ lutte.
-Rūpa 17. dīghaṃ.
-Rūpa 18. pubbo ca.
-Rūpa 19. yamedantassādeso.
-Rūpa 20. vamodudantānaṃ.
-Rūpa 21. ivaṇṇo yaṃ navā.
-Rūpa 22. sabbo canti.
-Rūpa 23. atissa cantassa.
-Rūpa 24. abbho abhi.
-Rūpa 25. ajjho adhi.
-Rūpa 26. te na vā ivaṇṇe.
-Rūpa 27. do dhassa ca.
-Rūpa 28. evādissa ri pubbo ca rasso.
-Rūpa 29. ivaṇṇuvaṇṇā jhalā.
-Rūpa 30. jhalānamiyuvā sare vā.
-Rūpa 31. o sare ca.
-Rūpa 32. go sare puthassāgamo kvaci.
-Rūpa 33. pāssa canto rasso.
-Rūpa 34. ya va ma da na ta ra lā cāgamā.
-Rūpa 35. sare kvaci.
-Rūpa 36. sarā pakati byañjane.
-Rūpa 37. dīghaṃ.
-Rūpa 38. rassaṃ.
-Rūpa 39. lopañca tatrākāro.
-Rūpa 40. paradvebhāvo ṭhāne.
-Rūpa 41. yavataṃ talanadakārānaṃ byañjanāni calañajakārattaṃ.
-Rūpa 42. vagge ghosāghosānaṃ tatiyapaṭhamā.
-Rūpa 43. kvaci paṭi patissa.
-Rūpa 44. puthassu byañjane.
-Rūpa 45. o avassa.
-Rūpa 46. tabbiparītūpapade byañjane ca.
-Rūpa 47. kvaci o byañjane.
-Rūpa 48. etesamo lope.
-Rūpa 49. vaggantaṃ vā vagge.
-Rūpa 50. ehe ñaṃ.
-Rūpa 51. sa ye ca.
-Rūpa 52. madā sare.
-Rūpa 53. kvaci lopaṃ.
-Rūpa 54. byañjane ca.
-Rūpa 55. paro vā saro.
-Rūpa 56. byañjano ca visaññogo.
-Rūpa 57. niggahitañca.
-Rūpa 58. aṃ byañjane niggahītaṃ.
-Rūpa 59. anupadiṭṭhānaṃ vuttayogato.
-Rūpa 60. jinavacanayuttañhi.
-Rūpa 61. liṅgañca nipaccate.
-Rūpa 62. tato ca vibhattiyo.
-Rūpa 63. si yo, aṃ yo, nā hi, sa naṃ, smā hi, sa naṃ, smiṃ su.
-Rūpa 64. tadanuparodhena.
-Rūpa 65. liṅgatthe paṭhamā.
-Rūpa 66. so.
-Rūpa 67. saralopo’mādesappaccayādimhi saralope tu pakati.
-Rūpa 68. sarūpānamekasesvasakiṃ.
-Rūpa 69. sabbayonīnamāe.
-Rūpa 70. ālapane ca.
-Rūpa 71. ālapane si gasañño.
-Rūpa 72. akārapitādyantānamā.
-Rūpa 73. ākāro vā.
-Rūpa 74. sesato lopaṃ gasipi.
-Rūpa 75. yaṃ karoti taṃ kammaṃ.
-Rūpa 76. kammatthe dutiyā.
-Rūpa 77. yo karoti sa kattā.
-Rūpa 78. kattari ca.
-Rūpa 79. ato nena.
-Rūpa 80. suhisvakāro e.
-Rūpa 81. smāhismiṃnaṃ mhābhimhi vā.
-Rūpa 82. yena vā kayirate taṃ karaṇaṃ.
-Rūpa 83. karaṇe tatiyā.
-Rūpa 84. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
-Rūpa 85. sampadāne catutthī.
-Rūpa 86. sāgamo se.
-Rūpa 87. sunaṃhisu ca.
-Rūpa 88. yasmā dapeti bhayamādatte vā tadapādānaṃ.
-Rūpa 89. apādāne pañcamī.
-Rūpa 90. smāsmiṃnaṃ vā.
-Rūpa 91. yassa vā pariggaho taṃ sāmi.
-Rūpa 92. sāmismiṃ chaṭṭhī.
-Rūpa 93. yodhāro tamokāsaṃ.
-Rūpa 94. okāse sattamī.
-Rūpa 95. manogaṇādito smiṃnānamiā.
-Rūpa 96. sa sare vāgamo.
-Rūpa 97. sassa co.
-Rūpa 98. ā simhi.
-Rūpa 99. ntussa nto.
-Rūpa 100. ntussanto yosu ca.
-Rūpa 101. avaṇṇā ca ge.
-Rūpa 102. totitā sasmiṃnāsu.
-Rūpa 103. ntassa se vā.
-Rūpa 104. naṃmhi taṃ vā.
-Rūpa 105. simhī vā.
-Rūpa 106. sabbassa vā aṃsesu.
-Rūpa 107. simhi gacchantādīnaṃ ntasaddo aṃ.
-Rūpa 108. sesesu ntuva.
-Rūpa 109. obhāvo kvaci yosu vakārassa.
-Rūpa 110. bho ge tu.
-Rūpa 111. bhadantassa bhaddanta bhante.
-Rūpa 112. santasaddassa so bhebo cante.
-Rūpa 113. syā ca.
-Rūpa 114. yonamāno.
-Rūpa 115. brahmattasakharājādito amānaṃ.
-Rūpa 116. nāmhi raññā vā.
-Rūpa 117. rājassa rāju sunaṃhisu ca.
-Rūpa 118. rājassa raññorājino se.
-Rūpa 119. raññaṃ naṃ mhī vā.
-Rūpa 120. amhatumhanturājabrahmattasakhasatthupitādīhi smā nāva.
-Rūpa 121. smiṃmhi raññerājini.
-Rūpa 122. brahmato gassa ca.
-Rūpa 123. uttaṃ sanāsu.
-Rūpa 124. jhalato sassa no vā.
-Rūpa 125. brahmato tu smiṃ ni.
-Rūpa 126. attanto hismimanattaṃ.
-Rūpa 127. sassa no.
-Rūpa 128. smā nā.
-Rūpa 129. tato smiṃ ni.
-Rūpa 130. sakhato cāyono.
-Rūpa 131. sakhantassi nonānaṃsesu.
-Rūpa 132. sakhato gasse vā.
-Rūpa 133. sunamaṃsu vā.
-Rūpa 134. āro himhi vā.
-Rūpa 135. smime.
-Rūpa 136. pumantassā simhi.
-Rūpa 137. yosvāno.
-Rūpa 138. amālapanekavacane.
-Rūpa 139. u nāmhi ca.
-Rūpa 140. hivibhattimhi ca.
-Rūpa 141. jhalato ca.
-Rūpa 142. āne smiṃmhi vā.
-Rūpa 143. susmimā vā.
-Rūpa 144. agho rassamekavacanayosvapi ca.
-Rūpa 145. aggissini.
-Rūpa 146. ghapato ca yonaṃ lopo.
-Rūpa 147. yosu katanikāralopesu dīghaṃ.
-Rūpa 148. yosvakatarasso jho.
-Rūpa 149. aṃ mo niggahītaṃ jhalapehi.
-Rūpa 150. na sismimanapuṃsakāni.
-Rūpa 151. yonaṃ no.
-Rūpa 152. jhalapā rassaṃ.
-Rūpa 153. naṃ jhato katarassā.
-Rūpa 154. smiṃ ni.
-Rūpa 155. lato vokāro ca.
-Rūpa 156. vevosu lo ca.
-Rūpa 157. akatarassā lato yvālapanassa vevo.
-Rūpa 158. satthupitādīnamā sismiṃ silopo ca.
-Rūpa 159. aññesvārattaṃ.
-Rūpa 160. tato yonamo tu.
-Rūpa 161. nā ā.
-Rūpa 162. u sasmiṃ salopo ca.
-Rūpa 163. vā naṃmhi.
-Rūpa 164. satthunattañca.
-Rūpa 165. tato smimi.
-Rūpa 166. āro rassamikāre.
-Rūpa 167. sakamandhātādīnañca.
-Rūpa 168. pitādīnamasimhi.
-Rūpa 169. yosu ca.
-Rūpa 170. avaṃmhi ca.
-Rūpa 171. āvassu vā.
-Rūpa 172. suhināsu ca.
-Rūpa 173. goṇa naṃmhi vā.
-Rūpa 174. gāva se.
-Rūpa 175. tato namaṃ patimhālutte ca samāse.
-Rūpa 176. itthiyamato āppaccayo.
-Rūpa 177. ā gho.
-Rūpa 178. ghate ca.
-Rūpa 179. ghato nādīnaṃ.
-Rūpa 180. ghapato smiṃ yaṃ vā.
-Rūpa 181. na ammādito.
-Rūpa 182. te itthikhyā po.
-Rūpa 183. pato yā.
-Rūpa 184. amā pato smiṃsmānaṃ vā.
-Rūpa 185. pasaññassa ca.
-Rūpa 186. ādito o ca.
-Rūpa 187. nadādito vā ī.
-Rūpa 188. aṃ yamīto pasaññato.
-Rūpa 189. mātulādīnamānattamīkāre.
-Rūpa 190. ṇava ṇika ṇeyya ṇantuhi.
-Rūpa 191. ntussa tamīkāre.
-Rūpa 192. bhavato bhoto.
-Rūpa 193. patibhikkhurājīkārantehi inī.
-Rūpa 194. patissinīmhi.
-Rūpa 195. siṃ.
-Rūpa 196. ato niccaṃ.
-Rūpa 197. a kammantassa ca.
-Rūpa 198. aṃ napuṃsake.
-Rūpa 199. yonaṃ ni napuṃsakehi.
-Rūpa 200. sabbanāmakārate paṭhamo.
-Rūpa 201. tayo neva ca sabbanāmehi.
-Rūpa 202. sabbanāmānaṃ naṃmhi ca.
-Rūpa 203. sabbato naṃ saṃsānaṃ.
-Rūpa 204. ghapato smiṃsānaṃ saṃsā.
-Rūpa 205. gho rassaṃ.
-Rūpa 206. saṃsāsvekavacanesu ca.
-Rūpa 207. netāhi smimāyayā.
-Rūpa 208. dvandaṭṭhā vā.
-Rūpa 209. nāññaṃ sabbanāmikaṃ.
-Rūpa 210. bahubbīhimhi ca.
-Rūpa 211. etatesaṃ to.
-Rūpa 212. tassa vā nattaṃ sabbattha.
-Rūpa 213. sasmāsmiṃsaṃsāsvattaṃ.
-Rūpa 214. na timehi katākārehi.
-Rūpa 215. tato sassa ssāya.
-Rūpa 216. tassā vā.
-Rūpa 217. etimāsami.
-Rūpa 218. anapuṃsakassāyaṃ simhi.
-Rūpa 219. animi nāmhi ca.
-Rūpa 220. sabbassimasse vā.
-Rūpa 221. imasaddassa ca.
-Rūpa 222. imassidamaṃsisu na puṃsake.
-Rūpa 223. amussa mo saṃ.
-Rūpa 224. sabbato ko.
-Rūpa 225. amussāduṃ.
-Rūpa 226. sesesu ca.
-Rūpa 227. ubhādito naminnaṃ.
-Rūpa 228. yosu dvinnaṃ dve ca.
-Rūpa 229. no ca dvādito naṃmhi.
-Rūpa 230. ticatunnaṃ tisso catasso tayo cattāro tīṇi cattāri.
-Rūpa 231. iṇṇamiṇṇannaṃ tīhi saṅkhyāhi.
-Rūpa 232. tvamahaṃ simhi ca.
-Rūpa 233. mayaṃ yomhi paṭhame.
-Rūpa 234. tavaṃ mamañca navā.
-Rūpa 235. taṃ mamaṃmhi.
-Rūpa 236. tumhassa tuvaṃ tvamaṃmhi.
-Rūpa 237. vā yvappaṭhamo.
-Rūpa 238. nāmhi tayā mayā.
-Rūpa 239. tayātayīnaṃ takāro tvattaṃ vā.
-Rūpa 240. sassaṃ.
-Rūpa 241. tava mama se.
-Rūpa 242. tuyhaṃ mayhañca.
-Rūpa 243. amhassa mamaṃ savibhattissa se.
-Rūpa 244. tumhamhehi namākaṃ.
-Rūpa 245. tumhamhākaṃ tayi mayi.
-Rūpa 246. padato dutiyācatutthīchaṭṭhīsu vo no.
-Rūpa 247. temekavacanesu ca.
-Rūpa 248. na aṃmhi.
-Rūpa 249. vā tatiye ca.
-Rūpa 250. bahuvacanesu vo no.
-Rūpa 251. pañcādīnamakāro.
-Rūpa 252. pañcādīnamattaṃ.
-Rūpa 253. dvekaṭṭhānamākāro vā.
-Rūpa 254. ekādito dassa ra saṅkhyāne.
-Rūpa 255. vīsatidasesu bā dvissa tu.
-Rūpa 256. catūpapadassa lopo tuttarapadādi cassa cu copi navā.
-Rūpa 257. dase so niccañca.
-Rūpa 258. la darānaṃ.
-Rūpa 259. aṭṭhādito ca.
-Rūpa 260. kvaci to pañcamyatthe.
-Rūpa 261. tvādayo vibhattisaññā.
-Rūpa 262. tratothesu ca.
-Rūpa 263. sabbassetassākāro vā.
-Rūpa 264. e tothesu ca.
-Rūpa 265. imassi thaṃdānihatodhesu ca.
-Rūpa 266. tratha sattamiyā sabbanāmehi.
-Rūpa 267. tre niccaṃ.
-Rūpa 268. sabbato dhi.
-Rūpa 269. kismā vo.
-Rūpa 270. kissa ka ve ca.
-Rūpa 271. hiṃhaṃhiñcanaṃ.
-Rūpa 272. ku hiṃhaṃsu ca.
-Rūpa 273. tamhā ca.
-Rūpa 274. imasmā hadhā ca.
-Rūpa 275. yato hiṃ.
-Rūpa 276. kiṃsabbaññekayakuhi dā dācanaṃ.
-Rūpa 277. sabbassa so dāmhi vā.
-Rūpa 278. tamhā dāni ca.
-Rūpa 279. imasmā rahidhunādāni ca.
-Rūpa 280. eta rahimhi.
-Rūpa 281. a dhunāmhi ca.
-Rūpa 282. sabbāsamāvusopasagganipātādīhi ca.
-Rūpa 283. liṅgatthe paṭhamā.
-Rūpa 284. kammatthe dutiyā.
-Rūpa 285. yaṃ karoti taṃ kammaṃ.
-Rūpa 286. gati buddhi bhuja paṭha hara kara sayādīnaṃ kārite vā.
-Rūpa 287. kāladdhānamaccantasaṃyoge.
-Rūpa 288. kammappavacanīyayutte.
-Rūpa 289. kvaci dutiyā chaṭṭhīnamatthe.
-Rūpa 290. tatiyāsattamīnañca.
-Rūpa 291. karaṇe tatiyā.
-Rūpa 292. yena vā kayirate taṃ karaṇaṃ.
-Rūpa 293. kattari ca.
-Rūpa 294. yo karoti sa kattā.
-Rūpa 295. yo kāreti sa hetu.
-Rūpa 296. sahādiyoge ca.
-Rūpa 297. hetvatthe ca.
-Rūpa 298. sattamyatthe ca.
-Rūpa 299. yenaṅgavikāro.
-Rūpa 300. visesane ca.
-Rūpa 301. sampadāne catutthī.
-Rūpa 302. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
-Rūpa 303. silāgha hanu ṭhā sapa dhāra piha kudha duhi ssāsūya rādhikkha paccāsuṇa anupatigiṇa pubbakattārocanatthatadattha tumatthālamattha maññānādarappāṇini gatyatthakammani āsisattha sammuti bhiyyasattamyatthesu ca.
-Rūpa 304. āya catutthekavacanassa tu.
-Rūpa 305. namoyogādīsvapi ca.
-Rūpa 306. bhāvavācimhi catutthī.
-Rūpa 307. apādāne pañcamī.
-Rūpa 308. yasmādapeti bhayamādatte vā tadapādānaṃ.
-Rūpa 309. dhātunāmānamupasaggayogādīsvapi ca.
-Rūpa 310. rakkhaṇatthānamicchitaṃ.
-Rūpa 311. yena vā’dassanaṃ.
-Rūpa 312. dūrantikaddha-kāla-nimmāna-tvālopa-disāyoga-vibhattārappayoga suddhappamocana hetu vivittappamāṇa pubbayoga bandhana guṇavacana pañha kathanathokākattūsu ca.
-Rūpa 313. dīghorehi.
-Rūpa 314. kāraṇatthe ca.
-Rūpa 315. sāmismiṃ chaṭṭhī.
-Rūpa 316. yassa vā pariggaho taṃ sāmī.
-Rūpa 317. chaṭṭhī ca.
-Rūpa 318. dutiyāpañcamīnañca.
-Rūpa 319. okāse sattamī.
-Rūpa 320. yodhāro tamokāsaṃ.
-Rūpa 321. sāmissarādhipatidāyādasakkhīpatibhūpasūtakusalehi ca.
-Rūpa 322. niddhāraṇe ca.
-Rūpa 323. anādare ca.
-Rūpa 324. kammakaraṇanimittatthesu sattamī.
-Rūpa 325. sampadāne ca.
-Rūpa 326. pañcamyatthe ca.
-Rūpa 327. kālabhāvesu ca.
-Rūpa 328. upādhyādhikissaravacane.
-Rūpa 329. maṇḍitussukkesu tatiyā ca.
-Rūpa 330. upasagganipātapubbako abyayībhāvo.
-Rūpa 331. nāmānaṃ samāso yuttattho.
-Rūpa 332. tesaṃ vibhattiyo lopā ca.
-Rūpa 333. pakati cassa sarantassa.
-Rūpa 334. taddhitasamāsakitakā nāmaṃvā’tavetunādīsu ca.
-Rūpa 335. so napuṃsakaliṅgo.
-Rūpa 336. aṃ vibhattīnamakārantā abyayībhāvā.
-Rūpa 337. saro rasso napuṃsake.
-Rūpa 338. aññasmā lopo ca.
-Rūpa 339. dvipade tulyādhikaraṇe kammadhārayo.
-Rūpa 340. mahataṃ mahā tulyādhikaraṇe pade.
-Rūpa 341. ubhe tappurisā.
-Rūpa 342. pumassa liṅgādīsu samāsesu.
-Rūpa 343. kammadhārayasaññeca.
-Rūpa 344. attaṃ nassa tappurise.
-Rūpa 345. sare an.
-Rūpa 346. kad kussa.
-Rūpa 347. kāppatthesu ca.
-Rūpa 348. saṅkhyāpubbo digu.
-Rūpa 349. digussekattaṃ.
-Rūpa 350. kvaci samāsantagatānamakāranto.
-Rūpa 351. amādayo parapadebhi.
-Rūpa 352. aññapadatthesu bahubbīhi.
-Rūpa 353. itthiyaṃ bhāsitapumitthī pumāva ce.
-Rūpa 354. kvacādimajjhuttarānaṃ dīgharassāpaccayesu ca.
-Rūpa 355. dhanumhā ca.
-Rūpa 356. nadimhā ca.
-Rūpa 357. nāmānaṃ samuccayo dvando.
-Rūpa 358. jāyāya tudaṃ jāni patimhi.
-Rūpa 359. tathā dvande pāṇi tūriya yogga senaṅga khuddajantuka vividha viruddhavisabhāgatthādīnañca.
-Rūpa 360. vibhāsā rukkha tiṇa pasu dhana dhaññajanapadādīnañca.
-Rūpa 361. vā ṇa’pacce.
-Rūpa 362. dhātuliṅgehi parā paccayā.
-Rūpa 363. tesaṃ ṇo lopaṃ.
-Rūpa 364. vuddhādisarassa vāsaṃyogantassa saṇe ca.
-Rūpa 365. ayuvaṇṇānañcāyo vuddhī.
-Rūpa 366. ṇāyana ṇāna vacchādito.
-Rūpa 367. ṇeyyo kattikādīhi.
-Rūpa 368. ato ṇi vā.
-Rūpa 369. avaṇṇo ye lopañca.
-Rūpa 370. tesu vuddhilopāgamavikāraviparītādesā ca.
-Rūpa 371. ṇavopagvādīhi.
-Rūpa 372. ṇera vidhavādito.
-Rūpa 373. yena vā saṃsaṭṭhaṃ tarati carati vahati ṇiko.
-Rūpa 374. tamadhīte tenakatādisannidhānaniyogasippabhaṇḍajīvikatthesu ca.
-Rūpa 375. māyūnamāgamo ṭhāne.
-Rūpa 376. ṇa rāgā tenarattaṃ tassedamaññatthesu ca.
-Rūpa 377. āttañca.
-Rūpa 378. jātādīnamimiyā ca.
-Rūpa 379. samūhatthe kaṇ-ṇā.
-Rūpa 380. gāmajanabandhusahāyādīhi tā.
-Rūpa 381. tadassa ṭhānamiyo ca.
-Rūpa 382. upamatthāyitattaṃ.
-Rūpa 383. tannissitatthe lo.
-Rūpa 384. ālu tabbahule.
-Rūpa 385. tappakativacane mayo.
-Rūpa 386. etesamo lope.
-Rūpa 387. ṇyattatā bhāve tu.
-Rūpa 388. ṇa visamādīhi.
-Rūpa 389. ramaṇīyādito kaṇ.
-Rūpa 390. visese taratamisikiyiṭṭhā.
-Rūpa 391. vuḍḍhassa joiyiṭṭhesu.
-Rūpa 392. pasatthassa so ca.
-Rūpa 393. antikassa nedo.
-Rūpa 394. bāḷhassa sādho.
-Rūpa 395. appassa kaṇ.
-Rūpa 396. yuvānañca.
-Rūpa 397. vantu mantu vīnañca lopo.
-Rūpa 398. tadassatthīti vī ca.
-Rūpa 399. tapādito sī.
-Rūpa 400. daṇḍādito ikaī.
-Rūpa 401. madhvādito ro.
-Rūpa 402. guṇādito vantu.
-Rūpa 403. satyādīhi mantu.
-Rūpa 404. āyussukārāsamantumhi.
-Rūpa 405. saddhādito ṇa.
-Rūpa 406. saṅkhyāpūraṇe mo.
-Rūpa 407. catucchehi thaṭhā.
-Rūpa 408. sa chassa vā.
-Rūpa 409. dvitīhi tiyo.
-Rūpa 410. tiye dutāpi ca.
-Rūpa 411. tesamaḍḍhūpapadena aḍḍhuḍḍhadivaḍḍhadiyaḍḍhaḍḍhatiyā.
-Rūpa 412. ekādito dasassī.
-Rūpa 413. gaṇane dasassa dvi ti catu pañca cha satta aṭṭha navakānaṃ vī ti cattāra paññā cha sattāsa navā yosu yonañcīsamāsaṃṭhiritītuti.
-Rūpa 414. ti ca.
-Rūpa 415. dasadasakaṃ sataṃ dasakānaṃ sataṃ sahassañca yomhi.
-Rūpa 416. yāva taduttari dasaguṇitañca.
-Rūpa 417. sakanāmehi.
-Rūpa 418. dvādito konekatthe ca.
-Rūpa 419. ekādito sakissa kkhattuṃ.
-Rūpa 420. vibhāge dhā ca.
-Rūpa 421. sabbanāmehi pakāravacane tu thā.
-Rūpa 422. kimimehi thaṃ.
-Rūpa 423. yadanupapannā nipātanā sijjhanti.
-Rūpa 424. bhūvādayo dhātavo.
-Rūpa 425. dhātussanto loponekassarassa.
-Rūpa 426. vattamānā ti anti, si tha, mi ma, te ante, se vhe, e mhe.
-Rūpa 427. kāle.
-Rūpa 428. vattamānā paccuppanne.
-Rūpa 429. atha pubbāni vibhattīnaṃ cha parassapadāni.
-Rūpa 430. kattari parassapadaṃ.
-Rūpa 431. dve dve paṭhamamajjhimuttamapurisā.
-Rūpa 432. nāmamhi payujjamānepitulyādhikaraṇe paṭhamo.
-Rūpa 433. bhūvādito a.
-Rūpa 434. aññesu ca.
-Rūpa 435. o ava sare.
-Rūpa 436. tumhe majjhimo.
-Rūpa 437. amhe uttamo.
-Rūpa 438. akāro dīghaṃ himimesu.
-Rūpa 439. parāṇyattanopadāni.
-Rūpa 440. kattari ca.
-Rūpa 441. sabbesamekābhidhāne paro puriso.
-Rūpa 442. gamissanto ccho vā sabbāsu.
-Rūpa 443. gamissa ghammaṃ.
-Rūpa 444. attanopadāni bhāve ca kammani.
-Rūpa 445. bhāvakammesu yo.
-Rūpa 446. attanopadāni parassapadattaṃ.
-Rūpa 447. tassa cavaggayakāravakārattaṃ sadhātvantassa.
-Rūpa 448. ivaṇṇāgamo vā.
-Rūpa 449. pubbarūpañca.
-Rūpa 450. pañcamī tu antu, hi tha, mi ma, taṃ antaṃ, ssu vho, e āmase.
-Rūpa 451. āṇatyāsiṭṭhenuttakāle pañcamī.
-Rūpa 452. hilopaṃ vā.
-Rūpa 453. sattamī eyya eyyuṃ, eyyāsi eyyātha, eyyāmi eyyāma, etha eraṃ, etho eyyāvho, eyyaṃ eyyāmhe.
-Rūpa 454. anumatiparikappatthesu sattamī.
-Rūpa 455. hiyyattanī ā ū, o ttha, aṃ mhā, ttha tthuṃ, se vhaṃ, iṃ mhase.
-Rūpa 456. hiyyopabhuti paccakkhe hiyyattanī.
-Rūpa 457. akārāgamo hiyyattanī ajjatanīkālātipattīsu.
-Rūpa 458. hiyyattanī sattamī pañcamī vattamānā sabbadhātukaṃ.
-Rūpa 459. parokkhā a u, e ttha, aṃ mha, ttha re, ttho vho, iṃ mhe.
-Rūpa 460. apaccakkhe parokkhātīte.
-Rūpa 461. kvacādivaṇṇānamekassarānaṃ dvebhāvo.
-Rūpa 462. pubbobbhāso.
-Rūpa 463. antassivaṇṇākāro vā.
-Rūpa 464. dutiyacatutthānaṃ paṭhamatatiyā.
-Rūpa 465. brūbhūnamāhabhūvā parokkhāyaṃ.
-Rūpa 466. ikārāgamo asabbadhātukamhi.
-Rūpa 467. kavaggassa cavaggo.
-Rūpa 468. ajjatanī ī uṃ, o ttha, iṃ mhā, ā ū, se vhaṃ, aṃ mhe.
-Rūpa 469. samīpejjatanī.
-Rūpa 470. sabbato uṃ iṃsu.
-Rūpa 471. māyoge sabbakāle ca.
-Rūpa 472. bhavissantī ssati ssanti, ssasi ssatha, ssāmi ssāma, ssate ssante, ssase ssavhe, ssaṃ ssāmhe.
-Rūpa 473. anāgate bhavissantī.
-Rūpa 474. kālātipatti ssā ssaṃsu, sse ssatha, ssaṃ ssāmhā, ssatha ssisu, ssase ssavhe, ssiṃ ssāmhase.
-Rūpa 475. kriyātipannetīte kālātipatti.
-Rūpa 476. isuyamūnamanto ccho vā.
-Rūpa 477. labhasmā ī iṃnaṃ tthatthaṃ.
-Rūpa 478. vaca vasa vahādīnamukāro vassa ye.
-Rūpa 479. vacassajjatanimhi makāro o.
-Rūpa 480. kusasmā dī cchi.
-Rūpa 481. ha vipariyayo lo vā.
-Rūpa 482. jaramarānaṃ jīrajīyyamīyyā vā.
-Rūpa 483. disassa passa dissa dakkhā vā.
-Rūpa 484. sadassa sīdattaṃ.
-Rūpa 485. yajassādissi.
-Rūpa 486. vadassa vajjaṃ.
-Rūpa 487. lopañcettamakāro.
-Rūpa 488. kvaci dhātuvibhattippaccayānaṃ dīghaviparītādesalopāgamā ca.
-Rūpa 489. niggahītañca.
-Rūpa 490. hotissare’hohe bhavissantimhi ssassa ca.
-Rūpa 491. e aya.
-Rūpa 492. ṭhā tiṭṭho.
-Rūpa 493. yamhi dā dhā mā ṭhā hā pā maha mathādīnamī.
-Rūpa 494. pā pibo.
-Rūpa 495. tissa tthittaṃ.
-Rūpa 496. sabbatthāsassādi lopo ca.
-Rūpa 497. simhi ca.
-Rūpa 498. thassa tthattaṃ.
-Rūpa 499. asasmā mimānaṃ mhimhā ntalopo ca.
-Rūpa 500. tussa tthuttaṃ.
-Rūpa 501. asabbadhātuke bhū.
-Rūpa 502. brūto ī timhi.
-Rūpa 503. vadho vā sabbattha.
-Rūpa 504. hassa jo.
-Rūpa 505. yavakārā ca.
-Rūpa 506. rasso.
-Rūpa 507. dādhātussa dajjaṃ.
-Rūpa 508. dādantassaṃ mimesu.
-Rūpa 509. rudhādito niggahītapubbañca.
-Rūpa 510. divādito yo.
-Rūpa 511. tathā kattari ca.
-Rūpa 512. svādito ṇuṇāuṇā ca.
-Rūpa 513. kiyādito nā.
-Rūpa 514. ñāssa jā jaṃ nā.
-Rūpa 515. eyyassa ñāto iyā ñā vā.
-Rūpa 516. nāssa lopo yakārattaṃ.
-Rūpa 517. gahādito ppaṇhā.
-Rūpa 518. halopo ṇhāmhi.
-Rūpa 519. gahassa ghe ppe.
-Rūpa 520. tanādito oyirā.
-Rūpa 521. uttamokāro.
-Rūpa 522. karassākāro ca.
-Rūpa 523. karassa kāsattamajjatanimhi.
-Rūpa 524. karassa sappaccayassa kāho.
-Rūpa 525. curādito ṇeṇayā.
-Rūpa 526. kāritānaṃ ṇo lopaṃ.
-Rūpa 527. asaṃyogantassa vuddhi kārite.
-Rūpa 528. tija gupa kita mānehi kha cha sā vā.
-Rūpa 529. ko khe ca.
-Rūpa 530. dhātuppaccayehi vibhattiyo.
-Rūpa 531. byañjanantassa co chappaccayesu ca.
-Rūpa 532. mānakitānaṃ vatattaṃ vā.
-Rūpa 533. tato pāmānānaṃ vā maṃ sesu.
-Rūpa 534. bhuja ghasa hara su pādīhi tumicchatthesu.
-Rūpa 535. harassa gī se.
-Rūpa 536. āya nāmato kattupamānādācāre.
-Rūpa 537. īyūpamānā ca.
-Rūpa 538. nāmamhātticchatthe.
-Rūpa 539. dhāturūpe nāmasmā ṇayo ca.
-Rūpa 540. dhātūhi ṇe ṇaya ṇāpe ṇāpayā kāritāni hetvatthe.
-Rūpa 541. te āvāyā kārite.
-Rūpa 542. ghaṭādīnaṃ vā.
-Rūpa 543. guha dusānaṃ dīghaṃ.
-Rūpa 544. hanassa ghāto.
-Rūpa 545. bhāvakammesu tabbānīyā.
-Rūpa 546. ṇādayo tekālikā.
-Rūpa 547. yathāgamamikāro.
-Rūpa 548. te kiccā.
-Rūpa 549. tuṃtunatabbesu vā.
-Rūpa 550. rahādito ṇa.
-Rūpa 551. gama khana hanādīnaṃ tuṃtabbādīsu na.
-Rūpa 552. ṇyo ca.
-Rūpa 553. kāritaṃ viya ṇānubandho.
-Rūpa 554. kagā cajānaṃ.
-Rūpa 555. bhūtobba.
-Rūpa 556. vada mada gamu yuja garahākārādīhi jjammaggayheyyāgāro vā.
-Rūpa 557. karamhā ricca.
-Rūpa 558. ramhi ranto rādi no.
-Rūpa 559. pesātisaggapattakālesu kiccā.
-Rūpa 560. bhujādīnamanto no dvi ca.
-Rūpa 561. dhātuyā kammādimhi ṇo.
-Rūpa 562. aññekita.
-Rūpa 563. kattari kita.
-Rūpa 564. ākārantānamāyo.
-Rūpa 565. saññāyamanu.
-Rūpa 566. nu niggahītaṃ padante.
-Rūpa 567. pure dadā ca iṃ.
-Rūpa 568. sabbato ṇvu tvāvī vā.
-Rūpa 569. gahassupadhasse vā.
-Rūpa 570. anakā yuṇvūnaṃ.
-Rūpa 571. na kagattaṃ cajā ṇvumhi.
-Rūpa 572. nudādīhi yuṇvūnamanānanākānanakā sakāritehi ca.
-Rūpa 573. karassa ca tattaṃ tusmiṃ.
-Rūpa 574. sāsādīhi ratthu.
-Rūpa 575. pādito ritu.
-Rūpa 576. mānādīhi rātu.
-Rūpa 577. visa rujapadādito ṇa.
-Rūpa 578. niggahīta saṃyogādi no.
-Rūpa 579. ṇamhi ranjassa jobhāvakaraṇesu.
-Rūpa 580. bhāve ca.
-Rūpa 581. dahassa do laṃ.
-Rūpa 582. purasamupaparīhi karotissa khakharā vā tappaccayesu ca.
-Rūpa 583. gahassa ghara ṇe vā.
-Rūpa 584. kvi ca.
-Rūpa 585. kvilopo ca.
-Rūpa 586. dhātvantassa lopo kvimhi.
-Rūpa 587. vidante ū.
-Rūpa 588. iyatamakiesānamantassaro dīghaṃ kvaci disassa guṇaṃ do raṃ sakkhī ca.
-Rūpa 589. dharādīhi rammo.
-Rūpa 590. tassīlādīsu ṇītvāvī ca.
-Rūpa 591. sadda kudha cala maṇḍattha rucādīhi yu.
-Rūpa 592. pārādigamimhā rū.
-Rūpa 593. bhikkhādito ca.
-Rūpa 594. hanatyādīnaṃ ṇuko.
-Rūpa 595. saṃhanaññāya vā ro gho.
-Rūpa 596. nandādīhi yu.
-Rūpa 597. kattukaraṇapadesesu ca.
-Rūpa 598. saññāyaṃ dādhāto i.
-Rūpa 599. itthiyamatiyavo vā.
-Rūpa 600. gamakhanahanaramādīnamanto.
-Rūpa 601. karato ririya.
-Rūpa 602. jito ina sabbattha.
-Rūpa 603. supato ca.
-Rūpa 604. īsaṃdusūhi kha.
-Rūpa 605. bhāvakammesu kiccaktakkhatthā.
-Rūpa 606. budhagamāditthe kattari.
-Rūpa 607. dhaḍhabhahehi dha ḍhā ca.
-Rūpa 608. hacatutthānamantānaṃ do dhe.
-Rūpa 609. tikiccāsiṭṭhe.
-Rūpa 610. āgamā tuko.
-Rūpa 611. bhabbe ika.
-Rūpa 612. atīte ta tavantu tāvī.
-Rūpa 613. vasato uttha.
-Rūpa 614. vassa vā vu.
-Rūpa 615. ḍo ḍhakāre.
-Rūpa 616. tarādīhi iṇṇo.
-Rūpa 617. susa paca sakato kkhakkā ca.
-Rūpa 618. pakkamādīhi nto ca.
-Rūpa 619. janādīnamā timhi ca.
-Rūpa 620. ṭhāpānamiī ca.
-Rūpa 621. hantehi ho hassa lo vā adahanahānaṃ.
-Rūpa 622. bhāvakammesu ta.
-Rūpa 623. sabbattha ge gī.
-Rūpa 624. paccayā daniṭṭhā nipātanā sijjhanti.
-Rūpa 625. sāsadisato tassa riṭṭho ca.
-Rūpa 626. sādi santapucchabhanjahaṃsādīhi ṭṭho.
-Rūpa 627. yajassa sarassi ṭṭhe.
-Rūpa 628. bhanjato ggo ca.
-Rūpa 629. vaca vā vu.
-Rūpa 630. gupādīnañca.
-Rūpa 631. bhidādito innaannaīṇā vā.
-Rūpa 632. rakāro ca.
-Rūpa 633. namakarānamantānaṃ niyuttatamhi.
-Rūpa 634. kammani dutiyāyaṃ kto.
-Rūpa 635. bhyādīhi matibudhipūjādīhi ca kto.
-Rūpa 636. icchatthesu samāna kattukesu tavetuṃ vā.
-Rūpa 637. tavetunādīsu kā.
-Rūpa 638. arahasakkādīsu ca.
-Rūpa 639. pattavacane alamatthesu ca.
-Rūpa 640. pubbakālekakattukānaṃ tuna tvāna tvā vā.
-Rūpa 641. sabbehi tunādīnaṃ yo.
-Rūpa 642. dadhantato yo kvaci.
-Rūpa 643. canantehi raccaṃ.
-Rūpa 644. disā svānasvāntalopo ca.
-Rūpa 645. mahadabhehi mmayhajjabbhaddhā ca.
-Rūpa 646. vattamāne mānantā.
-Rūpa 647. bhavissati gamādīhi ṇī ghiṇ.
-Rūpa 648. kiriyāyaṃ ṇvutvo.
-Rūpa 649. kammani ṇo.
-Rūpa 650. sese ssaṃ ntu mānānā.
-Rūpa 651. kāle vattamānātīte ṇvādayo.
-Rūpa 652. khyādīhi man ma ca to vā.
-Rūpa 653. samādihi thamā.
-Rūpa 654. masussa sussa ccha ra ccherā.
-Rūpa 655. āpubbacarassa ca.
-Rūpa 656. ala kala salehi layā.
-Rūpa 657. yāṇa lāṇā.
-Rūpa 658. mathissa thassa lo ca.
-Rūpa 659. avassakādhamiṇesu ṇī ca.
-Rūpa 660. vajādīhi pabbajjādayo nipaccante.
-Rūpa 661. ve pu sī davava mu ku dā bhūhvādīhi thuttima ṇimā nibbatte.
-Rūpa 662. akkose namhāni.
-Rūpa 663. sunassunassoṇavānuvānununakhuṇānā.
-Rūpa 664. taruṇassa susu ca.
-Rūpa 665. yuvassuvassuvuvānunūnā.
-Rūpa 666. chadādīhi tatraṇ.
-Rūpa 667. vadādīhi ṇitto gaṇe.
-Rūpa 668. midādīhi ttitiyo.
-Rūpa 669. usuranjadaṃsānaṃ daṃsassa daḍḍho ḍha ṭhā ca.
-Rūpa 670. sūvusānamūvusānamato tho ca.
-Rūpa 671. ranjudādīhi dhadiddakirā kvaci jada lopo ca.
-Rūpa 672. paṭito hissa heraṇhīraṇ.
-Rūpa 673. kaḍyādīhi ko.
-Rūpa 674. khādāmagamānaṃ khandhandhagandhā.
-Rūpa 675. paṭādīhyalaṃ.
-Rūpa 676. puthassa puthupathāmo vā.
-Rūpa 677. sasvādīhi tudavo.
-Rūpa 678. jhādīhi īvaro.
-Rūpa 679. munādīhi ci.
-Rūpa 680. vidādīhyūro.
-Rūpa 681. hanādīhi ṇunutavo.
-Rūpa 682. kuṭādīhi ṭho.
-Rūpa 683. manupūrasuṇādīhi ussanusisā.
-Rūpa 684. akkharehi kāra.
+Kacc 1:1 [1]. attho akkharasaññāto.
+Kacc 2:2 [2]. akkharāpādayo ekacattālīsaṃ.
+Kacc 3:3 [3]. tatthodantā sarā aṭṭha.
+Kacc 4:4 [4]. lahumattā tayo rassā.
+Kacc 5:5 [5]. aññe dīghā.
+Kacc 6:6 [8]. sesā byañjanā.
+Kacc 7:7 [9]. vaggā pañcapañcaso mantā.
+Kacc 8:8 [10]. aṃ iti niggahitaṃ.
+Kacc 9:9 [11]. parasamaññā payoge.
+Kacc 10:10 [12]. pubbamadhoṭhitamassaraṃ sarena viyojaye.
+Kacc 11:11 [14]. naye paraṃ yutte.
+Kacc 12:12 [13]. sarā sare lopaṃ.
+Kacc 13:13 [15]. vā paro asarūpā.
+Kacc 14:14 [16]. kvacāsavaṇṇaṃ lutte.
+Kacc 15:15 [17]. dīghaṃ.
+Kacc 16:16 [18]. pubbo ca.
+Kacc 17:17 [19]. yamedantassādeso.
+Kacc 18:18 [20]. vamodudantānaṃ.
+Kacc 19:19 [22]. sabbo caṃ ti.
+Kacc 20:20 [27]. do dhassa ca.
+Kacc 21:21 [21]. ivaṇṇo yaṃ navā.
+Kacc 22:22 [28]. evādissa ri pubbo ca rasso.
+Kacc 23:23 [36]. sarā pakati byañjane.
+Kacc 24:24 [35]. sare kvaci.
+Kacc 25:25 [37]. dīghaṃ.
+Kacc 26:26 [38]. rassaṃ.
+Kacc 27:27 [39]. lopañca tatrākāro.
+Kacc 28:28 [40]. para dvebhāvo ṭhāne.
+Kacc 29:29 [42]. vagge ghosāghosānaṃ tatiyapaṭhamā.
+Kacc 30:30 [58]. aṃ byañjane niggahitaṃ.
+Kacc 31:31 [49]. vaggantaṃ vā vagge.
+Kacc 32:32 [50]. ehe ñaṃ.
+Kacc 33:33 [51]. sa ye ca.
+Kacc 34:34 [52]. madā sare.
+Kacc 35:35 [34]. yavamadanataralā cāgamā.
+Kacc 36:36 [47]. kvaci o byañjane.
+Kacc 37:37 [57]. niggahitañca.
+Kacc 38:38 [53]. kvaci lopaṃ.
+Kacc 39:39 [54]. byañjane ca.
+Kacc 40:40 [55]. paro vā saro.
+Kacc 41:41 [56]. byañjano ca visaññogo.
+Kacc 42:42 [32]. go sare puthassāgamo kvaci.
+Kacc 43:43 [33]. pāssa canto rasso.
+Kacc 44:44 [24]. abbho abhi.
+Kacc 45:45 [25]. ajjho adhi.
+Kacc 46:46 [26]. te na vā ivaṇṇe.
+Kacc 47:47 [23]. atissa cantassa.
+Kacc 48:48 [43]. kvaci paṭi patissa.
+Kacc 49:49 [44]. puthassu byañjane.
+Kacc 50:50 [45]. o avassa.
+Kacc 51:51 [59]. anupadiṭṭhānaṃ vuttayogato.
+Kacc 52:52 [60]. jinavacanayuttaṃ hi.
+Kacc 53:53 [61]. liṅgañca nippajjate.
+Kacc 54:54 [62]. tato ca vibhattiyo.
+Kacc 55:55 [63]. si yo, aṃ yo, nā hi, sa naṃ, smā hi, sa naṃ, smiṃ su.
+Kacc 56:56 [64]. tadanuparodhena.
+Kacc 57:57 [71]. ālapane si ga sañño.
+Kacc 58:58 [29]. ivaṇṇuvaṇṇā jhalā.
+Kacc 59:59 [182]. te itthikhyā po.
+Kacc 60:60 [177]. ā gho.
+Kacc 61:61 [86]. sāgamo se.
+Kacc 62:62 [206]. saṃsāsvekavacanesu ca.
+Kacc 63:63 [217]. etimāsami.
+Kacc 64:64 [216]. tassā vā.
+Kacc 65:65 [215]. tato sassa ssāya.
+Kacc 66:66 [205]. gho rassaṃ.
+Kacc 67:67 [229]. no ca dvādito naṃmhi.
+Kacc 68:68 [184]. amā pato smiṃsmānaṃ vā.
+Kacc 69:69 [186]. ādito o ca.
+Kacc 70:70 [30]. jhalānamiyuvā sare vā.
+Kacc 71:71 [505]. yavakārā ca.
+Kacc 72:72 [185]. pasaññassa ca.
+Kacc 73:73 [174]. gāva se.
+Kacc 74:74 [169]. yosu ca.
+Kacc 75:75 [170]. avaṃmhi ca.
+Kacc 76:76 [171]. āvassu vā.
+Kacc 77:77 [175]. tato namaṃ patimhālutte ca samāse.
+Kacc 78:78 [31]. o sare ca.
+Kacc 79:79 [46]. tabbiparītūpapade byañjane ca.
+Kacc 80:80 [173]. goṇa naṃmhi vā.
+Kacc 81:81 [172]. suhināsu ca.
+Kacc 82:82 [149]. aṃ mo niggahitaṃ jhalapehi.
+Kacc 83:83 [67]. saralopomādesapaccayādimhi saralope tu pakati.
+Kacc 84:84 [144]. agho rassamekavacanayosvapi ca.
+Kacc 85:85 [150]. na sismimanapuṃsakāni.
+Kacc 86:86 [227]. ubhādito naminnaṃ.
+Kacc 87:87 [231]. iṇṇamiṇṇannaṃ tīhi saṅkhyāhi.
+Kacc 88:88 [147]. yosu katanikāralopesu dīghaṃ.
+Kacc 89:89 [87]. sunaṃhisu ca.
+Kacc 90:90 [252]. pañcādīnamattaṃ.
+Kacc 91:91 [194]. patissinīmhi.
+Kacc 92:92 [100]. ntussanto yosu ca.
+Kacc 93:93 [106]. sabbassa vā aṃsesu.
+Kacc 94:94 [105]. simhi vā.
+Kacc 95:95 [145]. aggissini.
+Kacc 96:96 [148]. yosvakatarasso jho.
+Kacc 97:97 [156]. vevosu lo ca.
+Kacc 98:98 [189]. mātulādīnamānattamīkāre.
+Kacc 99:99 [81]. smāhismiṃnaṃ mhābhimhi vā.
+Kacc 100:100 [214]. na timehi katākārehi.
+Kacc 101:101 [80]. suhisvakāro e.
+Kacc 102:102 [202]. sabbanāmānaṃ naṃmhi ca.
+Kacc 103:103 [79]. ato nena.
+Kacc 104:104 [66]. so.
+Kacc 105:105 [x]. so vā.
+Kacc 106:106 [313]. dīghorehi.
+Kacc 107:107 [69]. sabbayonīnamāe.
+Kacc 108:108 [90]. smāsmiṃnaṃ vā.
+Kacc 109:109 [304]. āya catutthekavacanassa tu.
+Kacc 110:110 [201]. tayo neva ca sabbanāmehi.
+Kacc 111:111 [179]. ghato nādīnaṃ.
+Kacc 112:112 [183]. pato yā.
+Kacc 113:113 [132]. sakhato gasse vā.
+Kacc 114:114 [178]. ghate ca.
+Kacc 115:115 [181]. na ammādito.
+Kacc 116:116 [157]. akatarassā lato yvālapanassa vevo.
+Kacc 117:117 [124]. jhalato sassa no vā.
+Kacc 118:118 [146]. ghapato ca yonaṃ lopo.
+Kacc 119:119 [155]. lato vokāro ca.
+Kacc 120:120 [243]. amhassa mamaṃ savibhattissa se.
+Kacc 121:121 [233]. mayaṃ yomhi paṭhame.
+Kacc 122:122 [99]. ntussa nto.
+Kacc 123:123 [103]. ntassa se vā.
+Kacc 124:124 [98]. ā simhi.
+Kacc 125:125 [198]. aṃ napuṃsake.
+Kacc 126:126 [101]. avaṇṇā ca ge.
+Kacc 127:127 [102]. totitā sasmiṃnāsu.
+Kacc 128:128 [104]. naṃmhi taṃ vā.
+Kacc 129:129 [222]. imassidamaṃsisu napuṃsake.
+Kacc 130:130 [225]. amussāduṃ.
+Kacc 131:131 [x]. itthipumanapuṃsakasaṅkhyaṃ.
+Kacc 132:132 [228]. yosu dvinnaṃ dve ca.
+Kacc 133:133 [230]. ticatunnaṃ tisso catasso tayo cattāro tīṇi cattāri.
+Kacc 134:134 [251]. pañcādīnamakāro.
+Kacc 135:135 [118]. rājassa rañño rājino se.
+Kacc 136:136 [119]. raññaṃ naṃmhi vā.
+Kacc 137:137 [116]. nāmhi raññā vā.
+Kacc 138:138 [121]. smiṃmhi raññerājini.
+Kacc 139:139 [245]. tumhamhākaṃ tayimayi.
+Kacc 140:140 [232]. tvamahaṃ simhi ca.
+Kacc 141:141 [241]. tavamama se.
+Kacc 142:142 [242]. tuyhaṃmayhañca.
+Kacc 143:143 [235]. taṃmamaṃmhi.
+Kacc 144:144 [234]. tavaṃmamañca navā.
+Kacc 145:145 [238]. nāmhi tayāmayā.
+Kacc 146:146 [236]. tumhassa tuvaṃtvamaṃmhi.
+Kacc 147:147 [246]. padato dutiyācatutthīchaṭṭhīsu vono.
+Kacc 148:148 [247]. temekavacanesu ca.
+Kacc 149:149 [248]. na aṃmhi.
+Kacc 150:150 [249]. vā tatiye ca.
+Kacc 151:151 [250]. bahuvacanesu vono.
+Kacc 152:152 [136]. pumantassā simhi.
+Kacc 153:153 [138]. amālapanekavacane.
+Kacc 154:154 [x]. samāse ca vibhāsā.
+Kacc 155:155 [137]. yosvāno.
+Kacc 156:156 [142]. āne smiṃmhi vā.
+Kacc 157:157 [140]. hivibhattimhi ca.
+Kacc 158:158 [143]. susmimā vā.
+Kacc 159:159 [139]. u nāmhi ca.
+Kacc 160:160 [197]. a kammantassa ca.
+Kacc 161:161 [244]. tumhamhehi namākaṃ.
+Kacc 162:162 [237]. vā yvappaṭhamo.
+Kacc 163:163 [240]. sassaṃ.
+Kacc 164:164 [200]. sabbanāmakārate paṭhamo.
+Kacc 165:165 [208]. dvandaṭṭhā vā.
+Kacc 166:166 [209]. nāññaṃ sabbanāmikaṃ.
+Kacc 167:167 [210]. bahubbīhimhi ca.
+Kacc 168:168 [203]. sabbato naṃ saṃsānaṃ.
+Kacc 169:169 [117]. rājassa rāju sunaṃhisu ca.
+Kacc 170:170 [220]. sabbassimasse vā.
+Kacc 171:171 [219]. animi nāmhi ca.
+Kacc 172:172 [218]. anapuṃsakassāyaṃ simhi.
+Kacc 173:173 [223]. amussa mo saṃ.
+Kacc 174:174 [211]. etatesaṃ to.
+Kacc 175:175 [212]. tassa vā nattaṃ sabbattha.
+Kacc 176:176 [213]. sasmāsmiṃsaṃsāsvattaṃ.
+Kacc 177:177 [221]. imasaddassa ca.
+Kacc 178:178 [224]. sabbato ko.
+Kacc 179:179 [204]. ghapato smiṃsānaṃ saṃsā.
+Kacc 180:180 [207]. netāhi smimāyayā.
+Kacc 181:181 [95]. manogaṇādito smiṃnānamiā.
+Kacc 182:182 [97]. sassa co.
+Kacc 183:183 [48, 386]. etesamo lope.
+Kacc 184:184 [96]. sa sare vāgamo.
+Kacc 185:185 [112]. santasaddassa so bhe bo cante.
+Kacc 186:186 [107]. simhi gacchantādīnaṃ ntasaddo aṃ.
+Kacc 187:187 [108]. sesesu ntuva.
+Kacc 188:188 [115]. brahmattasakharājādito amānaṃ.
+Kacc 189:189 [113]. syā ca.
+Kacc 190:190 [114]. yonamāno.
+Kacc 191:191 [130]. sakhato cāyono.
+Kacc 192:192 [135]. smime.
+Kacc 193:193 [122]. brahmato gassa ca.
+Kacc 194:194 [131]. sakhantassi nonānaṃsesu.
+Kacc 195:195 [134]. āro himhi vā.
+Kacc 196:196 [133]. sunamaṃsu vā.
+Kacc 197:197 [125]. brahmato tu smiṃ ni.
+Kacc 198:198 [123]. uttaṃ sanāsu.
+Kacc 199:199 [158]. satthupitādīnamā sismiṃ silopo ca.
+Kacc 200:200 [159]. aññesvārattaṃ.
+Kacc 201:201 [163]. vā naṃmhi.
+Kacc 202:202 [164]. satthunattañca.
+Kacc 203:203 [162]. u sasmiṃ salopo ca.
+Kacc 204:204 [167]. sakkamandhātādīnañca.
+Kacc 205:205 [160]. tato yonamo tu.
+Kacc 206:206 [165]. tato smimi.
+Kacc 207:207 [161]. nā ā.
+Kacc 208:208 [166]. āro rassamikāre.
+Kacc 209:209 [168]. pitādīnamasimhi.
+Kacc 210:210 [239]. tayātayīnaṃ takāro tvattaṃ vā.
+Kacc 211:211 [126]. attanto hismimanattaṃ.
+Kacc 212:212 [129]. tato smiṃ ni.
+Kacc 213:213 [127]. sassa no.
+Kacc 214:214 [128]. smā nā.
+Kacc 215:215 [141]. jhalato ca.
+Kacc 216:216 [180]. ghapato smiṃ yaṃ vā.
+Kacc 217:217 [199]. yonaṃ ni napuṃsakehi.
+Kacc 218:218 [196]. ato niccaṃ.
+Kacc 219:219 [195]. siṃ.
+Kacc 220:220 [74]. sesato lopaṃ gasipi.
+Kacc 221:221 [282]. sabbāsamāvusopasagganipātādīhi ca.
+Kacc 222:222 [342]. pumassa liṅgādīsu samāsesu.
+Kacc 223:223 [188]. aṃ yamīto pasaññato.
+Kacc 224:224 [153]. naṃ jhato katarassā.
+Kacc 225:225 [151]. yonaṃ no.
+Kacc 226:226 [154]. smiṃ ni.
+Kacc 227:227 [270]. kissa ka ve ca.
+Kacc 228:228 [272]. ku hiṃhaṃsu ca.
+Kacc 229:229 [226]. sesesu ca.
+Kacc 230:230 [262]. tratothesu ca.
+Kacc 231:231 [263]. sabbassetassa’kāro vā.
+Kacc 232:232 [267]. tre niccaṃ.
+Kacc 233:233 [264]. e tothesu ca.
+Kacc 234:234 [265]. imassi thaṃdānihatodhesu ca.
+Kacc 235:235 [281]. a dhunāmhi ca.
+Kacc 236:236 [280]. eta rahimhi.
+Kacc 237:237 [176]. itthiyamato āpaccayo.
+Kacc 238:238 [187]. nadādito vā ī.
+Kacc 239:239 [190]. ṇavaṇikaṇeyyaṇantuhi.
+Kacc 240:240 [193]. patibhikkhurājīkārantehi inī.
+Kacc 241:241 [191]. ntussa tamīkāre.
+Kacc 242:242 [192]. bhavato bhoto.
+Kacc 243:243 [110]. bho ge tu.
+Kacc 244:x [109]. obhāvo kvaci yosu vakārassa.
+Kacc 245:x [111]. bhadantassa bhaddantabhante.
+Kacc 246:244 [72]. akārapitādyantānamā.
+Kacc 247:245 [152]. jhalapā rassaṃ.
+Kacc 248:246 [73]. ākāro vā.
+Kacc 249:247 [261]. tvādayo vibhattisaññāyo.
+Kacc 250:248 [260]. kvaci to pañcamyatthe.
+Kacc 251:249 [266]. tratha sattamiyā sabbanāmehi.
+Kacc 252:250 [268]. sabbato dhi.
+Kacc 253:251 [269]. kiṃsmā vo.
+Kacc 254:252 [271]. hiṃ haṃ hiñcanaṃ.
+Kacc 255:253 [273]. tamhā ca.
+Kacc 256:254 [274]. imasmā hadhā ca.
+Kacc 257:255 [275]. yato hiṃ.
+Kacc 258:256 [x]. kāle.
+Kacc 259:257 [276]. kiṃsabbaññekayakuhi dādācanaṃ.
+Kacc 260:258 [278]. tamhā dāni ca.
+Kacc 261:259 [279]. imasmā rahidhunādāni ca.
+Kacc 262:260 [277]. sabbassa so dāmhi vā.
+Kacc 263:261 [369]. avaṇṇo ye lopañca.
+Kacc 264:262 [391]. vuḍḍhassa jo iyiṭṭhesu.
+Kacc 265:263 [392]. pasatthassa so ca.
+Kacc 266:264 [393]. antikassa nedo.
+Kacc 267:265 [394]. bāḷhassa sādho.
+Kacc 268:266 [395]. appassa kaṇ.
+Kacc 269:267 [396]. yuvānañca.
+Kacc 270:268 [397]. vantumantuvīnañca lopo.
+Kacc 271:269 [41]. yavataṃ talaṇadakārānaṃ byañjanāni calañajakārattaṃ.
+Kacc 272:270 [120]. amha tumha ntu rāja brahmatta sakha satthu pitādīhi smā nāva.
+Kacc 273:271 [88, 308]. yasmādapeti bhayamādatte vā tadapādānaṃ.
+Kacc 274:272 [309]. dhātunāmānamupasaggayogādīsvapi ca.
+Kacc 275:273 [310]. rakkhaṇatthānamicchitaṃ.
+Kacc 276:274 [311]. yena vā’dassanaṃ.
+Kacc 277:275 [312]. dūrantikaddha kāla nimmāna tvālopa disāyoga vibhattārappayoga suddhappamocana hetu vivittappamāṇa pubbayoga bandhana guṇavacana pañha kathana thokākattūsu ca.
+Kacc 278:276 [84, 302]. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
+Kacc 279:277 [303]. silāgha hanu ṭhā sapa dhāra piha kudha duhissosūya rādhikkha paccāsuṇa anupatigiṇa pubbakattā rocanattha tadatth atumatthālamattha maññānādarappāṇini, gatyatthakammani, āsīsattha sammuti bhiyya sattamyatthesu ca.
+Kacc 280:278 [93, 320]. yodhāro tamokāsaṃ.
+Kacc 281:279 [82, 292]. yena vā kayirate taṃ karaṇaṃ.
+Kacc 282:280 [75, 285]. yaṃ karoti taṃ kammaṃ.
+Kacc 283:281 [77, 294]. yo karoti sa kattā.
+Kacc 284:282 [295]. yo kāreti sa hetu.
+Kacc 285:283 [91, 316]. yassa vā pariggaho taṃ sāmī.
+Kacc 286:284 [65, 283]. liṅgatthe paṭhamā.
+Kacc 287:285 [70]. ālapane ca.
+Kacc 288:286 [83, 291]. karaṇe tatiyā.
+Kacc 289:287 [296]. sahādiyoge ca.
+Kacc 290:288 [78, 293]. kattari ca.
+Kacc 291:289 [297]. hetvatthe ca.
+Kacc 292:290 [298]. sattamyatthe ca.
+Kacc 293:291 [299]. yenaṅgavikāro.
+Kacc 294:292 [300]. visesane ca.
+Kacc 295:293 [85, 301]. sampadāne catutthī.
+Kacc 296:294 [305]. namoyogādīsvapi ca.
+Kacc 297:295 [89, 307]. apādāne pañcamī.
+Kacc 298:296 [314]. kāraṇatthe ca.
+Kacc 299:297 [76, 284]. kammatthe dutiyā.
+Kacc 300:298 [287]. kāladdhānamaccantasaṃyoge.
+Kacc 301:299 [288]. kammappavacanīyayutte.
+Kacc 302:300 [286]. gati buddhi bhuja paṭha hara kara sayādīnaṃ kārite vā.
+Kacc 303:301 [92, 315]. sāmismiṃ chaṭṭhī.
+Kacc 304:302 [94, 319]. okāse sattamī.
+Kacc 305:303 [321]. sāmissarādhipati dāyāda sakkhī patibhū pasuta kusalehi ca.
+Kacc 306:304 [322]. niddhāraṇe ca.
+Kacc 307:305 [323]. anādare ca.
+Kacc 308:306 [289]. kvaci dutiyā chaṭṭhīnamatthe.
+Kacc 309:307 [290]. tatiyāsattamīnañca.
+Kacc 310:308 [317]. chaṭṭhī ca.
+Kacc 311:309 [318]. dutiyāpañcamīnañca.
+Kacc 312:310 [324]. kammakaraṇanimittatthesu sattamī.
+Kacc 313:311 [325]. sampadāne ca.
+Kacc 314:312 [326]. pañcamyatthe ca.
+Kacc 315:313 [327]. kālabhāvesu ca.
+Kacc 316:314 [328]. upa’dhyādhikissaravacane.
+Kacc 317:315 [329]. maṇḍitussukkesu tatiyā ca.
+Kacc 318:316 [331]. nāmānaṃ samāso yuttattho.
+Kacc 319:317 [332]. tesaṃ vibhattiyo lopā ca.
+Kacc 320:318 [333]. pakati cassa sarantassa.
+Kacc 321:319 [330]. upasagganipātapubbako abyayībhāvo.
+Kacc 322:320 [335]. so napuṃsakaliṅgo.
+Kacc 323:321 [349]. digussekattaṃ.
+Kacc 324:322 [359]. tathā dvande pāṇi tūriya yogga senaṅga khudda jantuka vividhaviruddha visabhāgatthādīnañca.
+Kacc 325:323 [360]. vibhāsā rukkha tiṇa pasu dhana dhañña janapadādīnañca.
+Kacc 326:324 [339]. dvipade tulyādhikaraṇe kammadhārayo.
+Kacc 327:325 [348]. saṅkhyāpubbo digu.
+Kacc 328:326 [341]. ubhe tappurisā.
+Kacc 329:327 [351]. amādayo parapadebhi.
+Kacc 330:328 [352]. aññapadatthesu bahubbīhi.
+Kacc 331:329 [357]. nāmānaṃ samuccayo dvando.
+Kacc 332:330 [340]. mahataṃ mahā tulyādhikaraṇe pade.
+Kacc 333:331 [353]. itthiyaṃ bhāsitapumitthī pumāva ce.
+Kacc 334:332 [343]. kammadhārayasaññe ca.
+Kacc 335:333 [344]. attaṃ nassa tappurise.
+Kacc 336:334 [345]. sare an.
+Kacc 337:335 [346]. kada kussa.
+Kacc 338:336 [347]. kāppatthesu ca.
+Kacc 339:337 [350]. kvaci samāsantagatānamakāranto.
+Kacc 340:338 [356]. nadimhā ca.
+Kacc 341:339 [358]. jāyāya tudaṃjāni patimhi.
+Kacc 342:340 [355]. dhanumhā ca.
+Kacc 343:341 [336]. aṃ vibhattīnamakārantā abyayībhāvā.
+Kacc 344:342 [337]. saro rasso napuṃsake.
+Kacc 345:343 [338]. aññasmā lopo ca.
+Kacc 346:344 [361]. vā ṇa’pacce.
+Kacc 347:345 [366]. ṇāyanaṇāna vacchādito.
+Kacc 348:346 [367]. ṇeyyo kattikādīhi.
+Kacc 349:347 [368]. ato ṇi vā.
+Kacc 350:348 [371]. ṇavopakvādīhi.
+Kacc 351:349 [372]. ṇera vidhavādito.
+Kacc 352:350 [373]. yena vā saṃsaṭṭhaṃ tarati carati vahati ṇiko.
+Kacc 353:351 [374]. tamadhīte tenakatādi sannidhāna niyoga sippa bhaṇḍa jīvikatthesu ca.
+Kacc 354:352 [376]. ṇa rāgā tassedamaññatthesu ca.
+Kacc 355:353 [378]. jātādīnamimiyā ca.
+Kacc 356:354 [379]. samūhatthe kaṇ ṇā.
+Kacc 357:355 [380]. gāma jana bandhu sahāyādīhi tā.
+Kacc 358:356 [381]. tadassa ṭhānamiyo ca.
+Kacc 359:357 [382]. upamatthāyitattaṃ.
+Kacc 360:358 [383]. tannissitatthe lo.
+Kacc 361:359 [384]. ālu tabbahule.
+Kacc 362:360 [387]. ṇya tta tā bhāve tu.
+Kacc 363:361 [388]. ṇa visamādīhi.
+Kacc 364:362 [389]. ramaṇīyādito kaṇ.
+Kacc 365:363 [390]. visese taratamisikiyiṭṭhā.
+Kacc 366:364 [398]. tadassatthīti vī ca.
+Kacc 367:365 [399]. tapādito sī.
+Kacc 368:366 [400]. daṇḍādito ikaī.
+Kacc 369:367 [401]. madhvādito ro.
+Kacc 370:368 [402]. guṇādito vantu.
+Kacc 371:369 [403]. satyādīhi mantu.
+Kacc 372:370 [405]. saddhādito ṇa.
+Kacc 373:371 [404]. āyussukārāsa mantumhi.
+Kacc 374:372 [385]. tappakativacane mayo.
+Kacc 375:373 [406]. saṅkhyāpūraṇe mo.
+Kacc 376:374 [408]. sa chassavā.
+Kacc 377:375 [412]. ekādito dasassī.
+Kacc 378:376 [257]. dase so niccañca.
+Kacc 379:377 [x]. ante niggahitañca.
+Kacc 380:378 [414]. ti ca.
+Kacc 381:379 [258]. la darānaṃ.
+Kacc 382:380 [255]. vīsatidasesu bā dvissa tu.
+Kacc 383:381 [254]. ekādito dassa ra saṅkhyāne.
+Kacc 384:382 [259]. aṭṭhādito ca.
+Kacc 385:383 [253]. dvekaṭṭhānamākāro vā.
+Kacc 386:384 [407]. catucchehī thaṭhā.
+Kacc 387:385 [409]. dvitīhi tiyo.
+Kacc 388:386 [410]. tiye dutāpi ca.
+Kacc 389:387 [411]. tesamaḍḍhūpapadena aḍḍhuḍḍha divaḍḍha diyaḍḍhaḍḍhatiyā.
+Kacc 390:388 [68]. sarūpānamekasesvasakiṃ.
+Kacc 391:389 [413]. gaṇane dasassa dviticatupañcachasattaaṭṭhanavakānaṃ vīticattārapaññāchasattāsanavā yosu, yonañcīsamāsaṃṭhiritītuti.
+Kacc 392:390 [256]. catūpapadassa lopo tuttarapadādicassa cucopi navā.
+Kacc 393:391 [423]. yadanupapannā nipātanā sijjhanti.
+Kacc 394:392 [418]. dvādito ko’nekatthe ca.
+Kacc 395:393 [415]. dasadasakaṃ sataṃ dasakānaṃ sataṃ sahassañca yomhi.
+Kacc 396:394 [416]. yāva taduttari dasaguṇitañca.
+Kacc 397:395 [417]. sakanāmehi.
+Kacc 398:396 [363]. tesaṃ ṇo lopaṃ.
+Kacc 399:397 [420]. vibhāge dhā ca.
+Kacc 400:398 [421]. sabbanāmehi pakāravacane tu thā.
+Kacc 401:399 [422]. kimimehi thaṃ.
+Kacc 402:400 [364]. vuddhādisarassa vā’saṃyogantassa saṇe ca.
+Kacc 403:401 [375]. mā yūnamāgamo ṭhāne.
+Kacc 404:402 [377]. āttañca.
+Kacc 405:403 [354]. kvacādimajjhuttarānaṃ dīgharassā paccayesu ca.
+Kacc 406:404 [370]. tesu vuddhilopāgamavikāraviparītādesā ca.
+Kacc 407:405 [365]. ayuvaṇṇānañcāyo vuddhi.
+Kacc 408:406 [429]. atha pubbāni vibhattīnaṃ cha parassapadāni.
+Kacc 409:407 [439]. parānyattanopadāni.
+Kacc 410:408 [431]. dve dve paṭhamamajjhimuttamapurisā.
+Kacc 411:409 [441]. sabbesamekābhidhāne paro puriso.
+Kacc 412:410 [432]. nāmamhi payujjamānepi tulyādhikaraṇe paṭhamo.
+Kacc 413:411 [436]. tumhe majjhimo.
+Kacc 414:412 [437]. amhe uttamo.
+Kacc 415:413 [427]. kāle.
+Kacc 416:414 [428]. vattamānā paccuppanne.
+Kacc 417:415 [451]. āṇatyāsiṭṭhe’nuttakāle pañcamī.
+Kacc 418:416 [454]. anumatiparikappatthesu sattamī.
+Kacc 419:417 [460]. apaccakkhe parokkhātīte.
+Kacc 420:418 [456]. hiyyopabhuti paccakkhe hiyyattanī.
+Kacc 421:419 [469]. samīpe’jjatanī.
+Kacc 422:420 [471]. māyoge sabbakāle ca.
+Kacc 423:421 [473]. anāgate bhavissantī.
+Kacc 424:422 [475]. kriyātipanne’tīte kālātipatti.
+Kacc 425:423 [426]. vattamānā ti anti, si tha, mi ma, te ante, se vhe, e mhe.
+Kacc 426:424 [450]. pañcamī tu antu, hi tha, mi ma, taṃ antaṃ, ssu vho, e āmase.
+Kacc 427:425 [453]. sattamī eyya eyyuṃ, eyyāsi eyyātha, eyyāmi eyyāma, etha eraṃ, etho eyyāvho, eyyaṃ eyyāmhe.
+Kacc 428:426 [459]. parokkhā a u, e ttha, aṃ mha, ttha re, ttho vho, iṃ mhe.
+Kacc 429:427 [455]. hiyyattanī ā ū, o ttha, aṃ mhā, ttha tthuṃ, se vhaṃ, iṃ mhase.
+Kacc 430:428 [468]. ajjatanī ī uṃ, o ttha, iṃ mhā, ā ū, se vhaṃ, aṃ mhe.
+Kacc 431:429 [472]. bhavissantī ssati ssanti, ssasi ssatha, ssāmi ssāma, ssate ssante, ssase ssavhe, ssaṃ ssāmhe.
+Kacc 432:430 [474]. kālātipatti ssā ssaṃsu, sse ssatha, ssaṃ ssāmhā, ssatha ssisu, ssase ssavhe, ssiṃ ssāmhase.
+Kacc 433:431 [458]. hiyyattanī sattamī pañcamī vattamānā sabbadhātukaṃ.
+Kacc 434:432 [362]. dhātuliṅgehi parā paccayā.
+Kacc 435:433 [528]. tijagupakitamānehi khachasā vā.
+Kacc 436:434 [534]. bhujaghasaharasupādīhi tumicchatthesu.
+Kacc 437:435 [536]. āya nāmato kattūpamānādācāre.
+Kacc 438:436 [537]. īyūpamānā ca.
+Kacc 439:437 [538]. nāmamhātticchatthe.
+Kacc 440:438 [540]. dhātūhi ṇeṇayaṇāpeṇāpayā kāritāni hetvatthe.
+Kacc 441:439 [539]. dhāturūpe nāmasmā ṇayo ca.
+Kacc 442:440 [445]. bhāvakammesu yo.
+Kacc 443:441 [447]. tassa cavaggayakāravakārattaṃ sadhātvantassa.
+Kacc 444:442 [448]. ivaṇṇāgamo vā.
+Kacc 445:443 [449]. pubbarūpañca.
+Kacc 446:444 [511]. tathā kattari ca.
+Kacc 447:445 [433]. bhūvādito a.
+Kacc 448:446 [509]. rudhādito niggahitapubbañca.
+Kacc 449:447 [510]. divādito yo.
+Kacc 450:448 [512]. svādito ṇu ṇā uṇā ca.
+Kacc 451:449 [513]. kiyādito nā.
+Kacc 452:450 [517]. gahādito ppaṇhā.
+Kacc 453:451 [520]. tanādito oyirā.
+Kacc 454:452 [525]. curādito ṇeṇayā.
+Kacc 455:453 [444]. attanopadāni bhāve ca kammani.
+Kacc 456:454 [440]. kattari ca.
+Kacc 457:455 [530]. dhātuppaccayehi vibhattiyo.
+Kacc 458:456 [430]. kattari parassapadaṃ.
+Kacc 459:457 [424]. bhūvādayo dhātavo.
+Kacc 460:458 [461]. kvacādivaṇṇānamekassarānaṃ dvebhāvo.
+Kacc 461:459 [462]. pubbo’bbhāso.
+Kacc 462:460 [506]. rasso.
+Kacc 463:461 [464]. dutiyacatutthānaṃ paṭhamatatiyā.
+Kacc 464:462 [467]. kavaggassa cavaggo.
+Kacc 465:463 [532]. mānakitānaṃ vatattaṃ vā.
+Kacc 466:464 [504]. hassa jo.
+Kacc 467:465 [463]. antassivaṇṇākāro vā.
+Kacc 468:466 [489]. niggahitañca.
+Kacc 469:467 [533]. tato pāmānānaṃ vāmaṃ sesu.
+Kacc 470:468 [492]. ṭhā tiṭṭho.
+Kacc 471:469 [494]. pā pivo.
+Kacc 472:470 [514]. ñāssa jājaṃnā.
+Kacc 473:471 [483]. disassa passa dissa dakkhā vā.
+Kacc 474:472 [531]. byañjanantassa co chapaccayesu ca.
+Kacc 475:473 [529]. ko khe ca.
+Kacc 476:474 [535]. harassa gī se.
+Kacc 477:475 [465]. brūbhūnamāhabhūvā parokkhāyaṃ.
+Kacc 478:476 [442]. gamissanto ccho vā sabbāsu.
+Kacc 479:477 [479]. vacassajjatanimhimakāro o.
+Kacc 480:478 [438]. akāro dīghaṃ himimesu.
+Kacc 481:479 [452]. hi lopaṃ vā.
+Kacc 482:480 [490]. hotissarehohe bhavissantimhi ssassa ca.
+Kacc 483:481 [524]. karassa sapaccayassa kāho.
+Kacc 484:482 [508]. dādantassaṃ mimesu.
+Kacc 485:483 [527]. asaṃyogantassa vuddhi kārite.
+Kacc 486:484 [542]. ghaṭādīnaṃ vā.
+Kacc 487:485 [434]. aññesu ca.
+Kacc 488:486 [543]. guhadusānaṃ dīghaṃ.
+Kacc 489:487 [478]. vacavasavahādīnamukāro vassa ye.
+Kacc 490:488 [481]. havipariyayo lo vā.
+Kacc 491:489 [519]. gahassa ghe ppe.
+Kacc 492:490 [518]. halopo ṇhāmhi.
+Kacc 493:491 [523]. karassa kāsattamajjatanimhi.
+Kacc 494:492 [499]. asasmā mimānaṃ mhimhā’ntalopo ca.
+Kacc 495:493 [498]. thassa tthattaṃ.
+Kacc 496:494 [495]. tissa tthittaṃ.
+Kacc 497:495 [500]. tussa tthuttaṃ.
+Kacc 498:496 [497]. simhi ca.
+Kacc 499:497 [477]. labhasmā īiṃnaṃ tthatthaṃ.
+Kacc 500:498 [480]. kusasmā dī cchi.
+Kacc 501:499 [507]. dādhātussa dajjaṃ.
+Kacc 502:500 [486]. vadassa vajjaṃ.
+Kacc 503:501 [443]. gamissa ghammaṃ.
+Kacc 504:502 [493]. yamhi dā dhā mā ṭhā hā pā maha mathādīnamī.
+Kacc 505:503 [485]. yajassādissi.
+Kacc 506:504 [470]. sabbato uṃ iṃsu.
+Kacc 507:505 [482]. jaramarānaṃ jīrajiyyamiyyā vā.
+Kacc 508:506 [496]. sabbatthā’sassādilopo ca.
+Kacc 509:507 [501]. asabbadhātuke bhū.
+Kacc 510:508 [515]. eyyassa ñāto iyāñā.
+Kacc 511:509 [516]. nāssa lopo yakārattaṃ.
+Kacc 512:510 [487]. lopañcettamakāro.
+Kacc 513:511 [521]. uttamokāro.
+Kacc 514:512 [522]. karassākāro ca.
+Kacc 515:513 [435]. o ava sare.
+Kacc 516:514 [491]. e aya.
+Kacc 517:515 [541]. te āvāyā kārite.
+Kacc 518:516 [466]. ikārāgamo asabbadhātukamhi.
+Kacc 519:517 [488]. kvaci dhātuvibhattipaccayānaṃ dīghaviparītādesalopāgamā ca.
+Kacc 520:518 [446]. attanopadāni parassapadattaṃ.
+Kacc 521:519 [457]. akārāgamo hiyyattanīajjatanīkālātipattīsu.
+Kacc 522:520 [502]. brūto ī timhi.
+Kacc 523:521 [425]. dhātussanto lopo’nekasarassa.
+Kacc 524:522 [476]. isuyamūnamanto ccho vā.
+Kacc 525:523 [526]. kāritānaṃ ṇo lopaṃ.
+Kacc 526:524 [561]. dhātuyā kammādimhi ṇo.
+Kacc 527:525 [565]. saññāyama nu.
+Kacc 528:526 [567]. pure dadā ca iṃ.
+Kacc 529:527 [568]. sabbato ṇvutvāvī vā.
+Kacc 530:528 [577]. visarujapadādito ṇa.
+Kacc 531:529 [580]. bhāve ca.
+Kacc 532:530 [584]. kvi ca.
+Kacc 533:531 [589]. dharādīhi rammo.
+Kacc 534:532 [590]. tassīlādīsu ṇītvāvī ca.
+Kacc 535:533 [591]. sadda kudha cala maṇḍattha rudhādīhi yu.
+Kacc 536:534 [592]. pārādigamimhā rū.
+Kacc 537:535 [593]. bhikkhādito ca.
+Kacc 538:536 [594]. hanatyādīnaṃ ṇuko.
+Kacc 539:537 [566]. nu niggahitaṃ padante.
+Kacc 540:538 [595]. saṃhanāññāya vā ro gho.
+Kacc 541:539 [558]. ramhi ranto rādi no.
+Kacc 542:540 [545]. bhāvakammesu tabbānīyā.
+Kacc 543:541 [552]. ṇyo ca.
+Kacc 544:542 [557]. karamhā ricca.
+Kacc 545:543 [555]. bhūto’bba.
+Kacc 546:544 [556]. vada mada gamu yuja garahākārādīhi jja mma gga yheyyā gāro vā.
+Kacc 547:545 [548]. te kiccā.
+Kacc 548:546 [562]. aññe kit.
+Kacc 549:547 [596]. nandādīhi yu.
+Kacc 550:548 [597]. kattukaraṇapadesesu ca.
+Kacc 551:549 [550]. rahādito ṇa.
+Kacc 552:550 [546]. ṇādayo tekālikā.
+Kacc 553:551 [598]. saññāyaṃ dādhāto i.
+Kacc 554:552 [609]. ti kit cāsiṭṭhe.
+Kacc 555:553 [599]. itthiyamatiyavo vā.
+Kacc 556:554 [601]. karato ririya.
+Kacc 557:555 [612]. atīte tatavantutāvī.
+Kacc 558:556 [622]. bhāvakammesu ta.
+Kacc 559:557 [606]. budhagamāditthe kattari.
+Kacc 560:558 [602]. jito ina sabbattha.
+Kacc 561:559 [603]. supato ca.
+Kacc 562:560 [604]. īsaṃdusūhi kha.
+Kacc 563:561 [636]. icchatthesu samānakattukesu tavetuṃ vā.
+Kacc 564:562 [638]. arahasakkādīsu ca.
+Kacc 565:563 [639]. pattavacane alamatthesu ca.
+Kacc 566:564 [640]. pubbakālekakattukānaṃ tunatvānatvā vā.
+Kacc 567:565 [646]. vattamāne mānantā.
+Kacc 568:566 [574]. sāsādīhi ratthu.
+Kacc 569:567 [575]. pātito ritu.
+Kacc 570:568 [576]. mānādīhi rātu.
+Kacc 571:569 [610]. āgamā tuko.
+Kacc 572:570 [611]. bhabbe ika.
+Kacc 573:571 [624]. paccayādaniṭṭhā nipātanā sijjhanti.
+Kacc 574:572 [625]. sāsadisato tassa riṭṭho ca.
+Kacc 575:573 [626]. sādisanta puccha bhanja hansādīhi ṭṭho.
+Kacc 576:574 [613]. vasato uṭṭha.
+Kacc 577:575 [614]. vassa vā vu.
+Kacc 578:576 [607]. dhaḍhabhahehi dhaḍhā ca.
+Kacc 579:577 [628]. bhanjato ggo ca.
+Kacc 580:578 [560]. bhujādīnamanto no dvi ca.
+Kacc 581:579 [629]. vaca vāvu.
+Kacc 582:580 [630]. gupādīnañca.
+Kacc 583:581 [616]. tarādīhi iṇṇo.
+Kacc 584:582 [631]. bhidādito innaannaīṇā vā.
+Kacc 585:583 [617]. susapacasakato kkha kkā ca.
+Kacc 586:584 [618]. pakkamādīhi nto ca.
+Kacc 587:585 [619]. janādīnamā timhi ca.
+Kacc 588:586 [600]. gama khana hana ramādīnamanto.
+Kacc 589:587 [632]. rakāro ca.
+Kacc 590:588 [620]. ṭhāpānamiī ca.
+Kacc 591:589 [621]. hantehi ho hassa ḷo vā adahanahānaṃ.
+Kacc 592:590 [579]. ṇamhi ranjassa jo bhāvakaraṇesu.
+Kacc 593:591 [544]. hanassa ghāto.
+Kacc 594:592 [503]. vadho vā sabbattha.
+Kacc 595:593 [564]. ākārantānamāyo.
+Kacc 596:594 [582]. purasamupaparīhi karotissa khakharā vā tapaccayesu ca.
+Kacc 597:595 [637]. tavetunādīsu kā.
+Kacc 598:596 [551]. gamakhanahanādīnaṃ tuṃtabbādīsu na.
+Kacc 599:597 [641]. sabbehi tunādīnaṃ yo.
+Kacc 600:598 [643]. canantehi raccaṃ.
+Kacc 601:599 [644]. disā svānasvāntalopo ca.
+Kacc 602:600 [645]. ma ha da bhehi mma yha jja bbha ddhā ca.
+Kacc 603:601 [334]. taddhitasamāsakitakā nāmaṃ vā tavetunādīsu ca.
+Kacc 604:602 [6]. dumhi garu.
+Kacc 605:603 [7]. dīgho ca.
+Kacc 606:604 [684]. akkharehi kāra.
+Kacc 607:605 [547]. yathāgamamikāro.
+Kacc 608:606 [642]. dadhantato yo kvaci.
+Kacc 609:607 [578]. niggahita saṃyogādi no.
+Kacc 610:608 [623]. sabbattha ge gī.
+Kacc 611:609 [484]. sadassa sīdattaṃ.
+Kacc 612:610 [627]. yajassa sarassi ṭṭhe.
+Kacc 613:611 [608]. hacatutthānamantānaṃ do dhe.
+Kacc 614:612 [615]. ḍo ḍhakāre.
+Kacc 615:613 [583]. gahassa ghara ṇe vā.
+Kacc 616:614 [581]. dahassa do ḷaṃ.
+Kacc 617:615 [586]. dhātvantassa lopo kvimhi.
+Kacc 618:616 [587]. vidante ū.
+Kacc 619:617 [633]. namakarānamantānaṃ niyuttatamhi.
+Kacc 620:618 [571]. na kagattaṃ cajā ṇvumhi.
+Kacc 621:619 [573]. karassa ca tattaṃ tusmiṃ.
+Kacc 622:620 [549]. tuṃtunatabbesu vā.
+Kacc 623:621 [553]. kāritaṃ viya ṇānubandho.
+Kacc 624:622 [570]. anakā yuṇvūnaṃ.
+Kacc 625:623 [554]. kagā cajānaṃ.
+Kacc 626:624 [563]. kattari kit.
+Kacc 627:625 [605]. bhāvakammesu kiccaktakhatthā.
+Kacc 628:626 [634]. kammani dutiyāyaṃ kto.
+Kacc 629:627 [652]. khyādīhi man ma ca to vā.
+Kacc 630:628 [653]. samādīhi thamā.
+Kacc 631:629 [569]. gahassu’padhasse vā.
+Kacc 632:630 [654]. masussa sussa ccharaccherā.
+Kacc 633:631 [655]. āpubbacarassa ca.
+Kacc 634:632 [656]. alakalasalehi layā.
+Kacc 635:633 [657]. yāṇalāṇā.
+Kacc 636:634 [658]. mathissa thassa lo ca.
+Kacc 637:635 [559]. pesātisaggapattakālesu kiccā.
+Kacc 638:636 [659]. avassakā’dhamiṇesu ṇī ca.
+Kacc 639:637 [x]. arahasakkādīhi tuṃ.
+Kacc 640:638 [660]. vajādīhi pabbajjādayo nippajjante.
+Kacc 641:639 [585]. kvilopo ca.
+Kacc 642:640 [x]. sacajānaṃ kagā ṇānubandhe.
+Kacc 643:641 [572]. nudādīhi yuṇvūnamanānanākānanakā sakāritehi ca.
+Kacc 644:642 [588]. iyatamakiesānamantassaro dīghaṃ kvaci disassa guṇaṃ do raṃ sakkhī ca.
+Kacc 645:643 [635]. bhyādīhi matibudhipūjādīhi ca kto.
+Kacc 646:644 [661]. vepu sī dava vamu ku dā bhū hvādīhi thu ttima ṇimā nibbatte.
+Kacc 647:645 [662]. akkose namhāni.
+Kacc 648:646 [419]. ekādito sakissa kkhattuṃ.
+Kacc 649:647 [663]. sunassunassoṇavānuvānūnunakhunānā.
+Kacc 650:648 [664]. taruṇassa susu ca.
+Kacc 651:649 [665]. yuvassuvassuvuvānunūnā.
+Kacc 652:650 [651]. kāle vattamānātīte ṇvādayo.
+Kacc 653:651 [647]. tavissati gamādīhi ṇīghiṇ.
+Kacc 654:652 [648]. kriyāyaṃ ṇvutavo.
+Kacc 655:653 [306]. bhāvavācimhi catutthī.
+Kacc 656:654 [649]. kammani ṇo.
+Kacc 657:655 [650]. sese ssaṃntumānānā.
+Kacc 658:656 [666]. chadādīhi tatraṇa.
+Kacc 659:657 [667]. vadādīhi ṇitto gaṇe.
+Kacc 660:658 [668]. midādīhi ttitiyo.
+Kacc 661:659 [669]. usuranjadaṃsānaṃ daṃsassa daḍḍho ḍhaṭhā ca.
+Kacc 662:660 [670]. sūvusānamūvusānamato tho ca.
+Kacc 663:661 [671]. ranjudādīhi dhadiddakirā kvaci jadalopo ca.
+Kacc 664:662 [672]. paṭito hissa heraṇhīraṇ.
+Kacc 665:663 [673]. kaḍyādīhi ko.
+Kacc 666:664 [674]. khādāmagamānaṃ khandha’ndhagandhā.
+Kacc 667:665 [675]. paṭādīhyalaṃ.
+Kacc 668:666 [676]. puthassa puthupathāmo vā.
+Kacc 669:667 [677]. sasvādīhi tudavo.
+Kacc 670:668 [678]. cyādīhi īvaro.
+Kacc 671:669 [679]. munādīhi ci.
+Kacc 672:670 [680]. vidādīhyūro.
+Kacc 673:671 [681]. hanādīhi ṇunutavo.
+Kacc 674:672 [682]. kuṭādīhi ṭho.
+Kacc 675:673 [683]. manupūrasuṇādīhi ussanusisā.
+Rūpa 1 [1:1]. attho akkharasaññāto.
+Rūpa 2 [2:2]. akkharāpādayo ekacattālīsaṃ.
+Rūpa 3 [3:3]. tatthodantā sarā aṭṭha.
+Rūpa 4 [4:4]. lahumattā tayo rassā.
+Rūpa 5 [5:5]. aññe dīghā.
+Rūpa 6 [604:602]. dumhi garu.
+Rūpa 7 [605:603]. dīgho ca.
+Rūpa 8 [6:6]. sesā byañjanā.
+Rūpa 9 [7:7]. vaggā pañcapañcaso mantā.
+Rūpa 10 [8:8]. aṃ iti niggahītaṃ.
+Rūpa 11 [9:9]. parasamaññā payoge.
+Rūpa 12 [10:10]. pubbamadhoṭhitamassaraṃ sarena viyojaye.
+Rūpa 13 [12:12]. sarā sare lopaṃ.
+Rūpa 14 [11:11]. naye paraṃ yutte.
+Rūpa 15 [13:13]. vā paro asarūpā.
+Rūpa 16 [14:14]. kvacāsavaṇṇaṃ lutte.
+Rūpa 17 [15:15]. dīghaṃ.
+Rūpa 18 [16:16]. pubbo ca.
+Rūpa 19 [17:17]. yamedantassādeso.
+Rūpa 20 [18:18]. vamodudantānaṃ.
+Rūpa 21 [21:21]. ivaṇṇo yaṃ navā.
+Rūpa 22 [19:19]. sabbo canti.
+Rūpa 23 [47:47]. atissa cantassa.
+Rūpa 24 [44:44]. abbho abhi.
+Rūpa 25 [45:45]. ajjho adhi.
+Rūpa 26 [46:46]. te na vā ivaṇṇe.
+Rūpa 27 [20:20]. do dhassa ca.
+Rūpa 28 [22:22]. evādissa ri pubbo ca rasso.
+Rūpa 29 [58:58]. ivaṇṇuvaṇṇā jhalā.
+Rūpa 30 [70:70]. jhalānamiyuvā sare vā.
+Rūpa 31 [78:78]. o sare ca.
+Rūpa 32 [42:42]. go sare puthassāgamo kvaci.
+Rūpa 33 [43:43]. pāssa canto rasso.
+Rūpa 34 [35:35]. ya va ma da na ta ra lā cāgamā.
+Rūpa 35 [24:24]. sare kvaci.
+Rūpa 36 [23:23]. sarā pakati byañjane.
+Rūpa 37 [25:25]. dīghaṃ.
+Rūpa 38 [26:26]. rassaṃ.
+Rūpa 39 [27:27]. lopañca tatrākāro.
+Rūpa 40 [28:28]. paradvebhāvo ṭhāne.
+Rūpa 41 [271:269]. yavataṃ talanadakārānaṃ byañjanāni calañajakārattaṃ.
+Rūpa 42 [29:29]. vagge ghosāghosānaṃ tatiyapaṭhamā.
+Rūpa 43 [48:48]. kvaci paṭi patissa.
+Rūpa 44 [49:49]. puthassu byañjane.
+Rūpa 45 [50:50]. o avassa.
+Rūpa 46 [79:79]. tabbiparītūpapade byañjane ca.
+Rūpa 47 [36:36]. kvaci o byañjane.
+Rūpa 48 [183:183]. etesamo lope.
+Rūpa 49 [31:31]. vaggantaṃ vā vagge.
+Rūpa 50 [32:32]. ehe ñaṃ.
+Rūpa 51 [33:33]. sa ye ca.
+Rūpa 52 [34:34]. madā sare.
+Rūpa 53 [38:38]. kvaci lopaṃ.
+Rūpa 54 [39:39]. byañjane ca.
+Rūpa 55 [40:40]. paro vā saro.
+Rūpa 56 [41:41]. byañjano ca visaññogo.
+Rūpa 57 [37:37]. niggahitañca.
+Rūpa 58 [30:30]. aṃ byañjane niggahītaṃ.
+Rūpa 59 [51:51]. anupadiṭṭhānaṃ vuttayogato.
+Rūpa 60 [52:52]. jinavacanayuttañhi.
+Rūpa 61 [53:53]. liṅgañca nipaccate.
+Rūpa 62 [54:54]. tato ca vibhattiyo.
+Rūpa 63 [55:55]. si yo, aṃ yo, nā hi, sa naṃ, smā hi, sa naṃ, smiṃ su.
+Rūpa 64 [56:56]. tadanuparodhena.
+Rūpa 65 [286:284]. liṅgatthe paṭhamā.
+Rūpa 66 [104:104]. so.
+Rūpa 67 [83:83]. saralopo’mādesappaccayādimhi saralope tu pakati.
+Rūpa 68 [390:388]. sarūpānamekasesvasakiṃ.
+Rūpa 69 [107:107]. sabbayonīnamāe.
+Rūpa 70 [287:285]. ālapane ca.
+Rūpa 71 [57:57]. ālapane si gasañño.
+Rūpa 72 [246:244]. akārapitādyantānamā.
+Rūpa 73 [248:246]. ākāro vā.
+Rūpa 74 [220:220]. sesato lopaṃ gasipi.
+Rūpa 75 [282:280]. yaṃ karoti taṃ kammaṃ.
+Rūpa 76 [299:297]. kammatthe dutiyā.
+Rūpa 77 [283:281]. yo karoti sa kattā.
+Rūpa 78 [290:288]. kattari ca.
+Rūpa 79 [103:103]. ato nena.
+Rūpa 80 [101:101]. suhisvakāro e.
+Rūpa 81 [99:99]. smāhismiṃnaṃ mhābhimhi vā.
+Rūpa 82 [281:279]. yena vā kayirate taṃ karaṇaṃ.
+Rūpa 83 [288:286]. karaṇe tatiyā.
+Rūpa 84 [278:276]. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
+Rūpa 85 [295:293]. sampadāne catutthī.
+Rūpa 86 [61:61]. sāgamo se.
+Rūpa 87 [89:89]. sunaṃhisu ca.
+Rūpa 88 [273:271]. yasmādapeti bhayamādatte vā tadapādānaṃ.
+Rūpa 89 [297:295]. apādāne pañcamī.
+Rūpa 90 [108:108]. smāsmiṃnaṃ vā.
+Rūpa 91 [285:283]. yassa vā pariggaho taṃ sāmi.
+Rūpa 92 [303:301]. sāmismiṃ chaṭṭhī.
+Rūpa 93 [280:278]. yodhāro tamokāsaṃ.
+Rūpa 94 [304:302]. okāse sattamī.
+Rūpa 95 [181:181]. manogaṇādito smiṃnānamiā.
+Rūpa 96 [184:184]. sa sare vāgamo.
+Rūpa 97 [182:182]. sassa co.
+Rūpa 98 [124:124]. ā simhi.
+Rūpa 99 [122:122]. ntussa nto.
+Rūpa 100 [92:92]. ntussanto yosu ca.
+Rūpa 101 [126:126]. avaṇṇā ca ge.
+Rūpa 102 [127:127]. totitā sasmiṃnāsu.
+Rūpa 103 [123:123]. ntassa se vā.
+Rūpa 104 [128:128]. naṃmhi taṃ vā.
+Rūpa 105 [94:94]. simhī vā.
+Rūpa 106 [93:93]. sabbassa vā aṃsesu.
+Rūpa 107 [186:186]. simhi gacchantādīnaṃ ntasaddo aṃ.
+Rūpa 108 [187:187]. sesesu ntuva.
+Rūpa 109 [244:x]. obhāvo kvaci yosu vakārassa.
+Rūpa 110 [243:243]. bho ge tu.
+Rūpa 111 [245:x]. bhadantassa bhaddanta bhante.
+Rūpa 112 [185:185]. santasaddassa so bhe bo cante.
+Rūpa 113 [189:189]. syā ca.
+Rūpa 114 [190:190]. yonamāno.
+Rūpa 115 [188:188]. brahmattasakharājādito amānaṃ.
+Rūpa 116 [137:137]. nāmhi raññā vā.
+Rūpa 117 [169:169]. rājassa rāju sunaṃhisu ca.
+Rūpa 118 [135:135]. rājassa rañño rājino se.
+Rūpa 119 [136:136]. raññaṃ naṃ mhī vā.
+Rūpa 120 [272:270]. amhatumhanturājabrahmattasakhasatthupitādīhi smā nāva.
+Rūpa 121 [138:138]. smiṃmhi raññe rājini.
+Rūpa 122 [193:193]. brahmato gassa ca.
+Rūpa 123 [198:198]. uttaṃ sanāsu.
+Rūpa 124 [117:117]. jhalato sassa no vā.
+Rūpa 125 [197:197]. brahmato tu smiṃ ni.
+Rūpa 126 [211:211]. attanto hismimanattaṃ.
+Rūpa 127 [213:213]. sassa no.
+Rūpa 128 [214:214]. smā nā.
+Rūpa 129 [212:212]. tato smiṃ ni.
+Rūpa 130 [191:191]. sakhato cāyono.
+Rūpa 131 [194:194]. sakhantassi nonānaṃsesu.
+Rūpa 132 [113:113]. sakhato gasse vā.
+Rūpa 133 [196:196]. sunamaṃsu vā.
+Rūpa 134 [195:195]. āro himhi vā.
+Rūpa 135 [192:192]. smime.
+Rūpa 136 [152:152]. pumantassā simhi.
+Rūpa 137 [155:155]. yosvāno.
+Rūpa 138 [153:153]. amālapanekavacane.
+Rūpa 139 [159:159]. u nāmhi ca.
+Rūpa 140 [157:157]. hivibhattimhi ca.
+Rūpa 141 [215:215]. jhalato ca.
+Rūpa 142 [156:156]. āne smiṃmhi vā.
+Rūpa 143 [158:158]. susmimā vā.
+Rūpa 144 [84:84]. agho rassamekavacanayosvapi ca.
+Rūpa 145 [95:95]. aggissini.
+Rūpa 146 [118:118]. ghapato ca yonaṃ lopo.
+Rūpa 147 [88:88]. yosu katanikāralopesu dīghaṃ.
+Rūpa 148 [96:96]. yosvakatarasso jho.
+Rūpa 149 [82:82]. aṃ mo niggahītaṃ jhalapehi.
+Rūpa 150 [85:85]. na sismimanapuṃsakāni.
+Rūpa 151 [225:225]. yonaṃ no.
+Rūpa 152 [247:245]. jhalapā rassaṃ.
+Rūpa 153 [224:224]. naṃ jhato katarassā.
+Rūpa 154 [226:226]. smiṃ ni.
+Rūpa 155 [119:119]. lato vokāro ca.
+Rūpa 156 [97:97]. vevosu lo ca.
+Rūpa 157 [116:116]. akatarassā lato yvālapanassa vevo.
+Rūpa 158 [199:199]. satthupitādīnamā sismiṃ silopo ca.
+Rūpa 159 [200:200]. aññesvārattaṃ.
+Rūpa 160 [205:205]. tato yonamo tu.
+Rūpa 161 [207:207]. nā ā.
+Rūpa 162 [203:203]. u sasmiṃ salopo ca.
+Rūpa 163 [201:201]. vā naṃmhi.
+Rūpa 164 [202:202]. satthunattañca.
+Rūpa 165 [206:206]. tato smimi.
+Rūpa 166 [208:208]. āro rassamikāre.
+Rūpa 167 [204:204]. sakamandhātādīnañca.
+Rūpa 168 [209:209]. pitādīnamasimhi.
+Rūpa 169 [74:74]. yosu ca.
+Rūpa 170 [75:75]. avaṃmhi ca.
+Rūpa 171 [76:76]. āvassu vā.
+Rūpa 172 [81:81]. suhināsu ca.
+Rūpa 173 [80:80]. goṇa naṃmhi vā.
+Rūpa 174 [73:73]. gāva se.
+Rūpa 175 [77:77]. tato namaṃ patimhālutte ca samāse.
+Rūpa 176 [237:237]. itthiyamato āppaccayo.
+Rūpa 177 [60:60]. ā gho.
+Rūpa 178 [114:114]. ghate ca.
+Rūpa 179 [111:111]. ghato nādīnaṃ.
+Rūpa 180 [216:216]. ghapato smiṃ yaṃ vā.
+Rūpa 181 [115:115]. na ammādito.
+Rūpa 182 [59:59]. te itthikhyā po.
+Rūpa 183 [112:112]. pato yā.
+Rūpa 184 [68:68]. amā pato smiṃsmānaṃ vā.
+Rūpa 185 [72:72]. pasaññassa ca.
+Rūpa 186 [69:69]. ādito o ca.
+Rūpa 187 [238:238]. nadādito vā ī.
+Rūpa 188 [223:223]. aṃ yamīto pasaññato.
+Rūpa 189 [98:98]. mātulādīnamānattamīkāre.
+Rūpa 190 [239:239]. ṇava ṇika ṇeyya ṇantuhi.
+Rūpa 191 [241:241]. ntussa tamīkāre.
+Rūpa 192 [242:242]. bhavato bhoto.
+Rūpa 193 [240:240]. patibhikkhurājīkārantehi inī.
+Rūpa 194 [91:91]. patissinīmhi.
+Rūpa 195 [219:219]. siṃ.
+Rūpa 196 [218:218]. ato niccaṃ.
+Rūpa 197 [160:160]. a kammantassa ca.
+Rūpa 198 [125:125]. aṃ napuṃsake.
+Rūpa 199 [217:217]. yonaṃ ni napuṃsakehi.
+Rūpa 200 [164:164]. sabbanāmakārate paṭhamo.
+Rūpa 201 [110:110]. tayo neva ca sabbanāmehi.
+Rūpa 202 [102:102]. sabbanāmānaṃ naṃmhi ca.
+Rūpa 203 [168:168]. sabbato naṃ saṃsānaṃ.
+Rūpa 204 [179:179]. ghapato smiṃsānaṃ saṃsā.
+Rūpa 205 [66:66]. gho rassaṃ.
+Rūpa 206 [62:62]. saṃsāsvekavacanesu ca.
+Rūpa 207 [180:180]. netāhi smimāyayā.
+Rūpa 208 [165:165]. dvandaṭṭhā vā.
+Rūpa 209 [166:166]. nāññaṃ sabbanāmikaṃ.
+Rūpa 210 [167:167]. bahubbīhimhi ca.
+Rūpa 211 [174:174]. etatesaṃ to.
+Rūpa 212 [175:175]. tassa vā nattaṃ sabbattha.
+Rūpa 213 [176:176]. sasmāsmiṃsaṃsāsvattaṃ.
+Rūpa 214 [100:100]. na timehi katākārehi.
+Rūpa 215 [65:65]. tato sassa ssāya.
+Rūpa 216 [64:64]. tassā vā.
+Rūpa 217 [63:63]. etimāsami.
+Rūpa 218 [172:172]. anapuṃsakassāyaṃ simhi.
+Rūpa 219 [171:171]. animi nāmhi ca.
+Rūpa 220 [170:170]. sabbassimasse vā.
+Rūpa 221 [177:177]. imasaddassa ca.
+Rūpa 222 [129:129]. imassidamaṃsisu napuṃsake.
+Rūpa 223 [173:173]. amussa mo saṃ.
+Rūpa 224 [178:178]. sabbato ko.
+Rūpa 225 [130:130]. amussāduṃ.
+Rūpa 226 [229:229]. sesesu ca.
+Rūpa 227 [86:86]. ubhādito naminnaṃ.
+Rūpa 228 [132:132]. yosu dvinnaṃ dve ca.
+Rūpa 229 [67:67]. no ca dvādito naṃmhi.
+Rūpa 230 [133:133]. ticatunnaṃ tisso catasso tayo cattāro tīṇi cattāri.
+Rūpa 231 [87:87]. iṇṇamiṇṇannaṃ tīhi saṅkhyāhi.
+Rūpa 232 [140:140]. tvamahaṃ simhi ca.
+Rūpa 233 [121:121]. mayaṃ yomhi paṭhame.
+Rūpa 234 [144:144]. tavaṃ mamañca navā.
+Rūpa 235 [143:143]. taṃ mamaṃmhi.
+Rūpa 236 [146:146]. tumhassa tuvaṃ tvamaṃmhi.
+Rūpa 237 [162:162]. vā yvappaṭhamo.
+Rūpa 238 [145:145]. nāmhi tayā mayā.
+Rūpa 239 [210:210]. tayātayīnaṃ takāro tvattaṃ vā.
+Rūpa 240 [163:163]. sassaṃ.
+Rūpa 241 [141:141]. tava mama se.
+Rūpa 242 [142:142]. tuyhaṃ mayhañca.
+Rūpa 243 [120:120]. amhassa mamaṃ savibhattissa se.
+Rūpa 244 [161:161]. tumhamhehi namākaṃ.
+Rūpa 245 [139:139]. tumhamhākaṃ tayi mayi.
+Rūpa 246 [147:147]. padato dutiyācatutthīchaṭṭhīsu vo no.
+Rūpa 247 [148:148]. temekavacanesu ca.
+Rūpa 248 [149:149]. na aṃmhi.
+Rūpa 249 [150:150]. vā tatiye ca.
+Rūpa 250 [151:151]. bahuvacanesu vo no.
+Rūpa 251 [134:134]. pañcādīnamakāro.
+Rūpa 252 [90:90]. pañcādīnamattaṃ.
+Rūpa 253 [385:383]. dvekaṭṭhānamākāro vā.
+Rūpa 254 [383:381]. ekādito dassa ra saṅkhyāne.
+Rūpa 255 [382:380]. vīsatidasesu bā dvissa tu.
+Rūpa 256 [392:390]. catūpapadassa lopo tuttarapadādi cassa cu copi navā.
+Rūpa 257 [378:376]. dase so niccañca.
+Rūpa 258 [381:379]. la darānaṃ.
+Rūpa 259 [384:382]. aṭṭhādito ca.
+Rūpa 260 [250:248]. kvaci to pañcamyatthe.
+Rūpa 261 [249:247]. tvādayo vibhattisaññā.
+Rūpa 262 [230:230]. tratothesu ca.
+Rūpa 263 [231:231]. sabbassetassākāro vā.
+Rūpa 264 [233:233]. e tothesu ca.
+Rūpa 265 [234:234]. imassi thaṃdānihatodhesu ca.
+Rūpa 266 [251:249]. tratha sattamiyā sabbanāmehi.
+Rūpa 267 [232:232]. tre niccaṃ.
+Rūpa 268 [252:250]. sabbato dhi.
+Rūpa 269 [253:251]. kismā vo.
+Rūpa 270 [227:227]. kissa ka ve ca.
+Rūpa 271 [254:252]. hiṃhaṃhiñcanaṃ.
+Rūpa 272 [228:228]. ku hiṃhaṃsu ca.
+Rūpa 273 [255:253]. tamhā ca.
+Rūpa 274 [256:254]. imasmā hadhā ca.
+Rūpa 275 [257:255]. yato hiṃ.
+Rūpa 276 [259:257]. kiṃsabbaññekayakuhi dā dācanaṃ.
+Rūpa 277 [262:260]. sabbassa so dāmhi vā.
+Rūpa 278 [260:258]. tamhā dāni ca.
+Rūpa 279 [261:259]. imasmā rahidhunādāni ca.
+Rūpa 280 [236:236]. eta rahimhi.
+Rūpa 281 [235:235]. a dhunāmhi ca.
+Rūpa 282 [221:221]. sabbāsamāvusopasagganipātādīhi ca.
+Rūpa 283 [286:284]. liṅgatthe paṭhamā.
+Rūpa 284 [299:297]. kammatthe dutiyā.
+Rūpa 285 [282:280]. yaṃ karoti taṃ kammaṃ.
+Rūpa 286 [302:300]. gati buddhi bhuja paṭha hara kara sayādīnaṃ kārite vā.
+Rūpa 287 [300:298]. kāladdhānamaccantasaṃyoge.
+Rūpa 288 [301:299]. kammappavacanīyayutte.
+Rūpa 289 [308:306]. kvaci dutiyā chaṭṭhīnamatthe.
+Rūpa 290 [309:307]. tatiyāsattamīnañca.
+Rūpa 291 [288:286]. karaṇe tatiyā.
+Rūpa 292 [281:279]. yena vā kayirate taṃ karaṇaṃ.
+Rūpa 293 [290:288]. kattari ca.
+Rūpa 294 [283:281]. yo karoti sa kattā.
+Rūpa 295 [284:282]. yo kāreti sa hetu.
+Rūpa 296 [289:287]. sahādiyoge ca.
+Rūpa 297 [291:289]. hetvatthe ca.
+Rūpa 298 [292:290]. sattamyatthe ca.
+Rūpa 299 [293:291]. yenaṅgavikāro.
+Rūpa 300 [294:292]. visesane ca.
+Rūpa 301 [295:293]. sampadāne catutthī.
+Rūpa 302 [278:276]. yassa dātukāmo rocate dhārayate vā taṃ sampadānaṃ.
+Rūpa 303 [279:277]. silāgha hanu ṭhā sapa dhāra piha kudha duhi ssāsūya rādhikkha paccāsuṇa anupatigiṇa pubbakattārocanatthatadattha tumatthālamattha maññānādarappāṇini gatyatthakammani āsisattha sammuti bhiyyasattamyatthesu ca.
+Rūpa 304 [109:109]. āya catutthekavacanassa tu.
+Rūpa 305 [296:294]. namoyogādīsvapi ca.
+Rūpa 306 [655:653]. bhāvavācimhi catutthī.
+Rūpa 307 [297:295]. apādāne pañcamī.
+Rūpa 308 [273:271]. yasmādapeti bhayamādatte vā tadapādānaṃ.
+Rūpa 309 [274:272]. dhātunāmānamupasaggayogādīsvapi ca.
+Rūpa 310 [275:273]. rakkhaṇatthānamicchitaṃ.
+Rūpa 311 [276:274]. yena vā’dassanaṃ.
+Rūpa 312 [277:275]. dūrantikaddha-kāla-nimmāna-tvālopa-disāyoga-vibhattārappayoga suddhappamocana hetu vivittappamāṇa pubbayoga bandhana guṇavacana pañha kathanathokākattūsu ca.
+Rūpa 313 [106:106]. dīghorehi.
+Rūpa 314 [298:296]. kāraṇatthe ca.
+Rūpa 315 [303:301]. sāmismiṃ chaṭṭhī.
+Rūpa 316 [285:283]. yassa vā pariggaho taṃ sāmī.
+Rūpa 317 [310:308]. chaṭṭhī ca.
+Rūpa 318 [311:309]. dutiyāpañcamīnañca.
+Rūpa 319 [304:302]. okāse sattamī.
+Rūpa 320 [280:278]. yodhāro tamokāsaṃ.
+Rūpa 321 [305:303]. sāmissarādhipatidāyādasakkhīpatibhūpasūtakusalehi ca.
+Rūpa 322 [306:304]. niddhāraṇe ca.
+Rūpa 323 [307:305]. anādare ca.
+Rūpa 324 [312:310]. kammakaraṇanimittatthesu sattamī.
+Rūpa 325 [313:311]. sampadāne ca.
+Rūpa 326 [314:312]. pañcamyatthe ca.
+Rūpa 327 [315:313]. kālabhāvesu ca.
+Rūpa 328 [316:314]. upādhyādhikissaravacane.
+Rūpa 329 [317:315]. maṇḍitussukkesu tatiyā ca.
+Rūpa 330 [321:319]. upasagganipātapubbako abyayībhāvo.
+Rūpa 331 [318:316]. nāmānaṃ samāso yuttattho.
+Rūpa 332 [319:317]. tesaṃ vibhattiyo lopā ca.
+Rūpa 333 [320:318]. pakati cassa sarantassa.
+Rūpa 334 [603:601]. taddhitasamāsakitakā nāmaṃvā’tavetunādīsu ca.
+Rūpa 335 [322:320]. so napuṃsakaliṅgo.
+Rūpa 336 [343:341]. aṃ vibhattīnamakārantā abyayībhāvā.
+Rūpa 337 [344:342]. saro rasso napuṃsake.
+Rūpa 338 [345:343]. aññasmā lopo ca.
+Rūpa 339 [326:324]. dvipade tulyādhikaraṇe kammadhārayo.
+Rūpa 340 [332:330]. mahataṃ mahā tulyādhikaraṇe pade.
+Rūpa 341 [328:326]. ubhe tappurisā.
+Rūpa 342 [222:222]. pumassa liṅgādīsu samāsesu.
+Rūpa 343 [334:332]. kammadhārayasaññeca.
+Rūpa 344 [335:333]. attaṃ nassa tappurise.
+Rūpa 345 [336:334]. sare an.
+Rūpa 346 [337:335]. kad kussa.
+Rūpa 347 [338:336]. kāppatthesu ca.
+Rūpa 348 [327:325]. saṅkhyāpubbo digu.
+Rūpa 349 [323:321]. digussekattaṃ.
+Rūpa 350 [339:337]. kvaci samāsantagatānamakāranto.
+Rūpa 351 [329:327]. amādayo parapadebhi.
+Rūpa 352 [330:328]. aññapadatthesu bahubbīhi.
+Rūpa 353 [333:331]. itthiyaṃ bhāsitapumitthī pumāva ce.
+Rūpa 354 [405:403]. kvacādimajjhuttarānaṃ dīgharassāpaccayesu ca.
+Rūpa 355 [342:340]. dhanumhā ca.
+Rūpa 356 [340:338]. nadimhā ca.
+Rūpa 357 [331:329]. nāmānaṃ samuccayo dvando.
+Rūpa 358 [341:339]. jāyāya tudaṃ jāni patimhi.
+Rūpa 359 [324:322]. tathā dvande pāṇi tūriya yogga senaṅga khuddajantuka vividha viruddhavisabhāgatthādīnañca.
+Rūpa 360 [325:323]. vibhāsā rukkha tiṇa pasu dhana dhaññajanapadādīnañca.
+Rūpa 361 [346:344]. vā ṇa’pacce.
+Rūpa 362 [434:432]. dhātuliṅgehi parā paccayā.
+Rūpa 363 [398:396]. tesaṃ ṇo lopaṃ.
+Rūpa 364 [402:400]. vuddhādisarassa vāsaṃyogantassa saṇe ca.
+Rūpa 365 [407:405]. ayuvaṇṇānañcāyo vuddhī.
+Rūpa 366 [347:345]. ṇāyana ṇāna vacchādito.
+Rūpa 367 [348:346]. ṇeyyo kattikādīhi.
+Rūpa 368 [349:347]. ato ṇi vā.
+Rūpa 369 [263:261]. avaṇṇo ye lopañca.
+Rūpa 370 [406:404]. tesu vuddhilopāgamavikāraviparītādesā ca.
+Rūpa 371 [350:348]. ṇavopagvādīhi.
+Rūpa 372 [351:349]. ṇera vidhavādito.
+Rūpa 373 [352:350]. yena vā saṃsaṭṭhaṃ tarati carati vahati ṇiko.
+Rūpa 374 [353:351]. tamadhīte tenakatādisannidhānaniyogasippabhaṇḍajīvikatthesu ca.
+Rūpa 375 [403:401]. māyūnamāgamo ṭhāne.
+Rūpa 376 [354:352]. ṇa rāgā tenarattaṃ tassedamaññatthesu ca.
+Rūpa 377 [404:402]. āttañca.
+Rūpa 378 [355:353]. jātādīnamimiyā ca.
+Rūpa 379 [356:354]. samūhatthe kaṇ-ṇā.
+Rūpa 380 [357:355]. gāmajanabandhusahāyādīhi tā.
+Rūpa 381 [358:356]. tadassa ṭhānamiyo ca.
+Rūpa 382 [359:357]. upamatthāyitattaṃ.
+Rūpa 383 [360:358]. tannissitatthe lo.
+Rūpa 384 [361:359]. ālu tabbahule.
+Rūpa 385 [374:372]. tappakativacane mayo.
+Rūpa 386 [183:183]. etesamo lope.
+Rūpa 387 [362:360]. ṇyattatā bhāve tu.
+Rūpa 388 [363:361]. ṇa visamādīhi.
+Rūpa 389 [364:362]. ramaṇīyādito kaṇ.
+Rūpa 390 [365:363]. visese taratamisikiyiṭṭhā.
+Rūpa 391 [264:262]. vuḍḍhassa joiyiṭṭhesu.
+Rūpa 392 [265:263]. pasatthassa so ca.
+Rūpa 393 [266:264]. antikassa nedo.
+Rūpa 394 [267:265]. bāḷhassa sādho.
+Rūpa 395 [268:266]. appassa kaṇ.
+Rūpa 396 [269:267]. yuvānañca.
+Rūpa 397 [270:268]. vantu mantu vīnañca lopo.
+Rūpa 398 [366:364]. tadassatthīti vī ca.
+Rūpa 399 [367:365]. tapādito sī.
+Rūpa 400 [368:366]. daṇḍādito ikaī.
+Rūpa 401 [369:367]. madhvādito ro.
+Rūpa 402 [370:368]. guṇādito vantu.
+Rūpa 403 [371:369]. satyādīhi mantu.
+Rūpa 404 [373:371]. āyussukārāsamantumhi.
+Rūpa 405 [372:370]. saddhādito ṇa.
+Rūpa 406 [375:373]. saṅkhyāpūraṇe mo.
+Rūpa 407 [386:384]. catucchehi thaṭhā.
+Rūpa 408 [376:374]. sa chassa vā.
+Rūpa 409 [387:385]. dvitīhi tiyo.
+Rūpa 410 [388:386]. tiye dutāpi ca.
+Rūpa 411 [389:387]. tesamaḍḍhūpapadena aḍḍhuḍḍhadivaḍḍhadiyaḍḍhaḍḍhatiyā.
+Rūpa 412 [377:375]. ekādito dasassī.
+Rūpa 413 [391:389]. gaṇane dasassa dvi ti catu pañca cha satta aṭṭha navakānaṃ vī ti cattāra paññā cha sattāsa navā yosu yonañcīsamāsaṃṭhiritītuti.
+Rūpa 414 [380:378]. ti ca.
+Rūpa 415 [395:393]. dasadasakaṃ sataṃ dasakānaṃ sataṃ sahassañca yomhi.
+Rūpa 416 [396:394]. yāva taduttari dasaguṇitañca.
+Rūpa 417 [397:395]. sakanāmehi.
+Rūpa 418 [394:392]. dvādito konekatthe ca.
+Rūpa 419 [648:646]. ekādito sakissa kkhattuṃ.
+Rūpa 420 [399:397]. vibhāge dhā ca.
+Rūpa 421 [400:398]. sabbanāmehi pakāravacane tu thā.
+Rūpa 422 [401:399]. kimimehi thaṃ.
+Rūpa 423 [393:391]. yadanupapannā nipātanā sijjhanti.
+Rūpa 424 [459:457]. bhūvādayo dhātavo.
+Rūpa 425 [523:521]. dhātussanto loponekassarassa.
+Rūpa 426 [425:423]. vattamānā ti anti, si tha, mi ma, te ante, se vhe, e mhe.
+Rūpa 427 [415:413]. kāle.
+Rūpa 428 [416:414]. vattamānā paccuppanne.
+Rūpa 429 [408:406]. atha pubbāni vibhattīnaṃ cha parassapadāni.
+Rūpa 430 [458:456]. kattari parassapadaṃ.
+Rūpa 431 [410:408]. dve dve paṭhamamajjhimuttamapurisā.
+Rūpa 432 [412:410]. nāmamhi payujjamānepitulyādhikaraṇe paṭhamo.
+Rūpa 433 [447:445]. bhūvādito a.
+Rūpa 434 [487:485]. aññesu ca.
+Rūpa 435 [515:513]. o ava sare.
+Rūpa 436 [413:411]. tumhe majjhimo.
+Rūpa 437 [414:412]. amhe uttamo.
+Rūpa 438 [480:478]. akāro dīghaṃ himimesu.
+Rūpa 439 [409:407]. parāṇyattanopadāni.
+Rūpa 440 [456:454]. kattari ca.
+Rūpa 441 [411:409]. sabbesamekābhidhāne paro puriso.
+Rūpa 442 [478:476]. gamissanto ccho vā sabbāsu.
+Rūpa 443 [503:501]. gamissa ghammaṃ.
+Rūpa 444 [455:453]. attanopadāni bhāve ca kammani.
+Rūpa 445 [442:440]. bhāvakammesu yo.
+Rūpa 446 [520:518]. attanopadāni parassapadattaṃ.
+Rūpa 447 [443:441]. tassa cavaggayakāravakārattaṃ sadhātvantassa.
+Rūpa 448 [444:442]. ivaṇṇāgamo vā.
+Rūpa 449 [445:443]. pubbarūpañca.
+Rūpa 450 [426:424]. pañcamī tu antu, hi tha, mi ma, taṃ antaṃ, ssu vho, e āmase.
+Rūpa 451 [417:415]. āṇatyāsiṭṭhenuttakāle pañcamī.
+Rūpa 452 [481:479]. hilopaṃ vā.
+Rūpa 453 [427:425]. sattamī eyya eyyuṃ, eyyāsi eyyātha, eyyāmi eyyāma, etha eraṃ, etho eyyāvho, eyyaṃ eyyāmhe.
+Rūpa 454 [418:416]. anumatiparikappatthesu sattamī.
+Rūpa 455 [429:427]. hiyyattanī ā ū, o ttha, aṃ mhā, ttha tthuṃ, se vhaṃ, iṃ mhase.
+Rūpa 456 [420:418]. hiyyopabhuti paccakkhe hiyyattanī.
+Rūpa 457 [521:519]. akārāgamo hiyyattanī ajjatanīkālātipattīsu.
+Rūpa 458 [433:431]. hiyyattanī sattamī pañcamī vattamānā sabbadhātukaṃ.
+Rūpa 459 [428:426]. parokkhā a u, e ttha, aṃ mha, ttha re, ttho vho, iṃ mhe.
+Rūpa 460 [419:417]. apaccakkhe parokkhātīte.
+Rūpa 461 [460:458]. kvacādivaṇṇānamekassarānaṃ dvebhāvo.
+Rūpa 462 [461:459]. pubbobbhāso.
+Rūpa 463 [467:465]. antassivaṇṇākāro vā.
+Rūpa 464 [463:461]. dutiyacatutthānaṃ paṭhamatatiyā.
+Rūpa 465 [477:475]. brūbhūnamāhabhūvā parokkhāyaṃ.
+Rūpa 466 [518:516]. ikārāgamo asabbadhātukamhi.
+Rūpa 467 [464:462]. kavaggassa cavaggo.
+Rūpa 468 [430:428]. ajjatanī ī uṃ, o ttha, iṃ mhā, ā ū, se vhaṃ, aṃ mhe.
+Rūpa 469 [421:419]. samīpejjatanī.
+Rūpa 470 [506:504]. sabbato uṃ iṃsu.
+Rūpa 471 [422:420]. māyoge sabbakāle ca.
+Rūpa 472 [431:429]. bhavissantī ssati ssanti, ssasi ssatha, ssāmi ssāma, ssate ssante, ssase ssavhe, ssaṃ ssāmhe.
+Rūpa 473 [423:421]. anāgate bhavissantī.
+Rūpa 474 [432:430]. kālātipatti ssā ssaṃsu, sse ssatha, ssaṃ ssāmhā, ssatha ssisu, ssase ssavhe, ssiṃ ssāmhase.
+Rūpa 475 [424:422]. kriyātipannetīte kālātipatti.
+Rūpa 476 [524:522]. isuyamūnamanto ccho vā.
+Rūpa 477 [499:497]. labhasmā ī iṃnaṃ tthatthaṃ.
+Rūpa 478 [489:487]. vaca vasa vahādīnamukāro vassa ye.
+Rūpa 479 [479:477]. vacassajjatanimhi makāro o.
+Rūpa 480 [500:498]. kusasmā dī cchi.
+Rūpa 481 [490:488]. ha vipariyayo lo vā.
+Rūpa 482 [507:505]. jaramarānaṃ jīrajīyyamīyyā vā.
+Rūpa 483 [473:471]. disassa passa dissa dakkhā vā.
+Rūpa 484 [611:609]. sadassa sīdattaṃ.
+Rūpa 485 [505:503]. yajassādissi.
+Rūpa 486 [502:500]. vadassa vajjaṃ.
+Rūpa 487 [512:510]. lopañcettamakāro.
+Rūpa 488 [519:517]. kvaci dhātuvibhattippaccayānaṃ dīghaviparītādesalopāgamā ca.
+Rūpa 489 [468:466]. niggahītañca.
+Rūpa 490 [482:480]. hotissare’hohe bhavissantimhi ssassa ca.
+Rūpa 491 [516:514]. e aya.
+Rūpa 492 [470:468]. ṭhā tiṭṭho.
+Rūpa 493 [504:502]. yamhi dā dhā mā ṭhā hā pā maha mathādīnamī.
+Rūpa 494 [471:469]. pā pibo.
+Rūpa 495 [496:494]. tissa tthittaṃ.
+Rūpa 496 [508:506]. sabbatthāsassādi lopo ca.
+Rūpa 497 [498:496]. simhi ca.
+Rūpa 498 [495:493]. thassa tthattaṃ.
+Rūpa 499 [494:492]. asasmā mimānaṃ mhimhā ntalopo ca.
+Rūpa 500 [497:495]. tussa tthuttaṃ.
+Rūpa 501 [509:507]. asabbadhātuke bhū.
+Rūpa 502 [522:520]. brūto ī timhi.
+Rūpa 503 [594:592]. vadho vā sabbattha.
+Rūpa 504 [466:464]. hassa jo.
+Rūpa 505 [71:71]. yavakārā ca.
+Rūpa 506 [462:460]. rasso.
+Rūpa 507 [501:499]. dādhātussa dajjaṃ.
+Rūpa 508 [484:482]. dādantassaṃ mimesu.
+Rūpa 509 [448:446]. rudhādito niggahītapubbañca.
+Rūpa 510 [449:447]. divādito yo.
+Rūpa 511 [446:444]. tathā kattari ca.
+Rūpa 512 [450:448]. svādito ṇuṇāuṇā ca.
+Rūpa 513 [451:449]. kiyādito nā.
+Rūpa 514 [472:470]. ñāssa jā jaṃ nā.
+Rūpa 515 [510:508]. eyyassa ñāto iyā ñā vā.
+Rūpa 516 [511:509]. nāssa lopo yakārattaṃ.
+Rūpa 517 [452:450]. gahādito ppaṇhā.
+Rūpa 518 [492:490]. halopo ṇhāmhi.
+Rūpa 519 [491:489]. gahassa ghe ppe.
+Rūpa 520 [453:451]. tanādito oyirā.
+Rūpa 521 [513:511]. uttamokāro.
+Rūpa 522 [514:512]. karassākāro ca.
+Rūpa 523 [493:491]. karassa kāsattamajjatanimhi.
+Rūpa 524 [483:481]. karassa sappaccayassa kāho.
+Rūpa 525 [454:452]. curādito ṇeṇayā.
+Rūpa 526 [525:523]. kāritānaṃ ṇo lopaṃ.
+Rūpa 527 [485:483]. asaṃyogantassa vuddhi kārite.
+Rūpa 528 [435:433]. tija gupa kita mānehi kha cha sā vā.
+Rūpa 529 [475:473]. ko khe ca.
+Rūpa 530 [457:455]. dhātuppaccayehi vibhattiyo.
+Rūpa 531 [474:472]. byañjanantassa co chappaccayesu ca.
+Rūpa 532 [465:463]. mānakitānaṃ vatattaṃ vā.
+Rūpa 533 [469:467]. tato pāmānānaṃ vā maṃ sesu.
+Rūpa 534 [436:434]. bhuja ghasa hara su pādīhi tumicchatthesu.
+Rūpa 535 [476:474]. harassa gī se.
+Rūpa 536 [437:435]. āya nāmato kattupamānādācāre.
+Rūpa 537 [438:436]. īyūpamānā ca.
+Rūpa 538 [439:437]. nāmamhātticchatthe.
+Rūpa 539 [441:439]. dhāturūpe nāmasmā ṇayo ca.
+Rūpa 540 [440:438]. dhātūhi ṇe ṇaya ṇāpe ṇāpayā kāritāni hetvatthe.
+Rūpa 541 [517:515]. te āvāyā kārite.
+Rūpa 542 [486:484]. ghaṭādīnaṃ vā.
+Rūpa 543 [488:486]. guha dusānaṃ dīghaṃ.
+Rūpa 544 [593:591]. hanassa ghāto.
+Rūpa 545 [542:540]. bhāvakammesu tabbānīyā.
+Rūpa 546 [552:550]. ṇādayo tekālikā.
+Rūpa 547 [607:605]. yathāgamamikāro.
+Rūpa 548 [547:545]. te kiccā.
+Rūpa 549 [622:620]. tuṃtunatabbesu vā.
+Rūpa 550 [551:549]. rahādito ṇa.
+Rūpa 551 [598:596]. gama khana hanādīnaṃ tuṃtabbādīsu na.
+Rūpa 552 [543:541]. ṇyo ca.
+Rūpa 553 [623:621]. kāritaṃ viya ṇānubandho.
+Rūpa 554 [625:623]. kagā cajānaṃ.
+Rūpa 555 [545:543]. bhūtobba.
+Rūpa 556 [546:544]. vada mada gamu yuja garahākārādīhi jjammaggayheyyāgāro vā.
+Rūpa 557 [544:542]. karamhā ricca.
+Rūpa 558 [541:539]. ramhi ranto rādi no.
+Rūpa 559 [637:635]. pesātisaggapattakālesu kiccā.
+Rūpa 560 [580:578]. bhujādīnamanto no dvi ca.
+Rūpa 561 [526:524]. dhātuyā kammādimhi ṇo.
+Rūpa 562 [548:546]. aññekita.
+Rūpa 563 [626:624]. kattari kita.
+Rūpa 564 [595:593]. ākārantānamāyo.
+Rūpa 565 [527:525]. saññāyamanu.
+Rūpa 566 [539:537]. nu niggahītaṃ padante.
+Rūpa 567 [528:526]. pure dadā ca iṃ.
+Rūpa 568 [529:527]. sabbato ṇvu tvāvī vā.
+Rūpa 569 [631:629]. gahassupadhasse vā.
+Rūpa 570 [624:622]. anakā yuṇvūnaṃ.
+Rūpa 571 [620:618]. na kagattaṃ cajā ṇvumhi.
+Rūpa 572 [643:641]. nudādīhi yuṇvūnamanānanākānanakā sakāritehi ca.
+Rūpa 573 [621:619]. karassa ca tattaṃ tusmiṃ.
+Rūpa 574 [568:566]. sāsādīhi ratthu.
+Rūpa 575 [569:567]. pādito ritu.
+Rūpa 576 [570:568]. mānādīhi rātu.
+Rūpa 577 [530:528]. visa rujapadādito ṇa.
+Rūpa 578 [609:607]. niggahīta saṃyogādi no.
+Rūpa 579 [592:590]. ṇamhi ranjassa jobhāvakaraṇesu.
+Rūpa 580 [531:529]. bhāve ca.
+Rūpa 581 [616:614]. dahassa do laṃ.
+Rūpa 582 [596:594]. purasamupaparīhi karotissa khakharā vā tappaccayesu ca.
+Rūpa 583 [615:613]. gahassa ghara ṇe vā.
+Rūpa 584 [532:530]. kvi ca.
+Rūpa 585 [641:639]. kvilopo ca.
+Rūpa 586 [617:615]. dhātvantassa lopo kvimhi.
+Rūpa 587 [618:616]. vidante ū.
+Rūpa 588 [644:642]. iyatamakiesānamantassaro dīghaṃ kvaci disassa guṇaṃ do raṃ sakkhī ca.
+Rūpa 589 [533:531]. dharādīhi rammo.
+Rūpa 590 [534:532]. tassīlādīsu ṇītvāvī ca.
+Rūpa 591 [535:533]. sadda kudha cala maṇḍattha rucādīhi yu.
+Rūpa 592 [536:534]. pārādigamimhā rū.
+Rūpa 593 [537:535]. bhikkhādito ca.
+Rūpa 594 [538:536]. hanatyādīnaṃ ṇuko.
+Rūpa 595 [540:538]. saṃhanaññāya vā ro gho.
+Rūpa 596 [549:547]. nandādīhi yu.
+Rūpa 597 [550:548]. kattukaraṇapadesesu ca.
+Rūpa 598 [553:551]. saññāyaṃ dādhāto i.
+Rūpa 599 [555:553]. itthiyamatiyavo vā.
+Rūpa 600 [588:586]. gamakhanahanaramādīnamanto.
+Rūpa 601 [556:554]. karato ririya.
+Rūpa 602 [560:558]. jito ina sabbattha.
+Rūpa 603 [561:559]. supato ca.
+Rūpa 604 [562:560]. īsaṃdusūhi kha.
+Rūpa 605 [627:625]. bhāvakammesu kiccaktakkhatthā.
+Rūpa 606 [559:557]. budhagamāditthe kattari.
+Rūpa 607 [578:576]. dhaḍhabhahehi dha ḍhā ca.
+Rūpa 608 [613:611]. hacatutthānamantānaṃ do dhe.
+Rūpa 609 [554:552]. tikiccāsiṭṭhe.
+Rūpa 610 [571:569]. āgamā tuko.
+Rūpa 611 [572:570]. bhabbe ika.
+Rūpa 612 [557:555]. atīte ta tavantu tāvī.
+Rūpa 613 [576:574]. vasato uttha.
+Rūpa 614 [577:575]. vassa vā vu.
+Rūpa 615 [614:612]. ḍo ḍhakāre.
+Rūpa 616 [583:581]. tarādīhi iṇṇo.
+Rūpa 617 [585:583]. susa paca sakato kkhakkā ca.
+Rūpa 618 [586:584]. pakkamādīhi nto ca.
+Rūpa 619 [587:585]. janādīnamā timhi ca.
+Rūpa 620 [590:588]. ṭhāpānamiī ca.
+Rūpa 621 [591:589]. hantehi ho hassa lo vā adahanahānaṃ.
+Rūpa 622 [558:556]. bhāvakammesu ta.
+Rūpa 623 [610:608]. sabbattha ge gī.
+Rūpa 624 [573:571]. paccayā daniṭṭhā nipātanā sijjhanti.
+Rūpa 625 [574:572]. sāsadisato tassa riṭṭho ca.
+Rūpa 626 [575:573]. sādi santapucchabhanjahaṃsādīhi ṭṭho.
+Rūpa 627 [612:610]. yajassa sarassi ṭṭhe.
+Rūpa 628 [579:577]. bhanjato ggo ca.
+Rūpa 629 [581:579]. vaca vā vu.
+Rūpa 630 [582:580]. gupādīnañca.
+Rūpa 631 [584:582]. bhidādito innaannaīṇā vā.
+Rūpa 632 [589:587]. rakāro ca.
+Rūpa 633 [619:617]. namakarānamantānaṃ niyuttatamhi.
+Rūpa 634 [628:626]. kammani dutiyāyaṃ kto.
+Rūpa 635 [645:643]. bhyādīhi matibudhipūjādīhi ca kto.
+Rūpa 636 [563:561]. icchatthesu samāna kattukesu tavetuṃ vā.
+Rūpa 637 [597:595]. tavetunādīsu kā.
+Rūpa 638 [564:562]. arahasakkādīsu ca.
+Rūpa 639 [565:563]. pattavacane alamatthesu ca.
+Rūpa 640 [566:564]. pubbakālekakattukānaṃ tuna tvāna tvā vā.
+Rūpa 641 [599:597]. sabbehi tunādīnaṃ yo.
+Rūpa 642 [608:606]. dadhantato yo kvaci.
+Rūpa 643 [600:598]. canantehi raccaṃ.
+Rūpa 644 [601:599]. disā svānasvāntalopo ca.
+Rūpa 645 [602:600]. mahadabhehi mmayhajjabbhaddhā ca.
+Rūpa 646 [567:565]. vattamāne mānantā.
+Rūpa 647 [653:651]. bhavissati gamādīhi ṇī ghiṇ.
+Rūpa 648 [654:652]. kiriyāyaṃ ṇvutvo.
+Rūpa 649 [656:654]. kammani ṇo.
+Rūpa 650 [657:655]. sese ssaṃ ntu mānānā.
+Rūpa 651 [652:650]. kāle vattamānātīte ṇvādayo.
+Rūpa 652 [629:627]. khyādīhi man ma ca to vā.
+Rūpa 653 [630:628]. samādihi thamā.
+Rūpa 654 [632:630]. masussa sussa ccha ra ccherā.
+Rūpa 655 [633:631]. āpubbacarassa ca.
+Rūpa 656 [634:632]. ala kala salehi layā.
+Rūpa 657 [635:633]. yāṇa lāṇā.
+Rūpa 658 [636:634]. mathissa thassa lo ca.
+Rūpa 659 [638:636]. avassakādhamiṇesu ṇī ca.
+Rūpa 660 [640:638]. vajādīhi pabbajjādayo nipaccante.
+Rūpa 661 [646:644]. vepu sī dava vamu ku dā bhū hvādīhi thuttima ṇimā nibbatte.
+Rūpa 662 [647:645]. akkose namhāni.
+Rūpa 663 [649:647]. sunassunassoṇavānuvānununakhuṇānā.
+Rūpa 664 [650:648]. taruṇassa susu ca.
+Rūpa 665 [651:649]. yuvassuvassuvuvānunūnā.
+Rūpa 666 [658:656]. chadādīhi tatraṇ.
+Rūpa 667 [659:657]. vadādīhi ṇitto gaṇe.
+Rūpa 668 [660:658]. midādīhi ttitiyo.
+Rūpa 669 [661:659]. usuranjadaṃsānaṃ daṃsassa daḍḍho ḍha ṭhā ca.
+Rūpa 670 [662:660]. sūvusānamūvusānamato tho ca.
+Rūpa 671 [663:661]. ranjudādīhi dhadiddakirā kvaci jada lopo ca.
+Rūpa 672 [664:662]. paṭito hissa heraṇhīraṇ.
+Rūpa 673 [665:663]. kaḍyādīhi ko.
+Rūpa 674 [666:664]. khādāmagamānaṃ khandhandhagandhā.
+Rūpa 675 [667:665]. paṭādīhyalaṃ.
+Rūpa 676 [668:666]. puthassa puthupathāmo vā.
+Rūpa 677 [669:667]. sasvādīhi tudavo.
+Rūpa 678 [670:668]. cyādīhi īvaro.
+Rūpa 679 [671:669]. munādīhi ci.
+Rūpa 680 [672:670]. vidādīhyūro.
+Rūpa 681 [673:671]. hanādīhi ṇunutavo.
+Rūpa 682 [674:672]. kuṭādīhi ṭho.
+Rūpa 683 [675:673]. manupūrasuṇādīhi ussanusisā.
+Rūpa 684 [606:604]. akkharehi kāra.
 Mogg 1.1. aādayo titālīsa vaṇṇā.
 Mogg 1.2. dasādo sarā.
 Mogg 1.3. dvedve savaṇṇā.
@@ -3863,7 +3865,7 @@ Niru 756. muhā vā.
 Niru 757. pyo vā tvāssa samāse.
 Niru 758. ito cco.
 Niru 759. sādhikarā raccariccā [ka. 598; rū. 643; nī. 1203; ‘sāsādhikarā cacariccā’ (bahūsu)].
-Niru 760. hanā racco [ka. 598; rū. 643; nī. 1203. ‘sāsādhikarā cacariccā’ (bahūsu)].
+Niru 760. hanā racco [ka. 598; rū. 643; nī. 1203; ‘sāsādhikarā cacariccā’ (bahūsu)].
 Niru 761. disā vānavā sa ca [ka. 599; rū. 644; nī. 1204; ‘…sa ca’ (bahūsu)].
 Niru 762. tuṃyānā.
 Niru 763. pye sissā [ka. 517; rū. 488; nī. 1105].

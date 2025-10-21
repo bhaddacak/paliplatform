@@ -91,6 +91,7 @@ public class MainProperties {
 			settings.setProperty("width", "" + DEFAULT_WIDTH);
 			settings.setProperty("height", "" + DEFAULT_HEIGHT);
 			settings.setProperty("theme", "LIGHT");
+			settings.setProperty("iconsize", "NORMAL");
 			settings.setProperty("exit-ask", "true");
 			settings.setProperty("editor-close-ask", "true");
 			settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
