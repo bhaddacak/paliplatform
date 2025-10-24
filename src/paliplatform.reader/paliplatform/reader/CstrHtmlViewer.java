@@ -239,8 +239,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 			rightPane.setCenter(createInfoBox());
 			loadContent();
 			initFindInput();
-			if (!strToLocate.isEmpty())
-				setInitialStringToLocate(strToLocate);
+			setInitialStringToLocate(strToLocate);
 		});
 	}
 

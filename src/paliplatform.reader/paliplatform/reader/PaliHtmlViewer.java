@@ -107,8 +107,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		init(node);
-		if (!strToLocate.isEmpty())
-			setInitialStringToLocate(strToLocate);
+		setInitialStringToLocate(strToLocate);
 	}
 
 	public TocTreeNode getDocNode() {
@@ -117,7 +116,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 
 	public void setInitialStringToLocate(final String token) {
 		initialStringToLocate = token;
-		setFindInputText(token);
+		if (!token.isEmpty())
+			setFindInputText(token);
 	}
 
 	public void clearContent() {

@@ -232,8 +232,7 @@ public class ScReader extends PaliHtmlViewerBase {
 				loadContent(new StringPair(docId, ""), false);
 			}
 			initFindInput();
-			if (!strToLocate.isEmpty())
-				setInitialStringToLocate(strToLocate);
+			setInitialStringToLocate(strToLocate);
 		});
 	}
 
@@ -245,7 +244,8 @@ public class ScReader extends PaliHtmlViewerBase {
 
 	public void setInitialStringToLocate(final String token) {
 		initialStringToLocate = token;
-		setFindInputText(token);
+		if (!token.isEmpty())
+			setFindInputText(token);
 	}
 
 	private void loadContent(final StringPair item, final boolean useNav) {

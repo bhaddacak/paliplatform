@@ -134,8 +134,7 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 			dehyphenButton.setSelected(false);
 			loadContent();
 			initFindInput();
-			if (!strToLocate.isEmpty())
-				setInitialStringToLocate(strToLocate);
+			setInitialStringToLocate(strToLocate);
 		});
 	}
 

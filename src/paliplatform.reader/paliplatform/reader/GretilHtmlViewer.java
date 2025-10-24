@@ -133,8 +133,7 @@ public class GretilHtmlViewer extends PaliHtmlViewer {
 		Platform.runLater(() ->	{
 			loadContent();
 			initFindInput();
-			if (!strToLocate.isEmpty())
-				setInitialStringToLocate(strToLocate);
+			setInitialStringToLocate(strToLocate);
 		});
 	}
 

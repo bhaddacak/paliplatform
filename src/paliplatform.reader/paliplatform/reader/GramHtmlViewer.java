@@ -150,8 +150,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 			loadContent();
 			setupContextToolBar();
 			initFindInput();
-			if (!strToLocate.isEmpty())
-				setInitialStringToLocate(strToLocate);
+			setInitialStringToLocate(strToLocate);
 		});
 	}
 
