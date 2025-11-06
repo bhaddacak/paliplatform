@@ -1,7 +1,7 @@
 /*
  * UrlProperties.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,16 +28,17 @@ import javafx.application.Platform;
  * This manages URL properties mainly used for downloading materials.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class UrlProperties {
 	public static final UrlProperties INSTANCE = new UrlProperties();
 	public static final String URL_PROPS_FILE = "pp3urls.properties";
-	public static final String MAIN_URL = "https://raw.githubusercontent.com/bhaddacak/paliplatform/main/"; // hardcode
+	public static final String MAIN_URL = "https://raw.githubusercontent.com/bhaddacak/paliplatform/main/"; // hardcoded
 //~ 	public static final String MAIN_URL = "http://localhost:8000/"; // for test
-	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/dpd-db/releases/download/v0.2.20241017/dpd.db.tar.bz2";
+	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/dpd-db/releases/download/v0.2.20250709/dpd.db.tar.bz2";
 	private static final String DEF_SC_DATA_URL = "https://github.com/suttacentral/bilara-data/archive/refs/heads/published.zip";
+	private static final String DEF_CSTXML_URL = "https://raw.githubusercontent.com/VipassanaTech/tipitaka-xml/main/";
 	private static final String NCPED_URL = "https://raw.githubusercontent.com/suttacentral/sc-data/refs/heads/main/dictionaries/simple/en/pli2en_ncped.json";
 	private static final String PTSPED_URL = "https://github.com/vpnry/ptsped/raw/refs/heads/main/tabfiles/Tabfile_PTSPED-2021.zip";
 	private final File urlPropsFile;
@@ -56,6 +57,7 @@ public class UrlProperties {
 					urlProps.setProperty("main_url", MAIN_URL);
 					urlProps.setProperty("dpd_db_url", DEF_DPD_DB_URL);
 					urlProps.setProperty("sc_data_url", DEF_SC_DATA_URL);
+					urlProps.setProperty("cst_xml_url", DEF_CSTXML_URL);
 					urlProps.setProperty("ncped_url", NCPED_URL);
 					urlProps.setProperty("ptsped_url", PTSPED_URL);
 				});

@@ -1,6 +1,7 @@
 An effective search guide
 	1. Select dictionaries to include in a search first. Remember that if only one dictionary is selected, the search is fast because no mix-sorting is required.
-	2. In immediate mode, the search starts as soon as the first character is entered. This can be slow at first because many terms will be retrieved. The scope will be narrowed down quickly when the second and third character are entered subsequently.
-	3. If immediate search is not suitable, check 'Use */?' to enter wildcard mode. Here you have to explicitly add * (any characters including none) and/or ? (any one character) to the query, e.g. bud*, buddh?. The wildcards can be used more than once and can appear in any position. In this mode you have to press Enter or Search button to submit the query. Retrieving all records by supplying only * is not allowed.
+	2. By default, the search will not start until the Search button or Enter is pressed. This simple mode searches terms started with the query.
+	3. If 'Incremental' option is selected, the search will start immediately. This mode can be slow at first. And inclusion of multiple big dictionaries may cause unresponsiveness.
+	3. If 'Use */?' option is selected, it will be in wildcard mode. Here you have to explicitly add * (any characters including none) and/or ? (any one character) to the query, e.g. bud*, buddh?. The wildcards can be used more than once and can appear in any position. In this mode you have to press Enter or Search button to submit the query. Retrieving all records by supplying only * is not allowed.
 	4. If you want to search in the meanings, check 'In meaning'. This search is not immediate and wildcards are not used. The search simply matches the query in any part of the meaning of the books selected.
-	5. With a technical limitation, highlighting the result is done only with the first occurence. You can search the result further by Ctrl-F or open it in the Editor by pressing the Pencil button.
+	5. With a technical limitation, highlighting the result is done only with the first occurrence. You can search the result further by Ctrl-F or open it in the Editor by pressing the Pencil button.

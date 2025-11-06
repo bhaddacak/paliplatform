@@ -1,7 +1,7 @@
 /*
  * ScUtil.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.util.zip.*;
 import java.io.*;
+import java.nio.file.*;
 import java.nio.charset.StandardCharsets;
 
 /** 
@@ -33,7 +34,7 @@ import java.nio.charset.StandardCharsets;
  * $ java -p modules -m paliplatform.reader/paliplatform.reader.ScUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 final public class ScUtil {
@@ -88,7 +89,7 @@ final public class ScUtil {
 				if (opt.equals("-c")) {
 					final String toFind = args.length > 2 ? args[2] : "";
 					if (!toFind.isEmpty()) {
-						findChar(toFind.charAt(0));
+						printLog(findChar(CpUtil.makeProperQuery(toFind)));
 					}
 				} else {
 					printHelpAndExit();
@@ -266,8 +267,12 @@ final public class ScUtil {
 	}
 
 	private static String analyzeChars() throws IOException {
+		return analyzeChars(scData);
+	}
+
+	public static String analyzeChars(final File scFile) throws IOException {
 		final Map<Character, Integer> charFreqMap = new HashMap<>();
-		final ZipFile zip = new ZipFile(scData);
+		final ZipFile zip = new ZipFile(scFile);
 		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
 			final ZipEntry entry = e.nextElement();
 			final String fname  = entry.getName();
@@ -294,31 +299,37 @@ final public class ScUtil {
 
 	private static void analyzeCharsAndSave() throws IOException {
 		if (!verify()) return;
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
 		final long startTime = System.currentTimeMillis();
 		printLog("Analyzing data...");
 		final String result = analyzeChars();
-		final File outfile = new File("sc-charstat.txt");
-		printLog("Writing out " + outfile.getName());
+		final File outfile = new File(Utilities.OUTPUTPATH + "sc-charstat.txt");
+		printLog("Writing out " + outfile.getPath());
 		Utilities.saveText(result, outfile);
 		final long endTime = System.currentTimeMillis();
 		printTime(endTime - startTime);
 	}
 
-	private static void findChar(final char ch) throws IOException {
+	private static String findChar(final String query) throws IOException {
+		return findChar(scData, query);
+	}
+
+	public static String findChar(final File scFile, final String query) throws IOException {
 		final Map<String, Long> fileMap = new HashMap<>();
 		final ZipFile zip = new ZipFile(scData);
 		int max = 20;
 		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
-			if (max <= 0)
-				break;
+			if (max <= 0) break;
 			final ZipEntry entry = e.nextElement();
 			final String fname  = entry.getName();
 			if (fname.endsWith(ScDocument.ROOT_PLI_MS_END) && fname.indexOf("playground") == -1) {
 				long foundCount = 0;
 				try (final Scanner in = new Scanner(zip.getInputStream(entry), StandardCharsets.UTF_8)) {
-					foundCount = in.findAll("" + ch).count();
+					foundCount = in.findAll(query).count();
 					if (foundCount > 0) {
-						fileMap.put(fname.substring(fname.lastIndexOf("/")), foundCount);
+						fileMap.put(fname.substring(fname.lastIndexOf("/") + 1), foundCount);
 						max--;
 					}
 				}
@@ -329,7 +340,7 @@ final public class ScUtil {
 								.sorted(Map.Entry.comparingByKey())
 								.map(x -> x.getKey() + "\t" + x.getValue())
 								.collect(Collectors.joining(LINESEP));
-		printLog(result);
+		return result;
 	}
 
 	private static void showText(final String id, final boolean useMDotBelow) throws IOException {

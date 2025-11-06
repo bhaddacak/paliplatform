@@ -1,5 +1,5 @@
 .root { 
-	-fx-font-family: "'DejaVu Sans', sans-serif, serif";
+	-fx-font-family: "'DejaVu Sans', sans-serif";
 }
 
 .shape {
@@ -12,7 +12,8 @@
 }
 
 .emphasized {
-	-fx-font-weight: bold;
+	-fx-font-family: 'serif';
+	/* -fx-font-weight: bold; */
 }
 
 .bordered-box {

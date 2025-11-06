@@ -38,7 +38,7 @@ import javafx.geometry.*;
 /** 
  * The settings dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
 class Settings extends SingletonWindow {
@@ -70,7 +70,7 @@ class Settings extends SingletonWindow {
 		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask")));
 		cbExitAsk.setOnAction(actionEvent -> Utilities.settings.setProperty("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
 		final CheckBox cbThaiAltChars = new CheckBox("Always use Thai's Yo Ying (" + '\uF70F' + ") and Tho Than (" + '\uF700' + ") without lower part");
-		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(Utilities.PaliScript.THAI));
+		final List<String> flist = new ArrayList<>(Utilities.externalFontMap.get(Utilities.PaliScript.THAI));
 		cbThaiAltChars.setStyle("-fx-font-family:'" + flist.get(0) + "'");
 		cbThaiAltChars.setAllowIndeterminate(false);
 		cbThaiAltChars.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars")));

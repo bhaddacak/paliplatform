@@ -23,18 +23,21 @@ import paliplatform.base.*;
 
 import java.util.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.geometry.Orientation;
 import javafx.concurrent.Worker;
 import netscape.javascript.JSObject;
 
 /** 
  * The generic viewer of HTML Pali texts.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.1
  */
 public class PaliHtmlViewer extends PaliHtmlViewerBase {
 	protected String docFilename;
 	protected TocTreeNode thisDoc;
+	private final HBox scriptContextBox = new HBox();
 	private final List<RadioMenuItem> scriptRadioMenu = new ArrayList<>();
 	private ToggleButton toggleNumberButton;
 	private boolean alsoConvertNumber = false;
@@ -56,9 +59,35 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				setViewerTheme(Utilities.settings.getProperty("theme"));
 				setViewerFont();
 			}
-		});		
+		});	
+		toolBar.getItems().add(scriptContextBox);
+		init(node);
+	}
+	
+	public void init(final TocTreeNode node) {
+		super.init();
+		thisDoc = node;
+		initScriptContext();
+		docFilename = node.getNodeFileName();
+		if (theStage != null)
+			theStage.setTitle(node.getNodeName());
+	}
+
+	public void init(final TocTreeNode node, final String strToLocate) {
+		init(node);
+		setInitialStringToLocate(strToLocate);
+	}
+
+	private void initScriptContext () {
+		scriptContextBox.getChildren().clear();
+		// set display script according to corpus
+		final Utilities.PaliScript script = thisDoc.getCorpus().getScript();
+		displayScript.set(script);
+		toolBar.reBuildFontMenu(script);
+		if (script != Utilities.PaliScript.ROMAN)
+			findBox.getFindTextInput().setInputMethod(PaliTextInput.InputMethod.NORMAL);
 		// script conversion buttons
-		if (node.getCorpus().isTransformable()) {
+		if (thisDoc.getCorpus().isTransformable()) {
 			final MenuButton convertMenu = new MenuButton("", new TextIcon("language", TextIcon.IconSet.AWESOME));
 			convertMenu.setTooltip(new Tooltip("Convert the script to"));
 			final ToggleGroup scriptGroup = new ToggleGroup();
@@ -92,22 +121,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 					convertToScript(displayScript.get(), displayScript.get(), alsoConvertNumber);
 				}
 			});
-			toolBar.getItems().addAll(new Separator(), convertMenu, toggleNumberButton);
+			scriptContextBox.getChildren().addAll(new Separator(Orientation.VERTICAL), convertMenu, toggleNumberButton);
 		}
-		init(node);
-	}
-	
-	public void init(final TocTreeNode node) {
-		super.init();
-		thisDoc = node;
-		docFilename = node.getNodeFileName();
-		if (theStage != null)
-			theStage.setTitle(node.getNodeName());
-	}
-
-	public void init(final TocTreeNode node, final String strToLocate) {
-		init(node);
-		setInitialStringToLocate(strToLocate);
 	}
 
 	public TocTreeNode getDocNode() {
@@ -129,7 +144,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 	protected void resetScriptMenu() {
 		if (!scriptRadioMenu.isEmpty())
 			scriptRadioMenu.get(0).setSelected(true);
-		toggleNumberButton.setSelected(false);
+		if (toggleNumberButton != null)
+			toggleNumberButton.setSelected(false);
 	}
 
 	private void convertToScript(final Utilities.PaliScript toScript, final Utilities.PaliScript fromScript, final boolean alsoNumber) {

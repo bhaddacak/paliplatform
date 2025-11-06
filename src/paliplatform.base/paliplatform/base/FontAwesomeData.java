@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the FontAwesome symbols currently used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
  class FontAwesomeData extends HashMap<String, Character> {
@@ -93,7 +93,7 @@ import java.util.HashMap;
 		 put("link", '\uF0C1');
 		 put("copy", '\uF0C5');
 		 put("bars", '\uF0C9');
-		 //~ put("list-ul", '\uF0CA');
+		 put("list-ul", '\uF0CA');
 		 put("list-ol", '\uF0CB');
 		 //~ put("table-columns", '\uF0DB');
 		 //~ put("arrow-rotate-left", '\uF0E2');

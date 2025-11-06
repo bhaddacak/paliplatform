@@ -29,7 +29,7 @@ import javafx.scene.input.KeyCode;
 /** 
  * The menu items for Reader module.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 public class ReaderMenu extends Menu {
@@ -55,10 +55,12 @@ public class ReaderMenu extends Menu {
 		scReaderMenuItem.setMnemonicParsing(true);
 		scReaderMenuItem.disableProperty().bind(ReaderUtilities.suttaCentralAvailable.not());
 		scReaderMenuItem.setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.VIEWER_SC, null));
-		final MenuItem downloadMenuItem = new MenuItem("Download SuttaCentral data", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
-		downloadMenuItem.setOnAction(actionEvent -> ScDownloader.INSTANCE.display());
+		final MenuItem scDownloadMenuItem = new MenuItem("Download SuttaCentral data", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
+		scDownloadMenuItem.setOnAction(actionEvent -> ScDownloader.INSTANCE.display());
+		final MenuItem cstxmlDownloadMenuItem = new MenuItem("Download CST Deva XMLs", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
+		cstxmlDownloadMenuItem.setOnAction(actionEvent -> CstXmlDownloader.INSTANCE.display());
 		getItems().addAll(toctreeMenuItem, docfinderMenuItem, refTableMenuItem,
-						new SeparatorMenuItem(), scReaderMenuItem, downloadMenuItem);
+						new SeparatorMenuItem(), scReaderMenuItem, scDownloadMenuItem, cstxmlDownloadMenuItem);
 	}
 
 }

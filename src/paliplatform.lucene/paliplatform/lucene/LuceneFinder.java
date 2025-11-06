@@ -70,7 +70,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 /** 
  * Advanced document finder using Apache Lucene.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
 public class LuceneFinder extends BorderPane {
@@ -351,6 +351,36 @@ public class LuceneFinder extends BorderPane {
 							});
 							iwriter.addDocument(doc);
 						} // end for
+					} else if (col == Corpus.Collection.CSTDEVA) {
+						final SAXParserFactory spf = SAXParserFactory.newInstance();
+						final SAXParser saxParser = spf.newSAXParser();
+						final Map<String, DocumentInfo> docInfoMap = currCorpus.getDocInfoMap();
+						total = docInfoMap.size();
+						count = 0;
+						for (final DocumentInfo dinfo : docInfoMap.values()) {
+							updateProgress(count++, total);
+							final String filename = dinfo.getFileNameWithExt();
+							final Matcher fileMatcher = fileFilterPattern.matcher(filename);
+							if (!fileMatcher.matches()) continue;
+							final File docFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + currCorpus.getRootName() + File.separator, filename);
+							if (!docFile.exists()) {
+								System.err.println(filename + " is missing");
+								continue;
+							}
+							final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
+							final DefaultHandler handler = new Cst4SAXHandler(textMap);
+							saxParser.parse(Files.newInputStream(docFile.toPath(), StandardOpenOption.READ), handler);
+							final Document doc = new Document();
+							doc.add(new StringField(FIELD_PATH, filename, Field.Store.YES));
+							textMap.forEach((f, sb) -> {
+								final boolean doAdd = !includeBoldMenuItem.isSelected() && f == TermInfo.Field.BOLD ? false : true;
+								if (doAdd) {
+									final String text = tokenize(sb.toString().toLowerCase(), rexNonWord);
+									doc.add(new org.apache.lucene.document.TextField(f.getTag(), text, Field.Store.NO));
+								}
+							});
+							iwriter.addDocument(doc);
+						} // end for
 					} else if (col == Corpus.Collection.CST4) {
 						final SAXParserFactory spf = SAXParserFactory.newInstance();
 						final SAXParser saxParser = spf.newSAXParser();
@@ -531,6 +561,7 @@ public class LuceneFinder extends BorderPane {
 	}
 
 	private String tokenize(final String text, final String rexNonWord) {
+		currCorpus = corpusSelector.getSelectedCorpus();
 		final String[] tokens = text.replaceAll("(\\d+)", " $1 ").split(rexNonWord); // padding digits with spaces before spliting
 		final List<String> tokenList = new ArrayList<>();
 		for (final String t : tokens) {
@@ -548,7 +579,9 @@ public class LuceneFinder extends BorderPane {
 		else widExcCond = x -> false;
 		final Predicate<String> inclNumCond;
 		if (!includeNumberMenuItem.isSelected())
-			inclNumCond = x -> x.matches("^\\d+\\S*");
+			inclNumCond = currCorpus.getScript() == Utilities.PaliScript.DEVANAGARI
+							? x -> x.matches("^[०१२३४५६७८९]+\\S*")
+							: x -> x.matches("^\\d+\\S*");
 		else
 			inclNumCond = x -> false;
 		final Predicate<String> stopwrdCond;
@@ -663,6 +696,20 @@ public class LuceneFinder extends BorderPane {
 						resultTextMap.put(docID, textMap);
 					}
 				}
+			} else if (col == Corpus.Collection.CSTDEVA) {
+				final SAXParserFactory spf = SAXParserFactory.newInstance();
+				final SAXParser saxParser = spf.newSAXParser();
+				for (final SearchOutput so : outputList) {
+					final int docID = so.getDocID();
+					if (!resultTextMap.containsKey(docID)) {
+						final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
+						final DefaultHandler handler = new Cst4SAXHandler(textMap);
+						final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
+						final File docFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + currCorpus.getRootName() + File.separator, filename);
+						saxParser.parse(Files.newInputStream(docFile.toPath(), StandardOpenOption.READ), handler);
+						resultTextMap.put(docID, textMap);
+					}
+				}
 			} else if (col == Corpus.Collection.CST4) {
 				final SAXParserFactory spf = SAXParserFactory.newInstance();
 				final SAXParser saxParser = spf.newSAXParser();
@@ -720,7 +767,9 @@ public class LuceneFinder extends BorderPane {
 				final String text = resultTextMap.get(soutput.getDocID()).get(soutput.getField()).toString()
 												.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
 				final List<String> queryList = makeQueryList(strQuery);
-				final List<String> matchedTerms = getMatchedTerms(text, queryList);
+				final List<String> matchedTerms = Utilities.testLanguage(strQuery) != Utilities.PaliScript.ROMAN
+													? queryList
+													: getMatchedTerms(text, queryList);
 				if (showSearchDetailButton.isSelected()) {
 					final StringBuilder resultText = new StringBuilder();
 					if (showWholeLineMenuItem.isSelected()) {

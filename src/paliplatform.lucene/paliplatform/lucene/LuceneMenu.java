@@ -1,7 +1,7 @@
 /*
  * LuceneMenu.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ import javafx.scene.input.KeyCode;
 /** 
  * The menu items for Lucene module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class LuceneMenu extends Menu {
@@ -60,7 +60,7 @@ public class LuceneMenu extends Menu {
 		luceneMenuItem.setMnemonicParsing(true);
 		luceneMenuItem.setOnAction(actionEvent -> LuceneUtilities.openWindow(Utilities.WindowType.LUCENE, null));
 		luceneMenuItem.disableProperty().bind(ReaderUtilities.corpusAvailable.not());
-		final MenuItem listerMenuItem = new MenuItem("Term _Lister", new TextIcon("bars", TextIcon.IconSet.AWESOME));
+		final MenuItem listerMenuItem = new MenuItem("Term _Lister", new TextIcon("list-ul", TextIcon.IconSet.AWESOME));
 		listerMenuItem.setMnemonicParsing(true);
 		listerMenuItem.setOnAction(actionEvent -> LuceneUtilities.openWindow(Utilities.WindowType.LISTER, null));
 		final CheckMenuItem lockDBMenuItem = new CheckMenuItem();

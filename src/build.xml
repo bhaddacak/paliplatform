@@ -3,7 +3,7 @@
 <project name="Pāli Platform 3" basedir=".." default="help">
 
 <property name="product.name" value="PaliPlatform"/>
-<property name="product.version" value="3.2.0"/>
+<property name="product.version" value="3.3.0"/>
 <property name="basename" value="paliplatform"/>
 <property name="launcher.name" value="PPLauncher"/>
 <property name="src.dir" value="src"/>

@@ -6,6 +6,8 @@
 		<root>cstr</root>
 		<infofile>cstr-info.xml</infofile>
 		<inarchive>false</inarchive>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>true</transformable>
 		<textbasket>The Vinaya:Vinayapiṭake:vin</textbasket>
 		<textbasket>The Suttanta:Suttantapiṭake:sut</textbasket>
@@ -19,12 +21,43 @@
 		<url>https://bhaddacak.github.io/cst</url>
 	</corpus>
 	<corpus>
-		<name>CST4 Data (Tipitaka.org XML)</name>
+		<name>CST Devanāgarī Base (Tipitaka.org XML)</name>
+		<shortname>CST Deva</shortname>
+		<root>cstdeva</root>
+		<infofile>cstdeva-info.xml</infofile>
+		<inarchive>false</inarchive>
+		<encoding>UTF_16</encoding>
+		<script>DEVANAGARI</script>
+		<transformable>false</transformable>
+		<textbasket>विनयपिटक:Vinayapiṭaka:vin</textbasket>
+		<textbasket>सुत्तपिटक:Suttapiṭaka:sut</textbasket>
+		<textbasket>अभिधम्मपिटक:Abhidhammapiṭaka:abh</textbasket>
+		<textclass>तिपिटक (मूल):Mūla:mul</textclass>
+		<textclass>अट्ठकथा:Aṭṭhakathā:att</textclass>
+		<textclass>टीका:Ṭīkā:tik</textclass>
+		<extragroup>अञ्‍ञ:Añña:ext</extragroup>
+		<extrasubgroup>विसुद्धिमग्ग:Visuddhimaggo:vism</extrasubgroup>
+		<extrasubgroup>लेडी सयाडो गन्थ-सङ्गहो:Leḍī sayāḍo gantha-saṅgaho:ledi</extrasubgroup>
+		<extrasubgroup>बुद्ध-वन्दना गन्थ-सङ्गहो:Buddha-vandanā gantha-saṅgaho:van</extrasubgroup>
+		<extrasubgroup>वंस-गन्थ-सङ्गहो:Vaṃsa-gantha-saṅgaho:vam</extrasubgroup>
+		<extrasubgroup>ब्याकरण-गन्थ-सङ्गहो:Byākaraṇa-gantha-saṅgaho:gram</extrasubgroup>
+		<extrasubgroup>सङ्गायन-पुच्छ-विस्सज्‍जना:Saṅgāyana-puccha-vissajjanā:pv</extrasubgroup>
+		<extrasubgroup>नीति-गन्थ-सङ्गहो:Nīti-gantha-saṅgaho:niti</extrasubgroup>
+		<extrasubgroup>पकिण्णक-गन्थ-सङ्गहो:Pakiṇṇaka-gantha-saṅgaho:pak</extrasubgroup>
+		<extrasubgroup>सिहळ-गन्थ-सङ्गहो:Sihaḷa-gantha-saṅgaho:sin</extrasubgroup>
+		<description>The Devanāgarī base of the Chaṭṭha Saṅgāyana Tipiṭaka as maintained by Tipitaka-XML project</description>
+		<url>http://tipitaka.org</url>
+		<url>https://github.com/vipassanatech/tipitaka-xml</url>
+	</corpus>
+	<corpus>
+		<name>CST4 Data (customized)</name>
 		<shortname>CST4 Data</shortname>
 		<root>cst4</root>
 		<infofile>cst4-info.xml</infofile>
 		<inarchive>true</inarchive>
 		<zipfile>cst4roman_utf8.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>true</transformable>
 		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
 		<textbasket>The Suttanta:Suttapiṭaka:sut</textbasket>
@@ -55,6 +88,8 @@
 		<infofile>bjt-info.xml</infofile>
 		<inarchive>true</inarchive>
 		<zipfile>bjt_pali.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>true</transformable>
 		<textbasket>Vinayapiṭaka::vin</textbasket>
 		<textbasket>Suttantapiṭaka::sut</textbasket>
@@ -75,6 +110,8 @@
 		<infofile>ptst-info.xml</infofile>
 		<inarchive>true</inarchive>
 		<zipfile>gretil_pts.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>false</transformable>
 		<textbasket>Vinaya-Piṭaka::vin</textbasket>
 		<textbasket>Sutta-Piṭaka::sut</textbasket>
@@ -91,6 +128,8 @@
 		<infofile>srt-info.xml</infofile>
 		<inarchive>true</inarchive>
 		<zipfile>srt_roman.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>false</transformable>
 		<textbasket>Vinayapiṭakaṃ::vin</textbasket>
 		<textbasket>Suttantapiṭakaṃ::sut</textbasket>
@@ -109,6 +148,8 @@
 		<infofile>gram-info.xml</infofile>
 		<inarchive>true</inarchive>
 		<zipfile>gram.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>false</transformable>
 		<description>Prepared by J.R. Bhaddacak</description>
 		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
@@ -119,6 +160,8 @@
 		<root>sc</root>
 		<inarchive>true</inarchive>
 		<zipfile>bilara-data-published.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
 		<transformable>false</transformable>
 		<textbasket>The Vinaya:Vinayapiṭaka:vin</textbasket>
 		<textbasket>The Suttanta:Suttantapiṭaka:sut</textbasket>

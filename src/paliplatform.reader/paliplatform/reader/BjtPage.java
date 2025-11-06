@@ -25,7 +25,7 @@ import java.util.*;
  * The representation of a page of BJT texts.
  *
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class BjtPage {
@@ -59,6 +59,14 @@ public class BjtPage {
 
 	public List<Element> getEntries() {
 		return entries;
+	}
+
+	public String getAllText() {
+		final StringBuilder result = new StringBuilder();
+		for (final Element elm : entries) {
+			result.append(elm.getText());
+		}
+		return result.toString();
 	}
 
 	// inner class

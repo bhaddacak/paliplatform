@@ -43,7 +43,7 @@ import javafx.geometry.Insets;
  * The format is XML agreeable to VRI's CSCD compilation format.
  * Transformation from XML to HTML is done by XSLT.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 public class Cst4HtmlViewer extends PaliHtmlViewer {
@@ -68,9 +68,6 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 	public Cst4HtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.CST4_CSS).toExternalForm());
-		
-		if (cst4InfoMap == null)
-			cst4InfoMap = node.getCorpus().getDocInfoMap();
 		
 		// prepare the left pane's content (for the right pane see init())
 		docTocListView = new ListView<>(docTocList);
@@ -234,6 +231,7 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
 		Platform.runLater(() ->	{
+			cst4InfoMap = node.getCorpus().getDocInfoMap();
 			showNoteButton.setSelected(true);
 			showXRefButton.setSelected(false);
 			rightPane.setCenter(createInfoBox());
@@ -349,7 +347,11 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 	}
 
 	public void loadContent() {
-		pageBody = ReaderUtilities.readCst4XML(thisDoc);
+		final Corpus corpus = thisDoc.getCorpus();
+		if (corpus.getCollection() == Corpus.Collection.CSTDEVA)
+			pageBody = ReaderUtilities.readCstDevaXML(thisDoc);
+		else
+			pageBody = ReaderUtilities.readCst4XML(thisDoc);
 		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String cst4JS = ReaderUtilities.getStringResource(ReaderUtilities.CST4_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + cst4JS);

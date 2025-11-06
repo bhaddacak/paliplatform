@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
 final public class PaliPlatform extends Application {
@@ -96,6 +96,9 @@ final public class PaliPlatform extends Application {
 		final Path cachePath = Path.of(Utilities.ROOTDIR + Utilities.CACHEPATH);
 		if (Files.notExists(cachePath))
 			Files.createDirectories(cachePath);
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
 		
 		// prepare executor thread pool for concrrent tasks
 		Utilities.threadPool = Executors.newFixedThreadPool(5 * Runtime.getRuntime().availableProcessors());
@@ -223,8 +226,7 @@ final public class PaliPlatform extends Application {
 				exit(event);
 			}
 		});
-        
-        stage.show();
+       stage.show();
     }
     
     @Override

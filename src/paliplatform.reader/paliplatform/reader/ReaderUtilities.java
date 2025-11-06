@@ -27,6 +27,8 @@ import java.util.stream.*;
 import java.util.function.Function;
 import java.util.ServiceLoader.Provider;
 import java.io.*;
+import java.nio.file.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.RuleBasedCollator;
 import java.text.ParseException;
@@ -56,7 +58,7 @@ import com.google.gson.stream.*;
 /** 
  * The utility factory for the Reader module.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 final public class ReaderUtilities {
@@ -203,6 +205,10 @@ final public class ReaderUtilities {
 	}
 
 	public static void updateCorpusList() {
+		updateCorpusList(false);
+	}
+
+	public static void updateCorpusList(final boolean cliMode) {
 		try {
 			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			final DocumentBuilder db = dbf.newDocumentBuilder();
@@ -227,6 +233,10 @@ final public class ReaderUtilities {
 					continue;
 				final NodeList zipFiles = corpus.getElementsByTagName("zipfile");
 				final String zipFile = zipFiles.getLength() > 0 ? getTextNodeContent((Element) zipFiles.item(0)).trim() : "";
+				final NodeList encodings = corpus.getElementsByTagName("encoding");
+				final String encoding = encodings.getLength() > 0 ? getTextNodeContent((Element) encodings.item(0)).trim() : "";
+				final NodeList scripts = corpus.getElementsByTagName("script");
+				final String script = scripts.getLength() > 0 ? getTextNodeContent((Element) scripts.item(0)).trim() : "";
 				final NodeList transformables = corpus.getElementsByTagName("transformable");
 				final String transformable = transformables.getLength() > 0 ? getTextNodeContent((Element) transformables.item(0)).trim() : "";
 				final NodeList bktGrps = corpus.getElementsByTagName("textbasket");
@@ -262,7 +272,9 @@ final public class ReaderUtilities {
 				cp.setShortName(shortName);
 				if (Boolean.parseBoolean(inArchive))
 					cp.setZipFile(zipFile);
-				cp.setIsTransformable(Boolean.parseBoolean(transformable));
+				cp.setEncoding(encoding);
+				cp.setScript(script);
+				cp.setTransformable(Boolean.parseBoolean(transformable));
 				cp.setTextBasketList(bktStrList);
 				cp.setTextClassList(clsStrList);
 				cp.setTextExtraGroupList(extStrList);
@@ -273,7 +285,8 @@ final public class ReaderUtilities {
 				corpusMap.put(Corpus.Collection.idMap.get(rootName), cp);
 			}
 			corpusAvailable.set(!corpusMap.isEmpty());
-			Platform.runLater(() -> updateCorpusAbbrList());
+			if (!cliMode)
+				Platform.runLater(() -> updateCorpusAbbrList());
 		} catch (ParserConfigurationException | SAXException | IOException e) {
 			System.err.println(e);
 		}
@@ -341,6 +354,7 @@ final public class ReaderUtilities {
 					case CSTR:
 						docInfo = readCstrInfo(elm, corpus);
 						break;
+					case CSTDEVA:
 					case CST4:
 						docInfo = readCst4Info(elm, corpus);
 						break;
@@ -757,7 +771,7 @@ final public class ReaderUtilities {
 				if (stg == null) {
 						if (nodeColl == Corpus.Collection.CSTR)
 							viewer = new CstrHtmlViewer(node, strToLocate);
-						else if (nodeColl == Corpus.Collection.CST4)
+						else if (nodeColl == Corpus.Collection.CSTDEVA || nodeColl == Corpus.Collection.CST4)
 							viewer = new Cst4HtmlViewer(node, strToLocate);
 						else if (nodeColl == Corpus.Collection.BJT)
 							viewer = new BjtHtmlViewer(node, strToLocate);
@@ -776,7 +790,7 @@ final public class ReaderUtilities {
 				} else {
 						if (nodeColl == Corpus.Collection.CSTR)
 							viewer = (CstrHtmlViewer)stg.getScene().getRoot();
-						else if (nodeColl == Corpus.Collection.CST4)
+						else if (nodeColl == Corpus.Collection.CSTDEVA || nodeColl == Corpus.Collection.CST4)
 							viewer = (Cst4HtmlViewer)stg.getScene().getRoot();
 						else if (nodeColl == Corpus.Collection.BJT)
 							viewer = (BjtHtmlViewer)stg.getScene().getRoot();
@@ -841,6 +855,8 @@ final public class ReaderUtilities {
 		switch (nodeColl) {
 			case CSTR: 
 				type = Utilities.WindowType.VIEWER_CSTR; break;
+			case CSTDEVA: 
+				type = Utilities.WindowType.VIEWER_CST4; break;
 			case CST4: 
 				type = Utilities.WindowType.VIEWER_CST4; break;
 			case BJT:
@@ -857,28 +873,9 @@ final public class ReaderUtilities {
 		return openWindow(type, args);
 	}
 
-	public static void openGzDocAsText(final TocTreeNode doc) {
-		if (doc == null) return;
-		final SimpleService editorLauncher = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
-		if (editorLauncher == null) return;
-		final File nodeFile = doc.getNodeFile();
-		if (!nodeFile.exists()) return;
-		final String textbody = readGz(nodeFile);
-		final String[] lines = textbody.split("\\n");
-		final StringBuilder resultText = new StringBuilder();
-		final String linesep = System.getProperty("line.separator");
-		for (final String line : lines) {
-			resultText.append(Utilities.cleanXmlTags(line)).append(linesep);
-		}
-		if (resultText.length() > 0) {
-			final Object[] args = { "ROMAN", resultText.toString() };
-			editorLauncher.processArray(args);
-		}
-	}
-
-	public static String readGz(final File gzfile) {
+	public static String readGz(final File gzfile, final Charset charset) {
 		final StringBuilder result = new StringBuilder();
-		try (final Scanner in = new Scanner(new GZIPInputStream(new FileInputStream(gzfile)), StandardCharsets.UTF_8)) {
+		try (final Scanner in = new Scanner(new GZIPInputStream(new FileInputStream(gzfile)), charset)) {
 			while (in.hasNextLine()) {
 				result.append(in.nextLine()).append("\n");
 			}
@@ -888,8 +885,8 @@ final public class ReaderUtilities {
 		return result.toString();
 	}
 
-	public static String readGzHTMLBody(final File gzfile) {
-		return "<body>" + readGz(gzfile) + "</body>";
+	public static String readGzHTMLBody(final File gzfile, final Charset charset) {
+		return "<body>" + readGz(gzfile, charset) + "</body>";
 	}
 
 	/**
@@ -903,7 +900,7 @@ final public class ReaderUtilities {
 			final ZipEntry entry = zip.getEntry(filename);
 			if (entry != null) {
 				result.append("<body>").append("\n");
-				final Scanner in = new Scanner(zip.getInputStream(entry), StandardCharsets.UTF_8);
+				final Scanner in = new Scanner(zip.getInputStream(entry), corpus.getEncoding().getCharset());
 				boolean isBody = false;
 				while (in.hasNextLine()) {
 					final String line = in.nextLine();
@@ -934,7 +931,7 @@ final public class ReaderUtilities {
 			final ZipFile zip = new ZipFile(corpus.getZipFile());
 			final ZipEntry entry = zip.getEntry(filename);
 			if (entry != null) {
-				final Scanner in = new Scanner(zip.getInputStream(entry), StandardCharsets.UTF_8);
+				final Scanner in = new Scanner(zip.getInputStream(entry), corpus.getEncoding().getCharset());
 				while (in.hasNextLine()) {
 					final String line = in.nextLine();
 					result.append(line).append("\n");
@@ -949,6 +946,70 @@ final public class ReaderUtilities {
 			System.err.println(e);
 		}
 		return result.toString();
+	}
+
+	/**
+	 * Reads an XML file from CST Devanagari collection, then transforms the content into HTML by XSLT.
+	 * According to the stylesheet given, the output is wrapped with {@literal<body> ... </body>},
+	 * hence, not complete HTML.
+	 */
+	public static String readCstDevaXML(final TocTreeNode node) {
+		final Corpus corpus = node.getCorpus();
+		org.w3c.dom.Document domDoc = null;
+		final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		final StringWriter writer = new StringWriter();
+		try {
+			final DocumentBuilder builder = docFactory.newDocumentBuilder();
+			final File xmlFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + corpus.getRootName() + File.separator + node.getNodeFileName());
+			if (xmlFile.exists()) {
+				domDoc = builder.parse(Files.newInputStream(xmlFile.toPath(), StandardOpenOption.READ));
+			} else {
+				return "";
+			}
+			if (domDoc == null) return "";
+			// read DOM and transform with XSLT
+			final InputStream stylesheet = ReaderUtilities.class.getResourceAsStream(CST4_XSL);
+			final TransformerFactory tFactory = TransformerFactory.newInstance();
+			final StreamSource stylesource = new StreamSource(stylesheet);
+			final Transformer transformer = tFactory.newTransformer(stylesource);
+			final DOMSource source = new DOMSource(domDoc);
+			final StreamResult result = new StreamResult(writer);
+			transformer.transform(source, result);
+			writer.flush();
+			writer.close();
+		} catch (TransformerConfigurationException tce) {
+			// Error generated by the parser
+			System.err.println("\n** Transformer Factory error");
+			System.err.println("   " + tce.getMessage());
+			// Use the contained exception, if any
+			if (tce.getException() != null) {
+				final Throwable x = tce.getException();
+				System.err.println(x);
+			}
+			System.err.println(tce);
+		} catch (TransformerException te) {
+			// Error generated by the parser
+			System.err.println("\n** Transformation error");
+			System.err.println("   " + te.getMessage());
+			// Use the contained exception, if any
+			if (te.getException() != null) {
+				final Throwable x = te.getException();
+				System.err.println(x);
+			}
+			System.err.println(te);
+		} catch (SAXException sxe) {
+			// Error generated by this application
+			// (or a parser-initialization error)
+			if (sxe.getException() != null) {
+				final Exception x = sxe.getException();
+				System.err.println(x);
+			}
+			System.err.println(sxe);
+		} catch (ParserConfigurationException | IOException e) {
+			// Parser with specified options can't be built
+			System.err.println(e);
+		}
+		return writer.toString();
 	}
 
 	/**

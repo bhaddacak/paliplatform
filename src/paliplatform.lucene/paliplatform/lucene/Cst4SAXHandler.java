@@ -1,7 +1,7 @@
 /*
  * Cst4SAXHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,10 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /** 
  * This handler reads XML data in CST collections for tokenizing.
+ * This is used for both CSTDEVA and CST4 collection, 
+ * because the structure is identical.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
  
@@ -89,8 +91,9 @@ class Cst4SAXHandler extends DefaultHandler {
 			final String tag = thisField.toUpperCase();
 			if (TermInfo.Field.isValid(Corpus.Collection.CST4, tag)) {
 				textMap.get(TermInfo.Field.valueOf(tag)).append(strPortion);
-				if (qName.equals("p") || qName.equals("head") || qName.equals("trailer") || qName.equals("hi"))
+				if (qName.equals("p") || qName.equals("head") || qName.equals("trailer") || qName.equals("hi")) {
 					textMap.get(TermInfo.Field.valueOf(tag)).append("\n");
+				}
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 /*
  * LuceneToolBarCom.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import javafx.scene.layout.HBox;
 /** 
  * The tool bar component for Lucene module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class LuceneToolBarCom extends HBox {
@@ -37,7 +37,7 @@ public class LuceneToolBarCom extends HBox {
 		luceneButton.setTooltip(new Tooltip("Lucene Finder"));
 		luceneButton.setOnAction(actionEvent -> LuceneUtilities.openWindow(Utilities.WindowType.LUCENE, null));
 		luceneButton.disableProperty().bind(ReaderUtilities.corpusAvailable.not());
-		final Button listerButton = new Button("", new TextIcon("bars", TextIcon.IconSet.AWESOME));
+		final Button listerButton = new Button("", new TextIcon("list-ul", TextIcon.IconSet.AWESOME));
 		listerButton.setTooltip(new Tooltip("Term Lister"));
 		listerButton.setOnAction(actionEvent -> LuceneUtilities.openWindow(Utilities.WindowType.LISTER, null));
 		getChildren().addAll(luceneButton, listerButton);

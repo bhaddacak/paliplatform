@@ -43,7 +43,7 @@ import netscape.javascript.JSObject;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
 public class DictWin extends BorderPane {
@@ -55,6 +55,7 @@ public class DictWin extends BorderPane {
 	private final ObservableList<String> resultList = FXCollections.<String>observableArrayList();
 	private final ListView<String> resultListView = new ListView<>(resultList);
 	private final Map<String, ArrayList<DictBook>> resultMap = new LinkedHashMap<>();
+	private final SimpleBooleanProperty incremental = new SimpleBooleanProperty(false);
 	private final SimpleBooleanProperty useWildcards = new SimpleBooleanProperty(false);
 	private final SimpleBooleanProperty inMeaning = new SimpleBooleanProperty(false);
 	private final SimpleBooleanProperty searchResultTextFound = new SimpleBooleanProperty(false);
@@ -138,8 +139,7 @@ public class DictWin extends BorderPane {
 		});
 		searchTextField = (TextField)searchInput.getInput();
 		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> {
-			if (!useWildcards.get() && !inMeaning.get()) {
-				// immediate (incremental) search
+			if (incremental.get()) {
 				submitSearch(newValue);
 			}
 		});
@@ -150,15 +150,20 @@ public class DictWin extends BorderPane {
 			searchComboBox.commitValue();
 		});
 		final Button searchButton = new Button("Search");
-		searchButton.disableProperty().bind(useWildcards.not().and(inMeaning.not()));
+		searchButton.disableProperty().bind(incremental);
 		searchButton.setOnAction(actionEvent -> search());
+		final CheckBox incrementalButton = new CheckBox("Incremental");
+		incrementalButton.setTooltip(new Tooltip("Search immediately while entering"));
+		incrementalButton.selectedProperty().bindBidirectional(incremental);
+		incrementalButton.disableProperty().bind(inMeaning.or(useWildcards));
 		final CheckBox wildcardButton = new CheckBox("Use */?");
 		wildcardButton.setTooltip(new Tooltip("Use wildcards (*/?)"));
 		wildcardButton.selectedProperty().bindBidirectional(useWildcards);
-		wildcardButton.disableProperty().bind(inMeaning);
+		wildcardButton.disableProperty().bind(inMeaning.or(incremental));
 		final CheckBox inMeaningButton = new CheckBox("In meaning");
 		inMeaningButton.setTooltip(new Tooltip("Search in meaning"));
 		inMeaningButton.selectedProperty().bindBidirectional(inMeaning);
+		inMeaningButton.disableProperty().bind(useWildcards.or(incremental));
 		// find buttons
 		final MenuButton findMenu = new MenuButton("", new TextIcon("magnifying-glass", TextIcon.IconSet.AWESOME));
 		findMenu.setTooltip(new Tooltip("Find in the result"));
@@ -178,7 +183,7 @@ public class DictWin extends BorderPane {
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		searchToolBar.getItems().addAll(searchComboBox, clearButton, searchInput.getMethodButton(), searchButton,
-										new Separator(), wildcardButton, inMeaningButton,
+										new Separator(), incrementalButton, wildcardButton, inMeaningButton,
 										new Separator(), findMenu, helpButton);
 
 		// add result split pane

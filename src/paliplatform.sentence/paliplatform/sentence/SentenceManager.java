@@ -51,7 +51,7 @@ import com.google.gson.stream.*;
  * The window managing sentences used by SentenceReader.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
 public class SentenceManager extends SingletonWindow {
@@ -115,7 +115,7 @@ public class SentenceManager extends SingletonWindow {
 	private String prevSelectedVariant = "";
 	
 	private SentenceManager() {
-		windowWidth = Utilities.getRelativeSize(60);
+		windowWidth = Utilities.getRelativeSize(62);
 		windowHeight = Utilities.getRelativeSize(54);
 		setTitle("Sentence Manager");
 		getIcons().add(new Image(SentenceManager.class.getResourceAsStream("resources/images/briefcase.png")));

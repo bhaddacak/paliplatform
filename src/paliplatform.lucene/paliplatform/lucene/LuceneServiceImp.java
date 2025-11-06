@@ -1,7 +1,7 @@
 /*
  * LuceneServiceImp.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import javafx.scene.layout.HBox;
 /** 
  * An implementation of Lucene service.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class LuceneServiceImp implements LuceneService {
@@ -67,7 +67,7 @@ public class LuceneServiceImp implements LuceneService {
 	public Tab getListerTab() {
 		listerTab = new Tab("Term Lister");
 		listerTab.setClosable(false);
-		final TextIcon listerIcon = new TextIcon("bars", TextIcon.IconSet.AWESOME);
+		final TextIcon listerIcon = new TextIcon("list-ul", TextIcon.IconSet.AWESOME);
 		listerTab.setGraphic(listerIcon);
 		final Button loadButton = new Button("Load");
 		loadButton.setOnAction(actionEvent -> setLister());

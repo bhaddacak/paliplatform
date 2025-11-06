@@ -20,6 +20,8 @@
 package paliplatform.reader;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.Encoding;
+import paliplatform.base.Utilities.PaliScript;
 
 import java.io.File;
 import java.util.*;
@@ -30,19 +32,19 @@ import javafx.scene.control.TreeItem;
 /** 
  * The representation of a Pali text collection.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 
 public class Corpus {
 	public static enum Collection {
-		CSTR, CST4, BJT, SC, PTST, SRT, GRAM; // must correspond with corpus root's name
+		CSTR, CSTDEVA, CST4, BJT, PTST, SRT, GRAM, SC; // must correspond with corpus root's name
 		public static final Collection[] values = values();
-		public static final Map<String, Collection> idMap = Map.of("cstr", CSTR, "cst4", CST4, "bjt", BJT, "ptst", PTST,
-															"srt", SRT, "gram", GRAM, "sc", SC);
-		public static final Set<Collection> hasDMSASet = Set.of(CSTR, CST4, BJT, PTST, SRT, SC);
+		public static final Map<String, Collection> idMap = Map.of("cstr", CSTR, "cstdeva", CSTDEVA, "cst4", CST4, "bjt", BJT,
+															"ptst", PTST, "srt", SRT, "gram", GRAM, "sc", SC);
+		public static final Set<Collection> hasDMSASet = Set.of(CSTR, CSTDEVA, CST4, BJT, PTST, SRT, SC);
 		public static final Comparator<String> colComparator = new Comparator<String>() {
-			private final List<String> colList = List.of("cstr", "cst4", "bjt", "ptst", "srt", "gram", "sc");
+			private final List<String> colList = List.of("cstr", "cstdeva", "cst4", "bjt", "ptst", "srt", "gram", "sc");
 			@Override
 			public int compare(final String name1, final String name2) {
 				return colList.indexOf(name1.toLowerCase()) - colList.indexOf(name2.toLowerCase());
@@ -54,7 +56,8 @@ public class Corpus {
 	public static final TextGroup tgDMSA = new SimpleTextGroup("The 4 main Nikāyas (DMSA):DMSA mūla:dmsa");
 	public static final TextGroup tgVDMSA = new SimpleTextGroup("The Vinaya and 4 main Nikāyas (VDMSA):Vin + DMSA mūla:vdmsa");
 	private static final String NOT_WORD_CSTR = "!()+,-.:;=?[]–‘’“”…";
-	private static final String NOT_WORD_CST4 = "!()+,-.;=?[]|–‖‘’…";
+	private static final String NOT_WORD_CSTDEVA = "!'`()+,-.;=?[]–‘’।॥…";
+	private static final String NOT_WORD_CST4 = "!()+,-.;=?[]|–‖‘’§…";
 	private static final String NOT_WORD_BJT = "!\"$()*,-./:;<>?[]\\_{}–‘’“”†‡…";
 	private static final String NOT_WORD_PTST = "!\"#$%&'()*+,-./:;=?[]^_{|}~§";
 	private static final String NOT_WORD_SRT = "!\"#'()*,-./:;=?[]_";
@@ -67,6 +70,8 @@ public class Corpus {
 	private final String rootName; // root directory name, also used as id
 	private final String infoFileName; // tree filename
 	private final boolean inArchive; // true if the whole collection is in a zip file
+	private Encoding encoding = Encoding.UTF_8; // typical values are UTF_8, UTF_16
+	private PaliScript script = PaliScript.ROMAN; //typical values are ROMAN, DEVANAGARI
 	private File zipFile; // archive file
 	private boolean transformable = false; // true if the text can be transformed to other scripts
 	private final List<TextGroup> basketGroupList = new ArrayList<>(); // vin or sut or abh
@@ -80,7 +85,7 @@ public class Corpus {
 	private final Map<String, DocumentInfo> docInfoMap; // document information map (to doc id)
 	private final int size; // number of docs
 	private Map<DocumentInfo.SuttaGroup, TreeItem<TocTreeNode>> suttantaGroupMap;
-	private Map<String, TreeItem<TocTreeNode>> extraSubgroupMap; // for CST4 only
+	private Map<String, TreeItem<TocTreeNode>> extraSubgroupMap; // for CSTDEVA and CST4 only
 
 	public Corpus(final String name, final String root, final String infoname, final String inArchiveStr) {
 		corpusName = name;
@@ -139,7 +144,25 @@ public class Corpus {
 		return inArchive ? zipFile.exists() : true;
 	}
 
-	public void setIsTransformable(final boolean yn) {
+	public void setEncoding(final String encName) {
+		final String nameOK = encName.replace("-", "_");
+		if (Encoding.isValid(nameOK))
+			encoding = Encoding.valueOf(nameOK);
+	}
+
+	public Encoding getEncoding() {
+		return encoding;
+	}
+
+	public void setScript(final String scrName) {
+		script = PaliScript.fromName(scrName);
+	}
+
+	public PaliScript getScript() {
+		return script;
+	}
+
+	public void setTransformable(final boolean yn) {
 		transformable = yn;
 	}
 
@@ -272,7 +295,8 @@ public class Corpus {
 		// the first line is header
 		result.append(corpusName).append("\n");
 		result.append(description).append("\n\n");
-		result.append("Copyright: " + copyright).append("\n\n");
+		if (!copyright.isEmpty())
+			result.append("Copyright: " + copyright).append("\n\n");
 		if (!urlList.isEmpty())
 			result.append("URL(s):\n" + urlList.stream().collect(Collectors.joining("\n"))).append("\n");
 		return result.toString();
@@ -314,7 +338,7 @@ public class Corpus {
 			final TreeItem<TocTreeNode> eNode = new TreeItem<>(new SimpleTocTreeNode(this, extTG.getAbbrev(), extTG.getEngName(), ""));
 			final boolean hasAnya = !extraSubgroupList.isEmpty();
 			if (hasAnya)
-				addAnyaGroups(eNode); // only CST4
+				addAnyaGroups(eNode); // only CSTDEVA and CST4
 			for (final DocumentInfo dinfo : docInfoMap.values()) {
 				if (dinfo.getGroup().equals(extTG.getAbbrev())) {
 					final TreeItem<TocTreeNode> tNode = new TreeItem<>(
@@ -333,14 +357,14 @@ public class Corpus {
 	private void addSuttaGroups(final TreeItem<TocTreeNode> node) {
 		// in the suttanta, add subdivisions
 		for (final DocumentInfo.SuttaGroup sg : DocumentInfo.SuttaGroup.groups) {
-			final TreeItem<TocTreeNode> gNode = new TreeItem<>(new SimpleTocTreeNode(this, sg.toString(), sg.getName(), ""));
+			final TreeItem<TocTreeNode> gNode = new TreeItem<>(new SimpleTocTreeNode(this, sg.toString(), sg.getName(script), ""));
 			suttantaGroupMap.put(sg, gNode);
 			node.getChildren().add(gNode);
 		}
 	}
 
 	private void addAnyaGroups(final TreeItem<TocTreeNode> node) {
-		// for CST4's anya, add subdivisions
+		// for CSTDEVA and CST4's anya, add subdivisions
 		for (final TextGroup tg : extraSubgroupList) {
 			final TreeItem<TocTreeNode> sgNode = new TreeItem<>(new SimpleTocTreeNode(this, tg.getAbbrev(), tg.getEngName(), ""));
 			extraSubgroupMap.put(tg.getAbbrev(), sgNode);
@@ -387,7 +411,7 @@ public class Corpus {
 	}
 
 	public static boolean hasFullStructure(final Collection col) {
-		return col == Collection.CSTR || col == Collection.CST4;
+		return col == Collection.CSTR || col == Collection.CSTDEVA || col == Collection.CST4;
 	}
 
 	public static boolean hasAlmostFullButNotes(final Collection col) {
@@ -406,6 +430,7 @@ public class Corpus {
 		String result = SPACES;
 		switch (col) {
 			case CSTR: result = NOT_WORD_CSTR + result; break;
+			case CSTDEVA: result = NOT_WORD_CSTDEVA + result; break;
 			case CST4: result = NOT_WORD_CST4 + result; break;
 			case BJT: result = NOT_WORD_BJT + result; break;
 			case PTST: result = NOT_WORD_PTST + result; break;
@@ -420,6 +445,7 @@ public class Corpus {
 		String result = "";
 		switch (col) {
 			case CSTR: result = NOT_WORD_CSTR; break;
+			case CSTDEVA: result = NOT_WORD_CSTDEVA; break;
 			case CST4: result = NOT_WORD_CST4; break;
 			case BJT: result = NOT_WORD_BJT; break;
 			case PTST: result = NOT_WORD_PTST; break;
@@ -440,6 +466,7 @@ public class Corpus {
 			case CSTR:
 				result = Pattern.compile(CstrInfo.getFileFilterPatternString(textGroupAbbr));
 				break;
+			case CSTDEVA:
 			case CST4:
 				result = Pattern.compile(Cst4Info.getFileFilterPatternString(textGroupAbbr));
 				break;

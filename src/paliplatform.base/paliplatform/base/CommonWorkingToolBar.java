@@ -1,7 +1,7 @@
 /*
  * CommonWorkingToolBar.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import javafx.stage.Window;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
@@ -102,19 +102,36 @@ public class CommonWorkingToolBar extends ToolBar {
 	public final String setupFontMenu(final Utilities.PaliScript script) {
 		fontMenuItemsMap.clear();
 		fontMenu.getItems().clear();
-		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(script));
-		if (flist.isEmpty())
-			flist.add(Utilities.FONT_FALLBACK);
-		else
-			Collections.sort(flist);
-		for (final String fname : flist) {
+		final List<String> allFonts = new ArrayList<>();
+		// add generic fonts first
+		for (final String gf : Utilities.genericFonts) {
+			allFonts.add(gf);
+		}
+		// add embedded fonts
+		allFonts.addAll(Utilities.embeddedFontMap.get(script));
+		// add external fonts, if any
+		final List<String> extFonts = new ArrayList<>(Utilities.externalFontMap.get(script));
+		Collections.sort(extFonts);
+		if (!Utilities.genericFonts.contains(extFonts.get(0))) {
+			allFonts.addAll(extFonts);
+		}
+		for (final String fname : allFonts) {
 			final RadioMenuItem fontMenuItem = new RadioMenuItem(fname);
 			fontMenuItemsMap.put(fname, fontMenuItem);
 			fontMenuItem.setToggleGroup(fontGroup);
 			fontMenu.getItems().add(fontMenuItem);
 		}
-		// return first available font name
-		return flist.get(0);
+		if (script == Utilities.PaliScript.ROMAN) {
+			// this should agree with base css (custom_light/custom_dark)
+			return Utilities.FONTSANS;
+		} else {
+			// otherwise return the first available font name
+			return allFonts.get(0);
+		}
+	}
+
+	public final void reBuildFontMenu(final Utilities.PaliScript script) {
+		currFont = setupFontMenu(script);
 	}
 	
 	public ToggleButton getThemeButton() {
@@ -167,7 +184,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		fontGroup.selectToggle(fontMenuItemsMap.get(fontname));
 	}
 
-	public void setFont(final String fontname) {
+	private void setFont(final String fontname) {
 		final SimpleService dictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.dict.FontSetter");
 		final SimpleService readerFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.reader.FontSetter");
 		for (final Node node : nodes) {
@@ -196,13 +213,22 @@ public class CommonWorkingToolBar extends ToolBar {
 				}
 			}
 		}
+//~ 		final javafx.scene.text.Font f = new javafx.scene.text.Font(fontname, 12.0);
+//~ 		System.out.println(f.getFamily() + " : " + f.getName());
 		setFontMenu(fontname);
 	}
 	
-	public void setFont(final Utilities.PaliScript script) {
-		final List<String> flist = new ArrayList<>(Utilities.paliFontMap.get(script));
-		Collections.sort(flist);
-		setFont(flist.get(0));
+	private void setFont(final Utilities.PaliScript script) {
+		final List<String> emList = new ArrayList<>(Utilities.embeddedFontMap.get(script));
+		if (!emList.isEmpty()) {
+			// use an embedded font, if any
+			setFont(emList.get(0));
+		} else {
+			// otherwise, use an external font
+			final List<String> exList = new ArrayList<>(Utilities.externalFontMap.get(script));
+			Collections.sort(exList);
+			setFont(exList.get(0));
+		}
 	}
 	
 	public void changeFontSize(final int percent) {

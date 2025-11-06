@@ -1,0 +1,4 @@
+Notes on CST XML data
+	1. The fundamental XML files of the official CST corpus are in Devanagari script.
+	2. You can select a text group to download by the option menu provided. By default, all the documents will be downloaded.
+	3. Even though the downloaded files are kept in the cache, the files will always be downloaded to ensure the recency. So, the skip-download option is not available here.

@@ -47,7 +47,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  * The tool facilitating Pali text reading.
  * Formerly this class is named PaliTextReader.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
 public class SentenceReader extends BorderPane {
@@ -423,7 +423,7 @@ public class SentenceReader extends BorderPane {
 		// some other initialization
 		infoPopup.setContentWithText(SentenceUtilities.getTextResource("info-reader.txt"));
 		infoPopup.setTextWidth(Utilities.getRelativeSize(34));
-		setPrefWidth(Utilities.getRelativeSize(64));
+		setPrefWidth(Utilities.getRelativeSize(65));
 		setPrefHeight(Utilities.getRelativeSize(40));
 		init(args);
 	}

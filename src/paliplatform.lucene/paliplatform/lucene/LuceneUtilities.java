@@ -226,7 +226,7 @@ final public class LuceneUtilities {
 				if (stg == null) {
 					final TermLister lister = new TermLister(); 
 					stg = Utilities.openNewWindow(lister,
-							new Image(LuceneUtilities.class.getResourceAsStream("resources/images/bars.png")), "Term Lister");
+							new Image(LuceneUtilities.class.getResourceAsStream("resources/images/list-ul.png")), "Term Lister");
 					lister.setStage(stg);
 				} else {
 					Utilities.showExistingWindow(stg);

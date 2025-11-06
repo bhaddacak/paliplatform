@@ -41,7 +41,7 @@ import javafx.geometry.Insets;
  * The viewer of CST-restructured Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 public class CstrHtmlViewer extends PaliHtmlViewer {
@@ -411,7 +411,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	}
 
 	public void loadContent() {
-		final String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile());
+		final String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile(), thisDoc.getCorpus().getEncoding().getCharset());
 		pageBody = formatText(bodyText);
 		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String cstrJS = ReaderUtilities.getStringResource(ReaderUtilities.CSTR_JS);

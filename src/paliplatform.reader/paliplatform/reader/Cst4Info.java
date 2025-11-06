@@ -25,12 +25,12 @@ import javafx.beans.property.*;
 /** 
  * The information class for a document in the collection of CST4.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 
 public final class Cst4Info implements DocumentInfo {
-	private static Corpus corpus;
+	private Corpus corpus;
 	private String id;
 	private String group; // equivalent to basket: vin, sut, abh, ann
 	private String docClass; // mul, att, tik

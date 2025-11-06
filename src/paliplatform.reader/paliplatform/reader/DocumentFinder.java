@@ -1,7 +1,7 @@
 /*
  * DocumentFinder.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import javafx.application.Platform;
  * The tool for listing, finding and opening a specific Pali document
  * from text collections.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
 public class DocumentFinder extends BorderPane {
@@ -228,12 +228,12 @@ public class DocumentFinder extends BorderPane {
 		corpusCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).corpusProperty().getName()));
 		corpusCol.setReorderable(false);
 		corpusCol.setComparator(Corpus.Collection.colComparator);
-		corpusCol.prefWidthProperty().bind(mainPane.widthProperty().divide(15));
+		corpusCol.prefWidthProperty().bind(mainPane.widthProperty().divide(15).add(10));
 		final TableColumn<DocumentInfo, String> summaryCol = new TableColumn<>("Document Information");
 		summaryCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).summaryProperty().getName()));
 		summaryCol.setReorderable(false);
 		summaryCol.setComparator(Utilities.paliComparator);
-		summaryCol.prefWidthProperty().bind(mainPane.widthProperty().divide(15).multiply(8.5).subtract(20));
+		summaryCol.prefWidthProperty().bind(mainPane.widthProperty().divide(15).multiply(8.5).subtract(32));
 		final TableColumn<DocumentInfo, String> refCol = new TableColumn<>("Ref");
 		refCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).refProperty().getName()));
 		refCol.setReorderable(false);
@@ -412,7 +412,7 @@ public class DocumentFinder extends BorderPane {
 							for (final DocumentInfo docInfo : docInfoMap.values()) {
 								if (!docInfo.isInTextGroup(selTextGroup)) continue;
 								final ZipEntry entry = zip.getEntry(docInfo.getFileNameWithExt());
-								final Scanner in = new Scanner(zip.getInputStream(entry), StandardCharsets.UTF_8);
+								final Scanner in = new Scanner(zip.getInputStream(entry), cp.getEncoding().getCharset());
 								final List<String> findResList = new ArrayList<>();
 								String findRes;
 								while((findRes = in.findWithinHorizon(searchPatt, 0)) != null) {
@@ -434,9 +434,12 @@ public class DocumentFinder extends BorderPane {
 								final File docFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + cp.getRootName() + File.separator,
 										docInfo.getFileNameWithExt());
 								if (!docFile.exists()) continue;
-								// only gz file is supported by now
-								if (!docFile.getName().toLowerCase().endsWith(".gz")) continue;
-								final Scanner in = new Scanner(new GZIPInputStream(new FileInputStream(docFile)), StandardCharsets.UTF_8);
+								final Scanner in;
+								if (docFile.getName().toLowerCase().endsWith(".gz")) {
+									in = new Scanner(new GZIPInputStream(new FileInputStream(docFile)), cp.getEncoding().getCharset());
+								} else {
+									in = new Scanner(new FileInputStream(docFile), cp.getEncoding().getCharset());
+								}
 								final List<String> findResList = new ArrayList<>();
 								String findRes;
 								while((findRes = in.findWithinHorizon(searchPatt, 0)) != null) {

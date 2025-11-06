@@ -1,7 +1,7 @@
 /*
  * ProgressiveDownloader.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,10 +47,11 @@ import org.apache.commons.compress.compressors.xz.*;
  * The progressive downloader dialog with progress report and post-download
  * installation, suitable for downloading sizeable files.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 public class ProgressiveDownloader extends Stage {
+	public static enum WindowType { WITH_OPTION_BOX, NO_OPTION_BOX }
 	private static final String START = "Start";
 	private static final double MEGA = 1024 * 1024;
 	private static final Set<String> formatExtSet = Set.of(".tar.gz", ".tar.xz", ".tar.bz2", ".zip");
@@ -72,6 +73,10 @@ public class ProgressiveDownloader extends Stage {
 	private DownloadTask currDownloadTask = null;
 	
 	public ProgressiveDownloader() {
+		this(WindowType.WITH_OPTION_BOX);
+	}
+
+	public ProgressiveDownloader(final WindowType wintype) {
 		// set up the stage
         setTitle("Progressive Downloader");
 		getIcons().add(new Image(Utilities.class.getResourceAsStream("resources/images/cloud-arrow-down.png")));
@@ -102,7 +107,10 @@ public class ProgressiveDownloader extends Stage {
 		final Button closeButton = new Button("Close");
 		closeButton.setOnAction(actionEvent -> close());
 		buttonBar.getChildren().addAll(startStopButton, closeButton);
-		contentBox.getChildren().addAll(progressBar, sizeDisplay, optionBox, buttonBar);
+		contentBox.getChildren().addAll(progressBar, sizeDisplay);
+		if (wintype == WindowType.WITH_OPTION_BOX)
+			contentBox.getChildren().add(optionBox);
+		contentBox.getChildren().add(buttonBar);
 		// set main pane
 		mainPane.setCenter(contentBox);
 		// status bar
@@ -272,12 +280,22 @@ public class ProgressiveDownloader extends Stage {
 					rchannel = Channels.newChannel(url.openStream()); 
 				} catch (IOException e) {
 					System.err.println(e);
-					item.setState(DownloadTask.State.FAILED);
-					Platform.runLater(() -> {
-						progressBar.progressProperty().unbind();
-						init("Network error");
-					});
-					return false;
+					if (e instanceof FileNotFoundException) {
+						item.setState(DownloadTask.State.FAILED);
+						Platform.runLater(() -> {
+							message.setText(item.getFileName() + " not found");
+							progressBar.progressProperty().unbind();
+							nextDownload();
+						});
+						return false;
+					} else {
+						item.setState(DownloadTask.State.FAILED);
+						Platform.runLater(() -> {
+							progressBar.progressProperty().unbind();
+							init("Network error");
+						});
+						return false;
+					}
 				}
 				if (!isTotalSizeAvailable)
 					updateProgress(-1, -1);

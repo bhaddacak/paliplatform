@@ -34,15 +34,18 @@ import javafx.beans.property.IntegerProperty;
 
 public interface DocumentInfo {
 	public static enum SuttaGroup {
-		DN("Dīghanikāya"), MN("Majjhimanikāya"), SN("Saṃyuttanikāya"),
-		AN("Aṅguttaranikāya"), KN("Khuddakanikāya"), XN("Extra Group");
+		DN("Dīghanikāya:दीघनिकाय"), MN("Majjhimanikāya:मज्झिमनिकाय"), SN("Saṃyuttanikāya:संयुत्तनिकाय"),
+		AN("Aṅguttaranikāya:अङ्गुत्तरनिकाय"), KN("Khuddakanikāya:खुद्दकनिकाय"), XN("Extra Group:अञ्ञ");
 		public static final SuttaGroup[] groups = values();
-		private String name;
-		SuttaGroup(final String name) {
-			this.name = name;
+		private String[] name;
+		SuttaGroup(final String nameStr) {
+			this.name = nameStr.split(":");
 		}
 		public String getName() {
-			return name;
+			return name[0];
+		}
+		public String getName(final Utilities.PaliScript script) {
+			return script == Utilities.PaliScript.DEVANAGARI ? name[1] : name[0];
 		}
 	}
 
@@ -50,7 +53,7 @@ public interface DocumentInfo {
 	String getTextName();
 	String getFileNameWithExt();
 	String getGroup(); // vin, sut, abh
-	String getDocClass(); // mul, exe
+	String getDocClass(); // mul, att, tik, ext, or exe
 	StringProperty corpusProperty();
 	StringProperty summaryProperty();
 	StringProperty refProperty();

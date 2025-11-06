@@ -24,7 +24,7 @@ import java.util.*;
 /** 
  * This factory class transforms Pali scripts to one another.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 1.0
  */
 public class PaliCharTransformer {
@@ -1301,7 +1301,8 @@ public class PaliCharTransformer {
 					output.append('a');
 			}
 		} // end for
-		return output.toString();
+		// also remove zero width joiner
+		return output.toString().replace("\u200D", "");
 	}
 
 }

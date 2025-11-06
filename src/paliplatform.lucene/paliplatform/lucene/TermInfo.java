@@ -1,7 +1,7 @@
 /*
  * TermInfo.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import java.util.stream.*;
 /** 
  * The representation of term's information.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 2.0
  */
  
@@ -55,13 +55,17 @@ public class TermInfo {
 			final Set<String> cstrSet = fieldListMap.get(Corpus.Collection.CSTR).stream()
 										.map(Field::toString).collect(Collectors.toSet());
 			fieldSetMap.put(Corpus.Collection.CSTR, cstrSet);
-			// for CST4
-			fieldListMap.put(Corpus.Collection.CST4, List.of(
+			// for CSTDEVA and CST4 (identical structure)
+			final List<Field> fieldList = List.of(
 						BODYTEXT, CENTRE, INDENT, UNINDENTED,
 						NIKAYA, BOOK, CHAPTER, TITLE, SUBHEAD, SUBSUBHEAD,
 						GATHA1, GATHA2, GATHA3, GATHALAST,
-						NOTE, BOLD
-						));
+						NOTE, BOLD);
+			fieldListMap.put(Corpus.Collection.CSTDEVA, fieldList);
+			final Set<String> cstDevaSet = fieldListMap.get(Corpus.Collection.CSTDEVA).stream()
+										.map(Field::toString).collect(Collectors.toSet());
+			fieldSetMap.put(Corpus.Collection.CSTDEVA, cstDevaSet);
+			fieldListMap.put(Corpus.Collection.CST4, fieldList);
 			final Set<String> cst4Set = fieldListMap.get(Corpus.Collection.CST4).stream()
 										.map(Field::toString).collect(Collectors.toSet());
 			fieldSetMap.put(Corpus.Collection.CST4, cst4Set);
@@ -92,7 +96,9 @@ public class TermInfo {
 			return result;
 		}
 		public static boolean hasGatha(final Corpus.Collection col) {
-			return col == Corpus.Collection.CSTR || col == Corpus.Collection.CST4 ? true : false;
+			return col == Corpus.Collection.CSTR || col == Corpus.Collection.CSTDEVA || col == Corpus.Collection.CST4
+					? true
+					: false;
 		}
 		public static boolean isGatha(final String tag) {
 			return tag.startsWith("gatha");

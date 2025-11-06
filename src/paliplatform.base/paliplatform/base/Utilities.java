@@ -26,6 +26,7 @@ import java.util.stream.*;
 import java.util.concurrent.ExecutorService;
 import java.io.*;
 import java.nio.file.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.RuleBasedCollator;
 import java.sql.*;
@@ -62,11 +63,11 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.2";
+	public static final String VERSION = "3.3";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -78,6 +79,7 @@ final public class Utilities {
 	public static final String MODPATH = MODULES + File.separator;
 	public static final String CACHEPATH = "cache" + File.separator;
 	public static final String DATAPATH = "data" + File.separator;
+	public static final String OUTPUTPATH = "output" + File.separator;
 	public static final String DBPATH = DATAPATH + "db" + File.separator;
 	public static final String RULESPATH = DATAPATH + "rules" + File.separator;
 	public static final String PICPATH = DATAPATH + "pic" + File.separator;
@@ -87,7 +89,7 @@ final public class Utilities {
 	public static final String TEXCONV = TXTDIR + "texconv.csv";
 	public static final String FONTICON = "PaliPlatformIcons";
 	public static final String FONTAWESOME = "Font Awesome 6 Free Solid";
-	public static final String FONT_FALLBACK = "sans-serif";
+	public static final String FONT_FALLBACK = "serif";
 	public static String FONTSERIF = FONT_FALLBACK;
 	public static String FONTSANS = FONT_FALLBACK;
 	public static String FONTMONO = FONT_FALLBACK;
@@ -108,7 +110,9 @@ final public class Utilities {
 	public static final String DASH_M = "—";
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
-	public static final Map<PaliScript, Set<String>> paliFontMap = new EnumMap<>(PaliScript.class); 
+	public static final List<String> genericFonts = List.of("serif", "sans-serif", "monospace");
+	public static final Map<PaliScript, Set<String>> embeddedFontMap = new EnumMap<>(PaliScript.class); 
+	public static final Map<PaliScript, Set<String>> externalFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliTextInput.InputMethod, HashMap<String, String>> paliInputCharMap = new EnumMap<>(PaliTextInput.InputMethod.class);
 	public static final Map<PpdpdTable, SimpleBooleanProperty> ppdpdAvailMap = new EnumMap<>(PpdpdTable.class);
 	public static final Map<Character, List<String>> texConvMap = new HashMap<>();
@@ -126,12 +130,34 @@ final public class Utilities {
 	public static double defBaseFontSize;
 	public static IconSize iconSize = IconSize.NORMAL;
 	// enums
+	public static enum Encoding {
+		UTF_8, UTF_16;
+		public Charset getCharset() {
+			final Charset result;
+			if (this == UTF_16)
+				result = StandardCharsets.UTF_16LE;
+			else
+				result = StandardCharsets.UTF_8;
+			return result;
+		}
+		public static boolean isValid(final String name) {
+			return Set.of("UTF_8", "UTF_16").contains(name.toUpperCase());
+		}
+	}
 	public static enum PaliScript {
 		UNKNOWN, ROMAN, DEVANAGARI, KHMER, MYANMAR, SINHALA, THAI;
 		public static final PaliScript[] scripts = values();
 		public String getName() {
 			final String name = this.toString();
 			return name.charAt(0) + name.substring(1).toLowerCase();
+		}
+		public static PaliScript fromName(final String name) {
+			final Set<String> validNames = Set.of("ROMAN", "DEVANAGARI", "KHMER", "MYANMAR", "SINHALA", "THAI");
+			final String nameUpper = name.toUpperCase();
+			if (validNames.contains(nameUpper))
+				return PaliScript.valueOf(nameUpper);
+			else
+				return UNKNOWN;
 		}
 	}
 	public static enum Theme {
@@ -400,7 +426,7 @@ final public class Utilities {
 
 	public static void initializeFontMap() throws Exception {
 		for (final PaliScript sc : PaliScript.scripts)
-			paliFontMap.put(sc, new HashSet<String>());
+			embeddedFontMap.put(sc, new LinkedHashSet<String>());
 		// load embedded fonts
 		defBaseFontSize = Font.getDefault().getSize();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PaliPlatformIcons.ttf"), 0); // PaliPlatformIcons
@@ -409,34 +435,39 @@ final public class Utilities {
 		FONTSANS = fontSans==null ? FONT_FALLBACK : fontSans.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-Bold.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-Oblique.ttf"), 0);
+		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-BoldOblique.ttf"), 0);
 		final Font fontSerif = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif.ttf"), 0);
 		FONTSERIF = fontSerif==null ? FONT_FALLBACK : fontSerif.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-Bold.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-Italic.ttf"), 0);
+		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-BoldItalic.ttf"), 0);
 		final Font fontMono = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono.ttf"), 0);
 		FONTMONO = fontMono==null ? FONT_FALLBACK : fontMono.getFamily();
 		final Font fontMonoBold = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Bold.ttf"), 0);
 		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
+		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-BoldOblique.ttf"), 0);
 		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Regular.ttf"), 0);
 		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Bold.ttf"), 0);
-		if (fontSans != null)
-			paliFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontSerif != null)
-			paliFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
+			embeddedFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
+		if (fontSans != null)
+			embeddedFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontMono != null)
-			paliFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
+			embeddedFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
 		if (fontMyan != null)
-			paliFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
+			embeddedFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
 		// read external fonts
 		loadExternalFonts();
 	}
 	
 	/**
-	 * Loads external fonts provided, used for non-Roman scripts.
+	 * Loads external fonts provided.
 	 */
 	public static void loadExternalFonts() throws Exception {
+		for (final PaliScript sc : PaliScript.scripts)
+			externalFontMap.put(sc, new HashSet<String>());
 		final File fontdir = new File(ROOTDIR + EXFONTPATH);
 		if (fontdir.exists()) {
 			final File[] files = fontdir.listFiles(f -> f.getName().toLowerCase().endsWith(".ttf"));
@@ -444,27 +475,27 @@ final public class Utilities {
 				final java.awt.Font font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, f);
 				boolean doLoad = false;
 				if (-1 == font.canDisplayUpTo(PALI_VOWELS + PALI_CONSONANTS)) {
-					paliFontMap.get(PaliScript.ROMAN).add(font.getFamily());
+					externalFontMap.get(PaliScript.ROMAN).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.thaiConsonants, 0, PaliCharTransformer.thaiConsonants.length)) {
-					paliFontMap.get(PaliScript.THAI).add(font.getFamily());
+					externalFontMap.get(PaliScript.THAI).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.khmerConsonants, 0, PaliCharTransformer.khmerConsonants.length)) {
-					paliFontMap.get(PaliScript.KHMER).add(font.getFamily());
+					externalFontMap.get(PaliScript.KHMER).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.myanmarConsonants, 0, PaliCharTransformer.myanmarConsonants.length)) {
-					paliFontMap.get(PaliScript.MYANMAR).add(font.getFamily());
+					externalFontMap.get(PaliScript.MYANMAR).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.sinhalaConsonants, 0, PaliCharTransformer.sinhalaConsonants.length)) {
-					paliFontMap.get(PaliScript.SINHALA).add(font.getFamily());
+					externalFontMap.get(PaliScript.SINHALA).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.devaConsonants, 0, PaliCharTransformer.devaConsonants.length)) {
-					paliFontMap.get(PaliScript.DEVANAGARI).add(font.getFamily());
+					externalFontMap.get(PaliScript.DEVANAGARI).add(font.getFamily());
 					doLoad = true;
 				}
 				if (doLoad) {
@@ -474,8 +505,8 @@ final public class Utilities {
 		}
 		// if nothing available, set to the fallback font
 		for (final PaliScript sc : PaliScript.scripts) {
-			if (paliFontMap.get(sc).isEmpty())
-				paliFontMap.get(sc).add(FONT_FALLBACK);
+			if (externalFontMap.get(sc).isEmpty())
+				externalFontMap.get(sc).add(FONT_FALLBACK);
 		}
 	}
 	
@@ -869,7 +900,7 @@ final public class Utilities {
 	}
 	
 	private static File getOutputFile(final String nameAndExt) {
-		return getOutputFile(nameAndExt, ".", mainStage);
+		return getOutputFile(nameAndExt, OUTPUTPATH, mainStage);
 	}
 
 	public static File getOutputFile(final String nameAndExt, final String initPath, final Window owner) {
@@ -901,7 +932,7 @@ final public class Utilities {
 	}
 	
 	public static File saveText(final String text, final String filename, final Window owner) {
-		final File outfile = getOutputFile(filename, ".", owner);
+		final File outfile = getOutputFile(filename, OUTPUTPATH, owner);
 		if (outfile != null) {
 			saveText(text, outfile);
 		}
@@ -921,7 +952,7 @@ final public class Utilities {
 	}
 	
 	public static File saveCSV(final List<String[]> text, final String filename, final Window owner) {
-		final File outfile = getOutputFile(filename, ".", owner);
+		final File outfile = getOutputFile(filename, OUTPUTPATH, owner);
 		if (outfile != null) {
 			saveCSV(text, outfile);
 		}
