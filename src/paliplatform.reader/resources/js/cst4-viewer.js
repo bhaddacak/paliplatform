@@ -1,7 +1,7 @@
 /*
  * cst4-viewer.js
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,11 +43,10 @@ function showXRef(yn) {
 		}
 	}
 }
-function setXrefColor(theme, isBW) {
+function setXrefColor(theme, style) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
-	const bw = isBW ? 'BW' : '';
 	const xrefs = document.getElementsByClassName('xref');
 	for(const e of xrefs) {
-		e.style.color = themeObj['xrefColor' + bw];
+		e.style.color = themeObj['xrefColor' + style];
 	}	
 }

@@ -1,7 +1,7 @@
 /*
  * ConjugationWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ import javafx.geometry.*;
  * The window showing conjugation paradigms for some typical verbs.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class ConjugationWin extends SingletonWindow {
@@ -771,19 +771,22 @@ public class ConjugationWin extends SingletonWindow {
 		GridPane.setConstraints(lblSingHead, 1, rowStart);
 		GridPane.setConstraints(lblPluHead, 2, rowStart);
 		resultGrid.getChildren().addAll(lblSingHead, lblPluHead);
-		final Label lbl3rd = createConjugCell(PaliConjugation.Person.PATHAMA.getAbbr(), 2.5);
-		final Label lbl2nd = createConjugCell(PaliConjugation.Person.MAJJHIMA.getAbbr(), 2.5);
-		final Label lbl1st = createConjugCell(PaliConjugation.Person.UTTAMA.getAbbr(), 2.5);
+		final Label lbl3rd = createConjugCell(PaliConjugation.Person.PATHAMA.getInitial(), 2.0, false);
+		lbl3rd.setTooltip(new Tooltip(PaliConjugation.Person.PATHAMA.getName()));
+		final Label lbl2nd = createConjugCell(PaliConjugation.Person.MAJJHIMA.getInitial(), 2.0, false);
+		lbl2nd.setTooltip(new Tooltip(PaliConjugation.Person.MAJJHIMA.getName()));
+		final Label lbl1st = createConjugCell(PaliConjugation.Person.UTTAMA.getInitial(), 2.0, false);
+		lbl1st.setTooltip(new Tooltip(PaliConjugation.Person.UTTAMA.getName()));
 		GridPane.setConstraints(lbl3rd, 0, rowStart+1, 1, 1, HPos.LEFT, VPos.TOP);
 		GridPane.setConstraints(lbl2nd, 0, rowStart+2, 1, 1, HPos.LEFT, VPos.TOP);
 		GridPane.setConstraints(lbl1st, 0, rowStart+3, 1, 1, HPos.LEFT, VPos.TOP);
 		resultGrid.getChildren().addAll(lbl3rd, lbl2nd, lbl1st);
-		final Label lbl3rdSing = createConjugCell(data[0][0][0], 10);
-		final Label lbl3rdPlu = createConjugCell(data[0][0][1], 10);
-		final Label lbl2ndSing = createConjugCell(data[0][1][0], 10);
-		final Label lbl2ndPlu = createConjugCell(data[0][1][1], 10);
-		final Label lbl1stSing = createConjugCell(data[0][2][0], 10);
-		final Label lbl1stPlu = createConjugCell(data[0][2][1], 10);
+		final Label lbl3rdSing = createConjugCell(data[0][0][0], 10, true);
+		final Label lbl3rdPlu = createConjugCell(data[0][0][1], 10, true);
+		final Label lbl2ndSing = createConjugCell(data[0][1][0], 10, true);
+		final Label lbl2ndPlu = createConjugCell(data[0][1][1], 10, true);
+		final Label lbl1stSing = createConjugCell(data[0][2][0], 10, true);
+		final Label lbl1stPlu = createConjugCell(data[0][2][1], 10, true);
 		GridPane.setConstraints(lbl3rdSing, 1, rowStart+1, 1, 1, HPos.LEFT, VPos.TOP);
 		GridPane.setConstraints(lbl3rdPlu, 2, rowStart+1, 1, 1, HPos.LEFT, VPos.TOP);
 		GridPane.setConstraints(lbl2ndSing, 1, rowStart+2, 1, 1, HPos.LEFT, VPos.TOP);
@@ -805,12 +808,12 @@ public class ConjugationWin extends SingletonWindow {
 			GridPane.setConstraints(lblSingHeadA, 3, rowStart);
 			GridPane.setConstraints(lblPluHeadA, 4, rowStart);
 			resultGrid.getChildren().addAll(lblParHead, lblAttHead, lblSingHeadA, lblPluHeadA);
-			final Label lbl3rdSingA = createConjugCell(data[1][0][0], 10);
-			final Label lbl3rdPluA = createConjugCell(data[1][0][1], 10);
-			final Label lbl2ndSingA = createConjugCell(data[1][1][0], 10);
-			final Label lbl2ndPluA = createConjugCell(data[1][1][1], 10);
-			final Label lbl1stSingA = createConjugCell(data[1][2][0], 10);
-			final Label lbl1stPluA = createConjugCell(data[1][2][1], 10);
+			final Label lbl3rdSingA = createConjugCell(data[1][0][0], 10, true);
+			final Label lbl3rdPluA = createConjugCell(data[1][0][1], 10, true);
+			final Label lbl2ndSingA = createConjugCell(data[1][1][0], 10, true);
+			final Label lbl2ndPluA = createConjugCell(data[1][1][1], 10, true);
+			final Label lbl1stSingA = createConjugCell(data[1][2][0], 10, true);
+			final Label lbl1stPluA = createConjugCell(data[1][2][1], 10, true);
 			GridPane.setConstraints(lbl3rdSingA, 3, rowStart+1, 1, 1, HPos.LEFT, VPos.TOP);
 			GridPane.setConstraints(lbl3rdPluA, 4, rowStart+1, 1, 1, HPos.LEFT, VPos.TOP);
 			GridPane.setConstraints(lbl2ndSingA, 3, rowStart+2, 1, 1, HPos.LEFT, VPos.TOP);
@@ -822,9 +825,9 @@ public class ConjugationWin extends SingletonWindow {
 		return resultGrid;
 	}
 
-	private Label createConjugCell(final String str, final double width) {
+	private Label createConjugCell(final String str, final double width, final boolean isWrapped) {
 		final Label lbl = new Label(str);
-		lbl.setWrapText(true);
+		lbl.setWrapText(isWrapped);
 		lbl.setMinWidth(Utilities.getRelativeSize(width));
 		lbl.setMaxWidth(Utilities.getRelativeSize(width));
 		return lbl;

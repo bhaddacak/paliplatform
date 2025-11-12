@@ -155,8 +155,8 @@ final public class ScUtil {
 		help.append("       $ ScUtil show -t mn1").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
-		help.append("    Typically, if no launcher script available, this is the way ").append(LINESEP);
-		help.append("    to do when you are at the program's root directory:").append(LINESEP);
+		help.append("    At the program's root directory, if no launcher script available,").append(LINESEP);
+		help.append("    type this at the console: ").append(LINESEP);
 		help.append("    $ java -p modules -m paliplatform.reader/paliplatform.reader.ScUtil").append(LINESEP);
 		printLog(help.toString());
 		System.exit(0);

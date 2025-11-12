@@ -43,7 +43,7 @@ import netscape.javascript.JSObject;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
 public class DictWin extends BorderPane {

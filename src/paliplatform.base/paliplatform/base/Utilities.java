@@ -63,7 +63,7 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
 final public class Utilities {
@@ -162,6 +162,14 @@ final public class Utilities {
 	}
 	public static enum Theme {
 		LIGHT, DARK
+	}
+	public static enum Style {
+		MONO, COLOR1, COLOR2, COLOR3; // order matters
+		public static final Style[] values = values();
+		public String getName() {
+			final String name = this.toString();
+			return name.charAt(0) + name.substring(1).toLowerCase();
+		}
 	}
 	public static enum IconSize {
 		SMALL(1.0), NORMAL(1.2), BIG(1.5), BIGGER(1.8), BIGGEST(2.4);
@@ -478,8 +486,8 @@ final public class Utilities {
 					externalFontMap.get(PaliScript.ROMAN).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.thaiConsonants, 0, PaliCharTransformer.thaiConsonants.length)) {
-					externalFontMap.get(PaliScript.THAI).add(font.getFamily());
+				if (-1 == font.canDisplayUpTo(PaliCharTransformer.devaConsonants, 0, PaliCharTransformer.devaConsonants.length)) {
+					externalFontMap.get(PaliScript.DEVANAGARI).add(font.getFamily());
 					doLoad = true;
 				}
 				if (-1 == font.canDisplayUpTo(PaliCharTransformer.khmerConsonants, 0, PaliCharTransformer.khmerConsonants.length)) {
@@ -494,8 +502,8 @@ final public class Utilities {
 					externalFontMap.get(PaliScript.SINHALA).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.devaConsonants, 0, PaliCharTransformer.devaConsonants.length)) {
-					externalFontMap.get(PaliScript.DEVANAGARI).add(font.getFamily());
+				if (-1 == font.canDisplayUpTo(PaliCharTransformer.thaiConsonants, 0, PaliCharTransformer.thaiConsonants.length)) {
+					externalFontMap.get(PaliScript.THAI).add(font.getFamily());
 					doLoad = true;
 				}
 				if (doLoad) {
@@ -1343,6 +1351,13 @@ final public class Utilities {
 			System.err.println(e);
 		}
 		return result.toString();
+	}
+
+	public static String makeBareHTML(final String body) {
+		final StringBuilder htmlText = new StringBuilder(body);
+		htmlText.insert(0, "<!doctype html><html><head><meta charset='utf-8'></head>");
+		htmlText.append("</html>");
+		return htmlText.toString();
 	}
 
 }

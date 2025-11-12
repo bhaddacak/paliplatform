@@ -58,7 +58,7 @@ import com.google.gson.stream.*;
 /** 
  * The utility factory for the Reader module.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 3.0
  */
 final public class ReaderUtilities {

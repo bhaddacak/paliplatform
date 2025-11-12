@@ -43,7 +43,7 @@ import javafx.geometry.Insets;
  * The format is XML agreeable to VRI's CSCD compilation format.
  * Transformation from XML to HTML is done by XSLT.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 3.0
  */
 public class Cst4HtmlViewer extends PaliHtmlViewer {
@@ -348,10 +348,11 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 
 	public void loadContent() {
 		final Corpus corpus = thisDoc.getCorpus();
-		if (corpus.getCollection() == Corpus.Collection.CSTDEVA)
+		if (corpus.getCollection() == Corpus.Collection.CSTDEVA) {
 			pageBody = ReaderUtilities.readCstDevaXML(thisDoc);
-		else
+		} else {
 			pageBody = ReaderUtilities.readCst4XML(thisDoc);
+		}
 		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String cst4JS = ReaderUtilities.getStringResource(ReaderUtilities.CST4_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + cst4JS);
@@ -460,7 +461,7 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 	}
 	
 	private void setShowXref() {
-		final String command = "showXRef(" + (showXref ? 1 : 0) + ");setXrefColor('" + viewerTheme+"'," + (isBW?1:0) + ");";
+		final String command = "showXRef(" + (showXref ? 1 : 0) + ");setXrefColor('" + viewerTheme+"'," + style.ordinal() + ");";
 		webEngine.executeScript(command);		
 	}
 

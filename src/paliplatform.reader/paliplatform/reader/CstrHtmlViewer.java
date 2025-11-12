@@ -41,7 +41,7 @@ import javafx.geometry.Insets;
  * The viewer of CST-restructured Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 3.0
  */
 public class CstrHtmlViewer extends PaliHtmlViewer {
@@ -285,7 +285,8 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 			infoContent.append(altNameLbl.getText()).append("\n");
 			selfInfoBox.getChildren().add(altNameLbl);
 		}
-		final Label fileNameLbl = new Label("  File: " + nodeInfo.getFileNameWithExt());
+		final String fname = nodeInfo.getFileNameWithExt();
+		final Label fileNameLbl = new Label("  File: " + fname);
 		fileNameLbl.setStyle("-fx-font-size:0.8em;");
 		infoContent.append(fileNameLbl.getText()).append("\n");
 		selfInfoBox.getChildren().add(fileNameLbl);

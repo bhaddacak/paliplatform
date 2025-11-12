@@ -37,7 +37,7 @@ import com.google.gson.stream.*;
  * $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.3
  * @since 3.0
  */
 final public class DictUtil {
@@ -108,8 +108,8 @@ final public class DictUtil {
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
-		help.append("    to do when you are at the program's root directory:").append(LINESEP);
-		help.append("    Typically, if no launcher script available, this is the way ").append(LINESEP);
+		help.append("    At the program's root directory, if no launcher script available,").append(LINESEP);
+		help.append("    type this at the console: ").append(LINESEP);
 		help.append("    $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil").append(LINESEP);
 		printLog(help.toString());
 		System.exit(0);

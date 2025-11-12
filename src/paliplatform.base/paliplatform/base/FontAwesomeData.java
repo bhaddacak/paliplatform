@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the FontAwesome symbols currently used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
  class FontAwesomeData extends HashMap<String, Character> {
@@ -62,7 +62,7 @@ import java.util.HashMap;
 		 put("book", '\uF02D');
 		 put("bookmark", '\uF02E');
 		 put("print", '\uF02F');
-//~ 		 put("camera", '\uF030');
+		 //~ put("camera", '\uF030');
 		 put("font", '\uF031');
 		 put("list", '\uF03A');
 		 put("circle-half-stroke", '\uF042');
@@ -83,7 +83,7 @@ import java.util.HashMap;
 		 put("folder", '\uF07B');
 		 put("folder-open", '\uF07C');
 		 put("arrows-up-down", '\uF07D');
-//~ 		 put("key", '\uF084');
+		 //~ put("key", '\uF084');
 		 put("gears", '\uF085');
 		 put("heart", '\uF08A');
 		 put("upload", '\uF093');
@@ -106,7 +106,7 @@ import java.util.HashMap;
 		 put("angle-right", '\uF105');
 		 put("keyboard", '\uF11C');
 		 put("info", '\uF129');
-//~ 		 put("puzzle-piece", '\uF12E');
+		 //~ put("puzzle-piece", '\uF12E');
 		 put("rocket", '\uF135');
 		 put("arrow-turn-down", '\uF149');
 		 put("square-arrow-up-right", '\uF14C');
@@ -121,6 +121,7 @@ import java.util.HashMap;
 		 put("paragraph", '\uF1DD');
 		 put("binoculars", '\uF1E5');
 		 put("trash", '\uF1F8');
+		 put("paint-brush", '\uF1FC');
 		 put("note-sticky", '\uF249');
 		 put("hand", '\uF256');
 		 put("hashtag", '\uF292');

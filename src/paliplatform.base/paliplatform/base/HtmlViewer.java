@@ -1,7 +1,7 @@
 /*
  * HtmlViewer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,12 +28,13 @@ import javafx.print.*;
 /** 
  * A generic HTML viewer is the common ancestor of all HTML text viewers.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class HtmlViewer extends BorderPane {
 	public final WebView webView = new WebView();
 	public final WebEngine webEngine = webView.getEngine();
+	protected String pageBody = "";
 	
 	public HtmlViewer() {
 		webView.setContextMenuEnabled(false);
@@ -52,9 +53,9 @@ public class HtmlViewer extends BorderPane {
 		webEngine.loadContent(text);
 	}
 	
-	public static void print(final WebView wview) {
-		final WebEngine engine = wview.getEngine();
-		final Window window = wview.getScene().getWindow();
+	public void print() {
+		final WebEngine engine = webView.getEngine();
+		final Window window = webView.getScene().getWindow();
 		PrinterJob job = PrinterJob.createPrinterJob();
 		if (job != null) {
 			final boolean doPrint = job.showPrintDialog(window);

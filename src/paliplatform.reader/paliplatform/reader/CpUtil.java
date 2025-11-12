@@ -23,7 +23,6 @@ import paliplatform.base.*;
 import java.util.*;
 import java.util.stream.*;
 import java.util.zip.*;
-import java.util.regex.*;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.charset.*;
@@ -35,12 +34,14 @@ import java.nio.charset.*;
  * $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 3.3
  */
 final public class CpUtil {
 	private static final String LINESEP = System.getProperty("line.separator");
 	private static final File scData = new File(ReaderUtilities.SCPATH + ReaderUtilities.BILARA_DATA);
+	private static final String metaChars = "\\{}[]()*+?^$";
+	private static final int DEF_MAX = 25;
 
 	private CpUtil() {
 	}
@@ -92,6 +93,11 @@ final public class CpUtil {
 				param = args.length > 2 ? args[2] : "";
 				if (opt.equals("-c") && !param.isEmpty()) {
 					analyzeCharsAndSave(param);
+				} else if (opt.equals("-cf") && !param.isEmpty()) {
+					final int max = args.length > 3
+									? args[3].matches("\\d+") ? Integer.parseInt(args[3]) : DEF_MAX
+									: DEF_MAX;
+					analyzeCharsFullAndSave(param, max);
 				} else {
 					printHelpAndExit();
 				}
@@ -124,24 +130,28 @@ final public class CpUtil {
 		help.append("    save\tAnalyze and save data").append(LINESEP);
 		help.append("        Save options:").append(LINESEP);
 		help.append("        -c <corpus>\tAnalyze character stat in <corpus> and save").append(LINESEP);
+		help.append("        -cf <corpus> [max]\tLike -c but with top max-freq result findings").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Examples:").append(LINESEP);
 		help.append("    1. To list all corpora with full information:").append(LINESEP);
 		help.append("       $ CpUtil list -f").append(LINESEP);
 		help.append("    2. To show the character stat of SuttaCentra collection:").append(LINESEP);
 		help.append("       $ CpUtil show -c sc").append(LINESEP);
-		help.append("    3. To find whether 'f' is unexpectedly used in GRAM, use this:").append(LINESEP);
-		help.append("       $ CpUtil find -c gram f").append(LINESEP);
 		help.append("       (This command will show at most 20 results)").append(LINESEP);
-		help.append("    4. To find whether '^' is unexpectedly present in CSTDEVA, use this:").append(LINESEP);
-		help.append("       $ CpUtil find -c cstdeva '\\^'").append(LINESEP);
-		help.append("       (Regular expression meta characters need to be escaped)").append(LINESEP);
-		help.append("    5. To save the character stat of CSTDEVA collection:").append(LINESEP);
-		help.append("       $ CpUtil save -c cstdeva").append(LINESEP);
+		help.append("    3. To find whether '^' is unexpectedly present in CSTDEVA:").append(LINESEP);
+		help.append("       $ CpUtil find -c cstdeva '^'").append(LINESEP);
+		help.append("    4. To save the character stat of CST4:").append(LINESEP);
+		help.append("       $ CpUtil save -c cst4").append(LINESEP);
+		help.append("    5. To save the character stat with finding results of CSTDEVA:").append(LINESEP);
+		help.append("       (25 occurences maximum by default)").append(LINESEP);
+		help.append("       $ CpUtil save -cf cstdeva").append(LINESEP);
+		help.append("    6. To save the character stat of with finding results of GRAM:").append(LINESEP);
+		help.append("       (10 occurences maximum)").append(LINESEP);
+		help.append("       $ CpUtil save -cf gram 10").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
-		help.append("    to do when you are at the program's root directory:").append(LINESEP);
-		help.append("    Typically, if no launcher script available, this is the way ").append(LINESEP);
+		help.append("    At the program's root directory, if no launcher script available,").append(LINESEP);
+		help.append("    type this at the console: ").append(LINESEP);
 		help.append("    $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil").append(LINESEP);
 		help.append("    (For the SuttaCentral corpus, see also ScUtil.)").append(LINESEP);
 		printLog(help.toString());
@@ -356,16 +366,51 @@ final public class CpUtil {
 		printTime(endTime - startTime);
 	}
 
-	public static String makeProperQuery(final String toFind) {
-		String ok = "";
-		try {
-			Pattern.compile(toFind);
-		} catch (PatternSyntaxException e) {
-			ok = "\\" + toFind.charAt(0);
+	private static void analyzeCharsFullAndSave(final String colStr, final int maxFreq) throws IOException {
+		final long startTime = System.currentTimeMillis();
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
+		final StringBuilder result = new StringBuilder();
+		printLog("Analyzing data...");
+		final String statRes = analyzeChars(colStr);
+		result.append("Character Statistics").append(LINESEP);
+		result.append(statRes).append(LINESEP);
+		printLog("Finding characters...");
+		final String[] lines = statRes.split("\\r?\\n");
+		final List<String> charList = new ArrayList<>();
+		for (final String line : lines) {
+			final String[] res = line.split("\t");
+			if (res.length < 2) continue;
+			final int freq = Integer.parseInt(res[1]);
+			if (freq <= maxFreq) {
+				charList.add(res[0]);
+			} else {
+				break;
+			}
 		}
-		return ok.isEmpty()
-				? toFind.startsWith("\\") ? toFind.substring(0, 2) : toFind
-				: ok;
+		if (!charList.isEmpty()) {
+			result.append(LINESEP);
+			result.append("Top Result Findings (maximum = " + maxFreq + ")").append(LINESEP);
+			printLog("Top characters found (maximum = " + maxFreq + "):");
+			printLog(charList.stream().collect(Collectors.joining(", ")));
+		}
+		for (final String ch : charList) {
+			printLog("Finding " + ch);
+			result.append("Occurences of '" + ch + "'").append(LINESEP);
+			final String findRes = findChar(colStr, ch);
+			result.append(findRes).append(LINESEP).append(LINESEP);
+		}
+		final File outfile = new File(Utilities.OUTPUTPATH + colStr + "-charstatfull.txt");
+		printLog("Writing out " + outfile.getPath());
+		Utilities.saveText(result.toString(), outfile);
+		final long endTime = System.currentTimeMillis();
+		printTime(endTime - startTime);
+	}
+
+	public static String makeProperQuery(final String toFind) {
+		final char first = toFind.charAt(0);
+		return metaChars.indexOf(first) > -1 ? "\\" + first : "" + first;
 	}
 
 	private static String findChar(final File zipfile, final Charset charset, final String query) throws IOException {
@@ -486,7 +531,8 @@ final public class CpUtil {
 			printLog("Invalid corpus name");
 			System.exit(1);
 		}
-		ReaderUtilities.updateCorpusList(true);
+		if (ReaderUtilities.corpusMap == null || ReaderUtilities.corpusMap.isEmpty())
+			ReaderUtilities.updateCorpusList(true);
 		final Corpus cp = ReaderUtilities.corpusMap.get(col);
 		final String query = makeProperQuery(toFind);
 		String result = "";

@@ -46,18 +46,18 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.4
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
 	protected final BorderPane textPane = new BorderPane();
 	protected final ViewerToolBar toolBar;
 	protected Stage theStage;
-	protected String pageBody;
 	protected final SimpleFindBox findBox = new SimpleFindBox(this);
 	private final TextField findInput = findBox.getFindTextField();
 	protected String viewerTheme;
-	boolean isBW = false;
+//~ 	boolean isBW = false;
+	Utilities.Style style = Utilities.Style.COLOR1;
 	protected final SimpleObjectProperty<Utilities.PaliScript> displayScript = new SimpleObjectProperty<>(Utilities.PaliScript.ROMAN);
 	private final SimpleBooleanProperty searchTextFound = new SimpleBooleanProperty(false);
 	protected final SimpleStringProperty clickedText = new SimpleStringProperty("");
@@ -220,13 +220,13 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		setTheme();
 	}
 	
-	public void setViewerTheme(boolean bw) {
-		isBW = bw;
+	public void setViewerTheme(final Utilities.Style stl) {
+		style = stl;
 		setTheme();
 	}
 	
 	private void setTheme() {
-		final String command = "setThemeBW('" + viewerTheme + "'," + (isBW ? 1 : 0) + ");";
+		final String command = "setViewerTheme('" + viewerTheme + "'," + style.ordinal() + ");";
 		webEngine.executeScript(command);
 	}
 	

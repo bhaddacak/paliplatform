@@ -42,7 +42,12 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
-2025, Nove 6
+2025, Nov 12
+⊚ Base version 3.3.1 released
+⊚ Several fixes and improvements
+⊚ Experiment with viewer style
+
+2025, Nov 6
 ⊚ Base version 3.3.0 released
 ⊚ Integration of CST Devanāgarī base XMLs
 ⊚ CpUtil (Corpus Utilities) added

@@ -1,7 +1,7 @@
 /*
  * DpdUtil.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import com.google.gson.Gson;
  * $ java -p modules -m paliplatform.dpd/paliplatform.dpd.DpdUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.3
  * @since 3.0
  */
 final public class DpdUtil {
@@ -78,8 +78,8 @@ final public class DpdUtil {
 		help.append("        -v\tShow DPD database version").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
-		help.append("    Typically, if no launcher script available, this is the way ").append(LINESEP);
-		help.append("    to do when you are at the program's root directory:").append(LINESEP);
+		help.append("    At the program's root directory, if no launcher script available,").append(LINESEP);
+		help.append("    type this at the console: ").append(LINESEP);
 		help.append("    $ java -p modules -m paliplatform.dpd/paliplatform.dpd.DpdUtil").append(LINESEP);
 		printLog(help.toString());
 		System.exit(0);

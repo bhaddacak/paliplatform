@@ -1,7 +1,7 @@
 /*
  * pali-viewer.js
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,30 +96,29 @@ function toNonRoman(lang, alsoNumber, useThAlt, isLinux) {
 	}
 	document.body = workingBody;
 }
-function setThemeBW(theme, isBW) {
+function setViewerTheme(theme, style) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
-	const bw = isBW?'BW':'';
-	document.body.style.color = themeObj['color' + bw];
-	document.body.style.background = themeObj['background' + bw];
+	document.body.style.color = themeObj['color' + style];
+	document.body.style.background = themeObj['background' + style];
 	const blocks = document.getElementsByTagName('blockquote');
 	for(const e of blocks) {
-		e.style.background = themeObj['blockBG' + bw];
+		e.style.background = themeObj['blockBG' + style];
 	}
 	const notes = document.getElementsByClassName('note');
 	for(const e of notes) {
-		e.style.color = themeObj['noteColor' + bw];
+		e.style.color = themeObj['noteColor' + style];
 	}
 	const trans = document.getElementsByClassName('sc-translation');
 	for(const e of trans) {
-		e.style.color = themeObj['transColor' + bw];
+		e.style.color = themeObj['transColor' + style];
 	}
 	const comms = document.getElementsByClassName('sc-comment');
 	for(const e of comms) {
-		e.style.color = themeObj['commentColor' + bw];
+		e.style.color = themeObj['commentColor' + style];
 	}
 	const refs = document.getElementsByClassName('sc-reference');
 	for(const e of refs) {
-		e.style.color = themeObj['referenceColor' + bw];
+		e.style.color = themeObj['referenceColor' + style];
 	}
 }
 function setLineHeight(percent) {

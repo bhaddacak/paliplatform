@@ -18,41 +18,73 @@
  */
 
 // data definition
-const darkThemeObj = {
-	"color": "#dfdfdf",
-	"background": "#1f1f1f",
-	"blockBG": "#404040",
-	"noteColor": "lightblue",
-	"xrefColor": "#E9AA0E",
-	"transColor": "royalblue",
-	"commentColor": "darksalmon",
-	"referenceColor": "brown",
-	"colorBW": "white",
-	"backgroundBW": "black",
-	"blockBGBW": "black",
-	"noteColorBW": "white",
-	"xrefColorBW": "white",
-	"transColorBW": "white",
-	"commentColorBW": "white",
-	"referenceColorBW": "white"
-};
 const lightThemeObj = {
-	"color": "#1f1f1f",
-	"background": "#e0e0e0",
-	"blockBG": "#808080",
-	"noteColor": "blue",
-	"xrefColor": "#8B6914",
-	"transColor": "midnightblue",
-	"commentColor": "saddlebrown",
-	"referenceColor": "maroon",
-	"colorBW": "black",
-	"backgroundBW": "white",
-	"blockBGBW": "white",
-	"noteColorBW": "black",
-	"xrefColorBW": "black",
-	"transColorBW": "black",
-	"commentColorBW": "black",
-	"referenceColorBW": "black"
+	"color0": "black",
+	"background0": "white",
+	"blockBG0": "white",
+	"noteColor0": "black",
+	"xrefColor0": "black",
+	"transColor0": "black",
+	"commentColor0": "black",
+	"referenceColor0": "black",
+	"color1": "#1f1f1f",
+	"background1": "#e0e0e0",
+	"blockBG1": "#808080",
+	"noteColor1": "blue",
+	"xrefColor1": "#8B6914",
+	"transColor1": "midnightblue",
+	"commentColor1": "saddlebrown",
+	"referenceColor1": "maroon",
+	"color2": "#1f1f1f",
+	"background2": "#fafacf",
+	"blockBG2": "#808080",
+	"noteColor2": "blue",
+	"xrefColor2": "#8B6914",
+	"transColor2": "midnightblue",
+	"commentColor2": "saddlebrown",
+	"referenceColor2": "maroon",
+	"color3": "#1f1f1f",
+	"background3": "#cff3fa",
+	"blockBG3": "#808080",
+	"noteColor3": "blue",
+	"xrefColor3": "#8B6914",
+	"transColor3": "midnightblue",
+	"commentColor3": "saddlebrown",
+	"referenceColor3": "maroon"
+};
+const darkThemeObj = {
+	"color0": "white",
+	"background0": "black",
+	"blockBG0": "black",
+	"noteColor0": "white",
+	"xrefColor0": "white",
+	"transColor0": "white",
+	"commentColor0": "white",
+	"referenceColor0": "white",
+	"color1": "#dfdfdf",
+	"background1": "#1f1f1f",
+	"blockBG1": "#404040",
+	"noteColor1": "lightblue",
+	"xrefColor1": "#E9AA0E",
+	"transColor1": "royalblue",
+	"commentColor1": "darksalmon",
+	"referenceColor1": "brown",
+	"color2": "#dfdfdf",
+	"background2": "#151502",
+	"blockBG2": "#404040",
+	"noteColor2": "lightblue",
+	"xrefColor2": "#E9AA0E",
+	"transColor2": "royalblue",
+	"commentColor2": "darksalmon",
+	"referenceColor2": "brown",
+	"color3": "#dfdfdf",
+	"background3": "#031519",
+	"blockBG3": "#404040",
+	"noteColor3": "lightblue",
+	"xrefColor3": "#E9AA0E",
+	"transColor3": "royalblue",
+	"commentColor3": "darksalmon",
+	"referenceColor3": "brown"
 };
 // functions
 function setFont(fontnameJson) {
@@ -66,8 +98,8 @@ function setFont(fontnameJson) {
 }
 function setThemeCommon(theme) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
-	document.body.style.color = themeObj['color'];
-	document.body.style.background = themeObj['background'];
+	document.body.style.color = themeObj['color1'];
+	document.body.style.background = themeObj['background1'];
 }
 function copySelection() {
 	const sel = window.getSelection();
