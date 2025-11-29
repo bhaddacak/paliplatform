@@ -145,30 +145,47 @@ final public class Utilities {
 		}
 	}
 	public static enum PaliScript {
-		UNKNOWN, ROMAN, DEVANAGARI, KHMER, MYANMAR, SINHALA, THAI;
+		UNKNOWN, ROMAN, DEVANAGARI, KHMER, MYANMAR, SINHALA, THAI; // initials have to be unique
 		public static final PaliScript[] scripts = values();
+		private static final Set<String> validNames = Set.of(
+				ROMAN.toString(), DEVANAGARI.toString(), KHMER.toString(),
+				MYANMAR.toString(), SINHALA.toString(), THAI.toString());
+		private static String[] cstAbbrs = { "uknw", "latn", "deva", "khmr", "mymr", "sinh", "thai" };
 		public String getName() {
 			final String name = this.toString();
 			return name.charAt(0) + name.substring(1).toLowerCase();
 		}
+		public String getCstAbbr() {
+			return cstAbbrs[this.ordinal()];
+		}
 		public static PaliScript fromName(final String name) {
-			final Set<String> validNames = Set.of("ROMAN", "DEVANAGARI", "KHMER", "MYANMAR", "SINHALA", "THAI");
 			final String nameUpper = name.toUpperCase();
 			if (validNames.contains(nameUpper))
 				return PaliScript.valueOf(nameUpper);
 			else
 				return UNKNOWN;
 		}
+		public static PaliScript fromInitial(final char init) {
+			final String initUpper = Character.toUpperCase(init) + "";
+			PaliScript result = UNKNOWN;
+			for (final String name : validNames) {
+				if (name.startsWith(initUpper)) {
+					result = PaliScript.valueOf(name);
+					break;
+				}
+			}
+			return result;
+		}
 	}
 	public static enum Theme {
 		LIGHT, DARK
 	}
 	public static enum Style {
-		MONO, COLOR1, COLOR2, COLOR3; // order matters
+		MONO, NOBG, GRAY, PINK, YELLOW, BLUE, GREEN; // order matters, see viewer-common.js
 		public static final Style[] values = values();
+		private static final String[] names = { "Black and white", "No background", "Gray", "Pink", "Yellow", "Blue", "Green" };
 		public String getName() {
-			final String name = this.toString();
-			return name.charAt(0) + name.substring(1).toLowerCase();
+			return names[this.ordinal()];
 		}
 	}
 	public static enum IconSize {
@@ -486,23 +503,23 @@ final public class Utilities {
 					externalFontMap.get(PaliScript.ROMAN).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.devaConsonants, 0, PaliCharTransformer.devaConsonants.length)) {
+				if (-1 == font.canDisplayUpTo(ScriptTransliterator.devaConsonants, 0, ScriptTransliterator.devaConsonants.length)) {
 					externalFontMap.get(PaliScript.DEVANAGARI).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.khmerConsonants, 0, PaliCharTransformer.khmerConsonants.length)) {
+				if (-1 == font.canDisplayUpTo(ScriptTransliterator.khmerConsonants, 0, ScriptTransliterator.khmerConsonants.length)) {
 					externalFontMap.get(PaliScript.KHMER).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.myanmarConsonants, 0, PaliCharTransformer.myanmarConsonants.length)) {
+				if (-1 == font.canDisplayUpTo(ScriptTransliterator.myanmarConsonants, 0, ScriptTransliterator.myanmarConsonants.length)) {
 					externalFontMap.get(PaliScript.MYANMAR).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.sinhalaConsonants, 0, PaliCharTransformer.sinhalaConsonants.length)) {
+				if (-1 == font.canDisplayUpTo(ScriptTransliterator.sinhalaConsonants, 0, ScriptTransliterator.sinhalaConsonants.length)) {
 					externalFontMap.get(PaliScript.SINHALA).add(font.getFamily());
 					doLoad = true;
 				}
-				if (-1 == font.canDisplayUpTo(PaliCharTransformer.thaiConsonants, 0, PaliCharTransformer.thaiConsonants.length)) {
+				if (-1 == font.canDisplayUpTo(ScriptTransliterator.thaiConsonants, 0, ScriptTransliterator.thaiConsonants.length)) {
 					externalFontMap.get(PaliScript.THAI).add(font.getFamily());
 					doLoad = true;
 				}
@@ -745,8 +762,8 @@ final public class Utilities {
 		final String text = input.trim();
 		if (text.isEmpty())
 			return PaliScript.ROMAN;
-		final String specimen = text.length() > 100?text.substring(0, 100):text;
-		final int totalLen = specimen.length();
+		final String specimen = text.length() > 100 ? text.substring(0, 100) : text;
+		final long totalLen = specimen.chars().filter(x -> " \t\n\r\f".indexOf(x) > -1).count();
 		final PaliScript result;
 		int romanCount = 0;
 		int thaiCount = 0;
@@ -775,7 +792,10 @@ final public class Utilities {
 		hitCount.put(myanmarCount, PaliScript.MYANMAR);
 		hitCount.put(sinhalaCount, PaliScript.SINHALA);
 		hitCount.put(devaCount, PaliScript.DEVANAGARI);
-		final List<Integer> max = hitCount.keySet().stream().sorted((x, y)->Integer.compare(y, x)).limit(1).collect(Collectors.toList());
+		final List<Integer> max = hitCount.keySet().stream()
+									.sorted((x, y) -> Integer.compare(y, x))
+									.limit(1)
+									.collect(Collectors.toList());
 		final int maxScore = max != null && !max.isEmpty() ? max.get(0) : 0;
 		if (maxScore > totalLen/2.0)
 			result = hitCount.get(maxScore);
@@ -947,12 +967,16 @@ final public class Utilities {
 		return outfile;
 	}
 
-	public static void saveText(final String text, final File file) {
-		try (final BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8))) {
+	public static void saveText(final String text, final File file, final Charset charset) {
+		try (final BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), charset))) {
 			out.write(text, 0, text.length());
 		} catch (IOException e) {
 			System.err.println(e);
 		}			
+	}
+	
+	public static void saveText(final String text, final File file) {
+		saveText(text, file, StandardCharsets.UTF_8);
 	}
 	
 	public static File saveCSV(final List<String[]> text, final String filename) {
@@ -1338,6 +1362,25 @@ final public class Utilities {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
+	}
+
+	public static String findZipEntryName(final File filezip, final String filename) {
+		// only find the first entry name ending with the given filename
+		String result = filename;
+		try {
+			final java.util.zip.ZipFile zip = new java.util.zip.ZipFile(filezip);
+			for (Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+				final String entryName = e.nextElement().getName();
+				if (entryName.endsWith(filename)) {
+					result = entryName;
+					break;
+				}
+			}
+			zip.close();
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+		return result;
 	}
 
 	public static String MD5Sum(final String text) {

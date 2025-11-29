@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
 final public class PaliPlatform extends Application {
@@ -112,11 +112,14 @@ final public class PaliPlatform extends Application {
 		// initialize font map
 		Utilities.initializeFontMap();
 
-		// intialize comparator
+		// initialize comparator
 		Utilities.initializeComparator();
 		
-		// intialize StringConverter
+		// initialize StringConverter
 		Utilities.initializeStringConverter();
+
+		// initialize ScriptTransliterator
+		ScriptTransliterator.initializeTransliterator();
 
 		// prepare info popup
 		infoPopup = new InfoPopup();
@@ -162,7 +165,7 @@ final public class PaliPlatform extends Application {
 		editorTab.setClosable(false);
 		final TextIcon editorIcon = new TextIcon("pencil", TextIcon.IconSet.AWESOME);
 		editorTab.setGraphic(editorIcon);
-		final Object[] editorArgs = {"ROMAN"};
+		final Object[] editorArgs = {""};
 		editorTab.setContent(new PaliTextEditor(editorArgs));
 		persisTabs.put(Utilities.WindowType.EDITOR, editorTab);
 
@@ -353,21 +356,11 @@ final public class PaliPlatform extends Application {
 							}
 						} else if (args[0] instanceof String) {
 							// open with specified content
-							final String strScript = (String)args[0];
-							if (strScript.isEmpty()) {
-								// open a file
-								if (editor.openFile()) {
-									editor.resetFont();
-									Utilities.showExistingWindow(stg);
-								}
-							} else {
-								final Utilities.PaliScript script = Utilities.PaliScript.valueOf(strScript);
-								editor.clearEditor(script);
-								final String content = args.length<2 ? "" : (String)args[1];
-								editor.setContent(content);
-								editor.setupFontMenu();
-								Utilities.showExistingWindow(stg);
-							}
+							final String content = (String)args[0];
+							editor.clearEditor();
+							editor.setContent(content);
+							editor.setupFontMenu();
+							Utilities.showExistingWindow(stg);
 						}
 					}
 				}

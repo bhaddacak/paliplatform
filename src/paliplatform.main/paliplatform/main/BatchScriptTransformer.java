@@ -1,7 +1,7 @@
 /*
  * BatchScriptTransformer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ import javafx.beans.property.*;
  * This utility converts files containing a Pali script to another script.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class BatchScriptTransformer extends SingletonWindow {
@@ -123,7 +123,7 @@ public class BatchScriptTransformer extends SingletonWindow {
 		includeNumButton.setAllowIndeterminate(false);
 		includeNumButton.setTooltip(new Tooltip("Including numbers on/off"));
 		includeNumButton.setSelected(true);
-		includeNumButton.setOnAction(actionEvent -> PaliCharTransformer.setIncludingNumbers(includeNumButton.isSelected()));
+		includeNumButton.setOnAction(actionEvent -> ScriptTransliterator.setIncludingNumbers(includeNumButton.isSelected()));
 		final Button convertButton = new Button("Convert", new TextIcon("gears", TextIcon.IconSet.AWESOME));
 		convertButton.setOnAction(actionEvent -> startConvert());
 		toolBar.getItems().addAll(removeButton, clearButton, resetButton, 
@@ -377,35 +377,33 @@ public class BatchScriptTransformer extends SingletonWindow {
 						srcText = Utilities.normalizeNiggahita(srcText, true);
 						switch (Utilities.PaliScript.valueOf(targetScriptProperty().get())) {
 							case DEVANAGARI:
-								tgtText = PaliCharTransformer.romanToDevanagari(srcText);
+								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_DEVA);
 								break;
 							case KHMER:
-								tgtText = PaliCharTransformer.romanToKhmer(srcText);
+								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_KHMER);
 								break;
 							case MYANMAR:
-								tgtText = PaliCharTransformer.romanToMyanmarStraight(srcText);
+								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
 								break;
 							case SINHALA:
-								tgtText = PaliCharTransformer.romanToSinhala(srcText);
+								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_SINHALA);
 								break;
 							case THAI:
-								tgtText = PaliCharTransformer.romanToThai(srcText);
+								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_THAI);
 								break;
 						}
 					} else {
 						if (Utilities.PaliScript.ROMAN.toString().equals(targetScriptProperty().get())) {
 							switch (Utilities.PaliScript.valueOf(sourceScriptProperty().get())) {
 								case DEVANAGARI:
-									tgtText = PaliCharTransformer.devanagariToRoman(srcText);
+									tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON);
 									break;
 								case KHMER:
-									tgtText = PaliCharTransformer.khmerToRoman(srcText);
 									break;
 								case SINHALA:
-									tgtText = PaliCharTransformer.sinhalaToRoman(srcText);
 									break;
 								case THAI:
-									tgtText = PaliCharTransformer.thaiToRoman(srcText);
+									tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.THAI_ROMAN);
 									break;
 							}
 						}

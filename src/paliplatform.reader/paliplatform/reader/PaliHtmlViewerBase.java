@@ -56,8 +56,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	protected final SimpleFindBox findBox = new SimpleFindBox(this);
 	private final TextField findInput = findBox.getFindTextField();
 	protected String viewerTheme;
-//~ 	boolean isBW = false;
-	Utilities.Style style = Utilities.Style.COLOR1;
+	Utilities.Style style = Utilities.Style.GRAY;
 	protected final SimpleObjectProperty<Utilities.PaliScript> displayScript = new SimpleObjectProperty<>(Utilities.PaliScript.ROMAN);
 	private final SimpleBooleanProperty searchTextFound = new SimpleBooleanProperty(false);
 	protected final SimpleStringProperty clickedText = new SimpleStringProperty("");
@@ -376,7 +375,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		if (!text.isEmpty()) {
 			final SimpleService editor = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 			if (editor != null) {
-				final Object[] args = { displayScript.get().toString(), text };
+				final Object[] args = { text };
 				editor.processArray(args);
 			}
 		}
@@ -387,7 +386,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		if (!text.isEmpty()) {
 			final SimpleService editor = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 			if (editor != null) {
-				final Object[] args = { displayScript.get().toString(), Utilities.addComputedMeters(text) };
+				final Object[] args = { Utilities.addComputedMeters(text) };
 				editor.processArray(args);
 			}
 		}

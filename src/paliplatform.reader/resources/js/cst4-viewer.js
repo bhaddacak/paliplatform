@@ -47,6 +47,6 @@ function setXrefColor(theme, style) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
 	const xrefs = document.getElementsByClassName('xref');
 	for(const e of xrefs) {
-		e.style.color = themeObj['xrefColor' + style];
+		e.style.color = themeObj.xrefColor[style];
 	}	
 }

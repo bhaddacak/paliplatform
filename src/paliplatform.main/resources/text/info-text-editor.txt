@@ -1,0 +1,13 @@
+Text editor guide
+	1. The editor does not have ability to hold large data. So, avoid loading a big file, otherwise the program will be unresponsive.
+	2. The menu Tools is meant to be used with text in Roman script. Using with other scripts may cause unexpected results.
+	3. Script transliteration can be done with any source script to any target script. The source script can be auto-detected.
+	4. There are options for target Roman script, i.e., ISO 15919, IAST, Pāli Common, Least Contamination, and Roman Unique.
+	   - ISO 15919 follows the standard mostly (marked by ē, ō, ṁ, r̥, r̥̄, etc.).
+	   - IAST uses ṃ instead of ṁ, and the consonant ḻ (ḷ is a vowel).
+	   - Pāli Common uses ṃ and the consonant ḷ (unsuitable for Sanskrit).
+	   - Least Contamination is like Pāli Common but symbols are retained visually. This can convert Pāli text back and forth among scripts with 100% accuracy. But this is unsuitable for Sanskrit (feasible but with unfamiliarity).
+	   - Roman Unique is like Least but the consonant ḻ is used instead of ḷ (also, as Least, ē = ai and ō = au). This format is mainly used internally in the program, but it may be used with Sanskrit text in case symbols need to be retained.
+	5. When source text is Roman Sanskrit, the option 'Roman as Sanskrit' should be checked. The confusion can be from ḷ and ḻ, and the vowels ai and au. Working with Sanskrit text, using IAST is the best option.
+	6. Note that when converting from Devanagari to other scripts back and forth, some symbols are lost (depending on scripts), i.e. Daṇḍas, Avagraha, and Abbreviation sign. Least and Unique are the only two ways to retain such symbols.
+

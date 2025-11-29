@@ -19,6 +19,9 @@
 package paliplatform.reader;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.PaliScript;
+import paliplatform.base.ScriptTransliterator;
+import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
 import java.util.stream.*;
@@ -55,8 +58,19 @@ final public class CpUtil {
 		switch (args[0]) {
 			case "list":
 				opt = args.length > 1 ? args[1] : "";
+				param = args.length > 2 ? args[2] : "";
 				if (opt.equals("-f")) {
 					showFullInfo();
+//~ 				} else if (opt.equals("-t")) {
+//~ 					showAvailTranslit();
+				} else if (opt.equals("-l") && !param.isEmpty()) {
+					final long startTime = System.currentTimeMillis();
+					if (param.equalsIgnoreCase("sc"))
+						printLog("For SuttaCentral, please use ScUtil instead");
+					else
+						printLog(getFileList(param.toLowerCase()));
+					final long endTime = System.currentTimeMillis();
+					printTime(endTime - startTime);
 				} else {
 					showBriefInfo();
 				}
@@ -91,16 +105,27 @@ final public class CpUtil {
 			case "save":
 				opt = args.length > 1 ? args[1] : "";
 				param = args.length > 2 ? args[2] : "";
-				if (opt.equals("-c") && !param.isEmpty()) {
+				if (opt.equals("-l") && !param.isEmpty()) {
+					if (param.equalsIgnoreCase("sc"))
+						printLog("For SuttaCentral, please use ScUtil instead");
+					else
+						saveFileList(param.toLowerCase());
+				} else if (opt.equals("-c") && !param.isEmpty()) {
 					analyzeCharsAndSave(param);
 				} else if (opt.equals("-cf") && !param.isEmpty()) {
 					final int max = args.length > 3
 									? args[3].matches("\\d+") ? Integer.parseInt(args[3]) : DEF_MAX
 									: DEF_MAX;
 					analyzeCharsFullAndSave(param, max);
+				} else if (opt.matches("-t.") && !param.isEmpty()) {
+					final char langCode = opt.charAt(2);
+					final String filename = args.length > 3 ? args[3] : "";
+					saveTransliterated(param, filename, langCode);
 				} else {
 					printHelpAndExit();
 				}
+				break;
+			case "test":
 				break;
 			default:
 				printHelpAndExit();
@@ -119,8 +144,10 @@ final public class CpUtil {
 		help.append("  Commands:").append(LINESEP);
 		help.append("    list\tShow information of corpora").append(LINESEP);
 		help.append("        List options:").append(LINESEP);
-		help.append("        -f\tShow full information").append(LINESEP);
-		help.append("        <none>\tShow brief information").append(LINESEP);
+		help.append("        -l <corpus>\tShow file list of <corpus>").append(LINESEP);
+		help.append("        -t\tShow available transliteration methods").append(LINESEP);
+		help.append("        -f\tShow full information of collections").append(LINESEP);
+		help.append("        <none>\tShow brief information of collections").append(LINESEP);
 		help.append("    show\tShow some analyses").append(LINESEP);
 		help.append("        Show options:").append(LINESEP);
 		help.append("        -c <corpus>\tAnalyze character stat in <corpus>").append(LINESEP);
@@ -129,8 +156,19 @@ final public class CpUtil {
 		help.append("        -c <corpus> <ch>\tFind a character in <corpus>").append(LINESEP);
 		help.append("    save\tAnalyze and save data").append(LINESEP);
 		help.append("        Save options:").append(LINESEP);
+		help.append("        -l <corpus>\tSave file list of <corpus>").append(LINESEP);
 		help.append("        -c <corpus>\tAnalyze character stat in <corpus> and save").append(LINESEP);
 		help.append("        -cf <corpus> [max]\tLike -c but with top max-freq result findings").append(LINESEP);
+		help.append("        -tr <corpus> <files>\tSave <files> to Roman script (Pali Common)").append(LINESEP);
+		help.append("        -ti <corpus> <files>\tSave <files> to Roman script (ISO 15919)").append(LINESEP);
+		help.append("        -ta <corpus> <files>\tSave <files> to Roman script (IAST)").append(LINESEP);
+		help.append("        -tl <corpus> <files>\tSave <files> to Roman script (Least)").append(LINESEP);
+		help.append("        -tu <corpus> <files>\tSave <files> to Roman script (Unique)").append(LINESEP);
+		help.append("        -td <corpus> <files>\tSave <files> to Devanagari script").append(LINESEP);
+		help.append("        -tk <corpus> <files>\tSave <files> to Khmer script").append(LINESEP);
+		help.append("        -tm <corpus> <files>\tSave <files> to Myanmar script").append(LINESEP);
+		help.append("        -ts <corpus> <files>\tSave <files> to Sinhala script").append(LINESEP);
+		help.append("        -tt <corpus> <files>\tSave <files> to Thai script").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Examples:").append(LINESEP);
 		help.append("    1. To list all corpora with full information:").append(LINESEP);
@@ -140,6 +178,7 @@ final public class CpUtil {
 		help.append("       (This command will show at most 20 results)").append(LINESEP);
 		help.append("    3. To find whether '^' is unexpectedly present in CSTDEVA:").append(LINESEP);
 		help.append("       $ CpUtil find -c cstdeva '^'").append(LINESEP);
+		help.append("       (No escaping required)").append(LINESEP);
 		help.append("    4. To save the character stat of CST4:").append(LINESEP);
 		help.append("       $ CpUtil save -c cst4").append(LINESEP);
 		help.append("    5. To save the character stat with finding results of CSTDEVA:").append(LINESEP);
@@ -148,12 +187,37 @@ final public class CpUtil {
 		help.append("    6. To save the character stat of with finding results of GRAM:").append(LINESEP);
 		help.append("       (10 occurences maximum)").append(LINESEP);
 		help.append("       $ CpUtil save -cf gram 10").append(LINESEP);
-		help.append("  Notes:").append(LINESEP);
-		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
-		help.append("    At the program's root directory, if no launcher script available,").append(LINESEP);
-		help.append("    type this at the console: ").append(LINESEP);
-		help.append("    $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil").append(LINESEP);
-		help.append("    (For the SuttaCentral corpus, see also ScUtil.)").append(LINESEP);
+		help.append("    7. To show file list in CSTDEVA:").append(LINESEP);
+		help.append("       $ CpUtil list -l cstdeva").append(LINESEP);
+		help.append("    8. To save Visuddhimagga 1 in CSTDEVA to common Roman:").append(LINESEP);
+		help.append("       $ CpUtil save -tr cstdeva e0101n.mul").append(LINESEP);
+		help.append("       (File extension can be omitted)").append(LINESEP);
+		help.append("    9. To save all mūla Vinaya of CST4 to Devanagari:").append(LINESEP);
+		help.append("       $ CpUtil save -td cst4 vin*mul").append(LINESEP);
+		help.append("       (Wildcards, ? and *, can be used for multiple input)").append(LINESEP);
+		help.append("   10. To save MN10 of SuttaCentral to Devanagari:").append(LINESEP);
+		help.append("       $ CpUtil save -td sc mn10").append(LINESEP);
+		help.append("       (Only SC needs an exact text ID, one file at a time)").append(LINESEP);
+		help.append("  Technical notes:").append(LINESEP);
+		help.append("    1. IAST here uses ṃ (m dot below) not ṁ (m dot above),").append(LINESEP);
+		help.append("       but uses ḻ (l line below) as a consonant, not ḷ (l dot below),").append(LINESEP);
+		help.append("       because the latter stands for a Sanskrit vowel.").append(LINESEP);
+		help.append("    2. Pāli Common also uses ṃ (m dot below), also ḷ (l dot below)").append(LINESEP);
+		help.append("       as a consonant. This transliteration is commonly used for Pāli.").append(LINESEP);
+		help.append("       Moreover, ṛ, ṝ, ḷ, and ḹ are also used as Sanskrit vowels.").append(LINESEP);
+		help.append("       Hence, the method can be ambiguous when used with Sanskrit.").append(LINESEP);
+		help.append("    3. Least Contamination method is like Pāli Common but retains").append(LINESEP);
+		help.append("       Devanagari symbols visually. This guarantees 100% reversibility").append(LINESEP);
+		help.append("       for Pali, but possibly unsuitable for Sanskrit.").append(LINESEP);
+		help.append("    4. Roman Unique is like Least Contamination, but ḻ (l line below)").append(LINESEP);
+		help.append("       is used instead. This makes Sanskrit 100% reversible.").append(LINESEP);
+		help.append("    5. Converting from Roman to other scripts does not suppose").append(LINESEP);
+		help.append("       ISO nor IAST input. Only Pali is guaranteed.").append(LINESEP);
+		help.append("    6. To invoke the program, the Java convention has to be used.").append(LINESEP);
+		help.append("       At the program's root directory, if no launcher script available,").append(LINESEP);
+		help.append("       type this at the console: ").append(LINESEP);
+		help.append("       $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil").append(LINESEP);
+		help.append("       (For the SuttaCentral corpus, see also ScUtil.)").append(LINESEP);
 		printLog(help.toString());
 		System.exit(0);
 	}
@@ -164,6 +228,15 @@ final public class CpUtil {
 
 	private static void printTime(final long msec) {
 		printLog(String.format("Done in %.3f seconds", msec/1000.0));
+	}
+
+	private static Corpus.Collection getCollection(final String colStr) {
+		final Corpus.Collection col = Corpus.Collection.idMap.get(colStr);
+		if (col == null) {
+			printLog("Error: Invalid corpus name");
+			System.exit(1);
+		}
+		return col;
 	}
 
 	private static void showBriefInfo() {
@@ -215,6 +288,51 @@ final public class CpUtil {
 		}
 		final long endTime = System.currentTimeMillis();
 		printTime(endTime - startTime);
+	}
+
+	private static String getFileList(final String colStr) throws IOException {
+		final Corpus.Collection col = getCollection(colStr);
+		ReaderUtilities.updateCorpusList(true);
+		final Corpus cp = ReaderUtilities.corpusMap.get(col);
+		final Collection<DocumentInfo> docinfos = cp.getDocInfoMap().values();
+		String result = "";
+		switch (col) {
+			case CSTR:
+			case CSTDEVA:
+			case SRT:
+				result = docinfos.stream()
+							.map(x -> x.getFileNameWithExt() + ": " + x.getTextName())
+							.collect(Collectors.joining(LINESEP));
+				break;
+			case CST4:
+			case BJT:
+			case PTST:
+			case GRAM:
+				result = docinfos.stream()
+							.map(x -> {
+								final String fname = x.getFileNameWithExt();
+								final String fnameOK = fname.substring(fname.lastIndexOf("/") + 1);
+								return fnameOK + ": " + x.getTextName();
+							})
+							.collect(Collectors.joining(LINESEP));
+				break;
+		}
+		result = result + LINESEP + docinfos.size() + " files listed";
+		return result;
+	}
+
+	private static void saveFileList(final String colStr) throws IOException {
+		final long startTime = System.currentTimeMillis();
+		final String filelist = getFileList(colStr);
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
+		final File outfile = new File(Utilities.OUTPUTPATH + colStr + "-filelist.txt");
+		printLog("Writing out " + outfile.getPath());
+		Utilities.saveText(filelist, outfile);
+		final long endTime = System.currentTimeMillis();
+		printTime(endTime - startTime);
+
 	}
 
 	private static String analyzeChars(final File zipfile, final Charset charset) throws IOException {
@@ -319,11 +437,7 @@ final public class CpUtil {
 	}
 
 	private static String analyzeChars(final String colStr) throws IOException {
-		final Corpus.Collection col = Corpus.Collection.idMap.get(colStr);
-		if (col == null) {
-			printLog("Invalid corpus name");
-			System.exit(1);
-		}
+		final Corpus.Collection col = getCollection(colStr);
 		ReaderUtilities.updateCorpusList(true);
 		final Corpus cp = ReaderUtilities.corpusMap.get(col);
 		String result = "";
@@ -526,11 +640,7 @@ final public class CpUtil {
 	}
 
 	private static String findChar(final String colStr, final String toFind) throws IOException {
-		final Corpus.Collection col = Corpus.Collection.idMap.get(colStr);
-		if (col == null) {
-			printLog("Invalid corpus name");
-			System.exit(1);
-		}
+		final Corpus.Collection col = getCollection(colStr);
 		if (ReaderUtilities.corpusMap == null || ReaderUtilities.corpusMap.isEmpty())
 			ReaderUtilities.updateCorpusList(true);
 		final Corpus cp = ReaderUtilities.corpusMap.get(col);
@@ -556,6 +666,130 @@ final public class CpUtil {
 				break;
 			case SC:
 				result = ScUtil.findChar(scData, query);
+				break;
+		}
+		return result;
+	}
+
+//~ 	private static void showAvailTranslit() {
+//~ 		for (final EngineType eng : EngineType.engines) {
+//~ 			printLog((eng.ordinal() + 1) + ". " + eng.getName());
+//~ 			printLog("   From: " + eng.getSourceScript().getName() + ", To: " + eng.getTargetScript().getName());
+//~ 		}
+//~ 	}
+
+	private static void saveTransliterated(final String colStr, final String filename, final char lang) throws Exception {
+		final Corpus.Collection col = getCollection(colStr);
+		if (col == Corpus.Collection.PTST) {
+			printLog("Error: The operation has not been implemented");
+			System.exit(1);
+		}
+		if (filename.isEmpty()) {
+			printLog("Error: File not given");
+			System.exit(1);
+		}
+		final long startTime = System.currentTimeMillis();
+		ReaderUtilities.updateCorpusList(true);
+		final Corpus cp = ReaderUtilities.corpusMap.get(col);
+		final Collection<DocumentInfo> docinfos = cp.getDocInfoMap().values();
+		final String bareFilename = filename.matches(".*(\\.xml|\\.gz|\\.htm|\\.txt|\\.json)$")
+									? filename.substring(0, filename.lastIndexOf("."))
+									: filename;
+		final List<String> fileList;
+		if (col == Corpus.Collection.SC) {
+			fileList = List.of(filename + "_root-pli-ms.json");
+		} else {
+			final String regexFilename = ".*" + bareFilename.replace(".", "\\.").replace('?', '.').replace("*", ".*") + "$";
+			fileList = docinfos.stream()
+						.map(DocumentInfo::getFileNameWithExt)
+						.filter(x -> {
+							final String bare = x.substring(0, x.lastIndexOf("."));
+							return bare.matches(regexFilename);
+						})
+						.collect(Collectors.toList());
+		}
+		if (fileList.isEmpty()) {
+			printLog("Error: File not found");
+			System.exit(1);
+		} else {
+			final PaliScript sourceScript = cp.getScript();
+			final char srcInit = Character.toLowerCase(sourceScript.toString().charAt(0));
+			final String engineCode = Character.toString(srcInit) + Character.toString(lang);
+			final EngineType engine = EngineType.fromCode(engineCode);
+			if (engine == null) {
+				printLog("Error: Unsupported transliteration method");
+				System.exit(1);
+			}
+			final String targetScript = engine.getTargetScript().getName();
+			ScriptTransliterator.initializeTransliterator();
+			printLog("Converting " + sourceScript.getName() + " to " + targetScript + " (" + engine.getName() + ")");
+			for (final String file : fileList) {
+				String outputFilename = file;
+				boolean doProceed = false;
+				boolean xslFixed = false;
+				int slashPos = file.lastIndexOf("/");
+				switch (col) {
+					case CSTR:
+						outputFilename = outputFilename.replaceFirst("\\.gz$", ".txt");
+						doProceed = true;
+						break;
+					case CST4:
+						outputFilename = slashPos > -1 ? file.substring(slashPos + 1) : file;
+					case CSTDEVA:
+						xslFixed = true;
+						doProceed = true;
+						break;
+					case SRT:
+						outputFilename = file.replace("/", "_");
+						doProceed = true;
+						break;
+					case BJT:
+					case SC:
+					case GRAM:
+						outputFilename = slashPos > -1 ? file.substring(slashPos + 1) : file;
+						doProceed = true;
+						break;
+				}
+				if (doProceed) {
+					final File outfile = new File(Utilities.OUTPUTPATH + targetScript.toLowerCase().substring(0, 3) + "-" + outputFilename);
+					final String text = readFileContent(cp, file);
+					if (!text.isEmpty()) {
+						final String result = col == Corpus.Collection.BJT
+												? ScriptTransliterator.translitBJT(text, engine)
+												: col == Corpus.Collection.SC
+													? ScriptTransliterator.translitSC(text, engine)
+													: ScriptTransliterator.transliterate(text, engine, xslFixed);
+						printLog("Writing out " + outfile.getPath());
+						Utilities.saveText(result, outfile, cp.getEncoding().getCharset());
+					} else {
+						printLog("Error: No data to be written");
+					}
+				} // end if
+			} // end for
+		} // end if
+		final long endTime = System.currentTimeMillis();
+		printTime(endTime - startTime);
+	}
+
+	private static String readFileContent(final Corpus corpus, final String filename) throws IOException {
+		String result = "";
+		final Corpus.Collection col = corpus.getCollection();
+		switch (col) {
+			case CSTR:
+				final File targetFile = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + corpus.getRootName() + File.separator + filename);
+				result = ReaderUtilities.readGz(targetFile, corpus.getEncoding().getCharset());
+				break;
+			case CSTDEVA:
+				final Path targetPath = Path.of(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + corpus.getRootName() + File.separator + filename);
+				result = Files.readString(targetPath, corpus.getEncoding().getCharset());
+				break;
+			case CST4:
+			case BJT:
+			case SRT:
+			case SC:
+			case GRAM:
+				final String entryName = Utilities.findZipEntryName(corpus.getZipFile(), filename);
+				result = ReaderUtilities.readTextFromZip(entryName, corpus);
 				break;
 		}
 		return result;

@@ -38,14 +38,13 @@ class MainToolBar extends ToolBar {
 		final Button openTextButton = new Button("", new TextIcon("file-arrow-up", TextIcon.IconSet.AWESOME));
 		openTextButton.setTooltip(new Tooltip("Open a text file"));
 		openTextButton.setOnAction(actionEvent -> {
-			final Object[] args = {""};
-			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
+			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, null);
 		});
 		
 		final Button editorButton = new Button("", new TextIcon("pencil", TextIcon.IconSet.AWESOME));
 		editorButton.setTooltip(new Tooltip("Edit a new text file"));
 		editorButton.setOnAction(actionEvent -> {
-			final Object[] args = {"ROMAN"};
+			final Object[] args = { "" };
 			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
 		});
 		

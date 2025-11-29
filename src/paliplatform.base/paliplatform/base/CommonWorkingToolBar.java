@@ -19,6 +19,8 @@
 
 package paliplatform.base;
 
+import paliplatform.base.Utilities.PaliScript;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.function.Function;
@@ -32,15 +34,16 @@ import javafx.stage.Window;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
+	private static final int DEFAULT_FONTSIZE = 100;
 	private final Node[] nodes;
 	private Utilities.Theme theme;
 	private final Map<String, RadioMenuItem> fontMenuItemsMap = new HashMap<>();
 	private String currFont;
-	private int currFontSizePercent = 100;
+	private int currFontSizePercent = DEFAULT_FONTSIZE;
 	protected final ToggleButton darkButton = new ToggleButton("", new TextIcon("moon", TextIcon.IconSet.AWESOME));
 	protected final Button zoomOutButton = new Button("", new TextIcon("circle-minus", TextIcon.IconSet.AWESOME));
 	protected final Button resetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
@@ -69,7 +72,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		zoomInButton.setOnAction(actionEvent -> changeFontSize(+10));
 			
 		fontMenu.setTooltip(new Tooltip("Select the display font"));
-		currFont = setupFontMenu(Utilities.PaliScript.ROMAN);
+		currFont = setupFontMenu(PaliScript.ROMAN);
 		fontGroup.selectToggle(fontMenuItemsMap.get(currFont));
         fontGroup.selectedToggleProperty().addListener((observable) -> {
 			if (fontGroup.getSelectedToggle() != null) {
@@ -99,7 +102,7 @@ public class CommonWorkingToolBar extends ToolBar {
 				.collect(Collectors.toMap(x -> x.getClass().getName(), Function.identity()));
 	}
 
-	public final String setupFontMenu(final Utilities.PaliScript script) {
+	public final String setupFontMenu(final PaliScript script) {
 		fontMenuItemsMap.clear();
 		fontMenu.getItems().clear();
 		final List<String> allFonts = new ArrayList<>();
@@ -107,13 +110,29 @@ public class CommonWorkingToolBar extends ToolBar {
 		for (final String gf : Utilities.genericFonts) {
 			allFonts.add(gf);
 		}
-		// add embedded fonts
-		allFonts.addAll(Utilities.embeddedFontMap.get(script));
-		// add external fonts, if any
-		final List<String> extFonts = new ArrayList<>(Utilities.externalFontMap.get(script));
+		// add embedded fonts; if script UNKNOWN, add all
+		if (script == PaliScript.UNKNOWN) {
+			for (final Collection<String> c : Utilities.embeddedFontMap.values())
+				allFonts.addAll(c);
+		} else {
+			allFonts.addAll(Utilities.embeddedFontMap.get(script));
+		}
+		// add external fonts, if any; if script UNKNOWN, add all
+		final List<String> extFonts = new ArrayList<>();
+		if (script == PaliScript.UNKNOWN) {
+			for (final Collection<String> c : Utilities.externalFontMap.values()) {
+				for (final String f : c) {
+					if (!extFonts.contains(f))
+						extFonts.addAll(c);
+				}
+			}
+		} else {
+			extFonts.addAll(Utilities.externalFontMap.get(script));
+		}
 		Collections.sort(extFonts);
-		if (!Utilities.genericFonts.contains(extFonts.get(0))) {
-			allFonts.addAll(extFonts);
+		for (final String f : extFonts) {
+			if (!Utilities.genericFonts.contains(f))
+				allFonts.add(f);
 		}
 		for (final String fname : allFonts) {
 			final RadioMenuItem fontMenuItem = new RadioMenuItem(fname);
@@ -121,7 +140,7 @@ public class CommonWorkingToolBar extends ToolBar {
 			fontMenuItem.setToggleGroup(fontGroup);
 			fontMenu.getItems().add(fontMenuItem);
 		}
-		if (script == Utilities.PaliScript.ROMAN) {
+		if (script == PaliScript.ROMAN) {
 			// this should agree with base css (custom_light/custom_dark)
 			return Utilities.FONTSANS;
 		} else {
@@ -130,7 +149,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		}
 	}
 
-	public final void reBuildFontMenu(final Utilities.PaliScript script) {
+	public final void reBuildFontMenu(final PaliScript script) {
 		currFont = setupFontMenu(script);
 	}
 	
@@ -168,14 +187,27 @@ public class CommonWorkingToolBar extends ToolBar {
 		setFont(currFont);
 	}
 	
+	public void resetFont(final int sizePercent) {
+		currFontSizePercent = sizePercent;
+		setFont(currFont);
+	}
+	
 	public void resetFont(final String fontname) {
-		currFontSizePercent = 100;
+		resetFont(fontname, DEFAULT_FONTSIZE);
+	}
+
+	public void resetFont(final String fontname, final int sizePercent) {
+		currFontSizePercent = sizePercent;
 		currFont = fontname;
 		setFont(currFont);
 	}
 
-	public void resetFont(final Utilities.PaliScript script) {
-		currFontSizePercent = 100;
+	public void resetFont(final PaliScript script) {
+		resetFont(script, DEFAULT_FONTSIZE);
+	}
+	
+	public void resetFont(final PaliScript script, final int sizePercent) {
+		currFontSizePercent = sizePercent;
 		setFont(script);
 	}
 	
@@ -218,7 +250,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		setFontMenu(fontname);
 	}
 	
-	private void setFont(final Utilities.PaliScript script) {
+	private void setFont(final PaliScript script) {
 		final List<String> emList = new ArrayList<>(Utilities.embeddedFontMap.get(script));
 		if (!emList.isEmpty()) {
 			// use an embedded font, if any
@@ -233,7 +265,7 @@ public class CommonWorkingToolBar extends ToolBar {
 	
 	public void changeFontSize(final int percent) {
 		if (percent == 0) {
-			currFontSizePercent = 100;
+			currFontSizePercent = DEFAULT_FONTSIZE;
 		} else {
 			currFontSizePercent += percent;
 			if (currFontSizePercent < 20)

@@ -122,7 +122,7 @@
 }
 
 .bigchar {
-	-fx-fill: lightskyblue
+	-fx-fill: lightskyblue;
 }
 
 .labelbutton {

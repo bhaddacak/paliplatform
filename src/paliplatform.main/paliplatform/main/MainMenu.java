@@ -43,13 +43,12 @@ class MainMenu extends MenuBar {
 		final MenuItem openTextMenuItem = new MenuItem("_Open a text file", new TextIcon("file-arrow-up", TextIcon.IconSet.AWESOME));
 		openTextMenuItem.setMnemonicParsing(true);
 		openTextMenuItem.setOnAction(actionEvent -> {
-			final Object[] args = {""};
-			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
+			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, null);
 		});
 		final MenuItem editorMenuItem = new MenuItem("Edit a _new text file", new TextIcon("pencil", TextIcon.IconSet.AWESOME));
 		editorMenuItem.setMnemonicParsing(true);
 		editorMenuItem.setOnAction(actionEvent -> {
-			final Object[] args = {"ROMAN"};
+			final Object[] args = {""};
 			PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
 		});
 		final MenuItem batchMenuItem = new MenuItem("_Batch Script Transformer", new TextIcon("gears", TextIcon.IconSet.AWESOME));

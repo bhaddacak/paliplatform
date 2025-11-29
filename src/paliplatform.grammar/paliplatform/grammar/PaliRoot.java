@@ -1,7 +1,7 @@
 /*
  * PaliRoot.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ import java.util.*;
 /** 
  * The class handling Pali roots.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class PaliRoot {
@@ -220,6 +220,7 @@ public class PaliRoot {
 
 	private static Map<PaliConjugation.Voice, Map<PaliConjugation.DeriPaccaya, List<String>>> 
 					createDeriStems(final String inputStr, final Map<PaliConjugation.Voice, Map<PaliConjugation.TenseMood, List<String>>> stemMap) {
+		final String paliVowels = new String(ScriptTransliterator.getRomanPaliVowels());
 		final String givenStems[] = inputStr.split(";");
 		final Map<PaliConjugation.Voice, Map<PaliConjugation.DeriPaccaya, List<String>>> result = new EnumMap<>(PaliConjugation.Voice.class);
 		Map<PaliConjugation.DeriPaccaya, List<String>> dstMap;
@@ -261,7 +262,7 @@ public class PaliRoot {
 					ntaStems.add(stem);
 				}
 			} else {
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					if (last == 'ā')
 						stem = ss.substring(0, ss.length()-1) + "a" + end;
@@ -286,7 +287,7 @@ public class PaliRoot {
 					manaStems.add(stem);
 				}
 			} else {
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel, replace it with 'a'
 					stem = ss.substring(0, ss.length()-1) + "a" + end;
 				} else {
@@ -375,7 +376,7 @@ public class PaliRoot {
 				char last = s.charAt(s.length()-1);
 				// process NTA
 				end = PaliConjugation.DeriPaccaya.NTA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					stem = s + end;
 				} else {
@@ -385,14 +386,14 @@ public class PaliRoot {
 				ntaStems.add(stem);
 				// process MANA
 				end = PaliConjugation.DeriPaccaya.MANA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) < 0) {
+				if (paliVowels.indexOf(last) < 0) {
 					// if not end with a vowel add 'a'
 					stem = s + "a" + end;
 					manaStems.add(stem);
 				}
 				// process TA
 				end = PaliConjugation.DeriPaccaya.TA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					if (last == 'e')
 						stem = s.substring(0, s.length()-1) + "i" + end;
@@ -403,7 +404,7 @@ public class PaliRoot {
 				taStems.add(stem);
 				// process TVA
 				end = PaliConjugation.DeriPaccaya.TVA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					stem = s + end;
 				} else {
@@ -430,14 +431,14 @@ public class PaliRoot {
 				char last = s.charAt(s.length()-1);
 				// process MANA
 				end = PaliConjugation.DeriPaccaya.MANA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) < 0) {
+				if (paliVowels.indexOf(last) < 0) {
 					// if not end with a vowel, add 'a'
 					stem = s + "a" + end;
 					manaStems.add(stem);
 				}
 				// process TA
 				end = PaliConjugation.DeriPaccaya.TA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					stem = s + end;
 				} else {
@@ -447,7 +448,7 @@ public class PaliRoot {
 				taStems.add(stem);
 				// process TVA
 				end = PaliConjugation.DeriPaccaya.TVA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					stem = s + end;
 				} else {
@@ -467,14 +468,14 @@ public class PaliRoot {
 				char last = s.charAt(s.length()-1);				
 				// process ANIYA
 				end = PaliConjugation.DeriPaccaya.ANIYA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) < 0) {
+				if (paliVowels.indexOf(last) < 0) {
 					// if not end with a vowel
 					stem = s + end;
 					aniyaStems.add(stem);
 				}
 				// process TABBA
 				end = "t" + PaliConjugation.DeriPaccaya.TABBA.getStemPart();
-				if (PaliCharTransformer.romanVowels.indexOf(last) >= 0) {
+				if (paliVowels.indexOf(last) >= 0) {
 					// end with a vowel
 					stem = s + end;
 				} else {

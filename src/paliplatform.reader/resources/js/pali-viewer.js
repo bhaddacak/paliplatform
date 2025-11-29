@@ -98,27 +98,27 @@ function toNonRoman(lang, alsoNumber, useThAlt, isLinux) {
 }
 function setViewerTheme(theme, style) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
-	document.body.style.color = themeObj['color' + style];
-	document.body.style.background = themeObj['background' + style];
+	document.body.style.color = themeObj.color[style];
+	document.body.style.background = themeObj.background[style];
 	const blocks = document.getElementsByTagName('blockquote');
 	for(const e of blocks) {
-		e.style.background = themeObj['blockBG' + style];
+		e.style.background = themeObj.blockBG[style];
 	}
 	const notes = document.getElementsByClassName('note');
 	for(const e of notes) {
-		e.style.color = themeObj['noteColor' + style];
+		e.style.color = themeObj.noteColor[style];
 	}
 	const trans = document.getElementsByClassName('sc-translation');
 	for(const e of trans) {
-		e.style.color = themeObj['transColor' + style];
+		e.style.color = themeObj.transColor[style];
 	}
 	const comms = document.getElementsByClassName('sc-comment');
 	for(const e of comms) {
-		e.style.color = themeObj['commentColor' + style];
+		e.style.color = themeObj.commentColor[style];
 	}
 	const refs = document.getElementsByClassName('sc-reference');
 	for(const e of refs) {
-		e.style.color = themeObj['referenceColor' + style];
+		e.style.color = themeObj.referenceColor[style];
 	}
 }
 function setLineHeight(percent) {

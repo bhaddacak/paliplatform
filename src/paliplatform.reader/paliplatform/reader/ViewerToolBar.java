@@ -82,7 +82,7 @@ class ViewerToolBar extends CommonWorkingToolBar {
 		super.resetFont(script);
 		// set default line space
 		lineSpacingGroup.selectToggle(lineSpacingGroup.getToggles().get(4));
-		styleGroup.selectToggle(styleGroup.getToggles().get(1));
+		styleGroup.selectToggle(styleGroup.getToggles().get(2));
 		if (viewer != null)
 			viewer.setLineHeight("120%");
 	}

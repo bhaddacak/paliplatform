@@ -20,6 +20,8 @@
 package paliplatform.main;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.PaliScript;
+import paliplatform.base.ScriptTransliterator.EngineType;
 
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -44,11 +46,12 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
 	private static final String DEFAULT_FILENAME = "untitled.txt";
+	private static final int DEFAULT_FONTSIZE = 130;
 	private final PaliTextInput textInput;
 	private final TextArea area;
 	private String fileName = DEFAULT_FILENAME;
@@ -58,13 +61,17 @@ public class PaliTextEditor extends BorderPane {
 	private final CommonWorkingToolBar toolBar;
 	private final CheckMenuItem saveOnCloseMenuItem = new CheckMenuItem("Autosave on close");
 	private final CheckMenuItem noAskOnCloseMenuItem = new CheckMenuItem("Never ask on close");
+	private final CheckMenuItem romanAsSanskritMenuItem = new CheckMenuItem("Roman as Sanskrit");
 	final MenuItem findNextMenuItem = new MenuItem("Find _Next");
 	final MenuItem findPrevMenuItem = new MenuItem("Find Pre_v");	
+	private final ToggleGroup convertFromGroup = new ToggleGroup();
+	private final ToggleGroup romanDefaultGroup = new ToggleGroup();
 	private final FindReplaceBox findReplaceBox = new FindReplaceBox(this);
 	private final TextField findInput = findReplaceBox.getFindTextField();
 	private final TextField replaceInput = findReplaceBox.getReplaceTextField();
 	private final ComboBox<String> findInputCombo = findReplaceBox.getFindComboBox();
 	private final ComboBox<String> replaceInputCombo = findReplaceBox.getReplaceComboBox();
+	private final InfoPopup infoPopup = new InfoPopup();
 	private final List<int[]> regexFindResult = new ArrayList<>();
 	private Runnable afterSaveCallback;
 	private boolean caseSensitive = false;
@@ -74,7 +81,6 @@ public class PaliTextEditor extends BorderPane {
 	private boolean replaceMode = false;
 	private SimpleBooleanProperty searchTextFound = new SimpleBooleanProperty(false);
 	private int currFoundIndex = 0;
-	private SimpleObjectProperty<Utilities.PaliScript> currScript = new SimpleObjectProperty<>(Utilities.PaliScript.ROMAN);
 	private static enum TexConvertMode { SIMPLE, BRACES, WITH_A }
 	
 	public PaliTextEditor(final Object[] args) {
@@ -111,27 +117,22 @@ public class PaliTextEditor extends BorderPane {
 					if (theFile.get() == null)
 						area.appendText(text + "\n");
 					else
-						PaliPlatform.openWindow(Utilities.WindowType.EDITOR, new Object[] { "ROMAN", text });
+						PaliPlatform.openWindow(Utilities.WindowType.EDITOR, new Object[] { text });
 				}
 				event.consume();
 			}
 		});
 		toolBar = new CommonWorkingToolBar(area, findInputCombo, replaceInputCombo);
-		if (args[0] instanceof File) {
+		if (args == null) {
+			Platform.runLater(() ->	openFile());
+		} else if (args[0] instanceof File) {
 			if (args.length > 1)
 				afterSaveCallback = (Runnable)args[1];
 			Platform.runLater(() ->	openFile((File)args[0]));
 		} else {
-			final String strScript = (String)args[0];
-			if (strScript.isEmpty()) {
-				// open an existing file
-				Platform.runLater(() ->	openFile());
-			} else {
-				currScript.set(Utilities.PaliScript.valueOf(strScript));
-				final String content = args.length<2 ? "" : (String)args[1];
-				setContent(content);
-				setupFontMenu();
-			}
+			final String content = (String)args[0];
+			setContent(content);
+			setupFontMenu();
 		}
 		// add menu and toolbar on the top
 		final MenuBar menuBar = new MenuBar();
@@ -219,24 +220,25 @@ public class PaliTextEditor extends BorderPane {
 									new SeparatorMenuItem(), cutMenuItem, copyMenuItem, pasteMenuItem,
 									new SeparatorMenuItem(), findMenuItem, findNextMenuItem, findPrevMenuItem, replaceMenuItem);
 		// convert menu
-		final Menu convertMenu = new Menu("_Convert to");
-		convertMenu.setMnemonicParsing(true);
-		convertMenu.disableProperty().bind(currScript.isEqualTo(Utilities.PaliScript.MYANMAR));
-		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
+		final Menu convertFromMenu = new Menu("F_rom");
+		convertFromMenu.setMnemonicParsing(true);
+		final Menu convertToMenu = new Menu("_Convert to");
+		convertToMenu.setMnemonicParsing(true);
+		for (final PaliScript sc : PaliScript.scripts) {
+			final String scName = sc.ordinal() == 0 ? "Auto-detected" : sc.getName();
+			final RadioMenuItem fromItem = new RadioMenuItem(scName);
+			fromItem.setUserData(sc);
+			fromItem.setToggleGroup(convertFromGroup);
+			convertFromMenu.getItems().add(fromItem);
 			if (sc.ordinal() == 0) continue;
-			final String sname = sc.toString();
-			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
-			if (sc == Utilities.PaliScript.ROMAN)
-				mitem.disableProperty().bind(currScript.isEqualTo(sc));
-			else
-				mitem.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
-			mitem.setOnAction(actionEvent -> convertTo(sc));
-			convertMenu.getItems().add(mitem);
+			final MenuItem toItem = new MenuItem(scName);
+			toItem.setOnAction(actionEvent -> convertTo(sc));
+			convertToMenu.getItems().add(toItem);
 		}
+		convertFromGroup.selectToggle(convertFromGroup.getToggles().get(0));
 		// tools menu
 		final Menu toolsMenu = new Menu("_Tools");
 		toolsMenu.setMnemonicParsing(true);
-		toolsMenu.disableProperty().bind(currScript.isNotEqualTo(Utilities.PaliScript.ROMAN));
 		final MenuItem composeMenuItem = new MenuItem("_Compose characters");
 		composeMenuItem.setMnemonicParsing(true);
 		composeMenuItem.setOnAction(actionEvent -> composeChars(true));	
@@ -282,9 +284,9 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem toSentCaseMenuItem = new MenuItem("Change to _sentence case");
 		toSentCaseMenuItem.setMnemonicParsing(true);
 		toSentCaseMenuItem.setOnAction(actionEvent -> changeToSentCase());
-		final MenuItem sortAscMenuItem = new MenuItem("Sort ascendingly");
+		final MenuItem sortAscMenuItem = new MenuItem("Pāli sort ascendingly");
 		sortAscMenuItem.setOnAction(actionEvent -> paliSort(true));
-		final MenuItem sortDesMenuItem = new MenuItem("Sort descendingly");
+		final MenuItem sortDesMenuItem = new MenuItem("Pāli sort descendingly");
 		sortDesMenuItem.setOnAction(actionEvent -> paliSort(false));
 		final Menu paliToTexMenu = new Menu("Pāli to TeX");
 		final MenuItem simpleP2TMenuItem = new MenuItem("Style 1: \\~n");
@@ -302,25 +304,41 @@ public class PaliTextEditor extends BorderPane {
 									new SeparatorMenuItem(), paliToTexMenu, texToPaliMenuItem);
 		// options menu
 		final Menu optionsMenu = new Menu("_Options");
+		final CheckMenuItem wrapTextMenuItem = new CheckMenuItem("Wrap text");
+		wrapTextMenuItem.selectedProperty().bindBidirectional(area.wrapTextProperty());
 		saveOnCloseMenuItem.setSelected(false);
 		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
 		noAskOnCloseMenuItem.setOnAction(actionEvent -> 
 				Utilities.settings.setProperty("editor-close-ask", Boolean.toString(!noAskOnCloseMenuItem.isSelected())));
-		final CheckMenuItem wrapTextMenuItem = new CheckMenuItem("Wrap text");
-		wrapTextMenuItem.selectedProperty().bindBidirectional(area.wrapTextProperty());
-		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem, noAskOnCloseMenuItem);
+		final Menu romanDefMenu = new Menu("Roman transliteration");
+		for (final EngineType en : EngineType.engines) {
+			if (en.getTargetScript() == PaliScript.ROMAN) {
+				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
+				enItem.setUserData(en);
+				enItem.setToggleGroup(romanDefaultGroup);
+				romanDefMenu.getItems().add(enItem);
+			}
+		}
+		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
+		romanAsSanskritMenuItem.setSelected(false);
+		final MenuItem loadTestDataMenuItem = new MenuItem("Load test data");
+		loadTestDataMenuItem.setOnAction(actionEvent -> loadTestData());
+		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem, noAskOnCloseMenuItem,
+									new SeparatorMenuItem(), romanDefMenu, romanAsSanskritMenuItem, loadTestDataMenuItem);
 		
-		menuBar.getMenus().addAll(fileMenu, editMenu, convertMenu, toolsMenu, optionsMenu);
+		menuBar.getMenus().addAll(fileMenu, editMenu, convertFromMenu, convertToMenu, toolsMenu, optionsMenu);
 		
 		// tool bar
-		Platform.runLater(() -> toolBar.resetFont(currScript.get()));
+		Platform.runLater(() -> toolBar.resetFont(DEFAULT_FONTSIZE));
 		// config some buttons and add new ones
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save"));
 		toolBar.saveTextButton.disableProperty().bind(saveable.not());
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
 		toolBar.copyButton.setOnAction(actionEvent -> copyText());
+		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
+		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_CENTER, true));
 		
-		toolBar.getItems().addAll(new Separator(), textInput.getMethodButton());
+		toolBar.getItems().addAll(new Separator(), textInput.getMethodButton(), helpButton);
 		
 		// config Find & Replace Box
 		findReplaceBox.getFindButton().setOnAction(actionEvent -> doRegExFind());
@@ -366,6 +384,9 @@ public class PaliTextEditor extends BorderPane {
 		// add find & replace box first, and remove it; this makes the focus request possible
 		setBottom(findReplaceBox);
 		Platform.runLater(() -> setBottom(null));
+		// prepare info popup
+		infoPopup.setContentWithText(PaliPlatform.getTextResource("info-text-editor.txt"));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(40));		
 		// one-time init
 		if (Utilities.texConvMap.isEmpty())
 			Utilities.loadTexConv();
@@ -387,7 +408,7 @@ public class PaliTextEditor extends BorderPane {
 	}
 
 	public void setupFontMenu() {
-		toolBar.setupFontMenu(currScript.get());
+		toolBar.setupFontMenu(PaliScript.UNKNOWN);
 		resetFont();
 	}
 
@@ -412,7 +433,7 @@ public class PaliTextEditor extends BorderPane {
 		} else {
 			openFile();
 		}
-		toolBar.resetFont(currScript.get());
+		toolBar.resetFont(DEFAULT_FONTSIZE);
 	}
 		
 	public final boolean openFile() {
@@ -429,7 +450,6 @@ public class PaliTextEditor extends BorderPane {
 			final PaliTextInput.InputMethod saveInputMethod = textInput.getInputMethod();
 			textInput.changeInputMethod(PaliTextInput.InputMethod.NONE);
 			final String content = Utilities.getTextFileContent(file);
-			currScript.set(Utilities.testLanguage(content));
 			setupFontMenu();
 			area.setText(content);
 			textInput.changeInputMethod(saveInputMethod);
@@ -450,6 +470,9 @@ public class PaliTextEditor extends BorderPane {
 		replaceMode = false;
 		findReplaceBox.clearInputs();
 		findReplaceBox.clearOptions();
+		convertFromGroup.selectToggle(convertFromGroup.getToggles().get(0));
+		romanAsSanskritMenuItem.setSelected(false);
+		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
 		setBottom(null);
 	}
 		
@@ -476,22 +499,17 @@ public class PaliTextEditor extends BorderPane {
 		}
 	}
 	
-	public void clearEditor(final Utilities.PaliScript script) {
-		currScript.set(script);
-		clearEditor();
-	}
-	
-	private void clearEditor() {
+	public void clearEditor() {
 		fileName = DEFAULT_FILENAME;
 		final Stage stg = theStage.get();
 		if (stg != null) stg.setTitle(fileName);
 		theFile.set(null);
 		area.clear();
 		setInitialValues();
-		resetFont(currScript.get());
+		resetFont();
 	}
 	
-	public void resetFont(final Utilities.PaliScript script) {
+	public void resetFont(final PaliScript script) {
 		toolBar.resetFont(script);
 	}
 
@@ -500,7 +518,7 @@ public class PaliTextEditor extends BorderPane {
 	}
 	
 	public void resetFont() {
-		toolBar.resetFont(currScript.get());
+		toolBar.resetFont(DEFAULT_FONTSIZE);
 	}
 	
 	private void copyText() {
@@ -768,62 +786,163 @@ public class PaliTextEditor extends BorderPane {
 		findReplaceBox.getNextButton().setDisable(yn);			
 	}
 
-	private void openNewEditor(final Utilities.PaliScript script, final String content) {
-		final Object[] args = { script.toString(), content };
+	private void openNewEditor(final String content) {
+		final Object[] args = { content };
 		PaliPlatform.openWindow(Utilities.WindowType.EDITOR, args);
 	}
 	
-	private void convertTo(final Utilities.PaliScript script) {
-		final String result;
+	private void convertTo(final PaliScript toScript) {
 		final String selText = area.getSelectedText();
-		String inputText = selText.isEmpty() ? area.getText() : selText;
-		inputText = script == Utilities.PaliScript.ROMAN
-					? inputText
-					: Utilities.normalizeNiggahita(Normalizer.normalize(inputText, Form.NFC));
-		switch (script) {
+		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String result = inputText;
+		PaliScript fromScript = (PaliScript)convertFromGroup.getSelectedToggle().getUserData();
+		final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
+		if (fromScript == PaliScript.UNKNOWN)
+			fromScript = Utilities.testLanguage(inputText);
+		// if unknown script eventually, force roman
+		if (fromScript == PaliScript.UNKNOWN)
+			fromScript = PaliScript.ROMAN;
+		switch (toScript) {
 			case ROMAN:
-				switch (currScript.get()) {
-					case DEVANAGARI: result = PaliCharTransformer.devanagariToRoman(inputText); break;
-					case KHMER: result = PaliCharTransformer.khmerToRoman(inputText); break;
-					case SINHALA: result = PaliCharTransformer.sinhalaToRoman(inputText); break;
-					case THAI: result = PaliCharTransformer.thaiToRoman(inputText); break;
-					default: result = "";
+				switch(fromScript) {
+					case DEVANAGARI:
+						result = ScriptTransliterator.transliterate(inputText, romanDef);
+						break;
+					case KHMER:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, romanDef);
+						break;
+					case MYANMAR:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, romanDef);
+						break;
+					case SINHALA:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, romanDef);
+						break;
+					case THAI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, romanDef);
+						break;
 				}
 				break;
 			case DEVANAGARI:
-				result = PaliCharTransformer.romanToDevanagari(inputText);
+				switch(fromScript) {
+					case ROMAN:
+						result = romanAsSanskritMenuItem.isSelected()
+									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA)
+									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA);
+						break;
+					case KHMER:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA);
+						break;
+					case MYANMAR:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA);
+						break;
+					case SINHALA:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA);
+						break;
+					case THAI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA);
+						break;
+				}
 				break;
 			case KHMER:
-				result = PaliCharTransformer.romanToKhmer(inputText);
+				switch(fromScript) {
+					case ROMAN:
+						result = romanAsSanskritMenuItem.isSelected()
+									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER)
+									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER);
+						break;
+					case DEVANAGARI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_KHMER);
+						break;
+					case MYANMAR:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_KHMER);
+						break;
+					case SINHALA:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_KHMER);
+						break;
+					case THAI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_KHMER);
+						break;
+				}
 				break;
 			case MYANMAR:
-				result = PaliCharTransformer.romanToMyanmar(inputText);
+				switch(fromScript) {
+					case ROMAN:
+						result = romanAsSanskritMenuItem.isSelected()
+									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR)
+									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR);
+						break;
+					case DEVANAGARI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_MYANMAR);
+						break;
+					case KHMER:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_MYANMAR);
+						break;
+					case SINHALA:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_MYANMAR);
+						break;
+					case THAI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_MYANMAR);
+						break;
+				}
 				break;
 			case SINHALA:
-				result = PaliCharTransformer.romanToSinhala(inputText);
+				switch(fromScript) {
+					case ROMAN:
+						result = romanAsSanskritMenuItem.isSelected()
+									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA)
+									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA);
+						break;
+					case DEVANAGARI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_SINHALA);
+						break;
+					case KHMER:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_SINHALA);
+						break;
+					case MYANMAR:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_SINHALA);
+						break;
+					case THAI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_SINHALA);
+						break;
+				}
 				break;
 			case THAI:
-				PaliCharTransformer.setUsingAltThaiChars(Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars")));
-				result = PaliCharTransformer.romanToThai(inputText);
+				switch(fromScript) {
+					case ROMAN:
+						result = romanAsSanskritMenuItem.isSelected()
+									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI)
+									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI);
+						break;
+					case DEVANAGARI:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_THAI);
+						break;
+					case KHMER:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_THAI);
+						break;
+					case MYANMAR:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_THAI);
+						break;
+					case SINHALA:
+						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_THAI);
+						break;
+				}
 				break;
-			default:
-				result = "";
 		}
-		openNewEditor(script, result);
+		openNewEditor(result);
 	}
 	
 	private void composeChars(final boolean isCompose) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
 		final String result = isCompose ? Normalizer.normalize(inputText, Form.NFC) : Normalizer.normalize(inputText, Form.NFD);
-		openNewEditor(currScript.get(), result);
+		openNewEditor(result);
 	}
 	
 	private void removeAccents() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
 		final String result = removeAccents(inputText);
-		openNewEditor(currScript.get(), result);
+		openNewEditor(result);
 	}
 	
 	private String removeAccents(final String input) {
@@ -842,7 +961,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
 		final String result = reformatCST4(inputText);
-		openNewEditor(currScript.get(), result);
+		openNewEditor(result);
 	}
 
 	private String reformatCST4(final String input) {
@@ -869,7 +988,7 @@ public class PaliTextEditor extends BorderPane {
 	private void calculateMeters() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		openNewEditor(currScript.get(), Utilities.addComputedMeters(inputText));
+		openNewEditor(Utilities.addComputedMeters(inputText));
 	}
 
 	private void openAnalyzer(final SimpleService service) {
@@ -1017,6 +1136,11 @@ public class PaliTextEditor extends BorderPane {
 							.replace(pattList.get(2), "" + ch);
 		}
 		return result;
+	}
+
+	private void loadTestData() {
+		final String testData = PaliPlatform.getTextResource("devatestdata.txt");
+		area.setText(testData);
 	}
 
 	private boolean proceedConfirm() {

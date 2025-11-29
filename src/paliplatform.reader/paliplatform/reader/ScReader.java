@@ -1,7 +1,7 @@
 /*
  * ScReader.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ import netscape.javascript.JSObject;
 /** 
  * The HTML viewer of SuttaCentral Pāli texts.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 3.0
  */
 public class ScReader extends PaliHtmlViewerBase {
@@ -385,20 +385,19 @@ public class ScReader extends PaliHtmlViewerBase {
 				result = normalized;
 				break;
 			case DEVANAGARI:
-				result = PaliCharTransformer.romanToDevanagari(normalized);
+				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_DEVA);
 				break;
 			case KHMER:
-				result = PaliCharTransformer.romanToKhmer(normalized);
+				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_KHMER);
 				break;
 			case MYANMAR:
-				result = PaliCharTransformer.romanToMyanmar(normalized);
+				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
 				break;
 			case SINHALA:
-				result = PaliCharTransformer.romanToSinhala(normalized);
+				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_SINHALA);
 				break;
 			case THAI:
-				PaliCharTransformer.setUsingAltThaiChars(Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars")));
-				result = PaliCharTransformer.romanToThai(normalized);
+				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_THAI);
 				break;
 			default:
 				result = normalized;

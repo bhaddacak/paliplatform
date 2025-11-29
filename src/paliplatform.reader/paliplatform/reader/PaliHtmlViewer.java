@@ -154,9 +154,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 		if (toScript == Utilities.PaliScript.ROMAN) {
 			command = "toRoman()";
 		} else {
-			final boolean useThaiAlt = Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars"));
 			final boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
-			command = "toNonRoman('" + toScript.toString() + "'," + withNum + "," + (useThaiAlt?1:0) + "," + (isLinux?1:0) + ")";
+			command = "toNonRoman('" + toScript.toString() + "'," + withNum + ",0," + (isLinux?1:0) + ")";
 		}
 		if (fromScript == Utilities.PaliScript.ROMAN)
 			webEngine.executeScript("saveRomanBody()");

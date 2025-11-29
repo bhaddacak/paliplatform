@@ -40,7 +40,7 @@ import javafx.beans.property.*;
  * The window showing Pali letters in various scripts.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.4
  * @since 2.0
  */
 public final class LetterWin extends SingletonWindow {
@@ -297,61 +297,58 @@ public final class LetterWin extends SingletonWindow {
 	
 	private void fillCharacterArray(final Utilities.PaliScript script) {
 		if (script == Utilities.PaliScript.ROMAN) {
-			for (int i=0; i<PaliCharTransformer.romanVowels.length(); i++)
-				paliChars[0][i] = "" + PaliCharTransformer.romanVowels.charAt(i);
-			for (int i=1; i<=5; i++) {
-				for (int j=0; j<5; j++) 
-					paliChars[i][j] = PaliCharTransformer.romanConsonantsStr[(i-1)*5 + j];
+			final char[] romanVowels = ScriptTransliterator.getRomanPaliVowels();
+			for (int i = 0; i < romanVowels.length; i++)
+				paliChars[0][i] = "" + romanVowels[i];
+			final String[] romanConsonants = ScriptTransliterator.getRomanPaliConsonants();
+			// vagga
+			for (int i = 1; i <= 5; i++) {
+				for (int j = 0; j < 5; j++) 
+					paliChars[i][j] = romanConsonants[(i-1)*5 + j];
 			}
-			for (int j=0; j<8; j++) 
-				paliChars[6][j] = PaliCharTransformer.romanConsonantsStr[25+j];
-			for (int j=1; j<10; j++)
-				paliChars[7][j-1] = "" + PaliCharTransformer.romanNumbers[j];
-			paliChars[7][9] = "" + PaliCharTransformer.romanNumbers[0];
+			// avagga
+			for (int k = 0; k < 8; k++) 
+				paliChars[6][k] = romanConsonants[25 + k];
+			final char[] romanNumbers = ScriptTransliterator.getRomanNumbers();
+			for (int n = 1; n < 10; n++)
+				paliChars[7][n-1] = "" + romanNumbers[n];
+			paliChars[7][9] = "" + romanNumbers[0];
 		} else {
-			final char[] arrVowels;
+			final String[] arrVowels;
 			final char[] arrConsonants;
 			final char[] arrNumbers;
 			if (script == Utilities.PaliScript.THAI) {
-				arrVowels = PaliCharTransformer.thaiVowels;
-				arrConsonants = PaliCharTransformer.thaiConsonants;
-				arrNumbers = PaliCharTransformer.thaiNumbers;
+				arrVowels = ScriptTransliterator.getThaiPaliVowels();
+				arrConsonants = ScriptTransliterator.getThaiPaliConsonants();
+				arrNumbers = ScriptTransliterator.getThaiNumbers();
 			} else if (script == Utilities.PaliScript.KHMER) {
-				arrVowels = PaliCharTransformer.khmerVowelsInd;
-				arrConsonants = PaliCharTransformer.khmerConsonants;
-				arrNumbers = PaliCharTransformer.khmerNumbers;
+				arrVowels = ScriptTransliterator.getKhmerPaliVowels();
+				arrConsonants = ScriptTransliterator.getKhmerPaliConsonants();
+				arrNumbers = ScriptTransliterator.getKhmerNumbers();
 			} else if (script == Utilities.PaliScript.MYANMAR) {
-				arrVowels = PaliCharTransformer.myanmarVowelsInd;
-				arrConsonants = PaliCharTransformer.myanmarConsonants;
-				arrNumbers = PaliCharTransformer.myanmarNumbers;
+				arrVowels = ScriptTransliterator.getMyanmarPaliVowels();
+				arrConsonants = ScriptTransliterator.getMyanmarPaliConsonants();
+				arrNumbers = ScriptTransliterator.getMyanmarNumbers();
 			} else if (script == Utilities.PaliScript.SINHALA) {
-				arrVowels = PaliCharTransformer.sinhalaVowelsInd;
-				arrConsonants = PaliCharTransformer.sinhalaConsonants;
-				arrNumbers = PaliCharTransformer.romanNumbers;
+				arrVowels = ScriptTransliterator.getSinhalaPaliVowels();
+				arrConsonants = ScriptTransliterator.getSinhalaPaliConsonants();
+				arrNumbers = ScriptTransliterator.getSinhalaNumbers();
 			} else {
-				arrVowels = PaliCharTransformer.devaVowelsInd;
-				arrConsonants = PaliCharTransformer.devaConsonants;
-				arrNumbers = PaliCharTransformer.devaNumbers;
+				arrVowels = ScriptTransliterator.getDevaPaliVowels();
+				arrConsonants = ScriptTransliterator.getDevaPaliConsonants();
+				arrNumbers = ScriptTransliterator.getDevaNumbers();
 			}
-			for (int i=0; i<arrVowels.length; i++) {
-				if ((script == Utilities.PaliScript.KHMER || script == Utilities.PaliScript.MYANMAR) && i == 1)
-					paliChars[0][1] = "" + arrVowels[0] + arrVowels[1]; // special case for ā
-				else
-					paliChars[0][i] = "" + arrVowels[i];
+			for (int i = 0; i < arrVowels.length; i++) {
+				paliChars[0][i] = arrVowels[i];
 			}
-			for (int i=1; i<=5; i++) {
-				for (int j=0; j<5; j++)
+			for (int i = 1; i <= 5; i++) {
+				for (int j = 0; j < 5; j++)
 						paliChars[i][j] = "" + arrConsonants[(i-1)*5 + j];
 			}
-			if (script == Utilities.PaliScript.THAI && Boolean.parseBoolean(Utilities.settings.getProperty("thai-alt-chars"))) {
-				// for Thai alternative chars
-				paliChars[2][4] = "" + PaliCharTransformer.altPaliThaiChars[0];
-				paliChars[3][1] = "" + PaliCharTransformer.altPaliThaiChars[1];
-			} 
-			for (int j=0; j<8; j++) 
-				paliChars[6][j] = "" + arrConsonants[25+j];
-			for (int j=1; j<10; j++)
-				paliChars[7][j-1] = "" + arrNumbers[j];
+			for (int k = 0; k < 8; k++) 
+				paliChars[6][k] = "" + arrConsonants[25 + k];
+			for (int n = 1; n < 10; n++)
+				paliChars[7][n - 1] = "" + arrNumbers[n];
 			paliChars[7][9] = "" + arrNumbers[0];
 		}
 	}
@@ -499,11 +496,21 @@ public final class LetterWin extends SingletonWindow {
 	private void setTypingOutput(final String text) {
 		final String outText;
 		switch (currPaliScript) {
-			case DEVANAGARI: outText = PaliCharTransformer.romanToDevanagari(text); break;
-			case KHMER: outText = PaliCharTransformer.romanToKhmer(text); break;
-			case MYANMAR: outText = PaliCharTransformer.romanToMyanmar(text); break;
-			case SINHALA: outText = PaliCharTransformer.romanToSinhala(text); break;
-			case THAI: outText = PaliCharTransformer.romanToThai(text); break;
+			case DEVANAGARI:
+				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_DEVA);
+				break;
+			case KHMER:
+				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_KHMER);
+				break;
+			case MYANMAR:
+				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
+				break;
+			case SINHALA:
+				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_SINHALA);
+				break;
+			case THAI:
+				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_THAI);
+				break;
 			default: outText = text;
 		}
 		typingOutput.setText(outText);
