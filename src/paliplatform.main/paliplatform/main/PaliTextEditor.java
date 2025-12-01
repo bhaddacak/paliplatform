@@ -61,6 +61,7 @@ public class PaliTextEditor extends BorderPane {
 	private final CommonWorkingToolBar toolBar;
 	private final CheckMenuItem saveOnCloseMenuItem = new CheckMenuItem("Autosave on close");
 	private final CheckMenuItem noAskOnCloseMenuItem = new CheckMenuItem("Never ask on close");
+	private final CheckMenuItem alsoNumberMenuItem = new CheckMenuItem("Convert Roman numbers");
 	private final CheckMenuItem romanAsSanskritMenuItem = new CheckMenuItem("Roman as Sanskrit");
 	final MenuItem findNextMenuItem = new MenuItem("Find _Next");
 	final MenuItem findPrevMenuItem = new MenuItem("Find Pre_v");	
@@ -320,11 +321,13 @@ public class PaliTextEditor extends BorderPane {
 			}
 		}
 		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
+		alsoNumberMenuItem.setSelected(true);
 		romanAsSanskritMenuItem.setSelected(false);
 		final MenuItem loadTestDataMenuItem = new MenuItem("Load test data");
 		loadTestDataMenuItem.setOnAction(actionEvent -> loadTestData());
 		optionsMenu.getItems().addAll(wrapTextMenuItem, saveOnCloseMenuItem, noAskOnCloseMenuItem,
-									new SeparatorMenuItem(), romanDefMenu, romanAsSanskritMenuItem, loadTestDataMenuItem);
+									new SeparatorMenuItem(), romanDefMenu, alsoNumberMenuItem, romanAsSanskritMenuItem,
+									new SeparatorMenuItem(), loadTestDataMenuItem);
 		
 		menuBar.getMenus().addAll(fileMenu, editMenu, convertFromMenu, convertToMenu, toolsMenu, optionsMenu);
 		
@@ -471,6 +474,7 @@ public class PaliTextEditor extends BorderPane {
 		findReplaceBox.clearInputs();
 		findReplaceBox.clearOptions();
 		convertFromGroup.selectToggle(convertFromGroup.getToggles().get(0));
+		alsoNumberMenuItem.setSelected(true);
 		romanAsSanskritMenuItem.setSelected(false);
 		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
 		setBottom(null);
@@ -794,7 +798,6 @@ public class PaliTextEditor extends BorderPane {
 	private void convertTo(final PaliScript toScript) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		String result = inputText;
 		PaliScript fromScript = (PaliScript)convertFromGroup.getSelectedToggle().getUserData();
 		final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
 		if (fromScript == PaliScript.UNKNOWN)
@@ -802,132 +805,9 @@ public class PaliTextEditor extends BorderPane {
 		// if unknown script eventually, force roman
 		if (fromScript == PaliScript.UNKNOWN)
 			fromScript = PaliScript.ROMAN;
-		switch (toScript) {
-			case ROMAN:
-				switch(fromScript) {
-					case DEVANAGARI:
-						result = ScriptTransliterator.transliterate(inputText, romanDef);
-						break;
-					case KHMER:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, romanDef);
-						break;
-					case MYANMAR:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, romanDef);
-						break;
-					case SINHALA:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, romanDef);
-						break;
-					case THAI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, romanDef);
-						break;
-				}
-				break;
-			case DEVANAGARI:
-				switch(fromScript) {
-					case ROMAN:
-						result = romanAsSanskritMenuItem.isSelected()
-									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA)
-									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA);
-						break;
-					case KHMER:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA);
-						break;
-					case MYANMAR:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA);
-						break;
-					case SINHALA:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA);
-						break;
-					case THAI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA);
-						break;
-				}
-				break;
-			case KHMER:
-				switch(fromScript) {
-					case ROMAN:
-						result = romanAsSanskritMenuItem.isSelected()
-									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER)
-									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER);
-						break;
-					case DEVANAGARI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_KHMER);
-						break;
-					case MYANMAR:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_KHMER);
-						break;
-					case SINHALA:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_KHMER);
-						break;
-					case THAI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_KHMER);
-						break;
-				}
-				break;
-			case MYANMAR:
-				switch(fromScript) {
-					case ROMAN:
-						result = romanAsSanskritMenuItem.isSelected()
-									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR)
-									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR);
-						break;
-					case DEVANAGARI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_MYANMAR);
-						break;
-					case KHMER:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_MYANMAR);
-						break;
-					case SINHALA:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_MYANMAR);
-						break;
-					case THAI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_MYANMAR);
-						break;
-				}
-				break;
-			case SINHALA:
-				switch(fromScript) {
-					case ROMAN:
-						result = romanAsSanskritMenuItem.isSelected()
-									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA)
-									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA);
-						break;
-					case DEVANAGARI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_SINHALA);
-						break;
-					case KHMER:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_SINHALA);
-						break;
-					case MYANMAR:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_SINHALA);
-						break;
-					case THAI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.THAI_DEVA, EngineType.DEVA_SINHALA);
-						break;
-				}
-				break;
-			case THAI:
-				switch(fromScript) {
-					case ROMAN:
-						result = romanAsSanskritMenuItem.isSelected()
-									? ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI)
-									: ScriptTransliterator.transliterate(inputText, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI);
-						break;
-					case DEVANAGARI:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.DEVA_THAI);
-						break;
-					case KHMER:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_THAI);
-						break;
-					case MYANMAR:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_THAI);
-						break;
-					case SINHALA:
-						result = ScriptTransliterator.transliterate(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_THAI);
-						break;
-				}
-				break;
-		}
+		final boolean alsoNumber = alsoNumberMenuItem.isSelected();
+		final String result = ScriptTransliterator.translitPaliScript(inputText,
+				fromScript, toScript, romanDef, alsoNumber, romanAsSanskritMenuItem.isSelected());
 		openNewEditor(result);
 	}
 	

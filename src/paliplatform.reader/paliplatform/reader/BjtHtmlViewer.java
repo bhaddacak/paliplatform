@@ -377,9 +377,8 @@ public class BjtHtmlViewer extends PaliHtmlViewer {
 	public void loadContent() {
 		final List<BjtPage> pages = ReaderUtilities.getBjtPages(thisDoc.getNodeFileName());
 		pageBody = formatText(pages);
-		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String bjtJS = ReaderUtilities.getStringResource(ReaderUtilities.BJT_JS);
-		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + bjtJS);
+		final String pageContent = ReaderUtilities.makeHTML(pageBody, bjtJS);
 		setContent(pageContent);
 	}
 

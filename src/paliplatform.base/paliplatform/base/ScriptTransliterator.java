@@ -86,9 +86,9 @@ public class ScriptTransliterator {
 	private static final String NEWLINE = "\\n";
 	private static final char saveBlockStart = '\uE800';
 	private static final char[] saveChars = new char[] { '\uE700', '\uE701', '\uE702', '\uE703' }; // for temporary substitutions
-	private static final Pattern tagPattern = Pattern.compile("(</?.*?>)");
+	private static final Pattern tagPattern = Pattern.compile("(<.*?>)");
 	private static final Pattern tagShiftedPattern = Pattern.compile(
-			"(" + (char)(saveBlockStart + '<') + (char)(saveBlockStart + '/') + "?.*?" + (char)(saveBlockStart + '>') + ")");
+			"(" + (char)(saveBlockStart + '<') + ".*?" + (char)(saveBlockStart + '>') + ")");
 	private static final Map<EngineType, Function<String, String>> translitMap = new EnumMap<>(EngineType.class);
 	private static boolean alsoNumber = true;
 	// Devanagari set
@@ -350,10 +350,6 @@ public class ScriptTransliterator {
 		translitMap.put(EngineType.MYANMAR_DEVA, text -> myanmarRawToDevanagari(processFromMyanmar(text)));
 	}
 
-	public static void setIncludingNumbers(final boolean yn) {
-		alsoNumber = yn;
-	}
-
 	public static String[] getDevaPaliVowels() {
 		final String[] result = new String[8];
 		int index = 0;
@@ -548,35 +544,42 @@ public class ScriptTransliterator {
 	}
 
 	public static String transliterate(final String text, final EngineType engine) {
-		return transliterate(text, engine, false);
+		return transliterate(text, engine, true, false);
 	}
 
-	public static String transliterate(final String text, final EngineType engine, final boolean xslFixed) {
+	public static String transliterate(final String text, final EngineType engine, final boolean withNumbers) {
+		return transliterate(text, engine, withNumbers, false);
+	}
+
+	public static String transliterate(final String text, final EngineType engine, final boolean withNumbers, final boolean xslFixed) {
 		final String textPrepared = saveTags(text);
         final Function<String, String> processor = translitMap.get(engine);
 		if (processor == null) return "";
+		alsoNumber = withNumbers;
 		final String textConverted = processor.apply(textPrepared);
 		final String result = restoreTags(textConverted);
 		return xslFixed ? fixXslName(result, engine) : result;
 	}
 
-	public static String transliterate(final String text, final EngineType engine1, final EngineType engine2) {
+	public static String transliterate(final String text, final EngineType engine1, final EngineType engine2, final boolean withNumbers) {
 		final String textPrepared = saveTags(text);
         final Function<String, String> processor1 = translitMap.get(engine1);
         final Function<String, String> processor2 = translitMap.get(engine2);
 		if (processor1 == null || processor2 == null) return "";
+		alsoNumber = withNumbers;
 		String textConverted = processor1.apply(textPrepared);
 		textConverted = processor2.apply(textConverted);
 		final String result = restoreTags(textConverted);
 		return result;
 	}
 
-	public static String translitBJT(final String text, final EngineType engine) {
+	public static String translitBJT(final String text, final EngineType engine, final boolean withNumbers) {
 		final String savedNL = shiftCharCode(NEWLINE, true);
 		String textPrepared = text.replace(NEWLINE, savedNL);
 		textPrepared = saveTags(textPrepared);
         final Function<String, String> processor = translitMap.get(engine);
 		if (processor == null) return "";
+		alsoNumber = withNumbers;
 		final Pattern textPatt = Pattern.compile("\"text\": \"(.*?)\"");
 		final Matcher textMatcher = textPatt.matcher(textPrepared);
 		final String textConverted = textMatcher.replaceAll(m -> "\"text\": \"" + processor.apply(m.group(1)) + "\"");
@@ -585,10 +588,11 @@ public class ScriptTransliterator {
 		return result;
 	}
 
-	public static String translitSC(final String text, final EngineType engine) {
+	public static String translitSC(final String text, final EngineType engine, final boolean withNumbers) {
 		final String textPrepared = saveTags(text);
         final Function<String, String> processor = translitMap.get(engine);
 		if (processor == null) return "";
+		alsoNumber = withNumbers;
 		final Pattern textPatt = Pattern.compile("\"(.*?)\": \"(.*?)\"");
 		final Matcher textMatcher = textPatt.matcher(textPrepared);
 		final String textConverted = textMatcher.replaceAll(m -> "\"" + m.group(1) + "\": \"" + processor.apply(m.group(2)) + "\"");
@@ -669,9 +673,13 @@ public class ScriptTransliterator {
 	}
 
 	private static String fixXslName(final String text, final EngineType engine) {
+		return fixXslName(text, engine.getSourceScript(), engine.getTargetScript());
+	}
+
+	public static String fixXslName(final String text, final PaliScript srcScript, final PaliScript tgtScript) {
 		// just for CST4 and CSTDEVA XMLs
-		final String oldXsl = "tipitaka-" + engine.getSourceScript().getCstAbbr() + "\\.xsl";
-		final String newXsl = "tipitaka-" + engine.getTargetScript().getCstAbbr() + "\\.xsl";
+		final String oldXsl = "tipitaka-" + srcScript.getCstAbbr() + "\\.xsl";
+		final String newXsl = "tipitaka-" + tgtScript.getCstAbbr() + "\\.xsl";
 		return text.replaceFirst(oldXsl, newXsl);
 	}
 
@@ -1530,6 +1538,139 @@ public class ScriptTransliterator {
 			output.append(dch);
 		} // end for
 		return output.toString();
+	}
+
+	public static String translitPaliScript(final String text,
+			final PaliScript fromScript, final PaliScript toScript,
+			final EngineType romanDef, final boolean withNumbers, final boolean asSanskrit) {
+		String result = text;
+		switch (toScript) {
+			case ROMAN:
+				switch(fromScript) {
+					case DEVANAGARI:
+						result = transliterate(text, romanDef, withNumbers);
+						break;
+					case KHMER:
+						result = transliterate(text, EngineType.KHMER_DEVA, romanDef, withNumbers);
+						break;
+					case MYANMAR:
+						result = transliterate(text, EngineType.MYANMAR_DEVA, romanDef, withNumbers);
+						break;
+					case SINHALA:
+						result = transliterate(text, EngineType.SINHALA_DEVA, romanDef, withNumbers);
+						break;
+					case THAI:
+						result = transliterate(text, EngineType.THAI_DEVA, romanDef, withNumbers);
+						break;
+				}
+				break;
+			case DEVANAGARI:
+				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, withNumbers);
+						break;
+					case KHMER:
+						result = transliterate(text, EngineType.KHMER_DEVA, withNumbers);
+						break;
+					case MYANMAR:
+						result = transliterate(text, EngineType.MYANMAR_DEVA, withNumbers);
+						break;
+					case SINHALA:
+						result = transliterate(text, EngineType.SINHALA_DEVA, withNumbers);
+						break;
+					case THAI:
+						result = transliterate(text, EngineType.THAI_DEVA, withNumbers);
+						break;
+				}
+				break;
+			case KHMER:
+				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, withNumbers);
+						break;
+					case DEVANAGARI:
+						result = transliterate(text, EngineType.DEVA_KHMER, withNumbers);
+						break;
+					case MYANMAR:
+						result = transliterate(text, EngineType.MYANMAR_DEVA, EngineType.DEVA_KHMER, withNumbers);
+						break;
+					case SINHALA:
+						result = transliterate(text, EngineType.SINHALA_DEVA, EngineType.DEVA_KHMER, withNumbers);
+						break;
+					case THAI:
+						result = transliterate(text, EngineType.THAI_DEVA, EngineType.DEVA_KHMER, withNumbers);
+						break;
+				}
+				break;
+			case MYANMAR:
+				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
+						break;
+					case DEVANAGARI:
+						result = transliterate(text, EngineType.DEVA_MYANMAR, withNumbers);
+						break;
+					case KHMER:
+						result = transliterate(text, EngineType.KHMER_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
+						break;
+					case SINHALA:
+						result = transliterate(text, EngineType.SINHALA_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
+						break;
+					case THAI:
+						result = transliterate(text, EngineType.THAI_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
+						break;
+				}
+				break;
+			case SINHALA:
+				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, withNumbers);
+						break;
+					case DEVANAGARI:
+						result = transliterate(text, EngineType.DEVA_SINHALA, withNumbers);
+						break;
+					case KHMER:
+						result = transliterate(text, EngineType.KHMER_DEVA, EngineType.DEVA_SINHALA, withNumbers);
+						break;
+					case MYANMAR:
+						result = transliterate(text, EngineType.MYANMAR_DEVA, EngineType.DEVA_SINHALA, withNumbers);
+						break;
+					case THAI:
+						result = transliterate(text, EngineType.THAI_DEVA, EngineType.DEVA_SINHALA, withNumbers);
+						break;
+				}
+				break;
+			case THAI:
+				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, withNumbers);
+						break;
+					case DEVANAGARI:
+						result = transliterate(text, EngineType.DEVA_THAI, withNumbers);
+						break;
+					case KHMER:
+						result = transliterate(text, EngineType.KHMER_DEVA, EngineType.DEVA_THAI, withNumbers);
+						break;
+					case MYANMAR:
+						result = transliterate(text, EngineType.MYANMAR_DEVA, EngineType.DEVA_THAI, withNumbers);
+						break;
+					case SINHALA:
+						result = transliterate(text, EngineType.SINHALA_DEVA, EngineType.DEVA_THAI, withNumbers);
+						break;
+				}
+				break;
+		}
+		return result;
 	}
 
 }

@@ -3,7 +3,7 @@ Text editor guide
 	2. The menu Tools is meant to be used with text in Roman script. Using with other scripts may cause unexpected results.
 	3. Script transliteration can be done with any source script to any target script. The source script can be auto-detected.
 	4. There are options for target Roman script, i.e., ISO 15919, IAST, Pāli Common, Least Contamination, and Roman Unique.
-	   - ISO 15919 follows the standard mostly (marked by ē, ō, ṁ, r̥, r̥̄, etc.).
+	   - ISO 15919 follows the standard mostly (marked by ē, ō, ṁ, r̥, r̥̄, l̥, l̥̄).
 	   - IAST uses ṃ instead of ṁ, and the consonant ḻ (ḷ is a vowel).
 	   - Pāli Common uses ṃ and the consonant ḷ (unsuitable for Sanskrit).
 	   - Least Contamination is like Pāli Common but symbols are retained visually. This can convert Pāli text back and forth among scripts with 100% accuracy. But this is unsuitable for Sanskrit (feasible but with unfamiliarity).

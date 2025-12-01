@@ -17,14 +17,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-// global variables
-let romanBody = null;
-let textNodeList = [];
-// functions
-function init(transformable) {
+function init() {
 	addMouseListener();
-	if (transformable)
-		createTextNodeList();
 }
 function addMouseListener() {
 	document.body.addEventListener('mouseup', event => {
@@ -39,62 +33,6 @@ function addMouseListener() {
 			window.fxHandler.updateClickedObject(text);
 		}
 	});	
-}
-function createTextNodeList() {
-	// the textNodeList is used for script transformation;
-	// create only three levels of elements and bare text node
-	textNodeList = [];
-	const allNodes = document.body.childNodes;
-	for(let i=0; i<allNodes.length; i++) {
-		const node_i = allNodes[i];
-		if(node_i.nodeType === Node.TEXT_NODE) {
-			textNodeList.push([i, -1, -1]);
-		} else if(node_i.nodeType === Node.ELEMENT_NODE && node_i.nodeName !== 'A') {
-			for(let j=0; j<node_i.childNodes.length; j++) {
-				if(node_i.childNodes[j].nodeType === Node.TEXT_NODE) {
-					textNodeList.push([i, j, -1]);
-				} else if(node_i.childNodes[j].nodeType === Node.ELEMENT_NODE && node_i.childNodes[j].nodeName !== 'A') {
-					const node_j = node_i.childNodes[j];
-					for(let k=0; k<node_j.childNodes.length; k++) {
-						if(node_j.childNodes[k].nodeType === Node.TEXT_NODE)
-							textNodeList.push([i, j, k]);
-					}
-				}
-			}
-		}
-	}
-}
-function saveRomanBody() {
-	if(romanBody === null)
-		romanBody = document.body.cloneNode(true);
-}
-function toRoman() {
-	const workingBody = romanBody.cloneNode(true);
-	document.body = workingBody;
-	addMouseListener();
-}
-function toNonRoman(lang, alsoNumber, useThAlt, isLinux) {
-	if(useThAlt)
-		useAltThai();
-	const workingBody = romanBody.cloneNode(true);
-	const allNodes = workingBody.childNodes;
-	for(const arr of textNodeList) {
-		const node = arr[1]<0 ? allNodes[arr[0]] :
-					arr[2]<0 ? allNodes[arr[0]].childNodes[arr[1]] :
-					allNodes[arr[0]].childNodes[arr[1]].childNodes[arr[2]];
-		if(lang === "THAI") {
-			node.textContent = romanToThai(node.textContent.toLowerCase(), alsoNumber);
-		} else if(lang === "KHMER") {
-			node.textContent = romanToKhmer(node.textContent.toLowerCase(), alsoNumber);
-		} else if(lang === "MYANMAR") {
-			node.textContent = romanToMyanmar(node.textContent.toLowerCase(), alsoNumber);
-		} else if(lang === "SINHALA") {
-			node.textContent = romanToSinhala(node.textContent.toLowerCase(), alsoNumber);
-		} else if(lang === "DEVANAGARI") {	
-			node.textContent = romanToDevanagari(node.textContent.toLowerCase(), alsoNumber);
-		}
-	}
-	document.body = workingBody;
 }
 function setViewerTheme(theme, style) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;

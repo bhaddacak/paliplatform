@@ -20,6 +20,7 @@
 package paliplatform.grammar;
 
 import paliplatform.base.*;
+import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
 import java.text.Normalizer;
@@ -28,7 +29,7 @@ import java.text.Normalizer.Form;
 import javafx.scene.*;
 import javafx.scene.text.Text;
 import javafx.scene.image.*;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.event.ActionEvent;
@@ -290,8 +291,17 @@ public final class LetterWin extends SingletonWindow {
 		});
 		final HBox typingInputBox = new HBox();
 		typingInputBox.getChildren().addAll(typingTextField, typingClearButton, typingTextInput.getMethodButton());
+		final AnchorPane typingOutputAnchorPane = new AnchorPane();
+		final Button copyTypingButton = new Button("", new TextIcon("copy", TextIcon.IconSet.AWESOME));
+		copyTypingButton.setTooltip(new Tooltip("Copy converted text"));
+		copyTypingButton.setOnAction(actionEvent -> copyConvertedText());
+		AnchorPane.setTopAnchor(typingOutput, 0.0);
+		AnchorPane.setLeftAnchor(typingOutput, 0.0);
+		AnchorPane.setTopAnchor(copyTypingButton, 0.0);
+		AnchorPane.setRightAnchor(copyTypingButton, 0.0);
+		typingOutputAnchorPane.getChildren().addAll(typingOutput, copyTypingButton);
 		typingBox.setPadding(new Insets(3));
-		typingBox.getChildren().addAll(typingInputBox, typingOutput);
+		typingBox.getChildren().addAll(typingInputBox, typingOutputAnchorPane);
 
 	} // end constructor
 	
@@ -497,19 +507,19 @@ public final class LetterWin extends SingletonWindow {
 		final String outText;
 		switch (currPaliScript) {
 			case DEVANAGARI:
-				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_DEVA);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, true);
 				break;
 			case KHMER:
-				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_KHMER);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, true);
 				break;
 			case MYANMAR:
-				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, true);
 				break;
 			case SINHALA:
-				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_SINHALA);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, true);
 				break;
 			case THAI:
-				outText = ScriptTransliterator.transliterate(text, ScriptTransliterator.EngineType.ROMAN_THAI);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, true);
 				break;
 			default: outText = text;
 		}
@@ -554,4 +564,11 @@ public final class LetterWin extends SingletonWindow {
 		Utilities.saveText(makeText(), "letters.txt");
 	}
 
+	private void copyConvertedText() {
+		final Clipboard clipboard = Clipboard.getSystemClipboard();
+		final ClipboardContent content = new ClipboardContent();
+		content.putString(typingOutput.getText());
+		clipboard.setContent(content);
+	}
+	
 }

@@ -91,10 +91,10 @@ final public class Utilities {
 	public static final String FONTAWESOME = "Font Awesome 6 Free Solid";
 	public static final String FONT_FALLBACK = "serif";
 	public static String FONTSERIF = FONT_FALLBACK;
-	public static String FONTSANS = FONT_FALLBACK;
-	public static String FONTMONO = FONT_FALLBACK;
-	public static String FONTMONOBOLD = FONT_FALLBACK;
-	public static String FONTMYAN = FONT_FALLBACK;
+	public static String FONTSANS = "sans-serif";
+	public static String FONTMONO = "monospace";
+	public static String FONTMONOBOLD = "monospace";
+//~ 	public static String FONTMYAN = FONT_FALLBACK;
 	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹṁṃṅṇṛṝṣṭēō";
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
@@ -472,17 +472,17 @@ final public class Utilities {
 		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-BoldOblique.ttf"), 0);
-		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Regular.ttf"), 0);
-		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
-		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Bold.ttf"), 0);
+//~ 		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Regular.ttf"), 0);
+//~ 		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
+//~ 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Bold.ttf"), 0);
 		if (fontSerif != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
 		if (fontSans != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontMono != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
-		if (fontMyan != null)
-			embeddedFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
+//~ 		if (fontMyan != null)
+//~ 			embeddedFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
 		// read external fonts
 		loadExternalFonts();
 	}
@@ -739,14 +739,18 @@ final public class Utilities {
 		}
 	}
 	
+	public static PaliScript getScriptLanguage(final File file) {
+		return getScriptLanguage(file, StandardCharsets.UTF_8);
+	}
+
 	/**
 	 * Reads a file and determines its script.
 	 */
-	public static PaliScript getScriptLanguage(final File file) {
+	public static PaliScript getScriptLanguage(final File file, final Charset charset) {
 		final StringBuilder text = new StringBuilder();
-		try (final Scanner in = new Scanner(new FileInputStream(file), StandardCharsets.UTF_8)) {
-			while (in.hasNextLine() && text.length() < 100) {
-				final String line = in.nextLine().trim();
+		try (final Scanner in = new Scanner(new FileInputStream(file), charset)) {
+			while (in.hasNextLine() && text.length() < 1024) {
+				final String line = removeTags(in.nextLine().trim());
 				text.append(line);
 			}
 		} catch (FileNotFoundException e) {
@@ -762,7 +766,7 @@ final public class Utilities {
 		final String text = input.trim();
 		if (text.isEmpty())
 			return PaliScript.ROMAN;
-		final String specimen = text.length() > 100 ? text.substring(0, 100) : text;
+		final String specimen = text.length() > 1024 ? text.substring(0, 1024) : text;
 		final long totalLen = specimen.chars().filter(x -> " \t\n\r\f".indexOf(x) > -1).count();
 		final PaliScript result;
 		int romanCount = 0;
@@ -830,14 +834,18 @@ final public class Utilities {
 				list.remove(i.intValue());
 		}
 	}
-	
-	public static String cleanXmlTags(final String text) {
-		final String patt = "<\\??/?!?[a-zA-Z-](?:[^>\"\']|\"[^\"]*\"|\'[^\']*\'\\?)*>";
-		String result = text.replaceAll(patt, " ");
-		result = result.replaceAll("&nbsp;", " ").replaceAll("&amp;", "&").replaceAll("&gt;", ">").replaceAll("&lt;", "<")
-						.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
-		return result;
+
+	public static String removeTags(final String text) {
+		return text.replaceAll("<.*?>", " ");
 	}
+	
+//~ 	public static String cleanXmlTags(final String text) {
+//~ 		final String patt = "<\\??/?!?[a-zA-Z-](?:[^>\"\']|\"[^\"]*\"|\'[^\']*\'\\?)*>";
+//~ 		String result = text.replaceAll(patt, " ");
+//~ 		result = result.replaceAll("&nbsp;", " ").replaceAll("&amp;", "&").replaceAll("&gt;", ">").replaceAll("&lt;", "<")
+//~ 						.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
+//~ 		return result;
+//~ 	}
 
 	public static String getTextResource(final String fileNameWithPath) {
 		String result = "";
@@ -917,10 +925,14 @@ final public class Utilities {
 		return fileChooser.showOpenMultipleDialog(owner);
 	}
 	
-	public static String getTextFileContent(final File theFile) {
+	public static String getTextFileContent(final File file) {
+		return getTextFileContent(file, StandardCharsets.UTF_8);
+	}
+	
+	public static String getTextFileContent(final File file, final Charset charset) {
 		String content = "";
 		try {
-			content = Files.readString(theFile.toPath());
+			content = Files.readString(file.toPath(), charset);
 		} catch (IOException e) {
 			System.err.println(e);
 		}

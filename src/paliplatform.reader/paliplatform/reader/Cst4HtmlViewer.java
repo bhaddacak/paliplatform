@@ -353,9 +353,8 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 		} else {
 			pageBody = ReaderUtilities.readCst4XML(thisDoc);
 		}
-		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String cst4JS = ReaderUtilities.getStringResource(ReaderUtilities.CST4_JS);
-		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + cst4JS);
+		final String pageContent = ReaderUtilities.makeHTML(pageBody, cst4JS);
 		setContent(pageContent);
 	}
 	

@@ -50,10 +50,9 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 		final ViewerFXHandler fxHandler = new ViewerFXHandler(this);
 	 	webEngine.getLoadWorker().stateProperty().addListener((prop, oldState, newState) -> {
 			if (newState == Worker.State.SUCCEEDED) {
-				final int transformable = node.getCorpus().isTransformable() ? 1 : 0;
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
-				webEngine.executeScript("init(" + transformable + ")");
+				webEngine.executeScript("init()");
 				if (!initialStringToLocate.isEmpty())
 					findSingle(initialStringToLocate);
 				setViewerTheme(Utilities.settings.getProperty("theme"));
@@ -113,7 +112,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				}
 			});
 			toggleNumberButton = new ToggleButton("", new TextIcon("0-9", TextIcon.IconSet.SANS));
-			toggleNumberButton.setTooltip(new Tooltip("Number conversion on/off"));
+			toggleNumberButton.setTooltip(new Tooltip("Converting Roman numbers on/off"));
 			toggleNumberButton.setSelected(alsoConvertNumber);
 			toggleNumberButton.setOnAction(actionEvent -> {
 				alsoConvertNumber = toggleNumberButton.isSelected();
@@ -149,17 +148,17 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 	}
 
 	private void convertToScript(final Utilities.PaliScript toScript, final Utilities.PaliScript fromScript, final boolean alsoNumber) {
-		String command = "";
-		final String withNum = alsoNumber ? "1" : "0";
-		if (toScript == Utilities.PaliScript.ROMAN) {
-			command = "toRoman()";
-		} else {
-			final boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
-			command = "toNonRoman('" + toScript.toString() + "'," + withNum + ",0," + (isLinux?1:0) + ")";
-		}
-		if (fromScript == Utilities.PaliScript.ROMAN)
-			webEngine.executeScript("saveRomanBody()");
-		webEngine.executeScript(command);
+//~ 		String command = "";
+//~ 		final String withNum = alsoNumber ? "1" : "0";
+//~ 		if (toScript == Utilities.PaliScript.ROMAN) {
+//~ 			command = "toRoman()";
+//~ 		} else {
+//~ 			final boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
+//~ 			command = "toNonRoman('" + toScript.toString() + "'," + withNum + ",0," + (isLinux?1:0) + ")";
+//~ 		}
+//~ 		if (fromScript == Utilities.PaliScript.ROMAN)
+//~ 			webEngine.executeScript("saveRomanBody()");
+//~ 		webEngine.executeScript(command);
 		setViewerFont(toScript);
 	}
 	

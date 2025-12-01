@@ -61,8 +61,6 @@ final public class CpUtil {
 				param = args.length > 2 ? args[2] : "";
 				if (opt.equals("-f")) {
 					showFullInfo();
-//~ 				} else if (opt.equals("-t")) {
-//~ 					showAvailTranslit();
 				} else if (opt.equals("-l") && !param.isEmpty()) {
 					final long startTime = System.currentTimeMillis();
 					if (param.equalsIgnoreCase("sc"))
@@ -145,7 +143,6 @@ final public class CpUtil {
 		help.append("    list\tShow information of corpora").append(LINESEP);
 		help.append("        List options:").append(LINESEP);
 		help.append("        -l <corpus>\tShow file list of <corpus>").append(LINESEP);
-		help.append("        -t\tShow available transliteration methods").append(LINESEP);
 		help.append("        -f\tShow full information of collections").append(LINESEP);
 		help.append("        <none>\tShow brief information of collections").append(LINESEP);
 		help.append("    show\tShow some analyses").append(LINESEP);
@@ -671,13 +668,6 @@ final public class CpUtil {
 		return result;
 	}
 
-//~ 	private static void showAvailTranslit() {
-//~ 		for (final EngineType eng : EngineType.engines) {
-//~ 			printLog((eng.ordinal() + 1) + ". " + eng.getName());
-//~ 			printLog("   From: " + eng.getSourceScript().getName() + ", To: " + eng.getTargetScript().getName());
-//~ 		}
-//~ 	}
-
 	private static void saveTransliterated(final String colStr, final String filename, final char lang) throws Exception {
 		final Corpus.Collection col = getCollection(colStr);
 		if (col == Corpus.Collection.PTST) {
@@ -755,10 +745,10 @@ final public class CpUtil {
 					final String text = readFileContent(cp, file);
 					if (!text.isEmpty()) {
 						final String result = col == Corpus.Collection.BJT
-												? ScriptTransliterator.translitBJT(text, engine)
+												? ScriptTransliterator.translitBJT(text, engine, true)
 												: col == Corpus.Collection.SC
-													? ScriptTransliterator.translitSC(text, engine)
-													: ScriptTransliterator.transliterate(text, engine, xslFixed);
+													? ScriptTransliterator.translitSC(text, engine, true)
+													: ScriptTransliterator.transliterate(text, engine, true, xslFixed);
 						printLog("Writing out " + outfile.getPath());
 						Utilities.saveText(result, outfile, cp.getEncoding().getCharset());
 					} else {

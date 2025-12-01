@@ -414,9 +414,8 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 	public void loadContent() {
 		final String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile(), thisDoc.getCorpus().getEncoding().getCharset());
 		pageBody = formatText(bodyText);
-		final String transformerJS = ReaderUtilities.getStringResource(ReaderUtilities.TRANSFORMER_JS);
 		final String cstrJS = ReaderUtilities.getStringResource(ReaderUtilities.CSTR_JS);
-		final String pageContent = ReaderUtilities.makeHTML(pageBody, transformerJS + cstrJS);
+		final String pageContent = ReaderUtilities.makeHTML(pageBody, cstrJS);
 		setContent(pageContent);
 	}
 

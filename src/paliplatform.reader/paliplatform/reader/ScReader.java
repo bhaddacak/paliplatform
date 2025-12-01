@@ -71,7 +71,7 @@ public class ScReader extends PaliHtmlViewerBase {
 	private final CheckMenuItem useMDotAboveMenuItem = new CheckMenuItem("Use ṁ");
 	private final ChoiceBox<String> transLangChoice = new ChoiceBox<>();
 	private final ToggleGroup scriptLangGroup = new ToggleGroup();
-	private Utilities.PaliScript currFontScript = Utilities.PaliScript.ROMAN; // for Myanmar and the rest
+	private Utilities.PaliScript currFontScript = Utilities.PaliScript.ROMAN;
 	private String initialStringToLocate = "";
 	private ScDocument currDoc = null;
 
@@ -84,7 +84,7 @@ public class ScReader extends PaliHtmlViewerBase {
 			if (newState == Worker.State.SUCCEEDED) {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
-				webEngine.executeScript("init(0)");
+				webEngine.executeScript("init()");
 				if (!initialStringToLocate.isEmpty())
 					findSingle(initialStringToLocate);
 				setViewerTheme(Utilities.settings.getProperty("theme"));
@@ -286,14 +286,15 @@ public class ScReader extends PaliHtmlViewerBase {
 	private void updateContent() {
 		if (currDoc == null) return;
 		final Utilities.PaliScript script = (Utilities.PaliScript)scriptLangGroup.getSelectedToggle().getUserData();
-		if (script == Utilities.PaliScript.MYANMAR) {
-			// only Myanmar use custom fonts
-			currFontScript = script;
-			toolBar.setupFontMenu(script);
-		} else {
-			currFontScript = Utilities.PaliScript.ROMAN;
-			toolBar.setupFontMenu(Utilities.PaliScript.ROMAN);
-		}
+		currFontScript = script;
+//~ 		if (script == Utilities.PaliScript.MYANMAR) {
+//~ 			// only Myanmar use custom fonts
+//~ 			currFontScript = script;
+//~ 			toolBar.setupFontMenu(script);
+//~ 		} else {
+//~ 			currFontScript = Utilities.PaliScript.ROMAN;
+//~ 			toolBar.setupFontMenu(Utilities.PaliScript.ROMAN);
+//~ 		}
 		pageBody = formatText(currDoc);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody);
 		setContent(pageContent);
@@ -379,29 +380,8 @@ public class ScReader extends PaliHtmlViewerBase {
 
 	private String convertToScript(final String text, final Utilities.PaliScript script) {
 		final String normalized = Utilities.normalizeNiggahita(text, true);
-		String result = "";
-		switch (script) {
-			case ROMAN:
-				result = normalized;
-				break;
-			case DEVANAGARI:
-				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_DEVA);
-				break;
-			case KHMER:
-				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_KHMER);
-				break;
-			case MYANMAR:
-				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
-				break;
-			case SINHALA:
-				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_SINHALA);
-				break;
-			case THAI:
-				result = ScriptTransliterator.transliterate(normalized, ScriptTransliterator.EngineType.ROMAN_THAI);
-				break;
-			default:
-				result = normalized;
-		}
+		final String result = ScriptTransliterator.translitPaliScript(normalized,
+						Utilities.PaliScript.ROMAN, script, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true, false);
 		return result;
 	}
 

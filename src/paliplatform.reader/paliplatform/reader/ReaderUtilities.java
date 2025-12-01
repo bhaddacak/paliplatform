@@ -81,7 +81,7 @@ final public class ReaderUtilities {
 	public static final String GRETIL_JS = JSDIR + "gretil-viewer.js"; // used only by PTS
 	public static final String SRT_JS = JSDIR + "srt-viewer.js"; // used only by SRT
 	public static final String GRAM_JS = JSDIR + "gram-viewer.js"; // used only by gram books
-	public static final String TRANSFORMER_JS = JSDIR + "transformer.js"; // used by all PaliHtmlViewer
+//~ 	public static final String TRANSFORMER_JS = JSDIR + "transformer.js"; // used by all PaliHtmlViewer
 	public static final String CORPUS_INFO = TXTDIR + "corpus-info.xml";
 	public static final String ROOT_DEF = TXTDIR + "rootdef.xml";
 	public static final String REF_DATA = TXTDIR + "references.xml";

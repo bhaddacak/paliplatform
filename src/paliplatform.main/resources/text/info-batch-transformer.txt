@@ -1,12 +1,17 @@
-A guide to batch transformation
+A guide to batch transliteration
 	1. Input files can be from different folders; the adding can be done several times.
-	2. By default, the input script is auto-detected; unknown scripts are not processed, but listed. If auto-detect option is disabled, the input script can be selected (only one per session).
-	3. If not set otherwise, the output directory is the same as input's.
-	4. If the output directory is the same as input's, the file name's suffix should be set.
-	5. If output files already exist, transformation is not applied.
-	6. If source and output script is identical, transformation is not applied.
-	7. Roman script can be transformed to any of other scripts.
-	8. Non-Roman scripts can only be transformed to Roman, otherwise transformation is not applied.
-	9. The option of number inclusion works only for transformation from Roman to other scripts (except Sinhala).
-	10. For Devanagari script, the transformation is least contaminated, for example, bars and double-bars are visually retained. For more information see help in the viewer of CST4 collection.
-	11. Conversion from Myanmar script is not supported.
+	2. If not set otherwise, the output will be saved in the source directory.
+	3. The input script can be either auto-detected or forced.
+	4. File encoding has to be chosen properly. In Tipitaka-XML corpus, UTF-16 is used.
+	5. The files can be in a structured format like XML. In case of Tipitaka-XML files, the XSL name will be changed correspondingly.
+	6. The output will be always overwritten.
+	7. There is an option to include or ignore Roman numbers in transliteration.
+	8. For Roman output, different transliteration methods can be used:
+	   - ISO 15919 is mostly used with Sanskrit (marked by ē, ō, ṁ, r̥, r̥̄, l̥, l̥̄).
+	   - IAST uses ṃ, and the consonant ḻ (ḷ is a vowel).
+	   - Pāli Common is like IAST except the consonant ḷ is used by familiarity.
+	   - Least Contamination is like Pāli Common but symbols are retained visually (marked by ē = ai, ō = au, the consonant ḷ, the vowel ŀ).
+	   - Roman Unique is like Least but the consonant ḻ and the vowel ḷ is used.
+	9. When source text is Roman Sanskrit, the option 'Roman as Sanskrit' should be checked.
+	10. If the conversion fails, try changing file encoding, and make sure that Sanskrit text is treated properly.
+	11. Learn more by experimenting in the Text Editor with 'Load test data'.

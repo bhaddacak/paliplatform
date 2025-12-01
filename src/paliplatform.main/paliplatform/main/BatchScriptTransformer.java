@@ -20,9 +20,13 @@
 package paliplatform.main;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.PaliScript;
+import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import javafx.collections.*;
 import javafx.scene.*;
@@ -40,14 +44,19 @@ import javafx.beans.property.*;
  * @since 2.0
  */
 public class BatchScriptTransformer extends SingletonWindow {
-	private static final String DEFAULT_SUFFIX = "_converted";
+	private static final String[] charsetStr = { "UTF-8 ", "UTF-16" };
 	public static final BatchScriptTransformer INSTANCE = new BatchScriptTransformer();
 	private final BorderPane mainPane = new BorderPane();
 	private final ObservableList<ScriptTransformer> workingList = FXCollections.<ScriptTransformer>observableArrayList();
 	private final TableView<ScriptTransformer> table = new TableView<>();
-	private final CheckBox cbAutodetect = new CheckBox("Auto-detect");
-	private static String suffix = DEFAULT_SUFFIX;
+	private final ToggleButton charsetButton = new ToggleButton();
+	private final CheckMenuItem useSourceDirMenuItem = new CheckMenuItem("Save in source directory");
+	private final CheckMenuItem autodetectMenuItem = new CheckMenuItem("Auto-detect input script");
+	private final CheckMenuItem includeNumMenuItem = new CheckMenuItem("Convert Roman numbers");
+	private final CheckMenuItem romanAsSanskritMenuItem = new CheckMenuItem("Roman as Sanskrit");
+	private final ToggleGroup romanDefaultGroup = new ToggleGroup();
 	private final InfoPopup infoPopup = new InfoPopup();
+	private File outputDirectory = null;
 	
 	private BatchScriptTransformer() {
 		super();
@@ -77,13 +86,14 @@ public class BatchScriptTransformer extends SingletonWindow {
 		commonToolBar.copyButton.setTooltip(new Tooltip("Copy CSV to clipboard"));
 		commonToolBar.copyButton.setOnAction(actionEvent -> copyCSV());		
 		commonToolBar.copyButton.disableProperty().bind(workingListProperty.sizeProperty().isEqualTo(0));
-		cbAutodetect.setAllowIndeterminate(false);
-		cbAutodetect.setTooltip(new Tooltip("Auto-detect input script"));
-		cbAutodetect.setSelected(true);
+		charsetButton.setTooltip(new Tooltip("File encoding"));
+		charsetButton.setText(charsetStr[0]);
+		charsetButton.setStyle("-fx-font-family:'" + Utilities.FONTMONO +"';");
+		charsetButton.setOnAction(actionEvent -> charsetButton.setText((charsetButton.isSelected() ? charsetStr[1] : charsetStr[0])));
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_CENTER, true));
-		commonToolBar.getItems().addAll(cbAutodetect, helpButton);
-		// 2. the task specific tool bar
+		commonToolBar.getItems().addAll(charsetButton, helpButton);
+		// 2. the task-specific tool bar
 		final ToolBar toolBar = new ToolBar();
 		final Button removeButton = new Button("", new TextIcon("trash", TextIcon.IconSet.AWESOME));
 		removeButton.setTooltip(new Tooltip("Remove from the list"));
@@ -97,38 +107,48 @@ public class BatchScriptTransformer extends SingletonWindow {
 		resetButton.setOnAction(actionEvent -> reset());		
 		final Button addButton = new Button("Add files");
 		addButton.setOnAction(actionEvent -> addFiles());
-		final Button setTargetButton = new Button("Output folder");
-		setTargetButton.setOnAction(actionEvent -> setTargetFolder());
 		final MenuButton sourceScriptMenu = new MenuButton("Input script");
-		sourceScriptMenu.disableProperty().bind(cbAutodetect.selectedProperty());
-		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
-			if (sc.ordinal() == 0 || sc.ordinal() == 4) continue; // skip Unknown and Myanmar
-			final String sname = sc.toString();
-			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
+		sourceScriptMenu.disableProperty().bind(autodetectMenuItem.selectedProperty());
+		for (PaliScript sc : PaliScript.scripts) {
+			if (sc.ordinal() == 0) continue; // skip Unknown
+			final MenuItem mitem = new MenuItem(sc.getName());
 			mitem.setOnAction(actionEvent -> setSourceScript(sc));
 			sourceScriptMenu.getItems().add(mitem);
 		}
 		final MenuButton targetScriptMenu = new MenuButton("Output script");
-		for (Utilities.PaliScript sc : Utilities.PaliScript.scripts) {
+		for (PaliScript sc : PaliScript.scripts) {
 			if (sc.ordinal() == 0) continue; // skip Unknown
-			final String sname = sc.toString();
-			final MenuItem mitem = new MenuItem(sname.charAt(0) + sname.substring(1).toLowerCase());
+			final MenuItem mitem = new MenuItem(sc.getName());
 			mitem.setOnAction(actionEvent -> setTargetScript(sc));
 			targetScriptMenu.getItems().add(mitem);
 		}
-		final Button suffixButton = new Button("Suffix");
-		suffixButton.setTooltip(new Tooltip("Change output-file suffix"));
-		suffixButton.setOnAction(actionEvent -> setSuffix());
-		final CheckBox includeNumButton = new CheckBox("Numbers");
-		includeNumButton.setAllowIndeterminate(false);
-		includeNumButton.setTooltip(new Tooltip("Including numbers on/off"));
-		includeNumButton.setSelected(true);
-		includeNumButton.setOnAction(actionEvent -> ScriptTransliterator.setIncludingNumbers(includeNumButton.isSelected()));
+		// Options
+		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
+		optionsMenu.setTooltip(new Tooltip("Options"));
+		useSourceDirMenuItem.setSelected(true);
+		useSourceDirMenuItem.setOnAction(actionEvent -> setTargetFolderAsSource());
+		final MenuItem setOutputDirMenuItem = new MenuItem("Set output directory");
+		setOutputDirMenuItem.disableProperty().bind(useSourceDirMenuItem.selectedProperty());
+		setOutputDirMenuItem.setOnAction(actionEvent -> setTargetFolder());
+		autodetectMenuItem.setSelected(true);
+		final Menu romanDefMenu = new Menu("Roman transliteration");
+		for (final EngineType en : EngineType.engines) {
+			if (en.getTargetScript() == PaliScript.ROMAN) {
+				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
+				enItem.setUserData(en);
+				enItem.setToggleGroup(romanDefaultGroup);
+				romanDefMenu.getItems().add(enItem);
+			}
+		}
+		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
+		includeNumMenuItem.setSelected(true);
+		optionsMenu.getItems().addAll(useSourceDirMenuItem, setOutputDirMenuItem,
+						new SeparatorMenuItem(), autodetectMenuItem, romanDefMenu, includeNumMenuItem, romanAsSanskritMenuItem);
 		final Button convertButton = new Button("Convert", new TextIcon("gears", TextIcon.IconSet.AWESOME));
 		convertButton.setOnAction(actionEvent -> startConvert());
 		toolBar.getItems().addAll(removeButton, clearButton, resetButton, 
-								addButton, setTargetButton, sourceScriptMenu, targetScriptMenu,
-								suffixButton, includeNumButton, convertButton);
+								addButton, sourceScriptMenu, targetScriptMenu,
+								optionsMenu, convertButton);
 		
 		mainPane.setTop(commonToolBar);
 		final VBox contentBox = new VBox();
@@ -140,7 +160,7 @@ public class BatchScriptTransformer extends SingletonWindow {
 		
 		// prepare info popup
 		infoPopup.setContentWithText(PaliPlatform.getTextResource("info-batch-transformer.txt"));
-		infoPopup.setTextWidth(Utilities.getRelativeSize(40));		
+		infoPopup.setTextWidth(Utilities.getRelativeSize(42));		
 	}
 
 	@Override
@@ -188,37 +208,25 @@ public class BatchScriptTransformer extends SingletonWindow {
 		}
 	}
 	
+	private void setTargetFolderAsSource() {
+		workingList.forEach(st -> st.setTargetDirectory(useSourceDirMenuItem.isSelected()));
+	}
+
 	private void setTargetFolder() {
-		final File targetDir = Utilities.selectDirectory(this);
-		if (targetDir != null) {
-			workingList.forEach(st -> st.setTargetDirectory(targetDir));
+		outputDirectory = Utilities.selectDirectory(this);
+		if (outputDirectory != null) {
+			workingList.forEach(st -> st.setTargetDirectory(false));
 		}
 	}
 	
-	private void setSourceScript(final Utilities.PaliScript script) {
+	private void setSourceScript(final PaliScript script) {
 		workingList.forEach(st -> st.setSourceScript(script.toString()));
 	}
 
-	private void setTargetScript(final Utilities.PaliScript script) {
+	private void setTargetScript(final PaliScript script) {
 		workingList.forEach(st -> st.setTargetScript(script.toString()));
 	}
 
-	static String getSuffix() {
-		return suffix;
-	}
-		
-	private void setSuffix() {
-		final TextInputDialog inputDialog = new TextInputDialog(suffix);
-		inputDialog.setTitle("Specify a suffix");
-		inputDialog.setHeaderText(null);
-		inputDialog.setContentText("Please enter the suffix of output files\nto avoid meddling with source files.");
-		final Optional<String> result = inputDialog.showAndWait();
-		if (result.isPresent()) {
-			suffix = result.get();
-			workingList.forEach(st -> st.setTargetFileName());
-		}
-	}
-	
 	private void removeItems() {
 		Utilities.removeObservableItems(workingList, table.getSelectionModel().getSelectedIndices());
 	}
@@ -267,7 +275,7 @@ public class BatchScriptTransformer extends SingletonWindow {
 	}
 	
 	// inner class
-	public static final class ScriptTransformer {
+	public final class ScriptTransformer {
 		final private File sourceFile;
 		private StringProperty sourceFileName;
 		private StringProperty sourceScript;
@@ -277,30 +285,40 @@ public class BatchScriptTransformer extends SingletonWindow {
 		final private String sourceName;
 		final private String sourcePath;
 		final private String sourceExt;
-		final private Utilities.PaliScript detectedScript;
+		final private Charset charset;
+		final private PaliScript detectedScript;
 		private String targetPath = "";
 		
 		public ScriptTransformer(final File file) {
 			sourceFile = file;
+			charset = charsetButton.isSelected() ? StandardCharsets.UTF_16LE : StandardCharsets.UTF_8;
 			if (file == null) {
 				sourceName = "";
 				sourcePath = "";
 				sourceExt = "";
-				detectedScript = Utilities.PaliScript.UNKNOWN;
+				detectedScript = PaliScript.UNKNOWN;
 			} else {
 				final String srcFilePath = file.getPath();
-				sourcePath = srcFilePath.substring(0, srcFilePath.lastIndexOf(File.separator));
-				sourceName = srcFilePath.substring(srcFilePath.lastIndexOf(File.separator), srcFilePath.lastIndexOf("."));
+				final int sepPos = srcFilePath.lastIndexOf(File.separator);
+				sourcePath = sepPos >= 0
+								? srcFilePath.substring(0, sepPos + 1)
+								: File.separator;
+				sourceName = sepPos >= 0
+								? srcFilePath.substring(sepPos + 1, srcFilePath.lastIndexOf("."))
+								: srcFilePath;
 				sourceExt = srcFilePath.substring(srcFilePath.lastIndexOf("."));
 				sourceFileNameProperty().set(srcFilePath);
-				detectedScript = Utilities.getScriptLanguage(file);
+				detectedScript = Utilities.getScriptLanguage(file, charset);
 				sourceScriptProperty().set(detectedScript.toString());
-				if (targetPath.isEmpty())
-					targetPath = sourcePath;
-				final String targetFilePath = detectedScript == Utilities.PaliScript.UNKNOWN ? ""
-											: targetPath + sourceName + BatchScriptTransformer.getSuffix() + sourceExt;
+				targetScriptProperty().set(detectedScript == PaliScript.UNKNOWN ? "" : "ROMAN");
+				targetPath = useSourceDirMenuItem.isSelected()
+								? sourcePath
+								: outputDirectory == null ? "" : outputDirectory.getPath();
+				final String tPath = targetPath.endsWith(File.separator) ? targetPath : targetPath + File.separator;
+				final String targetFilePath = detectedScript == PaliScript.UNKNOWN
+												? ""
+												: tPath + targetScriptProperty().get().toLowerCase() + "_" + sourceName + sourceExt;
 				targetFileNameProperty().set(targetFilePath);
-				targetScriptProperty().set(detectedScript == Utilities.PaliScript.UNKNOWN ? "" : "ROMAN");
 			}
 		}
 		
@@ -344,19 +362,27 @@ public class BatchScriptTransformer extends SingletonWindow {
 		}
 		
 		public void setTargetScript(final String strScript) {
-			if (!Utilities.PaliScript.UNKNOWN.toString().equals(sourceScriptProperty().get())) {
+			if (!PaliScript.UNKNOWN.toString().equals(sourceScriptProperty().get())) {
 				targetScript.set(strScript);
+				setTargetFileName();
 			}
 		}
 		
-		public void setTargetDirectory(final File path) {
-			targetPath = path.getPath();
+		public void setTargetDirectory(final boolean asSource) {
+			targetPath = asSource 
+							? sourcePath
+							: outputDirectory == null
+								? sourcePath
+								: outputDirectory.getPath();
 			setTargetFileName();
 		}
 		
 		public void setTargetFileName() {
-			if (!Utilities.PaliScript.UNKNOWN.toString().equals(sourceScriptProperty().get())) {
-				targetFileNameProperty().set(targetPath + sourceName + BatchScriptTransformer.getSuffix() + sourceExt);
+			if (!PaliScript.UNKNOWN.toString().equals(sourceScriptProperty().get())) {
+				final String prefix = targetScriptProperty().get().toLowerCase();
+				final String tPath = targetPath.endsWith(File.separator) ? targetPath : targetPath + File.separator;
+				final String filename = tPath + prefix + "_" + sourceName + sourceExt;
+				targetFileNameProperty().set(filename);
 			}
 		}
 		
@@ -368,52 +394,22 @@ public class BatchScriptTransformer extends SingletonWindow {
 		public void convert() {
 			if (!doneProperty().get().isEmpty())
 				return;
-			if (!(targetFileNameProperty().get().isEmpty() || sourceScriptProperty().get().equals(targetScriptProperty().get()))) {
-				final File target = new File(targetFileNameProperty().get());
-				if (!target.exists()) {
-					String srcText = Utilities.getTextFileContent(sourceFile);
-					String tgtText = "";
-					if (Utilities.PaliScript.ROMAN.toString().equals(sourceScriptProperty().get())) {
-						srcText = Utilities.normalizeNiggahita(srcText, true);
-						switch (Utilities.PaliScript.valueOf(targetScriptProperty().get())) {
-							case DEVANAGARI:
-								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_DEVA);
-								break;
-							case KHMER:
-								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_KHMER);
-								break;
-							case MYANMAR:
-								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_MYANMAR);
-								break;
-							case SINHALA:
-								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_SINHALA);
-								break;
-							case THAI:
-								tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.ROMAN_THAI);
-								break;
-						}
-					} else {
-						if (Utilities.PaliScript.ROMAN.toString().equals(targetScriptProperty().get())) {
-							switch (Utilities.PaliScript.valueOf(sourceScriptProperty().get())) {
-								case DEVANAGARI:
-									tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON);
-									break;
-								case KHMER:
-									break;
-								case SINHALA:
-									break;
-								case THAI:
-									tgtText = ScriptTransliterator.transliterate(srcText, ScriptTransliterator.EngineType.THAI_ROMAN);
-									break;
-							}
-						}
-					}
-					if (!tgtText.isEmpty()) {
-						Utilities.saveText(tgtText, target);
-						setDone(true);
-					}
-				}
-			} // end if
+			if (targetFileNameProperty().get().isEmpty())
+				return;
+			if (sourceScriptProperty().get().equals(targetScriptProperty().get()))
+				return;
+			final File target = new File(targetFileNameProperty().get());
+			final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
+			final boolean alsoNumber = includeNumMenuItem.isSelected();
+			final String srcText = Utilities.getTextFileContent(sourceFile, charset);
+			final PaliScript fromScript = PaliScript.valueOf(sourceScriptProperty().get());
+			final PaliScript toScript = PaliScript.valueOf(targetScriptProperty().get());
+			String tgtText = ScriptTransliterator.translitPaliScript(srcText,
+								fromScript, toScript, romanDef, alsoNumber, romanAsSanskritMenuItem.isSelected());
+			if (sourceExt.equalsIgnoreCase(".xml"))
+				tgtText = ScriptTransliterator.fixXslName(tgtText, fromScript, toScript);
+			Utilities.saveText(tgtText, target, charset);
+			setDone(true);
 		} // end convert
 	} // end inner class
 	

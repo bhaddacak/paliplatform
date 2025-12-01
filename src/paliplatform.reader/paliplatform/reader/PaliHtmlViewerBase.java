@@ -72,7 +72,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			if (newState == Worker.State.SUCCEEDED) {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
-				webEngine.executeScript("init(0)");
+				webEngine.executeScript("init()");
 				setViewerTheme(Utilities.settings.getProperty("theme"));
 				setViewerFont();
 			}
