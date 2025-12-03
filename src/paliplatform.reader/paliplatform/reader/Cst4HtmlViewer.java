@@ -230,12 +230,13 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
+		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
 			cst4InfoMap = node.getCorpus().getDocInfoMap();
 			showNoteButton.setSelected(true);
 			showXRefButton.setSelected(false);
 			rightPane.setCenter(createInfoBox());
-			loadContent();
+			loadContent(corpus.getScript());
 			initFindInput();
 			setInitialStringToLocate(strToLocate);
 		});
@@ -346,13 +347,24 @@ public class Cst4HtmlViewer extends PaliHtmlViewer {
 		return resultBox;
 	}
 
-	public void loadContent() {
+	@Override
+	public void convertScript() {
+		loadContent(displayScript.get());
+	}
+
+	public void loadContent(final Utilities.PaliScript script) {
 		final Corpus corpus = thisDoc.getCorpus();
+		final Utilities.PaliScript srcScript = corpus.getScript();
+		final ScriptTransliterator.EngineType romanDef = 
+						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
 		if (corpus.getCollection() == Corpus.Collection.CSTDEVA) {
 			pageBody = ReaderUtilities.readCstDevaXML(thisDoc);
 		} else {
 			pageBody = ReaderUtilities.readCst4XML(thisDoc);
 		}
+		pageBody = script == srcScript
+					? pageBody
+					: ScriptTransliterator.translitPaliScript(pageBody, srcScript, script, romanDef, alsoConvertNumber, false);
 		final String cst4JS = ReaderUtilities.getStringResource(ReaderUtilities.CST4_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, cst4JS);
 		setContent(pageContent);

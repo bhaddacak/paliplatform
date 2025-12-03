@@ -3,7 +3,7 @@ A guide to batch transliteration
 	2. If not set otherwise, the output will be saved in the source directory.
 	3. The input script can be either auto-detected or forced.
 	4. File encoding has to be chosen properly. In Tipitaka-XML corpus, UTF-16 is used.
-	5. The files can be in a structured format like XML. In case of Tipitaka-XML files, the XSL name will be changed correspondingly.
+	5. The files can be in a structured format like XML/HTML (but not JSON). In case of Tipitaka-XML files, the XSL name will be changed correspondingly. For transliterating BJT and SC data files, consider using CpUtil instead.
 	6. The output will be always overwritten.
 	7. There is an option to include or ignore Roman numbers in transliteration.
 	8. For Roman output, different transliteration methods can be used:

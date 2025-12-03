@@ -234,10 +234,11 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
+		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
 			showNoteButton.setSelected(true);
 			rightPane.setCenter(createInfoBox());
-			loadContent();
+			loadContent(corpus.getScript());
 			initFindInput();
 			setInitialStringToLocate(strToLocate);
 		});
@@ -411,8 +412,19 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		return syncButton.isSelected();
 	}
 
-	public void loadContent() {
-		final String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile(), thisDoc.getCorpus().getEncoding().getCharset());
+	@Override
+	public void convertScript() {
+		loadContent(displayScript.get());
+	}
+
+	public void loadContent(final Utilities.PaliScript script) {
+		String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile(), thisDoc.getCorpus().getEncoding().getCharset());
+		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
+		final ScriptTransliterator.EngineType romanDef = 
+						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+		bodyText = script == srcScript
+					? bodyText
+					: ScriptTransliterator.translitPaliScript(bodyText, srcScript, script, romanDef, alsoConvertNumber, false);
 		pageBody = formatText(bodyText);
 		final String cstrJS = ReaderUtilities.getStringResource(ReaderUtilities.CSTR_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, cstrJS);

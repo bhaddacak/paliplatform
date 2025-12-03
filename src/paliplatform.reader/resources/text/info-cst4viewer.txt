@@ -1,8 +1,9 @@
 CST4 data viewer guide
-	1. The right pane shows the document's information, including related documents (if any).
-	2. The document opened can be navigated by the left pane (if opened) with three criteria: by headings, by paragraph numbers, and by verses (only some part of the first line). 
-	3. Related documents on the right pane can be opened independently without capability of synchronization. To use this feature, consider reading CST-restructured (CSTR) instead.
-	4. The source was converted from Devanagari with least contamination. That is to say:
+	1. This viewer is used with both CST Devanāgarī base and CST4 data.
+	2. The right pane shows the document's information, including related documents (if any).
+	3. The document opened can be navigated by the left pane (if opened) with three criteria: by headings, by paragraph numbers, and by verses (only some part of the first line). 
+	4. Related documents on the right pane can be opened independently without capability of synchronization. To use this feature, consider reading CST-restructured (CSTR) instead.
+	5. The CST4 data was converted from Devanāgarī with Least Contamination. That is to say:
 	   - Bars and double bars or daṇḍas (U+0964 and U+0965) are visually retained by converted to U+007C, and U+2016 respectively. No full stop period is ever used.
 	   - The abbreviation sign (U+0970) is visually retained by converted to middle dot (U+00B7), and this is counted as part of the words. The dot itself (U+002E) is only used with numbers.
 	   - The rare Sanskrit vowel ai (U+0910 and U+0948) is converted to ē.
@@ -10,4 +11,4 @@ CST4 data viewer guide
 	   - The zero width joiner (U+200D) is removed.
 	   - No capitalized letters are used.
 	   - Other Sanskrit and punctuation noises are removed.
-	5. To convert a part of text to a familiar format, the user has to select a portion and open it in the Editor (or use the right-click after selecting). Then select "Reformat CST4 text" from Tools menu in the Editor.
+	6. To convert a part of CST4 text to a familiar format, the user has to select a portion and open it in the Editor (or use the right-click after selecting). Then select "Reformat CST4 text" from Tools menu in the Editor.

@@ -40,7 +40,7 @@ import javafx.geometry.Insets;
  * The viewer of BJT Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.4
  * @since 3.0
  */
 public class BjtHtmlViewer extends PaliHtmlViewer {
@@ -224,9 +224,10 @@ public class BjtHtmlViewer extends PaliHtmlViewer {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
+		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
 			rightPane.setCenter(createInfoBox());
-			loadContent();
+			loadContent(corpus.getScript());
 			initFindInput();
 			setInitialStringToLocate(strToLocate);
 		});
@@ -374,9 +375,20 @@ public class BjtHtmlViewer extends PaliHtmlViewer {
 		return resultBox;
 	}
 
-	public void loadContent() {
+	@Override
+	public void convertScript() {
+		loadContent(displayScript.get());
+	}
+
+	public void loadContent(final Utilities.PaliScript script) {
 		final List<BjtPage> pages = ReaderUtilities.getBjtPages(thisDoc.getNodeFileName());
+		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
+		final ScriptTransliterator.EngineType romanDef = 
+						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
 		pageBody = formatText(pages);
+		pageBody = script == srcScript
+					? pageBody
+					: ScriptTransliterator.translitPaliScript(pageBody, srcScript, script, romanDef, alsoConvertNumber, false);
 		final String bjtJS = ReaderUtilities.getStringResource(ReaderUtilities.BJT_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, bjtJS);
 		setContent(pageContent);

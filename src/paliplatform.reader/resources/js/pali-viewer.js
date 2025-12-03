@@ -23,15 +23,14 @@ function init() {
 function addMouseListener() {
 	document.body.addEventListener('mouseup', event => {
 		const sel = window.getSelection();
-		const text = sel.toString().trim();
+		let text = sel.toString().trim();
 		if(text.length > 0) {
 			window.fxHandler.showDictResult(text);
-			window.fxHandler.updateClickedObject(text);
 		} else {
-			const text = event.target.className === 'paranum' && event.target.className === 'hangnum' ? ''
-						: text = event.target.textContent;
-			window.fxHandler.updateClickedObject(text);
+			text = event.target.className === 'paranum' && event.target.className === 'hangnum' ? ''
+						: event.target.textContent;
 		}
+		window.fxHandler.updateClickedObject(text);
 	});	
 }
 function setViewerTheme(theme, style) {

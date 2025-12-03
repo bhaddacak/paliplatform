@@ -50,8 +50,8 @@ function setFont(fontnameJson) {
 }
 function setThemeCommon(theme) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;
-	document.body.style.color = themeObj['color1'];
-	document.body.style.background = themeObj['background1'];
+	document.body.style.color = themeObj.color[2];
+	document.body.style.background = themeObj.background[2];
 }
 function copySelection() {
 	const sel = window.getSelection();

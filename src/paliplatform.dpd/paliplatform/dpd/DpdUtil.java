@@ -33,7 +33,7 @@ import com.google.gson.Gson;
  * $ java -p modules -m paliplatform.dpd/paliplatform.dpd.DpdUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 3.0
  */
 final public class DpdUtil {
@@ -55,10 +55,6 @@ final public class DpdUtil {
 			case "-t":
 				testApplicability();
 				break;
-//~ 			case "-a":
-//~ 				final int max = args.length < 2 ? 4 : Integer.parseInt(args[1]);
-//~ 				saveAtoms(max);
-//~ 				break;
 		}
 	}
 
@@ -162,44 +158,6 @@ final public class DpdUtil {
 				printLog("Error: " + err);
 			printLog("Error: DPD DB is not suitable to use, try it with your own risk");
 		}
-		final long endTime = System.currentTimeMillis();
-		printTime(endTime - startTime);
-	}
-
-	// not as expected, a little useless
-	public static void saveAtoms(final int max) throws Exception {
-		final long startTime = System.currentTimeMillis();
-		printLog("Init...");
-		if (!ppdpdInit(Utilities.PpdpdTable.DECONSTRUCTOR)) return;
-		Utilities.initializeComparator();
-		printLog("Reading from DB...");
-		final Set<String> atomSet = new HashSet<>();
-		final String select = "SELECT DECON FROM DECONSTRUCTOR;";
-		final java.sql.Connection conn = Utilities.H2DB.PPDPD.getConnection();
-		final Statement stmt = conn.createStatement();
-		final ResultSet rs = stmt.executeQuery(select);
-		while (rs.next()) {
-			final String[] items = gson.fromJson(rs.getString(1), String[].class);
-			for (final String dc : items) {
-				final String[] atoms = dc.split("\\+");
-				for (final String at : atoms) {
-					final String s = at.trim();
-					final int len = Utilities.getPaliWordLength(s);
-					if (!s.isEmpty() && len > 1 && len <= max)
-						atomSet.add(s);
-				}
-			}
-		}
-		rs.close();
-		stmt.close();
-		printLog("Total atoms: " + atomSet.size());
-		printLog("Sorting...");
-		final String atomsStr = atomSet.stream().sorted(Utilities.paliComparator).collect(Collectors.joining(LINESEP));
-		final String outname = ATOMS_OUTPUT + "-" + max + ".txt";
-		printLog("Writing out " + outname);
-		final File outfile = new File(outname);
-		Utilities.saveText(atomsStr, outfile);
-		finish();
 		final long endTime = System.currentTimeMillis();
 		printTime(endTime - startTime);
 	}

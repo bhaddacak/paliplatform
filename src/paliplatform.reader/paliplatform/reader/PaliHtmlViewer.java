@@ -40,7 +40,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 	private final HBox scriptContextBox = new HBox();
 	private final List<RadioMenuItem> scriptRadioMenu = new ArrayList<>();
 	private ToggleButton toggleNumberButton;
-	private boolean alsoConvertNumber = false;
+	protected boolean alsoConvertNumber = true;
 	private String initialStringToLocate = "";
 
 	public PaliHtmlViewer(final TocTreeNode node) {
@@ -103,12 +103,9 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				if (scriptGroup.getSelectedToggle() != null) {
 					final RadioMenuItem selected = (RadioMenuItem)scriptGroup.getSelectedToggle();
 					final Utilities.PaliScript toScript = Utilities.PaliScript.valueOf(selected.getText().toUpperCase());
-					if (displayScript.get() != toScript) {
-						final Utilities.PaliScript fromScript = displayScript.get();
-						displayScript.set(toScript);
-						toolBar.setupFontMenu(toScript);
-						convertToScript(toScript, fromScript, alsoConvertNumber);
-					}
+					displayScript.set(toScript);
+					toolBar.setupFontMenu(toScript);
+					convertScript();
 				}
 			});
 			toggleNumberButton = new ToggleButton("", new TextIcon("0-9", TextIcon.IconSet.SANS));
@@ -117,7 +114,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 			toggleNumberButton.setOnAction(actionEvent -> {
 				alsoConvertNumber = toggleNumberButton.isSelected();
 				if (displayScript.get() != Utilities.PaliScript.ROMAN || displayScript.get() != Utilities.PaliScript.SINHALA) {
-					convertToScript(displayScript.get(), displayScript.get(), alsoConvertNumber);
+					convertScript();
 				}
 			});
 			scriptContextBox.getChildren().addAll(new Separator(Orientation.VERTICAL), convertMenu, toggleNumberButton);
@@ -147,19 +144,8 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 			toggleNumberButton.setSelected(false);
 	}
 
-	private void convertToScript(final Utilities.PaliScript toScript, final Utilities.PaliScript fromScript, final boolean alsoNumber) {
-//~ 		String command = "";
-//~ 		final String withNum = alsoNumber ? "1" : "0";
-//~ 		if (toScript == Utilities.PaliScript.ROMAN) {
-//~ 			command = "toRoman()";
-//~ 		} else {
-//~ 			final boolean isLinux = System.getProperty("os.name").toLowerCase().contains("linux");
-//~ 			command = "toNonRoman('" + toScript.toString() + "'," + withNum + ",0," + (isLinux?1:0) + ")";
-//~ 		}
-//~ 		if (fromScript == Utilities.PaliScript.ROMAN)
-//~ 			webEngine.executeScript("saveRomanBody()");
-//~ 		webEngine.executeScript(command);
-		setViewerFont(toScript);
+	protected void convertScript() {
+		// override this
 	}
 	
 }

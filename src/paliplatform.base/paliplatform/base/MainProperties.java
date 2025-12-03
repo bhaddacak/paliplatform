@@ -27,7 +27,7 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.4
  * @since 2.0
  */
 public class MainProperties {
@@ -107,6 +107,7 @@ public class MainProperties {
 			settings.setProperty("sentence-use-colon", "true");
 			settings.setProperty("sentence-use-semicolon", "true");
 			settings.setProperty("sentence-use-dash", "true");
+			settings.setProperty("roman-translit", "dr");
 			// set up default Pali input method properties
 			Hashtable<String,String> defTable = PaliInputProperties.INSTANCE.getDefaultTable();
 			for (Enumeration<String> k = defTable.keys(); k.hasMoreElements();) {

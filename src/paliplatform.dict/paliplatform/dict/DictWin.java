@@ -82,8 +82,9 @@ public class DictWin extends BorderPane {
 		});		
 
 		final VBox mainBox = new VBox();
+		searchTextField = (TextField)searchInput.getInput();
 		// add toolbar on the top
-		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(this);
+		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(this, searchTextField);
 		// add a new button
 		final SimpleService editorLauncher = (SimpleService)DictUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 		if (editorLauncher != null) {
@@ -137,7 +138,6 @@ public class DictWin extends BorderPane {
 				}
 			}
 		});
-		searchTextField = (TextField)searchInput.getInput();
 		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> {
 			if (incremental.get()) {
 				submitSearch(newValue);
@@ -253,8 +253,10 @@ public class DictWin extends BorderPane {
 			}
 		});
 		findInput.textProperty().addListener((obs, oldValue, newValue) -> {
-			if (!newValue.isEmpty())
-				findResultNext(Normalizer.normalize(newValue, Form.NFC), +1);
+			if (!newValue.isEmpty()) {
+				final String query = Utilities.convertToRoman(Normalizer.normalize(newValue, Form.NFC));
+				findResultNext(query, +1);
+			}
 		});
 		// add find box first, and remove it (in init); this makes the focus request possible		
 		resultPane.setBottom(findBox);
@@ -342,9 +344,10 @@ public class DictWin extends BorderPane {
 
 	private void searchDict(final String value) {
 		final String strQuery = Normalizer.normalize(value.trim(), Form.NFC);
+		final String term = Utilities.convertToRoman(strQuery);
 		Platform.runLater(() -> {
-			if (!strQuery.isEmpty())
-				search(strQuery.toLowerCase());
+			if (!term.isEmpty())
+				search(term);
 			searchComboBox.commitValue();
 		});
 	}
@@ -355,8 +358,9 @@ public class DictWin extends BorderPane {
 
 	private void search() {
 		final String strQuery = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
-		if (!strQuery.isEmpty())
-			submitSearch(strQuery);
+		final String term = Utilities.convertToRoman(strQuery);
+		if (!term.isEmpty())
+			submitSearch(term);
 	}
 
 	private void search(final String query) {
@@ -521,8 +525,8 @@ public class DictWin extends BorderPane {
 	private void findResultNext(final int direction) {
 		final String strInput = findInput.getText();
 		if (!strInput.isEmpty()) {
-			final String strQuery = Normalizer.normalize(strInput, Form.NFC);
-			findResultNext(strQuery, direction);
+			final String query = Utilities.convertToRoman(Normalizer.normalize(strInput, Form.NFC));
+			findResultNext(query, direction);
 		}
 	}
 

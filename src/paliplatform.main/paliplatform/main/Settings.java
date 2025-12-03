@@ -20,6 +20,7 @@
 package paliplatform.main;
 
 import paliplatform.base.*;
+import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
 import java.io.*;
@@ -38,7 +39,7 @@ import javafx.geometry.*;
 /** 
  * The settings dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.4
  * @since 2.0
  */
 class Settings extends SingletonWindow {
@@ -73,7 +74,26 @@ class Settings extends SingletonWindow {
 		cbDpdLookup.setAllowIndeterminate(false);
 		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable")));
 		cbDpdLookup.setOnAction(actionEvent -> Utilities.settings.setProperty("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
-		generalBox.getChildren().addAll(cbExitAsk, new Separator(), new Label("DPD integration"), cbDpdLookup);
+		generalBox.getChildren().addAll(cbExitAsk,
+								new Separator(), new Label("DPD integration"), cbDpdLookup,
+								new Separator(), new Label("Default transliteration to Roman in text readers"));
+		final ToggleGroup defRomanGroup = new ToggleGroup();
+		for (final EngineType en : EngineType.engines) {
+			final int ind = en.ordinal();
+			if (ind > 4) break;
+			final RadioButton radio = new RadioButton(en.getNameShort());
+			radio.setUserData(EngineType.engineCodes[ind]);
+			radio.setToggleGroup(defRomanGroup);
+			generalBox.getChildren().add(radio);
+		}
+		final EngineType selectedEngine = EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+		if (selectedEngine != null)
+			defRomanGroup.selectToggle(defRomanGroup.getToggles().get(selectedEngine.ordinal()));
+        defRomanGroup.selectedToggleProperty().addListener(observable -> {
+			final String code = (String)defRomanGroup.getSelectedToggle().getUserData();
+			Utilities.settings.setProperty("roman-translit", code);
+			MainProperties.INSTANCE.saveSettings();
+		});
 		generalTab.setContent(generalBox);
 		
 		// Pali input settings

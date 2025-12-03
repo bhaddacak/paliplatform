@@ -131,8 +131,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 										calMetersMenuItem, analyzeMenuItem);
 		webView.setOnMousePressed(mouseEvent -> {
 			if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-				if (displayScript.get() == Utilities.PaliScript.ROMAN)
-					contextMenu.show(webView, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+				contextMenu.show(webView, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 			} else {
 				contextMenu.hide();
 			}
@@ -256,17 +255,18 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	private void openDict() {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
-		String text = cboard.hasString() ? cboard.getString().trim() : "";
-		final Object[] args = { Utilities.getUsablePaliTerm(text) };
+		final String text = cboard.hasString() ? cboard.getString().trim() : "";
+		final String term = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
+		final Object[] args = { term };
 		DictUtilities.openWindow(Utilities.WindowType.DICT, args);
 	}
 	
 	private void sendToDict() {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
-		String text = cboard.hasString() ? cboard.getString().trim() : "";
+		final String text = cboard.hasString() ? cboard.getString().trim() : "";
 		if (!text.isEmpty()) {
-			final String term = Utilities.getUsablePaliTerm(text);
+			final String term = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
 			final SimpleService dictSearch = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
 			if (dictSearch != null) {
 				dictSearch.process(term);
@@ -275,7 +275,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	public void showDictResult(final String text) {
-		final String word = Utilities.getUsablePaliTerm(text);
+		final String word = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
 		final String dpdWord = DictUtilities.makeDpdProper(word);
 		final boolean useDPD = Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable"));
 		// if DPD dict available, find the word
@@ -383,10 +383,11 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	private void calculateMeters() {
 		final String text = clickedText.get();
+		final String romanText = Utilities.convertToRoman(text);
 		if (!text.isEmpty()) {
 			final SimpleService editor = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 			if (editor != null) {
-				final Object[] args = { Utilities.addComputedMeters(text) };
+				final Object[] args = { Utilities.addComputedMeters(romanText) };
 				editor.processArray(args);
 			}
 		}
@@ -394,20 +395,22 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	private void openAnalyzer() {
 		final String text = clickedText.get();
+		final String romanText = Utilities.convertToRoman(text);
 		if (!text.isEmpty()) {
 			final SimpleService prosody = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
 			if (prosody != null) {
-				prosody.process(text);
+				prosody.process(romanText);
 			}
 		}
 	}
 
 	private void openSentenceReader() {
 		final String text = clickedText.get();
+		final String romanText = Utilities.convertToRoman(text);
 		if (!text.isEmpty()) {
 			final SimpleService reader = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.sentence.ReaderLauncher");
 			if (reader != null) {
-				final Object[] args = { text };
+				final Object[] args = { romanText };
 				reader.processArray(args);
 			}
 		}

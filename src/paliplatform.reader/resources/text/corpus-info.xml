@@ -28,7 +28,7 @@
 		<inarchive>false</inarchive>
 		<encoding>UTF_16</encoding>
 		<script>DEVANAGARI</script>
-		<transformable>false</transformable>
+		<transformable>true</transformable>
 		<textbasket>विनयपिटक:Vinayapiṭaka:vin</textbasket>
 		<textbasket>सुत्तपिटक:Suttapiṭaka:sut</textbasket>
 		<textbasket>अभिधम्मपिटक:Abhidhammapiṭaka:abh</textbasket>
@@ -130,7 +130,7 @@
 		<zipfile>srt_roman.zip</zipfile>
 		<encoding>UTF_8</encoding>
 		<script>ROMAN</script>
-		<transformable>false</transformable>
+		<transformable>true</transformable>
 		<textbasket>Vinayapiṭakaṃ::vin</textbasket>
 		<textbasket>Suttantapiṭakaṃ::sut</textbasket>
 		<textbasket>Abhidhammapiṭakaṃ::abh</textbasket>
@@ -150,7 +150,7 @@
 		<zipfile>gram.zip</zipfile>
 		<encoding>UTF_8</encoding>
 		<script>ROMAN</script>
-		<transformable>false</transformable>
+		<transformable>true</transformable>
 		<description>Prepared by J.R. Bhaddacak</description>
 		<copyright>Creative Commons Attribution-ShareAlike 4.0 (http://creativecommons.org/licenses/by-sa/4.0/)</copyright>
 	</corpus>

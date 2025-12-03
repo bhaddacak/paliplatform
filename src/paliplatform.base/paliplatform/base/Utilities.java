@@ -67,7 +67,7 @@ import org.apache.commons.csv.*;
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.3";
+	public static final String VERSION = "3.4";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -744,6 +744,18 @@ final public class Utilities {
 	}
 
 	/**
+	 * Convert a given string to Roman.
+	 */
+	public static String convertToRoman(final String input) {
+		final PaliScript script = testLanguage(input);
+		final String result = script == PaliScript.ROMAN || script == PaliScript.UNKNOWN
+								? input.toLowerCase()
+								: ScriptTransliterator.translitQuickPaliScript(input, script, Utilities.PaliScript.ROMAN,
+									ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true);
+		return result;
+	}
+	
+	/**
 	 * Reads a file and determines its script.
 	 */
 	public static PaliScript getScriptLanguage(final File file, final Charset charset) {
@@ -839,14 +851,6 @@ final public class Utilities {
 		return text.replaceAll("<.*?>", " ");
 	}
 	
-//~ 	public static String cleanXmlTags(final String text) {
-//~ 		final String patt = "<\\??/?!?[a-zA-Z-](?:[^>\"\']|\"[^\"]*\"|\'[^\']*\'\\?)*>";
-//~ 		String result = text.replaceAll(patt, " ");
-//~ 		result = result.replaceAll("&nbsp;", " ").replaceAll("&amp;", "&").replaceAll("&gt;", ">").replaceAll("&lt;", "<")
-//~ 						.replaceAll(" {2,}", " ").replace(" .", ".").replace(" ,", ",").trim();
-//~ 		return result;
-//~ 	}
-
 	public static String getTextResource(final String fileNameWithPath) {
 		String result = "";
 		try {
@@ -920,7 +924,7 @@ final public class Utilities {
 		final FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select files");
 		fileChooser.getExtensionFilters().addAll(
-			new ExtensionFilter("Text Files", "*.txt"),
+			new ExtensionFilter("Text Files", List.of("*.txt", "*.xml", "*.html", "*.htm")),
 			new ExtensionFilter("All Files", "*.*"));
 		return fileChooser.showOpenMultipleDialog(owner);
 	}

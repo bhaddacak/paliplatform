@@ -38,14 +38,14 @@ import javafx.geometry.Orientation;
  * The viewer of Pali grammar books.
  * 
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.4
  * @since 3.0
  */
 public class GramHtmlViewer extends PaliHtmlViewer {
 	private static enum LeftListType { HEADING, NUMBER }
-	private static final String INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
+	private static final String INDENT = "<span style='white-space:pre;'>    </span>";
 	private static final String BR = "<br>";
-	private static final String BULLET = "&bull;";
+	private static final String BULLET = "•";
 	static final double DIVIDER_POSITION_LEFT = 0.2;
 	private final SplitPane splitPane = new SplitPane();
 	private final BorderPane leftPane = new BorderPane();
@@ -142,27 +142,33 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
+		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
 			contextToolBar.getChildren().clear();
 			optionsMenu.getItems().clear();
 			relatedBookMenuList.clear();
 			heartButton.setSelected(false);
-			loadContent();
+			loadContent(corpus.getScript());
 			setupContextToolBar();
 			initFindInput();
 			setInitialStringToLocate(strToLocate);
 		});
 	}
 
-	public void loadContent() {
+	@Override
+	public void convertScript() {
+		loadContent(displayScript.get());
+	}
+
+	public void loadContent(final Utilities.PaliScript script) {
 		String filename =  thisDoc.getNodeFileName();
 		final Corpus corpus = thisDoc.getCorpus();
 		gramText = new GrammarText(thisDoc, ReaderUtilities.readTextFromZip(filename, corpus));
-		setupContent();
-		displayScript.set(Utilities.PaliScript.ROMAN);
+		setupContent(script);
+		displayScript.set(script);
 	}
 
-	private void setupContent() {
+	private void setupContent(final Utilities.PaliScript script) {
 		final GrammarText.GrammarBook bookId = gramText.getBook();
 		final String body;
 		final List<GrammarText.GrammarBook> extras = new ArrayList<>();
@@ -171,9 +177,9 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 				extras.add((GrammarText.GrammarBook)related.getUserData());
 		}
 		if (heartButton.isSelected()) {
-			body = formatDisplay(gramText.getFormulaListAsString(bookId, extras));
+			body = formatDisplay(gramText.getFormulaListAsString(bookId, extras), script);
 		} else {
-			body = formatDisplay(gramText.getText(bookId, extras));
+			body = formatDisplay(gramText.getText(bookId, extras), script);
 		}
 		pageBody = "<body>\n" + body + "\n</body>";
 		final String gramJS = ReaderUtilities.getStringResource(ReaderUtilities.GRAM_JS);
@@ -182,28 +188,32 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		setDocNav(currLeftListType);
 	}
 
-	private String formatDisplay(final String text) {
-		final StringBuilder result = new StringBuilder();
+	private String formatDisplay(final String text, final Utilities.PaliScript script) {
+		final StringBuilder headResult = new StringBuilder();
 		final String head = "<h3 id='texthead' style='text-align:center;'>" + thisDoc.getNodeName() + "</h3>\n";
-		result.append(head);
+		headResult.append(head);
 		final String descStr = ((SimpleDocumentInfo)thisDoc.getCorpus().getDocInfo(thisDoc.getNodeId())).getDescription();
 		final String desc = "<blockquote><p>"
 						+ formatDescription(descStr)
 						+ "</p></blockquote>\n";
-		result.append(desc);
+		headResult.append(desc);
+		final StringBuilder bodyResult = new StringBuilder();
 		final String[] lines = text.split("\\r?\\n");
 		final Pattern noBrPatt = Pattern.compile("^</?(?:h|p|div|blockquote).*");
 		for (final String line : lines) {
 			if (line.trim().isEmpty()) continue;
 			final Matcher noBrMatcher = noBrPatt.matcher(line);
-			if (noBrMatcher.matches()) {
-				result.append(line);
-			} else {
-				result.append(INDENT).append(line).append(BR);
-			}
+			final String lineOK = noBrMatcher.matches() ? line : INDENT + line + BR;
+			bodyResult.append(lineOK);
 		}
-		result.append(BR).append(BR);
-		return result.toString();
+		bodyResult.append(BR).append(BR);
+		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
+		final ScriptTransliterator.EngineType romanDef = 
+						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+		final String bodyText = script != srcScript
+			? ScriptTransliterator.translitPaliScript(bodyResult.toString(), srcScript, script, romanDef, alsoConvertNumber, false)
+			: bodyResult.toString();
+		return headResult.toString() + bodyText;
 	}
 
 	private String formatDescription(final String text) {
@@ -224,7 +234,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		final GrammarText.GrammarBook bookId = gramText.getBook();
 		if (gramText.hasSuttaFormula()) {
 			heartButton.setTooltip(new Tooltip("Show only sutta heads/formulae"));
-			heartButton.setOnAction(actionEvent -> setupContent());
+			heartButton.setOnAction(actionEvent -> setupContent(displayScript.get()));
 			contextToolBar.getChildren().add(heartButton);
 		}
 		final List<GrammarText.GrammarBook> relatedBooks = bookId.getRelatedBooks();
@@ -234,14 +244,14 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 			for (final GrammarText.GrammarBook book : relatedBooks) {
 				final CheckMenuItem menuItem = new CheckMenuItem(corpus.getDocInfo(book.getBookId()).getTextName());
 				menuItem.setUserData(book);
-				menuItem.setOnAction(actionEvent -> setupContent());
+				menuItem.setOnAction(actionEvent -> setupContent(displayScript.get()));
 				optionsMenu.getItems().add(menuItem);
 				relatedBookMenuList.add(menuItem);
 			}
 			final MenuItem allMenuItem = new MenuItem("Include all");
-			allMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(true)); setupContent();});
+			allMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(true)); setupContent(displayScript.get());});
 			final MenuItem noneMenuItem = new MenuItem("Include none");
-			noneMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(false)); setupContent();});
+			noneMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(false)); setupContent(displayScript.get());});
 			optionsMenu.getItems().addAll(new SeparatorMenuItem(), allMenuItem, noneMenuItem);
 			contextToolBar.getChildren().add(optionsMenu);
 		}

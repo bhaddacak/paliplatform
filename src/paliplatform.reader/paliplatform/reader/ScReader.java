@@ -287,14 +287,6 @@ public class ScReader extends PaliHtmlViewerBase {
 		if (currDoc == null) return;
 		final Utilities.PaliScript script = (Utilities.PaliScript)scriptLangGroup.getSelectedToggle().getUserData();
 		currFontScript = script;
-//~ 		if (script == Utilities.PaliScript.MYANMAR) {
-//~ 			// only Myanmar use custom fonts
-//~ 			currFontScript = script;
-//~ 			toolBar.setupFontMenu(script);
-//~ 		} else {
-//~ 			currFontScript = Utilities.PaliScript.ROMAN;
-//~ 			toolBar.setupFontMenu(Utilities.PaliScript.ROMAN);
-//~ 		}
 		pageBody = formatText(currDoc);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody);
 		setContent(pageContent);
@@ -380,8 +372,8 @@ public class ScReader extends PaliHtmlViewerBase {
 
 	private String convertToScript(final String text, final Utilities.PaliScript script) {
 		final String normalized = Utilities.normalizeNiggahita(text, true);
-		final String result = ScriptTransliterator.translitPaliScript(normalized,
-						Utilities.PaliScript.ROMAN, script, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true, false);
+		final String result = ScriptTransliterator.translitQuickPaliScript(normalized,
+						Utilities.PaliScript.ROMAN, script, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true);
 		return result;
 	}
 

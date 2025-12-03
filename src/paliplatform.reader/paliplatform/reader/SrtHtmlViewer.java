@@ -109,12 +109,12 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 		});
 		dehyphenButton.setTooltip(new Tooltip("Dehyphenated on/off"));
 		dehyphenButton.setOnAction(actionEvent -> {
-			loadContent();
+			loadContent(displayScript.get());
 		});
 		toolBar.getItems().addAll(new Separator(), toggleLeftPaneButton, recentJumpButton, dehyphenButton);
 		// help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
-		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_CENTER, true));
+		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		toolBar.getItems().add(helpButton);
 
 		// some init
@@ -129,23 +129,35 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 
 	public void init(final TocTreeNode node, final String strToLocate) {
 		super.init(node);
+		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
 			dehyphenButton.setSelected(false);
-			loadContent();
+			loadContent(corpus.getScript());
 			initFindInput();
 			setInitialStringToLocate(strToLocate);
 		});
 	}
 
-	public void loadContent() {
+	@Override
+	public void convertScript() {
+		loadContent(displayScript.get());
+	}
+
+	public void loadContent(final Utilities.PaliScript script) {
 		String filename =  thisDoc.getNodeFileName();
 		final Corpus corpus = thisDoc.getCorpus();
+		final Utilities.PaliScript srcScript = corpus.getScript();
+		final ScriptTransliterator.EngineType romanDef = 
+						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
 		if (originalText.isEmpty())
 			originalText = ReaderUtilities.readTextFromZip(filename, corpus);
 		if (dehyphenatedText.isEmpty())
 			dehyphenatedText = dehyphenate(originalText);
 		final String displayText = dehyphenButton.isSelected() ? dehyphenatedText : originalText;
 		pageBody = "<body>\n" + formatSrtDoc(displayText) + "\n</body>";
+		pageBody = script == srcScript
+					? pageBody
+					: ScriptTransliterator.translitPaliScript(pageBody, srcScript, script, romanDef, alsoConvertNumber, false);
 		final String srtJS = ReaderUtilities.getStringResource(ReaderUtilities.SRT_JS);
 		final String pageContent = ReaderUtilities.makeHTML(pageBody, srtJS);
 		setContent(pageContent);

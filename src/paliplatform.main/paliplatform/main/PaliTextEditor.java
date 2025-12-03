@@ -134,6 +134,8 @@ public class PaliTextEditor extends BorderPane {
 			final String content = (String)args[0];
 			setContent(content);
 			setupFontMenu();
+			final PaliScript script = Utilities.testLanguage(content);
+			toolBar.resetFont(script);
 		}
 		// add menu and toolbar on the top
 		final MenuBar menuBar = new MenuBar();
@@ -454,6 +456,8 @@ public class PaliTextEditor extends BorderPane {
 			textInput.changeInputMethod(PaliTextInput.InputMethod.NONE);
 			final String content = Utilities.getTextFileContent(file);
 			setupFontMenu();
+			final PaliScript script = Utilities.testLanguage(content);
+			toolBar.resetFont(script);
 			area.setText(content);
 			textInput.changeInputMethod(saveInputMethod);
 			success = true;
@@ -814,14 +818,16 @@ public class PaliTextEditor extends BorderPane {
 	private void composeChars(final boolean isCompose) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String result = isCompose ? Normalizer.normalize(inputText, Form.NFC) : Normalizer.normalize(inputText, Form.NFD);
+		final String romanText = Utilities.convertToRoman(inputText);
+		final String result = isCompose ? Normalizer.normalize(romanText, Form.NFC) : Normalizer.normalize(romanText, Form.NFD);
 		openNewEditor(result);
 	}
 	
 	private void removeAccents() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String result = removeAccents(inputText);
+		final String romanText = Utilities.convertToRoman(inputText);
+		final String result = removeAccents(romanText);
 		openNewEditor(result);
 	}
 	
@@ -840,7 +846,8 @@ public class PaliTextEditor extends BorderPane {
 	private void reformatCST4() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String result = reformatCST4(inputText);
+		final String romanText = Utilities.convertToRoman(inputText);
+		final String result = reformatCST4(romanText);
 		openNewEditor(result);
 	}
 
@@ -868,19 +875,22 @@ public class PaliTextEditor extends BorderPane {
 	private void calculateMeters() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		openNewEditor(Utilities.addComputedMeters(inputText));
+		final String romanText = Utilities.convertToRoman(inputText);
+		openNewEditor(Utilities.addComputedMeters(romanText));
 	}
 
 	private void openAnalyzer(final SimpleService service) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		service.process(inputText);
+		final String romanText = Utilities.convertToRoman(inputText);
+		service.process(romanText);
 	}
 
 	private void openReader(final SimpleService service) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final Object[] args = { inputText };
+		final String romanText = Utilities.convertToRoman(inputText);
+		final Object[] args = { romanText };
 		service.processArray(args);
 	}
 
@@ -888,15 +898,16 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
+		final String romanText = Utilities.convertToRoman(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(toCase(inputText, isUpper));
+				area.setText(toCase(romanText, isUpper));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, toCase(inputText, isUpper));
+			text.insert(start, toCase(romanText, isUpper));
 			area.setText(text.toString());
 		}
 	}
@@ -905,15 +916,16 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
+		final String romanText = Utilities.convertToRoman(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(toSentCase(inputText));
+				area.setText(toSentCase(romanText));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, toSentCase(inputText));
+			text.insert(start, toSentCase(romanText));
 			area.setText(text.toString());
 		}
 	}
@@ -945,7 +957,7 @@ public class PaliTextEditor extends BorderPane {
 
 	private void paliSort(final boolean isAsc) {
 		if (proceedConfirm()) {
-			final Stream<String> allLines = area.getText().lines().map(s -> s.trim());
+			final Stream<String> allLines = Utilities.convertToRoman(area.getText()).lines().map(s -> s.trim());
 			final Stream<String> result;
 			if (isAsc)
 				result = allLines.sorted(Utilities.paliComparator);
@@ -966,15 +978,16 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = Normalizer.normalize(area.getSelectedText(), Form.NFC);
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? Normalizer.normalize(area.getText(), Form.NFC) : selText;
+		final String romanText = Utilities.convertToRoman(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(toTex(inputText, mode));
+				area.setText(toTex(romanText, mode));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, toTex(inputText, mode));
+			text.insert(start, toTex(romanText, mode));
 			area.setText(text.toString());
 		}
 	}
@@ -983,15 +996,16 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
+		final String romanText = Utilities.convertToRoman(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(fromTex(inputText));
+				area.setText(fromTex(romanText));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, fromTex(inputText));
+			text.insert(start, fromTex(romanText));
 			area.setText(text.toString());
 		}
 	}

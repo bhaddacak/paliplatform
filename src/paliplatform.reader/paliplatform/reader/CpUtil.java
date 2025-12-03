@@ -741,7 +741,7 @@ final public class CpUtil {
 						break;
 				}
 				if (doProceed) {
-					final File outfile = new File(Utilities.OUTPUTPATH + targetScript.toLowerCase().substring(0, 3) + "-" + outputFilename);
+					final File outfile = new File(Utilities.OUTPUTPATH + targetScript.toLowerCase().substring(0, 3) + "_" + outputFilename);
 					final String text = readFileContent(cp, file);
 					if (!text.isEmpty()) {
 						final String result = col == Corpus.Collection.BJT
