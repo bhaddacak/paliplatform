@@ -30,7 +30,7 @@ import javafx.scene.input.KeyCode;
  * The main menu bar including some action controllers.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.5
  * @since 2.0
  */
 class MainMenu extends MenuBar {
@@ -152,6 +152,10 @@ class MainMenu extends MenuBar {
 		final Menu sentenceMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.sentence.SentenceMenu");
 		if (sentenceMenu != null) {
 			getMenus().add(sentenceMenu);
+		}
+		final Menu sanskritMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.SanskritMenu");
+		if (sanskritMenu != null) {
+			getMenus().add(sanskritMenu);
 		}
 		getMenus().addAll(optionsMenu, helpMenu);
 	}

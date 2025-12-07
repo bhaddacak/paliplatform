@@ -1,5 +1,5 @@
 /*
- * LetterWin.java
+ * SktLetterWin.java
  *
  * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.grammar;
+package paliplatform.sanskrit;
 
 import paliplatform.base.*;
 import paliplatform.base.ScriptTransliterator.EngineType;
@@ -36,126 +36,141 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.beans.property.*;
+import javafx.collections.ObservableList;
 
 /** 
- * The window showing Pali letters in various scripts.
+ * The window showing Sanskrit letters in various scripts.
  * This is a singleton.
  * @author J.R. Bhaddacak
  * @version 3.5
- * @since 2.0
+ * @since 3.5
  */
-public final class LetterWin extends SingletonWindow {
+public final class SktLetterWin extends SingletonWindow {
 	static enum TagType {
-		VOWEL("vowel;sara"), CONSONANT("consonant;vyañjana"), GUTTURAL("guttural;kaṇṭhaja"), PALATAL("palatal;tāluja"),
-		CEREBRAL("cerebral/retroflex;muḍḍhaja"), DENTAL("dental;dantaja"), LABIAL("labial;oṭṭhaja"), NASAL("nasal;nāsikā"),
-		VOICELESS("voiceless;aghosa"), VOICED("voiced;ghosa"), UNASPIRATED("unaspirated;sithila"), ASPIRATED("aspirated;dhanita"),
-		SEMIVOWEL("semivowel;antaṭṭha"), SIBILANT("sibilant;sakāra"), SPIRANT("spirant;hakāra");
+		VOWEL("vowel;svara"), SIMPLE("simple;śuddha"), COMPLEX("complex;saṃyukta"), SHORT("short;hrasva"), LONG("long;dīrgha"),
+		CONSONANT("consonant;vyañjana"), GUTTURAL("guttural/velar;kaṇṭhya"), PALATAL("palatal;tālavya"),
+		CEREBRAL("cerebral/retroflex;mūrdhanya"), DENTAL("dental;dantya"), LABIAL("labial;oṣṭhya"), NASAL("nasal;anunāsika"),
+		VOICELESS("voiceless/hard;aghoṣa"), VOICED("voiced/soft;ghoṣavat"), UNASPIRATED("unaspirated;alpaprāṇa"), ASPIRATED("aspirated;mahāprāṇa"),
+		SEMIVOWEL("semivowel;antaḥstha"), SIBILANT("sibilant/spirant;ūṣman"), ANUSVARA("anusvāra;anusvāra"), VISARGA("visarga;visarga"),
+		AVAGRAHA("avagraha;avagraha");
 		public static final TagType[] values = values();
-		public final String englishName;
-		public final String paliName;
+		public final String engName;
+		public final String sktName;
 		private TagType(final String strName) {
 			final String[] names = strName.split(";");
-			englishName = names[0];
-			paliName = names[1];
+			engName = names[0];
+			sktName = names[1];
 		}
 		public List<int[]> getLetterPosList() {
-			final List<int[]> result;
-			switch (this.ordinal()) {
-				case 0: // vowel
-					final int[][] l0 = {{0,0},{0,1},{0,2},{0,3},{0,4},{0,5},{0,6},{0,7}};
-					result = Arrays.asList(l0);
+			int[][] array = null;
+			switch (this) {
+				case VOWEL:
+					array = new int[][] {{0,7},{0,8},{1,7},{1,8},{1,9},{1,10},{2,7},{2,8},{3,7},{3,8},{4,7},{4,8},{4,9},{4,10}};
 					break;
-				case 1: // consonant
-					final int[][] l1 = {{1,0},{1,1},{1,2},{1,3},{1,4},
-										{2,0},{2,1},{2,2},{2,3},{2,4},
-										{3,0},{3,1},{3,2},{3,3},{3,4},
-										{4,0},{4,1},{4,2},{4,3},{4,4},
-										{5,0},{5,1},{5,2},{5,3},{5,4},
-										{6,0},{6,1},{6,2},{6,3},{6,4},{6,5},{6,6}};
-					result = Arrays.asList(l1);
+				case SIMPLE:
+					array = new int[][] {{0,7},{0,8},{1,7},{1,8},{2,7},{2,8},{3,7},{3,8},{4,7},{4,8}};
 					break;
-				case 2: // guttural
-					final int[][] l2 = {{1,0},{1,1},{1,2},{1,3},{1,4},{0,0},{0,1},{0,6},{0,7},{6,5}};
-					result = Arrays.asList(l2);
+				case COMPLEX:
+					array = new int[][] {{1,9},{1,10},{4,9},{4,10}};
 					break;
-				case 3: // palatal
-					final int[][] l3 = {{2,0},{2,1},{2,2},{2,3},{2,4},{0,2},{0,3},{0,6},{6,0}};
-					result = Arrays.asList(l3);
+				case SHORT:
+					array = new int[][] {{0,7},{1,7},{2,7},{3,7},{4,7}};
 					break;
-				case 4: // cerebral
-					final int[][] l4 = {{3,0},{3,1},{3,2},{3,3},{3,4},{6,1},{6,6}};
-					result = Arrays.asList(l4);
+				case LONG:
+					array = new int[][] {{0,8},{1,8},{1,9},{1,10},{2,8},{3,8},{4,8},{4,9},{4,10}};
 					break;
-				case 5: // dental
-					final int[][] l5 = {{4,0},{4,1},{4,2},{4,3},{4,4},{6,2},{6,3},{6,4}};
-					result = Arrays.asList(l5);
+				case CONSONANT:
+					array = new int[][]{{0,0},{0,1},{0,2},{0,3},{0,4},{0,6},
+										{1,0},{1,1},{1,2},{1,3},{1,4},{1,5},{1,6},
+										{2,0},{2,1},{2,2},{2,3},{2,4},{2,5},{2,6},
+										{3,0},{3,1},{3,2},{3,3},{3,4},{3,5},{3,6},
+										{4,0},{4,1},{4,2},{4,3},{4,4},{4,5}};
 					break;
-				case 6: // labial
-					final int[][] l6 = {{5,0},{5,1},{5,2},{5,3},{5,4},{0,4},{0,5},{0,7},{6,3}};
-					result = Arrays.asList(l6);
+				case GUTTURAL:
+					array = new int[][] {{0,0},{0,1},{0,2},{0,3},{0,4},{0,6},{0,7},{0,8},{5,5}};
 					break;
-				case 7: // nasal
-					final int[][] l7 = {{1,4},{2,4},{3,4},{4,4},{5,4},{6,7}};
-					result = Arrays.asList(l7);
+				case PALATAL:
+					array = new int[][] {{1,0},{1,1},{1,2},{1,3},{1,4},{1,5},{1,6},{1,7},{1,8},{1,9},{1,10}};
 					break;
-				case 8: // voiceless
-					final int[][] l8 = {{1,0},{2,0},{3,0},{4,0},{5,0},{1,1},{2,1},{3,1},{4,1},{5,1}};
-					result = Arrays.asList(l8);
+				case CEREBRAL:
+					array = new int[][] {{2,0},{2,1},{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8}};
 					break;
-				case 9: // voiced
-					final int[][] l9 = {{1,2},{2,2},{3,2},{4,2},{5,2},{1,3},{2,3},{3,3},{4,3},{5,3}};
-					result = Arrays.asList(l9);
+				case DENTAL:
+					array = new int[][] {{3,0},{3,1},{3,2},{3,3},{3,4},{3,5},{3,6},{3,7},{3,8}};
 					break;
-				case 10: // unaspirated
-					final int[][] l10 = {{1,0},{2,0},{3,0},{4,0},{5,0},{1,2},{2,2},{3,2},{4,2},{5,2}};
-					result = Arrays.asList(l10);
+				case LABIAL:
+					array = new int[][] {{4,0},{4,1},{4,2},{4,3},{4,4},{4,5},{4,7},{4,8},{4,9},{4,10},{5,5}};
 					break;
-				case 11: // aspirated
-					final int[][] l11 = {{1,1},{2,1},{3,1},{4,1},{5,1},{1,3},{2,3},{3,3},{4,3},{5,3}};
-					result = Arrays.asList(l11);
+				case NASAL:
+					array = new int[][] {{0,4},{1,4},{2,4},{3,4},{4,4},{5,4}};
 					break;
-				case 12: // semivowel
-					final int[][] l12 = {{6,0},{6,1},{6,2},{6,3},{6,6}};
-					result = Arrays.asList(l12);
+				case VOICELESS:
+					array = new int[][] {{0,0},{1,0},{2,0},{3,0},{4,0},{0,1},{1,1},{2,1},{3,1},{4,1},{1,6},{2,6},{3,6},{5,5}};
 					break;
-				case 13: // sibilant
-					final int[][] l13 = {{6,4}};
-					result = Arrays.asList(l13);
+				case VOICED:
+					array = new int[][]{{0,2},{0,3},{0,4},{0,6},{0,7},{0,8},
+										{1,2},{1,3},{1,4},{1,5},{1,7},{1,8},{1,9},{1,10},
+										{2,2},{2,3},{2,4},{2,5},{2,7},{2,8},
+										{3,2},{3,3},{3,4},{3,5},{3,7},{3,8},
+										{4,2},{4,3},{4,4},{4,5},{4,7},{4,8},{4,9},{4,10},
+										{5,4}};
 					break;
-				case 14: // spirant
-					final int[][] l14 = {{6,5}};
-					result = Arrays.asList(l14);
+				case UNASPIRATED:
+					array = new int[][]{{0,0},{0,2},{0,4},
+										{1,0},{1,2},{1,4},{1,5},
+										{2,0},{2,2},{2,4},{2,5},
+										{3,0},{3,2},{3,4},{3,5},
+										{4,0},{4,2},{4,4},{4,5}};
+					break;
+				case ASPIRATED:
+					array = new int[][] {{0,1},{1,1},{2,1},{3,1},{4,1},{0,3},{1,3},{2,3},{3,3},{4,3}};
+					break;
+				case SEMIVOWEL:
+					array = new int[][] {{1,5},{2,5},{3,5},{4,5}};
+					break;
+				case SIBILANT:
+					array = new int[][] {{0,6},{1,6},{2,6},{3,6}};
+					break;
+				case ANUSVARA:
+					array = new int[][] {{5,4}};
+					break;
+				case VISARGA:
+					array = new int[][] {{5,5}};
+					break;
+				case AVAGRAHA:
+					array = new int[][] {{5,7}};
 					break;
 				default:
-					result = new ArrayList<>();
+					array = new int[][] {};
 			}
-			return result;
+			return array.length > 0 ? Arrays.asList(array) : Collections.emptyList();
 		}
 	}
-	public static final LetterWin INSTANCE = new LetterWin();
-	private static final double DEF_FONT_SCALE = 1.8;
-	private static final int DEF_BIG_CHAR_SIZE = 1000;
-	private final String[][] paliChars = new String[8][10];
+	public static final SktLetterWin INSTANCE = new SktLetterWin();
+	private static final double DEF_FONT_SCALE = 2.0;
+	private final String[][] sktDevaChars;
+	private final String[][] sktChars = new String[7][12];
 	private final BorderPane mainPane = new BorderPane();
-	private final ToggleButton epSwitchButton = new ToggleButton("E/P");
-	private final Text bigChar = new Text();
 	private final SimpleStringProperty selectedChar = new SimpleStringProperty("");
 	private final VBox tagBox = new VBox();
 	private final GridPane letterGrid = new GridPane();
 	private final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(letterGrid);
 	private final VBox typingBox = new VBox();
 	private final Label typingOutput = new Label();
+	private final ToggleGroup romanDefaultGroup = new ToggleGroup();
 	private final TextField typingTextField;
+	private final InfoPopup infoPopup = new InfoPopup();
 	private final int[] currSelectedPos = { -1, -1 };
-	private Utilities.PaliScript currPaliScript = Utilities.PaliScript.ROMAN;
+	private Utilities.PaliScript currPaliScript = Utilities.PaliScript.DEVANAGARI;
 	private int currFontPercent = 100;
-	private int currBigCharSize = DEF_BIG_CHAR_SIZE;
+	private int currTagLang = 0; // 0 eng, 1 roman, 2 deva
 	
-	private LetterWin() {
+	private SktLetterWin() {
 		windowWidth = Utilities.getRelativeSize(52);
 		windowHeight = Utilities.getRelativeSize(54);
-		setTitle("Pāli Letters");
-		getIcons().add(new Image(LetterWin.class.getResourceAsStream("resources/images/font.png")));
+		setTitle("Sanskrit Letters");
+		getIcons().add(new Image(SktLetterWin.class.getResourceAsStream("resources/images/skt-letter.png")));
+		sktDevaChars = ScriptTransliterator.getDevaSktLetterGrid();
 		fillCharacterArray(currPaliScript);
 		
 		// add common toolbar on the top
@@ -168,12 +183,12 @@ public final class LetterWin extends SingletonWindow {
 		toolBar.getZoomOutButton().setOnAction((actionEvent -> updateLetterDisplay(-10)));
 		toolBar.getResetButton().setOnAction((actionEvent -> updateLetterDisplay(0)));
 		// add new buttons
-		epSwitchButton.setTooltip(new Tooltip("English/Pāli"));
-		epSwitchButton.setOnAction(actionEvent -> updateTagArray());
+		final Button tagLangSwitchButton = new Button("E/R/D");
+		tagLangSwitchButton.setTooltip(new Tooltip("English/Roman Skt./Devanāgarī"));
+		tagLangSwitchButton.setOnAction(actionEvent -> rotateTagLang());
 		final Button cleanButton = new Button("", new TextIcon("broom", TextIcon.IconSet.AWESOME));
 		cleanButton.setTooltip(new Tooltip("Clear highlights"));
 		cleanButton.setOnAction(actionEvent -> {
-			clearBigChar();
 			clearTagHighlights();
 			clearGridHighlights();
 		});
@@ -196,7 +211,6 @@ public final class LetterWin extends SingletonWindow {
 					currPaliScript = toScript;
 					setTypingOutput();
 					fillCharacterArray(currPaliScript); 
-					currBigCharSize = DEF_BIG_CHAR_SIZE;
 					toolBar.setupFontMenu(currPaliScript);
 					toolBar.resetFont(currPaliScript);
 					updateLetterDisplay();
@@ -206,22 +220,45 @@ public final class LetterWin extends SingletonWindow {
 		final Button typetestButton = new Button("", new TextIcon("keyboard", TextIcon.IconSet.AWESOME));
 		typetestButton.setTooltip(new Tooltip("Typing test"));
 		typetestButton.setOnAction(actionEvent -> openTypingTest());
-		toolBar.getItems().addAll(new Separator(), epSwitchButton, cleanButton, convertMenu, typetestButton);
+		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
+		optionsMenu.setTooltip(new Tooltip("Options"));
+		final Menu romanDefMenu = new Menu("Roman transliteration");
+		for (final EngineType en : EngineType.engines) {
+			if (en.getTargetScript() == Utilities.PaliScript.ROMAN) {
+				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
+				enItem.setUserData(en);
+				enItem.setToggleGroup(romanDefaultGroup);
+				romanDefMenu.getItems().add(enItem);
+			}
+		}
+		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(1));
+		romanDefaultGroup.selectedToggleProperty().addListener(observable -> {
+			if (currPaliScript == Utilities.PaliScript.ROMAN) {
+				fillCharacterArray(currPaliScript); 
+				updateLetterDisplay();
+			}
+		});
+		optionsMenu.getItems().addAll(romanDefMenu);
+		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
+		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
+		toolBar.getItems().addAll(new Separator(), tagLangSwitchButton, cleanButton, convertMenu,
+									typetestButton, optionsMenu, helpButton);
+		toolBar.setupFontMenu(currPaliScript);
+		toolBar.resetFont(currPaliScript);
 		mainPane.setTop(toolBar);
 
 		// add main content
 		final Scene scene = new Scene(mainPane, windowWidth, windowHeight);
 		// add tag list on the left
 		for (final TagType tt : TagType.values) {
-			final Button a = new Button(tt.englishName, new TextIcon("tag", TextIcon.IconSet.AWESOME));
+			final Button a = new Button(tt.engName, new TextIcon("tag", TextIcon.IconSet.AWESOME));
 			a.setPrefWidth(120);
-			a.setStyle("-fx-alignment:center-left");
-			a.setTooltip(new Tooltip(tt.englishName + " (" + tt.paliName + ")"));
+			a.setStyle("-fx-alignment:center-left;");
+			a.setTooltip(new Tooltip(tt.engName + " (" + tt.sktName + ")"));
 			a.setUserData(tt);
 			a.setOnAction(actionEvent ->  {
 				updateTagArray(Arrays.asList(tt));
 				showLetterHighlights(actionEvent);
-				setBigChar("");
 			}); 
 			tagBox.getChildren().add(a);
 		}
@@ -232,13 +269,13 @@ public final class LetterWin extends SingletonWindow {
 		letterGrid.setHgap(2);
 		letterGrid.setVgap(2);
 		letterGrid.setPadding(new Insets(2, 2, 2, 2));
-		for (int rowInd=0; rowInd<paliChars.length; rowInd++) {
-			for (int colInd=0; colInd<paliChars[rowInd].length; colInd++) {
-				final String ch = paliChars[rowInd][colInd];
+		for (int rowInd=0; rowInd<sktChars.length; rowInd++) {
+			for (int colInd=0; colInd<sktChars[rowInd].length; colInd++) {
+				final String ch = sktChars[rowInd][colInd];
 				if (ch != null && !ch.isEmpty()) {
 					final StackPane stp = new StackPane();
-					stp.prefWidthProperty().bind(letterPane.widthProperty().divide(10.0));
-					stp.prefHeightProperty().bind(letterPane.heightProperty().divide(8.0));
+					stp.prefWidthProperty().bind(letterPane.widthProperty().divide(11.0));
+					stp.prefHeightProperty().bind(letterPane.heightProperty().divide(7.0));
 					stp.getStyleClass().add("letterbox");
 					stp.setOnMouseClicked(mouseEvent -> showTagHighlight(mouseEvent));
 					final Label lbLetter = new Label();
@@ -249,28 +286,6 @@ public final class LetterWin extends SingletonWindow {
 			}
 		}
 		updateLetterDisplay(0);
-		// add big character display
-		final StackPane bigCharPane = new StackPane();
-		bigCharPane.getStyleClass().add("bigcharbox");
-		bigChar.textProperty().bind(selectedChar);
-		bigChar.getStyleClass().add("bigchar");
-		// add - and + buttons to resize the big char
-		final Label minusLabel = new Label("", new TextIcon("circle-minus", TextIcon.IconSet.AWESOME, Utilities.IconSize.BIG));
-		minusLabel.getStyleClass().add("labelbutton");
-		minusLabel.setOnMouseClicked(mouseEvent -> resizeBigChar(-100));
-		StackPane.setAlignment(minusLabel, Pos.TOP_LEFT);
-		StackPane.setMargin(minusLabel, new Insets(5, 0, 0, 5));
-		final Label plusLabel = new Label("", new TextIcon("circle-plus", TextIcon.IconSet.AWESOME, Utilities.IconSize.BIG));
-		plusLabel.getStyleClass().add("labelbutton");
-		plusLabel.setOnMouseClicked(mouseEvent -> resizeBigChar(+100));
-		StackPane.setAlignment(plusLabel, Pos.TOP_RIGHT);
-		StackPane.setMargin(plusLabel, new Insets(5, 5, 0, 0));
-		StackPane.setAlignment(bigChar, Pos.TOP_CENTER);
-		StackPane.setMargin(bigChar, new Insets(20, 0, 0, 0));
-		bigCharPane.getChildren().addAll(bigChar, minusLabel, plusLabel);
-		GridPane.setConstraints(bigCharPane, 5, 1, 5, 5);
-
-		letterGrid.getChildren().add(bigCharPane);
 		letterPane.getChildren().add(letterGrid);
 		mainPane.setCenter(letterPane);
 		
@@ -303,72 +318,49 @@ public final class LetterWin extends SingletonWindow {
 		typingOutputAnchorPane.getChildren().addAll(typingOutput, copyTypingButton);
 		typingBox.setPadding(new Insets(3));
 		typingBox.getChildren().addAll(typingInputBox, typingOutputAnchorPane);
+		
+		// prepare info popup
+		infoPopup.setContentWithText(SanskritUtilities.getTextResource("info-sanskrit-letters.txt"));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(32));		
 
 	} // end constructor
 	
 	private void fillCharacterArray(final Utilities.PaliScript script) {
-		if (script == Utilities.PaliScript.ROMAN) {
-			final char[] romanVowels = ScriptTransliterator.getRomanPaliVowels();
-			for (int i = 0; i < romanVowels.length; i++)
-				paliChars[0][i] = "" + romanVowels[i];
-			final String[] romanConsonants = ScriptTransliterator.getRomanPaliConsonants();
-			// vagga
-			for (int i = 1; i <= 5; i++) {
-				for (int j = 0; j < 5; j++) 
-					paliChars[i][j] = romanConsonants[(i-1)*5 + j];
+		if (script == Utilities.PaliScript.DEVANAGARI) {
+			for (int i = 0; i < sktDevaChars.length; i++) {
+				for (int j = 0; j < sktDevaChars[i].length; j++) {
+					sktChars[i][j] = sktDevaChars[i][j];
+				}
 			}
-			// avagga
-			for (int k = 0; k < 8; k++) 
-				paliChars[6][k] = romanConsonants[25 + k];
-			final char[] romanNumbers = ScriptTransliterator.getRomanNumbers();
-			for (int n = 1; n < 10; n++)
-				paliChars[7][n-1] = "" + romanNumbers[n];
-			paliChars[7][9] = "" + romanNumbers[0];
 		} else {
-			final String[] arrVowels;
-			final char[] arrConsonants;
-			final char[] arrNumbers;
-			if (script == Utilities.PaliScript.THAI) {
-				arrVowels = ScriptTransliterator.getThaiPaliVowels();
-				arrConsonants = ScriptTransliterator.getThaiPaliConsonants();
-				arrNumbers = ScriptTransliterator.getThaiNumbers();
-			} else if (script == Utilities.PaliScript.KHMER) {
-				arrVowels = ScriptTransliterator.getKhmerPaliVowels();
-				arrConsonants = ScriptTransliterator.getKhmerPaliConsonants();
-				arrNumbers = ScriptTransliterator.getKhmerNumbers();
-			} else if (script == Utilities.PaliScript.MYANMAR) {
-				arrVowels = ScriptTransliterator.getMyanmarPaliVowels();
-				arrConsonants = ScriptTransliterator.getMyanmarPaliConsonants();
-				arrNumbers = ScriptTransliterator.getMyanmarNumbers();
-			} else if (script == Utilities.PaliScript.SINHALA) {
-				arrVowels = ScriptTransliterator.getSinhalaPaliVowels();
-				arrConsonants = ScriptTransliterator.getSinhalaPaliConsonants();
-				arrNumbers = ScriptTransliterator.getSinhalaNumbers();
-			} else {
-				arrVowels = ScriptTransliterator.getDevaPaliVowels();
-				arrConsonants = ScriptTransliterator.getDevaPaliConsonants();
-				arrNumbers = ScriptTransliterator.getDevaNumbers();
+			final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
+			for (int i = 0; i < sktDevaChars.length; i++) {
+				for (int j = 0; j < sktDevaChars[i].length; j++) {
+					if (sktDevaChars[i][j] == null) continue;
+					sktChars[i][j] = ScriptTransliterator.translitQuickSanskrit(sktDevaChars[i][j],
+									Utilities.PaliScript.DEVANAGARI, script, romanDef, true);
+				}
 			}
-			for (int i = 0; i < arrVowels.length; i++) {
-				paliChars[0][i] = arrVowels[i];
-			}
-			for (int i = 1; i <= 5; i++) {
-				for (int j = 0; j < 5; j++)
-						paliChars[i][j] = "" + arrConsonants[(i-1)*5 + j];
-			}
-			for (int k = 0; k < 8; k++) 
-				paliChars[6][k] = "" + arrConsonants[25 + k];
-			for (int n = 1; n < 10; n++)
-				paliChars[7][n - 1] = "" + arrNumbers[n];
-			paliChars[7][9] = "" + arrNumbers[0];
 		}
 	}
 
-	private void updateTagArray() {
+	private void rotateTagLang() {
+		currTagLang = (currTagLang + 1) % 3;
 		for (final Node nd : tagBox.getChildren()) {
 			final TagType tt = (TagType)nd.getUserData();
 			final Button bt = (Button)nd;
-			bt.setText(epSwitchButton.isSelected() ? tt.paliName : tt.englishName);
+			if (currTagLang == 0) {
+				// eng
+				bt.setText(tt.engName);
+			} else if (currTagLang == 1) {
+				// roman skt
+				bt.setText(tt.sktName);
+			} else {
+				// deva
+				final ObservableList<String> stlClass = bt.getStyleClass();
+				bt.setText(ScriptTransliterator.translitQuickSanskrit(tt.sktName,
+						Utilities.PaliScript.ROMAN, Utilities.PaliScript.DEVANAGARI, EngineType.DEVA_ROMAN_COMMON, true));
+			}
 		}
 	}
 
@@ -376,9 +368,9 @@ public final class LetterWin extends SingletonWindow {
 		for (final Node nd : tagBox.getChildren()) {
 			final TagType tt = (TagType)nd.getUserData();
 			final Button bt = (Button)nd;
-			bt.getStyleClass().remove("button-highlight");
+			bt.getStyleClass().remove("button-highlight-slim");
 			if (hiliteList != null && hiliteList.contains(tt)) {
-				bt.getStyleClass().add("button-highlight");
+				bt.getStyleClass().add("button-highlight-slim");
 			}
 		}
 	}
@@ -394,14 +386,9 @@ public final class LetterWin extends SingletonWindow {
 
 	private void updateLetterDisplay(final String fontname) {
 		for (final Node stpn : letterGrid.getChildren()) {
-			if (GridPane.getRowSpan(stpn) == 1) {
-				for (final Node lbn : ((Pane)stpn).getChildren()) {
-					((Label)lbn).setText(paliChars[GridPane.getRowIndex(stpn)][GridPane.getColumnIndex(stpn)]);
-					lbn.setStyle("-fx-font-family:'"+ fontname +"';-fx-font-size:" + DEF_FONT_SCALE*currFontPercent + "%;");
-				}
-			} else {
-				if (currSelectedPos[0] > -1)
-					setBigChar(paliChars[currSelectedPos[0]][currSelectedPos[1]]);
+			for (final Node lbn : ((Pane)stpn).getChildren()) {
+				((Label)lbn).setText(sktChars[GridPane.getRowIndex(stpn)][GridPane.getColumnIndex(stpn)]);
+				lbn.setStyle("-fx-font-family:'"+ fontname +"';-fx-font-size:" + DEF_FONT_SCALE*currFontPercent + "%;");
 			}
 		}
 	}
@@ -432,10 +419,8 @@ public final class LetterWin extends SingletonWindow {
 		currSelectedPos[1] = col;
 		final int[] posData = { row, col };
 		final String letter = ((Label)stp.getChildren().get(0)).getText();
-		if ((row==0 || row==6) && col<8 || (row>=1 && row<=5 && col<5)) {
+		if (row < 7) {
 			highlightLetterDisplay(List.of(posData));
-			// show big char
-			setBigChar(letter);
 			// find corresponding tags
 			final List<TagType> hiliteList = new ArrayList<>();
 			for (final TagType tt : TagType.values) {
@@ -448,45 +433,18 @@ public final class LetterWin extends SingletonWindow {
 				}
 			}
 			updateTagArray(hiliteList);
-		} else if (row==7) {
+		} else {
 			// numbers
-			setBigChar(letter);
 			highlightLetterDisplay(List.of(posData));
 			clearTagHighlights();
 		}
-	}
-
-	private void setBigChar(final String ch) {
-		selectedChar.set(ch);
-		formatBigChar();
-	}
-
-	private void resizeBigChar(final int amount) {
-		currBigCharSize += amount;
-		if (currBigCharSize < 0)
-			currBigCharSize = DEF_BIG_CHAR_SIZE;
-		formatBigChar();
-	}
-
-	private void formatBigChar() {
-		formatBigChar(toolBar.getCurrFont());
-	}
-
-	private void formatBigChar(final String fontname) {
-		bigChar.setStyle("-fx-font-family:'"+ fontname +"';-fx-font-size:"+currBigCharSize+"%;");
-	}
-
-	private void clearBigChar() {
-		currSelectedPos[0] = -1;
-		currSelectedPos[1] = -1;
-		selectedChar.set("");
 	}
 
 	private void clearTagHighlights() {
 		// clear tag button array
 		for (final Node nd : tagBox.getChildren()) {
 			final Button bt = (Button)nd;
-			bt.getStyleClass().remove("button-highlight");
+			bt.getStyleClass().remove("button-highlight-slim");
 		}
 	}
 
@@ -508,19 +466,19 @@ public final class LetterWin extends SingletonWindow {
 		final String outText;
 		switch (currPaliScript) {
 			case DEVANAGARI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, true);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, true);
 				break;
 			case KHMER:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, true);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER, true);
 				break;
 			case MYANMAR:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, true);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR, true);
 				break;
 			case SINHALA:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, true);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA, true);
 				break;
 			case THAI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, true);
+				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI, true);
 				break;
 			default: outText = text;
 		}
@@ -542,16 +500,15 @@ public final class LetterWin extends SingletonWindow {
 
 	public void setFont(final String fontname) {
 		updateLetterDisplay(fontname);
-		formatBigChar(fontname);
 		formatTypingOutput(fontname);
 	}
 
 	private String makeText() {
 		final StringBuilder result = new StringBuilder();
 		for (final TagType tt : TagType.values) {
-			result.append(tt.englishName).append(" (").append(tt.paliName).append("): ");
+			result.append(tt.engName).append(" (").append(tt.sktName).append("): ");
 			for (final int[] pos : tt.getLetterPosList())
-				result.append(paliChars[pos[0]][pos[1]]).append(" ");
+				result.append(sktChars[pos[0]][pos[1]]).append(" ");
 			result.append(System.getProperty("line.separator"));
 		}
 		return result.toString();
@@ -562,7 +519,7 @@ public final class LetterWin extends SingletonWindow {
 	}
 	
 	private void saveText() {
-		Utilities.saveText(makeText(), "letters.txt");
+		Utilities.saveText(makeText(), "sktletters.txt");
 	}
 
 	private void copyConvertedText() {

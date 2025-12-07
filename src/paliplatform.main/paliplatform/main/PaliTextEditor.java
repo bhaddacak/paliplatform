@@ -46,7 +46,7 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
@@ -818,7 +818,7 @@ public class PaliTextEditor extends BorderPane {
 	private void composeChars(final boolean isCompose) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		final String result = isCompose ? Normalizer.normalize(romanText, Form.NFC) : Normalizer.normalize(romanText, Form.NFD);
 		openNewEditor(result);
 	}
@@ -826,7 +826,7 @@ public class PaliTextEditor extends BorderPane {
 	private void removeAccents() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		final String result = removeAccents(romanText);
 		openNewEditor(result);
 	}
@@ -846,7 +846,7 @@ public class PaliTextEditor extends BorderPane {
 	private void reformatCST4() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		final String result = reformatCST4(romanText);
 		openNewEditor(result);
 	}
@@ -875,21 +875,21 @@ public class PaliTextEditor extends BorderPane {
 	private void calculateMeters() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		openNewEditor(Utilities.addComputedMeters(romanText));
 	}
 
 	private void openAnalyzer(final SimpleService service) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		service.process(romanText);
 	}
 
 	private void openReader(final SimpleService service) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		final Object[] args = { romanText };
 		service.processArray(args);
 	}
@@ -898,7 +898,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
 				area.setText(toCase(romanText, isUpper));
@@ -916,7 +916,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
 				area.setText(toSentCase(romanText));
@@ -957,7 +957,7 @@ public class PaliTextEditor extends BorderPane {
 
 	private void paliSort(final boolean isAsc) {
 		if (proceedConfirm()) {
-			final Stream<String> allLines = Utilities.convertToRoman(area.getText()).lines().map(s -> s.trim());
+			final Stream<String> allLines = Utilities.convertToRomanPali(area.getText()).lines().map(s -> s.trim());
 			final Stream<String> result;
 			if (isAsc)
 				result = allLines.sorted(Utilities.paliComparator);
@@ -978,7 +978,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = Normalizer.normalize(area.getSelectedText(), Form.NFC);
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? Normalizer.normalize(area.getText(), Form.NFC) : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
 				area.setText(toTex(romanText, mode));
@@ -996,7 +996,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
 		final String inputText = isAll ? area.getText() : selText;
-		final String romanText = Utilities.convertToRoman(inputText);
+		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
 				area.setText(fromTex(romanText));

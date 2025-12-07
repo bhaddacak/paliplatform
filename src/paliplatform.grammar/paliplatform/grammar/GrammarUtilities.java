@@ -68,7 +68,7 @@ final public class GrammarUtilities {
 	static String getTextResource(final String filename) {
 		String result = "";
 		try {
-			final InputStream in = GrammarUtilities.class.getResourceAsStream("resources/text/" + filename);
+			final InputStream in = GrammarUtilities.class.getResourceAsStream(TXTDIR + filename);
 			if (in != null)
 				result = new String(in.readAllBytes(), StandardCharsets.UTF_8);
 		} catch (IOException e) {

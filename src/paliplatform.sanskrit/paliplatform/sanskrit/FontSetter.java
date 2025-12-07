@@ -1,5 +1,5 @@
 /*
- * PaliPlatformIconsData.java
+ * FontSetter.java
  *
  * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
@@ -17,29 +17,37 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.base;
+package paliplatform.sanskrit;
 
-import java.util.HashMap;
+import paliplatform.base.*;
+
+import javafx.stage.Window;
 
 /** 
- * This contains the PaliPlatform Icons list used.
- * This is a singleton.
+ * The implementation of SimpleService for font setting.
  * @author J.R. Bhaddacak
  * @version 3.5
- * @since 2.0
+ * @since 3.5
  */
- class PaliPlatformIconsData extends HashMap<String, Character> {
-	 static final PaliPlatformIconsData INSTANCE = new PaliPlatformIconsData();
-	 
-	 private PaliPlatformIconsData() {
-		 super();
-		 put("left-pane", 'A');
-		 put("right-pane", 'B');
-		 put("full-view", 'C');
-		 put("dpd", 'D');
-		 put("bookmark-plus", 'E');
-		 put("skt-letter", 'F');
-		 put("lucene", 'L');
-		 put("sc", 'S');
-	 }
- }
+public class FontSetter implements SimpleService {
+
+	public FontSetter() {
+	}
+
+	@Override
+	public boolean process(final Object arg) {
+		return true;
+	}
+
+	@Override
+	public boolean processArray(final Object[] args) {
+		final Window win = (Window)args[0];
+		final String fontname = (String)args[1];
+		if (win instanceof SktLetterWin) {
+			((SktLetterWin)win).setFont(fontname);
+		}
+		return true;
+	}
+
+}
+

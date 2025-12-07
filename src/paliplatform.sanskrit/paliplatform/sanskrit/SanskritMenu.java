@@ -1,7 +1,7 @@
 /*
- * PaliPlatformIconsData.java
+ * SanskritMenu.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2024 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,29 +17,28 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.base;
+package paliplatform.sanskrit;
 
-import java.util.HashMap;
+import paliplatform.base.*;
+
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCode;
 
 /** 
- * This contains the PaliPlatform Icons list used.
- * This is a singleton.
+ * The menu items for Sanskrit module.
  * @author J.R. Bhaddacak
  * @version 3.5
- * @since 2.0
+ * @since 3.5
  */
- class PaliPlatformIconsData extends HashMap<String, Character> {
-	 static final PaliPlatformIconsData INSTANCE = new PaliPlatformIconsData();
-	 
-	 private PaliPlatformIconsData() {
-		 super();
-		 put("left-pane", 'A');
-		 put("right-pane", 'B');
-		 put("full-view", 'C');
-		 put("dpd", 'D');
-		 put("bookmark-plus", 'E');
-		 put("skt-letter", 'F');
-		 put("lucene", 'L');
-		 put("sc", 'S');
-	 }
- }
+public class SanskritMenu extends Menu {
+	public SanskritMenu() {
+		super("Sans_krit");
+		setMnemonicParsing(true);
+		final MenuItem lettersMenuItem = new MenuItem("Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
+		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
+		getItems().addAll(lettersMenuItem);
+	}
+
+}

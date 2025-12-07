@@ -522,6 +522,122 @@ public class ScriptTransliterator {
 		return myanmarNumbers;
 	}
 
+	public static String[][] getDevaSktLetterGrid() {
+		// mainly used in SktLetters
+		final String[][] result = new String[7][11];
+		// mutes
+		for (int i = 0; i < devaConsonants.length; i++) {
+			if (i < 5)
+				result[0][i] = "" + devaConsonants[i];
+			else if (i < 10)
+				result[1][i - 5] = "" + devaConsonants[i];
+			else if (i < 15)
+				result[2][i - 10] = "" + devaConsonants[i];
+			else if (i < 20)
+				result[3][i - 15] = "" + devaConsonants[i];
+			else if (i < 25)
+				result[4][i - 20] = "" + devaConsonants[i];
+			else
+				break;
+		}
+		// semivowels
+		result[1][5] = "\u092F"; // y;
+		result[2][5] = "\u0930"; // r
+		result[3][5] = "\u0932"; // l
+		result[4][5] = "\u0935"; // v
+		// sibilant
+		result[0][6] = "\u0939"; // h
+		result[1][6] = "\u0936"; // ś
+		result[2][6] = "\u0937"; // ṣ
+		result[3][6] = "\u0938"; // s
+		// vowels
+		result[0][7] = "\u0905"; // a
+		result[1][7] = "\u0907"; // i
+		result[2][7] = "\u090B"; // ṛ
+		result[3][7] = "\u090C"; // ḷ
+		result[4][7] = "\u0909"; // u
+		result[0][8] = "\u0906"; // ā
+		result[1][8] = "\u0908"; // ī
+		result[2][8] = "\u0960"; // ṝ
+		result[3][8] = "\u0961"; // ḹ
+		result[4][8] = "\u090A"; // ū
+		result[1][9] = "\u090F"; // e
+		result[4][9] = "\u0913"; // o
+		result[1][10] = "\u0910"; // ai
+		result[4][10] = "\u0914"; // au
+		// misc and symbols
+		result[5][4] = "" + devaAnusvara;
+		result[5][5] = "" + devaVisarga;
+		result[5][7] = "" + devaAvagraha;
+		result[5][8] = "" + devaDanda;
+		result[5][9] = "" + devaDoubleDanda;
+		result[5][10] = "" + devaAbbrSign;
+		// numbers
+		for (int n = 1; n <= 9; n++)
+			result[6][n-1] = "" + devaNumbers[n];
+		result[6][9] = "" + devaNumbers[0];
+		return result;
+	}
+
+	public static String[][] getDevaSktLetterGridX() {
+		// mainly used in SktLetters
+		final String[][] result = new String[8][10];
+		// 1st & 2nd row = vowels + symbols
+		for (int i = 0; i < devaVowelsInd.length; i++) {
+			if (i < 10)
+				result[0][i] = "" + devaVowelsInd[i];
+			else
+				result[1][i - 10] = "" + devaVowelsInd[i];
+		}
+		result[1][4] = "" + devaAnusvara;
+		result[1][5] = "" + devaVisarga;
+		result[1][6] = "" + devaAvagraha;
+		result[1][7] = "" + devaDanda;
+		result[1][8] = "" + devaDoubleDanda;
+		result[1][9] = "" + devaAbbrSign;
+		// mutes
+		for (int i = 0; i < devaConsonants.length; i++) {
+			if (i < 5)
+				result[2][i] = "" + devaConsonants[i];
+			else if (i < 10)
+				result[3][i - 5] = "" + devaConsonants[i];
+			else if (i < 15)
+				result[4][i - 10] = "" + devaConsonants[i];
+			else if (i < 20)
+				result[5][i - 15] = "" + devaConsonants[i];
+			else if (i < 25)
+				result[6][i - 20] = "" + devaConsonants[i];
+			else
+				break;
+		}
+		// semivowels
+		result[3][5] = "\u092F"; // y;
+		result[4][5] = "\u0930"; // r
+		result[5][5] = "\u0932"; // l
+		result[6][5] = "\u0935"; // v
+		// sibilant
+		result[2][6] = "\u0939"; // h
+		result[3][6] = "\u0936"; // ś
+		result[4][6] = "\u0937"; // ṣ
+		result[5][6] = "\u0938"; // s
+		// vowels
+		result[2][7] = "\u0905"; // a
+		result[3][7] = "\u0907"; // i
+		result[4][7] = "\u090B"; // ṛ
+		result[5][7] = "\u090C"; // ḷ
+		result[6][7] = "\u0909"; // u
+		result[2][8] = "\u0906"; // ā
+		result[3][8] = "\u0908"; // ī
+		result[4][8] = "\u0960"; // ṝ
+		result[5][8] = "\u0961"; // ḹ
+		result[6][8] = "\u090A"; // ū
+		// numbers
+		for (int n = 1; n <= 9; n++)
+			result[7][n-1] = "" + devaNumbers[n];
+		result[7][9] = "" + devaNumbers[0];
+		return result;
+	}
+
 	private static String shiftCharCode(final String input, final boolean isUp) {
 		// up = encode, down = decode
 		final char[] chars = input.toCharArray();
@@ -942,7 +1058,7 @@ public class ScriptTransliterator {
 		final Pattern kPatt = Pattern.compile(khmerCoeng + "([^" + khmerAllConsonants + khmerRuLu + "])");
 		result = kPatt.matcher(result).replaceAll(khmerKiller + "$1");
 		// the last character is Choeng, change to Killer
-		if (text.charAt(text.length() - 1) == khmerCoeng)
+		if (!text.isEmpty() && text.charAt(text.length() - 1) == khmerCoeng)
 			result = result.substring(0, result.length() - 1) + khmerKiller;
 		return result;
 	}
@@ -1105,7 +1221,7 @@ public class ScriptTransliterator {
 			result = result.replace(medCh, "" + myanmarToMedialMap.get(ch));
 		}
 		// the last character is Virama, change to Asat
-		if (text.charAt(text.length() - 1) == myanmarVirama)
+		if (!text.isEmpty() && text.charAt(text.length() - 1) == myanmarVirama)
 			result = result.substring(0, result.length() - 1) + myanmarAsat;
 		// change comma to danda, imitating CST4 conversion
 //~ 		result = result.replace(',', myanmarDanda);
@@ -1691,9 +1807,21 @@ public class ScriptTransliterator {
 		return result;
 	}
 
-	public static String translitQuickPaliScript(final String text,
+	public static String translitQuickPali(final String text,
 			final PaliScript fromScript, final PaliScript toScript,
 			final EngineType romanDef, final boolean withNumbers) {
+		return translitQuickPaliScript(text, fromScript, toScript, romanDef, withNumbers, false);
+	}
+
+	public static String translitQuickSanskrit(final String text,
+			final PaliScript fromScript, final PaliScript toScript,
+			final EngineType romanDef, final boolean withNumbers) {
+		return translitQuickPaliScript(text, fromScript, toScript, romanDef, withNumbers, true);
+	}
+
+	public static String translitQuickPaliScript(final String text,
+			final PaliScript fromScript, final PaliScript toScript,
+			final EngineType romanDef, final boolean withNumbers, final boolean asSanskrit) {
 		String result = text;
 		switch (toScript) {
 			case ROMAN:
@@ -1718,7 +1846,9 @@ public class ScriptTransliterator {
 			case DEVANAGARI:
 				switch(fromScript) {
 					case ROMAN:
-						result = translitQuick(text, EngineType.ROMAN_DEVA, withNumbers);
+						result = asSanskrit
+								? translitQuick(text, EngineType.ROMAN_SKT_DEVA, withNumbers)
+								: translitQuick(text, EngineType.ROMAN_DEVA, withNumbers);
 						break;
 					case KHMER:
 						result = translitQuick(text, EngineType.KHMER_DEVA, withNumbers);
@@ -1737,7 +1867,9 @@ public class ScriptTransliterator {
 			case KHMER:
 				switch(fromScript) {
 					case ROMAN:
-						result = translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, withNumbers);
+						result = asSanskrit
+								? translitQuick(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER, withNumbers)
+								: translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, withNumbers);
 						break;
 					case DEVANAGARI:
 						result = translitQuick(text, EngineType.DEVA_KHMER, withNumbers);
@@ -1756,7 +1888,9 @@ public class ScriptTransliterator {
 			case MYANMAR:
 				switch(fromScript) {
 					case ROMAN:
-						result = translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
+						result = asSanskrit
+								? translitQuick(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR, withNumbers)
+								: translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, withNumbers);
 						break;
 					case DEVANAGARI:
 						result = translitQuick(text, EngineType.DEVA_MYANMAR, withNumbers);
@@ -1775,7 +1909,9 @@ public class ScriptTransliterator {
 			case SINHALA:
 				switch(fromScript) {
 					case ROMAN:
-						result = translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, withNumbers);
+						result = asSanskrit
+								? translitQuick(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA, withNumbers)
+								: translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, withNumbers);
 						break;
 					case DEVANAGARI:
 						result = translitQuick(text, EngineType.DEVA_SINHALA, withNumbers);
@@ -1794,7 +1930,9 @@ public class ScriptTransliterator {
 			case THAI:
 				switch(fromScript) {
 					case ROMAN:
-						result = translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, withNumbers);
+						result = asSanskrit
+								? translitQuick(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI, withNumbers)
+								: translitQuick(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, withNumbers);
 						break;
 					case DEVANAGARI:
 						result = translitQuick(text, EngineType.DEVA_THAI, withNumbers);

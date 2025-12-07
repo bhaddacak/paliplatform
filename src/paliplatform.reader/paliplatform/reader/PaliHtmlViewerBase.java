@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -256,7 +256,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
 		final String text = cboard.hasString() ? cboard.getString().trim() : "";
-		final String term = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
+		final String term = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 		final Object[] args = { term };
 		DictUtilities.openWindow(Utilities.WindowType.DICT, args);
 	}
@@ -266,7 +266,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		final Clipboard cboard = Clipboard.getSystemClipboard();
 		final String text = cboard.hasString() ? cboard.getString().trim() : "";
 		if (!text.isEmpty()) {
-			final String term = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
+			final String term = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 			final SimpleService dictSearch = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
 			if (dictSearch != null) {
 				dictSearch.process(term);
@@ -275,7 +275,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	public void showDictResult(final String text) {
-		final String word = Utilities.getUsablePaliTerm(Utilities.convertToRoman(text));
+		final String word = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 		final String dpdWord = DictUtilities.makeDpdProper(word);
 		final boolean useDPD = Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable"));
 		// if DPD dict available, find the word
@@ -383,7 +383,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	private void calculateMeters() {
 		final String text = clickedText.get();
-		final String romanText = Utilities.convertToRoman(text);
+		final String romanText = Utilities.convertToRomanPali(text);
 		if (!text.isEmpty()) {
 			final SimpleService editor = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 			if (editor != null) {
@@ -395,7 +395,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	private void openAnalyzer() {
 		final String text = clickedText.get();
-		final String romanText = Utilities.convertToRoman(text);
+		final String romanText = Utilities.convertToRomanPali(text);
 		if (!text.isEmpty()) {
 			final SimpleService prosody = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
 			if (prosody != null) {
@@ -406,7 +406,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 
 	private void openSentenceReader() {
 		final String text = clickedText.get();
-		final String romanText = Utilities.convertToRoman(text);
+		final String romanText = Utilities.convertToRomanPali(text);
 		if (!text.isEmpty()) {
 			final SimpleService reader = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.sentence.ReaderLauncher");
 			if (reader != null) {

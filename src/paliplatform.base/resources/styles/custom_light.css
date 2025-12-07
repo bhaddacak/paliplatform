@@ -66,6 +66,10 @@
 	-fx-font-weight: bold;
 }
 
+.button-highlight-slim {
+	-fx-color: lightsalmon;
+}
+
 .bigcharbox {
 	-fx-padding: 0;
 	-fx-background-color: palegoldenrod;

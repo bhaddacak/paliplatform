@@ -34,7 +34,7 @@ import javafx.stage.Window;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
@@ -235,7 +235,12 @@ public class CommonWorkingToolBar extends ToolBar {
 					node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
 				} else {
 					final Window win = scene.getWindow();
-					if (win.getClass().getName().endsWith("LetterWin")) {
+					final String winName = win.getClass().getName();
+					if (winName.endsWith("SktLetterWin")) {
+						final SimpleService sktFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
+						if (sktFontSetter != null)
+							sktFontSetter.processArray(new Object[] { win, fontname });
+					} else if (winName.endsWith("LetterWin")) {
 						final SimpleService gramFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.grammar.FontSetter");
 						if (gramFontSetter != null)
 							gramFontSetter.processArray(new Object[] { win, fontname });

@@ -43,7 +43,7 @@ import netscape.javascript.JSObject;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 2.0
  */
 public class DictWin extends BorderPane {
@@ -254,7 +254,7 @@ public class DictWin extends BorderPane {
 		});
 		findInput.textProperty().addListener((obs, oldValue, newValue) -> {
 			if (!newValue.isEmpty()) {
-				final String query = Utilities.convertToRoman(Normalizer.normalize(newValue, Form.NFC));
+				final String query = Utilities.convertToRomanPali(Normalizer.normalize(newValue, Form.NFC));
 				findResultNext(query, +1);
 			}
 		});
@@ -344,7 +344,7 @@ public class DictWin extends BorderPane {
 
 	private void searchDict(final String value) {
 		final String strQuery = Normalizer.normalize(value.trim(), Form.NFC);
-		final String term = Utilities.convertToRoman(strQuery);
+		final String term = Utilities.convertToRomanPali(strQuery);
 		Platform.runLater(() -> {
 			if (!term.isEmpty())
 				search(term);
@@ -358,7 +358,7 @@ public class DictWin extends BorderPane {
 
 	private void search() {
 		final String strQuery = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
-		final String term = Utilities.convertToRoman(strQuery);
+		final String term = Utilities.convertToRomanPali(strQuery);
 		if (!term.isEmpty())
 			submitSearch(term);
 	}
@@ -525,7 +525,7 @@ public class DictWin extends BorderPane {
 	private void findResultNext(final int direction) {
 		final String strInput = findInput.getText();
 		if (!strInput.isEmpty()) {
-			final String query = Utilities.convertToRoman(Normalizer.normalize(strInput, Form.NFC));
+			final String query = Utilities.convertToRomanPali(Normalizer.normalize(strInput, Form.NFC));
 			findResultNext(query, direction);
 		}
 	}

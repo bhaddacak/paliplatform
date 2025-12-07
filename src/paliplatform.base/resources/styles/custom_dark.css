@@ -115,6 +115,10 @@
 	-fx-font-weight: bold;
 }
 
+.button-highlight-slim {
+	-fx-color: midnightblue;
+}
+
 .bigcharbox {
 	-fx-padding: 0;
 	-fx-background-color: darkslateblue;

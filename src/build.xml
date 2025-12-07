@@ -123,6 +123,10 @@ Instruction:
 	<delete dir="${modules.dir}/${basename}.dpd"/>
 </target>
 
+<target name="clean-sanskrit" description="Delete the sanskrit's built classes">
+	<delete dir="${modules.dir}/${basename}.sanskrit"/>
+</target>
+
 <target name="clean-jfx" description="Delete the jfx's built classes">
 	<delete dir="${modules.dir}/${basename}.jfx"/>
 </target>
@@ -188,6 +192,10 @@ See '$ ant help' for more information about the file structure.
 	<available file="${modules.dir}/${basename}.dpd/${basename}/dpd/DpdMenu.class" type="file" property="output.dpd.exists"/>	
 </target>
 
+<target name="output.sanskrit.check">
+	<available file="${modules.dir}/${basename}.sanskrit/${basename}/sanskrit/SanskritMenu.class" type="file" property="output.sanskrit.exists"/>	
+</target>
+
 <target name="output.jfx.check">
 	<available file="${modules.dir}/${basename}.jfx/${basename}/jfx/Installer.class" type="file" property="output.jfx.exists"/>	
 </target>
@@ -244,13 +252,19 @@ See '$ ant help' for more information about the file structure.
 	</copy>
 </target>
 
+<target name="res.sanskrit.copy">
+	<copy todir="${modules.dir}/${basename}.sanskrit/${basename}/sanskrit">
+		<fileset dir="${src.dir}/${basename}.sanskrit" includes="resources/**"/>
+	</copy>
+</target>
+
 <target name="res.jfx.copy">
 	<copy todir="${modules.dir}/${basename}.jfx/${basename}/jfx">
 		<fileset dir="${src.dir}/${basename}.jfx" includes="resources/**"/>
 	</copy>
 </target>
 
-<target name="rescopy" depends="res.base.copy,res.main.copy,res.dict.copy,res.grammar.copy,res.sentence.copy,res.reader.copy,res.lucene.copy,res.dpd.copy,res.jfx.copy"/>
+<target name="rescopy" depends="res.base.copy,res.main.copy,res.dict.copy,res.grammar.copy,res.sentence.copy,res.reader.copy,res.lucene.copy,res.dpd.copy,res.sanskrit.copy,res.jfx.copy"/>
 
 <target name="jar-base" depends="output.base.check,res.base.copy" if="output.base.exists" description="Generate the base's modular jar">
 	<mkdir dir="${jar.dir}"/>
@@ -308,6 +322,13 @@ See '$ ant help' for more information about the file structure.
 	</jar>
 </target>
 
+<target name="jar-sanskrit" depends="output.sanskrit.check,res.sanskrit.copy" if="output.sanskrit.exists" description="Generate the sanskrit's modular jar">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${basename}-sanskrit-${product.version}.jar">
+		<fileset dir="${modules.dir}/${basename}.sanskrit"/>
+	</jar>
+</target>
+
 <target name="jar-jfx" depends="output.jfx.check,res.jfx.copy" if="output.jfx.exists" description="Generate the jfx's modular jar">
 	<mkdir dir="${jar.dir}"/>
 	<jar destfile="${jar.dir}/${basename}-jfx-${product.version}.jar">
@@ -325,7 +346,7 @@ See '$ ant help' for more information about the file structure.
 	</jar>
 </target>
 
-<target name="jar" depends="jar-base,jar-main,jar-dict,jar-grammar,jar-sentence,jar-reader,jar-lucene,jar-dpd,jar-jfx,jar-launcher"/>
+<target name="jar" depends="jar-base,jar-main,jar-dict,jar-grammar,jar-sentence,jar-reader,jar-lucene,jar-dpd,jar-sanskrit,jar-jfx,jar-launcher"/>
 
 <target name="jars-copy" depends="jar">
 	<copy todir="${lib.dir}">

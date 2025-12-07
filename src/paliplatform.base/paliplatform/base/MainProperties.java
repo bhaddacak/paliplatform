@@ -47,16 +47,16 @@ public class MainProperties {
 												"uc-ḍ", "uc-ṇ", "uc-ḷ", "uc-ṃ", "uc-upper", "uc-lower" };
 		
 		private final String[] compCharNames = { "tilde (o"+'\u0303'+")", "macron (o"+'\u0304'+")", "dot above (o"+'\u0307'+")",
-												"dot below (o"+'\u0323'+")", "acute (o"+'\u0301'+")" };
+												"dot below (o"+'\u0323'+")", "acute (o"+'\u0301'+")", "avagraha (o"+'\u0315'+")" };
 		private final String[] compCharKeys = { "co-" + '\u0303', "co-" + '\u0304', "co-" + '\u0307',
-												"co-" + '\u0323', "co-" + '\u0301' };
+												"co-" + '\u0323', "co-" + '\u0301', "co-" + '\u0315' };
 		private PaliInputProperties() {
 			String[] unusedCharVals = { "x", "X", "W", "F", "f", "q", "Q", "z", "Z", "w", "<", ">" };
 			// for unused-character input method
 			for (int i = 0; i<unusedCharKeys.length; i++)
 				defPaliInputTable.put(unusedCharKeys[i], unusedCharVals[i]);
 			// for composite-character input method
-			String[] compCharVals = { "~", "-", "'", ".", "\"" };
+			String[] compCharVals = { "~", "-", "'", ".", "\"", "`" };
 			for (int i = 0; i<compCharKeys.length; i++)
 				defPaliInputTable.put(compCharKeys[i], compCharVals[i]);		
 		}

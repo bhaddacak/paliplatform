@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 2.0
  */
 final public class PaliPlatform extends Application {

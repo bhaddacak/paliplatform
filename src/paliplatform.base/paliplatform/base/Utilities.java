@@ -744,13 +744,13 @@ final public class Utilities {
 	}
 
 	/**
-	 * Convert a given string to Roman.
+	 * Convert a given string to Roman Pali.
 	 */
-	public static String convertToRoman(final String input) {
+	public static String convertToRomanPali(final String input) {
 		final PaliScript script = testLanguage(input);
 		final String result = script == PaliScript.ROMAN || script == PaliScript.UNKNOWN
 								? input.toLowerCase()
-								: ScriptTransliterator.translitQuickPaliScript(input, script, Utilities.PaliScript.ROMAN,
+								: ScriptTransliterator.translitQuickPali(input, script, Utilities.PaliScript.ROMAN,
 									ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true);
 		return result;
 	}

@@ -372,7 +372,7 @@ public class ScReader extends PaliHtmlViewerBase {
 
 	private String convertToScript(final String text, final Utilities.PaliScript script) {
 		final String normalized = Utilities.normalizeNiggahita(text, true);
-		final String result = ScriptTransliterator.translitQuickPaliScript(normalized,
+		final String result = ScriptTransliterator.translitQuickPali(normalized,
 						Utilities.PaliScript.ROMAN, script, ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true);
 		return result;
 	}

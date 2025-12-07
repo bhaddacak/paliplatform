@@ -1,0 +1,7 @@
+Guide to Sanskrit alphabet
+	1. To see the classification of letters, you can select by a letter or a tag.
+	2. The tags can also be changed to Roman Sanskrit or Devanāgarī by the button E/R/D.
+	3. The classification mostly follows Madhav Deshpande's Saṃskṛtasubodhinī (A Sanskrit Primer).
+	4. For Visarga, see also Arthur Macdonell's A Sanskrit Grammar for Students, I§6.
+	5. For Roman transliteration, there are choices provided by Options button. The selection affects how, for example, ṛ, ḷ, ai, au, avagraha, daṇḍas, and abbreviation sign are rendered.
+	6. You can open the typing test by the button given. This is useful when a non-Roman script is selected. The transliteration is done only from Roman to other scripts. If the result is not fully seen, try changing the font or maximizing the window.
