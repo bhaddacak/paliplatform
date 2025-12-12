@@ -48,11 +48,11 @@ import com.google.gson.Gson;
 /** 
  * The utility factory for the Dict module.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.5
  * @since 3.0
  */
 final public class DictUtilities {
-	public static final String DICTPATH = Utilities.DATAPATH + "dict/";
+	public static final String DICTPATH = Utilities.DATAPATH + "dict" + File.separator;
 	public static final String TXTDIR = "resources/text/";
 	public static final String CUSTOM_DICT = "customdict.txt";
 	public static final String SANDHI_LIST = "sandhi.txt";
@@ -430,15 +430,6 @@ final public class DictUtilities {
 		updateDictDBLockStatus();
 	}
 	
-	public static String makeHTML(final String body) {
-		final String scriptBody = Utilities.getTextResource(Utilities.COMMON_JS);
-		final String jsScript = "<script type='text/javascript'>" + scriptBody + "</script>";
-		final StringBuilder htmlText = new StringBuilder("<body>" + body + "</body>");
-		htmlText.insert(0, "<!doctype html><html><head><meta charset='utf-8'>"+jsScript+"</head>");
-		htmlText.append("</html>");
-		return htmlText.toString();
-	}
-
 	public static PaliWord lookUpCPEDFromDB(final String term) {
 		final PaliWord pword = new PaliWord(term);
 		final String query = "SELECT POS,PARADIGM,IN_COMPOUNDS,MEANING,SUBMEANING FROM CPED WHERE TERM = '"+term+"';";

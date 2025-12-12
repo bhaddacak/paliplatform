@@ -217,15 +217,20 @@ public class CommonWorkingToolBar extends ToolBar {
 	}
 
 	private void setFont(final String fontname) {
-		final SimpleService dictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.dict.FontSetter");
-		final SimpleService readerFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.reader.FontSetter");
 		for (final Node node : nodes) {
 			final String nodeClassName = node.getClass().getName();
-			if (nodeClassName.endsWith("DictWin")) {
+			if (nodeClassName.endsWith("SktDictWin")) {
+				final SimpleService sktDictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
+				if (sktDictFontSetter != null) {
+					sktDictFontSetter.processArray(new Object[] { node, fontname });
+				}
+			} else if (nodeClassName.endsWith("DictWin")) {
+				final SimpleService dictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.dict.FontSetter");
 				if (dictFontSetter != null) {
 					dictFontSetter.processArray(new Object[] { node, fontname });
 				}
 			} else if (nodeClassName.endsWith("HtmlViewer") || nodeClassName.endsWith("ScReader")){
+				final SimpleService readerFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.reader.FontSetter");
 				if (readerFontSetter != null) {
 					readerFontSetter.processArray(new Object[] { node, fontname });
 				}
@@ -239,7 +244,7 @@ public class CommonWorkingToolBar extends ToolBar {
 					if (winName.endsWith("SktLetterWin")) {
 						final SimpleService sktFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
 						if (sktFontSetter != null)
-							sktFontSetter.processArray(new Object[] { win, fontname });
+							sktFontSetter.processArray(new Object[] { node, fontname });
 					} else if (winName.endsWith("LetterWin")) {
 						final SimpleService gramFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.grammar.FontSetter");
 						if (gramFontSetter != null)

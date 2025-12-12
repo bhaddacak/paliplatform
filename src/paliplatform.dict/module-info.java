@@ -1,5 +1,4 @@
 module paliplatform.dict {
-	requires jdk.jsobject;
 	requires java.sql;
 	requires javafx.base;
 	requires javafx.controls;

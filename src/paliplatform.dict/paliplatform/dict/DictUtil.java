@@ -37,7 +37,7 @@ import com.google.gson.stream.*;
  * $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.5
  * @since 3.0
  */
 final public class DictUtil {
@@ -349,13 +349,13 @@ final public class DictUtil {
 		final File tabfile = new File(tabfileName);
 		if (!tabfile.exists()) {
 			printLog("Tabfile not found, operation aborted");
-			System.exit(0);
+			System.exit(1);
 		}
 		final Utilities.H2DB coneDB = Utilities.H2DB.CONE;
 		final String dbName = coneDB.getNameWithExt();
 		if (Utilities.isDBPresent(coneDB)) {
 			printLog(dbName + " already existed, operation aborted");
-			System.exit(0);
+			System.exit(1);
 		} else {
 			printLog("Reading tabfile...");
 			final List<String> tabData = Files.readAllLines(tabfile.toPath(), StandardCharsets.UTF_8);
@@ -379,7 +379,7 @@ final public class DictUtil {
 				pstm.setString(3, item[1]);
 				pstm.executeUpdate();
 				if ((i + 1) % 2000 == 0 || i == total - 1)
-					printLog((i + 1) + "/" + total + " records created");
+					printLog((i + 1) + "/" + total + " records inserted");
 			}
 			pstm.close();
 			printLog("Creating index...");

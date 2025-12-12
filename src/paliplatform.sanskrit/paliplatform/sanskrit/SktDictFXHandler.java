@@ -1,5 +1,5 @@
 /*
- * FontSetter.java
+ * SktDictFXHandler.java
  *
  * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
@@ -21,39 +21,33 @@ package paliplatform.sanskrit;
 
 import paliplatform.base.*;
 
-import javafx.stage.Window;
-import javafx.scene.Node;
-
 /** 
- * The implementation of SimpleService for font setting.
+ * The handler class used to communicate with JavaScript in WebView.
  * @author J.R. Bhaddacak
  * @version 3.5
  * @since 3.5
  */
-public class FontSetter implements SimpleService {
 
-	public FontSetter() {
+public class SktDictFXHandler extends FXHandler {
+	final SktDictWin dictHost;
+	
+	public SktDictFXHandler(final HtmlViewer viewer, final SktDictWin host) {
+		super(viewer);
+		dictHost = host;
+		textOutput = "sktdict-entry.txt";
+	}
+	
+	public void openNewDict(final String term) {
+		final String[] args = { term };
+		SanskritUtilities.openWindow(Utilities.WindowType.SKTDICT, args);
 	}
 
-	@Override
-	public boolean process(final Object arg) {
-		return true;
+	public void setSearchTextFound(final boolean yn) {
+		dictHost.setSearchTextFound(yn);
 	}
 
-	@Override
-	public boolean processArray(final Object[] args) {
-		final Node node = (Node)args[0];
-		final String fontname = (String)args[1];
-		if (node instanceof SktDictWin) {
-			((SktDictWin)node).setViewerFont(fontname);
-		} else {
-			final Window win = node.getScene().getWindow();
-			if (win instanceof SktLetterWin) {
-				((SktLetterWin)win).setFont(fontname);
-			}
-		}
-		return true;
+	public void showFindMessage(final String text) {
+		dictHost.showFindMessage(text);
 	}
 
 }
-

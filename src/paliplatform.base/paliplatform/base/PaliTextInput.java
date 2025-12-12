@@ -31,7 +31,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 /** 
  * General Pali text input.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.5
  * @since 2.0
  */
 public class PaliTextInput {
@@ -39,9 +39,13 @@ public class PaliTextInput {
 	public static enum InputMethod { 
 		NORMAL("no"), UNUSED_CHARS("uc"), COMPOSITE("co"), NUMBER("nu"), METER_GROUP("me"), NONE("0");
 		public static final InputMethod[] values = values();
+		private static final String[] names = { "Normal", "Unused chars", "Composite chars", "Number", "Meter group", "None" };
 		public final String abbr;
 		private InputMethod(final String name) {
 			abbr = name;
+		}
+		public String getName() {
+			return names[this.ordinal()];
 		}
 	}
 	private static final String validMeterGroup = "124lgnsjbmNSJYBRTML";
@@ -58,6 +62,7 @@ public class PaliTextInput {
 	private TextFormatter<String> textFormatter;
 	private final SimpleBooleanProperty isChanged = new SimpleBooleanProperty(false);
 	private int limit = 0; // 0 means no limit
+	private boolean sktMode = false; // for sanskrit input
 	
 	public PaliTextInput(final InputType inputType) {
 		this.inputType = inputType;
@@ -171,6 +176,10 @@ public class PaliTextInput {
 		limit = num;
 	}
 	
+	public void setSanskritMode(final boolean yn) {
+		sktMode = yn;
+	}
+	
 	public void requestFocus() {
 		input.requestFocus();
 	}
@@ -181,8 +190,12 @@ public class PaliTextInput {
 	}
 	
 	public final void resetInputMethod() {
-		final String methodStr = Utilities.settings.getProperty("pali-input-method");
-		inputMethod = methodStr == null ? InputMethod.UNUSED_CHARS : InputMethod.valueOf(methodStr);
+		final String methodStr = sktMode
+									? Utilities.settings.getProperty("sanskrit-input-method")
+									: Utilities.settings.getProperty("pali-input-method");
+		inputMethod = methodStr == null
+					? sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS 
+					: InputMethod.valueOf(methodStr);
 		setInputMethod(inputMethod);
 	}
 
@@ -247,7 +260,7 @@ public class PaliTextInput {
 		if (inputMethod == InputMethod.NUMBER || inputMethod == InputMethod.METER_GROUP)
 			return;
 		if (inputMethod == InputMethod.NORMAL) {
-			inputMethod = InputMethod.UNUSED_CHARS;
+			inputMethod = sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS;
 		} else if (inputMethod == InputMethod.UNUSED_CHARS) {
 			inputMethod = InputMethod.COMPOSITE;
 		} else {

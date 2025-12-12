@@ -293,6 +293,9 @@ public final class SktLetterWin extends SingletonWindow {
 
 		// prepare typing test components
 		final PaliTextInput typingTextInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
+		typingTextInput.setSanskritMode(true);
+		final String inputMethod = Utilities.settings.getProperty("sanskrit-input-method", "COMPOSITE");
+		typingTextInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		typingTextField = (TextField)typingTextInput.getInput();
 		typingTextField.setPromptText("Type something...");
 		typingTextField.prefWidthProperty().bind(scene.widthProperty());

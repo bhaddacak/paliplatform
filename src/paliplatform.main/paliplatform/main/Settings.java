@@ -105,31 +105,29 @@ class Settings extends SingletonWindow {
 		paliInputBox.setPrefHeight(Double.MAX_VALUE);
 		final HBox defMethodBox = new HBox();
 		defMethodBox.setSpacing(5);
+		defMethodBox.getChildren().add(new Label("Default input method: "));
 		final ToggleGroup defMethodGroup = new ToggleGroup();
-		final RadioButton raUnusedChars = new RadioButton("Unused chars");
-		final RadioButton raCompChars = new RadioButton("Composite chars");
-		final RadioButton raNormal = new RadioButton("Normal");
-		final Map<String, Toggle> textInputMap = Map.of(
-				PaliTextInput.InputMethod.UNUSED_CHARS.toString(), raUnusedChars,
-				PaliTextInput.InputMethod.COMPOSITE.toString(), raCompChars,
-				PaliTextInput.InputMethod.NORMAL.toString(), raNormal);
-		raUnusedChars.setToggleGroup(defMethodGroup);
-		raCompChars.setToggleGroup(defMethodGroup);
-		raNormal.setToggleGroup(defMethodGroup);
-		defMethodGroup.selectToggle(textInputMap.get(Utilities.settings.getProperty("pali-input-method")));
-		raUnusedChars.setOnAction(actionEvent -> {
-			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
-			MainProperties.INSTANCE.saveSettings();
+		final List<PaliTextInput.InputMethod> inputMethods = List.of(
+			PaliTextInput.InputMethod.UNUSED_CHARS, PaliTextInput.InputMethod.COMPOSITE, PaliTextInput.InputMethod.NORMAL);
+		final Map<PaliTextInput.InputMethod, RadioButton> inputRadioMap = new EnumMap<>(PaliTextInput.InputMethod.class);
+		for (final PaliTextInput.InputMethod im : inputMethods) {
+			final RadioButton radio = new RadioButton(im.getName());
+			radio.setUserData(im);
+			radio.setToggleGroup(defMethodGroup);
+			defMethodBox.getChildren().add(radio);
+			inputRadioMap.put(im, radio);
+		}
+		final String paliInputMethodStr = Utilities.settings.getProperty("pali-input-method", "UNUSED_CHARS");
+		final PaliTextInput.InputMethod paliInputMethod = PaliTextInput.InputMethod.valueOf(paliInputMethodStr.toUpperCase());
+		defMethodGroup.selectToggle(inputRadioMap.get(paliInputMethod));
+        defMethodGroup.selectedToggleProperty().addListener((observable) -> {
+			if (defMethodGroup.getSelectedToggle() != null) {
+				final RadioButton selected = (RadioButton)defMethodGroup.getSelectedToggle();
+				final PaliTextInput.InputMethod inputMethod = (PaliTextInput.InputMethod)selected.getUserData();
+				Utilities.settings.setProperty("pali-input-method", inputMethod.toString());
+				MainProperties.INSTANCE.saveSettings();
+			}
 		});
-		raCompChars.setOnAction(actionEvent -> {
-			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.COMPOSITE.toString());
-			MainProperties.INSTANCE.saveSettings();
-		});
-		raNormal.setOnAction(actionEvent -> {
-			Utilities.settings.setProperty("pali-input-method", PaliTextInput.InputMethod.NORMAL.toString());
-			MainProperties.INSTANCE.saveSettings();
-		});
-		defMethodBox.getChildren().addAll(new Label("Default input method: "), raUnusedChars, raCompChars, raNormal);
 		paliInputBox.getChildren().add(defMethodBox);
 		
 		final Hashtable<String, String> defaultTable = MainProperties.PaliInputProperties.INSTANCE.getDefaultTable();
@@ -244,6 +242,10 @@ class Settings extends SingletonWindow {
 		final Tab sentTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.sentence.SentenceSettingTab");
 		if (sentTab != null)
 			tabPane.getTabs().add(sentTab);
+		// sanskrit
+		final Tab sktTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.SktSettingTab");
+		if (sktTab != null)
+			tabPane.getTabs().add(sktTab);
 		
 		// close button
 		final Button close = new Button("Close");

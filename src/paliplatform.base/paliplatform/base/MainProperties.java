@@ -56,7 +56,7 @@ public class MainProperties {
 			for (int i = 0; i<unusedCharKeys.length; i++)
 				defPaliInputTable.put(unusedCharKeys[i], unusedCharVals[i]);
 			// for composite-character input method
-			String[] compCharVals = { "~", "-", "'", ".", "\"", "`" };
+			String[] compCharVals = { "~", "-", "\"", ".", "'", "`" };
 			for (int i = 0; i<compCharKeys.length; i++)
 				defPaliInputTable.put(compCharKeys[i], compCharVals[i]);		
 		}
@@ -95,7 +95,9 @@ public class MainProperties {
 			settings.setProperty("exit-ask", "true");
 			settings.setProperty("editor-close-ask", "true");
 			settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
+			settings.setProperty("sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString());
 			settings.setProperty("dictset", "CPED,");
+			settings.setProperty("sktdictset", "MWD,");
 			settings.setProperty("dpd-decon-count", "850000");
 			settings.setProperty("dpd-dict-count", "420000");
 			settings.setProperty("dpd-head-count", "80000");

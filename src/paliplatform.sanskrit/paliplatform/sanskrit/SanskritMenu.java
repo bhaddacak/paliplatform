@@ -36,9 +36,19 @@ public class SanskritMenu extends Menu {
 	public SanskritMenu() {
 		super("Sans_krit");
 		setMnemonicParsing(true);
-		final MenuItem lettersMenuItem = new MenuItem("Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
+		// init
+		Utilities.initializeSktDictDB(false);
+		SanskritUtilities.initializeSktDictAvailMap();
+		SanskritUtilities.updateSktDictAvailibility();
+		// add menu items
+		final MenuItem dictMenuItem = new MenuItem("_Dictionaries", new TextIcon("book", TextIcon.IconSet.AWESOME));
+		dictMenuItem.setMnemonicParsing(true);
+		dictMenuItem.disableProperty().bind(SanskritUtilities.sktDictDBAvailable.not());
+		dictMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SKTDICT, null));
+		final MenuItem lettersMenuItem = new MenuItem("_Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
+		lettersMenuItem.setMnemonicParsing(true);
 		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
-		getItems().addAll(lettersMenuItem);
+		getItems().addAll(dictMenuItem, lettersMenuItem);
 	}
 
 }

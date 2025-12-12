@@ -79,7 +79,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		});		
 		textPane.setCenter(webView);
 		// config Find Box
-		findBox.getFindTextInput().setInputMethod(PaliTextInput.InputMethod.valueOf(Utilities.settings.getProperty("pali-input-method")));
+		final String inputMethod = Utilities.settings.getProperty("pali-input-method", "UNUSED_CHARS");
+		findBox.getFindTextInput().setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		findBox.getPrevButton().disableProperty().bind(searchTextFound.not());
 		findBox.getPrevButton().setOnAction(actionEvent -> findNext(-1));
 		findBox.getNextButton().disableProperty().bind(searchTextFound.not());

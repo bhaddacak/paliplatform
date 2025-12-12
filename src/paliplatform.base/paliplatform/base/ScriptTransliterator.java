@@ -789,7 +789,6 @@ public class ScriptTransliterator {
 	}
 
 	private static String toUnique(final String text, final boolean asPali) {
-		// not intended for ISO or IAST and unsuitable for Sanskrit
 		String result = asPali 
 						? text.replace("ḷ", "ḻ")
 						: text.replace("ē", "e").replace("ō", "o")
@@ -1681,6 +1680,11 @@ public class ScriptTransliterator {
 		switch (toScript) {
 			case ROMAN:
 				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+									? transliterate(text, EngineType.ROMAN_SKT_DEVA, romanDef, withNumbers)
+									: transliterate(text, EngineType.ROMAN_DEVA, romanDef, withNumbers);
+						break;
 					case DEVANAGARI:
 						result = transliterate(text, romanDef, withNumbers);
 						break;
@@ -1826,6 +1830,11 @@ public class ScriptTransliterator {
 		switch (toScript) {
 			case ROMAN:
 				switch(fromScript) {
+					case ROMAN:
+						result = asSanskrit
+								? transliterate(text, EngineType.ROMAN_SKT_DEVA, romanDef, withNumbers)
+								: transliterate(text, EngineType.ROMAN_DEVA, romanDef, withNumbers);
+						break;
 					case DEVANAGARI:
 						result = translitQuick(text, romanDef, withNumbers);
 						break;

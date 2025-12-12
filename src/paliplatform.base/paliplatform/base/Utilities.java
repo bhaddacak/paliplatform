@@ -63,11 +63,11 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.5
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.4";
+	public static final String VERSION = "3.5";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -85,6 +85,7 @@ final public class Utilities {
 	public static final String PICPATH = DATAPATH + "pic" + File.separator;
 	public static final String EXFONTPATH = "fonts" + File.separator;
 	public static final String DICT_CSS = CSSDIR + "dict.css";
+	public static final String SKTDICT_CSS = CSSDIR + "sktdict.css";
 	public static final String COMMON_JS = JSDIR + "viewer-common.js"; // used by all HtmlViewer
 	public static final String TEXCONV = TXTDIR + "texconv.csv";
 	public static final String FONTICON = "PaliPlatformIcons";
@@ -94,7 +95,6 @@ final public class Utilities {
 	public static String FONTSANS = "sans-serif";
 	public static String FONTMONO = "monospace";
 	public static String FONTMONOBOLD = "monospace";
-//~ 	public static String FONTMYAN = FONT_FALLBACK;
 	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹṁṃṅṇṛṝṣṭēō";
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
@@ -124,6 +124,8 @@ final public class Utilities {
 	public static Properties urls;
 	public static RuleBasedCollator paliCollator;
 	public static Comparator<String> paliComparator;
+	public static RuleBasedCollator sktCollator;
+	public static Comparator<String> sktComparator;
 	public static Comparator<String> alphanumComparator;
 	public static StringConverter<Integer> integerStringConverter;
 	public static ExecutorService threadPool;
@@ -205,7 +207,8 @@ final public class Utilities {
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
-		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader");
+		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"),
+		SKTDICT("SktDictWin");
 		public static final WindowType[] types = values();
 		private final String windowClassName;
 		private WindowType(final String className) {
@@ -226,9 +229,9 @@ final public class Utilities {
 		}
 	}
 	public static enum H2DB {
-		DICT("ppdict"), CONE("ppcone"), LISTER("pplister"), PPDPD("ppdpd");
+		DICT("ppdict"), CONE("ppcone"), LISTER("pplister"), PPDPD("ppdpd"), SKTDICT("ppsktdict");
 		private final String name;
-		private static final java.sql.Connection[] connection = new java.sql.Connection[4];
+		private static final java.sql.Connection[] connection = new java.sql.Connection[5];
 		private H2DB(final String name) {
 			this.name = name;
 		}
@@ -319,6 +322,11 @@ final public class Utilities {
 
     public static void initializePpdpdDB() {
 		initializeH2DB(H2DB.PPDPD);
+	}
+
+    public static void initializeSktDictDB(final boolean force) {
+		if (force || isDBPresent(H2DB.SKTDICT))
+			initializeH2DB(H2DB.SKTDICT);
 	}
 
     public static void initializeH2DB(final H2DB db, final boolean... force) {
@@ -472,17 +480,12 @@ final public class Utilities {
 		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-BoldOblique.ttf"), 0);
-//~ 		final Font fontMyan = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Regular.ttf"), 0);
-//~ 		FONTMYAN = fontMyan==null ? FONT_FALLBACK : fontMyan.getFamily();
-//~ 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PadaukPP-Bold.ttf"), 0);
 		if (fontSerif != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
 		if (fontSans != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
 		if (fontMono != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
-//~ 		if (fontMyan != null)
-//~ 			embeddedFontMap.get(PaliScript.MYANMAR).add(fontMyan.getFamily());
 		// read external fonts
 		loadExternalFonts();
 	}
@@ -541,18 +544,27 @@ final public class Utilities {
 	*/
 	public static void initializeComparator() throws Exception {
 		if (paliCollator != null) return;
-		final String vowel = "< √ < A, a < Ā, ā < I, i < Ī, ī < U, u < Ū, ū < E, e < Ē, ē < O, o < Ō, ō";	
-		final String consonant = "< K, k < KH, Kh, kh < G, g < GH, Gh, gh < Ṅ, ṅ" +
-								"< C, c < CH, Ch, ch < J, j < JH, Jh, jh < Ñ, ñ" +
-								"< Ṭ, ṭ < ṬH, Ṭh, ṭh < Ḍ, ḍ < ḌH, Ḍh, ḍh < Ṇ, ṇ" +
-								"< T, t < TH, Th, th < D, d < DH, Dh, dh < N, n" +
-								"< P, p < PH, Ph, ph < B, b < BH, Bh, bh < M, m" +
-								"< Y, y < R, r < Ṛ, ṛ < Ṝ, ṝ < L, l < Ḹ, ḹ < V, v" +
-								"< Ś, ś < Ṣ, ṣ < S, s < H, h < Ḷ, ḷ";
+		final String vowelBase = "< √ < A, a < Ā, ā < I, i < Ī, ī < U, u < Ū, ū < Ṛ, ṛ < Ṝ, ṝ";
+		final String vowelPali = vowelBase + "< E, e < Ē, ē < O, o < Ō, ō";	
+		final String vowelSkt = vowelBase + "< Ḷ, ḷ < Ḹ, ḹ < E, e < AI, Ai, ai < O, o < AU, Au, au";	
+		final String consonantBase = "< K, k < KH, Kh, kh < G, g < GH, Gh, gh < Ṅ, ṅ" +
+									"< C, c < CH, Ch, ch < J, j < JH, Jh, jh < Ñ, ñ" +
+									"< Ṭ, ṭ < ṬH, Ṭh, ṭh < Ḍ, ḍ < ḌH, Ḍh, ḍh < Ṇ, ṇ" +
+									"< T, t < TH, Th, th < D, d < DH, Dh, dh < N, n" +
+									"< P, p < PH, Ph, ph < B, b < BH, Bh, bh < M, m" +
+									"< Y, y < R, r < L, l";
+		final String va = "< V, v";
+		final String saha = "< Ś, ś < Ṣ, ṣ < S, s < H, h";
+		final String consonantPali = consonantBase + va + saha + "< Ḷ, ḷ";
+		final String consonantSkt = consonantBase + "< Ḻ, ḻ" + va + saha;
 		final String niggahita = "< Ṁ, ṁ < Ṃ, ṃ";
-		final String paliRule = vowel + consonant + niggahita;
+		final String visarga = "< Ḥ, ḥ";
+		final String paliRule = vowelPali + consonantPali + niggahita;
 		paliCollator = new RuleBasedCollator(paliRule);
 		paliComparator = paliCollator::compare;
+		final String sktRule = vowelSkt + niggahita + visarga + consonantSkt;
+		sktCollator = new RuleBasedCollator(sktRule);
+		sktComparator = sktCollator::compare;
 		alphanumComparator = new Comparator<String>() {
 			@Override
 			public int compare(final String aName, final String bName) {
@@ -752,6 +764,18 @@ final public class Utilities {
 								? input.toLowerCase()
 								: ScriptTransliterator.translitQuickPali(input, script, Utilities.PaliScript.ROMAN,
 									ScriptTransliterator.EngineType.DEVA_ROMAN_COMMON, true);
+		return result;
+	}
+	
+	/**
+	 * Convert a given string to Roman Sanskrit.
+	 */
+	public static String convertToRomanSanskrit(final String input) {
+		final PaliScript script = testLanguage(input);
+		final String result = script == PaliScript.ROMAN || script == PaliScript.UNKNOWN
+								? input.toLowerCase()
+								: ScriptTransliterator.translitQuickSanskrit(input, script, Utilities.PaliScript.ROMAN,
+									ScriptTransliterator.EngineType.DEVA_ROMAN_IAST, true);
 		return result;
 	}
 	
@@ -1415,6 +1439,15 @@ final public class Utilities {
 	public static String makeBareHTML(final String body) {
 		final StringBuilder htmlText = new StringBuilder(body);
 		htmlText.insert(0, "<!doctype html><html><head><meta charset='utf-8'></head>");
+		htmlText.append("</html>");
+		return htmlText.toString();
+	}
+
+	public static String makeHTML(final String body) {
+		final String scriptBody = Utilities.getTextResource(Utilities.COMMON_JS);
+		final String jsScript = "<script type='text/javascript'>" + scriptBody + "</script>";
+		final StringBuilder htmlText = new StringBuilder("<body>" + body + "</body>");
+		htmlText.insert(0, "<!doctype html><html><head><meta charset='utf-8'>"+jsScript+"</head>");
 		htmlText.append("</html>");
 		return htmlText.toString();
 	}
