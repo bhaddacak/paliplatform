@@ -40,7 +40,7 @@ import javafx.geometry.Insets;
  * The viewer of BJT Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class BjtHtmlViewer extends PaliHtmlViewer {
@@ -384,7 +384,7 @@ public class BjtHtmlViewer extends PaliHtmlViewer {
 		final List<BjtPage> pages = ReaderUtilities.getBjtPages(thisDoc.getNodeFileName());
 		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
 		final ScriptTransliterator.EngineType romanDef = 
-						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+						ScriptTransliterator.EngineType.fromCode(Utilities.getSetting("roman-translit"));
 		pageBody = formatText(pages);
 		pageBody = script == srcScript
 					? pageBody

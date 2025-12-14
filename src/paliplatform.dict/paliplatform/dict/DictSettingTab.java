@@ -28,7 +28,7 @@ import javafx.scene.layout.*;
 /** 
  * The tab for Dict settings.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DictSettingTab extends Tab {
@@ -50,16 +50,16 @@ public class DictSettingTab extends Tab {
 	}
 
 	private CheckBox createDictCheckBox(final DictUtilities.DictBook book) {
-		final String strDictSet = Utilities.settings.getProperty("dictset");
+		final String strDictSet = Utilities.getSetting("dictset");
 		final String name = book.toString();
 		final CheckBox cb = DictUtilities.createDictCheckBox(book);
 		cb.setSelected(strDictSet.contains(name));
 		cb.setOnAction(actionEvent -> {
-			final String dset = Utilities.settings.getProperty("dictset").replace(name + ",", "");
+			final String dset = Utilities.getSetting("dictset").replace(name + ",", "");
 			if (cb.isSelected())
-				Utilities.settings.setProperty("dictset", dset + name + ",");
+				Utilities.setSetting("dictset", dset + name + ",");
 			else
-				Utilities.settings.setProperty("dictset", dset);
+				Utilities.setSetting("dictset", dset);
 			MainProperties.INSTANCE.saveSettings();			
 		});
 		return cb;

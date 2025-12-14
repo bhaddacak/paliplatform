@@ -41,7 +41,7 @@ import javafx.geometry.Insets;
  * The viewer of CST-restructured Pali texts. 
  * 
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class CstrHtmlViewer extends PaliHtmlViewer {
@@ -421,7 +421,7 @@ public class CstrHtmlViewer extends PaliHtmlViewer {
 		String bodyText = ReaderUtilities.readGzHTMLBody(thisDoc.getNodeFile(), thisDoc.getCorpus().getEncoding().getCharset());
 		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
 		final ScriptTransliterator.EngineType romanDef = 
-						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+						ScriptTransliterator.EngineType.fromCode(Utilities.getSetting("roman-translit"));
 		bodyText = script == srcScript
 					? bodyText
 					: ScriptTransliterator.translitPaliScript(bodyText, srcScript, script, romanDef, alsoConvertNumber, false);

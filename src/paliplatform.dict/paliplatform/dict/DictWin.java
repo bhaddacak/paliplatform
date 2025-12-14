@@ -31,7 +31,7 @@ import javafx.application.Platform;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 public class DictWin extends DictWinBase {
@@ -58,7 +58,7 @@ public class DictWin extends DictWinBase {
 	@Override
 	public final void init(final Object[] args) {
 		dictSet.clear();
-		final String strDictSet = Utilities.settings.getProperty("dictset");
+		final String strDictSet = Utilities.getSetting("dictset");
 		final String[] arrDictSet = strDictSet.split(",");
 		for (final DictBook db : DictBook.books)
 			dictCBMap.get(db).setSelected(false);

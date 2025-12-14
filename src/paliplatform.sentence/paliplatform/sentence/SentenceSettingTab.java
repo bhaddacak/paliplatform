@@ -28,7 +28,7 @@ import javafx.scene.layout.*;
 /** 
  * The tab for Sentence settings.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class SentenceSettingTab extends Tab {
@@ -40,9 +40,9 @@ public class SentenceSettingTab extends Tab {
 		sentMainBox.setPadding(new Insets(10));
 		VBox.setVgrow(sentMainBox, Priority.ALWAYS);
 		final CheckBox cbNormalize = new CheckBox("Normalize text (make it lowercase, etc.)");
-		cbNormalize.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("sentence-normalize")));
+		cbNormalize.setSelected(Boolean.parseBoolean(Utilities.getSetting("sentence-normalize")));
 		cbNormalize.setOnAction(actionEvent -> {
-			Utilities.settings.setProperty("sentence-normalize", Boolean.toString(cbNormalize.isSelected()));
+			Utilities.setSetting("sentence-normalize", Boolean.toString(cbNormalize.isSelected()));
 			MainProperties.INSTANCE.saveSettings();			
 		});
 		final VBox decomBox = new VBox();
@@ -61,9 +61,9 @@ public class SentenceSettingTab extends Tab {
 
 	private CheckBox createDecomCheckBox(final String text, final String prop) {
 		final CheckBox cb = new CheckBox(text);
-		cb.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty(prop)));
+		cb.setSelected(Boolean.parseBoolean(Utilities.getSetting(prop)));
 		cb.setOnAction(actionEvent -> {
-			Utilities.settings.setProperty(prop, Boolean.toString(cb.isSelected()));
+			Utilities.setSetting(prop, Boolean.toString(cb.isSelected()));
 			MainProperties.INSTANCE.saveSettings();			
 		});
 		return cb;

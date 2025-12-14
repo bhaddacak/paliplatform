@@ -27,7 +27,7 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 2.0
  */
 public class MainProperties {
@@ -35,11 +35,46 @@ public class MainProperties {
 	private static final String PROPERTIES_FILE = "PaliPlatform3.properties";
 	private static final double DEFAULT_WIDTH = 870;
 	private static final double DEFAULT_HEIGHT = 500;
+	private final Map<String, String> defPropMap = new HashMap<>();
 	private final Properties settings;
 	private final File propertiesFile;
+	private final String[][] defProperties = {
+		{ "latest-patch", "" },
+		{ "width", "" + DEFAULT_WIDTH },
+		{ "height", "" + DEFAULT_HEIGHT },
+		{ "theme", "LIGHT" },
+		{ "iconsize", "NORMAL" },
+		{ "bgstyle", "GRAY" },
+		{ "lineheight", "120%" },
+		{ "exit-ask", "true" },
+		{ "editor-close-ask", "true" },
+		{ "pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString() },
+		{ "sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString() },
+		{ "dictset", "CPED," },
+		{ "sktdictset", "MWD," },
+		{ "dpd-decon-count", "850000" },
+		{ "dpd-dict-count", "420000" },
+		{ "dpd-head-count", "80000" },
+		{ "dpd-lookup-enable", "true" },
+		{ "sentence-normalize", "true" },
+		{ "sentence-use-cap", "true" },
+		{ "sentence-use-bar", "true" },
+		{ "sentence-use-dot", "true" },
+		{ "sentence-use-colon", "true" },
+		{ "sentence-use-semicolon", "true" },
+		{ "sentence-use-dash", "true" },
+		{ "roman-translit", "dr" },
+		{ "font-roman", Utilities.FONTSERIF },
+		{ "font-devanagari", Utilities.FONTSERIF },
+		{ "font-khmer", Utilities.FONTSERIF },
+		{ "font-myanmar", Utilities.FONTSERIF },
+		{ "font-sinhala", Utilities.FONTSERIF },
+		{ "font-thai", Utilities.FONTSERIF },
+		{ "font-unknown", Utilities.FONTSERIF }
+	};
 	public static enum PaliInputProperties {
 		INSTANCE;
-		private final Hashtable<String, String> defPaliInputTable = new Hashtable<>();
+		private final Map<String, String> defPaliInputTable = new HashMap<>();
 		private final String[] unusedCharNames = { "a macron (ā)", "i macron (ī)", "u macron (ū)", "n dot above (ṅ)", "n tilde (ñ)",
 								"t dot below (ṭ)", "d dot below (ḍ)", "n dot below (ṇ)", "l dot below (ḷ)", "m dot below (ṃ)",
 								"uppercase key", "lowercase key" };
@@ -60,7 +95,7 @@ public class MainProperties {
 			for (int i = 0; i<compCharKeys.length; i++)
 				defPaliInputTable.put(compCharKeys[i], compCharVals[i]);		
 		}
-		public Hashtable<String, String> getDefaultTable() {
+		public Map<String, String> getDefaultTable() {
 			return defPaliInputTable;
 		}
 		public String[] getUnusedCharNames() {
@@ -78,6 +113,7 @@ public class MainProperties {
 	}
 	
 	private MainProperties() {
+		// init default property map
 		propertiesFile = new File(Utilities.ROOTDIR + PROPERTIES_FILE);
 		settings = new Properties();
 		if (propertiesFile.exists()){
@@ -88,39 +124,38 @@ public class MainProperties {
 			}
 		} else {
 			//compose the default settings
-			settings.setProperty("width", "" + DEFAULT_WIDTH);
-			settings.setProperty("height", "" + DEFAULT_HEIGHT);
-			settings.setProperty("theme", "LIGHT");
-			settings.setProperty("iconsize", "NORMAL");
-			settings.setProperty("exit-ask", "true");
-			settings.setProperty("editor-close-ask", "true");
-			settings.setProperty("pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString());
-			settings.setProperty("sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString());
-			settings.setProperty("dictset", "CPED,");
-			settings.setProperty("sktdictset", "MWD,");
-			settings.setProperty("dpd-decon-count", "850000");
-			settings.setProperty("dpd-dict-count", "420000");
-			settings.setProperty("dpd-head-count", "80000");
-			settings.setProperty("dpd-lookup-enable", "true");
-			settings.setProperty("sentence-normalize", "true");
-			settings.setProperty("sentence-use-cap", "true");
-			settings.setProperty("sentence-use-bar", "true");
-			settings.setProperty("sentence-use-dot", "true");
-			settings.setProperty("sentence-use-colon", "true");
-			settings.setProperty("sentence-use-semicolon", "true");
-			settings.setProperty("sentence-use-dash", "true");
-			settings.setProperty("roman-translit", "dr");
+			for (final String[] prop : defProperties) {
+				settings.setProperty(prop[0], prop[1]);
+			}
 			// set up default Pali input method properties
-			Hashtable<String,String> defTable = PaliInputProperties.INSTANCE.getDefaultTable();
-			for (Enumeration<String> k = defTable.keys(); k.hasMoreElements();) {
-				final String key = k.nextElement();
-				settings.setProperty(key, defTable.get(key));
+			final Map<String, String> defTable = PaliInputProperties.INSTANCE.getDefaultTable();
+			for (final Map.Entry<String, String> entry : defTable.entrySet()) {
+				settings.setProperty(entry.getKey(), entry.getValue());
 			}
 		}
 	}
 	
 	public Properties getSettings() {
 		return settings;
+	}
+
+	private String getDefault(final String key) {
+		String result = "ABSENT";
+		for (final String[] prop : defProperties) {
+			if (prop[0].equals(key)) {
+				result = prop[1];
+				break;
+			}
+		}
+		return result;
+	}
+
+	public String getProp(final String key) {
+		return settings.getProperty(key, getDefault(key));
+	}
+
+	public void setProp(final String key, final String value) {
+		settings.setProperty(key, value);
 	}
 	
 	public void saveSettings(final double width, final double height) {

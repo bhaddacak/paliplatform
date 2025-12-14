@@ -47,7 +47,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  * The tool facilitating Pali text reading.
  * Formerly this class is named PaliTextReader.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.6
  * @since 2.0
  */
 public class SentenceReader extends BorderPane {
@@ -538,24 +538,24 @@ public class SentenceReader extends BorderPane {
 	private static List<Sentence> breakDownSentences(final String text) {
 		final String SEP = "\u001F"; // unit separator
 		final String[] tokens = text.replace(Utilities.DASH_M, Utilities.DASH_N).split(Utilities.REX_NON_PALI_PUNC_FULL);
-		final String capResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-cap"))
+		final String capResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-cap"))
 									? Arrays.stream(tokens)
 											.map(x -> Character.isUpperCase(x.charAt(0)) ? SEP + x : x)
 											.collect(Collectors.joining(" "))
 									: Arrays.stream(tokens).collect(Collectors.joining(" "));
-		final String barResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-bar"))
+		final String barResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-bar"))
 									? capResultStr.replace("|", "" + SEP).replace("‖", SEP)
 									: capResultStr.replace("|", " ").replace("‖", " ");
-		final String dotResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-dot"))
+		final String dotResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-dot"))
 									? barResultStr.replace(".", SEP)
 									: barResultStr.replace(".", " ");
-		final String colonResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-colon"))
+		final String colonResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-colon"))
 									? dotResultStr.replace(":", SEP)
 									: dotResultStr.replace(":", " ");
-		final String semicolonResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-semicolon"))
+		final String semicolonResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-semicolon"))
 									? colonResultStr.replace(";", SEP)
 									: colonResultStr.replace(";", " ");
-		final String dashResultStr = Boolean.parseBoolean(Utilities.settings.getProperty("sentence-use-dash"))
+		final String dashResultStr = Boolean.parseBoolean(Utilities.getSetting("sentence-use-dash"))
 									? semicolonResultStr.replace(Utilities.DASH_N, SEP)
 									: semicolonResultStr;
 		final String[] sents = dashResultStr.split(SEP);
@@ -604,7 +604,7 @@ public class SentenceReader extends BorderPane {
 								.map(x -> x.replace(Utilities.DASH_N, "").replaceAll("-+", "").replaceAll("\\?+", "").replaceAll("\\!+", ""))
 								.collect(Collectors.joining(" "));
 		String editText = wordList.stream().collect(Collectors.joining(" "));
-		if (Boolean.parseBoolean(Utilities.settings.getProperty("sentence-normalize"))) {
+		if (Boolean.parseBoolean(Utilities.getSetting("sentence-normalize"))) {
 			bareText = bareText.toLowerCase();
 			editText = editText.toLowerCase();
 		}
@@ -812,7 +812,7 @@ public class SentenceReader extends BorderPane {
 
 	private String getInfo(final String word) {
 		final String result;
-		final boolean useDPD = Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable"));
+		final boolean useDPD = Boolean.parseBoolean(Utilities.getSetting("dpd-lookup-enable"));
 		// if DPD dict available, find the word
 		if (Utilities.ppdpdAvailMap.get(Utilities.PpdpdTable.DICTIONARY).get() && useDPD) {
 			final List<String> meaning = DictUtilities.getMeaningFromDPD(DictUtilities.makeDpdProper(word));

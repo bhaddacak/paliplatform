@@ -30,7 +30,7 @@ import javafx.scene.input.KeyCode;
  * The main menu bar including some action controllers.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 class MainMenu extends MenuBar {
@@ -79,14 +79,14 @@ class MainMenu extends MenuBar {
 			final String tName = t.toString();
 			final RadioMenuItem themeItem = new RadioMenuItem(tName.charAt(0) + tName.substring(1).toLowerCase());
 			themeItem.setToggleGroup(themeGroup);
-			themeItem.setSelected(themeItem.getText().toUpperCase().equals(Utilities.settings.getProperty("theme")));
+			themeItem.setSelected(themeItem.getText().toUpperCase().equals(Utilities.getSetting("theme")));
 			themeMenu.getItems().add(themeItem);
 		}
         themeGroup.selectedToggleProperty().addListener((observable) -> {
 			if (themeGroup.getSelectedToggle() != null) {
 				final RadioMenuItem selected = (RadioMenuItem)themeGroup.getSelectedToggle();
 				final String t = selected.getText().toUpperCase();
-				Utilities.settings.setProperty("theme", "" + t);
+				Utilities.setSetting("theme", "" + t);
 				PaliPlatform.refreshTheme();
 			}
         });		
@@ -97,14 +97,14 @@ class MainMenu extends MenuBar {
 			final String sName = s.toString();
 			final RadioMenuItem bsizeItem = new RadioMenuItem(sName.charAt(0) + sName.substring(1).toLowerCase());
 			bsizeItem.setToggleGroup(butsizeGroup);
-			bsizeItem.setSelected(bsizeItem.getText().toUpperCase().equals(Utilities.settings.getProperty("iconsize")));
+			bsizeItem.setSelected(bsizeItem.getText().toUpperCase().equals(Utilities.getSetting("iconsize")));
 			butsizeMenu.getItems().add(bsizeItem);
 		}
         butsizeGroup.selectedToggleProperty().addListener((observable) -> {
 			if (butsizeGroup.getSelectedToggle() != null) {
 				final RadioMenuItem selected = (RadioMenuItem)butsizeGroup.getSelectedToggle();
 				final String t = selected.getText().toUpperCase();
-				Utilities.settings.setProperty("iconsize", "" + t);
+				Utilities.setSetting("iconsize", "" + t);
 				MainProperties.INSTANCE.saveSettings();
 				Utilities.displayAlert(Alert.AlertType.WARNING, "Please restart the program to make effective");
 			}

@@ -33,7 +33,7 @@ import javafx.application.Platform;
  * The downloader and installer for the program's patches.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 class PatchInstaller extends ProgressiveDownloader {
@@ -69,7 +69,7 @@ class PatchInstaller extends ProgressiveDownloader {
 	private void init() {
 		moduleMap.clear();
 		deleteList.clear();
-		final String latestPatch = Utilities.settings.getProperty("latest-patch");
+		final String latestPatch = Utilities.getSetting("latest-patch");
 		final List<String> patchUrlList = new ArrayList<>();
 		for (int i = 1; i < 100; i++) {
 			final String pkey = String.format("patch%02d_url", i);
@@ -119,7 +119,7 @@ class PatchInstaller extends ProgressiveDownloader {
 												.max(String::compareTo);
 		if (latelyInstalled.isPresent()) {
 			final String ver = getPatchVersion(latelyInstalled.get());
-			Utilities.settings.setProperty("latest-patch", ver);
+			Utilities.setSetting("latest-patch", ver);
 			MainProperties.INSTANCE.saveSettings();
 		}
 		restart();

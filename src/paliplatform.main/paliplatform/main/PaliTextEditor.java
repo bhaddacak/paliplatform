@@ -310,9 +310,9 @@ public class PaliTextEditor extends BorderPane {
 		final CheckMenuItem wrapTextMenuItem = new CheckMenuItem("Wrap text");
 		wrapTextMenuItem.selectedProperty().bindBidirectional(area.wrapTextProperty());
 		saveOnCloseMenuItem.setSelected(false);
-		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
+		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.getSetting("editor-close-ask")));
 		noAskOnCloseMenuItem.setOnAction(actionEvent -> 
-				Utilities.settings.setProperty("editor-close-ask", Boolean.toString(!noAskOnCloseMenuItem.isSelected())));
+				Utilities.setSetting("editor-close-ask", Boolean.toString(!noAskOnCloseMenuItem.isSelected())));
 		final Menu romanDefMenu = new Menu("Roman transliteration");
 		for (final EngineType en : EngineType.engines) {
 			if (en.getTargetScript() == PaliScript.ROMAN) {
@@ -471,7 +471,7 @@ public class PaliTextEditor extends BorderPane {
 		saveable.set(false);
 		area.setWrapText(true);
 		saveOnCloseMenuItem.setSelected(false);
-		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.settings.getProperty("editor-close-ask", "true")));
+		noAskOnCloseMenuItem.setSelected(!Boolean.parseBoolean(Utilities.getSetting("editor-close-ask")));
 		searchTextFound.set(false);
 		regexMode = false;
 		replaceMode = false;

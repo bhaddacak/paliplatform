@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -56,7 +56,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	protected final SimpleFindBox findBox = new SimpleFindBox(this);
 	private final TextField findInput = findBox.getFindTextField();
 	protected String viewerTheme;
-	Utilities.Style style = Utilities.Style.GRAY;
+	protected Utilities.Style bgStyle; // init needed
+	private String lineHeight; // init needed
 	protected final SimpleObjectProperty<Utilities.PaliScript> displayScript = new SimpleObjectProperty<>(Utilities.PaliScript.ROMAN);
 	private final SimpleBooleanProperty searchTextFound = new SimpleBooleanProperty(false);
 	protected final SimpleStringProperty clickedText = new SimpleStringProperty("");
@@ -73,13 +74,13 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
 				webEngine.executeScript("init()");
-				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont();
 			}
 		});		
 		textPane.setCenter(webView);
 		// config Find Box
-		final String inputMethod = Utilities.settings.getProperty("pali-input-method", "UNUSED_CHARS");
+		final String inputMethod = Utilities.getSetting("pali-input-method");
 		findBox.getFindTextInput().setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		findBox.getPrevButton().disableProperty().bind(searchTextFound.not());
 		findBox.getPrevButton().setOnAction(actionEvent -> findNext(-1));
@@ -168,6 +169,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		dictInfoPopup.setTextWidth(Utilities.getRelativeSize(25));
 
 		// some other initialization
+		bgStyle = Utilities.Style.valueOf(Utilities.getSetting("bgstyle"));
+		lineHeight = Utilities.getSetting("lineheight");
 		Utilities.initializeDictDB();
 		if (ReaderUtilities.simpleServiceMap == null) 
 			ReaderUtilities.simpleServiceMap = ReaderUtilities.getSimpleServices();
@@ -220,13 +223,17 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	public void setViewerTheme(final Utilities.Style stl) {
-		style = stl;
+		bgStyle = stl;
 		setTheme();
 	}
 	
 	private void setTheme() {
-		final String command = "setViewerTheme('" + viewerTheme + "'," + style.ordinal() + ");";
+		final String command = "setViewerTheme('" + viewerTheme + "'," + bgStyle.ordinal() + ");";
 		webEngine.executeScript(command);
+	}
+
+	public Utilities.Style getBGStyle() {
+		return bgStyle;
 	}
 	
 	public void setViewerFont() {
@@ -243,8 +250,13 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	public void setLineHeight(final String percent) {
-		final String command = "setLineHeight('" + percent + "');";
+		lineHeight = percent;
+		final String command = "setLineHeight('" + lineHeight + "');";
 		webEngine.executeScript(command);
+	}
+
+	public String getLineHeight() {
+		return lineHeight;
 	}
 	
 	public void updateClickedObject(final String text) {
@@ -278,7 +290,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	public void showDictResult(final String text) {
 		final String word = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 		final String dpdWord = DictUtilities.makeDpdProper(word);
-		final boolean useDPD = Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable"));
+		final boolean useDPD = Boolean.parseBoolean(Utilities.getSetting("dpd-lookup-enable"));
 		// if DPD dict available, find the word
 		if (Utilities.ppdpdAvailMap.get(Utilities.PpdpdTable.DICTIONARY).get() && useDPD) {
 			final List<String> meaning = DictUtilities.getMeaningFromDPD(dpdWord);

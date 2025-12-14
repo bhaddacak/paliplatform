@@ -42,7 +42,7 @@ import netscape.javascript.JSObject;
 /** 
  * The viewer of Pali texts from GRETIL, i.e., for PTS and BJT edition.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class GretilHtmlViewer extends PaliHtmlViewer {
@@ -64,7 +64,7 @@ public class GretilHtmlViewer extends PaliHtmlViewer {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
 				webEngine.executeScript("init()");
-				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont();
 				setDocPages();
 			}

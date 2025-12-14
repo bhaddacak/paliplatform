@@ -63,7 +63,7 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 final public class Utilities {
@@ -90,8 +90,7 @@ final public class Utilities {
 	public static final String TEXCONV = TXTDIR + "texconv.csv";
 	public static final String FONTICON = "PaliPlatformIcons";
 	public static final String FONTAWESOME = "Font Awesome 6 Free Solid";
-	public static final String FONT_FALLBACK = "serif";
-	public static String FONTSERIF = FONT_FALLBACK;
+	public static String FONTSERIF = "serif";
 	public static String FONTSANS = "sans-serif";
 	public static String FONTMONO = "monospace";
 	public static String FONTMONOBOLD = "monospace";
@@ -111,8 +110,10 @@ final public class Utilities {
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
 	public static final List<String> genericFonts = List.of("serif", "sans-serif", "monospace");
+	public static final String[] lineHeights = { "80%", "90%", "100%", "110%", "120%", "130%", "140%", "150%", "175%", "200%", "250%", "300%" };
 	public static final Map<PaliScript, Set<String>> embeddedFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliScript, Set<String>> externalFontMap = new EnumMap<>(PaliScript.class); 
+	public static final Map<PaliScript, List<String>> availFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliTextInput.InputMethod, HashMap<String, String>> paliInputCharMap = new EnumMap<>(PaliTextInput.InputMethod.class);
 	public static final Map<PpdpdTable, SimpleBooleanProperty> ppdpdAvailMap = new EnumMap<>(PpdpdTable.class);
 	public static final Map<Character, List<String>> texConvMap = new HashMap<>();
@@ -120,7 +121,6 @@ final public class Utilities {
 	// moved from main
 	public static final HashSet<Stage> openedWindows = new HashSet<>();
 	public static Stage mainStage;
-	public static Properties settings;
 	public static Properties urls;
 	public static RuleBasedCollator paliCollator;
 	public static Comparator<String> paliComparator;
@@ -279,6 +279,15 @@ final public class Utilities {
 		public static final PpdpdTable[] tables = values(); 
 	}
 
+	public static String getSetting(final String key) {
+		return MainProperties.INSTANCE.getProp(key);
+	}
+
+	public static void setSetting(final String key, final String value) {
+		MainProperties.INSTANCE.setProp(key, value);
+	}
+	
+
 	public static boolean isModulePresentByFile(final String modname) {
 		final String root = ROOTDIR.isEmpty() ? "." : ROOTDIR;
 		final ModuleFinder finder = ModuleFinder.of(Path.of(root + File.separator + MODPATH));
@@ -432,7 +441,7 @@ final public class Utilities {
 	
 	public static String getCustomStyleSheet() {
 		String style = "";
-		switch (settings.getProperty("theme")) {
+		switch (getSetting("theme")) {
 			case "LIGHT":
 				style = Utilities.class.getResource(CSSDIR + "custom_light.css").toExternalForm();
 				break;
@@ -465,25 +474,27 @@ final public class Utilities {
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "PaliPlatformIcons.ttf"), 0); // PaliPlatformIcons
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "fa-solid-900.ttf"), 0); // Font Awesome 6 Free Solid
 		final Font fontSans = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans.ttf"), 0);
-		FONTSANS = fontSans==null ? FONT_FALLBACK : fontSans.getFamily();
+		FONTSANS = fontSans == null ? FONTSANS : fontSans.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-Bold.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-Oblique.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSans-BoldOblique.ttf"), 0);
 		final Font fontSerif = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif.ttf"), 0);
-		FONTSERIF = fontSerif==null ? FONT_FALLBACK : fontSerif.getFamily();
+		FONTSERIF = fontSerif == null ? FONTSERIF : fontSerif.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-Bold.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-Italic.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSerif-BoldItalic.ttf"), 0);
 		final Font fontMono = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono.ttf"), 0);
-		FONTMONO = fontMono==null ? FONT_FALLBACK : fontMono.getFamily();
+		FONTMONO = fontMono == null ? FONTMONO : fontMono.getFamily();
 		final Font fontMonoBold = Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Bold.ttf"), 0);
-		FONTMONOBOLD = fontMonoBold==null ? FONT_FALLBACK : fontMonoBold.getFamily();
+		FONTMONOBOLD = fontMonoBold == null ? FONTMONO : fontMonoBold.getFamily();
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-Oblique.ttf"), 0);
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-BoldOblique.ttf"), 0);
 		if (fontSerif != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
-		if (fontSans != null)
+		if (fontSans != null) {
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
+			Utilities.setSetting("font-roman", fontSans.getFamily());
+		}
 		if (fontMono != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
 		// read external fonts
@@ -531,10 +542,55 @@ final public class Utilities {
 				}
 			}
 		}
-		// if nothing available, set to the fallback font
+		// if nothing available, set to default
 		for (final PaliScript sc : PaliScript.scripts) {
-			if (externalFontMap.get(sc).isEmpty())
-				externalFontMap.get(sc).add(FONT_FALLBACK);
+			if (sc == PaliScript.ROMAN) continue; // roman uses embedded font as default
+			final Set<String> fset = externalFontMap.get(sc);
+			final String scStr = sc.toString().toLowerCase();
+			final String fn = fset.isEmpty()
+								? sc == PaliScript.UNKNOWN
+									? FONTSANS
+									: Utilities.getSetting("font-" + scStr)
+								: fset.stream().sorted().findFirst().get();
+			Utilities.setSetting("font-" + scStr, fn);
+		}
+	}
+
+	/**
+	 * Prepares available fonts for each script, mainly used by CommonWorkingToolBar
+	 */
+	public static void initializeFontSelectors() {
+		for (final PaliScript script : PaliScript.scripts) {
+			final List<String> allFonts = new ArrayList<>();
+			// add generic fonts first
+			for (final String gf : genericFonts) {
+				allFonts.add(gf);
+			}
+			// add embedded fonts; if script UNKNOWN, add all
+			if (script == PaliScript.UNKNOWN) {
+				for (final Collection<String> c : embeddedFontMap.values())
+					allFonts.addAll(c);
+			} else {
+				allFonts.addAll(Utilities.embeddedFontMap.get(script));
+			}
+			// add external fonts, if any; if script UNKNOWN, add all
+			final List<String> extFonts = new ArrayList<>();
+			if (script == PaliScript.UNKNOWN) {
+				for (final Collection<String> c : Utilities.externalFontMap.values()) {
+					for (final String f : c) {
+						if (!extFonts.contains(f))
+							extFonts.addAll(c);
+					}
+				}
+			} else {
+				extFonts.addAll(Utilities.externalFontMap.get(script));
+			}
+			Collections.sort(extFonts);
+			for (final String f : extFonts) {
+				if (!genericFonts.contains(f))
+					allFonts.add(f);
+			}
+			availFontMap.put(script, allFonts);
 		}
 	}
 	
@@ -736,6 +792,7 @@ final public class Utilities {
 	 * Sets up key-character mapping for Pali input.
 	 */
 	public static void setupPaliInputCharMap() {
+		final Properties settings = MainProperties.INSTANCE.getSettings();
 		for (PaliTextInput.InputMethod method : PaliTextInput.InputMethod.values) {
 			if (method != PaliTextInput.InputMethod.NORMAL) {
 				final HashMap<String, String> inputMap = new HashMap<>();

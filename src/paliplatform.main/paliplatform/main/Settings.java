@@ -23,6 +23,7 @@ import paliplatform.base.*;
 import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
+import java.util.stream.*;
 import java.io.*;
 import java.nio.file.*;
 
@@ -39,7 +40,7 @@ import javafx.geometry.*;
 /** 
  * The settings dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 2.0
  */
 class Settings extends SingletonWindow {
@@ -68,12 +69,12 @@ class Settings extends SingletonWindow {
 		generalBox.setPrefHeight(Double.MAX_VALUE);
 		final CheckBox cbExitAsk = new CheckBox("Ask before exit");
 		cbExitAsk.setAllowIndeterminate(false);
-		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask")));
-		cbExitAsk.setOnAction(actionEvent -> Utilities.settings.setProperty("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
+		cbExitAsk.setSelected(Boolean.parseBoolean(Utilities.getSetting("exit-ask")));
+		cbExitAsk.setOnAction(actionEvent -> Utilities.setSetting("exit-ask", Boolean.toString(cbExitAsk.isSelected())));
 		final CheckBox cbDpdLookup = new CheckBox("Use DPD lookup in Pāli text readers");
 		cbDpdLookup.setAllowIndeterminate(false);
-		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.settings.getProperty("dpd-lookup-enable")));
-		cbDpdLookup.setOnAction(actionEvent -> Utilities.settings.setProperty("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
+		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.getSetting("dpd-lookup-enable")));
+		cbDpdLookup.setOnAction(actionEvent -> Utilities.setSetting("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
 		generalBox.getChildren().addAll(cbExitAsk,
 								new Separator(), new Label("DPD integration"), cbDpdLookup,
 								new Separator(), new Label("Default transliteration to Roman in text readers"));
@@ -86,16 +87,65 @@ class Settings extends SingletonWindow {
 			radio.setToggleGroup(defRomanGroup);
 			generalBox.getChildren().add(radio);
 		}
-		final EngineType selectedEngine = EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+		final EngineType selectedEngine = EngineType.fromCode(Utilities.getSetting("roman-translit"));
 		if (selectedEngine != null)
 			defRomanGroup.selectToggle(defRomanGroup.getToggles().get(selectedEngine.ordinal()));
         defRomanGroup.selectedToggleProperty().addListener(observable -> {
 			final String code = (String)defRomanGroup.getSelectedToggle().getUserData();
-			Utilities.settings.setProperty("roman-translit", code);
+			Utilities.setSetting("roman-translit", code);
 			MainProperties.INSTANCE.saveSettings();
 		});
+		final HBox styleBox = new HBox();
+		generalBox.getChildren().addAll(new Separator(), new Label("Default line spacing and color style in text readers"),
+										styleBox);
+		final ChoiceBox<String> cbLineHeight = new ChoiceBox<>();
+		cbLineHeight.getItems().addAll(Arrays.asList(Utilities.lineHeights));
+		cbLineHeight.getSelectionModel().select(Utilities.getSetting("lineheight"));
+		cbLineHeight.setOnAction(actionEvent -> {
+			final String selected = cbLineHeight.getSelectionModel().getSelectedItem();
+			Utilities.setSetting("lineheight", selected);
+			MainProperties.INSTANCE.saveSettings();
+		});
+		final ChoiceBox<String> cbBGStyle = new ChoiceBox<>();
+		cbBGStyle.getItems().addAll(Arrays.stream(Utilities.Style.values).map(x -> x.getName()).collect(Collectors.toList()));
+		final Utilities.Style bg = Utilities.Style.valueOf(Utilities.getSetting("bgstyle"));
+		cbBGStyle.getSelectionModel().select(bg.ordinal());
+		cbBGStyle.setOnAction(actionEvent -> {
+			final int selected = cbBGStyle.getSelectionModel().getSelectedIndex();
+			Utilities.setSetting("bgstyle", Utilities.Style.values[selected].toString());
+			MainProperties.INSTANCE.saveSettings();
+		});
+		styleBox.getChildren().addAll(cbLineHeight, cbBGStyle);
 		generalTab.setContent(generalBox);
 		
+		// Font settings
+		final Tab fontTab = new Tab("Fonts");
+		fontTab.setClosable(false);
+		final VBox fontBox = new VBox();
+		fontBox.setSpacing(5);
+		fontBox.setPadding(new Insets(10));
+		fontBox.setPrefHeight(Double.MAX_VALUE);
+		fontBox.getChildren().add(new Label("Preferred font used in each script"));
+		for (final Utilities.PaliScript script : Utilities.PaliScript.scripts) {
+			final HBox scBox = new HBox();
+			scBox.setSpacing(5);
+			scBox.setAlignment(Pos.CENTER_LEFT);
+			final ChoiceBox<String> cb = new ChoiceBox<>();
+			cb.setPrefWidth(Utilities.getRelativeSize(15));
+			cb.getItems().addAll(Utilities.availFontMap.get(script));
+			final String scriptStr = script.toString().toLowerCase();
+			final String fn = Utilities.getSetting("font-" + scriptStr);
+			cb.getSelectionModel().select(fn);
+			cb.setOnAction(actionEvent -> {
+				Utilities.setSetting("font-" + scriptStr, cb.getSelectionModel().getSelectedItem());
+				MainProperties.INSTANCE.saveSettings();
+			});
+			final String name = script == Utilities.PaliScript.UNKNOWN ? "Unspecified/Unknown" : script.getName();
+			scBox.getChildren().addAll(cb, new Label(name));
+			fontBox.getChildren().add(scBox);
+		}
+		fontTab.setContent(fontBox);
+
 		// Pali input settings
 		final Tab paliInputTab = new Tab("Pāli input");
 		paliInputTab.setClosable(false);
@@ -117,20 +167,21 @@ class Settings extends SingletonWindow {
 			defMethodBox.getChildren().add(radio);
 			inputRadioMap.put(im, radio);
 		}
-		final String paliInputMethodStr = Utilities.settings.getProperty("pali-input-method", "UNUSED_CHARS");
+		final String paliInputMethodStr = Utilities.getSetting("pali-input-method");
 		final PaliTextInput.InputMethod paliInputMethod = PaliTextInput.InputMethod.valueOf(paliInputMethodStr.toUpperCase());
 		defMethodGroup.selectToggle(inputRadioMap.get(paliInputMethod));
         defMethodGroup.selectedToggleProperty().addListener((observable) -> {
 			if (defMethodGroup.getSelectedToggle() != null) {
 				final RadioButton selected = (RadioButton)defMethodGroup.getSelectedToggle();
 				final PaliTextInput.InputMethod inputMethod = (PaliTextInput.InputMethod)selected.getUserData();
-				Utilities.settings.setProperty("pali-input-method", inputMethod.toString());
+				Utilities.setSetting("pali-input-method", inputMethod.toString());
 				MainProperties.INSTANCE.saveSettings();
 			}
 		});
 		paliInputBox.getChildren().add(defMethodBox);
 		
-		final Hashtable<String, String> defaultTable = MainProperties.PaliInputProperties.INSTANCE.getDefaultTable();
+		final Properties settings = MainProperties.INSTANCE.getSettings();
+		final Map<String, String> defaultTable = MainProperties.PaliInputProperties.INSTANCE.getDefaultTable();
 		final String[] unusedCharNames = MainProperties.PaliInputProperties.INSTANCE.getUnusedCharNames();
 		final String[] unusedCharKeys = MainProperties.PaliInputProperties.INSTANCE.getUnusedCharKeys();
 		final AnchorPane unusedCharHeadPane = new AnchorPane();
@@ -139,7 +190,7 @@ class Settings extends SingletonWindow {
 		unusedCharResetButton.setOnAction(actionEvent -> {
 			for (int i=0; i<unusedCharKeys.length; i++) {
 				final String def = defaultTable.get(unusedCharKeys[i]);
-				Utilities.settings.setProperty(unusedCharKeys[i], def);
+				Utilities.setSetting(unusedCharKeys[i], def);
 				unusedCharTextFields[i].setText(def);
 			}
 			MainProperties.INSTANCE.saveSettings();
@@ -160,7 +211,7 @@ class Settings extends SingletonWindow {
 		int colTf;
 		for (int i=0; i<unusedCharNames.length; i++) {
 			final Label lb = new Label(unusedCharNames[i]+":");
-			unusedCharTextFields[i] = new TextField(Utilities.settings.getProperty(unusedCharKeys[i]));
+			unusedCharTextFields[i] = new TextField(settings.getProperty(unusedCharKeys[i]));
 			unusedCharTextFields[i].setPrefColumnCount(1);
 			row = i/3;
 			colLb = 2*(i - row*3);
@@ -175,7 +226,7 @@ class Settings extends SingletonWindow {
 					newInput = defaultTable.get(unusedCharKeys[iFinal]);
 				else
 					newInput = newValue.substring(0, 1);
-				Utilities.settings.setProperty(unusedCharKeys[iFinal], newInput);
+				Utilities.setSetting(unusedCharKeys[iFinal], newInput);
 				MainProperties.INSTANCE.saveSettings();
 				Utilities.setupPaliInputCharMap();
 			});
@@ -190,7 +241,7 @@ class Settings extends SingletonWindow {
 		compCharResetButton.setOnAction(actionEvent -> {
 			for (int i=0; i<compCharKeys.length; i++) {
 				final String def = defaultTable.get(compCharKeys[i]);
-				Utilities.settings.setProperty(compCharKeys[i], def);
+				Utilities.setSetting(compCharKeys[i], def);
 				compCharTextFields[i].setText(def);
 			}
 			MainProperties.INSTANCE.saveSettings();
@@ -208,7 +259,7 @@ class Settings extends SingletonWindow {
 		compCharTextFields = new TextField[compCharNames.length];
 		for (int i=0; i<compCharNames.length; i++) {
 			final Label lb = new Label(compCharNames[i]+":");
-			compCharTextFields[i] = new TextField(Utilities.settings.getProperty(compCharKeys[i]));
+			compCharTextFields[i] = new TextField(settings.getProperty(compCharKeys[i]));
 			compCharTextFields[i].setPrefColumnCount(1);
 			row = i/2;
 			colLb = 2*(i - row*2);
@@ -223,7 +274,7 @@ class Settings extends SingletonWindow {
 					newInput = defaultTable.get(compCharKeys[iFinal]);
 				else
 					newInput = newValue.substring(0, 1);
-				Utilities.settings.setProperty(compCharKeys[iFinal], newInput);
+				Utilities.setSetting(compCharKeys[iFinal], newInput);
 				MainProperties.INSTANCE.saveSettings();
 				Utilities.setupPaliInputCharMap();
 			});			
@@ -233,7 +284,7 @@ class Settings extends SingletonWindow {
 		paliInputTab.setContent(paliInputBox);
 		
 		// add tabs
-		tabPane.getTabs().addAll(generalTab, paliInputTab);
+		tabPane.getTabs().addAll(generalTab, fontTab, paliInputTab);
 		// dictionaries
 		final Tab dictTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.dict.DictSettingTab");
 		if (dictTab != null)

@@ -48,7 +48,7 @@ import com.google.gson.Gson;
  * The main dictionary of DPD with selected information.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DpdDictWin extends SingletonWindow {
@@ -300,7 +300,7 @@ public class DpdDictWin extends SingletonWindow {
 						final String lSelect = "SELECT lookup_key,headwords FROM lookup WHERE headwords != '';";
 						final Statement headStmt = dpdConn.createStatement();
 						final ResultSet headRes = headStmt.executeQuery(lSelect);
-						int total = Integer.parseInt(Utilities.settings.getProperty("dpd-dict-count", "-1"));
+						int total = Integer.parseInt(Utilities.getSetting("dpd-dict-count"));
 						int count = 0;
 						final List<StringPair> dlist = new ArrayList<>(total);
 						updateMessage("Reading DPD data...");
@@ -314,7 +314,7 @@ public class DpdDictWin extends SingletonWindow {
 						headStmt.close();
 						// sort the list
 						total = dlist.size();
-						Utilities.settings.setProperty("dpd-dict-count", "" + total);
+						Utilities.setSetting("dpd-dict-count", "" + total);
 						MainProperties.INSTANCE.saveSettings();
 						updateMessage(String.format("Sorting %,d records... (please wait)", total));
 						updateProgress(-1, -1);
@@ -352,7 +352,7 @@ public class DpdDictWin extends SingletonWindow {
 											"sanskrit,root_key,construction FROM dpd_headwords;";
 						final Statement mdpdStmt = dpdConn.createStatement();
 						final ResultSet mdpdRes = mdpdStmt.executeQuery(hSelect);
-						total = Integer.parseInt(Utilities.settings.getProperty("dpd-head-count", "-1"));
+						total = Integer.parseInt(Utilities.getSetting("dpd-head-count"));
 						count = 0;
 						updateMessage("Creating Mini DPD...");
 						final String mDelete = "DROP TABLE IF EXISTS " + tabName + ";";
@@ -393,7 +393,7 @@ public class DpdDictWin extends SingletonWindow {
 							mPstm.executeUpdate();
 							updateProgress(++count, total);
 						}
-						Utilities.settings.setProperty("dpd-head-count", "" + count);
+						Utilities.setSetting("dpd-head-count", "" + count);
 						MainProperties.INSTANCE.saveSettings();
 						mPstm.close();
 						mdpdRes.close();
@@ -550,9 +550,9 @@ public class DpdDictWin extends SingletonWindow {
 				resultList.clear();
 				resultList.addAll(finalList);
 				// show item count
-				final int dictTotal = Integer.parseInt(Utilities.settings.getProperty("dpd-dict-count", "0"));
+				final int dictTotal = Integer.parseInt(Utilities.getSetting("dpd-dict-count"));
 				final int total = deconButton.isSelected()
-									? dictTotal + Integer.parseInt(Utilities.settings.getProperty("dpd-decon-count", "0"))
+									? dictTotal + Integer.parseInt(Utilities.getSetting("dpd-decon-count"))
 									: dictTotal;
 				final int count = resultList.size();
 				final String s = count <= 1 ? "" : "s";

@@ -42,7 +42,7 @@ import javafx.collections.ObservableList;
  * The window showing Sanskrit letters in various scripts.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.5
  */
 public final class SktLetterWin extends SingletonWindow {
@@ -294,7 +294,7 @@ public final class SktLetterWin extends SingletonWindow {
 		// prepare typing test components
 		final PaliTextInput typingTextInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
 		typingTextInput.setSanskritMode(true);
-		final String inputMethod = Utilities.settings.getProperty("sanskrit-input-method", "COMPOSITE");
+		final String inputMethod = Utilities.getSetting("sanskrit-input-method");
 		typingTextInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		typingTextField = (TextField)typingTextInput.getInput();
 		typingTextField.setPromptText("Type something...");

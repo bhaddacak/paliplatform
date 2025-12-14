@@ -31,7 +31,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 /** 
  * General Pali text input.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 public class PaliTextInput {
@@ -83,8 +83,8 @@ public class PaliTextInput {
 			if (inputCharMap.containsKey(newText))
 				change.setText(inputCharMap.get(newText));
 			if (inputMethod == InputMethod.UNUSED_CHARS) {
-				if (Utilities.settings.getProperty("uc-upper").equals(newText)
-					|| Utilities.settings.getProperty("uc-lower").equals(newText))
+				if (Utilities.getSetting("uc-upper").equals(newText)
+					|| Utilities.getSetting("uc-lower").equals(newText))
 					return null;
 			}
 			if (!isChanged.get())
@@ -191,8 +191,8 @@ public class PaliTextInput {
 	
 	public final void resetInputMethod() {
 		final String methodStr = sktMode
-									? Utilities.settings.getProperty("sanskrit-input-method")
-									: Utilities.settings.getProperty("pali-input-method");
+									? Utilities.getSetting("sanskrit-input-method")
+									: Utilities.getSetting("pali-input-method");
 		inputMethod = methodStr == null
 					? sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS 
 					: InputMethod.valueOf(methodStr);
@@ -274,9 +274,9 @@ public class PaliTextInput {
 		input.setOnKeyTyped(keyEvent -> {
 			if (keyEvent.getEventType() == KeyEvent.KEY_TYPED) {
 				final String keychar = keyEvent.getCharacter();
-				if (Utilities.settings.getProperty("uc-upper").equals(keychar))
+				if (Utilities.getSetting("uc-upper").equals(keychar))
 					upperCase(true);
-				else if (Utilities.settings.getProperty("uc-lower").equals(keychar))
+				else if (Utilities.getSetting("uc-lower").equals(keychar))
 					upperCase(false);
 			}
 		});		

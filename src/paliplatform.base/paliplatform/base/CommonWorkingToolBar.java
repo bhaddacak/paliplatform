@@ -34,7 +34,7 @@ import javafx.stage.Window;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
@@ -56,7 +56,7 @@ public class CommonWorkingToolBar extends ToolBar {
 	
 	public CommonWorkingToolBar(final Node... nodes) {
 		this.nodes = nodes;
-		theme = Utilities.Theme.valueOf(Utilities.settings.getProperty("theme"));
+		theme = Utilities.Theme.valueOf(Utilities.getSetting("theme"));
 
 		darkButton.setTooltip(new Tooltip("Dark theme on/off"));
 		darkButton.setSelected(theme == Utilities.Theme.DARK);
@@ -72,7 +72,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		zoomInButton.setOnAction(actionEvent -> changeFontSize(+10));
 			
 		fontMenu.setTooltip(new Tooltip("Select the display font"));
-		currFont = setupFontMenu(PaliScript.ROMAN);
+		currFont = setupFontMenu(PaliScript.UNKNOWN);
 		fontGroup.selectToggle(fontMenuItemsMap.get(currFont));
         fontGroup.selectedToggleProperty().addListener((observable) -> {
 			if (fontGroup.getSelectedToggle() != null) {
@@ -105,48 +105,13 @@ public class CommonWorkingToolBar extends ToolBar {
 	public final String setupFontMenu(final PaliScript script) {
 		fontMenuItemsMap.clear();
 		fontMenu.getItems().clear();
-		final List<String> allFonts = new ArrayList<>();
-		// add generic fonts first
-		for (final String gf : Utilities.genericFonts) {
-			allFonts.add(gf);
-		}
-		// add embedded fonts; if script UNKNOWN, add all
-		if (script == PaliScript.UNKNOWN) {
-			for (final Collection<String> c : Utilities.embeddedFontMap.values())
-				allFonts.addAll(c);
-		} else {
-			allFonts.addAll(Utilities.embeddedFontMap.get(script));
-		}
-		// add external fonts, if any; if script UNKNOWN, add all
-		final List<String> extFonts = new ArrayList<>();
-		if (script == PaliScript.UNKNOWN) {
-			for (final Collection<String> c : Utilities.externalFontMap.values()) {
-				for (final String f : c) {
-					if (!extFonts.contains(f))
-						extFonts.addAll(c);
-				}
-			}
-		} else {
-			extFonts.addAll(Utilities.externalFontMap.get(script));
-		}
-		Collections.sort(extFonts);
-		for (final String f : extFonts) {
-			if (!Utilities.genericFonts.contains(f))
-				allFonts.add(f);
-		}
-		for (final String fname : allFonts) {
+		for (final String fname : Utilities.availFontMap.get(script)) {
 			final RadioMenuItem fontMenuItem = new RadioMenuItem(fname);
 			fontMenuItemsMap.put(fname, fontMenuItem);
 			fontMenuItem.setToggleGroup(fontGroup);
 			fontMenu.getItems().add(fontMenuItem);
 		}
-		if (script == PaliScript.ROMAN) {
-			// this should agree with base css (custom_light/custom_dark)
-			return Utilities.FONTSANS;
-		} else {
-			// otherwise return the first available font name
-			return allFonts.get(0);
-		}
+		return Utilities.getSetting("font-" + script.toString().toLowerCase());
 	}
 
 	public final void reBuildFontMenu(final PaliScript script) {
@@ -203,12 +168,11 @@ public class CommonWorkingToolBar extends ToolBar {
 	}
 
 	public void resetFont(final PaliScript script) {
-		resetFont(script, DEFAULT_FONTSIZE);
+		resetFont(Utilities.getSetting("font-" + script.toString().toLowerCase()));
 	}
 	
 	public void resetFont(final PaliScript script, final int sizePercent) {
-		currFontSizePercent = sizePercent;
-		setFont(script);
+		resetFont(Utilities.getSetting("font-" + script.toString().toLowerCase()), sizePercent);
 	}
 	
 	public void setFontMenu(final String fontname) {
@@ -258,19 +222,6 @@ public class CommonWorkingToolBar extends ToolBar {
 //~ 		final javafx.scene.text.Font f = new javafx.scene.text.Font(fontname, 12.0);
 //~ 		System.out.println(f.getFamily() + " : " + f.getName());
 		setFontMenu(fontname);
-	}
-	
-	private void setFont(final PaliScript script) {
-		final List<String> emList = new ArrayList<>(Utilities.embeddedFontMap.get(script));
-		if (!emList.isEmpty()) {
-			// use an embedded font, if any
-			setFont(emList.get(0));
-		} else {
-			// otherwise, use an external font
-			final List<String> exList = new ArrayList<>(Utilities.externalFontMap.get(script));
-			Collections.sort(exList);
-			setFont(exList.get(0));
-		}
 	}
 	
 	public void changeFontSize(final int percent) {

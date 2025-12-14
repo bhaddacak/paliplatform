@@ -21,6 +21,9 @@ package paliplatform.reader;
 
 import paliplatform.base.*;
 
+import java.util.Map;
+import java.util.EnumMap;
+import java.util.HashMap;
 import javafx.scene.control.*;
 import javafx.scene.web.WebView;
 import javafx.scene.Node;
@@ -28,12 +31,14 @@ import javafx.scene.Node;
 /** 
  * The common toolbar used in HtmlViewer.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 2.0
  */
 class ViewerToolBar extends CommonWorkingToolBar {
 	private final ToggleGroup lineSpacingGroup = new ToggleGroup();
 	private final ToggleGroup styleGroup = new ToggleGroup();
+	private final Map<Utilities.Style, Toggle> styleToggleMap = new EnumMap<>(Utilities.Style.class);
+	private final Map<String, Toggle> lineHeightToggleMap = new HashMap<>();
 	private PaliHtmlViewerBase viewer;
 
 	ViewerToolBar(final WebView webView, final Node... nodes) {
@@ -45,12 +50,12 @@ class ViewerToolBar extends CommonWorkingToolBar {
 		});
 
 		final MenuButton lineSpacingMenu = new MenuButton("", new TextIcon("arrows-up-down", TextIcon.IconSet.AWESOME));
-		final String[] lineSpaces = { "80%", "90%", "100%", "110%", "120%", "130%", "140%", "150%", "175%", "200%", "250%", "300%" };
-		for (final String h : lineSpaces) {
+		for (final String h : Utilities.lineHeights) {
 			final RadioMenuItem radio = new RadioMenuItem(h);
 			radio.setUserData(h);
 			radio.setToggleGroup(lineSpacingGroup);
 			lineSpacingMenu.getItems().add(radio);
+			lineHeightToggleMap.put(h, radio);
 		}
         lineSpacingGroup.selectedToggleProperty().addListener(observable -> 
 				viewer.setLineHeight((String)lineSpacingGroup.getSelectedToggle().getUserData()));
@@ -62,6 +67,7 @@ class ViewerToolBar extends CommonWorkingToolBar {
 			radio.setUserData(s);
 			radio.setToggleGroup(styleGroup);
 			styleMenu.getItems().add(radio);
+			styleToggleMap.put(s, radio);
 		}
         styleGroup.selectedToggleProperty().addListener(observable -> 
 				viewer.setViewerTheme((Utilities.Style)styleGroup.getSelectedToggle().getUserData()));
@@ -81,10 +87,12 @@ class ViewerToolBar extends CommonWorkingToolBar {
 	public void resetFont(final Utilities.PaliScript script) {
 		super.resetFont(script);
 		// set default line space
-		lineSpacingGroup.selectToggle(lineSpacingGroup.getToggles().get(4));
-		styleGroup.selectToggle(styleGroup.getToggles().get(2));
-		if (viewer != null)
-			viewer.setLineHeight("120%");
+		if (viewer != null) {
+			styleGroup.selectToggle(styleToggleMap.get(viewer.getBGStyle()));
+			final String lh = viewer.getLineHeight();
+			lineSpacingGroup.selectToggle(lineHeightToggleMap.get(lh));
+			viewer.setLineHeight(lh);
+		}
 	}
 	
 }

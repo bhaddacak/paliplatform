@@ -32,7 +32,7 @@ import javafx.application.Platform;
 /**
  * The sanskrit dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.5
  */
 public class SktDictWin extends DictWinBase {
@@ -47,7 +47,7 @@ public class SktDictWin extends DictWinBase {
 			toolBar.getItems().add(cb);
 		}
 		searchInput.setSanskritMode(true);
-		final String inputMethod = Utilities.settings.getProperty("sanskrit-input-method", "COMPOSITE");
+		final String inputMethod = Utilities.getSetting("sanskrit-input-method");
 		searchInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		editorLauncher = (SimpleService)SanskritUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 		editorButton.setDisable(editorLauncher == null);
@@ -62,7 +62,7 @@ public class SktDictWin extends DictWinBase {
 	@Override
 	public final void init(final Object[] args) {
 		dictSet.clear();
-		final String strDictSet = Utilities.settings.getProperty("sktdictset");
+		final String strDictSet = Utilities.getSetting("sktdictset");
 		final String[] arrDictSet = strDictSet.split(",");
 		for (final SktDictBook db : SktDictBook.books)
 			dictCBMap.get(db).setSelected(false);

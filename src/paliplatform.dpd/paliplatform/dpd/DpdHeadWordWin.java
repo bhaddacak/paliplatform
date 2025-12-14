@@ -41,7 +41,7 @@ import javafx.collections.ObservableList;
  * This window shows compound families as described in the DPD.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DpdHeadWordWin extends SingletonWindow {
@@ -220,7 +220,7 @@ public class DpdHeadWordWin extends SingletonWindow {
 		resultList.clear();
 		resultList.addAll(getHeadWordsFromDB(query));
 		// show item count
-		final int total = Integer.parseInt(Utilities.settings.getProperty("dpd-head-count"));
+		final int total = Integer.parseInt(Utilities.getSetting("dpd-head-count"));
 		final int count = resultList.size();
 		final String s = count <= 1 ? "" : "s";
 		setMessage(String.format("%,d item%s of %,d listed", count, s, total));

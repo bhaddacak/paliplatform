@@ -48,7 +48,9 @@ public class SanskritMenu extends Menu {
 		final MenuItem lettersMenuItem = new MenuItem("_Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
 		lettersMenuItem.setMnemonicParsing(true);
 		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
-		getItems().addAll(dictMenuItem, lettersMenuItem);
+		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dict", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
+		dictDownloadMenuItem.setOnAction(actionEvent -> SktDictDownloader.INSTANCE.display());
+		getItems().addAll(dictMenuItem, lettersMenuItem, new SeparatorMenuItem(), dictDownloadMenuItem);
 	}
 
 }

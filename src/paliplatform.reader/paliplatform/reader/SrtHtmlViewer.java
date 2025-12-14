@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
 /** 
  * The viewer of Siam Rath Tipitaka.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class SrtHtmlViewer extends PaliHtmlViewer {
@@ -71,7 +71,7 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 				JSObject jsWindow = (JSObject)webEngine.executeScript("window");
 				jsWindow.setMember("fxHandler", fxHandler);
 				webEngine.executeScript("init()");
-				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont();
 				setDocPages();
 			}
@@ -148,7 +148,7 @@ public class SrtHtmlViewer extends PaliHtmlViewer {
 		final Corpus corpus = thisDoc.getCorpus();
 		final Utilities.PaliScript srcScript = corpus.getScript();
 		final ScriptTransliterator.EngineType romanDef = 
-						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+						ScriptTransliterator.EngineType.fromCode(Utilities.getSetting("roman-translit"));
 		if (originalText.isEmpty())
 			originalText = ReaderUtilities.readTextFromZip(filename, corpus);
 		if (dehyphenatedText.isEmpty())

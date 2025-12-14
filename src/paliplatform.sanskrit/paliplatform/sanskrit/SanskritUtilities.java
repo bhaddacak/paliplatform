@@ -49,9 +49,9 @@ final public class SanskritUtilities {
 	public static final Map<SktDictBook, SimpleBooleanProperty> sktDictAvailMap = new EnumMap<>(SktDictBook.class);
 	public static Map<String, SimpleService> simpleServiceMap;
 	public static enum SktDictBook {
-		MWD("Monier-Williams' Sanskrit-English Dictionary");
+		MWD("Monier-Williams' Sanskrit-English Dictionary"), APTE("V.S. Apte's Practical Sanskrit-English Dictionary (revised)");
 		public static final SktDictBook[] books = values();
-		private static final String[] dataFiles = { "mw_iast.txt" };
+		private static final String[] dataFiles = { "mw_iast.txt", "ap.txt" };
 		public final String bookName;
 		private SktDictBook(final String name) {
 			bookName = name;

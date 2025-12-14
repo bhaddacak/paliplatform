@@ -38,7 +38,7 @@ import javafx.geometry.Orientation;
  * The viewer of Pali grammar books.
  * 
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class GramHtmlViewer extends PaliHtmlViewer {
@@ -209,7 +209,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		bodyResult.append(BR).append(BR);
 		final Utilities.PaliScript srcScript = thisDoc.getCorpus().getScript();
 		final ScriptTransliterator.EngineType romanDef = 
-						ScriptTransliterator.EngineType.fromCode(Utilities.settings.getProperty("roman-translit"));
+						ScriptTransliterator.EngineType.fromCode(Utilities.getSetting("roman-translit"));
 		final String bodyText = script != srcScript
 			? ScriptTransliterator.translitPaliScript(bodyResult.toString(), srcScript, script, romanDef, alsoConvertNumber, false)
 			: bodyResult.toString();

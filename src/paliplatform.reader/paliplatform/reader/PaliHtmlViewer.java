@@ -31,7 +31,7 @@ import netscape.javascript.JSObject;
 /** 
  * The generic viewer of HTML Pali texts.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.6
  * @since 2.1
  */
 public class PaliHtmlViewer extends PaliHtmlViewerBase {
@@ -55,7 +55,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				webEngine.executeScript("init()");
 				if (!initialStringToLocate.isEmpty())
 					findSingle(initialStringToLocate);
-				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont();
 			}
 		});	

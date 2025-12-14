@@ -36,7 +36,7 @@ import netscape.javascript.JSObject;
 /** 
  * The HTML viewer of SuttaCentral Pāli texts.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 3.0
  */
 public class ScReader extends PaliHtmlViewerBase {
@@ -87,7 +87,7 @@ public class ScReader extends PaliHtmlViewerBase {
 				webEngine.executeScript("init()");
 				if (!initialStringToLocate.isEmpty())
 					findSingle(initialStringToLocate);
-				setViewerTheme(Utilities.settings.getProperty("theme"));
+				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont(currFontScript);
 			}
 		});		

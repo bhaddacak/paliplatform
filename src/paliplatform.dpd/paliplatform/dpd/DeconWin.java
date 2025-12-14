@@ -49,7 +49,7 @@ import com.google.gson.Gson;
  * The window showing Pali word Deconpositions according to DPD.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DeconWin extends SingletonWindow {
@@ -238,7 +238,7 @@ public class DeconWin extends SingletonWindow {
 		final String mess;
 		if (!deconList.isEmpty()) {
 			if (!deconList.get(0).getFirst().isEmpty()) {
-				final int total = Integer.parseInt(Utilities.settings.getProperty("dpd-decon-count", "0"));
+				final int total = Integer.parseInt(Utilities.getSetting("dpd-decon-count"));
 				final int count = deconList.size();
 				final String s = count <= 1 ? "" : "s";
 				mess = String.format("%,d of %,d item%s listed", count, total, s);
@@ -326,7 +326,7 @@ public class DeconWin extends SingletonWindow {
 						final String select = "SELECT lookup_key,deconstructor FROM lookup WHERE deconstructor != '';";
 						final Statement dpdStmt = dpdConn.createStatement();
 						final ResultSet deconRes = dpdStmt.executeQuery(select);
-						int total = Integer.parseInt(Utilities.settings.getProperty("dpd-decon-count", "-1"));
+						int total = Integer.parseInt(Utilities.getSetting("dpd-decon-count"));
 						int count = 0;
 						final List<StringPair> dlist = new ArrayList<>(total);
 						updateMessage("Reading DPD data...");
@@ -338,7 +338,7 @@ public class DeconWin extends SingletonWindow {
 						}
 						// sort the list
 						total = dlist.size();
-						Utilities.settings.setProperty("dpd-decon-count", "" + total);
+						Utilities.setSetting("dpd-decon-count", "" + total);
 						MainProperties.INSTANCE.saveSettings();
 						updateMessage(String.format("Sorting %,d records... (please wait)", total));
 						updateProgress(-1, -1);

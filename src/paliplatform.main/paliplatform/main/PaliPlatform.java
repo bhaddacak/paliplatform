@@ -104,13 +104,13 @@ final public class PaliPlatform extends Application {
 		Utilities.threadPool = Executors.newFixedThreadPool(5 * Runtime.getRuntime().availableProcessors());
 
 		// load settings
-		Utilities.settings = MainProperties.INSTANCE.getSettings();
 		Utilities.setupPaliInputCharMap();
 		Utilities.urls = UrlProperties.INSTANCE.getUrlProps();
-		Utilities.iconSize = Utilities.IconSize.valueOf(Utilities.settings.getProperty("iconsize"));
+		Utilities.iconSize = Utilities.IconSize.valueOf(Utilities.getSetting("iconsize"));
 
 		// initialize font map
 		Utilities.initializeFontMap();
+		Utilities.initializeFontSelectors();
 
 		// initialize comparator
 		Utilities.initializeComparator();
@@ -146,8 +146,8 @@ final public class PaliPlatform extends Application {
     public void start(Stage stage) throws Exception {
 		this.stage = stage;
 		Utilities.mainStage = stage;
-		final double width = Double.parseDouble(Utilities.settings.getProperty("width"));
-		final double height = Double.parseDouble(Utilities.settings.getProperty("height"));
+		final double width = Double.parseDouble(Utilities.getSetting("width"));
+		final double height = Double.parseDouble(Utilities.getSetting("height"));
         final BorderPane root = new BorderPane();
         final VBox topPart = new VBox();
         topPart.getChildren().addAll(MainMenu.INSTANCE, MainToolBar.INSTANCE);
@@ -156,7 +156,7 @@ final public class PaliPlatform extends Application {
         // load preliminary data
 		final String rootdir = "Root directory: " + Utilities.ROOTDIR + "\n";
 		final String baseVersion = "Base version: " + getBaseVersion() + "\n";
-		final String latestPatch = Utilities.settings.getProperty("latest-patch", "");
+		final String latestPatch = Utilities.getSetting("latest-patch");
 		final String patchStr = latestPatch.isEmpty() ? "" : "Latest patch: " + latestPatch + "\n";
         releaseNotes = rootdir + baseVersion + patchStr + "\n" + loadNotesInfo();
         
@@ -460,7 +460,7 @@ final public class PaliPlatform extends Application {
 	
     static void exit(final WindowEvent event) {
 		final ConfirmAlert quitAlert = new ConfirmAlert(stage, ConfirmAlert.ConfirmType.QUIT);
-		if (Boolean.parseBoolean(Utilities.settings.getProperty("exit-ask"))) {
+		if (Boolean.parseBoolean(Utilities.getSetting("exit-ask"))) {
 			final Optional<ButtonType> result = quitAlert.showAndWait();
 			if (result.isPresent()) {
 				if (result.get() == quitAlert.getConfirmButtonType()) {

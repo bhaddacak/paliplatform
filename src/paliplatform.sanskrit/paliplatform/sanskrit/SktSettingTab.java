@@ -29,7 +29,7 @@ import javafx.scene.layout.*;
 /** 
  * The tab for the settings of Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.5
  */
 public class SktSettingTab extends Tab {
@@ -55,14 +55,14 @@ public class SktSettingTab extends Tab {
 			defMethodBox.getChildren().add(radio);
 			inputRadioMap.put(im, radio);
 		}
-		final String sktInputMethodStr = Utilities.settings.getProperty("sanskrit-input-method", "COMPOSITE");
+		final String sktInputMethodStr = Utilities.getSetting("sanskrit-input-method");
 		final PaliTextInput.InputMethod sktInputMethod = PaliTextInput.InputMethod.valueOf(sktInputMethodStr.toUpperCase());
 		defMethodGroup.selectToggle(inputRadioMap.get(sktInputMethod));
         defMethodGroup.selectedToggleProperty().addListener((observable) -> {
 			if (defMethodGroup.getSelectedToggle() != null) {
 				final RadioButton selected = (RadioButton)defMethodGroup.getSelectedToggle();
 				final PaliTextInput.InputMethod inputMethod = (PaliTextInput.InputMethod)selected.getUserData();
-				Utilities.settings.setProperty("sanskrit-input-method", inputMethod.toString());
+				Utilities.setSetting("sanskrit-input-method", inputMethod.toString());
 				MainProperties.INSTANCE.saveSettings();
 			}
 		});
@@ -78,16 +78,16 @@ public class SktSettingTab extends Tab {
 	}
 
 	private CheckBox createDictCheckBox(final SanskritUtilities.SktDictBook book) {
-		final String strDictSet = Utilities.settings.getProperty("sktdictset");
+		final String strDictSet = Utilities.getSetting("sktdictset");
 		final String name = book.toString();
 		final CheckBox cb = SanskritUtilities.createSktDictCheckBox(book);
 		cb.setSelected(strDictSet.contains(name));
 		cb.setOnAction(actionEvent -> {
-			final String dset = Utilities.settings.getProperty("sktdictset").replace(name + ",", "");
+			final String dset = Utilities.getSetting("sktdictset").replace(name + ",", "");
 			if (cb.isSelected())
-				Utilities.settings.setProperty("sktdictset", dset + name + ",");
+				Utilities.setSetting("sktdictset", dset + name + ",");
 			else
-				Utilities.settings.setProperty("sktdictset", dset);
+				Utilities.setSetting("sktdictset", dset);
 			MainProperties.INSTANCE.saveSettings();			
 		});
 		return cb;
