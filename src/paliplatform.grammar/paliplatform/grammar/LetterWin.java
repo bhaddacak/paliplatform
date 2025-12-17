@@ -20,6 +20,7 @@
 package paliplatform.grammar;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.PaliScript;
 import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
@@ -505,25 +506,8 @@ public final class LetterWin extends SingletonWindow {
 	}
 
 	private void setTypingOutput(final String text) {
-		final String outText;
-		switch (currPaliScript) {
-			case DEVANAGARI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, true);
-				break;
-			case KHMER:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_KHMER, true);
-				break;
-			case MYANMAR:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_MYANMAR, true);
-				break;
-			case SINHALA:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_SINHALA, true);
-				break;
-			case THAI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_DEVA, EngineType.DEVA_THAI, true);
-				break;
-			default: outText = text;
-		}
+		final PaliScript script = Utilities.testLanguage(text);
+		final String outText = ScriptTransliterator.translitQuickPali(text, script, currPaliScript, EngineType.DEVA_ROMAN_COMMON, true);
 		typingOutput.setText(outText);
 		formatTypingOutput();
 	}

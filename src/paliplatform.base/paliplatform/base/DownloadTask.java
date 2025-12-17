@@ -1,7 +1,7 @@
 /*
  * DownloadTask.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,15 +25,18 @@ import java.nio.file.*;
 /** 
  * The representation of a download task used with ProgressiveDownloader.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DownloadTask {
 	public static enum State { IDLE, STARTED, SKIPPED, DOWNLOADED, FAILED, CANCELLED, INSTALLED }
+	public static enum UnpackMode { ALL, SELECTIVE }
 	private final String fileURL;
 	private final File targetFile; // file saved in the cache
 	private final File destinationDir; // the final installed location
 	private final boolean unpackNeeded;
+	private UnpackMode unpackMode;
+	private File destinationFile; // used only when selective unpack
 	private long totalSize = -1; // indeterminate at first
 	private State state = State.IDLE;
 	
@@ -42,10 +45,20 @@ public class DownloadTask {
 		targetFile = getValidTargetFile(target);
 		destinationDir = destination;
 		unpackNeeded = unpack;
+		unpackMode = UnpackMode.ALL;
+		destinationFile = null; // set this when used
 	}
 
 	public String getFileURL() {
 		return fileURL;
+	}
+
+	public void setUnpackMode(final UnpackMode mode) {
+		unpackMode = mode;
+	}
+
+	public UnpackMode getUnpackMode() {
+		return unpackMode;
 	}
 
 	private static File getValidTargetFile(final File file) {
@@ -73,6 +86,14 @@ public class DownloadTask {
 
 	public File getDestination() {
 		return destinationDir;
+	}
+
+	public void setDestinationFile(final File destFile) {
+		destinationFile = destFile;
+	}
+
+	public File getDestinationFile() {
+		return destinationFile;
 	}
 
 	public boolean targetFileExists() {

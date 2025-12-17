@@ -21,7 +21,7 @@
 const lightThemeObj = {
 	"color": [ "black", "#191919", "#191919", "#0d000d", "#0f0f00", "#001010", "#001a00" ],
 	"background": [ "white", "white", "#f1f1f1", "#ffe7ff", "#ffffe7", "#e5ffff", "#e5ffe5" ],
-	"blockBG": [ "white", "#808080", "#808080", "#808080", "#808080", "#808080", "#808080" ],
+	"blockBG": [ "white", "white", "#808080", "#808080", "#808080", "#808080", "#808080" ],
 	"noteColor": [ "black", "blue", "blue", "blue", "blue", "blue", "blue" ],
 	"xrefColor": [ "black", "#8B6914", "#8B6914", "#8B6914", "#8B6914", "#8B6914", "#8B6914" ],
 	"transColor": [ "black", "midnightblue", "midnightblue", "midnightblue", "midnightblue", "midnightblue", "midnightblue" ],
@@ -31,7 +31,7 @@ const lightThemeObj = {
 const darkThemeObj = {
 	"color": [ "white", "#f1f1f1", "#f1f1f1", "#ffe7ff", "#ffffe7", "#e5ffff", "#e5ffe5" ],
 	"background": [ "black", "black", "#191919", "#0d000d", "#0f0f00", "#001010", "#001a00" ],
-	"blockBG": [ "black", "#404040", "#404040", "#404040", "#404040", "#404040", "#404040" ],
+	"blockBG": [ "black", "black", "#404040", "#404040", "#404040", "#404040", "#404040" ],
 	"noteColor": [ "white", "lightblue", "lightblue", "lightblue", "lightblue", "lightblue", "lightblue" ],
 	"xrefColor": [ "white", "#E9AA0E", "#E9AA0E", "#E9AA0E", "#E9AA0E", "#E9AA0E", "#E9AA0E" ],
 	"transColor": [ "white", "royalblue", "royalblue", "royalblue", "royalblue", "royalblue", "royalblue" ],

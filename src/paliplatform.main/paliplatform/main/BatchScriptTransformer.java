@@ -40,7 +40,7 @@ import javafx.beans.property.*;
  * This utility converts files containing a Pali script to another script.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 2.0
  */
 public class BatchScriptTransformer extends SingletonWindow {
@@ -132,7 +132,10 @@ public class BatchScriptTransformer extends SingletonWindow {
 		setOutputDirMenuItem.setOnAction(actionEvent -> setTargetFolder());
 		autodetectMenuItem.setSelected(true);
 		final Menu romanDefMenu = new Menu("Roman transliteration");
-		for (final EngineType en : EngineType.engines) {
+		final List<EngineType> enList = new ArrayList<>(EngineType.forRoman);
+		enList.add(EngineType.DEVA_ROMAN_UNIQUE);
+		enList.add(EngineType.DEVA_ROMAN_SLP1);
+		for (final EngineType en : enList) {
 			if (en.getTargetScript() == PaliScript.ROMAN) {
 				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
 				enItem.setUserData(en);

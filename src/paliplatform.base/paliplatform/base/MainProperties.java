@@ -70,7 +70,8 @@ public class MainProperties {
 		{ "font-myanmar", Utilities.FONTSERIF },
 		{ "font-sinhala", Utilities.FONTSERIF },
 		{ "font-thai", Utilities.FONTSERIF },
-		{ "font-unknown", Utilities.FONTSERIF }
+		{ "font-unknown", Utilities.FONTSERIF },
+		{ "virama-key", "`" }
 	};
 	public static enum PaliInputProperties {
 		INSTANCE;
@@ -139,7 +140,7 @@ public class MainProperties {
 		return settings;
 	}
 
-	private String getDefault(final String key) {
+	public String getDefault(final String key) {
 		String result = "ABSENT";
 		for (final String[] prop : defProperties) {
 			if (prop[0].equals(key)) {

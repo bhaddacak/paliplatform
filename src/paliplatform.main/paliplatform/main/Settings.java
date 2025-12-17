@@ -30,6 +30,7 @@ import java.nio.file.*;
 import javafx.scene.*;
 import javafx.scene.image.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.BorderPane;
@@ -51,7 +52,7 @@ class Settings extends SingletonWindow {
 	
 	private Settings() {
 		windowWidth = Utilities.getRelativeSize(44);
-		windowHeight = Utilities.getRelativeSize(32);
+		windowHeight = Utilities.getRelativeSize(41);
 		setTitle("Settings");
 		getIcons().add(new Image(Settings.class.getResourceAsStream("resources/images/gear.png")));
 		
@@ -125,7 +126,7 @@ class Settings extends SingletonWindow {
 		fontBox.setSpacing(5);
 		fontBox.setPadding(new Insets(10));
 		fontBox.setPrefHeight(Double.MAX_VALUE);
-		fontBox.getChildren().add(new Label("Preferred font used in each script"));
+		fontBox.getChildren().add(new Label("Preferred font used for each script"));
 		for (final Utilities.PaliScript script : Utilities.PaliScript.scripts) {
 			final HBox scBox = new HBox();
 			scBox.setSpacing(5);
@@ -146,39 +147,66 @@ class Settings extends SingletonWindow {
 		}
 		fontTab.setContent(fontBox);
 
-		// Pali input settings
-		final Tab paliInputTab = new Tab("Pāli input");
-		paliInputTab.setClosable(false);
-		final VBox paliInputBox = new VBox();
-		paliInputBox.setSpacing(5);
-		paliInputBox.setPadding(new Insets(10));
-		paliInputBox.setPrefHeight(Double.MAX_VALUE);
-		final HBox defMethodBox = new HBox();
-		defMethodBox.setSpacing(5);
-		defMethodBox.getChildren().add(new Label("Default input method: "));
-		final ToggleGroup defMethodGroup = new ToggleGroup();
-		final List<PaliTextInput.InputMethod> inputMethods = List.of(
-			PaliTextInput.InputMethod.UNUSED_CHARS, PaliTextInput.InputMethod.COMPOSITE, PaliTextInput.InputMethod.NORMAL);
-		final Map<PaliTextInput.InputMethod, RadioButton> inputRadioMap = new EnumMap<>(PaliTextInput.InputMethod.class);
-		for (final PaliTextInput.InputMethod im : inputMethods) {
+		// Keyboard input method settings
+		final Tab keyInputTab = new Tab("Keyboard");
+		keyInputTab.setClosable(false);
+		final VBox keyInputBox = new VBox();
+		keyInputBox.setSpacing(5);
+		keyInputBox.setPadding(new Insets(10));
+		keyInputBox.setPrefHeight(Double.MAX_VALUE);
+		keyInputBox.getChildren().add(new Label("Default input method"));
+		final HBox paliMethodBox = new HBox();
+		paliMethodBox.setSpacing(5);
+		paliMethodBox.getChildren().add(new Label("Pāli: "));
+		final ToggleGroup paliMethodGroup = new ToggleGroup();
+		final List<PaliTextInput.InputMethod> paliInputMethods = List.of(
+			PaliTextInput.InputMethod.UNUSED_CHARS, PaliTextInput.InputMethod.COMPOSITE,
+			PaliTextInput.InputMethod.SLP1, PaliTextInput.InputMethod.NORMAL);
+		final Map<PaliTextInput.InputMethod, RadioButton> paliInputRadioMap = new EnumMap<>(PaliTextInput.InputMethod.class);
+		for (final PaliTextInput.InputMethod im : paliInputMethods) {
 			final RadioButton radio = new RadioButton(im.getName());
 			radio.setUserData(im);
-			radio.setToggleGroup(defMethodGroup);
-			defMethodBox.getChildren().add(radio);
-			inputRadioMap.put(im, radio);
+			radio.setToggleGroup(paliMethodGroup);
+			paliMethodBox.getChildren().add(radio);
+			paliInputRadioMap.put(im, radio);
 		}
 		final String paliInputMethodStr = Utilities.getSetting("pali-input-method");
 		final PaliTextInput.InputMethod paliInputMethod = PaliTextInput.InputMethod.valueOf(paliInputMethodStr.toUpperCase());
-		defMethodGroup.selectToggle(inputRadioMap.get(paliInputMethod));
-        defMethodGroup.selectedToggleProperty().addListener((observable) -> {
-			if (defMethodGroup.getSelectedToggle() != null) {
-				final RadioButton selected = (RadioButton)defMethodGroup.getSelectedToggle();
+		paliMethodGroup.selectToggle(paliInputRadioMap.get(paliInputMethod));
+        paliMethodGroup.selectedToggleProperty().addListener((observable) -> {
+			if (paliMethodGroup.getSelectedToggle() != null) {
+				final RadioButton selected = (RadioButton)paliMethodGroup.getSelectedToggle();
 				final PaliTextInput.InputMethod inputMethod = (PaliTextInput.InputMethod)selected.getUserData();
 				Utilities.setSetting("pali-input-method", inputMethod.toString());
 				MainProperties.INSTANCE.saveSettings();
 			}
 		});
-		paliInputBox.getChildren().add(defMethodBox);
+		final HBox sktMethodBox = new HBox();
+		sktMethodBox.setSpacing(5);
+		sktMethodBox.getChildren().add(new Label("Skt.: "));
+		final ToggleGroup sktMethodGroup = new ToggleGroup();
+		final List<PaliTextInput.InputMethod> sktInputMethods = List.of(
+			PaliTextInput.InputMethod.COMPOSITE, PaliTextInput.InputMethod.SLP1, PaliTextInput.InputMethod.NORMAL);
+		final Map<PaliTextInput.InputMethod, RadioButton> sktInputRadioMap = new EnumMap<>(PaliTextInput.InputMethod.class);
+		for (final PaliTextInput.InputMethod im : sktInputMethods) {
+			final RadioButton radio = new RadioButton(im.getName());
+			radio.setUserData(im);
+			radio.setToggleGroup(sktMethodGroup);
+			sktMethodBox.getChildren().add(radio);
+			sktInputRadioMap.put(im, radio);
+		}
+		final String sktInputMethodStr = Utilities.getSetting("sanskrit-input-method");
+		final PaliTextInput.InputMethod sktInputMethod = PaliTextInput.InputMethod.valueOf(sktInputMethodStr.toUpperCase());
+		sktMethodGroup.selectToggle(sktInputRadioMap.get(sktInputMethod));
+        sktMethodGroup.selectedToggleProperty().addListener((observable) -> {
+			if (sktMethodGroup.getSelectedToggle() != null) {
+				final RadioButton selected = (RadioButton)sktMethodGroup.getSelectedToggle();
+				final PaliTextInput.InputMethod inputMethod = (PaliTextInput.InputMethod)selected.getUserData();
+				Utilities.setSetting("sanskrit-input-method", inputMethod.toString());
+				MainProperties.INSTANCE.saveSettings();
+			}
+		});
+		keyInputBox.getChildren().addAll(paliMethodBox, sktMethodBox);
 		
 		final Properties settings = MainProperties.INSTANCE.getSettings();
 		final Map<String, String> defaultTable = MainProperties.PaliInputProperties.INSTANCE.getDefaultTable();
@@ -231,7 +259,7 @@ class Settings extends SingletonWindow {
 				Utilities.setupPaliInputCharMap();
 			});
 		}
-		paliInputBox.getChildren().addAll(new Separator(), unusedCharHeadPane, unusedInputGrid);
+		keyInputBox.getChildren().addAll(new Separator(), unusedCharHeadPane, unusedInputGrid);
 
 		final String[] compCharNames = MainProperties.PaliInputProperties.INSTANCE.getCompCharNames();
 		final String[] compCharKeys = MainProperties.PaliInputProperties.INSTANCE.getCompCharKeys();
@@ -279,24 +307,67 @@ class Settings extends SingletonWindow {
 				Utilities.setupPaliInputCharMap();
 			});			
 		}		
-		paliInputBox.getChildren().addAll(new Separator(), compCharHeadPane, compInputGrid);
+		keyInputBox.getChildren().addAll(new Separator(), compCharHeadPane, compInputGrid);
 		
-		paliInputTab.setContent(paliInputBox);
+		final AnchorPane slp1HeadPane = new AnchorPane();
+		final Button slp1ResetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
+		slp1ResetButton.setTooltip(new Tooltip("Reset to default values"));
+		slp1ResetButton.setOnAction(actionEvent -> {
+			final String defViramaKey = MainProperties.INSTANCE.getDefault("virama-key");
+			Utilities.setSetting("virama-key", defViramaKey);
+			MainProperties.INSTANCE.saveSettings();
+		});
+		final Label slp1HeadLabel = new Label("Key mapping used for SLP1:");
+		AnchorPane.setTopAnchor(slp1HeadLabel, 0.0);
+		AnchorPane.setLeftAnchor(slp1HeadLabel, 0.0);
+		AnchorPane.setTopAnchor(slp1ResetButton, 0.0);
+		AnchorPane.setRightAnchor(slp1ResetButton, 0.0);
+		slp1HeadPane.getChildren().addAll(slp1HeadLabel, slp1ResetButton);
+		final HBox viramaBox = new HBox();
+		viramaBox.setAlignment(Pos.CENTER_LEFT);
+		final TextField viramaField = new TextField(Utilities.getSetting("virama-key"));
+		viramaField.setPrefColumnCount(1);
+		viramaField.textProperty().addListener((obs, oldValue, newValue) -> {
+			final String newInput;
+			if (newValue.isEmpty())
+				newInput = MainProperties.INSTANCE.getDefault("virama-key");
+			else
+				newInput = newValue.substring(0, 1);
+			Utilities.setSetting("virama-key", newInput);
+			MainProperties.INSTANCE.saveSettings();
+		});
+		slp1ResetButton.setOnAction(actionEvent -> {
+			final String defViramaKey = MainProperties.INSTANCE.getDefault("virama-key");
+			viramaField.setText(defViramaKey);
+		});
+		viramaBox.getChildren().addAll(new Label("Virāma key: "), viramaField);
+		keyInputBox.getChildren().addAll(new Separator(), slp1HeadPane, viramaBox);
+
+		keyInputTab.setContent(keyInputBox);
 		
+		// Dictionaries
+		final Tab dictTab = new Tab("Dictionaries");
+		dictTab.setClosable(false);
+		final VBox dictBox = new VBox();
+		dictBox.setSpacing(5);
+		dictBox.setPadding(new Insets(10));
+		dictBox.setPrefHeight(Double.MAX_VALUE);
+		dictBox.getChildren().addAll(new Label("Default inclusion of dictionaries"), new Label("Pāli: "));
+		final Pane paliDictBox = (Pane)PaliPlatform.styleableServiceMap.get("paliplatform.dict.DictSelectorBox");
+		if (paliDictBox != null)
+			dictBox.getChildren().add(paliDictBox);
+		dictBox.getChildren().addAll(new Separator(), new Label("Sanskrit:  "));
+		final Pane sktDictBox = (Pane)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.DictSelectorBox");
+		if (sktDictBox != null)
+			dictBox.getChildren().add(sktDictBox);
+		dictTab.setContent(dictBox);
+
 		// add tabs
-		tabPane.getTabs().addAll(generalTab, fontTab, paliInputTab);
-		// dictionaries
-		final Tab dictTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.dict.DictSettingTab");
-		if (dictTab != null)
-			tabPane.getTabs().add(dictTab);
+		tabPane.getTabs().addAll(generalTab, fontTab, keyInputTab, dictTab);
 		// sentence
 		final Tab sentTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.sentence.SentenceSettingTab");
 		if (sentTab != null)
 			tabPane.getTabs().add(sentTab);
-		// sanskrit
-		final Tab sktTab = (Tab)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.SktSettingTab");
-		if (sktTab != null)
-			tabPane.getTabs().add(sktTab);
 		
 		// close button
 		final Button close = new Button("Close");

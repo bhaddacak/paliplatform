@@ -1,7 +1,7 @@
 /*
- * DictSettingTab.java
+ * DictSelectorBox.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,32 +21,22 @@ package paliplatform.dict;
 
 import paliplatform.base.*;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
 
 /** 
- * The tab for Dict settings.
+ * The box for Pāli dict selection.
  * @author J.R. Bhaddacak
  * @version 3.6
- * @since 3.0
+ * @since 3.6
  */
-public class DictSettingTab extends Tab {
-	public DictSettingTab() {
-		setText("Dictionaries");
-		setClosable(false);
-		final VBox dictMainBox = new VBox();
-		dictMainBox.setSpacing(5);
-		dictMainBox.setPadding(new Insets(10));
-		VBox.setVgrow(dictMainBox, Priority.ALWAYS);
-		final HBox dictBookBox = new HBox();
-		dictBookBox.setSpacing(5);
+public class DictSelectorBox extends HBox {
+	public DictSelectorBox() {
+		setSpacing(5);
 		for (final DictUtilities.DictBook d : DictUtilities.DictBook.books) {
 			final CheckBox cb = createDictCheckBox(d);
-			dictBookBox.getChildren().add(cb);
+			getChildren().add(cb);
 		}
-		dictMainBox.getChildren().addAll(new Label("Default inclusion of dictionaries"), dictBookBox);
-		setContent(dictMainBox);
 	}
 
 	private CheckBox createDictCheckBox(final DictUtilities.DictBook book) {

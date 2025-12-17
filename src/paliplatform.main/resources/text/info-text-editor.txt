@@ -7,7 +7,7 @@ Text editor guide
 	   - IAST uses ṃ instead of ṁ, and the consonant ḻ (ḷ is a vowel).
 	   - Pāli Common uses ṃ and the consonant ḷ (unsuitable for Sanskrit).
 	   - Least Contamination is like Pāli Common but symbols are retained visually. This can convert Pāli text back and forth among scripts with 100% accuracy. But this is unsuitable for Sanskrit (feasible but with unfamiliarity).
-	   - Roman Unique is like Least but the consonant ḻ is used instead of ḷ (also, as Least, ē = ai and ō = au). This format is mainly used internally in the program, but it may be used with Sanskrit text in case symbols need to be retained.
 	5. When source text is Roman Sanskrit, the option 'Roman as Sanskrit' should be checked. The confusion can be from ḷ and ḻ, and the vowels ai and au. Working with Sanskrit text, using IAST is the best option.
 	6. Note that when converting from Devanagari to other scripts back and forth, some symbols are lost (depending on scripts), i.e. Daṇḍas, Avagraha, and Abbreviation sign. Least and Unique are the only two ways to retain such symbols.
+	7. If SLP1 is in concern, use its related functions in Tools menu.
 

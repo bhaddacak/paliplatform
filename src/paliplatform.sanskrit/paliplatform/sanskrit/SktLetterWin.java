@@ -20,6 +20,7 @@
 package paliplatform.sanskrit;
 
 import paliplatform.base.*;
+import paliplatform.base.Utilities.PaliScript;
 import paliplatform.base.ScriptTransliterator.EngineType;
 
 import java.util.*;
@@ -166,7 +167,7 @@ public final class SktLetterWin extends SingletonWindow {
 	private int currTagLang = 0; // 0 eng, 1 roman, 2 deva
 	
 	private SktLetterWin() {
-		windowWidth = Utilities.getRelativeSize(52);
+		windowWidth = Utilities.getRelativeSize(56);
 		windowHeight = Utilities.getRelativeSize(54);
 		setTitle("Sanskrit Letters");
 		getIcons().add(new Image(SktLetterWin.class.getResourceAsStream("resources/images/skt-letter.png")));
@@ -223,13 +224,13 @@ public final class SktLetterWin extends SingletonWindow {
 		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
 		optionsMenu.setTooltip(new Tooltip("Options"));
 		final Menu romanDefMenu = new Menu("Roman transliteration");
-		for (final EngineType en : EngineType.engines) {
-			if (en.getTargetScript() == Utilities.PaliScript.ROMAN) {
-				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
-				enItem.setUserData(en);
-				enItem.setToggleGroup(romanDefaultGroup);
-				romanDefMenu.getItems().add(enItem);
-			}
+		final List<EngineType> enList = new ArrayList<>(EngineType.forRoman);
+		enList.add(EngineType.DEVA_ROMAN_SLP1);
+		for (final EngineType en : enList) {
+			final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
+			enItem.setUserData(en);
+			enItem.setToggleGroup(romanDefaultGroup);
+			romanDefMenu.getItems().add(enItem);
 		}
 		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(1));
 		romanDefaultGroup.selectedToggleProperty().addListener(observable -> {
@@ -466,25 +467,9 @@ public final class SktLetterWin extends SingletonWindow {
 	}
 
 	private void setTypingOutput(final String text) {
-		final String outText;
-		switch (currPaliScript) {
-			case DEVANAGARI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, true);
-				break;
-			case KHMER:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_KHMER, true);
-				break;
-			case MYANMAR:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_MYANMAR, true);
-				break;
-			case SINHALA:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_SINHALA, true);
-				break;
-			case THAI:
-				outText = ScriptTransliterator.transliterate(text, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_THAI, true);
-				break;
-			default: outText = text;
-		}
+		final PaliScript script = Utilities.testLanguage(text);
+		final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
+		final String outText = ScriptTransliterator.translitQuickSanskrit(text, script, currPaliScript, romanDef, true);
 		typingOutput.setText(outText);
 		formatTypingOutput();
 	}

@@ -414,7 +414,12 @@ public class ProgressiveDownloader extends Stage {
             protected Boolean call() throws Exception {
 				Platform.runLater(() -> message.setText("Unpacking/installing " + item.getFileName()));
 				if (item.targetFileExists()) {
-					Utilities.unzip(item.getTargetFile(), item.getDestination());
+					final DownloadTask.UnpackMode mode = item.getUnpackMode();
+					if (mode == DownloadTask.UnpackMode.SELECTIVE) {
+						Utilities.unzipSelective(item.getTargetFile(), item.getDestinationFile());
+					} else {
+						Utilities.unzip(item.getTargetFile(), item.getDestination());
+					}
 				}
 				Platform.runLater(() -> {
 					item.setState(DownloadTask.State.INSTALLED);

@@ -22,6 +22,7 @@ package paliplatform.base;
 import paliplatform.base.Utilities.PaliScript;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.function.Function;
 import java.util.regex.*;
 
@@ -30,13 +31,14 @@ import java.util.regex.*;
  * Sanskrit characters in most typical usages.
  * The class is a factory, providing static methods.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.6
  * @since 1.0
  */
 public class ScriptTransliterator {
 	public static enum EngineType {
 		DEVA_ROMAN_ISO("D-R: ISO 15919", PaliScript.DEVANAGARI, PaliScript.ROMAN),
 		DEVA_ROMAN_IAST("D-R: IAST", PaliScript.DEVANAGARI, PaliScript.ROMAN),
+		DEVA_ROMAN_SLP1("D-R: SLP1", PaliScript.DEVANAGARI, PaliScript.ROMAN),
 		DEVA_ROMAN_COMMON("D-R: Pali Common", PaliScript.DEVANAGARI, PaliScript.ROMAN),
 		DEVA_ROMAN_LEAST("D-R: Least Contamination", PaliScript.DEVANAGARI, PaliScript.ROMAN),
 		DEVA_ROMAN_UNIQUE("D-R: Roman Unique", PaliScript.DEVANAGARI, PaliScript.ROMAN),
@@ -46,14 +48,17 @@ public class ScriptTransliterator {
 		DEVA_MYANMAR("D-M: Myanmar Common", PaliScript.DEVANAGARI, PaliScript.MYANMAR),
 		ROMAN_SKT_DEVA("R-D: Devanagari Common", PaliScript.ROMAN, PaliScript.DEVANAGARI),
 		ROMAN_DEVA("R-D: Devanagari Common", PaliScript.ROMAN, PaliScript.DEVANAGARI),
+		SLP1_DEVA("R-D: Devanagari Common", PaliScript.ROMAN, PaliScript.DEVANAGARI),
 		THAI_DEVA("T-D: Devanagari Common", PaliScript.THAI, PaliScript.DEVANAGARI),
 		KHMER_DEVA("K-D: Devanagari Common", PaliScript.KHMER, PaliScript.DEVANAGARI),
 		SINHALA_DEVA("S-D: Devanagari Common", PaliScript.SINHALA, PaliScript.DEVANAGARI),
-		MYANMAR_DEVA("M-D: Devanagari Common", PaliScript.MYANMAR, PaliScript.DEVANAGARI);
+		MYANMAR_DEVA("M-D: Devanagari Common", PaliScript.MYANMAR, PaliScript.DEVANAGARI),
+		SLP1_IAST("R-R: IAST", PaliScript.ROMAN, PaliScript.ROMAN);
 		public static final EngineType[] engines = EngineType.values();
 		public static final String[] engineCodes = new String[] {
-			"di", "da", "dr", "dl", "du", "dt", "dk", "ds", "dm",
-			"cd", "rd", "td", "kd", "sd", "md" };
+			"di", "da", "d1", "dr", "dl", "du", "dt", "dk", "ds", "dm",
+			"cd", "rd", "1d", "td", "kd", "sd", "md", "1a" };
+		public static final List<EngineType> forRoman = List.of(DEVA_ROMAN_ISO, DEVA_ROMAN_IAST, DEVA_ROMAN_COMMON, DEVA_ROMAN_LEAST);
 		private final String name;
 		private final PaliScript sourceScript;
 		private final PaliScript targetScript;
@@ -125,16 +130,26 @@ public class ScriptTransliterator {
 		'\u092A', '\u092B', '\u092C', '\u092D', '\u092E',
 		'\u092F', '\u0930', '\u0932', '\u0933', '\u0935', '\u0936', '\u0937', '\u0938', '\u0939' };
 	// Roman set
+	private static final String romanVowelsSlp1 = "aAiIuUfFxXeEoO";
 	private static final String romanVowelsUnique = "aāiīuūṛṝḷḹeēoō"; // ē = ai, ō = au (converted afterward)
 	private static final String romanConsonantsUnique = "kgṅcjñṭḍṇtdnpbmyrlḻvśṣsh"; // note ḻ not ḷ
 	private static final String romanWithHChars = "bcdgjkptḍṭ";
 	private static final char[] romanNumbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+	private static final char romanAnusvaraSlp1 = 'M';
+	private static final char romanVisargaSlp1 = 'H';
 	private static final char romanAnusvara = 'ṃ';
 	private static final char romanVisarga = 'ḥ';
 	private static final char romanAvagraha = '\u0315';
 	private static final char romanDanda = '|';
 	private static final char romanDoubleDanda = '\u2016';
 	private static final char romanAbbrSign = '\u00B7';
+	private static final char[] romanConsonantsChrSlp1 = { 	
+		'k', 'K', 'g', 'G', 'N',
+		'c', 'C', 'j', 'J', 'Y',
+		'w', 'W', 'q', 'Q', 'R',
+		't', 'T', 'd', 'D', 'n',
+		'p', 'P', 'b', 'B', 'm',
+		'y', 'r', 'l', 'L', 'v', 'S', 'z', 's', 'h' };
 	private static final char[] romanConsonantsChrUnique = { 	
 		'k', 'x', 'g', 'x', 'ṅ',
 		'c', 'x', 'j', 'x', 'ñ',
@@ -335,6 +350,7 @@ public class ScriptTransliterator {
 		Arrays.sort(devaVDSorted);
 		translitMap.put(EngineType.DEVA_ROMAN_ISO, text -> toISO(devanagariToRomanUnique(text)));
 		translitMap.put(EngineType.DEVA_ROMAN_IAST, text -> toIAST(devanagariToRomanUnique(text)));
+		translitMap.put(EngineType.DEVA_ROMAN_SLP1, text -> devanagariToRomanSlp1(text));
 		translitMap.put(EngineType.DEVA_ROMAN_COMMON, text -> toPaliCommon(devanagariToRomanUnique(text)));
 		translitMap.put(EngineType.DEVA_ROMAN_LEAST, text -> toLeast(devanagariToRomanUnique(text)));
 		translitMap.put(EngineType.DEVA_ROMAN_UNIQUE, text -> devanagariToRomanUnique(text));
@@ -344,10 +360,47 @@ public class ScriptTransliterator {
 		translitMap.put(EngineType.DEVA_MYANMAR, text -> processToMyanmar(devanagariToMyanmarRaw(text)));
 		translitMap.put(EngineType.ROMAN_SKT_DEVA, text -> romanToDevanagari(toUnique(text, false)));
 		translitMap.put(EngineType.ROMAN_DEVA, text -> romanToDevanagari(toUnique(text, true)));
+		translitMap.put(EngineType.SLP1_DEVA, text -> slp1ToDevanagari(text));
 		translitMap.put(EngineType.THAI_DEVA, text -> thaiRawToDevanagari(processFromThai(text)));
 		translitMap.put(EngineType.KHMER_DEVA, text -> khmerRawToDevanagari(processFromKhmer(text)));
 		translitMap.put(EngineType.SINHALA_DEVA, text -> sinhalaToDevanagari(text));
 		translitMap.put(EngineType.MYANMAR_DEVA, text -> myanmarRawToDevanagari(processFromMyanmar(text)));
+		translitMap.put(EngineType.SLP1_IAST, text -> toIAST(slp1ToUnique(text)));
+	}
+
+	public static List<Map<String, String>> getSlp1ToDevaMap() {
+		// two maps are needed, one for independent vowels,
+		// another dependent, the rest are identical
+		// note that keys are the same in both maps
+		final List<Map<String, String>> result = new ArrayList<>();
+		final char[] vowelSlp1 = romanVowelsSlp1.toCharArray();
+		// for independent vowels
+		final Map<String, String> indMap = new HashMap<>();
+		for (int i = 0; i < vowelSlp1.length; i++) {
+			indMap.put("" + vowelSlp1[i], "" + devaVowelsInd[i]);
+		}
+		// for dependent vowels
+		final Map<String, String> depMap = new HashMap<>();
+		for (int i = 0; i < vowelSlp1.length; i++) {
+			depMap.put("" + vowelSlp1[i], "" + devaVowelsDep[i]);
+		}
+		// consonants
+		for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
+			indMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
+			depMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
+		}
+		// anausvara and visarga
+		indMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
+		indMap.put("" + romanVisargaSlp1, "" + devaVisarga);
+		depMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
+		depMap.put("" + romanVisargaSlp1, "" + devaVisarga);
+		// virama
+		final String viramaKey = Utilities.getSetting("virama-key");
+		indMap.put(viramaKey, "" + devaVirama);
+		depMap.put(viramaKey, "" + devaVirama);
+		result.add(indMap);
+		result.add(depMap);
+		return result;
 	}
 
 	public static String[] getDevaPaliVowels() {
@@ -795,13 +848,28 @@ public class ScriptTransliterator {
 							.replace("ai", "ē").replace("au", "ō");
 		result = result
 				.replace("ŀ", "ḷ") // Least
-				.replace("a'i", "ē") // Common; ai = a + i not ai
-				.replace("a'u", "ō") // Common; au = a + u not au
+				.replace("a'i", "ai") // Common; ai = a + i not ai
+				.replace("a'u", "au") // Common; au = a + u not au
 				.replace('ṁ', 'ṃ') // ISO
 				.replace("r\u0325\u0304", "ṝ") // ISO
 				.replace("l\u0325\u0304", "ḹ") // ISO
 				.replace("r\u0325", "ṛ") // ISO
 				.replace("l\u0325", "ḷ"); // ISO
+		return result;
+	}
+
+	private static String slp1ToUnique(final String text) {
+		String result = text;
+		final char[] vSlp1 = romanVowelsSlp1.toCharArray();
+		final char[] vUnique = romanVowelsUnique.toCharArray();
+		for (int i = 0; i < vSlp1.length; i++) {
+			result = result.replace("" + vSlp1[i], "" + vUnique[i]);
+		}
+		for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
+			result = result.replace("" + romanConsonantsChrSlp1[i], romanConsonantsStrUnique[i]);
+		}
+		result = result.replace(romanAnusvaraSlp1, romanAnusvara)
+						.replace(romanVisargaSlp1, romanVisarga);
 		return result;
 	}
 
@@ -814,6 +882,83 @@ public class ScriptTransliterator {
 		final String oldXsl = "tipitaka-" + srcScript.getCstAbbr() + "\\.xsl";
 		final String newXsl = "tipitaka-" + tgtScript.getCstAbbr() + "\\.xsl";
 		return text.replaceFirst(oldXsl, newXsl);
+	}
+
+	private static String devanagariToRomanSlp1(final String text) {
+		final StringBuilder output = new StringBuilder();
+		char[] input = text.toCharArray();
+		// generate hash maps to ease the replacements
+		final Map<Character, Character> indVowelMap = new HashMap<>();
+		for (int i = 0; i < devaVowelsInd.length; i++)
+			indVowelMap.put(devaVowelsInd[i], romanVowelsSlp1.charAt(i));
+		final Map<Character, Character> depVowelMap = new HashMap<>();
+		for (int i = 0; i < devaVowelsDep.length; i++)
+			depVowelMap.put(devaVowelsDep[i], romanVowelsSlp1.charAt(i));
+		final Map<Character, Character> consonantMap = new HashMap<>();
+		for (int i = 0; i < devaConsonants.length; i++)
+			consonantMap.put(devaConsonants[i], romanConsonantsChrSlp1[i]);
+		char rch; // for roman char
+		char dch; // for deva char
+		int ind; // general purpose index
+		boolean skipFlag = false;
+		for (int index = 0; index < input.length; index++) {
+			if (skipFlag) {
+				skipFlag = false;
+				continue;
+			}
+			dch = input[index];
+			rch = dch; // in case of non-character
+			// 1. find Roman representation
+			if ((ind = Arrays.binarySearch(devaNumbers, dch)) >= 0) {
+				// numbers
+				rch = romanNumbers[ind];
+			} else if (dch == devaAnusvara) {
+				// niggahita
+				rch = romanAnusvaraSlp1;
+			} else if (dch == devaVisarga) {
+				// visarga
+				rch = romanVisargaSlp1;
+			} else if (dch == devaAvagraha) {
+				// avagraha
+				rch = romanAvagraha;
+			} else if (dch == devaDanda) {
+				// single danda
+				rch = romanDanda;
+			} else if (dch == devaDoubleDanda) {
+				// double danda
+				rch = romanDoubleDanda;
+			} else if (dch == devaAbbrSign) {
+				// abbreviation sign
+				rch = romanAbbrSign;
+			} else if (Arrays.binarySearch(devaVISorted, dch) >= 0) {
+				// independent vowels
+				rch = indVowelMap.get(dch);
+			} else if (Arrays.binarySearch(devaVDSorted, dch) >= 0) {
+				// dependent vowels
+				rch = depVowelMap.get(dch);
+			} else {
+				// consonants
+				rch = consonantMap.getOrDefault(dch, dch);
+			}
+			// 2. consider how to put it
+			output.append(rch);
+			if (index < input.length-1) {
+				if (input[index+1] == devaVirama) {
+					// skip Virama
+					skipFlag = true;
+				} else if (consonantMap.get(dch) != null && dch != devaAnusvara && 
+						Arrays.binarySearch(devaVDSorted, input[index+1]) < 0) {
+					// double Devanagari consonants, 'a' is added (not anusvara, not followed by dependent vowels)
+					output.append('a');
+				}
+			} else {
+				// if the last char is a consonant, not a niggahita/anusvara, add 'a'
+				if (consonantMap.get(dch) != null && dch != devaAnusvara)
+					output.append('a');
+			}
+		} // end for
+		// also remove nukta and zero width joiner, if present
+		return output.toString().replace(Character.toString(devaNukta), "").replace("\u200D", "");
 	}
 
 	private static String devanagariToRomanUnique(final String text) {
@@ -870,9 +1015,7 @@ public class ScriptTransliterator {
 				rch = Character.toString(depVowelMap.get(dch));
 			} else {
 				// consonants
-				rch = consonantMap.get(dch);
-				if (rch == null)
-					rch = Character.toString(dch);
+				rch = consonantMap.getOrDefault(dch, Character.toString(dch));
 			}
 			// 2. consider how to put it
 			output.append(rch);
@@ -946,8 +1089,7 @@ public class ScriptTransliterator {
 				tch = depVowelMap.get(dch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(dch);
-				tch = ch == null ? Character.toString(dch) : Character.toString(ch);
+				tch = "" + consonantMap.getOrDefault(dch, dch);
 			}
 			output.append(tch);
 		} // end for
@@ -1042,8 +1184,7 @@ public class ScriptTransliterator {
 					kch = "" + depVowelMap.get(dch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(dch);
-				kch = ch == null ? Character.toString(dch) : Character.toString(ch);
+				kch = "" + consonantMap.getOrDefault(dch, dch);
 			}
 			output.append(kch);
 		} // end for
@@ -1125,8 +1266,7 @@ public class ScriptTransliterator {
 				sch = "" + depVowelMap.get(dch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(dch);
-				sch = ch == null ? Character.toString(dch) : Character.toString(ch);
+				sch = "" + consonantMap.getOrDefault(dch, dch);
 			}
 			output.append(sch);
 		} // end for
@@ -1186,8 +1326,7 @@ public class ScriptTransliterator {
 				mch = depVowelMap.get(dch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(dch);
-				mch = ch == null ? Character.toString(dch) : Character.toString(ch);
+				mch = "" + consonantMap.getOrDefault(dch, dch);
 			}
 			output.append(mch);
 		} // end for
@@ -1251,6 +1390,99 @@ public class ScriptTransliterator {
 		result = result.replace("\u1031\u102C", "" + saveChars[2]); // dep O
 		result = result.replace("\u1031\u102C\u103A", "" + saveChars[3]); // dep AU
 		return result;
+	}
+
+	private static String slp1ToDevanagari(final String text) {
+		final StringBuilder output = new StringBuilder();
+		char[] input = text.toCharArray();
+		final String romanConsonantsSlp1 = new String(romanConsonantsChrSlp1);
+		char rch; // for roman
+		char dch; // for deva
+		int vindex = -1; // for vowels
+		for (int index = 0; index<input.length; index++) {
+			rch = input[index];
+			dch = rch; // in case of non-character
+			// 1. find Devanagari representation of the character first
+			if (Character.isDigit(rch)) {
+				// if numbers included
+				if (alsoNumber)
+					dch = devaNumbers[Character.digit(rch, 10)];
+			} else if (rch == romanAnusvaraSlp1) {
+				// niggahita
+				dch = devaAnusvara;
+			} else if (rch == romanVisargaSlp1) {
+				// visarga
+				dch = devaVisarga;
+			} else if (rch == romanAvagraha) {
+				// avagraha
+				dch = devaAvagraha;
+			} else if (rch == romanDanda) {
+				// single danda
+				dch = devaDanda;
+			} else if (rch == romanDoubleDanda) {
+				// double danda
+				dch = devaDoubleDanda;
+			} else if (rch == romanAbbrSign) {
+				// abbreviation sign
+				dch = devaAbbrSign;
+			} else if (rch == '.') {
+				// dot retained
+				dch = '.';
+			} else if ((vindex = romanVowelsSlp1.indexOf(rch)) >= 0) {
+				// vowels, set it to stand-alone/independent first
+				dch = devaVowelsInd[vindex];
+			} else {
+				// consonants
+				for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
+					if (rch == romanConsonantsChrSlp1[i]) {
+						dch = devaConsonants[i];
+						break;
+					}
+				} // end for loop of finding consonants
+			}
+			// 2. consider how to put it
+			if (vindex >= 0) {
+				// vowels
+				if (output.length() == 0) {
+					// to prevent index out of bound
+					// independent vowels
+					output.append(dch);
+				} else {
+					// look at the preceeding character;
+					// if it is not a consonant, independent vowels are used
+					if (romanConsonantsSlp1.indexOf(input[index - 1]) < 0) {
+						output.append(dch);
+					} else {
+						// dependent vowels are used
+						if (rch != 'a') {
+							output.append(devaVowelsDep[vindex]);
+						}
+					}
+				}
+			} else {
+				if (romanConsonantsSlp1.indexOf(rch) >= 0) {
+					// consonants
+					output.append(dch);
+					if (index < input.length-1) {
+						if (romanConsonantsSlp1.indexOf(input[index + 1]) >= 0) {
+							// double consonant needs virama
+							output.append(devaVirama);
+						} else if (romanVowelsSlp1.indexOf(input[index + 1]) == -1) {
+							// if not followed by a vowel, add virama
+							output.append(devaVirama);
+						}
+					} else {
+						// the last consonant, add virama
+						output.append(devaVirama);
+					}
+				} else {
+					// others
+					output.append(dch);
+				}
+			}
+			vindex = -1; // reset vowel index
+		} // end for loop of each input character
+		return output.toString();
 	}
 
 	private static String romanToDevanagari(final String text) {
@@ -1464,8 +1696,7 @@ public class ScriptTransliterator {
 				dch = depVowelMap.get(tch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(tch);
-				dch = ch == null ? tch : ch;
+				dch = consonantMap.getOrDefault(tch, tch);
 			}
 			output.append(dch);
 		} // end for
@@ -1541,8 +1772,7 @@ public class ScriptTransliterator {
 				dch = depVowelMap.get(kch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(kch);
-				dch = ch == null ? kch : ch;
+				dch = consonantMap.getOrDefault(kch, kch);
 			}
 			output.append(dch);
 		} // end for
@@ -1600,8 +1830,7 @@ public class ScriptTransliterator {
 				dch = depVowelMap.get(sch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(sch);
-				dch = ch == null ? sch : ch;
+				dch = consonantMap.getOrDefault(sch, sch);
 			}
 			output.append(dch);
 		} // end for
@@ -1665,8 +1894,7 @@ public class ScriptTransliterator {
 				dch = depVowelMap.get(mch);
 			} else {
 				// consonants
-				final Character ch = consonantMap.get(mch);
-				dch = ch == null ? mch : ch;
+				dch = consonantMap.getOrDefault(mch, mch);
 			}
 			output.append(dch);
 		} // end for

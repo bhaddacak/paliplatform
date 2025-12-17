@@ -46,7 +46,7 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
@@ -242,6 +242,12 @@ public class PaliTextEditor extends BorderPane {
 		// tools menu
 		final Menu toolsMenu = new Menu("_Tools");
 		toolsMenu.setMnemonicParsing(true);
+		final MenuItem slp1EncodeMenuItem = new MenuItem("_Encode SLP1");
+		slp1EncodeMenuItem.setMnemonicParsing(true);
+		slp1EncodeMenuItem.setOnAction(actionEvent -> encodeSlp1(true));	
+		final MenuItem slp1DecodeMenuItem = new MenuItem("_Decode SLP1 (to IAST)");
+		slp1DecodeMenuItem.setMnemonicParsing(true);
+		slp1DecodeMenuItem.setOnAction(actionEvent -> encodeSlp1(false));	
 		final MenuItem composeMenuItem = new MenuItem("_Compose characters");
 		composeMenuItem.setMnemonicParsing(true);
 		composeMenuItem.setOnAction(actionEvent -> composeChars(true));	
@@ -251,13 +257,14 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem removeAccentsMenuItem = new MenuItem("_Remove diacritics");
 		removeAccentsMenuItem.setMnemonicParsing(true);
 		removeAccentsMenuItem.setOnAction(actionEvent -> removeAccents());	
-		final MenuItem familiarMenuItem = new MenuItem("Re_format CST4 text");
-		familiarMenuItem.setMnemonicParsing(true);
-		familiarMenuItem.setOnAction(actionEvent -> reformatCST4());	
+		final MenuItem reformatMenuItem = new MenuItem("Re_format CST4 text");
+		reformatMenuItem.setMnemonicParsing(true);
+		reformatMenuItem.setOnAction(actionEvent -> reformatCST4());	
 		final MenuItem calMetersMenuItem = new MenuItem("Calculate _meters");
 		calMetersMenuItem.setMnemonicParsing(true);
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
-		toolsMenu.getItems().addAll(composeMenuItem, decomposeMenuItem, removeAccentsMenuItem, familiarMenuItem,
+		toolsMenu.getItems().addAll(slp1EncodeMenuItem, slp1DecodeMenuItem,
+									new SeparatorMenuItem(), composeMenuItem, decomposeMenuItem, removeAccentsMenuItem, reformatMenuItem,
 									new SeparatorMenuItem(), calMetersMenuItem);
 
 		final SimpleService verseAnalyzer = (SimpleService)PaliPlatform.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
@@ -287,10 +294,16 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem toSentCaseMenuItem = new MenuItem("Change to _sentence case");
 		toSentCaseMenuItem.setMnemonicParsing(true);
 		toSentCaseMenuItem.setOnAction(actionEvent -> changeToSentCase());
-		final MenuItem sortAscMenuItem = new MenuItem("Pāli sort ascendingly");
-		sortAscMenuItem.setOnAction(actionEvent -> paliSort(true));
-		final MenuItem sortDesMenuItem = new MenuItem("Pāli sort descendingly");
-		sortDesMenuItem.setOnAction(actionEvent -> paliSort(false));
+		final Menu sortMenu = new Menu("Sort");
+		final MenuItem sortPaliAscMenuItem = new MenuItem("Pāli sort ascendingly");
+		sortPaliAscMenuItem.setOnAction(actionEvent -> paliSort(true));
+		final MenuItem sortPaliDesMenuItem = new MenuItem("Pāli sort descendingly");
+		sortPaliDesMenuItem.setOnAction(actionEvent -> paliSort(false));
+		final MenuItem sortSktAscMenuItem = new MenuItem("Sanskrit sort ascendingly");
+		sortSktAscMenuItem.setOnAction(actionEvent -> sktSort(true));
+		final MenuItem sortSktDesMenuItem = new MenuItem("Sanskrit sort descendingly");
+		sortSktDesMenuItem.setOnAction(actionEvent -> sktSort(false));
+		sortMenu.getItems().addAll(sortPaliAscMenuItem, sortPaliDesMenuItem, sortSktAscMenuItem, sortSktDesMenuItem);
 		final Menu paliToTexMenu = new Menu("Pāli to TeX");
 		final MenuItem simpleP2TMenuItem = new MenuItem("Style 1: \\~n");
 		simpleP2TMenuItem.setOnAction(actionEvent -> paliToTex(TexConvertMode.SIMPLE));
@@ -302,8 +315,7 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem texToPaliMenuItem = new MenuItem("TeX to Pāli");
 		texToPaliMenuItem.setOnAction(actionEvent -> texToPali());
 		toolsMenu.getItems().addAll(new SeparatorMenuItem(), changeMdotAboveMenuItem, changeMdotBelowMenuItem,
-									toUpperCaseMenuItem, toLowerCaseMenuItem, toSentCaseMenuItem,
-									sortAscMenuItem, sortDesMenuItem,
+									toUpperCaseMenuItem, toLowerCaseMenuItem, toSentCaseMenuItem, sortMenu,
 									new SeparatorMenuItem(), paliToTexMenu, texToPaliMenuItem);
 		// options menu
 		final Menu optionsMenu = new Menu("_Options");
@@ -314,13 +326,11 @@ public class PaliTextEditor extends BorderPane {
 		noAskOnCloseMenuItem.setOnAction(actionEvent -> 
 				Utilities.setSetting("editor-close-ask", Boolean.toString(!noAskOnCloseMenuItem.isSelected())));
 		final Menu romanDefMenu = new Menu("Roman transliteration");
-		for (final EngineType en : EngineType.engines) {
-			if (en.getTargetScript() == PaliScript.ROMAN) {
-				final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
-				enItem.setUserData(en);
-				enItem.setToggleGroup(romanDefaultGroup);
-				romanDefMenu.getItems().add(enItem);
-			}
+		for (final EngineType en : EngineType.forRoman) {
+			final RadioMenuItem enItem = new RadioMenuItem(en.getNameShort());
+			enItem.setUserData(en);
+			enItem.setToggleGroup(romanDefaultGroup);
+			romanDefMenu.getItems().add(enItem);
 		}
 		romanDefaultGroup.selectToggle(romanDefaultGroup.getToggles().get(2));
 		alsoNumberMenuItem.setSelected(true);
@@ -815,6 +825,37 @@ public class PaliTextEditor extends BorderPane {
 		openNewEditor(result);
 	}
 	
+	private void encodeSlp1(final boolean isEncode) {
+		final String selText = area.getSelectedText();
+		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String result = "";
+		if (isEncode) {
+			switch (Utilities.testLanguage(inputText)) {
+				case ROMAN:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.ROMAN_SKT_DEVA, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+				case DEVANAGARI:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+				case KHMER:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.KHMER_DEVA, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+				case MYANMAR:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.MYANMAR_DEVA, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+				case SINHALA:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.SINHALA_DEVA, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+				case THAI:
+					result = ScriptTransliterator.translitQuick(inputText, EngineType.THAI_DEVA, EngineType.DEVA_ROMAN_SLP1, true);
+					break;
+			}
+		} else {
+			result = ScriptTransliterator.translitQuick(inputText, EngineType.SLP1_IAST, true);
+		}
+		openNewEditor(result);
+	}
+	
 	private void composeChars(final boolean isCompose) {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
@@ -963,6 +1004,18 @@ public class PaliTextEditor extends BorderPane {
 				result = allLines.sorted(Utilities.paliComparator);
 			else
 				result = allLines.sorted(Utilities.paliComparator.reversed());
+			area.setText(result.collect(Collectors.joining((System.getProperty("line.separator")))));
+		}
+	}
+
+	private void sktSort(final boolean isAsc) {
+		if (proceedConfirm()) {
+			final Stream<String> allLines = Utilities.convertToRomanSanskrit(area.getText()).lines().map(s -> s.trim());
+			final Stream<String> result;
+			if (isAsc)
+				result = allLines.sorted(Utilities.sktComparator);
+			else
+				result = allLines.sorted(Utilities.sktComparator.reversed());
 			area.setText(result.collect(Collectors.joining((System.getProperty("line.separator")))));
 		}
 	}

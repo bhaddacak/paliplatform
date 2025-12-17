@@ -57,6 +57,7 @@ import static javafx.stage.FileChooser.ExtensionFilter;
 import org.apache.commons.compress.archivers.*;
 import org.apache.commons.compress.archivers.tar.*;
 import org.apache.commons.compress.archivers.zip.*;
+import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.csv.*;
 
@@ -825,7 +826,7 @@ final public class Utilities {
 	}
 	
 	/**
-	 * Convert a given string to Roman Sanskrit.
+	 * Convert a given string to Roman Sanskrit (IAST).
 	 */
 	public static String convertToRomanSanskrit(final String input) {
 		final PaliScript script = testLanguage(input);
@@ -1461,8 +1462,31 @@ final public class Utilities {
 		}
 	}
 
+	public static void unzipSelective(final File source, final File targetFile) {
+		final String fname = targetFile.getName();
+		try {
+			final ZipFile.Builder builder = ZipFile.builder();
+			builder.setFile(source);
+			final ZipFile zip = builder.get();
+			for (Enumeration<ZipArchiveEntry> e = zip.getEntries(); e.hasMoreElements();) {
+				final ZipArchiveEntry entry = e.nextElement();
+				final String entryName = entry.getName();
+				final int slashPos = entryName.lastIndexOf("/");
+				final String entryBareName = slashPos > -1 ? entryName.substring(slashPos + 1) : entryName;
+				if (fname.equals(entryBareName)) {
+					final String content = IOUtils.toString(zip.getInputStream(entry), StandardCharsets.UTF_8);
+					saveText(content, targetFile);
+					break;
+				}
+			}
+			zip.close();
+		} catch (IOException e) {
+			System.err.println(e);
+		}
+	}
+
 	public static String findZipEntryName(final File filezip, final String filename) {
-		// only find the first entry name ending with the given filename
+		// only find the first entry name ending with the given filename (the last portion)
 		String result = filename;
 		try {
 			final java.util.zip.ZipFile zip = new java.util.zip.ZipFile(filezip);

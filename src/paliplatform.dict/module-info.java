@@ -20,5 +20,5 @@ module paliplatform.dict {
 	provides javafx.css.Styleable with 
 		paliplatform.dict.DictMenu,
 		paliplatform.dict.DictToolBarCom,
-		paliplatform.dict.DictSettingTab;
+		paliplatform.dict.DictSelectorBox;
 }

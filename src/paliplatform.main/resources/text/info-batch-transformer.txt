@@ -12,6 +12,7 @@ A guide to batch transliteration
 	   - Pāli Common is like IAST except the consonant ḷ is used by familiarity.
 	   - Least Contamination is like Pāli Common but symbols are retained visually (marked by ē = ai, ō = au, the consonant ḷ, the vowel ŀ).
 	   - Roman Unique is like Least but the consonant ḻ and the vowel ḷ is used.
+	   - SLP1 is mainly used for Sanskrit as an intermediate encoding.
 	9. When source text is Roman Sanskrit, the option 'Roman as Sanskrit' should be checked.
 	10. If the conversion fails, try changing file encoding, and make sure that Sanskrit text is treated properly.
 	11. Learn more by experimenting in the Text Editor with 'Load test data'.

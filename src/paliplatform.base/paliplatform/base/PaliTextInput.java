@@ -37,9 +37,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class PaliTextInput {
 	public static enum InputType { FIELD, AREA, COMBO }
 	public static enum InputMethod { 
-		NORMAL("no"), UNUSED_CHARS("uc"), COMPOSITE("co"), NUMBER("nu"), METER_GROUP("me"), NONE("0");
+		NORMAL("no"), UNUSED_CHARS("uc"), COMPOSITE("co"), SLP1("sl"), NUMBER("nu"), METER_GROUP("me"), NONE("0");
 		public static final InputMethod[] values = values();
-		private static final String[] names = { "Normal", "Unused chars", "Composite chars", "Number", "Meter group", "None" };
+		private static final String[] names = { "Normal", "Unused chars", "Composite chars", "SLP1", "Number", "Meter group", "None" };
 		public final String abbr;
 		private InputMethod(final String name) {
 			abbr = name;
@@ -56,6 +56,7 @@ public class PaliTextInput {
 	private final Button clearButton = new Button("", new TextIcon("delete-left", TextIcon.IconSet.AWESOME));	
 	private final Button methodButton = new Button("");
 	private final UnaryOperator<TextFormatter.Change> paliFilter;
+	private final UnaryOperator<TextFormatter.Change> slp1Filter;
 	private final UnaryOperator<TextFormatter.Change> regularFilter;
 	private final UnaryOperator<TextFormatter.Change> numberFilter;
 	private final UnaryOperator<TextFormatter.Change> meterGroupFilter;
@@ -86,6 +87,22 @@ public class PaliTextInput {
 				if (Utilities.getSetting("uc-upper").equals(newText)
 					|| Utilities.getSetting("uc-lower").equals(newText))
 					return null;
+			}
+			if (!isChanged.get())
+				isChanged.set(change.isContentChange());
+			return change;
+		};
+		slp1Filter = change -> {
+			final List<Map<String, String>> inputMap = ScriptTransliterator.getSlp1ToDevaMap();
+			final Map<String, String> indCharMap = inputMap.get(0);
+			final Map<String, String> depCharMap = inputMap.get(1);
+			final Set<String> keySet = indCharMap.keySet(); // the same for both
+			final String newText = change.getText();
+			if (change.getControlNewText().isEmpty())
+				return change;
+			if (keySet.contains(newText)) {
+				slp1ToDeva(newText, indCharMap.get(newText), depCharMap.get(newText));
+				return null;
 			}
 			if (!isChanged.get())
 				isChanged.set(change.isContentChange());
@@ -136,6 +153,7 @@ public class PaliTextInput {
 					if (key == KeyCode.SPACE) {
 						rotateInputMethod();
 					}
+
 				}
 			}
 		});			
@@ -213,6 +231,10 @@ public class PaliTextInput {
 				methodButton.setTooltip(new Tooltip("Using composite characters"));
 				methodButton.setGraphic(new TextIcon("ā➤ā", TextIcon.IconSet.MONO));
 				break;
+			case SLP1:
+				methodButton.setTooltip(new Tooltip("Using SLP1 transliteration"));
+				methodButton.setGraphic(new TextIcon("SLP", TextIcon.IconSet.MONO));
+				break;
 			case NUMBER:
 				methodButton.setTooltip(new Tooltip("Number mode"));
 				methodButton.setGraphic(new TextIcon("0-9", TextIcon.IconSet.MONO));
@@ -243,6 +265,10 @@ public class PaliTextInput {
 				textFormatter = new TextFormatter<>(paliFilter);
 				input.setTextFormatter(textFormatter);
 				break;
+			case SLP1:
+				textFormatter = new TextFormatter<>(slp1Filter);
+				input.setTextFormatter(textFormatter);
+				break;
 			case NUMBER:
 				textFormatter = new TextFormatter<>(numberFilter);
 				input.setTextFormatter(textFormatter);
@@ -263,6 +289,8 @@ public class PaliTextInput {
 			inputMethod = sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS;
 		} else if (inputMethod == InputMethod.UNUSED_CHARS) {
 			inputMethod = InputMethod.COMPOSITE;
+		} else if (inputMethod == InputMethod.COMPOSITE) {
+			inputMethod = InputMethod.SLP1;
 		} else {
 			inputMethod = InputMethod.NORMAL;
 		}
@@ -284,11 +312,26 @@ public class PaliTextInput {
 	
 	private void upperCase(final boolean yn) {
 		final int currPos = input.getCaretPosition();
-		if (currPos == input.getLength())
-			return;
-		final String currChar = input.getText(currPos, currPos+1);
+		if (currPos == input.getLength()) return;
+		final String currChar = input.getText(currPos, currPos + 1);
 		input.deleteNextChar();
 		input.insertText(currPos, yn ? currChar.toUpperCase() : currChar.toLowerCase());
+	}
+	
+	private void slp1ToDeva(final String key, final String indChar, final String depChar) {
+		final int currPos = input.getCaretPosition();
+		if (currPos == 0) {
+			input.insertText(currPos, indChar);
+			return;
+		}
+		final String prevChar = input.getText(currPos - 1, currPos);
+		// use backslash to signal the use of stand-alone vowels
+		if (prevChar.equals("\\")) {
+			input.deletePreviousChar();
+			input.insertText(currPos - 1, indChar);
+		} else {
+			input.insertText(currPos, depChar);
+		}
 	}
 	
 	public void recordQuery() {

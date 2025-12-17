@@ -48,7 +48,7 @@ import com.google.gson.Gson;
 /** 
  * The utility factory for the Dict module.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.0
  */
 final public class DictUtilities {
@@ -225,7 +225,7 @@ final public class DictUtilities {
 			case DICT:
 				if (stg == null) {
 					Utilities.openNewWindow(new DictWin(args), 
-						new Image(DictUtilities.class.getResourceAsStream("resources/images/book.png")), "Dictionaries");
+							new Image(DictUtilities.class.getResourceAsStream("resources/images/book.png")), "Pāli Dictionaries");
 				} else {
 					final DictWin dictWin = (DictWin)stg.getScene().getRoot();
 					dictWin.init(args);

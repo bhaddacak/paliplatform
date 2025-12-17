@@ -1,7 +1,7 @@
 /*
  * DictServiceImp.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ import javafx.scene.layout.HBox;
 /** 
  * An implementation of Dict service.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 3.0
  */
 public class DictServiceImp implements DictService {
@@ -41,7 +41,7 @@ public class DictServiceImp implements DictService {
 
 	@Override
 	public Tab getDictTab() {
-		dictTab = new Tab("Dictionaries");
+		dictTab = new Tab("Pāli Dictionaries");
 		dictTab.disableProperty().bind(DictUtilities.someDictAvailable.not());
 		dictTab.setClosable(false);
 		final TextIcon dictIcon = new TextIcon("book", TextIcon.IconSet.AWESOME);

@@ -124,7 +124,7 @@ final public class PaliPlatform extends Application {
 		// prepare info popup
 		infoPopup = new InfoPopup();
 		infoPopup.setContentWithText(getTextResource("info-quick-starter.txt"));
-		infoPopup.setTextWidth(Utilities.getRelativeSize(42));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(48));
 
 		// prepare for macOS UI
 		// this seems no need for moderm Mac OS X
