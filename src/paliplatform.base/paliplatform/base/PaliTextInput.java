@@ -76,13 +76,13 @@ public class PaliTextInput {
 		}
 		// load input properties
 		// set up filters for TextFormatter of TextField
+		final Map<String, String> paliInputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 		paliFilter = change -> {
-			final Map<String, String> inputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 			final String newText = change.getText();
 			if (change.getControlNewText().isEmpty())
 				return change;
-			if (inputCharMap.containsKey(newText))
-				change.setText(inputCharMap.get(newText));
+			if (paliInputCharMap.containsKey(newText))
+				change.setText(paliInputCharMap.get(newText));
 			if (inputMethod == InputMethod.UNUSED_CHARS) {
 				if (Utilities.getSetting("uc-upper").equals(newText)
 					|| Utilities.getSetting("uc-lower").equals(newText))
@@ -92,17 +92,28 @@ public class PaliTextInput {
 				isChanged.set(change.isContentChange());
 			return change;
 		};
+		final List<Map<String, String>> slp1InputMap = ScriptTransliterator.getSlp1CharMap();
+		final Map<String, String> indDevaCharMap = slp1InputMap.get(0);
+		final Map<String, String> depDevaCharMap = slp1InputMap.get(1);
+		final Map<String, String> iastCharMap = slp1InputMap.get(2);
 		slp1Filter = change -> {
-			final List<Map<String, String>> inputMap = ScriptTransliterator.getSlp1ToDevaMap();
-			final Map<String, String> indCharMap = inputMap.get(0);
-			final Map<String, String> depCharMap = inputMap.get(1);
-			final Set<String> keySet = indCharMap.keySet(); // the same for both
 			final String newText = change.getText();
 			if (change.getControlNewText().isEmpty())
 				return change;
-			if (keySet.contains(newText)) {
-				slp1ToDeva(newText, indCharMap.get(newText), depCharMap.get(newText));
-				return null;
+			final String mapTo = Utilities.getSetting("slp1-mapto").toUpperCase();
+			Set<String> keySet;
+			if (mapTo.equals("DEVA")) {
+				keySet = indDevaCharMap.keySet();
+				if (keySet.contains(newText)) {
+					slp1ToDeva(indDevaCharMap.get(newText), depDevaCharMap.get(newText));
+					return null;
+				}
+			} else if (mapTo.equals("IAST")) {
+				keySet = iastCharMap.keySet();
+				if (keySet.contains(newText)) {
+					input.insertText(input.getCaretPosition(), iastCharMap.get(newText));
+					return null;
+				}
 			}
 			if (!isChanged.get())
 				isChanged.set(change.isContentChange());
@@ -318,7 +329,7 @@ public class PaliTextInput {
 		input.insertText(currPos, yn ? currChar.toUpperCase() : currChar.toLowerCase());
 	}
 	
-	private void slp1ToDeva(final String key, final String indChar, final String depChar) {
+	private void slp1ToDeva(final String indChar, final String depChar) {
 		final int currPos = input.getCaretPosition();
 		if (currPos == 0) {
 			input.insertText(currPos, indChar);

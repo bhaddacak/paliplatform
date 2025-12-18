@@ -71,6 +71,7 @@ public class MainProperties {
 		{ "font-sinhala", Utilities.FONTSERIF },
 		{ "font-thai", Utilities.FONTSERIF },
 		{ "font-unknown", Utilities.FONTSERIF },
+		{ "slp1-mapto", "DEVA" },
 		{ "virama-key", "`" }
 	};
 	public static enum PaliInputProperties {

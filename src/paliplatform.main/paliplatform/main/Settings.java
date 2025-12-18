@@ -52,7 +52,7 @@ class Settings extends SingletonWindow {
 	
 	private Settings() {
 		windowWidth = Utilities.getRelativeSize(44);
-		windowHeight = Utilities.getRelativeSize(41);
+		windowHeight = Utilities.getRelativeSize(43);
 		setTitle("Settings");
 		getIcons().add(new Image(Settings.class.getResourceAsStream("resources/images/gear.png")));
 		
@@ -312,11 +312,6 @@ class Settings extends SingletonWindow {
 		final AnchorPane slp1HeadPane = new AnchorPane();
 		final Button slp1ResetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
 		slp1ResetButton.setTooltip(new Tooltip("Reset to default values"));
-		slp1ResetButton.setOnAction(actionEvent -> {
-			final String defViramaKey = MainProperties.INSTANCE.getDefault("virama-key");
-			Utilities.setSetting("virama-key", defViramaKey);
-			MainProperties.INSTANCE.saveSettings();
-		});
 		final Label slp1HeadLabel = new Label("Key mapping used for SLP1:");
 		AnchorPane.setTopAnchor(slp1HeadLabel, 0.0);
 		AnchorPane.setLeftAnchor(slp1HeadLabel, 0.0);
@@ -336,12 +331,35 @@ class Settings extends SingletonWindow {
 			Utilities.setSetting("virama-key", newInput);
 			MainProperties.INSTANCE.saveSettings();
 		});
+		viramaBox.getChildren().addAll(new Label("Virāma key: "), viramaField);
+		final HBox mapToBox = new HBox();
+		mapToBox.setSpacing(5);
+		mapToBox.getChildren().add(new Label("Map SLP1 to: "));
+		final ToggleGroup mapToGroup = new ToggleGroup();
+		final Map<String, RadioButton> mapToRadioMap = new HashMap<>();
+		final String[] mapToNames = { "Devanāgarī", "IAST (Roman)" };
+		for (final String name : mapToNames) {
+			final RadioButton radio = new RadioButton(name);
+			radio.setToggleGroup(mapToGroup);
+			final String mCode = name.substring(0, 4).toUpperCase();	
+			radio.setSelected(mCode.equals(Utilities.getSetting("slp1-mapto")));
+			mapToBox.getChildren().add(radio);
+			mapToRadioMap.put(mCode, radio);
+		}
+        mapToGroup.selectedToggleProperty().addListener(observable -> {
+			final String name = ((RadioButton)mapToGroup.getSelectedToggle()).getText();
+			final String mCode = name.substring(0, 4).toUpperCase();	
+			Utilities.setSetting("slp1-mapto", mCode);
+			MainProperties.INSTANCE.saveSettings();
+		});
 		slp1ResetButton.setOnAction(actionEvent -> {
 			final String defViramaKey = MainProperties.INSTANCE.getDefault("virama-key");
 			viramaField.setText(defViramaKey);
+			final String mapTo = MainProperties.INSTANCE.getDefault("slp1-mapto");
+			mapToRadioMap.get(mapTo).setSelected(true);
+			MainProperties.INSTANCE.saveSettings();
 		});
-		viramaBox.getChildren().addAll(new Label("Virāma key: "), viramaField);
-		keyInputBox.getChildren().addAll(new Separator(), slp1HeadPane, viramaBox);
+		keyInputBox.getChildren().addAll(new Separator(), slp1HeadPane, viramaBox, mapToBox);
 
 		keyInputTab.setContent(keyInputBox);
 		

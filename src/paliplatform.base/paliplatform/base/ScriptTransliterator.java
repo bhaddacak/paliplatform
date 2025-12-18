@@ -368,38 +368,58 @@ public class ScriptTransliterator {
 		translitMap.put(EngineType.SLP1_IAST, text -> toIAST(slp1ToUnique(text)));
 	}
 
-	public static List<Map<String, String>> getSlp1ToDevaMap() {
-		// two maps are needed, one for independent vowels,
-		// another dependent, the rest are identical
-		// note that keys are the same in both maps
+	public static List<Map<String, String>> getSlp1CharMap() {
+		// Three maps are generated here, two for Devanagari, another for IAST.
+		// Devaganari needs 2 maps, one for independent vowels,
+		// another dependent vowels. The consonants are identical.
+		// Note that keys are the same in both maps.
 		final List<Map<String, String>> result = new ArrayList<>();
 		final char[] vowelSlp1 = romanVowelsSlp1.toCharArray();
-		// for independent vowels
-		final Map<String, String> indMap = new HashMap<>();
+		final char[] vowelUnique = romanVowelsUnique.toCharArray();
+		final Map<String, String> indDevaMap = new HashMap<>();
+		final Map<String, String> depDevaMap = new HashMap<>();
+		final Map<String, String> iastMap = new HashMap<>();
+		// vowels
 		for (int i = 0; i < vowelSlp1.length; i++) {
-			indMap.put("" + vowelSlp1[i], "" + devaVowelsInd[i]);
+			indDevaMap.put("" + vowelSlp1[i], "" + devaVowelsInd[i]);
 		}
-		// for dependent vowels
-		final Map<String, String> depMap = new HashMap<>();
 		for (int i = 0; i < vowelSlp1.length; i++) {
-			depMap.put("" + vowelSlp1[i], "" + devaVowelsDep[i]);
+			depDevaMap.put("" + vowelSlp1[i], "" + devaVowelsDep[i]);
+		}
+		for (int i = 0; i < vowelSlp1.length; i++) {
+			final char rVowel = vowelUnique[i];
+			if ("aiueo".indexOf(rVowel) > -1)
+				continue; // the same characters excluded
+			final String iastVowel = rVowel == 'ē' ? "ai"
+									: rVowel == 'ō' ? "au"
+									: "" + rVowel;
+			iastMap.put("" + vowelSlp1[i], iastVowel);
 		}
 		// consonants
 		for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
-			indMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
-			depMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
+			indDevaMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
+			depDevaMap.put("" + romanConsonantsChrSlp1[i], "" + devaConsonants[i]);
+		}
+		for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
+			final String rCons = romanConsonantsStrUnique[i];
+			if ("kgcjtdnpbmyrlvsh".indexOf(rCons) > -1)
+				continue; // the same characters excluded
+			iastMap.put("" + romanConsonantsChrSlp1[i], rCons);
 		}
 		// anausvara and visarga
-		indMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
-		indMap.put("" + romanVisargaSlp1, "" + devaVisarga);
-		depMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
-		depMap.put("" + romanVisargaSlp1, "" + devaVisarga);
+		indDevaMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
+		indDevaMap.put("" + romanVisargaSlp1, "" + devaVisarga);
+		depDevaMap.put("" + romanAnusvaraSlp1, "" + devaAnusvara);
+		depDevaMap.put("" + romanVisargaSlp1, "" + devaVisarga);
+		iastMap.put("" + romanAnusvaraSlp1, "" + romanAnusvara);
+		iastMap.put("" + romanVisargaSlp1, "" + romanVisarga);
 		// virama
 		final String viramaKey = Utilities.getSetting("virama-key");
-		indMap.put(viramaKey, "" + devaVirama);
-		depMap.put(viramaKey, "" + devaVirama);
-		result.add(indMap);
-		result.add(depMap);
+		indDevaMap.put(viramaKey, "" + devaVirama);
+		depDevaMap.put(viramaKey, "" + devaVirama);
+		result.add(indDevaMap);
+		result.add(depDevaMap);
+		result.add(iastMap);
 		return result;
 	}
 
