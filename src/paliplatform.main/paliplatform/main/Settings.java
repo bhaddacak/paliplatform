@@ -337,7 +337,7 @@ class Settings extends SingletonWindow {
 		mapToBox.getChildren().add(new Label("Map SLP1 to: "));
 		final ToggleGroup mapToGroup = new ToggleGroup();
 		final Map<String, RadioButton> mapToRadioMap = new HashMap<>();
-		final String[] mapToNames = { "Devanāgarī", "IAST (Roman)" };
+		final String[] mapToNames = { "Devanāgarī", "IAST (Roman)", "Pāli (Roman)" };
 		for (final String name : mapToNames) {
 			final RadioButton radio = new RadioButton(name);
 			radio.setToggleGroup(mapToGroup);

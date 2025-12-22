@@ -121,15 +121,17 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		readMenuItem.setOnAction(actionEvent -> openSentenceReader());
 		final MenuItem openDictMenuItem = new MenuItem("Open Dictionaries");
 		openDictMenuItem.setOnAction(actionEvent -> openDict());
-		final MenuItem sendToDictMenuItem = new MenuItem("Send to Dictionaries");
-		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict());
+		final MenuItem sendToDictMenuItem = new MenuItem("Send to Pāli Dictionaries");
+		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict(false));
+		final MenuItem sendToSktDictMenuItem = new MenuItem("Send to Sanskrit Dictionaries");
+		sendToSktDictMenuItem.setOnAction(actionEvent -> sendToDict(true));
 		final MenuItem calMetersMenuItem = new MenuItem("Calculate meters");
 		calMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
 		final MenuItem analyzeMenuItem = new MenuItem("Analyze this stanza/portion");
 		analyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
 		analyzeMenuItem.setOnAction(actionEvent -> openAnalyzer());
-		contextMenu.getItems().addAll(editMenuItem, readMenuItem, openDictMenuItem, sendToDictMenuItem,
+		contextMenu.getItems().addAll(editMenuItem, readMenuItem, openDictMenuItem, sendToDictMenuItem, sendToSktDictMenuItem,
 										calMetersMenuItem, analyzeMenuItem);
 		webView.setOnMousePressed(mouseEvent -> {
 			if (mouseEvent.getButton() == MouseButton.SECONDARY) {
@@ -274,7 +276,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		DictUtilities.openWindow(Utilities.WindowType.DICT, args);
 	}
 	
-	private void sendToDict() {
+	private void sendToDict(final boolean toSktDict) {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
 		final String text = cboard.hasString() ? cboard.getString().trim() : "";
@@ -282,7 +284,10 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			final String term = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 			final SimpleService dictSearch = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
 			if (dictSearch != null) {
-				dictSearch.process(term);
+				if (toSktDict)
+					dictSearch.processArray(new Object[] { Utilities.WindowType.SKTDICT, term});
+				else
+					dictSearch.process(term);
 			}
 		}
 	}

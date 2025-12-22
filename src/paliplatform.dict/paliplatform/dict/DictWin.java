@@ -143,7 +143,11 @@ public class DictWin extends DictWinBase {
 					dbQuery = "SELECT TERM FROM DICT WHERE MEANING LIKE '%" + properQuery + "%' ORDER BY ID;";
 				} else {
 					final String mfield = dicBook == DictBook.NCPED ? "DEFINITION" : "MEANING";
-					dbQuery = "SELECT TERM FROM " + dicBook.toString() + " WHERE " + mfield + " LIKE '%" + properQuery + "%' ORDER BY ID;";
+					// make 2 queries, all lowercase and title case
+					final String[] inMQuery = { properQuery, Character.toUpperCase(properQuery.charAt(0)) + properQuery.substring(1) };
+					dbQuery = "SELECT TERM FROM " + dicBook.toString() + 
+							" WHERE " + mfield + " LIKE '%" + inMQuery[0] + "%' OR " + mfield + " LIKE '%" + inMQuery[1] +
+							"%' ORDER BY ID;";
 				}
 			}
 			final Set<String> results = dicBook == DictBook.MDPD

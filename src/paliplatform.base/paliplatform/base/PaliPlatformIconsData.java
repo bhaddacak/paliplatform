@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the PaliPlatform Icons list used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
  class PaliPlatformIconsData extends HashMap<String, Character> {
@@ -39,6 +39,8 @@ import java.util.HashMap;
 		 put("dpd", 'D');
 		 put("bookmark-plus", 'E');
 		 put("skt-letter", 'F');
+		 put("skt-book", 'G');
+		 put("skt-scroll", 'H');
 		 put("lucene", 'L');
 		 put("sc", 'S');
 	 }

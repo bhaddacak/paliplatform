@@ -1,0 +1,13 @@
+Downloading Sanskrit dictionaries
+	1. Dictionaries can be chosen on demand. After the download, the program will try to create the dict data. If failed, you can create it later on.
+	2. The creation of dict data always replaces the existing data. This may take a minute or so. Once the creation is under process in background, the program should not be quited, otherwise the data will be corrupted.
+	3. The available dictionaries are as follows:
+	   - Monier-Williams' Sanskrit-English Dictionary (1899)
+	   - Apte's Practical Sanskrit-English Dictionary (revised, 1957)
+	   - Jīvānanda Vidyāsāgara Bhaṭṭācāryya's Śabda-sāgara (1900)
+	   - Macdonell's Sanskrit-English Dictionary (1893)
+	   - Edgerton's Buddhist Hybrid Sanskrit Dictionary (1953)
+	   - Monier-Williams's English-Sanskrit Dictionary (1851)
+	   - Apte's Student's English-Sanskrit Dictionary (1964)
+	   - Borooah's English-Sanskrit Dictionary (1877-1881)
+	4. The first item (MW) has a sizeable file to download. Sometimes it causes a network error when the traffic is busy. In this case, deselect this dict and download it later.

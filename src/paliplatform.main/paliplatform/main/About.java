@@ -40,7 +40,7 @@ import javafx.animation.*;
 /** 
  * The about dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 2.0
  */
 class About extends Stage {

@@ -415,18 +415,18 @@ final public class DictUtilities {
 	}
 	
 	public static void updateDictDBLockStatus() {
-		final boolean lock = !Utilities.isDBWritable(Utilities.H2DB.DICT);
-		final String status = lock ? dbLockStatus[1] : dbLockStatus[0];
-		final Node icon = lock
+		final boolean locked = !Utilities.isDBWritable(Utilities.H2DB.DICT);
+		final String status = locked ? dbLockStatus[1] : dbLockStatus[0];
+		final Node icon = locked
 							? new TextIcon("lock", TextIcon.IconSet.AWESOME)
 							: new TextIcon("unlock", TextIcon.IconSet.AWESOME);
-		dictDBLocked.set(lock);
+		dictDBLocked.set(locked);
 		dictDBLockString.set(status);
 		dictDBLockIcon.set(icon);
 	}
 
-	public static void lockDictDB(final boolean lock) {
-		Utilities.setDBWritable(Utilities.H2DB.DICT, !lock);
+	public static void lockDictDB(final boolean locked) {
+		Utilities.setDBWritable(Utilities.H2DB.DICT, !locked);
 		updateDictDBLockStatus();
 	}
 	

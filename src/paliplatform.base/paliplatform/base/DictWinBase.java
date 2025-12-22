@@ -334,7 +334,7 @@ public abstract class DictWinBase extends BorderPane {
 	}
 
 	private void findSingle(final String query) {
-		htmlViewer.webEngine.executeScript("findSingleQuiet('" + query + "'" + ")");
+		htmlViewer.webEngine.executeScript("findSingleQuietIgnoreCase('" + query + "'" + ")");
 	}
 
 	private void clearFindInput() {

@@ -93,6 +93,9 @@ function findNext(query, caseSensitive, direction) {
 function findSingleQuiet(query) {
 	window.find(query, true, false, true, false, false, false);
 }
+function findSingleQuietIgnoreCase(query) {
+	window.find(query, false, false, true, false, false, false);
+}
 function simpleSearch(query, caseSensitive, backWard) {
 	const found = window.find(query, caseSensitive, backWard, true, false, false, false);
 	const message = found ? "" : "Not found";

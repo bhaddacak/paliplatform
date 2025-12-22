@@ -7,7 +7,10 @@ module paliplatform.sanskrit {
 	uses paliplatform.base.SimpleService;
 	provides javafx.css.Styleable with
 		paliplatform.sanskrit.SanskritMenu,
+		paliplatform.sanskrit.SktToolBarCom,
 		paliplatform.sanskrit.DictSelectorBox;
 	provides paliplatform.base.SimpleService with 
 		paliplatform.sanskrit.FontSetter;
+	provides paliplatform.base.SktService with 
+		paliplatform.sanskrit.SktServiceImp;
 }

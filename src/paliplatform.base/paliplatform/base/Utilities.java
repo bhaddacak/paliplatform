@@ -68,7 +68,7 @@ import org.apache.commons.csv.*;
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.5";
+	public static final String VERSION = "3.6";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -91,10 +91,17 @@ final public class Utilities {
 	public static final String TEXCONV = TXTDIR + "texconv.csv";
 	public static final String FONTICON = "PaliPlatformIcons";
 	public static final String FONTAWESOME = "Font Awesome 6 Free Solid";
-	public static String FONTSERIF = "serif";
-	public static String FONTSANS = "sans-serif";
-	public static String FONTMONO = "monospace";
-	public static String FONTMONOBOLD = "monospace";
+	public static final String FONT_ROMAN_DEFAULT = "DejaVu Sans";
+	public static final String FONT_DEVA_DEFAULT = "FreeSerif";
+	public static final String FONT_KHMER_DEFAULT = "Noto Serif Khmer";
+	public static final String FONT_MYANMAR_DEFAULT = "Padauk";
+	public static final String FONT_SINHALA_DEFAULT = "FreeSerif";
+	public static final String FONT_THAI_DEFAULT = "FreeSerif";
+	public static final List<String> genericFonts = List.of("serif", "sans-serif", "monospace");
+	public static String FONTSERIF = genericFonts.get(0);
+	public static String FONTSANS = genericFonts.get(1);
+	public static String FONTMONO = genericFonts.get(2);
+	public static String FONTMONOBOLD = FONTMONO;
 	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹṁṃṅṇṛṝṣṭēō";
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
@@ -110,7 +117,6 @@ final public class Utilities {
 	public static final String DASH_M = "—";
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
-	public static final List<String> genericFonts = List.of("serif", "sans-serif", "monospace");
 	public static final String[] lineHeights = { "80%", "90%", "100%", "110%", "120%", "130%", "140%", "150%", "175%", "200%", "250%", "300%" };
 	public static final Map<PaliScript, Set<String>> embeddedFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliScript, Set<String>> externalFontMap = new EnumMap<>(PaliScript.class); 
@@ -204,12 +210,11 @@ final public class Utilities {
 	}
 	public static enum WindowType {
 		TOCTREE("TocTreeWin"), FINDER("DocumentFinder"), LUCENE("LuceneFinder"),
-		LISTER("TermLister"), DICT("DictWin"), EDITOR("PaliTextEditor"),
+		LISTER("TermLister"), DICT("DictWin"), SKTDICT("SktDictWin"), EDITOR("PaliTextEditor"),
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
-		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"),
-		SKTDICT("SktDictWin");
+		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader");
 		public static final WindowType[] types = values();
 		private final String windowClassName;
 		private WindowType(final String className) {
@@ -220,8 +225,9 @@ final public class Utilities {
 		}
 		public static WindowType from(final String className) {
 			WindowType result = null;
+			final String cName = className.substring(className.lastIndexOf(".") + 1);
 			for (final WindowType wt : WindowType.types) {
-				if (className.endsWith(wt.windowClassName)) {
+				if (wt.windowClassName.equals(cName)) {
 					result = wt;
 					break;
 				}
@@ -353,14 +359,14 @@ final public class Utilities {
 		try {
 			if (Files.notExists(dbpath))
 				Files.createDirectories(dbpath);
-			final String dburl = "jdbc:h2:" + dbdir + db.getName() + ";DB_CLOSE_ON_EXIT=FALSE";
+			final String dburl = "jdbc:h2:" + dbdir + db.getName() + ";IGNORECASE=TRUE;DB_CLOSE_ON_EXIT=FALSE";
 			result = DriverManager.getConnection(dburl, "sa", "");
 			result.setAutoCommit(true);
 		} catch (IOException e) {
 			System.err.println(e);
 		} catch (SQLException e) {
 			System.err.println(e);
-			// this can protect the running of multiple instances
+			// this can prevent the running of multiple instances
 			if (e instanceof org.h2.jdbc.JdbcSQLNonTransientConnectionException)
 				Platform.exit();
 		}
@@ -376,7 +382,7 @@ final public class Utilities {
 	public static boolean isDBWritable(final H2DB db) {
 		final String dbdir = getDBDir();
 		final File dbfile = new File(dbdir + db.getNameWithExt());
-		return dbfile.exists() && dbfile.canWrite();
+		return dbfile.exists() ? dbfile.canWrite() : true;
 	}
 
 	public static void setDBWritable(final H2DB db, final boolean yn) {
@@ -492,10 +498,8 @@ final public class Utilities {
 		Font.loadFont(Utilities.class.getResourceAsStream(FONTDIR + "DejaVuSansMono-BoldOblique.ttf"), 0);
 		if (fontSerif != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSerif.getFamily());
-		if (fontSans != null) {
+		if (fontSans != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontSans.getFamily());
-			Utilities.setSetting("font-roman", fontSans.getFamily());
-		}
 		if (fontMono != null)
 			embeddedFontMap.get(PaliScript.ROMAN).add(fontMono.getFamily());
 		// read external fonts
@@ -542,18 +546,6 @@ final public class Utilities {
 					javafx.scene.text.Font.loadFont(new FileInputStream(new File(ROOTDIR + EXFONTPATH + f.getName())), 0);
 				}
 			}
-		}
-		// if nothing available, set to default
-		for (final PaliScript sc : PaliScript.scripts) {
-			if (sc == PaliScript.ROMAN) continue; // roman uses embedded font as default
-			final Set<String> fset = externalFontMap.get(sc);
-			final String scStr = sc.toString().toLowerCase();
-			final String fn = fset.isEmpty()
-								? sc == PaliScript.UNKNOWN
-									? FONTSANS
-									: Utilities.getSetting("font-" + scStr)
-								: fset.stream().sorted().findFirst().get();
-			Utilities.setSetting("font-" + scStr, fn);
 		}
 	}
 
@@ -686,7 +678,11 @@ final public class Utilities {
 	public static Stage getOpenedWindow(final String className) {
 		// find an existing closed window
 		final Stage stg = openedWindows.stream()
-										.filter(s -> s.getScene().getRoot().getClass().getName().endsWith(className))
+										.filter(s -> {
+											String cName = s.getScene().getRoot().getClass().getName();
+											cName = cName.substring(cName.lastIndexOf(".") + 1);
+											return className.equals(cName);
+										})
 										.filter(s -> !s.isShowing())
 										.findFirst()
 										.orElse(null);

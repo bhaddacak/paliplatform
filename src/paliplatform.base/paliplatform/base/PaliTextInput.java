@@ -55,6 +55,7 @@ public class PaliTextInput {
 	private ComboBox<String> cbInput;
 	private final Button clearButton = new Button("", new TextIcon("delete-left", TextIcon.IconSet.AWESOME));	
 	private final Button methodButton = new Button("");
+	private Map<String, String> paliInputCharMap; // used in unused-chars and composite
 	private final UnaryOperator<TextFormatter.Change> paliFilter;
 	private final UnaryOperator<TextFormatter.Change> slp1Filter;
 	private final UnaryOperator<TextFormatter.Change> regularFilter;
@@ -74,9 +75,10 @@ public class PaliTextInput {
 		} else {
 			input = inputType == InputType.AREA ? new TextArea() : new TextField();
 		}
+		resetInputMethod();
+		paliInputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 		// load input properties
 		// set up filters for TextFormatter of TextField
-		final Map<String, String> paliInputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 		paliFilter = change -> {
 			final String newText = change.getText();
 			if (change.getControlNewText().isEmpty())
@@ -112,6 +114,16 @@ public class PaliTextInput {
 				keySet = iastCharMap.keySet();
 				if (keySet.contains(newText)) {
 					input.insertText(input.getCaretPosition(), iastCharMap.get(newText));
+					return null;
+				}
+			} else if (mapTo.equals("PĀLI")) {
+				keySet = iastCharMap.keySet();
+				if (keySet.contains(newText)) {
+					if ("L".equals(newText)) {
+						input.insertText(input.getCaretPosition(), "ḷ");
+					} else {
+						input.insertText(input.getCaretPosition(), iastCharMap.get(newText));
+					}
 					return null;
 				}
 			}
@@ -266,12 +278,14 @@ public class PaliTextInput {
 				break;
 			case UNUSED_CHARS:
 				Utilities.setupPaliInputCharMap();
+				paliInputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 				setUpperLowerEvent();
 				textFormatter = new TextFormatter<>(paliFilter);
 				input.setTextFormatter(textFormatter);
 				break;
 			case COMPOSITE:
 				Utilities.setupPaliInputCharMap();
+				paliInputCharMap = Utilities.paliInputCharMap.get(inputMethod);
 				input.setOnKeyTyped(null);
 				textFormatter = new TextFormatter<>(paliFilter);
 				input.setTextFormatter(textFormatter);

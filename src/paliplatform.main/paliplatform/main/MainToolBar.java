@@ -79,6 +79,10 @@ class MainToolBar extends ToolBar {
 		if (dpdBox != null)
 			getItems().addAll(dpdBox, new Separator());
 
+		final HBox sktBox = (HBox)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.SktToolBarCom");
+		if (sktBox != null)
+			getItems().addAll(sktBox, new Separator());
+
 		getItems().addAll(editorButton, openTextButton, new Separator(), settingsButton,
 							new Separator(), helpButton, aboutButton, exitButton);
 	}

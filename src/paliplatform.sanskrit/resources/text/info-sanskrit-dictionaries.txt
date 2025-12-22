@@ -1,4 +1,13 @@
 Guide to Sanskrit Dictionaries
-	1. Here is a collection of essential Sanskrit dictionaries. At this stage, only Monier-Williams' Sanskrit-English dictionary is available for test.
-	2. There are 3 modes of entering a query: (1) using composite characters, (2) using SLP1 transliteration, and (3) normal input (= using the system layout). The default selection can be set in Settings.
-	3. The query can be of any script supported. To enter a non-Roman query, you have to use normal mode of input and a suitable pre-installed keyboard layout, for example, KaGaPa for Devanāgarī, and Zawgyi for Myanmar. Particularly for Devanāgarī, you can also use SLP1 mode.
+	1. The query can be of any script supported. To enter a non-Roman query, you have to use normal mode of input and a suitable pre-installed keyboard layout. Particularly for Devanāgarī, you can also use SLP1 input mode.
+	2. The available dictionaries are as follows:
+	   - MW: Monier-Williams' Sanskrit-English Dictionary (1899)
+	   - AP: Apte's Practical Sanskrit-English Dictionary (revised, 1957)
+	   - SHS: Jīvānanda Vidyāsāgara Bhaṭṭācāryya's Śabda-sāgara (1900)
+	   - MD: Macdonell's Sanskrit-English Dictionary (1893)
+	   - BHS: Edgerton's Buddhist Hybrid Sanskrit Dictionary (1953)
+	   - MWE: Monier-Williams's English-Sanskrit Dictionary (1851)
+	   - AE: Apte's Student's English-Sanskrit Dictionary (1964)
+	   - BOR: Borooah's English-Sanskrit Dictionary (1877-1881)
+	3. When searching a Sanskrit word in meaning, only MW and BHS accept IAST. For the rest, you have to use SLP1 encoding (e.g. aMSa for aṃśa).
+	4. See also the help in Pāli Dictionaries for the searching techniques.

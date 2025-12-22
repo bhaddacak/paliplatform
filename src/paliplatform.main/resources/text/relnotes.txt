@@ -37,17 +37,31 @@
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
   - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
   - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), please check the license at its website
-  - Monier-Williams' Sanskrit-English Dictionary (https://github.com/sanskrit-lexicon/MWS, https://sanskrit-lexicon.uni-koeln.de), CC-BY-NC-SA 3.0
+⊚ Dictionaries from Cologne Digital Sanskrit Lexicon (CDSL) project (https://sanskrit-lexicon.uni-koeln.de), CC-BY-NC-SA 3.0 (mostly):
+  - Monier-Williams' Sanskrit-English Dictionary, 1899 (https://github.com/sanskrit-lexicon/MWS)
+  - V.S. Apte's Practical Sanskrit-English Dictionary, revised, 1957
+  - Jīvānanda Vidyāsāgara Bhaṭṭācāryya's Śabda-sāgara, 1900
+  - Arthur A. Macdonell's Sanskrit-English Dictionary, 1893
+  - Franklin Edgerton's Buddhist Hybrid Sanskrit Dictionary, 1953
+  - Monier-Williams's English-Sanskrit Dictionary, 1851
+  - V.S. Apte's Student's English Sanskrit Dictionary, 1964 (https://github.com/sanskrit-lexicon/ApteES)
+  - Anundoram Borooah's English-Sanskrit Dictionary, 1877-1881
 ⊚ Saddanīti Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
 ⊚ Explanations and the list of Pāli prosody come from Vuttodayamañjarī (Thai) by Gandhasārābhivaṃsa, printed by Mahachulalongkorn Buddhist University, Nakhon Pathom, Thailand (2001)
 
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2025, Dec 22
+⊚ Base version 3.6.0 released
+⊚ Eight Sanskrit dictionaries support
+⊚ SLP1 transliteration and input method added
+⊚ Enhancements of Settings
+
 2025, Dec 12
 ⊚ Base version 3.5.0 released
 ⊚ Preview of some Sanskrit tools
-⊚ Monier-Williams' Sanskrit-English dictionary added
+⊚ Monier-Williams' Sanskrit-English dictionary support added
 ⊚ Several fixes
 
 2025, Dec 3
@@ -138,7 +152,7 @@
 │ License │
 ╰─────────╯
 
-Copyright 2023-2025 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
+Copyright 2023-2026 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

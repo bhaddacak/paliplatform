@@ -358,15 +358,17 @@ public class SentenceReader extends BorderPane {
 		transScroll.setContent(tbox);
 		transBox.getChildren().addAll(transTBPane, transScroll);
 		// prepare context menu of terms
-		final MenuItem sendToDictMenuItem = new MenuItem("Send to Dictionaries");
-		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict());
+		final MenuItem sendToDictMenuItem = new MenuItem("Send to Pāli Dictionaries");
+		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict(false));
+		final MenuItem sendToSktDictMenuItem = new MenuItem("Send to Sanskrit Dictionaries");
+		sendToSktDictMenuItem.setOnAction(actionEvent -> sendToDict(true));
 		final MenuItem cutItiMenuItem = new MenuItem("Cut iti");
 		cutItiMenuItem.setOnAction(actionEvent -> cutIti());
 		final MenuItem editMenuItem = new MenuItem("Edit this sentence");
 		editMenuItem.setOnAction(actionEvent -> openEdit(EditMode.TEXT));
 		final MenuItem restoreSenMenuItem = new MenuItem("Restore this sentence");
 		restoreSenMenuItem.setOnAction(actionEvent -> restoreSentence());
-		termContextMenu.getItems().addAll(sendToDictMenuItem, cutItiMenuItem, editMenuItem,
+		termContextMenu.getItems().addAll(sendToDictMenuItem, sendToSktDictMenuItem, cutItiMenuItem, editMenuItem,
 										new SeparatorMenuItem(), restoreSenMenuItem);
 
 		this.setOnDragOver(new EventHandler<DragEvent>() {
@@ -966,12 +968,16 @@ public class SentenceReader extends BorderPane {
 		updateEditTextArea();
 	}
 
-	private void sendToDict() {
+	private void sendToDict(final boolean toSktDict) {
 		if (currSelectedText != null) {
 			final String term = Utilities.getUsablePaliTerm(currSelectedText.getText());
 			final SimpleService dictSearch = (SimpleService)SentenceUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
 			if (dictSearch != null) {
-				dictSearch.process(term);
+				if (toSktDict) {
+					dictSearch.processArray(new Object[] { Utilities.WindowType.SKTDICT, term});
+				} else {
+					dictSearch.process(term);
+				}
 				currSelectedText = null;
 			}
 		}

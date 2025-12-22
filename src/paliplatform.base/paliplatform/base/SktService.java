@@ -1,7 +1,7 @@
 /*
- * DictToolBarCom.java
+ * DictService.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,27 +17,19 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.dict;
+package paliplatform.base;
 
-import paliplatform.base.*;
-
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Tab;
 
 /** 
- * The tool bar component for Dict module.
+ * The service interface used by Sanskrit module.
  * @author J.R. Bhaddacak
  * @version 3.6
- * @since 3.0
+ * @since 3.6
  */
-public class DictToolBarCom extends HBox {
-	public DictToolBarCom() {
-		final Button dictButton = new Button("", new TextIcon("book", TextIcon.IconSet.AWESOME));
-		dictButton.setTooltip(new Tooltip("Pāli Dictionaries"));
-		dictButton.disableProperty().bind(DictUtilities.someDictAvailable.not());
-		dictButton.setOnAction(actionEvent -> DictUtilities.openWindow(Utilities.WindowType.DICT, null));
-		getChildren().addAll(dictButton);
-	}
 
+public interface SktService {
+	Tab getSktDictTab();
+	void searchTerm(String term);
 }
 

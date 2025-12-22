@@ -1,7 +1,7 @@
 /*
  * SanskritMenu.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2025 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ package paliplatform.sanskrit;
 
 import paliplatform.base.*;
 
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyCodeCombination;
@@ -29,7 +30,7 @@ import javafx.scene.input.KeyCode;
 /** 
  * The menu items for Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.6
  * @since 3.5
  */
 public class SanskritMenu extends Menu {
@@ -40,8 +41,9 @@ public class SanskritMenu extends Menu {
 		Utilities.initializeSktDictDB(false);
 		SanskritUtilities.initializeSktDictAvailMap();
 		SanskritUtilities.updateSktDictAvailibility();
+		SanskritUtilities.updateSktDictDBLockStatus();
 		// add menu items
-		final MenuItem dictMenuItem = new MenuItem("_Dictionaries", new TextIcon("book", TextIcon.IconSet.AWESOME));
+		final MenuItem dictMenuItem = new MenuItem("_Dictionaries", new TextIcon("skt-book", TextIcon.IconSet.CUSTOM));
 		dictMenuItem.setMnemonicParsing(true);
 		dictMenuItem.disableProperty().bind(SanskritUtilities.sktDictDBAvailable.not());
 		dictMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SKTDICT, null));
@@ -50,7 +52,19 @@ public class SanskritMenu extends Menu {
 		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
 		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dict", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		dictDownloadMenuItem.setOnAction(actionEvent -> SktDictDownloader.INSTANCE.display());
-		getItems().addAll(dictMenuItem, lettersMenuItem, new SeparatorMenuItem(), dictDownloadMenuItem);
+		final MenuItem createDataMenuItem = new MenuItem("_Create Skt. Dict data", new TextIcon("database", TextIcon.IconSet.AWESOME));
+		createDataMenuItem.setMnemonicParsing(true);
+		createDataMenuItem.disableProperty().bind(SanskritUtilities.someSktDictDataAvailable.not());
+		createDataMenuItem.setOnAction(actionEvent -> SanskritUtilities.createSktDictData());
+		final CheckMenuItem lockDBMenuItem = new CheckMenuItem();
+		lockDBMenuItem.disableProperty().bind(SanskritUtilities.sktDictDBAvailable.not());
+		lockDBMenuItem.selectedProperty().bindBidirectional(SanskritUtilities.sktDictDBLocked);
+		lockDBMenuItem.textProperty().bindBidirectional(SanskritUtilities.sktDictDBLockString);
+		lockDBMenuItem.graphicProperty().bindBidirectional(SanskritUtilities.sktDictDBLockIcon);
+		lockDBMenuItem.setOnAction(actionEvent -> SanskritUtilities.lockSktDictDB(lockDBMenuItem.isSelected()));
+		getItems().addAll(dictMenuItem, lettersMenuItem,
+				new SeparatorMenuItem(), dictDownloadMenuItem, createDataMenuItem,
+				new SeparatorMenuItem(), lockDBMenuItem);
 	}
 
 }

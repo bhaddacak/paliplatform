@@ -388,7 +388,7 @@ public class ScriptTransliterator {
 		}
 		for (int i = 0; i < vowelSlp1.length; i++) {
 			final char rVowel = vowelUnique[i];
-			if ("aiueo".indexOf(rVowel) > -1)
+			if (rVowel == vowelSlp1[i])
 				continue; // the same characters excluded
 			final String iastVowel = rVowel == 'ē' ? "ai"
 									: rVowel == 'ō' ? "au"
@@ -402,7 +402,7 @@ public class ScriptTransliterator {
 		}
 		for (int i = 0; i < romanConsonantsChrSlp1.length; i++) {
 			final String rCons = romanConsonantsStrUnique[i];
-			if ("kgcjtdnpbmyrlvsh".indexOf(rCons) > -1)
+			if (rCons.equals("" + romanConsonantsChrSlp1[i]))
 				continue; // the same characters excluded
 			iastMap.put("" + romanConsonantsChrSlp1[i], rCons);
 		}

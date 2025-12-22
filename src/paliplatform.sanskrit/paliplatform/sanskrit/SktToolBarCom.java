@@ -1,5 +1,5 @@
 /*
- * DictToolBarCom.java
+ * SktToolBarCom.java
  *
  * Copyright (C) 2023-2024 J. R. Bhaddacak 
  *
@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.dict;
+package paliplatform.sanskrit;
 
 import paliplatform.base.*;
 
@@ -25,17 +25,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
 /** 
- * The tool bar component for Dict module.
+ * The tool bar component for Sanskrit module.
  * @author J.R. Bhaddacak
  * @version 3.6
- * @since 3.0
+ * @since 3.6
  */
-public class DictToolBarCom extends HBox {
-	public DictToolBarCom() {
-		final Button dictButton = new Button("", new TextIcon("book", TextIcon.IconSet.AWESOME));
-		dictButton.setTooltip(new Tooltip("Pāli Dictionaries"));
-		dictButton.disableProperty().bind(DictUtilities.someDictAvailable.not());
-		dictButton.setOnAction(actionEvent -> DictUtilities.openWindow(Utilities.WindowType.DICT, null));
+public class SktToolBarCom extends HBox {
+	public SktToolBarCom() {
+		final Button dictButton = new Button("", new TextIcon("skt-book", TextIcon.IconSet.CUSTOM));
+		dictButton.setTooltip(new Tooltip("Sanskrit Dictionaries"));
+		dictButton.disableProperty().bind(SanskritUtilities.sktDictDBAvailable.not());
+		dictButton.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SKTDICT, null));
 		getChildren().addAll(dictButton);
 	}
 

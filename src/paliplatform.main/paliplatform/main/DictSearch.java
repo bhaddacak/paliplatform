@@ -41,6 +41,9 @@ public class DictSearch implements SimpleService {
 
 	@Override
 	public boolean processArray(final Object[] args) {
+		final Utilities.WindowType winType = (Utilities.WindowType)args[0];
+		final String term = (String)args[1];
+		PaliPlatform.showDict(winType, term);
 		return true;
 	}
 

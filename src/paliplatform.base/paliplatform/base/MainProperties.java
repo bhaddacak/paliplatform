@@ -33,7 +33,7 @@ import java.util.Properties;
 public class MainProperties {
 	public static final MainProperties INSTANCE = new MainProperties();
 	private static final String PROPERTIES_FILE = "PaliPlatform3.properties";
-	private static final double DEFAULT_WIDTH = 870;
+	private static final double DEFAULT_WIDTH = 890;
 	private static final double DEFAULT_HEIGHT = 500;
 	private final Map<String, String> defPropMap = new HashMap<>();
 	private final Properties settings;
@@ -51,7 +51,7 @@ public class MainProperties {
 		{ "pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString() },
 		{ "sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString() },
 		{ "dictset", "CPED," },
-		{ "sktdictset", "MWD," },
+		{ "sktdictset", "" },
 		{ "dpd-decon-count", "850000" },
 		{ "dpd-dict-count", "420000" },
 		{ "dpd-head-count", "80000" },
@@ -64,13 +64,13 @@ public class MainProperties {
 		{ "sentence-use-semicolon", "true" },
 		{ "sentence-use-dash", "true" },
 		{ "roman-translit", "dr" },
-		{ "font-roman", Utilities.FONTSERIF },
-		{ "font-devanagari", Utilities.FONTSERIF },
-		{ "font-khmer", Utilities.FONTSERIF },
-		{ "font-myanmar", Utilities.FONTSERIF },
-		{ "font-sinhala", Utilities.FONTSERIF },
-		{ "font-thai", Utilities.FONTSERIF },
-		{ "font-unknown", Utilities.FONTSERIF },
+		{ "font-roman", Utilities.FONT_ROMAN_DEFAULT },
+		{ "font-devanagari", Utilities.FONT_DEVA_DEFAULT },
+		{ "font-khmer", Utilities.FONT_KHMER_DEFAULT },
+		{ "font-myanmar", Utilities.FONT_MYANMAR_DEFAULT },
+		{ "font-sinhala", Utilities.FONT_SINHALA_DEFAULT },
+		{ "font-thai", Utilities.FONT_THAI_DEFAULT },
+		{ "font-unknown", Utilities.FONT_ROMAN_DEFAULT },
 		{ "slp1-mapto", "DEVA" },
 		{ "virama-key", "`" }
 	};

@@ -61,7 +61,7 @@ import org.apache.lucene.util.BytesRef;
 /** 
  * The window showing term lists of Pali collections.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.6
  * @since 2.0
  */
 public class TermLister extends BorderPane {
@@ -233,13 +233,15 @@ public class TermLister extends BorderPane {
 		final ContextMenu tablePopupMenu = new ContextMenu();
 		final MenuItem copyTermMenuItem = new MenuItem("Copy the word");
 		copyTermMenuItem.setOnAction(actionEvent -> copyTerm());
-		final MenuItem sendToDictMenuItem = new MenuItem("Send to Dictionaries");
-		sendToDictMenuItem.setOnAction(actionEvent -> sendTermToDict());
+		final MenuItem sendToDictMenuItem = new MenuItem("Send to Pāli Dictionaries");
+		sendToDictMenuItem.setOnAction(actionEvent -> sendTermToDict(false));
+		final MenuItem sendToSktDictMenuItem = new MenuItem("Send to Sanskrit Dictionaries");
+		sendToSktDictMenuItem.setOnAction(actionEvent -> sendTermToDict(true));
 		final MenuItem sendToDocFinderMenuItem = new MenuItem("Send to Document Finder");
 		sendToDocFinderMenuItem.setOnAction(actionEvent -> sendTermToDocFinder());
 		final MenuItem sendToLuceneFinderMenuItem = new MenuItem("Send to Lucene Finder");
 		sendToLuceneFinderMenuItem.setOnAction(actionEvent -> sendTermToLuceneFinder());
-		tablePopupMenu.getItems().addAll(copyTermMenuItem, sendToDictMenuItem, sendToDocFinderMenuItem, sendToLuceneFinderMenuItem);
+		tablePopupMenu.getItems().addAll(copyTermMenuItem, sendToDictMenuItem, sendToSktDictMenuItem, sendToDocFinderMenuItem, sendToLuceneFinderMenuItem);
 		table.setContextMenu(tablePopupMenu);
 		table.setOnDragDetected(mouseEvent -> {
 			final SimpleTermFreqProp selected = (SimpleTermFreqProp)table.getSelectionModel().getSelectedItem();
@@ -726,13 +728,16 @@ public class TermLister extends BorderPane {
 		}
 	}
 
-	private void sendTermToDict() {
+	private void sendTermToDict(final boolean toSktDict) {
 		final SimpleTermFreqProp tf = table.getSelectionModel().getSelectedItem();
 		final String term = tf.termProperty().get();
 		if (!term.isEmpty()) {
 			final SimpleService dictSearch = (SimpleService)LuceneUtilities.simpleServiceMap.get("paliplatform.main.DictSearch");
 			if (dictSearch != null) {
-				dictSearch.process(term);
+				if (toSktDict)
+					dictSearch.processArray(new Object[] { Utilities.WindowType.SKTDICT, term});
+				else
+					dictSearch.process(term);
 			}
 		}
 	}

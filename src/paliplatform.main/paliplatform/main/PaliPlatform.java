@@ -63,6 +63,7 @@ final public class PaliPlatform extends Application {
 	static DictService dictServiceImp;
 	static ReaderService readerServiceImp;
 	static LuceneService luceneServiceImp;
+	static SktService sktServiceImp;
 	public static InfoPopup infoPopup;
 	
     @Override
@@ -140,6 +141,7 @@ final public class PaliPlatform extends Application {
 		dictServiceImp = getDictService();
 		readerServiceImp = getReaderService();
 		luceneServiceImp = getLuceneService();
+		sktServiceImp = getSktService();
     }
     
     @Override
@@ -189,10 +191,15 @@ final public class PaliPlatform extends Application {
 			final Tab luceneListerTab = luceneServiceImp.getListerTab();
 			persisTabs.put(Utilities.WindowType.LISTER, luceneListerTab);
 		}
-		// Dict tab, present when available
+		// Pali Dict tab, present when available
 		if (dictServiceImp != null) {
 			final Tab dictTab = dictServiceImp.getDictTab();
 			persisTabs.put(Utilities.WindowType.DICT, dictTab);
+		}
+		// Skt Dict tab, present when available
+		if (sktServiceImp != null) {
+			final Tab sktDictTab = sktServiceImp.getSktDictTab();
+			persisTabs.put(Utilities.WindowType.SKTDICT, sktDictTab);
 		}
 		// add all tabs, ordered by Utilities.WindowType
 		//tabPane.setTabDragPolicy(TabPane.TabDragPolicy.REORDER);
@@ -323,6 +330,15 @@ final public class PaliPlatform extends Application {
 				.orElse(null);
 	}
 
+	private static SktService getSktService() {
+		return ServiceLoader.load(SktService.class)
+				.stream()
+				.filter((Provider p) -> p.type().getName().equals("paliplatform.sanskrit.SktServiceImp"))
+				.map(Provider::get)
+				.findFirst()
+				.orElse(null);
+	}
+
     static void refreshTheme() {
 		scene.getStylesheets().clear();
 		final String stylesheet = Utilities.getCustomStyleSheet();
@@ -369,11 +385,25 @@ final public class PaliPlatform extends Application {
 	}
 
 	public static void showDict(final String term) {
-		if (dictServiceImp != null) {
-			dictServiceImp.searchTerm(term);
-			final Tab dictTab = persisTabs.get(Utilities.WindowType.DICT);
-			if (dictTab != null) {
-				tabPane.getSelectionModel().select(dictTab);
+		showDict(Utilities.WindowType.DICT, term);
+	}
+
+	public static void showDict(final Utilities.WindowType winType, final String term) {
+		if (winType == Utilities.WindowType.DICT) {
+			if (dictServiceImp != null) {
+				dictServiceImp.searchTerm(term);
+				final Tab dictTab = persisTabs.get(winType);
+				if (dictTab != null) {
+					tabPane.getSelectionModel().select(dictTab);
+				}
+			}
+		} else if (winType == Utilities.WindowType.SKTDICT) {
+			if (sktServiceImp != null) {
+				sktServiceImp.searchTerm(term);
+				final Tab sktDictTab = persisTabs.get(winType);
+				if (sktDictTab != null) {
+					tabPane.getSelectionModel().select(sktDictTab);
+				}
 			}
 		}
 	}
