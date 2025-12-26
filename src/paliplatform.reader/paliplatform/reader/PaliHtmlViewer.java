@@ -1,7 +1,7 @@
 /*
  * PaliHtmlViewer.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import netscape.javascript.JSObject;
 /** 
  * The generic viewer of HTML Pali texts.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.1
  */
 public class PaliHtmlViewer extends PaliHtmlViewerBase {
@@ -93,16 +93,17 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 			for (final Utilities.PaliScript sc : Utilities.PaliScript.scripts){
 				if (sc.ordinal() == 0) continue;
 				final String n = sc.toString();
-				final RadioMenuItem scriptItem = new RadioMenuItem(n.charAt(0) + n.substring(1).toLowerCase());
+				final RadioMenuItem scriptItem = new RadioMenuItem(sc.getName());
 				scriptItem.setToggleGroup(scriptGroup);
-				scriptItem.setSelected(scriptItem.getText().toUpperCase().equals(displayScript.get().toString()));
+				scriptItem.setSelected(Utilities.removeAccents(scriptItem.getText()).toUpperCase().equals(displayScript.get().toString()));
+				scriptItem.setUserData(sc);
 				convertMenu.getItems().add(scriptItem);
 				scriptRadioMenu.add(scriptItem);
 			}
 			scriptGroup.selectedToggleProperty().addListener((observable) -> {
 				if (scriptGroup.getSelectedToggle() != null) {
 					final RadioMenuItem selected = (RadioMenuItem)scriptGroup.getSelectedToggle();
-					final Utilities.PaliScript toScript = Utilities.PaliScript.valueOf(selected.getText().toUpperCase());
+					final Utilities.PaliScript toScript = (Utilities.PaliScript)selected.getUserData();
 					displayScript.set(toScript);
 					toolBar.setupFontMenu(toScript);
 					convertScript();

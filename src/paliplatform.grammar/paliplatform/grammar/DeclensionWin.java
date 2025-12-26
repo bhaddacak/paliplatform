@@ -1,7 +1,7 @@
 /*
  * DeclensionWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ import javafx.geometry.*;
 /** 
  * The declension table window.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.7
  * @since 2.0
  */
 public class DeclensionWin extends BorderPane {
@@ -557,13 +557,13 @@ public class DeclensionWin extends BorderPane {
 
 	private void setupTable() {
 		final TableColumn<DeclensionOutput, String> caseNumberCol = createDeclTableColumn("", outputList.get(0).caseNumberProperty().getName()); 
-		caseNumberCol.setPrefWidth(Utilities.getRelativeSize(1.5));	
+		caseNumberCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(11)).divide(18));
 		final TableColumn<DeclensionOutput, String> caseNameCol = createDeclTableColumn("Case", outputList.get(0).caseNameProperty().getName());
-		caseNameCol.setPrefWidth(Utilities.getRelativeSize(3.5));	
+		caseNameCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(11)).divide(18).multiply(2));
 		final TableColumn<DeclensionOutput, String> singularOutputCol = createDeclTableColumn("Singular", outputList.get(0).singularOutputProperty().getName()); 
-		singularOutputCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(18)).divide(2));
+		singularOutputCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(11)).divide(18).multiply(7));
 		final TableColumn<DeclensionOutput, String> pluralOutputCol = createDeclTableColumn("Plural", outputList.get(0).pluralOutputProperty().getName());
-		pluralOutputCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(18)).divide(2));
+		pluralOutputCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(11)).divide(18).multiply(7));
 		table.getColumns().clear();
 		table.getColumns().add(caseNumberCol);
 		table.getColumns().add(caseNameCol);

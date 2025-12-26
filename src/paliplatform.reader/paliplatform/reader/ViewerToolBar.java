@@ -1,7 +1,7 @@
 /*
  * ViewerToolBar.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@ package paliplatform.reader;
 
 import paliplatform.base.*;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ import javafx.scene.Node;
 /** 
  * The common toolbar used in HtmlViewer.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 class ViewerToolBar extends CommonWorkingToolBar {
@@ -41,7 +42,7 @@ class ViewerToolBar extends CommonWorkingToolBar {
 	private final Map<String, Toggle> lineHeightToggleMap = new HashMap<>();
 	private PaliHtmlViewerBase viewer;
 
-	ViewerToolBar(final WebView webView, final Node... nodes) {
+	ViewerToolBar(final Node... nodes) {
 		super(nodes);
 		viewer = (PaliHtmlViewerBase)nodes[0];
 		darkButton.setOnAction(actionEvent -> {
@@ -76,9 +77,9 @@ class ViewerToolBar extends CommonWorkingToolBar {
 		printButton.setTooltip(new Tooltip("Print"));
 		printButton.setOnAction(actionEvent -> viewer.print());
 		
-		zoomInButton.setOnAction(actionEvent -> webView.setFontScale(webView.getFontScale() + 0.10));
-		zoomOutButton.setOnAction(actionEvent -> webView.setFontScale(webView.getFontScale() - 0.10));
-		resetButton.setOnAction(actionEvent -> webView.setFontScale(1.0));
+		zoomInButton.setOnAction(actionEvent -> zoom(+1));
+		zoomOutButton.setOnAction(actionEvent -> zoom(-1));
+		fontSizeChoice.setOnAction(actionEvent -> fontSizeSelected());
 		
 		getItems().addAll(lineSpacingMenu, styleMenu, printButton);
 	}
@@ -95,4 +96,19 @@ class ViewerToolBar extends CommonWorkingToolBar {
 		}
 	}
 	
+	private void zoom(final int step) {
+		final int currIndex = Arrays.binarySearch(Utilities.fontSizes, viewer.currFontSize);
+		final int newIndex = currIndex + step;
+		if (newIndex < 0 || newIndex >= Utilities.fontSizes.length)
+			return; // out of range
+		viewer.currFontSize = Utilities.fontSizes[newIndex];
+		fontSizeChoice.getSelectionModel().select(Integer.valueOf(viewer.currFontSize));
+		viewer.webView.setFontScale(viewer.currFontSize/100.0);
+	}
+
+	private void fontSizeSelected() {
+		viewer.currFontSize = fontSizeChoice.getSelectionModel().getSelectedItem();
+		viewer.webView.setFontScale(viewer.currFontSize/100.0);
+	}
+
 }

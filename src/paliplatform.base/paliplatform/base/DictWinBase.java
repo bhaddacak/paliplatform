@@ -1,7 +1,7 @@
 /*
  * DictWinBase.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ import netscape.javascript.JSObject;
 /**
  * The base class of dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.7
  * @since 3.5
  */
 public abstract class DictWinBase extends BorderPane {
@@ -66,6 +66,7 @@ public abstract class DictWinBase extends BorderPane {
 	protected final CommonWorkingToolBar toolBar;
 	protected final InfoPopup infoPopup = new InfoPopup();
 	protected String initialStringToLocate = "";
+	private int currFontSize;
 
 	public DictWinBase() {
 		final VBox mainBox = new VBox();
@@ -89,15 +90,9 @@ public abstract class DictWinBase extends BorderPane {
 			final Utilities.Theme theme = toolBar.resetTheme();
 			setViewerTheme(theme.toString());
 		});
-		toolBar.getZoomInButton().setOnAction(actionEvent -> {
-			htmlViewer.webView.setFontScale(htmlViewer.webView.getFontScale() + 0.10);
-		});
-		toolBar.getZoomOutButton().setOnAction(actionEvent -> {
-			htmlViewer.webView.setFontScale(htmlViewer.webView.getFontScale() - 0.10);
-		});
-		toolBar.getResetButton().setOnAction(actionEvent -> {
-			htmlViewer.webView.setFontScale(1.0);
-		});
+		toolBar.getZoomInButton().setOnAction(actionEvent -> zoom(+1));
+		toolBar.getZoomOutButton().setOnAction(actionEvent -> zoom(-1));
+		toolBar.getFontSizeChoice().setOnAction(actionEvent -> fontSizeSelected());
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());
 		toolBar.copyButton.setOnAction(actionEvent -> copyText());
 		setTop(toolBar);
@@ -197,6 +192,7 @@ public abstract class DictWinBase extends BorderPane {
 		// setup HtmlViewer to show result on the right
 		htmlViewer.simpleSetup();
 		// Set the member for the browser's window object after the document loads
+		currFontSize = Integer.valueOf(Utilities.getSetting("dict-fontsize"));
 	 	htmlViewer.webEngine.getLoadWorker().stateProperty().addListener((prop, oldState, newState) -> {
 			if (newState == Worker.State.SUCCEEDED) {
 				final JSObject jsWindow = (JSObject)htmlViewer.webEngine.executeScript("window");
@@ -205,6 +201,7 @@ public abstract class DictWinBase extends BorderPane {
 				toolBar.resetFont();
 				if (!initialStringToLocate.isEmpty())
 					findSingle(initialStringToLocate);
+				htmlViewer.webView.setFontScale(currFontSize/100.0);
 			}
 		});
 		htmlViewer.setContent(Utilities.makeHTML(""));
@@ -244,7 +241,7 @@ public abstract class DictWinBase extends BorderPane {
 
 		mainBox.getChildren().addAll(searchToolBar, splitPane);
 		setCenter(mainBox);
-		setPrefWidth(Utilities.getRelativeSize(62));
+		setPrefWidth(Utilities.getRelativeSize(64));
 		setPrefHeight(Utilities.getRelativeSize(45));
 
 		// set up drop event
@@ -348,7 +345,22 @@ public abstract class DictWinBase extends BorderPane {
 	}
 
 	public void setViewerFont(final String fontname) {
-		htmlViewer.webEngine.executeScript("setFont('[\"" + fontname + "\"]')");
+		htmlViewer.webEngine.executeScript("setFont('{\"name\":\"" + fontname + "\"}')");
+	}
+
+	private void zoom(final int step) {
+		final int currIndex = Arrays.binarySearch(Utilities.fontSizes, currFontSize);
+		final int newIndex = currIndex + step;
+		if (newIndex < 0 || newIndex >= Utilities.fontSizes.length)
+			return; // out of range
+		currFontSize = Utilities.fontSizes[newIndex];
+		toolBar.getFontSizeChoice().getSelectionModel().select(Integer.valueOf(currFontSize));
+		htmlViewer.webView.setFontScale(currFontSize/100.0);
+	}
+
+	private void fontSizeSelected() {
+		currFontSize = toolBar.getFontSizeChoice().getSelectionModel().getSelectedItem();
+		htmlViewer.webView.setFontScale(currFontSize/100.0);
 	}
 
 	private void copyText() {

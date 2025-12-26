@@ -1,7 +1,7 @@
 /*
  * PaliTextEditor.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,12 +46,11 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
 	private static final String DEFAULT_FILENAME = "untitled.txt";
-	private static final int DEFAULT_FONTSIZE = 130;
 	private final PaliTextInput textInput;
 	private final TextArea area;
 	private String fileName = DEFAULT_FILENAME;
@@ -344,7 +343,7 @@ public class PaliTextEditor extends BorderPane {
 		menuBar.getMenus().addAll(fileMenu, editMenu, convertFromMenu, convertToMenu, toolsMenu, optionsMenu);
 		
 		// tool bar
-		Platform.runLater(() -> toolBar.resetFont(DEFAULT_FONTSIZE));
+		Platform.runLater(() -> toolBar.resetFont(Integer.valueOf(Utilities.getSetting("other-fontsize"))));
 		// config some buttons and add new ones
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save"));
 		toolBar.saveTextButton.disableProperty().bind(saveable.not());
@@ -448,7 +447,7 @@ public class PaliTextEditor extends BorderPane {
 		} else {
 			openFile();
 		}
-		toolBar.resetFont(DEFAULT_FONTSIZE);
+		toolBar.resetFont();
 	}
 		
 	public final boolean openFile() {
@@ -536,7 +535,7 @@ public class PaliTextEditor extends BorderPane {
 	}
 	
 	public void resetFont() {
-		toolBar.resetFont(DEFAULT_FONTSIZE);
+		toolBar.resetFont(Integer.valueOf(Utilities.getSetting("other-fontsize")));
 	}
 	
 	private void copyText() {
@@ -868,22 +867,10 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;
 		final String romanText = Utilities.convertToRomanPali(inputText);
-		final String result = removeAccents(romanText);
+		final String result = Utilities.removeAccents(romanText);
 		openNewEditor(result);
 	}
 	
-	private String removeAccents(final String input) {
-		final String text = Normalizer.normalize(input, Form.NFD);
-		final int len = text.length();
-		final StringBuilder output = new StringBuilder(len);
-		for (int i = 0; i < len; i++) {
-			final char ch = text.charAt(i);
-			if (ch < '\u0300' || ch > '\u036F')
-				output.append(ch);
-		}
-		return output.toString();
-	}
-
 	private void reformatCST4() {
 		final String selText = area.getSelectedText();
 		final String inputText = selText.isEmpty() ? area.getText() : selText;

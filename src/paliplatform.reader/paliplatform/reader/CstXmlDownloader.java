@@ -1,7 +1,7 @@
 /*
  * CstXmlDownloader.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,13 +31,13 @@ import javafx.scene.control.*;
  * The downloader dialog for CST Devanagari XML data.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.7
  * @since 3.3
  */
 class CstXmlDownloader extends ProgressiveDownloader {
 	static final CstXmlDownloader INSTANCE = new CstXmlDownloader(WindowType.NO_OPTION_BOX);
 	private final List<String> textGroupList = List.of("All", "-", "Vin", "Sut", "Abh", "-", "Mūl", "Att", "Ṭīk", "Aññ");
-	private final List<RadioMenuItem> textGroupItemList = new ArrayList<>();
+	private final List<Toggle> textGroupItemList = new ArrayList<>();
 	private final ToggleGroup textGroup = new ToggleGroup();
 	private final Map<String, DocumentInfo> docInfoMap;
 	private final InfoPopup helpPopup = new InfoPopup();
@@ -47,6 +47,12 @@ class CstXmlDownloader extends ProgressiveDownloader {
 		setTitle("CST Devanāgarī XML Downloader");
 		// add up UI
 		final ToolBar toolBar = new ToolBar();
+		final Button refreshButton = new Button("Refresh");
+		refreshButton.disableProperty().bind(isRunningProperty());
+		refreshButton.setOnAction(actionEvent -> {
+			final Toggle selected = (Toggle)textGroup.getSelectedToggle();
+			init(((RadioMenuItem)selected).getText());
+		});
 		final MenuButton optionMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));
 		optionMenu.setTooltip(new Tooltip("Text group selection"));
 		for (final String tg : textGroupList) {
@@ -62,13 +68,14 @@ class CstXmlDownloader extends ProgressiveDownloader {
 		textGroup.selectToggle(textGroupItemList.get(0));
         textGroup.selectedToggleProperty().addListener((observable) -> {
 			if (textGroup.getSelectedToggle() != null) {
-				final RadioMenuItem selected = (RadioMenuItem)textGroup.getSelectedToggle();
-				init(selected.getText());
+				final Toggle selected = (Toggle)textGroup.getSelectedToggle();
+				init(((RadioMenuItem)selected).getText());
+//~ 				init(selected.getText());
 			}
         });
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_LEFT, true));
-		toolBar.getItems().addAll(optionMenu, helpButton);
+		toolBar.getItems().addAll(refreshButton, optionMenu, helpButton);
 		mainPane.setTop(toolBar);
 		// initialization
 		helpPopup.setContentWithText(ReaderUtilities.getTextResource("info-cstxmldownloader.txt"));

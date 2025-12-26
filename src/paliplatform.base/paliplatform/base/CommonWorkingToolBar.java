@@ -1,7 +1,7 @@
 /*
  * CommonWorkingToolBar.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,28 +30,30 @@ import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Window;
+import javafx.application.Platform;
 
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
-	private static final int DEFAULT_FONTSIZE = 100;
+	static enum NodeClass { VIEWER, PDICT, SDICT, PLETTER, SLETTER, SREADER, OTHER }
 	private final Node[] nodes;
 	private Utilities.Theme theme;
 	private final Map<String, RadioMenuItem> fontMenuItemsMap = new HashMap<>();
 	private String currFont;
-	private int currFontSizePercent = DEFAULT_FONTSIZE;
+	private int currFontSizePercent; // set in init
 	protected final ToggleButton darkButton = new ToggleButton("", new TextIcon("moon", TextIcon.IconSet.AWESOME));
 	protected final Button zoomOutButton = new Button("", new TextIcon("circle-minus", TextIcon.IconSet.AWESOME));
-	protected final Button resetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
 	protected final Button zoomInButton = new Button("", new TextIcon("circle-plus", TextIcon.IconSet.AWESOME));
+	protected final ChoiceBox<Integer> fontSizeChoice = new ChoiceBox<>();
 	protected final ToggleGroup fontGroup = new ToggleGroup();
 	public MenuButton fontMenu = new MenuButton("", new TextIcon("font", TextIcon.IconSet.AWESOME));
 	public final Button copyButton = new Button("", new TextIcon("copy", TextIcon.IconSet.AWESOME));
 	public final Button saveTextButton = new Button("", new TextIcon("file-arrow-down", TextIcon.IconSet.AWESOME));
+	private NodeClass nodeClass; // set in init
 	static Map<String, SimpleService> simpleServiceMap;
 	
 	public CommonWorkingToolBar(final Node... nodes) {
@@ -63,13 +65,14 @@ public class CommonWorkingToolBar extends ToolBar {
 		darkButton.setOnAction(actionEvent -> resetTheme());
 		
 		zoomOutButton.setTooltip(new Tooltip("Decrease font size"));
-		zoomOutButton.setOnAction(actionEvent -> changeFontSize(-10));
+		zoomOutButton.setOnAction(actionEvent -> changeFontSize(-1));
 		
-		resetButton.setTooltip(new Tooltip("Reset to normal size"));
-		resetButton.setOnAction(actionEvent -> changeFontSize(0));
-		
+		fontSizeChoice.setTooltip(new Tooltip("Font size (%)"));
+		for (final int s : Utilities.fontSizes)
+			fontSizeChoice.getItems().add(s);
+
 		zoomInButton.setTooltip(new Tooltip("Increase font size"));
-		zoomInButton.setOnAction(actionEvent -> changeFontSize(+10));
+		zoomInButton.setOnAction(actionEvent -> changeFontSize(+1));
 			
 		fontMenu.setTooltip(new Tooltip("Select the display font"));
 		currFont = setupFontMenu(PaliScript.UNKNOWN);
@@ -89,10 +92,52 @@ public class CommonWorkingToolBar extends ToolBar {
 		saveTextButton.setTooltip(new Tooltip("Save data as text"));
 		copyButton.setTooltip(new Tooltip("Copy text to clipboard"));
 		
-		getItems().addAll(darkButton, zoomOutButton, resetButton, zoomInButton, fontMenu, saveTextButton, copyButton);		
+		getItems().addAll(darkButton, zoomOutButton, fontSizeChoice, zoomInButton, fontMenu, saveTextButton, copyButton);		
 
 		// init service
 		simpleServiceMap = getSimpleServices();
+		Platform.runLater(() -> init());
+	}
+
+	private void init() {
+		final String nodeClassName = nodes[0].getClass().getName();
+		if (nodeClassName.endsWith("SktDictWin")) {
+			nodeClass = NodeClass.SDICT;
+		} else if(nodeClassName.endsWith("DictWin")) {
+			nodeClass = NodeClass.PDICT;
+		} else if (nodeClassName.endsWith("HtmlViewer") || nodeClassName.endsWith("ScReader")){
+			nodeClass = NodeClass.VIEWER;
+		} else {
+			final Scene scene = nodes[0].getScene();
+			if (scene == null) {
+				nodeClass = NodeClass.OTHER;
+			} else {
+				final Window win = scene.getWindow();
+				final String winName = win.getClass().getName();
+				if (winName.endsWith("SktLetterWin")) {
+					nodeClass = NodeClass.SLETTER;
+				} else if (winName.endsWith("LetterWin")) {
+					nodeClass = NodeClass.PLETTER;
+				} else {
+					final String parentName = nodes[0].getParent().getClass().getName();
+					if (parentName.endsWith("SentenceReader"))
+						nodeClass = NodeClass.SREADER;
+					else
+						nodeClass = NodeClass.OTHER;
+				}
+			}
+		}
+		currFontSizePercent = getDefaultFontSize();
+		fontSizeChoice.getSelectionModel().select(Integer.valueOf(currFontSizePercent));
+		if (nodeClass != NodeClass.VIEWER
+				&& nodeClass != NodeClass.PLETTER
+				&& nodeClass != NodeClass.SLETTER
+				&& nodeClass != NodeClass.PDICT
+				&& nodeClass != NodeClass.SDICT
+				&& nodeClass != NodeClass.SREADER) {
+			fontSizeChoice.setOnAction(actionEvent -> fontSizeSelected());
+			resetFont(currFontSizePercent);
+		}
 	}
 
 	private static Map<String, SimpleService> getSimpleServices() {
@@ -100,6 +145,14 @@ public class CommonWorkingToolBar extends ToolBar {
 				.stream()
 				.map(Provider::get)
 				.collect(Collectors.toMap(x -> x.getClass().getName(), Function.identity()));
+	}
+
+	private int getDefaultFontSize() {
+		return nodeClass == NodeClass.VIEWER
+				? Integer.valueOf(Utilities.getSetting("viewer-fontsize"))
+				: nodeClass == NodeClass.PDICT || nodeClass == NodeClass.SDICT
+					? Integer.valueOf(Utilities.getSetting("dict-fontsize"))
+					: Integer.valueOf(Utilities.getSetting("other-fontsize"));
 	}
 
 	public final String setupFontMenu(final PaliScript script) {
@@ -130,8 +183,8 @@ public class CommonWorkingToolBar extends ToolBar {
 		return zoomOutButton;
 	}
 	
-	public Button getResetButton() {
-		return resetButton;
+	public ChoiceBox<Integer> getFontSizeChoice() {
+		return fontSizeChoice;
 	}
 	
 	public Utilities.Theme getTheme() {
@@ -158,7 +211,7 @@ public class CommonWorkingToolBar extends ToolBar {
 	}
 	
 	public void resetFont(final String fontname) {
-		resetFont(fontname, DEFAULT_FONTSIZE);
+		resetFont(fontname, getDefaultFontSize());
 	}
 
 	public void resetFont(final String fontname, final int sizePercent) {
@@ -181,62 +234,67 @@ public class CommonWorkingToolBar extends ToolBar {
 	}
 
 	private void setFont(final String fontname) {
-		for (final Node node : nodes) {
-			final String nodeClassName = node.getClass().getName();
-			if (nodeClassName.endsWith("SktDictWin")) {
-				final SimpleService sktDictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
-				if (sktDictFontSetter != null) {
-					sktDictFontSetter.processArray(new Object[] { node, fontname });
-				}
-			} else if (nodeClassName.endsWith("DictWin")) {
-				final SimpleService dictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.dict.FontSetter");
-				if (dictFontSetter != null) {
-					dictFontSetter.processArray(new Object[] { node, fontname });
-				}
-			} else if (nodeClassName.endsWith("HtmlViewer") || nodeClassName.endsWith("ScReader")){
-				final SimpleService readerFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.reader.FontSetter");
-				if (readerFontSetter != null) {
-					readerFontSetter.processArray(new Object[] { node, fontname });
-				}
-			} else {
-				final Scene scene = node.getScene();
-				if (scene == null) {
-					node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
-				} else {
-					final Window win = scene.getWindow();
-					final String winName = win.getClass().getName();
-					if (winName.endsWith("SktLetterWin")) {
-						final SimpleService sktFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
-						if (sktFontSetter != null)
-							sktFontSetter.processArray(new Object[] { node, fontname });
-					} else if (winName.endsWith("LetterWin")) {
-						final SimpleService gramFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.grammar.FontSetter");
-						if (gramFontSetter != null)
-							gramFontSetter.processArray(new Object[] { win, fontname });
-					} else {
-						node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
-					}
-				}
-			}
+		// for node window
+		final Node node = nodes[0];
+		if (nodeClass == NodeClass.PDICT) {
+			final SimpleService dictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.dict.FontSetter");
+			if (dictFontSetter != null)
+				dictFontSetter.processArray(new Object[] { node, fontname });
+		} else if(nodeClass == NodeClass.SDICT) {
+			final SimpleService sktDictFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
+			if (sktDictFontSetter != null)
+				sktDictFontSetter.processArray(new Object[] { node, fontname });
+		} else if(nodeClass == NodeClass.VIEWER) {
+			final SimpleService readerFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.reader.FontSetter");
+			if (readerFontSetter != null)
+				readerFontSetter.processArray(new Object[] { node, fontname });
+		} else if(nodeClass == NodeClass.PLETTER) {
+			final Window win = node.getScene().getWindow();
+			final SimpleService gramFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.grammar.FontSetter");
+			if (gramFontSetter != null)
+				gramFontSetter.processArray(new Object[] { win, fontname });
+		} else if(nodeClass == NodeClass.SLETTER) {
+			final SimpleService sktFontSetter = CommonWorkingToolBar.simpleServiceMap.get("paliplatform.sanskrit.FontSetter");
+			if (sktFontSetter != null)
+				sktFontSetter.processArray(new Object[] { node, fontname });
+		} else {
+			if (node instanceof ComboBox || node instanceof TextField)
+				node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:100%;");
+			else
+				node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
 		}
-//~ 		final javafx.scene.text.Font f = new javafx.scene.text.Font(fontname, 12.0);
-//~ 		System.out.println(f.getFamily() + " : " + f.getName());
+		// for other components, if any
+		for (int i = 1; i < nodes.length; i++) {
+			final Node compo = nodes[i];
+			if (compo instanceof ComboBox || compo instanceof TextField)
+				compo.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:100%;");
+			else
+				compo.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
+		}
 		setFontMenu(fontname);
 	}
 	
-	public void changeFontSize(final int percent) {
-		if (percent == 0) {
-			currFontSizePercent = DEFAULT_FONTSIZE;
-		} else {
-			currFontSizePercent += percent;
-			if (currFontSizePercent < 20)
-				currFontSizePercent = 20;
-		}
+	private void changeFontSize() {
 		for (final Node node : nodes) {
 			if (!(node instanceof ComboBox || node instanceof TextField)) {
 				node.setStyle("-fx-font-family:'" + currFont + "';-fx-font-size:" + currFontSizePercent + "%;");
 			}
 		}
+	}
+
+	public void changeFontSize(final int step) {
+		final int currIndex = Arrays.binarySearch(Utilities.fontSizes, currFontSizePercent);
+		final int newIndex = currIndex + step;
+		if (newIndex < 0 || newIndex >= Utilities.fontSizes.length)
+			return; // out of range
+		currFontSizePercent = Utilities.fontSizes[newIndex];
+		fontSizeChoice.getSelectionModel().select(Integer.valueOf(currFontSizePercent));
+		changeFontSize();
+	}
+
+	private void fontSizeSelected() {
+		currFontSizePercent = fontSizeChoice.getSelectionModel().getSelectedItem();
+		changeFontSize();
 	}
 
 }

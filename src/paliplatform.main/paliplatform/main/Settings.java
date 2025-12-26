@@ -1,7 +1,7 @@
 /*
  * Settings.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@ import javafx.geometry.*;
 /** 
  * The settings dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 class Settings extends SingletonWindow {
@@ -126,7 +126,44 @@ class Settings extends SingletonWindow {
 		fontBox.setSpacing(5);
 		fontBox.setPadding(new Insets(10));
 		fontBox.setPrefHeight(Double.MAX_VALUE);
-		fontBox.getChildren().add(new Label("Preferred font used for each script"));
+		final GridPane fontSizeGrid = new GridPane();
+		fontSizeGrid.setHgap(5);
+		fontSizeGrid.setVgap(5);
+		final Label lbViewerHead = new Label("Text viewers");
+		final Label lbDictHead = new Label("Dictionaries (except DPD)");
+		final Label lbOtherHead = new Label("Other tools");
+		final ChoiceBox<Integer> cbViewerFontSize = new ChoiceBox<>();
+		final ChoiceBox<Integer> cbDictFontSize = new ChoiceBox<>();
+		final ChoiceBox<Integer> cbOtherFontSize = new ChoiceBox<>();
+		for (final int s : Utilities.fontSizes) {
+			cbViewerFontSize.getItems().add(s);
+			cbDictFontSize.getItems().add(s);
+			cbOtherFontSize.getItems().add(s);
+		}
+		cbViewerFontSize.getSelectionModel().select(Integer.valueOf(Utilities.getSetting("viewer-fontsize")));
+		cbDictFontSize.getSelectionModel().select(Integer.valueOf(Utilities.getSetting("dict-fontsize")));
+		cbOtherFontSize.getSelectionModel().select(Integer.valueOf(Utilities.getSetting("other-fontsize")));
+		cbViewerFontSize.setOnAction(actionEvent -> {
+			Utilities.setSetting("viewer-fontsize", "" + cbViewerFontSize.getSelectionModel().getSelectedItem());
+			MainProperties.INSTANCE.saveSettings();
+		});
+		cbDictFontSize.setOnAction(actionEvent -> {
+			Utilities.setSetting("dict-fontsize", "" + cbDictFontSize.getSelectionModel().getSelectedItem());
+			MainProperties.INSTANCE.saveSettings();
+		});
+		cbOtherFontSize.setOnAction(actionEvent -> {
+			Utilities.setSetting("other-fontsize", "" + cbOtherFontSize.getSelectionModel().getSelectedItem());
+			MainProperties.INSTANCE.saveSettings();
+		});
+		GridPane.setConstraints(cbViewerFontSize, 0, 0);
+		GridPane.setConstraints(cbDictFontSize, 0, 1);
+		GridPane.setConstraints(cbOtherFontSize, 0, 2);
+		GridPane.setConstraints(lbViewerHead, 1, 0);
+		GridPane.setConstraints(lbDictHead, 1, 1);
+		GridPane.setConstraints(lbOtherHead, 1, 2);
+		fontSizeGrid.getChildren().addAll(lbViewerHead, lbDictHead, lbOtherHead, cbViewerFontSize, cbDictFontSize, cbOtherFontSize);
+		fontBox.getChildren().addAll(new Label("Default font size (%)"), fontSizeGrid,
+									new Separator(), new Label("Preferred font used for each script"));
 		for (final Utilities.PaliScript script : Utilities.PaliScript.scripts) {
 			final HBox scBox = new HBox();
 			scBox.setSpacing(5);

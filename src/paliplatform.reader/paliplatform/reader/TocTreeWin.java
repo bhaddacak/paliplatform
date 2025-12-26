@@ -116,7 +116,6 @@ public class TocTreeWin extends BorderPane {
 		});
 		toolBar.getItems().addAll(showFileNameButton, infoButton);
 		setTop(toolBar);		
-		toolBar.resetFont(120);
 
 		// some init
 		infoPopup.setTextWidth(Utilities.getRelativeSize(32));

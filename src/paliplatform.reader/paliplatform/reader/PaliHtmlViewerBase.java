@@ -1,7 +1,7 @@
 /*
  * PaliHtmlViewerBase.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -64,8 +64,10 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	private final InfoPopup dictInfoPopup = new InfoPopup();
 	protected final InfoPopup helpInfoPopup = new InfoPopup();
 	protected final ContextMenu contextMenu;
+	public int currFontSize;
 
 	public PaliHtmlViewerBase() {
+		currFontSize = Integer.valueOf(Utilities.getSetting("viewer-fontsize"));
 		webEngine.setUserStyleSheetLocation(ReaderUtilities.class.getResource(ReaderUtilities.PALIHTML_CSS).toExternalForm());
 		// Set the member for the browser's window object after the document loads
 		final ViewerFXHandler fxHandler = new ViewerFXHandler(this);
@@ -76,6 +78,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 				webEngine.executeScript("init()");
 				setViewerTheme(Utilities.getSetting("theme"));
 				setViewerFont();
+				webView.setFontScale(currFontSize/100.0);
 			}
 		});		
 		textPane.setCenter(webView);
@@ -141,7 +144,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			}
 		});		
 		// add main toolbar
-		toolBar = new ViewerToolBar(webView, this, findInput);
+		toolBar = new ViewerToolBar(this, findInput);
 		// configure some buttons first
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save selection as text"));
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveSelection());
@@ -244,7 +247,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	
 	public void setViewerFont(final String fontname) {
 		toolBar.setFontMenu(fontname);
-		webEngine.executeScript("setFont('[\"" + fontname + "\"]')");
+		webEngine.executeScript("setFont('{\"name\":\"" + fontname + "\"}')");
 	}
 
 	public void setViewerFont(final Utilities.PaliScript script) {

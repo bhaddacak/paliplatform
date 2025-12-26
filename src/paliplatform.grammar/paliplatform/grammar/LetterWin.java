@@ -1,7 +1,7 @@
 /*
  * LetterWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ import javafx.beans.property.*;
  * The window showing Pali letters in various scripts.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 3.7
  * @since 2.0
  */
 public final class LetterWin extends SingletonWindow {
@@ -144,6 +144,7 @@ public final class LetterWin extends SingletonWindow {
 	private final VBox tagBox = new VBox();
 	private final GridPane letterGrid = new GridPane();
 	private final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(letterGrid);
+	private final ChoiceBox<Integer> fontSizeChoice;
 	private final VBox typingBox = new VBox();
 	private final Label typingOutput = new Label();
 	private final TextField typingTextField;
@@ -165,9 +166,10 @@ public final class LetterWin extends SingletonWindow {
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
 		toolBar.copyButton.setTooltip(new Tooltip("Copy text data to clipboard"));
 		toolBar.copyButton.setOnAction(actionEvent -> copyText());	
-		toolBar.getZoomInButton().setOnAction((actionEvent -> updateLetterDisplay(+10)));
-		toolBar.getZoomOutButton().setOnAction((actionEvent -> updateLetterDisplay(-10)));
-		toolBar.getResetButton().setOnAction((actionEvent -> updateLetterDisplay(0)));
+		toolBar.getZoomInButton().setOnAction(actionEvent -> updateLetterDisplay(+1));
+		toolBar.getZoomOutButton().setOnAction(actionEvent -> updateLetterDisplay(-1));
+		fontSizeChoice = toolBar.getFontSizeChoice();
+		fontSizeChoice.setOnAction(actionEvent -> fontSizeSelected());
 		// add new buttons
 		epSwitchButton.setTooltip(new Tooltip("English/Pāli"));
 		epSwitchButton.setOnAction(actionEvent -> updateTagArray());
@@ -183,7 +185,7 @@ public final class LetterWin extends SingletonWindow {
 		for (final Utilities.PaliScript sc : Utilities.PaliScript.scripts){
 			if (sc.ordinal() == 0) continue;
 			final String n = sc.toString();
-			final RadioMenuItem scriptItem = new RadioMenuItem(n.charAt(0) + n.substring(1).toLowerCase());
+			final RadioMenuItem scriptItem = new RadioMenuItem(sc.getName());
 			scriptItem.setUserData(sc);
 			scriptItem.setToggleGroup(scriptGroup);
 			scriptItem.setSelected(sc == currPaliScript);
@@ -384,8 +386,17 @@ public final class LetterWin extends SingletonWindow {
 		}
 	}
 	
-	public void updateLetterDisplay(final int percent) {
-		currFontPercent = percent==0 ? 100 : currFontPercent + percent;
+	public void updateLetterDisplay(final int step) {
+		if (step == 0) {
+			currFontPercent = Integer.valueOf(Utilities.getSetting("other-fontsize"));
+		} else {
+			final int currIndex = Arrays.binarySearch(Utilities.fontSizes, currFontPercent);
+			final int newIndex = currIndex + step;
+			if (newIndex < 0 || newIndex >= Utilities.fontSizes.length)
+				return; // out of range
+			currFontPercent = Utilities.fontSizes[newIndex];
+		}
+		fontSizeChoice.getSelectionModel().select(Integer.valueOf(currFontPercent));
 		updateLetterDisplay();
 	}
 
@@ -405,6 +416,11 @@ public final class LetterWin extends SingletonWindow {
 					setBigChar(paliChars[currSelectedPos[0]][currSelectedPos[1]]);
 			}
 		}
+	}
+
+	private void fontSizeSelected() {
+		currFontPercent = fontSizeChoice.getSelectionModel().getSelectedItem();
+		updateLetterDisplay();
 	}
 
 	private void highlightLetterDisplay(final List<int[]> posList) {

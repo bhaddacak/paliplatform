@@ -39,14 +39,11 @@ const darkThemeObj = {
 	"referenceColor": [ "white", "brown", "brown", "brown", "brown", "brown", "brown" ]
 };
 // functions
-function setFont(fontnameJson) {
-	const fonts = JSON.parse(fontnameJson);
-	let fontNames = "";
-	for(const f of fonts) {
-		fontNames += "'" + f + "',";
-	}
- 	//window.fxHandler.debugPrint("debug: " + fontNames);
-	document.body.style.fontFamily = fontNames.slice(0, -1);
+function setFont(objJson) {
+ 	// window.fxHandler.debugPrint("debug: " + objJson);
+	const fontObj = JSON.parse(objJson);
+	const fontName = fontObj.name;
+	document.body.style.fontFamily = fontName;
 }
 function setThemeCommon(theme) {
 	const themeObj = theme === 'DARK' ? darkThemeObj : lightThemeObj;

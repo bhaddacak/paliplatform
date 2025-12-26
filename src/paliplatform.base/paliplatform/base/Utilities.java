@@ -1,7 +1,7 @@
 /*
  * Utilities.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.text.RuleBasedCollator;
 import java.sql.*;
 import java.security.*;
@@ -64,7 +66,7 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 final public class Utilities {
@@ -117,6 +119,7 @@ final public class Utilities {
 	public static final String DASH_M = "—";
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
+	public static final int[] fontSizes = { 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 250, 300 };
 	public static final String[] lineHeights = { "80%", "90%", "100%", "110%", "120%", "130%", "140%", "150%", "175%", "200%", "250%", "300%" };
 	public static final Map<PaliScript, Set<String>> embeddedFontMap = new EnumMap<>(PaliScript.class); 
 	public static final Map<PaliScript, Set<String>> externalFontMap = new EnumMap<>(PaliScript.class); 
@@ -162,17 +165,18 @@ final public class Utilities {
 		private static String[] cstAbbrs = { "uknw", "latn", "deva", "khmr", "mymr", "sinh", "thai" };
 		public String getName() {
 			final String name = this.toString();
-			return name.charAt(0) + name.substring(1).toLowerCase();
+			return this == DEVANAGARI
+					? "Devanāgarī"
+					: name.charAt(0) + name.substring(1).toLowerCase();
 		}
 		public String getCstAbbr() {
 			return cstAbbrs[this.ordinal()];
 		}
 		public static PaliScript fromName(final String name) {
-			final String nameUpper = name.toUpperCase();
-			if (validNames.contains(nameUpper))
-				return PaliScript.valueOf(nameUpper);
-			else
-				return UNKNOWN;
+			final String nameUpper = removeAccents(name).toUpperCase();
+			return validNames.contains(nameUpper)
+					? PaliScript.valueOf(nameUpper)
+					: UNKNOWN;
 		}
 		public static PaliScript fromInitial(final char init) {
 			final String initUpper = Character.toUpperCase(init) + "";
@@ -1511,6 +1515,18 @@ final public class Utilities {
 			System.err.println(e);
 		}
 		return result.toString();
+	}
+
+	public static String removeAccents(final String input) {
+		final String text = Normalizer.normalize(input, Form.NFD);
+		final int len = text.length();
+		final StringBuilder output = new StringBuilder(len);
+		for (int i = 0; i < len; i++) {
+			final char ch = text.charAt(i);
+			if (ch < '\u0300' || ch > '\u036F')
+				output.append(ch);
+		}
+		return output.toString();
 	}
 
 	public static String makeBareHTML(final String body) {

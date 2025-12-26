@@ -1,7 +1,7 @@
 /*
  * MainProperties.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 public class MainProperties {
@@ -46,6 +46,9 @@ public class MainProperties {
 		{ "iconsize", "NORMAL" },
 		{ "bgstyle", "GRAY" },
 		{ "lineheight", "120%" },
+		{ "viewer-fontsize", "100" },
+		{ "dict-fontsize", "100" },
+		{ "other-fontsize", "100" },
 		{ "exit-ask", "true" },
 		{ "editor-close-ask", "true" },
 		{ "pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString() },

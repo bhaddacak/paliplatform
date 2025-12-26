@@ -1,7 +1,7 @@
 /*
  * SentenceReader.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,13 +47,11 @@ import javafx.beans.property.SimpleBooleanProperty;
  * The tool facilitating Pali text reading.
  * Formerly this class is named PaliTextReader.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 public class SentenceReader extends BorderPane {
 	public static final String TITLE = "Pāli Sentence Reader";
-	private static final int TEXT_BASE_SIZE = 150;
-	private static final int TRANS_BASE_SIZE = 100;
 	private Stage theStage;
 	private final String sentenceRoot = Utilities.ROOTDIR + SentenceUtilities.SENTENCESPATH;
 	private String sentencePath = sentenceRoot + SentenceUtilities.SENTENCESMAIN;
@@ -87,8 +85,8 @@ public class SentenceReader extends BorderPane {
 	private final InfoPopup infoPopup = new InfoPopup();
 	private final TextArea editArea;
 	private Text currSelectedText = null;
-	private int currTextSize = TEXT_BASE_SIZE;
-	private int currTransSize = TRANS_BASE_SIZE;
+	private int currTextSize;
+	private int currTransSize;
 	private EditMode currEditMode = EditMode.TEXT;
 	private String currSelectedVariant = "";
 	private static enum EditMode { TEXT, TRANS }
@@ -194,9 +192,9 @@ public class SentenceReader extends BorderPane {
 		gotoMenu.getItems().addAll(goNextTransMenuItem, goPrevTransMenuItem, new SeparatorMenuItem(), goNextNoTransMenuItem, goPrevNoTransMenuItem);
 		menuBar.getMenus().addAll(sentenceMenu, editMenu, viewMenu, gotoMenu);
 		// config some toolbar's buttons
-		toolBar.getZoomInButton().setOnAction(actionEvent -> zoom(+10));
-		toolBar.getZoomOutButton().setOnAction(actionEvent -> zoom(-10));
-		toolBar.getResetButton().setOnAction(actionEvent -> zoom(0));
+		toolBar.getZoomInButton().setOnAction(actionEvent -> zoom(+1));
+		toolBar.getZoomOutButton().setOnAction(actionEvent -> zoom(-1));
+		toolBar.getFontSizeChoice().setOnAction(actionEvent -> fontSizeSelected());
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
 		toolBar.copyButton.setOnAction(actionEvent -> copyText());		
 		// add new components
@@ -437,8 +435,9 @@ public class SentenceReader extends BorderPane {
 		closeEditPane();
 		closeTransPane();
 		editArea.clear();
-		currTextSize = TEXT_BASE_SIZE;
-		currTransSize = TRANS_BASE_SIZE;
+		final int fontsize = Integer.valueOf(Utilities.getSetting("other-fontsize"));
+		currTextSize = fontsize + 50;
+		currTransSize = fontsize;
 		saveableThis.set(false);
 		saveableAll.set(false);
 		isSenEditedMap.clear();
@@ -1341,19 +1340,20 @@ public class SentenceReader extends BorderPane {
 		return isSenEditedMap.values().stream().reduce(false, (x, y) -> x || y);
 	}
 
-	private void zoom(final int factor) {
-		toolBar.changeFontSize(factor);
-		if (factor == 0) {
-			currTextSize = TEXT_BASE_SIZE;
-			currTransSize = TRANS_BASE_SIZE;
-		} else {
-			currTextSize += factor;
-			currTransSize += factor;
-		}
-		if (currTextSize < 100)
-			currTextSize = 100;
-		if (currTransSize < 50)
-			currTransSize = 50;
+	private void zoom(final int step) {
+		final int currIndex = Arrays.binarySearch(Utilities.fontSizes, currTransSize);
+		final int newIndex = currIndex + step;
+		if (newIndex < 0 || newIndex >= Utilities.fontSizes.length)
+			return; // out of range
+		currTransSize = Utilities.fontSizes[newIndex];
+		toolBar.getFontSizeChoice().getSelectionModel().select(Integer.valueOf(currTransSize));
+		currTextSize = currTransSize + 50;
+		updateResult();
+	}
+
+	private void fontSizeSelected() {
+		currTransSize = toolBar.getFontSizeChoice().getSelectionModel().getSelectedItem();
+		currTextSize = currTransSize + 50;
 		updateResult();
 	}
 
