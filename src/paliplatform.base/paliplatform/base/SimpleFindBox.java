@@ -1,7 +1,7 @@
 /*
  * SimpleFindBox.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ import javafx.collections.*;
 /** 
  * The simple find box used in HTML viewers.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.7
  * @since 3.0
  */
 public class SimpleFindBox extends VBox {
@@ -146,6 +146,10 @@ public class SimpleFindBox extends VBox {
 
 	public boolean isSuspended() {
 		return suspended;
+	}
+
+	public void setSanskritMode(final boolean yn) {
+		findTextInput.setSanskritMode(yn);
 	}
 
 }

@@ -1,0 +1,3 @@
+Downloading Sanskrit documents
+	1. The current version supports only Sanskrit documents hosted in GRETIL (https://gretil.sub.uni-goettingen.de).
+	2. All the files are downloaded as a whole zip file (~ 280 MB).

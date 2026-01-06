@@ -31,7 +31,7 @@ import javafx.scene.control.*;
  * The downloader dialog for CST Devanagari XML data.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.0
  * @since 3.3
  */
 class CstXmlDownloader extends ProgressiveDownloader {
@@ -70,7 +70,6 @@ class CstXmlDownloader extends ProgressiveDownloader {
 			if (textGroup.getSelectedToggle() != null) {
 				final Toggle selected = (Toggle)textGroup.getSelectedToggle();
 				init(((RadioMenuItem)selected).getText());
-//~ 				init(selected.getText());
 			}
         });
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
@@ -134,13 +133,7 @@ class CstXmlDownloader extends ProgressiveDownloader {
 
 	@Override
 	public void onFinished() {
-		ReaderUtilities.checkIfSuttaCentralAvailable();
-		if (ReaderUtilities.suttaCentralAvailable.get()) {
-			ReaderUtilities.createScHeads();
-			ReaderUtilities.scSuttaInfoMap.clear();
-			ReaderUtilities.loadScSuttaInfo();
-			ReaderUtilities.updateCorpusList();
-		}
+		// do nothing
 	}
 
 }

@@ -1,7 +1,7 @@
 /*
  * SktDictWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import javafx.application.Platform;
 /**
  * The sanskrit dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.0
  * @since 3.5
  */
 public class SktDictWin extends DictWinBase {
@@ -42,19 +42,21 @@ public class SktDictWin extends DictWinBase {
 		"6964", "udac", "17495", "tiryyac", "23294", "parāñc", "26826", "pratyac",
 		"27762", "prāc", "37845", "viṣvac", "31847", "viṣvadryac", "43087", "samyac",
 		"46719", "havā" };
-	private final Map<String, String> shsXrefMap = new HashMap<>();
-	private final Pattern tagPatt = Pattern.compile("<([^> ]+)( *[^>]*)>(.*?)</\\1>");
-	private final Pattern slp1Patt = Pattern.compile("\\{#(.*?)#\\}");
-	private final Pattern italicPatt = Pattern.compile("\\{%(.*?)%\\}");
-	private final Pattern boldPatt = Pattern.compile("\\{@(.*?)@\\}");
-	private final Pattern unreadablePatt = Pattern.compile("\\{\\?(.*?)\\?\\}");
-	private final Pattern infoPatt = Pattern.compile("<[^>]+/>");
-	private final Pattern poemPatt = Pattern.compile("<Poem>(.*?)</Poem>");
+	private static final Map<String, String> shsXrefMap = new HashMap<>();
+	private static final Pattern tagPatt = Pattern.compile("<([^> ]+)( *[^>]*)>(.*?)</\\1>");
+	private static final Pattern slp1Patt = Pattern.compile("\\{#(.*?)#\\}");
+	private static final Pattern italicPatt = Pattern.compile("\\{%(.*?)%\\}");
+	private static final Pattern boldPatt = Pattern.compile("\\{@(.*?)@\\}");
+	private static final Pattern unreadablePatt = Pattern.compile("\\{\\?(.*?)\\?\\}");
+	private static final Pattern infoPatt = Pattern.compile("<[^>]+/>");
+	private static final Pattern poemPatt = Pattern.compile("<Poem>(.*?)</Poem>");
 
 	public SktDictWin(final Object[] args) {
 		// initialization
-		for (int i = 0; i < shsXrefMapArr.length; i += 2) {
-			shsXrefMap.put(shsXrefMapArr[i], shsXrefMapArr[i + 1]);
+		if (shsXrefMap.isEmpty()) {
+			for (int i = 0; i < shsXrefMapArr.length; i += 2) {
+				shsXrefMap.put(shsXrefMapArr[i], shsXrefMapArr[i + 1]);
+			}
 		}
 		if (SanskritUtilities.simpleServiceMap == null) 
 			SanskritUtilities.simpleServiceMap = SanskritUtilities.getSimpleServices();
@@ -100,6 +102,7 @@ public class SktDictWin extends DictWinBase {
 			resultList.clear();
 			resultMap.clear();
 		}
+		searchTextField.requestFocus();
 		findBox.init();
 		Platform.runLater(() -> resultPane.setBottom(null));			
 	}
@@ -245,7 +248,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatMWMeaning(final String input) {
+	public static String formatMWMeaning(final String input) {
 		String result = input;
 		// bullet
 		result = result.replace("¦", " •");
@@ -262,7 +265,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatAPMeaning(final String input) {
+	public static String formatAPMeaning(final String input) {
 		String result = input;
 		final Map<String, String> xrefMap = Map.of( "5008", "avadhātavya", "6060", "asamāvṛttaḥ" );
 		// dash
@@ -275,9 +278,12 @@ public class SktDictWin extends DictWinBase {
 		// bold bullet
 		final Pattern boldBullPatt = Pattern.compile("[.-]\\{@(.*?)@\\}");
 		result = boldBullPatt.matcher(result).replaceAll("<br> • <b>$1</b>");
+		// bold bullet paren
+		final Pattern boldBullParPatt = Pattern.compile("[.-]\\(\\{@(.*?)@\\}\\)");
+		result = boldBullParPatt.matcher(result).replaceAll("<br> • (<b>$1</b>)");
 		// bold inline
-		final Pattern boldInlinePatt = Pattern.compile(" \\{@(.*?)@\\}");
-		result = boldInlinePatt.matcher(result).replaceAll(" <b>$1</b>");
+		final Pattern boldInlinePatt = Pattern.compile("\\{@(.*?)@\\}");
+		result = boldInlinePatt.matcher(result).replaceAll("<b>$1</b>");
 		// ² and ³ bullet
 		result = result.replace(".²", "<br> • ²").replace(".³", "<br> • ³");
 		// <Poem>
@@ -291,7 +297,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatSHSMeaning(final String input) {
+	public static String formatSHSMeaning(final String input) {
 		String result = input;
 		// dash
 		result = result.replace("¦", "—");
@@ -313,7 +319,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatMDMeaning(final String input) {
+	public static String formatMDMeaning(final String input) {
 		String result = input;
 		// dash
 		result = result.replace("¦", "—");
@@ -331,7 +337,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatBHSMeaning(final String input) {
+	public static String formatBHSMeaning(final String input) {
 		String result = input;
 		// dash
 		result = result.replace("¦", "—");
@@ -344,7 +350,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatMWEMeaning(final String input) {
+	private static String formatMWEMeaning(final String input) {
 		String result = input;
 		// dash bullet
 		result = result.replace("—", "<br> —");
@@ -358,7 +364,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatAEMeaning(final String input) {
+	private static String formatAEMeaning(final String input) {
 		String result = input;
 		// dash
 		result = result.replace("¦", "—");
@@ -374,7 +380,7 @@ public class SktDictWin extends DictWinBase {
 		return result;
 	}
 
-	private String formatBORMeaning(final String input) {
+	private static String formatBORMeaning(final String input) {
 		String result = input;
 		// dash
 		result = result.replace("¦", "—");

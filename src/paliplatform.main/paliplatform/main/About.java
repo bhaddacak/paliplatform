@@ -1,7 +1,7 @@
 /*
  * About.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,14 +40,14 @@ import javafx.animation.*;
 /** 
  * The about dialog. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.0
  * @since 2.0
  */
 class About extends Stage {
 	static final About INSTANCE = new About();
 	private static final String SLIDEZIP = "slides.zip";
 	private final TextArea miscInfo = new TextArea();
-	private final Image defaultLogo = new Image(About.class.getResourceAsStream("resources/images/lotustext-240.png"));
+	private final Image defaultLogo = new Image(About.class.getResourceAsStream("resources/images/lotusbuddha-240.png"));
 	private final ImageView picDisplay = new ImageView(defaultLogo);
 	private final File slideZip;
 	private final List<String> magazine = new ArrayList<>();

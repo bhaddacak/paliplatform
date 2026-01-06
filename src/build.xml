@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Pāli Platform 3" basedir=".." default="help">
+<project name="Pāli Platform 4" basedir=".." default="help">
 
 <property name="product.name" value="PaliPlatform"/>
-<property name="product.version" value="3.6.0"/>
+<property name="product.version" value="4.0.0"/>
 <property name="basename" value="paliplatform"/>
 <property name="launcher.name" value="PPLauncher"/>
 <property name="src.dir" value="src"/>

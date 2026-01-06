@@ -1,7 +1,7 @@
 /*
  * DictWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import javafx.application.Platform;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
 public class DictWin extends DictWinBase {
@@ -79,6 +79,7 @@ public class DictWin extends DictWinBase {
 			resultList.clear();
 			resultMap.clear();
 		}
+		searchTextField.requestFocus();
 		if (!DictUtilities.someDictAvailable.get())
 			Utilities.displayAlert(Alert.AlertType.ERROR, "No data to display,\nplease create dict data first");
 		findBox.init();

@@ -1,5 +1,5 @@
 /*
- * DictService.java
+ * sktgretil-viewer.js
  *
  * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
@@ -17,24 +17,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.base;
-
-import java.util.List;
-import javafx.scene.control.Tab;
-
-/** 
- * The service interface used by Sanskrit module.
- * @author J.R. Bhaddacak
- * @version 3.7
- * @since 3.6
- */
-
-public interface SktService {
-	Tab getSktDictTab();
-	void openSktDict(String term);
-	void searchTerm(String term);
-	boolean isSktDictAvailable(String dictCode);
-	List<String> getSktDictTerms(String dictCode);
-	List<String> getSktDictMeaning(String dictCode, String term);
+function jumpTo(point) {
+	const elm = document.getElementById('jumptarget-h'+point);
+	if(elm !== null)
+		elm.scrollIntoView();
 }
 
+function openDoc(fname) {
+	window.fxHandler.openSktGretilDoc(fname);
+}

@@ -1,7 +1,7 @@
 /*
  * PaliPlatformIconsData.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the PaliPlatform Icons list used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 2.0
  */
  class PaliPlatformIconsData extends HashMap<String, Character> {
@@ -41,6 +41,7 @@ import java.util.HashMap;
 		 put("skt-letter", 'F');
 		 put("skt-book", 'G');
 		 put("skt-scroll", 'H');
+		 put("book-update", 'I');
 		 put("lucene", 'L');
 		 put("sc", 'S');
 	 }

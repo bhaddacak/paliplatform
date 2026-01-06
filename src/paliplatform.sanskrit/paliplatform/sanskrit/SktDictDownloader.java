@@ -1,7 +1,7 @@
 /*
  * SktDictDownloader.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import javafx.scene.control.Alert;
  * The downloader dialog for Sanskrit dictionaries.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.0
  * @since 3.6
  */
 class SktDictDownloader extends ProgressiveDownloader {
@@ -89,7 +89,7 @@ class SktDictDownloader extends ProgressiveDownloader {
 			final SktDictBook dict = dictList.get(i);
 			final String url = Utilities.urls.getProperty(dict.toString().toLowerCase() + "_url", "");
 			if (url.isEmpty()) {
-				Utilities.displayAlert(Alert.AlertType.WARNING, "No URLs available,\nplease update online data, then Refresh");
+				Utilities.displayAlert(Alert.AlertType.WARNING, "No URLs available,\nplease update online info, then Refresh");
 				aborted = true;
 				break;
 			}
@@ -101,6 +101,9 @@ class SktDictDownloader extends ProgressiveDownloader {
 			dlTask.setUnpackMode(DownloadTask.UnpackMode.SELECTIVE);
 			final String destFileName = dict.getDataFileName();
 			dlTask.setDestinationFile(new File(destination, destFileName));
+			// for downloading from github.com, skip size check
+			if (url.contains("/github.com/"))
+				dlTask.setSkipSizeCheck(true);
 			dlTasks[i] = dlTask;
 		}
 		if (!aborted)
@@ -109,12 +112,14 @@ class SktDictDownloader extends ProgressiveDownloader {
 
 	@Override
 	public void onFinished() {
-		SanskritUtilities.updateSktDictAvailibility();
-		if (!SanskritUtilities.getAvailableSktDictData().isEmpty()) {
-			if (Utilities.isDBWritable(Utilities.H2DB.SKTDICT)) {
-				SanskritUtilities.createSktDictData();
-			} else {
-				Utilities.displayAlert(Alert.AlertType.WARNING, "Skt. Dict DB locked,\nplease create Skt. Dict data later");
+		if (!skipInstall()) {
+			SanskritUtilities.updateSktDictAvailibility();
+			if (!SanskritUtilities.getAvailableSktDictData().isEmpty()) {
+				if (Utilities.isDBWritable(Utilities.H2DB.SKTDICT)) {
+					SanskritUtilities.createSktDictData();
+				} else {
+					Utilities.displayAlert(Alert.AlertType.WARNING, "Skt. Dict DB locked,\nplease create Skt. Dict data later");
+				}
 			}
 		}
 	}

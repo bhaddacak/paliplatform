@@ -1,7 +1,7 @@
 /*
  * Launcher.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,11 +27,11 @@ import java.lang.module.*;
 import javax.swing.*;
 
 /** 
- * The launcher for Pāli Platform 3,
+ * The launcher for Pāli Platform 3-4,
  * suitable for making an exe launcher for Windows
  * and doing a clean-up start after patches installed.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
 

@@ -14,6 +14,7 @@ module paliplatform.reader {
 		javafx.graphics,
 		paliplatform.lucene;
 	uses paliplatform.base.SimpleService;
+	uses paliplatform.base.SktService;
 	provides paliplatform.base.SimpleService with 
 		paliplatform.reader.FontSetter;
 	provides paliplatform.base.ReaderService with 
@@ -22,5 +23,6 @@ module paliplatform.reader {
 		paliplatform.reader.ReaderMenu,
 		paliplatform.reader.ReaderToolBarCom,
 		paliplatform.reader.RootFinderMenuItem,
-		paliplatform.reader.GramSutFinderMenuItem;
+		paliplatform.reader.GramSutFinderMenuItem,
+		paliplatform.reader.SktGretilMenuItem;
 }

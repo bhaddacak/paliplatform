@@ -1,7 +1,7 @@
 /*
  * CpUtil.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ import java.nio.charset.*;
  * $ java -p modules -m paliplatform.reader/paliplatform.reader.CpUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.7
  * @since 3.3
  */
 final public class CpUtil {
@@ -227,6 +227,11 @@ final public class CpUtil {
 		printLog(String.format("Done in %.3f seconds", msec/1000.0));
 	}
 
+	private static String getCharName(final char ch, final boolean withParen) {
+		String result = String.format("U+%04X", (int)ch) + " " + Character.getName(ch);
+		return withParen ? "(" + result + ")" : result;
+	}
+
 	private static Corpus.Collection getCollection(final String colStr) {
 		final Corpus.Collection col = Corpus.Collection.idMap.get(colStr);
 		if (col == null) {
@@ -305,11 +310,14 @@ final public class CpUtil {
 			case BJT:
 			case PTST:
 			case GRAM:
+			case SKT:
 				result = docinfos.stream()
 							.map(x -> {
 								final String fname = x.getFileNameWithExt();
 								final String fnameOK = fname.substring(fname.lastIndexOf("/") + 1);
-								return fnameOK + ": " + x.getTextName();
+								return col == Corpus.Collection.SKT
+										? fnameOK
+										: fnameOK + ": " + x.getTextName();
 							})
 							.collect(Collectors.joining(LINESEP));
 				break;
@@ -339,7 +347,7 @@ final public class CpUtil {
 			final ZipEntry entry = e.nextElement();
 			try (final Scanner in = new Scanner(zip.getInputStream(entry), charset)) {
 				while (in.hasNextLine()) {
-					final String line = in.nextLine().trim().replaceAll("</?.*?>", "");
+					final String line = in.nextLine().trim().replaceAll("<.*?>", "");
 					final char[] cArr = line.toCharArray();
 					for (final char ch : cArr) {
 						if (charFreqMap.containsKey(ch))
@@ -353,7 +361,36 @@ final public class CpUtil {
 		zip.close();
 		final String result = charFreqMap.entrySet().stream()
 								.sorted(Map.Entry.comparingByValue())
-								.map(x -> x.getKey() + "\t" + x.getValue())
+								.map(x -> x.getKey() + "\t" + x.getValue() + "\t" + getCharName(x.getKey(), true))
+								.collect(Collectors.joining(LINESEP));
+		return result;
+	}
+
+	private static String getSktCharStat(final Corpus cp) throws IOException {
+		final File zipfile = cp.getZipFile();
+		final ZipFile zip = new ZipFile(zipfile);
+		final Map<Character, Integer> charFreqMap = new HashMap<>();
+		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+			final ZipEntry entry = e.nextElement();
+			if (entry != null && entry.getName().contains("/transformations/plaintext/") && entry.getName().endsWith(".txt")) {
+				try (final Scanner in = new Scanner(zip.getInputStream(entry))) {
+					while (in.hasNextLine()) {
+						final String line = in.nextLine().trim();
+						final char[] cArr = line.toCharArray();
+						for (final char ch : cArr) {
+							if (charFreqMap.containsKey(ch))
+								charFreqMap.computeIfPresent(ch, (k, v) -> v + 1);
+							else
+								charFreqMap.put(ch, 1);
+						} // end for
+					} // end while
+				} // end try
+			} // end if
+		} // end for
+		zip.close();
+		final String result = charFreqMap.entrySet().stream()
+								.sorted(Map.Entry.comparingByValue())
+								.map(x -> x.getKey() + "\t" + x.getValue() + "\t" + getCharName(x.getKey(), true))
 								.collect(Collectors.joining(LINESEP));
 		return result;
 	}
@@ -370,7 +407,7 @@ final public class CpUtil {
 				pageList = ReaderUtilities.getBjtPages(zip.getInputStream(entry));
 				if (pageList == null) continue;
 				for (final BjtPage bp : pageList) {
-					final String text = bp.getAllText().replaceAll("</?.*?>", "");
+					final String text = bp.getAllText().replaceAll("<.*?>", "");
 					final char[] cArr = text.toCharArray();
 					for (final char ch : cArr) {
 						if (charFreqMap.containsKey(ch))
@@ -384,7 +421,7 @@ final public class CpUtil {
 		zip.close();
 		final String result = charFreqMap.entrySet().stream()
 								.sorted(Map.Entry.comparingByValue())
-								.map(x -> x.getKey() + "\t" + x.getValue())
+								.map(x -> x.getKey() + "\t" + x.getValue() + "\t" + getCharName(x.getKey(), true))
 								.collect(Collectors.joining(LINESEP));
 		return result;
 	}
@@ -395,7 +432,7 @@ final public class CpUtil {
 		final Map<Character, Integer> charFreqMap = new HashMap<>();
 		final File[] files = dir.listFiles((d, f) -> f.endsWith(".gz"));
 		for (final File gz : files) {
-			final String text = ReaderUtilities.readGz(gz, cp.getEncoding().getCharset()).replaceAll("</?.*?>", "");
+			final String text = ReaderUtilities.readGz(gz, cp.getEncoding().getCharset()).replaceAll("<.*?>", "");
 			final char[] cArr = text.toCharArray();
 			for (final char ch : cArr) {
 				if (charFreqMap.containsKey(ch))
@@ -406,7 +443,7 @@ final public class CpUtil {
 		}
 		final String result = charFreqMap.entrySet().stream()
 								.sorted(Map.Entry.comparingByValue())
-								.map(x -> x.getKey() + "\t" + x.getValue())
+								.map(x -> x.getKey() + "\t" + x.getValue() + "\t" + getCharName(x.getKey(), true))
 								.collect(Collectors.joining(LINESEP));
 		return result;
 	}
@@ -417,7 +454,7 @@ final public class CpUtil {
 		final Map<Character, Integer> charFreqMap = new HashMap<>();
 		final File[] files = dir.listFiles((d, f) -> f.endsWith(".xml"));
 		for (final File xml : files) {
-			final String text = Files.readString(xml.toPath(), cp.getEncoding().getCharset()).replaceAll("</?.*?>", "");
+			final String text = Files.readString(xml.toPath(), cp.getEncoding().getCharset()).replaceAll("<.*?>", "");
 			final char[] cArr = text.toCharArray();
 			for (final char ch : cArr) {
 				if (charFreqMap.containsKey(ch))
@@ -428,7 +465,7 @@ final public class CpUtil {
 		}
 		final String result = charFreqMap.entrySet().stream()
 								.sorted(Map.Entry.comparingByValue())
-								.map(x -> x.getKey() + "\t" + x.getValue())
+								.map(x -> x.getKey() + "\t" + x.getValue() + "\t" + getCharName(x.getKey(), true))
 								.collect(Collectors.joining(LINESEP));
 		return result;
 	}
@@ -458,6 +495,9 @@ final public class CpUtil {
 				break;
 			case SC:
 				result = ScUtil.analyzeChars(scData);
+				break;
+			case SKT:
+				result = getSktCharStat(cp);
 				break;
 		}
 		return result;
@@ -507,8 +547,9 @@ final public class CpUtil {
 			printLog(charList.stream().collect(Collectors.joining(", ")));
 		}
 		for (final String ch : charList) {
-			printLog("Finding " + ch);
-			result.append("Occurences of '" + ch + "'").append(LINESEP);
+			final String chName = getCharName(ch.charAt(0), true);
+			printLog("Finding " + ch + " " + chName);
+			result.append("Occurences of '" + ch + "' " + chName).append(LINESEP);
 			final String findRes = findChar(colStr, ch);
 			result.append(findRes).append(LINESEP).append(LINESEP);
 		}
@@ -527,7 +568,7 @@ final public class CpUtil {
 	private static String findChar(final File zipfile, final Charset charset, final String query) throws IOException {
 		final Map<String, Long> fileMap = new HashMap<>();
 		final ZipFile zip = new ZipFile(zipfile);
-		int max = 20;
+		int max = DEF_MAX;
 		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
 			if (max <= 0) break;
 			final ZipEntry entry = e.nextElement();
@@ -549,12 +590,40 @@ final public class CpUtil {
 		return result;
 	}
 
+	private static String findSktChar(final Corpus cp, final String query) throws IOException {
+		final File zipfile = cp.getZipFile();
+		final Map<String, Long> fileMap = new HashMap<>();
+		final ZipFile zip = new ZipFile(zipfile);
+		int max = DEF_MAX;
+		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
+			if (max <= 0) break;
+			final ZipEntry entry = e.nextElement();
+			if (entry != null && entry.getName().contains("/transformations/plaintext/") && entry.getName().endsWith(".txt")) {
+				final String fname  = entry.getName();
+				long foundCount = 0;
+				try (final Scanner in = new Scanner(zip.getInputStream(entry))) {
+					foundCount = in.findAll(query).count();
+					if (foundCount > 0) {
+						fileMap.put(fname.substring(fname.lastIndexOf("/") + 1), foundCount);
+						max--;
+					}
+				}
+			}
+		}
+		zip.close();
+		final String result = fileMap.entrySet().stream()
+								.sorted(Map.Entry.comparingByKey())
+								.map(x -> x.getKey() + "\t" + x.getValue())
+								.collect(Collectors.joining(LINESEP));
+		return result;
+	}
+
 	private static String findBjtChar(final Corpus cp, final String query) throws IOException {
 		final File zipfile = cp.getZipFile();
 		if (!zipfile.exists()) return "";
 		final Map<String, Long> fileMap = new HashMap<>();
 		final ZipFile zip = new ZipFile(zipfile);
-		int max = 20;
+		int max = DEF_MAX;
 		for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
 			if (max <= 0) break;
 			final ZipEntry entry = e.nextElement();
@@ -565,7 +634,7 @@ final public class CpUtil {
 				pageList = ReaderUtilities.getBjtPages(zip.getInputStream(entry));
 				if (pageList == null) continue;
 				for (final BjtPage bp : pageList) {
-					final String text = bp.getAllText().replaceAll("</?.*?>", "");
+					final String text = bp.getAllText().replaceAll("<.*?>", "");
 					try (final Scanner in = new Scanner(text)) {
 						foundCount = in.findAll(query).count();
 						if (foundCount > 0) {
@@ -589,12 +658,12 @@ final public class CpUtil {
 		if (!dir.exists()) return "";
 		final Map<String, Long> fileMap = new HashMap<>();
 		final File[] files = dir.listFiles((d, f) -> f.endsWith(".gz"));
-		int max = 20;
+		int max = DEF_MAX;
 		long foundCount = 0;
 		for (final File gz : files) {
 			if (max <= 0) break;
 			final String fname = gz.getName();
-			final String text = ReaderUtilities.readGz(gz, cp.getEncoding().getCharset()).replaceAll("</?.*?>", "");
+			final String text = ReaderUtilities.readGz(gz, cp.getEncoding().getCharset()).replaceAll("<.*?>", "");
 			try (final Scanner in = new Scanner(text)) {
 				foundCount = in.findAll(query).count();
 				if (foundCount > 0) {
@@ -615,12 +684,12 @@ final public class CpUtil {
 		if (!dir.exists()) return "";
 		final Map<String, Long> fileMap = new HashMap<>();
 		final File[] files = dir.listFiles((d, f) -> f.endsWith(".xml"));
-		int max = 20;
+		int max = DEF_MAX;
 		long foundCount = 0;
 		for (final File xml : files) {
 			if (max <= 0) break;
 			final String fname = xml.getName();
-			final String text = Files.readString(xml.toPath(), cp.getEncoding().getCharset()).replaceAll("</?.*?>", "");
+			final String text = Files.readString(xml.toPath(), cp.getEncoding().getCharset()).replaceAll("<.*?>", "");
 			try (final Scanner in = new Scanner(text)) {
 				foundCount = in.findAll(query).count();
 				if (foundCount > 0) {
@@ -664,13 +733,16 @@ final public class CpUtil {
 			case SC:
 				result = ScUtil.findChar(scData, query);
 				break;
+			case SKT:
+				result = findSktChar(cp, query);
+				break;
 		}
 		return result;
 	}
 
 	private static void saveTransliterated(final String colStr, final String filename, final char lang) throws Exception {
 		final Corpus.Collection col = getCollection(colStr);
-		if (col == Corpus.Collection.PTST) {
+		if (col == Corpus.Collection.PTST || col == Corpus.Collection.SKT) {
 			printLog("Error: The operation has not been implemented");
 			System.exit(1);
 		}

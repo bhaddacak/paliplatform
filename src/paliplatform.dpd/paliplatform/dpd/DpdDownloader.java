@@ -1,7 +1,7 @@
 /*
  * DpdDownloader.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,11 +27,13 @@ import javafx.scene.control.*;
 /** 
  * The downloader dialog for DPD database. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 4.0
  * @since 3.0
  */
 class DpdDownloader extends ProgressiveDownloader {
 	static final DpdDownloader INSTANCE = new DpdDownloader();
+	private final CheckBox cbLatest = new CheckBox("Latest");
+	private final Label version = new Label();
 	private final InfoPopup helpPopup = new InfoPopup();
 	
 	private DpdDownloader() {
@@ -41,9 +43,11 @@ class DpdDownloader extends ProgressiveDownloader {
 		final Button refreshButton = new Button("Refresh");
 		refreshButton.disableProperty().bind(isRunningProperty());
 		refreshButton.setOnAction(actionEvent -> init());
+		cbLatest.setTooltip(new Tooltip("Always download the latest version"));
+		cbLatest.setOnAction(actionEvent -> init());
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
-		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_LEFT, true));
-		toolBar.getItems().addAll(refreshButton, helpButton);
+		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_CENTER, true));
+		toolBar.getItems().addAll(refreshButton, cbLatest, helpButton, version);
 		mainPane.setTop(toolBar);
 		// initialization
 		helpPopup.setContentWithText(DpdUtilities.getTextResource("info-downloader.txt"));
@@ -52,7 +56,22 @@ class DpdDownloader extends ProgressiveDownloader {
 	}
 
 	private void init() {
-		final String dbURL = Utilities.urls.getProperty("dpd_db_url");
+		final String dbURL;
+		if (cbLatest.isSelected()) {
+			dbURL = "https://github.com/digitalpalidictionary/dpd-db/releases/latest/download/dpd.db.tar.bz2";
+			version.setText("[latest]");	
+		} else {
+			dbURL = Utilities.urls.getProperty("dpd_db_url");
+			String ver = "undetected";
+			final String[] chunks = dbURL.split("/");
+			for (final String c : chunks) {
+				if (c.matches("^v\\d.*")) {
+					ver = c;
+					break;
+				}
+			}
+			version.setText("[" + ver + "]");
+		}
 		final String dbname = dbURL.substring(dbURL.lastIndexOf("/") + 1);
 		final File downloadTarget = new File(Utilities.CACHEPATH + dbname);
 		final File destination = new File(Utilities.ROOTDIR + Utilities.DBPATH);
@@ -62,8 +81,10 @@ class DpdDownloader extends ProgressiveDownloader {
 
 	@Override
 	public void onFinished() {
-		DpdUtilities.checkIfDpdAvailable();
-		Utilities.initializeDpdDB();
+		if (!skipInstall()) {
+			DpdUtilities.checkIfDpdAvailable();
+			Utilities.initializeDpdDB();
+		}
 	}
 
 }

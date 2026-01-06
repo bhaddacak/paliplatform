@@ -155,6 +155,9 @@ class MainMenu extends MenuBar {
 		}
 		final Menu sanskritMenu = (Menu)PaliPlatform.styleableServiceMap.get("paliplatform.sanskrit.SanskritMenu");
 		if (sanskritMenu != null) {
+			final MenuItem sktGretilMenuItem = (MenuItem)PaliPlatform.styleableServiceMap.get("paliplatform.reader.SktGretilMenuItem");
+			if (sktGretilMenuItem != null)
+				sanskritMenu.getItems().add(0, sktGretilMenuItem);
 			getMenus().add(sanskritMenu);
 		}
 		getMenus().addAll(optionsMenu, helpMenu);

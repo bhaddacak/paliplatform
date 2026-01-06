@@ -1,7 +1,7 @@
 /*
  * ReaderServiceImp.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import javafx.scene.layout.HBox;
 /** 
  * An implementation of Reader service.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 3.7
  * @since 3.0
  */
 public class ReaderServiceImp implements ReaderService {
@@ -93,11 +93,11 @@ public class ReaderServiceImp implements ReaderService {
 		final Map<String, DocumentInfo> docInfoMap = cp.getDocInfoMap();
 		final DocumentInfo dinfo = docInfoMap.get(docId);
 		if (dinfo == null) return;
-		if (col == Corpus.Collection.SC) {
+		if (col == Corpus.Collection.SC || col == Corpus.Collection.SKT) {
 			if (strToLocate.isEmpty())
-				ReaderUtilities.openScReader(col, dinfo);
+				ReaderUtilities.openOtherReader(col, dinfo);
 			else
-				ReaderUtilities.openScReader(col, dinfo, strToLocate);
+				ReaderUtilities.openOtherReader(col, dinfo, strToLocate);
 		} else {
 			final TocTreeNode node = dinfo.toTocTreeNode();
 			if (Utilities.checkFileExistence(node.getNodeFile())) {

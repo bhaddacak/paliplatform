@@ -1,5 +1,5 @@
 /*
- * DictService.java
+ * SktGretilMenuItem.java
  *
  * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
@@ -17,24 +17,24 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.base;
+package paliplatform.reader;
 
-import java.util.List;
-import javafx.scene.control.Tab;
+import paliplatform.base.*;
+
+import javafx.scene.control.*;
 
 /** 
- * The service interface used by Sanskrit module.
+ * The menu item for GRETIL Sanskrit documents.
  * @author J.R. Bhaddacak
  * @version 3.7
- * @since 3.6
+ * @since 3.7
  */
+public class SktGretilMenuItem extends MenuItem {
+	public SktGretilMenuItem() {
+		super("GRETIL Sanskrit documents");
+		setGraphic(new TextIcon("skt-scroll", TextIcon.IconSet.CUSTOM));
+		disableProperty().bind(ReaderUtilities.sktGretilAvailable.not());
+		setOnAction(actionEvent -> ReaderUtilities.openWindow(Utilities.WindowType.VIEWER_SKTGRETIL, null));
+	}
 
-public interface SktService {
-	Tab getSktDictTab();
-	void openSktDict(String term);
-	void searchTerm(String term);
-	boolean isSktDictAvailable(String dictCode);
-	List<String> getSktDictTerms(String dictCode);
-	List<String> getSktDictMeaning(String dictCode, String term);
 }
-

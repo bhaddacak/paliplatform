@@ -1,7 +1,10 @@
 module paliplatform.sanskrit {
 	requires java.sql;
+	requires jdk.jsobject;
+	requires jdk.xml.dom;
 	requires javafx.base;
 	requires javafx.controls;
+	requires javafx.web;
 	requires paliplatform.base;
 	opens paliplatform.sanskrit to javafx.web;
 	uses paliplatform.base.SimpleService;

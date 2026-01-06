@@ -1,7 +1,7 @@
 /*
  * LuceneFinder.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
 /** 
  * Advanced document finder using Apache Lucene.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.7
  * @since 2.0
  */
 public class LuceneFinder extends BorderPane {
@@ -287,8 +287,9 @@ public class LuceneFinder extends BorderPane {
 	
 	private Map<TermInfo.Field, StringBuilder> buildTextMap(final Corpus.Collection col) {
 		final Map<TermInfo.Field, StringBuilder> textMap = new EnumMap<>(TermInfo.Field.class);
-		for (final TermInfo.Field fld : TermInfo.Field.getFieldList(col))
+		for (final TermInfo.Field fld : TermInfo.Field.getFieldList(col)) {
 			textMap.put(fld, new StringBuilder());
+		}
 		return textMap;
 	}
 
@@ -411,20 +412,28 @@ public class LuceneFinder extends BorderPane {
 						} // end for
 						zip.close();
 					} else if (col == Corpus.Collection.SC || col == Corpus.Collection.PTST || col == Corpus.Collection.BJT
-								|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM) {
+								|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM || col == Corpus.Collection.SKT) {
 						final ZipFile zip = new ZipFile(currCorpus.getZipFile());
 						total = zip.size();
 						count = 0;
+						final TextGroup tGroup = corpusSelector.getSelectedTextGroup();
 						for (final Enumeration<? extends ZipEntry> e = zip.entries(); e.hasMoreElements();) {
 							updateProgress(count++, total);
 							final ZipEntry entry = e.nextElement();
 							final String fullname = entry.getName();
 							final String[] strName = fullname.split("/");
-							final String nameToMatch = col == Corpus.Collection.SC || col == Corpus.Collection.SRT 
+							final String nameToMatch = col == Corpus.Collection.SC || col == Corpus.Collection.SRT  || col == Corpus.Collection.SKT 
 														? fullname
 														: strName[strName.length - 1];
 							final Matcher fileMatcher = fileFilterPattern.matcher(nameToMatch);
 							if (!fileMatcher.matches()) continue;
+							if (col == Corpus.Collection.SKT) {
+								final String textId = fullname.substring(fullname.lastIndexOf("/") + 1, fullname.lastIndexOf("."));
+								final DocumentInfo sktInfo = currCorpus.getDocInfo(textId);
+								if (sktInfo == null) continue;
+								final String tg = tGroup.getAbbrev();
+								if (!tg.equals("all") && !tg.equals(sktInfo.getGroup())) continue;
+							}
 							final Map<TermInfo.Field, StringBuilder> textMap = buildTextMap(col);
 							final TextHandler handler;
 							if (col == Corpus.Collection.SC)
@@ -435,6 +444,8 @@ public class LuceneFinder extends BorderPane {
 								handler = new BjtTextHandler(textMap);
 							else if (col == Corpus.Collection.SRT)
 								handler = new SrtTextHandler(textMap);
+							else if (col == Corpus.Collection.SKT)
+								handler = new SktTextHandler(textMap);
 							else
 								handler = new GramTextHandler(textMap);
 							handler.processStream(zip.getInputStream(entry));
@@ -728,7 +739,7 @@ public class LuceneFinder extends BorderPane {
 				}
 				zip.close();
 			} else if (col == Corpus.Collection.SC || col == Corpus.Collection.PTST || col == Corpus.Collection.BJT
-						|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM) {
+						|| col == Corpus.Collection.SRT || col == Corpus.Collection.GRAM || col == Corpus.Collection.SKT) {
 				final ZipFile zip = new ZipFile(currCorpus.getZipFile());
 				for (final SearchOutput so : outputList) {
 					final int docID = so.getDocID();
@@ -743,6 +754,8 @@ public class LuceneFinder extends BorderPane {
 							handler = new BjtTextHandler(textMap);
 						else if (col == Corpus.Collection.SRT)
 							handler = new SrtTextHandler(textMap);
+						else if (col == Corpus.Collection.SKT)
+							handler = new SktTextHandler(textMap);
 						else
 							handler = new GramTextHandler(textMap);
 						final String filename = ireader.storedFields().document(docID).get(FIELD_PATH);
@@ -985,11 +998,11 @@ public class LuceneFinder extends BorderPane {
 		if (currSelectedDoc != null) {
 			final Corpus.Collection col = currCorpus.getCollection();
 			final List<String> findRes = currSelectedDoc.getMatchResult();
-			if (col == Corpus.Collection.SC) {
+			if (col == Corpus.Collection.SC || col == Corpus.Collection.SKT) {
 				if (findRes.isEmpty())
-					ReaderUtilities.openScReader(col, currSelectedDoc);
+					ReaderUtilities.openOtherReader(col, currSelectedDoc);
 				else
-					ReaderUtilities.openScReader(col, currSelectedDoc, findRes.get(0));
+					ReaderUtilities.openOtherReader(col, currSelectedDoc, findRes.get(0));
 			} else {
 				final TocTreeNode ttn = currSelectedDoc.toTocTreeNode();
 				if (findRes.isEmpty())

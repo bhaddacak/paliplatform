@@ -50,6 +50,7 @@ import netscape.javascript.JSObject;
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
+	private static final int MAX_SKT_DICT_RESULT = 600;
 	protected final BorderPane textPane = new BorderPane();
 	protected final ViewerToolBar toolBar;
 	protected Stage theStage;
@@ -63,6 +64,9 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	protected final SimpleStringProperty clickedText = new SimpleStringProperty("");
 	private final InfoPopup dictInfoPopup = new InfoPopup();
 	protected final InfoPopup helpInfoPopup = new InfoPopup();
+	protected boolean sanskritMode = false;
+	protected static final Map<String, List<String>> sktDictTermsMap = new HashMap<>(); // for skt dict lookup
+	private final List<MenuItem> contextMenuItems = new ArrayList<>();
 	protected final ContextMenu contextMenu;
 	public int currFontSize;
 
@@ -119,23 +123,31 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		final MenuItem editMenuItem = new MenuItem("Open in text editor");
 		editMenuItem.disableProperty().bind(clickedText.isEmpty());
 		editMenuItem.setOnAction(actionEvent -> openTextEditor());
+		contextMenuItems.add(editMenuItem);
 		final MenuItem readMenuItem = new MenuItem("Read this portion");
 		readMenuItem.disableProperty().bind(clickedText.isEmpty());
 		readMenuItem.setOnAction(actionEvent -> openSentenceReader());
-		final MenuItem openDictMenuItem = new MenuItem("Open Dictionaries");
-		openDictMenuItem.setOnAction(actionEvent -> openDict());
+		contextMenuItems.add(readMenuItem);
+		final MenuItem openPaliDictMenuItem = new MenuItem("Open Pāli Dictionaries");
+		openPaliDictMenuItem.setOnAction(actionEvent -> openDict(false));
+		contextMenuItems.add(openPaliDictMenuItem);
+		final MenuItem openSktDictMenuItem = new MenuItem("Open Sanskrit Dictionaries");
+		openSktDictMenuItem.setOnAction(actionEvent -> openDict(true));
+		contextMenuItems.add(openSktDictMenuItem);
 		final MenuItem sendToDictMenuItem = new MenuItem("Send to Pāli Dictionaries");
 		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict(false));
+		contextMenuItems.add(sendToDictMenuItem);
 		final MenuItem sendToSktDictMenuItem = new MenuItem("Send to Sanskrit Dictionaries");
 		sendToSktDictMenuItem.setOnAction(actionEvent -> sendToDict(true));
+		contextMenuItems.add(sendToSktDictMenuItem);
 		final MenuItem calMetersMenuItem = new MenuItem("Calculate meters");
 		calMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
+		contextMenuItems.add(calMetersMenuItem);
 		final MenuItem analyzeMenuItem = new MenuItem("Analyze this stanza/portion");
 		analyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
 		analyzeMenuItem.setOnAction(actionEvent -> openAnalyzer());
-		contextMenu.getItems().addAll(editMenuItem, readMenuItem, openDictMenuItem, sendToDictMenuItem, sendToSktDictMenuItem,
-										calMetersMenuItem, analyzeMenuItem);
+		contextMenuItems.add(analyzeMenuItem);
 		webView.setOnMousePressed(mouseEvent -> {
 			if (mouseEvent.getButton() == MouseButton.SECONDARY) {
 				contextMenu.show(webView, mouseEvent.getScreenX(), mouseEvent.getScreenY());
@@ -179,6 +191,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		Utilities.initializeDictDB();
 		if (ReaderUtilities.simpleServiceMap == null) 
 			ReaderUtilities.simpleServiceMap = ReaderUtilities.getSimpleServices();
+		if (ReaderUtilities.sktServiceMap == null) 
+			ReaderUtilities.sktServiceMap = ReaderUtilities.getSktServices();
 		if (DictUtilities.sandhiFile == null)
 			DictUtilities.sandhiFile = new File(Utilities.ROOTDIR + Utilities.RULESPATH + DictUtilities.SANDHI_LIST);
 		if (!DictUtilities.sandhiFile.exists())
@@ -200,6 +214,12 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		Platform.runLater(() -> {
 			textPane.setBottom(null);
 			GrammarUtilities.createDeclIrrNounsMap(); // this needs CPED to be present
+			contextMenu.getItems().clear();
+			if (sanskritMode)
+				contextMenu.getItems().addAll(contextMenuItems.get(0), contextMenuItems.get(2),
+									contextMenuItems.get(3), contextMenuItems.get(4), contextMenuItems.get(5));
+			else
+				contextMenu.getItems().addAll(contextMenuItems);
 		});			
 	}
 
@@ -270,13 +290,20 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		clickedText.set(result);
 	}
 
-	private void openDict() {
+	private void openDict(final boolean isSanskrit) {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
 		final String text = cboard.hasString() ? cboard.getString().trim() : "";
-		final String term = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
+		final String textRoman = isSanskrit ? Utilities.convertToRomanSanskrit(text) : Utilities.convertToRomanPali(text);
+		final String term = Utilities.getUsablePaliTerm(textRoman);
 		final Object[] args = { term };
-		DictUtilities.openWindow(Utilities.WindowType.DICT, args);
+		if (isSanskrit) {
+			final SktService sktServ = (SktService)ReaderUtilities.sktServiceMap.get("paliplatform.sanskrit.SktServiceImp");
+			if (sktServ != null)
+				sktServ.openSktDict(term);
+		} else {
+			DictUtilities.openWindow(Utilities.WindowType.DICT, args);
+		}
 	}
 	
 	private void sendToDict(final boolean toSktDict) {
@@ -296,6 +323,56 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	}
 	
 	public void showDictResult(final String text) {
+		if (sanskritMode)
+			showSktDictResult(text);
+		else
+			showPaliDictResult(text);
+	}
+
+	private void showSktDictResult(final String text) {
+		final String word = Utilities.getUsablePaliTerm(text);
+		final SktService sktServ = (SktService)ReaderUtilities.sktServiceMap.get("paliplatform.sanskrit.SktServiceImp");
+		if (sktServ == null) return;
+		final String currSktDict = Utilities.getSetting("skt-lookup-dict");
+		if (!sktServ.isSktDictAvailable(currSktDict)) return;
+		List<String> meaningList = Collections.emptyList();
+		String term = word;
+		while (meaningList.isEmpty() && term.length() > 1) {
+			final String tfilter = term;
+			Set<String> terms = sktDictTermsMap.get(currSktDict).stream().filter(x -> x.startsWith(tfilter)).collect(Collectors.toSet());
+			if (!terms.isEmpty()) {
+				final String first = terms.stream().sorted(Utilities.sktComparator).findFirst().orElse("");
+				meaningList = first.isEmpty()
+								? Collections.emptyList()
+								: sktServ.getSktDictMeaning(currSktDict, first);
+			} else {
+				// replace the ending
+				final String rterm = DictUtilities.replaceTermEnding(term);
+				terms = sktDictTermsMap.get(currSktDict).stream().filter(x -> x.startsWith(rterm)).collect(Collectors.toSet());
+				if (!terms.isEmpty()) {
+					meaningList = sktServ.getSktDictMeaning(currSktDict, rterm);
+					term = rterm;
+				} else {
+					// if failed, cut the ending and go on
+					term = term.substring(0, term.length() - 1);
+				}
+			}
+		}
+		if (!meaningList.isEmpty()) {
+			final String tail = word.equals(term) ? "" : "*";
+			dictInfoPopup.setTitle(term + tail);
+			final String meaning = meaningList.size() > 5
+							? meaningList.stream().limit(5).collect(Collectors.joining("\n")) + "\n..."
+							: meaningList.stream().collect(Collectors.joining("\n"));
+			final String meaningOK = meaning.length() > MAX_SKT_DICT_RESULT
+									? meaning.substring(0, MAX_SKT_DICT_RESULT - 1) + "..."
+									: meaning;
+			dictInfoPopup.setBody(meaningOK);
+			dictInfoPopup.showPopup(webView, InfoPopup.Pos.BELOW_RIGHT, false);
+		}
+	}
+
+	private void showPaliDictResult(final String text) {
 		final String word = Utilities.getUsablePaliTerm(Utilities.convertToRomanPali(text));
 		final String dpdWord = DictUtilities.makeDpdProper(word);
 		final boolean useDPD = Boolean.parseBoolean(Utilities.getSetting("dpd-lookup-enable"));

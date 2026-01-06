@@ -1,7 +1,7 @@
 /*
  * Corpus.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,19 +32,19 @@ import javafx.scene.control.TreeItem;
 /** 
  * The representation of a Pali text collection.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.7
  * @since 3.0
  */
 
 public class Corpus {
 	public static enum Collection {
-		CSTR, CSTDEVA, CST4, BJT, PTST, SRT, GRAM, SC; // must correspond with corpus root's name
+		CSTR, CSTDEVA, CST4, BJT, PTST, SRT, GRAM, SC, SKT; // must correspond with corpus root's name
 		public static final Collection[] values = values();
 		public static final Map<String, Collection> idMap = Map.of("cstr", CSTR, "cstdeva", CSTDEVA, "cst4", CST4, "bjt", BJT,
-															"ptst", PTST, "srt", SRT, "gram", GRAM, "sc", SC);
+															"ptst", PTST, "srt", SRT, "gram", GRAM, "sc", SC, "skt", SKT);
 		public static final Set<Collection> hasDMSASet = Set.of(CSTR, CSTDEVA, CST4, BJT, PTST, SRT, SC);
 		public static final Comparator<String> colComparator = new Comparator<String>() {
-			private final List<String> colList = List.of("cstr", "cstdeva", "cst4", "bjt", "ptst", "srt", "gram", "sc");
+			private final List<String> colList = List.of("cstr", "cstdeva", "cst4", "bjt", "ptst", "srt", "gram", "sc", "skt");
 			@Override
 			public int compare(final String name1, final String name2) {
 				return colList.indexOf(name1.toLowerCase()) - colList.indexOf(name2.toLowerCase());
@@ -63,6 +63,7 @@ public class Corpus {
 	private static final String NOT_WORD_SRT = "!\"#'()*,-./:;=?[]_";
 	private static final String NOT_WORD_GRAM = "!()*+,-.:;=?[]–‘’“”…";
 	private static final String NOT_WORD_SC = "(),-./:;<>?[]~–—‘’“”…";
+	private static final String NOT_WORD_SKT = "!\"#$%&@^'()*+,-./:;=?<>[]{|}§\\~–—_─`’‘“”°«»⟨⟩·⏑…→";
 	private static final String SPACES = " \t\n\f\r";
 	private final String corpusName;
 	private String shortName;
@@ -96,7 +97,9 @@ public class Corpus {
 		inArchive = Boolean.parseBoolean(inArchiveStr); // if true, set the zip file also
 		docInfoMap = root.equals("sc")
 						? ReaderUtilities.loadScDocInfoMap(this)
-						: ReaderUtilities.loadDocInfoMap(this, infoFileName);
+						: root.equals("skt")
+							? ReaderUtilities.loadSktDocInfoMap(this)
+							: ReaderUtilities.loadDocInfoMap(this, infoFileName);
 		size = docInfoMap.size();
 	}
 
@@ -254,7 +257,11 @@ public class Corpus {
 	}
 
 	public DocumentInfo getDocInfoByFileName(final String name) {
-		final String filename = collection == Collection.PTST ? name.replace("pu.htm", "ou.htm") : name;
+		final String filename = collection == Collection.PTST
+								? name.replace("pu.htm", "ou.htm")
+								: collection == Collection.SKT
+									? name.replace("/plaintext/", "/html/").replace(".txt", ".htm")
+									: name;
 		final Optional<DocumentInfo> result = docInfoMap.values().stream()
 												.filter(x -> x.getFileNameWithExt().equals(filename))
 												.findFirst();
@@ -437,6 +444,7 @@ public class Corpus {
 			case SRT: result = NOT_WORD_SRT + result; break;
 			case GRAM: result = NOT_WORD_GRAM + result; break;
 			case SC: result = NOT_WORD_SC + result; break;
+			case SKT: result = NOT_WORD_SKT + result; break;
 		}
 		return result;
 	}
@@ -452,6 +460,7 @@ public class Corpus {
 			case SRT: result = NOT_WORD_SRT; break;
 			case GRAM: result = NOT_WORD_GRAM; break;
 			case SC: result = NOT_WORD_SC; break;
+			case SKT: result = NOT_WORD_SKT; break;
 		}
 		// Brackets are problematic when mixed with other tokens,
 		// so we have to remove them first, and use them separately.
@@ -470,9 +479,6 @@ public class Corpus {
 			case CST4:
 				result = Pattern.compile(Cst4Info.getFileFilterPatternString(textGroupAbbr));
 				break;
-			case SC:
-				result = Pattern.compile(ScInfo.getFileFilterPatternString(textGroupAbbr));
-				break;
 			case PTST:
 				result = Pattern.compile(PtstInfo.getFileFilterPatternString(textGroupAbbr));
 				break;
@@ -482,8 +488,14 @@ public class Corpus {
 			case SRT:
 				result = Pattern.compile(SrtInfo.getFileFilterPatternString(textGroupAbbr));
 				break;
+			case SC:
+				result = Pattern.compile(ScInfo.getFileFilterPatternString(textGroupAbbr));
+				break;
+			case SKT:
+				result = Pattern.compile(".*/transformations/plaintext/.*\\.txt");
+				break;
 			default:
-			result = Pattern.compile(".*");
+				result = Pattern.compile(".*");
 		}
 		return result;
 	}

@@ -1,7 +1,7 @@
 /*
  * PaliPlatform.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 4.0
  * @since 2.0
  */
 final public class PaliPlatform extends Application {
@@ -450,16 +450,16 @@ final public class PaliPlatform extends Application {
 			final String HOME = System.getProperty("user.home");
 			final File desktop = new File(HOME + "/Desktop/");
 			if (!desktop.exists()) return;
-			final File launcher = new File(desktop, "PaliPlatform3.desktop");
+			final File launcher = new File(desktop, "PaliPlatform4.desktop");
 			final StringBuilder content = new StringBuilder();
 			content.append("[Desktop Entry]").append(LINESEP);
 			content.append("Encoding=UTF-8").append(LINESEP);
 			content.append("Version=1.0").append(LINESEP);
-			content.append("Name=Pāli Platform 3").append(LINESEP);
+			content.append("Name=Pāli Platform 4").append(LINESEP);
 			content.append("GenericName=Pāli Platform").append(LINESEP);
 			content.append("Exec=\"" + Utilities.ROOTDIR + "run.sh\"").append(LINESEP);
 			content.append("Terminal=false").append(LINESEP);
-			content.append("Icon=" + Utilities.ROOTDIR + "data/pic/lotustext.ico").append(LINESEP);
+			content.append("Icon=" + Utilities.ROOTDIR + "data/pic/budcircle2.ico").append(LINESEP);
 			content.append("Type=Application").append(LINESEP);
 			content.append("Categories=Application;Education;").append(LINESEP);
 			content.append("Comment=Pali studies made enjoyable").append(LINESEP);

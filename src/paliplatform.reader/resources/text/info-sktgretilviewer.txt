@@ -1,0 +1,6 @@
+Guide to GRETIL Sanskrit reader
+	1. The index of the collection contains most of those listed in the GRETIL's website (only a few are omitted). However, the available documents here are those under 'transformations' directory (around 800 totally). Otherwise, the items will be marked with 'unavailable'. In this case, you have to look directly in the GRETIL's website.
+	2. A Sanskrit word selected will be looked up in a dictionary. The default dict can be set in the Settings. Once, it is changed during a reading, the 'Update lookup dict' button has to be pressed to activate the new selection.
+	3. If an exact word is not found, the program will provide a nearest guess (marked by *). In this case, irrelevance can be seen. So, do not rely on the look up too much, and to be precise, make a proper word selection (partly selection often brings a better result).
+	4. The result of some dictionaries can be overwhelming. If '...' is seen, it means the text is truncated. So, you have to see the full description in a Skt Dict window.
+	5. You can also find an available document in the Document Finder by entering the SLP1 part of its file name or a part of its description. Searching by content is also applicable there.

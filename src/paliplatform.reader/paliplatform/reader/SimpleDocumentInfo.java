@@ -32,7 +32,7 @@ import javafx.beans.property.*;
 public class SimpleDocumentInfo implements DocumentInfo {
 	protected final Corpus corpus;
 	protected final String id;
-	protected String group = ""; // vin, sut, abh, ext
+	protected String group = ""; // vin, sut, abh, ext, ...
 	protected String ref = "";
 	private String fileName = "";
 	private String textName = "";

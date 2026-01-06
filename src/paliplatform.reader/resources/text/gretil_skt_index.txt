@@ -1,0 +1,1874 @@
+# 3, Veda, ved
+#
+# 4, Samhita
+#
+# 5, Rigveda
+#
+Rgveda (input by Barend A. Van Nooten and Gary B. Holland, converted and revised by Detlef Eichler)
+gretil/corpustei/transformations/html/sa_Rgveda-edAufrecht.htm
+Rgveda, Padapatha text (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_RgvedasaMhitApadapATha.htm
+Rgveda-Khilani (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_RgvedakhilAni.htm
+# 5, Atharvaveda
+#
+Atharvaveda (input by &#x2026;)
+-
+Atharvaveda-Samhita, Saunaka recension (input by Vladimir Petr and Petr Vavrousek, in cooperation with Jost Gippert, Arlo Griffiths and Philipp Kubisch)
+gretil/1_sanskr/1_veda/1_sam/avs___u.htm
+Atharvaveda-Samhita, Paippalada recension (input by Arlo Griffiths, Thomas Zehnder, Philipp Kubisch, Duccio Lelli, Alexander Lubotsky, Carmen Spiers, and Michael Witzel)
+gretil/corpustei/transformations/html/sa_paippalAdasaMhitA.htm
+# 5, Samaveda
+#
+Samaveda (input by Anshuman Pandey)
+gretil/corpustei/transformations/html/sa_sAmavedasaMhitA.htm
+# 5, Black Yajurveda
+#
+Kathaka-Samhita (input by &#x2026;)
+-
+Maitrayani-Samhita (input by TITUS)
+gretil/1_sanskr/1_veda/1_sam/maitrs_au.htm
+Taittiriya-Samhita (input by &#x2026;)
+-
+# 5, White Yajurveda
+#
+Vajasaneyi-Samhita (input by &#x2026;)
+-
+# 4, Brahmana
+#
+Aitareya-Brahmana (input by &#x2026;)
+-
+Gopatha-Brahmana (input by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_gopathabrAhmaNa.htm
+Gopatha-Brahmana 1,1.1-1,3.6 [alternative version] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_gopathabrAhmaNa-1,1,1-1,3,6.htm
+Jaiminiya-Brahmana (input by &#x2026;)
+-
+Jaiminiya-Upanisad-Brahmana [Talavakara-Brahmana] (input by &#x2026;)
+-
+Kathaka-Brahmana [remnants] (input by &#x2026;)
+-
+Kausitaki-Brahmana [or Sankhayana-Brahmana] (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_kauSItakibrAhmaNa.htm
+Mantra-Brahmana [Chandogya-Brahmana] (input by &#x2026;)
+-
+Pancavimsa-Brahmana [Tandya-Maha-Brahmana] (input by Martin Kümmel, Arlo Griffiths and Masato Kobayashi)
+gretil/corpustei/transformations/html/sa_paJcaviMzabrAhmaNa.htm
+Satapatha-Brahmana, Madhyamdina recension (input by John Robert Gardner)
+gretil/1_sanskr/1_veda/2_bra/satapath/sb_01_u.htm
+Taittiriya-Brahmana (input by &#x2026;)
+-
+Vamsa-Brahmana [Kauthuma] (input by &#x2026;)
+-
+# 4, Aranyaka
+#
+Kathaka-Aranyaka [Brahmana-sections] (input by &#x2026;)
+-
+Sankhayana-Aranyaka (input by Martin Joachim Kümmel)
+gretil/corpustei/transformations/html/sa_zaGkhAyana-AraNyaka.htm
+Taittiriya-Aranyaka (input by &#x2026;)
+-
+# 4, Upanisad
+#
+Aitareya-Upanisad [RV], with comm. ascribed to Samkara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_aitareyopaniSad-comm.htm
+Brhadaranyaka-Upanisad [YV/Sukla, Kanva recension], with comm. ascribed to Samkara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bRhadAraNyakopaniSadkANva-recension-comm.htm
+Chandogya-Upanisad [SV], with comm. ascribed to Samkara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_chAndogyopaniSad-comm.htm
+Isa-Upanisad [YV/Sukla], with comm. ascribed to Samkara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_IzopaniSad-or-IzAvAsyopaniSadkANva-recension-comm.htm
+Katha-Upanisad [YV/Krsna] (input by Vienna University Student Team)
+gretil/corpustei/transformations/html/sa_kathopaniSad.htm
+Kausitaki-Upanisad [RV] (input by &#x2026;)
+-
+Kena-Upanisad [SV] (input by &#x2026;)
+-
+Maha-Narayana-Upanisad [YV/Krsna] (input by &#x2026;)
+-
+Maitrayaniya-Upanisad [YV/Krsna] (input by &#x2026;)
+-
+Mandukya-Upanisad [AV], with Gaudapada's Karika and comm. (input by members of the Sansknet project)
+-
+Agamasastra, i.e. Mandukya-Upanisad with Gaudapada's Karikas and comm. attrib. to Samkara.
+gretil/corpustei/transformations/html/sa_mANDUkyopaniSad-comm.htm
+Texts extracted from the commented version:
+gretil/corpustei/transformations/html/sa_mANDUkyopaniSatkArikA.htm
+Mandukya-Upanisad [AV], alternative version (input by Jeff Samuels)
+gretil/corpustei/transformations/html/sa_mANDUkyopaniSad-alt.htm
+Mundaka-Upanisad [AV] (input by &#x2026;)
+-
+Prasna-Upanisad [AV/Pai], with comm. ascribed to Samkara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_praznopaniSad-comm.htm
+Siva-Upanisad See below
+-
+Sivasamkalpa-Upanisad (input by Maximilian Mehner)
+gretil/corpustei/transformations/html/sa_zivasaMkalpopaniSad.htm
+Svetasvatara-Upanisad [YV/Krsna] (input by S. H., proofread by John Manetta)
+gretil/corpustei/transformations/html/sa_zvetAzvataropaniSad.htm
+Svetasvatara-Upanisad [YV/Krsna (alternative version)] (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_zvetAzvataropaniSad-alt.htm
+Taittiriya-Upanisad [YV/Krsna] with Samkarabhasya (input by Ivan Andrijanić)
+gretil/corpustei/transformations/html/sa_taittirIyopaniSad-zaMkarabhASya.htm
+# 5, Atharvana-Upanisads
+#
+Brahmabindu-Upanisad [Brahmabindupanisad] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_brahmabindUpaniSad.htm
+Garbha-Upanisad [Garbhopanisad] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_garbhopaniSad.htm
+Kaivalya-Upanisad [Kaivalyopanisad] (original input by Anshuman Pandey)
+gretil/corpustei/transformations/html/sa_kaivalyopaniSad.htm
+Nadabindu-Upanisad [Nadabindupanisad] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_nAdabindUpaniSad.htm
+Sira-Upanisad [Atharvasira-Upanisad] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_zira-upaniSad.htm
+Amrtabindu-Upanisad | Aruneya-Upanisad | Atma-Upanisad | Brahma-Upanisad | Parama-Upanisad | Tejabindu-Upanisad
+-
+# 4, Vedanga
+#
+# 5, Srauta-Sutras
+#
+Apastamba
+-
+Asvalayana-Srautasutra (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_AzvalAyanazrautasUtra.htm
+Baudhayana | Hiranyakesi | Katyayana (6)
+-
+Sankhayana-Srautasutra (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_zAGkhAyanazrautasUtra.htm
+Vaikhanasa (1-9)
+-
+Vaitana-Srautasutra ( = Vaitanasutra) (input by Arlo Griffiths) See also: Atharvaprayascittani
+gretil/corpustei/transformations/html/sa_vaitAnazrautasUtra-vaitAnasUtra.htm
+# 5, Sulba-Sutras
+#
+Apastamba-Sulbasutra, with commentaries of Kapardi, Karavinda and Sundararaja (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_ApastambazulbasUtra.htm
+# 5, Grhya-Sutras
+#
+Agnivesya | Apastamba
+-
+Apastamba-Grhyasutra, with Haradatta's Anakula and Sudarsana's Tatparyadarsana (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_ApastambagRhyasUtra-comm.htm
+Asvalayana-Grhyasutra (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_AzvalAyanagRhyasUtra.htm
+Baudhayana | Bharadvaja | Gobhila | Hiranyakesi (Satyasadha)
+-
+Jaimini-Grhyasutra (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_jaiminIyagRhyasUtra.htm
+Kathaka_(Laugaksi)
+-
+Kausika-Sutra (input by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_kauzikasUtra.htm
+Kausikapaddhati, by Kesava (input by Ketaki Gokhale [in coop. w. A. Griffiths &amp; M. Kobayashi])
+gretil/corpustei/transformations/html/sa_kezava-kauzikapaddhati.htm
+Kauthuma-Grhyasutra (input by Ms. Jaya S. Nair)
+gretil/corpustei/transformations/html/sa_kauthumagRhyasUtra.htm
+Khadira (Drahyayana) | Manava
+-
+Manava-Grhyasutra [ = Maitrayaniyamanava-Grhyasutra] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_mAnavagRhyasUtra-maitrAyaNIyamAnavagRhyasUtra.htm
+Sankhayana-Grhyasutra (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_zAGkhAyanagRhyasUtra.htm
+Vadhula | Vaikhanasa
+-
+Varaha-Grhyasutra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vArAhagRhyasUtra.htm
+# 5, Parisistas
+#
+Atharvaprayascittani [ = Atharvaprayascittasutra; transmitted as part of the Vaitanasrautasutra] (input by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_atharvaprAyazcittAni.htm
+Atharvavedaparisista (input by Yuri Ishii, Tokai University, revised by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_atharvavedapariziSTas.htm
+Atharvavidhikathana [ = Atharvavidhana] see Visnudharmottara-Purana, Adhy. 2,127
+-
+Dantyosthavidhi (input by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_dantyoSThavidhi.htm
+# 5, Pratisakhyas
+#
+Nirukta (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_yAska-nirukta.htm
+Rgvidhana (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_RgvidhAna.htm
+# 3, Epics, epi
+#
+# 4, Mahabharata
+#
+Mahabharata (input by Muneo Tokunaga)
+gretil/1_sanskr/2_epic/mbh/mbh_01_u.htm
+Mahabharata: Metrically processed text (by Muneo Tokunaga)
+-
+Mahabharatatatparyanirnaya See Madhva (Anandatirtha): Mahabharatatatparyanirnaya
+-
+# 5, Mahabharata: Bhagavad-Gita
+#
+Mahabharata: Bhagavadgita
+gretil/1_sanskr/2_epic/mbh/ext/bhgce__u.htm
+Extract from the electronic version by M. Tokunaga (see above, MBh__6)
+gretil/1_sanskr/2_epic/mbh/ext/bhagvg_u.htm
+Mahabharata: Bhagavadgita with the commentaries of Sridhara, Madhusudana, Visvanatha and Baladeva (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_bhagavadgItA-4comm.htm
+# 5, Mahabharata: Narayaniya
+#
+Mahabharata: Narayaniya (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_nArAyaNIya.htm
+# 5, Harivamsa
+#
+Harivamsa (input by Atul Agarwala, Julie Bélanger, Peter Bisschop, Horst Brinkhaus, John Brockington, Eva De Clercq, Arlo Griffiths, André Couture, N. Hanemann, Petteri Koskikallio, Kreshimir Krnic, Anne Mossner, Luther Obrock, François Painchaud, Utz Podzeit, Peter Schreiner, Sandra Smets, Renate Söhnen-Thieme, Christophe Vielle, Andreas Viethsen)
+-
+Constituted text and *-passages:
+gretil/corpustei/transformations/html/sa_harivaMza.htm
+App. I:
+gretil/corpustei/transformations/html/sa_harivaMza-app1.htm
+Cumulative pada index (constituted text and App. I)
+gretil/1_sanskr/2_epic/mbh/ext/hv_cumiu.htm
+# 4, Ramayana
+#
+Valmiki (trad.): Ramayana (input by Muneo Tokunaga)
+-
+1st revised version by John Smith, Cambridge
+gretil/corpustei/transformations/html/sa_rAmAyaNa.htm
+2nd revised version by Oliver Hellwig, Khanda 2 and 3:
+gretil/corpustei/transformations/html/sa_vAlmIki-rAmAyaNa-rev-2-3.htm
+Ramayana, Southern recension (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vAlmIki-rAmAyaNa-southern-2.htm
+# 3, Purana, pur
+#
+Agni-Purana [BI-ed.] (input by Jun Takashima et al.)
+gretil/corpustei/transformations/html/sa_agnipurANa.htm
+Bhagavata-Purana (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_bhAgavatapurANa.htm
+Bhagavata-Purana 10.29-33 with Sridhara's comm. (input by Ekkehard Lorenz)
+gretil/corpustei/transformations/html/sa_bhAgavatapurANa-10,29-33.htm
+Brahma-Purana (input by Peter Schreiner and Renate Söhnen-Thieme)
+gretil/corpustei/transformations/html/sa_brahmapurANa-1-246.htm
+Brahmanda-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_brahmANDapurANa.htm
+Devibhagavata-Purana: Devigita (input by Ursula Honegger)
+gretil/corpustei/transformations/html/sa_devIgItA.htm
+Garuda-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_garuDapurANa.htm
+Kurma-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_kUrmapurANa.htm
+Linga-Purana (input by members of the Sansknet Project)
+-
+Part 1 (revised by Oliver Hellwig):
+gretil/corpustei/transformations/html/sa_liGgapurANa1-108.htm
+Part 2
+gretil/corpustei/transformations/html/sa_liGgapurANa2,1-55.htm
+Markandeya-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_mArkaNDeyapurANa1-93.htm
+Matsya-Purana, Adhy. 1-176 (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_matsyapurANa1-176.htm
+Narada-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_nAradapurANa.htm
+Narasimha-Purana (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_narasiMhapurANa.htm
+Siva-Purana, Books 1 and 7 (input by Jun Takashima et al.)
+gretil/corpustei/transformations/html/sa_zivapurANabooks-1-and-7.htm
+Skanda-Purana (input by R. Adriaensen, H.T. Bakker and H. Isaacson)
+gretil/corpustei/transformations/html/sa_skandapurANa1-31,14.htm
+Skanda-Purana, Revakhanda (input by Jürgen Neuss)
+gretil/corpustei/transformations/html/sa_skandapurANa-revAkhaNDa-rks.htm
+Vamana-Purana (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_vAmanapurANa1-69.htm
+Another one:
+gretil/corpustei/transformations/html/sa_vAmanapurANasaromAhAtmya.htm
+Vayu-Purana, Revakhanda [wrongly incorporated into the Skanda-Purana] (input by Jürgen Neuss)
+gretil/corpustei/transformations/html/sa_revAkhANDa-of-the-vAyupurANa-rkv.htm
+Visnudharmottara-Purana, Adhy. 2,127: Atharvavidhikathana [ = Atharvavidhana] (input by Shilpa Sumant)
+gretil/corpustei/transformations/html/sa_viSNudharmottarapurANa-2,127.htm
+Visnudharmottara-Purana, Adhy. 3,343-353 (input by Reinhold Grünendahl)
+gretil/corpustei/transformations/html/sa_viSNudharmottarapurANa3,343-353.htm
+Visnu-Purana (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_viSNupurANa-crit.htm
+Visnu-Purana (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_viSNupurANa.htm
+# 3, Religious Literature, rel
+#
+# 4, Vaisnava
+#
+Astavakragita (input by John Richards)
+gretil/corpustei/transformations/html/sa_aSTAvakragItA.htm
+Bhrgu-Samhita [Vaikhanasa tradition] (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_bhRgusaMhitA.htm
+Brahma-Samhita, Adhy. 5 - with Jiva's Digdarsanatika (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_brahmasaMhitA-5-comm.htm
+Datta, Kedaranatha ( = Bhaktivinoda, 1838-1914): Harinamacintamani (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_bhaktivinoda-harinAmacintAmaNi.htm
+Dhyanacandra Gosvami: Gauragovindarcanasmaranapaddhati (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_dhyAnacandragosvAmin-gauragaovindArcanasmaraNapaddhati.htm
+Dhyanacandra Gosvami: Radhakrsnastakaliyalilasmaranakramapaddhati (input ..)
+gretil/corpustei/transformations/html/sa_dhyAnacandragosvAmin-rAdhAkRSNASTakAlIyalIlAsmaraNakramapaddhati.htm
+Gopalabhatta: Haribhaktivilasa 1-11 (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_gopAlabhaTTa-haribhaktivilAsa-1-11.htm
+Jiva Gosvamin: Radhakrsnarcanadipika (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_jIvagosvAmin-rAdhAkRSNArcanadIpikA.htm
+Jiva Gosvamin: Satsamdarbha (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_jiva-gosvami-satsamdarbha.htm
+Jnanamrtasara-Samhita (Book 1) ["Narada-Pancaratra"] (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_jJAnAmRtasArasaMhitA.htm
+Kesava Kasmiri: Kramdipika [or: Gopalamantrakramadipika] - with comm. by Govinda Bhattacarya (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_kezavakAzmIri-kramadIpikA.htm
+Krsnadasa: Bhavanasarasamgraha, 1 &amp; 2 (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_kRSNadAsa-bhAvanAsArasaMgraha-1-2.htm
+Kulasekhara: Mukundmala (input by Aleksandar Uskokov)
+gretil/corpustei/transformations/html/sa_kulazekhara-mukundamAlA.htm
+Madhva (Anandatirtha): Krsnamrtamaharnava (input by Thomas K. Gugler)
+gretil/corpustei/transformations/html/sa_mAdhva-kRSNAmRtamahArNava.htm
+Pauskara-Samhita, Adhyayas 27-43 [Pancaratra] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_pauSkarasaMhitA-27-43.htm
+Prabodhananda Sarasvati Gosvami: Caitanyacandramrta (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_prabodhAnandasarasvatI-caitanyacandrAmRta.htm
+Prakasa-Samhita [Pancaratra] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_prakAzasaMhitA.htm
+Radhakrsnadasa Gosvamin: Sadhanadipika (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_rAdhAkRSNadAsagosvAmin-sAdhanadIpikA.htm
+Raghunathadasa Gosvamin: Muktacarita (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_raghunAthadAsagosvAmin-muktAcarita.htm
+Rupa Gosvamin: Haribhaktirasamrtasindhu (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-haribhaktirasAmRtasindhu.htm
+Rupa Gosvamin: Laghubhagavatamrta (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-laghubhAgavatAmRta.htm
+Srinivasamakhin Vedantadesika [ = Srinivasa Diksita]: Dasavidhahetunirupana [part of the Vaikhanasasutratatparyacintamani] (input by Ute Hüsken)
+gretil/corpustei/transformations/html/sa_srinivasamakhi-vedantadesika-dazavidhAhetunirUpaNa.htm
+Satvatatantra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_sAtvatatantra.htm
+Vaikhanasamantraprasna, Prasnas 5- 8 (input by Howard J. Resnick)
+gretil/corpustei/transformations/html/sa_vaikhAnasamantraprazna5-8.htm
+Visnudharma (input by Reinhold Grünendahl)
+gretil/corpustei/transformations/html/sa_viSNudharma.htm
+Visnudharmottara See Visnudharmottara-Purana
+-
+Visvaksena-Samhita (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_viSvaksenasaMhitA.htm
+Yamuna: Catuhsloki [ = Catussloki] (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_yAmuna-catuHzlokI.htm
+Yamuna: Stotraratna (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_yAmuna-stotraratna.htm
+# 4, Saiva (see also Philosophy / Saiva)
+#
+Bhatta Narayana: Stavacintamani; Cakrapaninatha: Bhavopaharastotra; Devikalottara-Agama; Goraksanatha: Goraksasataka (2 versions); Jnanasambhu: Sivapujastava; Kubjikamatatantra; Mrgendragama; Saundaryalahari (attrib. to Samkara); Sardhatrisatikalottaragama; Srikantha: Ratnatrayapariksa; Siva-Upanisad; Svacchandatantra; Todalatantra; Vinasikhatantra<br>
+gretil/1_sanskr/4_rellit/saiva/saivrliu.htm
+Bhatta Narayana: Stavacintamani (input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_bhaTTanArAyaNa-stavacintAmaNi.htm
+Bijanighantu (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_bIjanighaNTu.htm
+Cakrapaninatha: Bhavopaharastotra, with Ramyadeva Bhatta's Vivarana (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_cakrapANinAtha-bhAvopahArastotra.htm
+Devikalottara-Agama [Devikalottaragama] (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_devIkAlottarAgama.htm
+Goraksanatha ( = Gorakhnath): Amaraughasasana, with commentary (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_gorakSanAtha-AmaraughazAsana-comm.htm
+Goraksanatha ( = Gorakhnath): Goraksasataka, 2 versions! (input by &#x2026;)
+-
+Based on ed. by S. Kuvalayananda &amp; S. A. Shukla's (Lonavla)
+gretil/corpustei/transformations/html/sa_gorakSanAtha-gorakSazataka.htm
+Based on ed. by G. W. Briggs
+gretil/corpustei/transformations/html/sa_gorakSazataka-alt.htm
+Jnanasambhu: Sivapujastava (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_jJAnazambhu-zivapUjAstava.htm
+Karatoyamahatmya (input by Arlo Griffiths)
+gretil/corpustei/transformations/html/sa_karatoyAmAhAtmya.htm
+Kalhana: Ardhanarisvarastotra (input by Walter Slaje)
+gretil/corpustei/transformations/html/sa_kalhaNa-ardhanarIzvarastotra.htm
+Kirana-Tantra, Chapters 1-6 (input by Dominic Goodall)
+-
+With the commentary of Ramakantha
+gretil/corpustei/transformations/html/sa_kiraNatantra1-6.htm
+Kubjikamatatantra (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_kubjikamatatantra.htm
+Malinivijayottaratantra (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_mAlinIvijayottaratantra.htm
+Matrkabhedatantra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_mAtRkAbhedatantra.htm
+Mrgendragama ( = Mrgendra-Tantra)
+-
+1. Vidyapada: MrgT_1,1 - 1.13 [mula text], 3. Caryapada, with Narayanakantha's Vrtti, and 4. Yogapada (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_mRgendrAgama.htm
+MrgT_1,1 - 1,7.23, with Narayanakantha's Vrtti (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_mRgendrAgama1,1-7,23.htm
+Parasuramakalpasutra (input by Claudia Weber)
+gretil/corpustei/transformations/html/sa_parazurAmakalpasUtra.htm
+Pasupatasutra (input by Reinhold Grünendahl)
+gretil/corpustei/transformations/html/sa_pAzupatasUtra.htm
+Pasupatasutra with Kaundinya's Pancarthabhasya (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_pAzupatasUtra-comm.htm
+Purusottamadeva: Ekaksarakosa (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_puruSottamadeva-ekAkSarakoza.htm
+Samkara (attrib.): Saundaryalahari (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_zaMkara-saundaryalaharI.htm
+Sardhatrisatikalottaragama (input by Dominic Goodall, corr. by Yang Mei)
+gretil/corpustei/transformations/html/sa_sArdhatrizatikAlottarAgama.htm
+Sivamahimnastava (input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_zivamahimnastava.htm
+Sivasutra, with Vartika (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_zivasUtra-with-vArttika.htm
+Siva-Upanisad [Sivopanisad] (input by Reinhold Grünendahl)
+gretil/corpustei/transformations/html/sa_zivopaniSad.htm
+Somananda: Saktavijnana (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_somAnanda-zAktavijJAna.htm
+Srikantha: Ratnatrayapariksa (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_zrIkaNTha-ratnatrayaparIkSA.htm
+Svacchanda-Tantra [or Svacchandabhairava-Tantra] (input by Dominic Goodall, Mei Yang, Nibedita Rout, R. Sathyanarayanan, S.A.S. Sarma)
+gretil/corpustei/transformations/html/sa_svacchandatantra.htm
+Todala-Tantra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_toDalatantra.htm
+Uddamaresvara-Tantra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_uDDAmarezvaratantra.htm
+Utpaladeva: Sivastotravali (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_utpaladeva-zivastotrAvali.htm
+Vinasikha-Tantra (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_vINAzikhatantra.htm
+# 4, Buddhist
+#
+Abhayakaragupta: Nispannayogavali, chap. 1 [was: Aksobhyamanjuvajra] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_abhayAkaragupta-niSpaNNayogAvali.htm
+Abhisamacarikadharma of the Mahasamghika-Lokottaravadins (input by Abhisamacarika-Dharma Study Group, Taisho University)
+gretil/corpustei/transformations/html/sa_abhisamAcArikadharma.htm
+Adbhutadharmaparyaya (input by Jens-Uwe Hartmann)
+gretil/corpustei/transformations/html/sa_adbhutadharmaparyAya.htm
+Adhikaranavastu [ = Vinayavastu, 16] (input by Seishi Karashima)
+gretil/corpustei/transformations/html/sa_adhikaraNavastu.htm
+Adhyardhasatika Prajnaparamita (input by Klaus Wille) See also Prajnaparamita
+gretil/1_sanskr/4_rellit/buddh/adhsatpu.htm
+Adhyardhasatika Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_adhyardhazatikA-prajJApAramitA.htm
+Advayasatika Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_advayazatikA-prajJApAramitA.htm
+Ahoratravratacaityasevanusamsavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_ahorAtravratacaityasevAnuzaMsAvadAna.htm
+Ahoratravratakatha (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_ahoratravratakathA.htm
+Ahoratravratakatha, prose version (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_ahoratravratakathA-prose.htm
+Ajitasenavyakarana (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_ajitasenavyAkaraNa.htm
+Ajitasenavyakarana [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ajitasenavyAkaraNa-alt.htm
+Aksobhyamanjuvajra See Abhayakaragupta: Nispannayogavali
+-
+Amoghapasahrdayasutra
+-
+Ed. Meisezahl (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_amoghapAzahRdayasUtra-mz.htm
+Ed. Dhih (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_amoghapAzahRdayasUtra.htm
+Ed. M.B. Shakya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_amoghapAzahRdayasUtra-alt.htm
+Amrtakara: Catuhstavasamasartha (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_amRtAkara-catuHstavasamAsArtha.htm
+Anityatasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_anityatAsUtra.htm
+Aparimitayuhsutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_aparimitAyuHsUtra.htm
+Arthaviniscayasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_arthavinizcayasUtra.htm
+Aryacaturdharmanirdesasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_caturdharmanirdezasUtra.htm
+Aryanityatasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_AryAnityatAsUtra.htm
+Aryasura: Jatakamala
+-
+1. Ed. Vaidya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_AryazUra-jAtakamAlA.htm
+2. Ed. Hanisch, revised text 1-15 (input by Albrecht Hanisch, Mitsuyo Demoto)
+gretil/corpustei/transformations/html/sa_AryazUra-jAtakamAlA-1-15.htm
+Asanga: Mahayanasutralankara, with Vasubandhu's Bhasya (input by Jens Braarvig)
+gretil/corpustei/transformations/html/sa_asaGga-mahAyAnasUtrAlaMkAra-comm.htm
+Asanga: Mahayanasutralankara (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_asaGga-mahAyAnasUtrAlaMkAra.htm
+Asanga: Sravakabhumi [based on Tokyo ed.] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_zrAvakabhUmi.htm
+Asanga: Sravakabhumi [based on Shukla ed.] (input by Ms. Anula Shakya)
+gretil/corpustei/transformations/html/sa_asaGga-zrAvakabhUmi-edshukla.htm
+Asanga: Trisatikayah Prajnaparamitayah Karikasaptatih (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_asaGga-trizatikAyAH-prajJApAramitAyAH-kArikAsaptatiH.htm
+Asanga: Yogacarabhumi: Sarirarthagatha of the Cintamayibhumi (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_asaGga-zarIrArthagAthA.htm
+Asokavadana [ = Avadana 29 of the Divyavadana] (input by members of the Sanskrit Buddhist Canon Input Project) See also Avadana
+gretil/corpustei/transformations/html/sa_azokAvadAna.htm
+Astadasasahasrika Prajnaparamita (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_aSTAdazasAhasrikA-prajJApAramitA55-82.htm
+Astasahasrika Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita | Kambalapada: Navasloki | Ratnakarasanti: Saratama
+gretil/corpustei/transformations/html/sa_aSTasAhasrikA-prajJApAramitA.htm
+Avadanasataka (input by Klaus Wille, Göttingen) See also Avadana
+gretil/corpustei/transformations/html/sa_avadAnazataka.htm
+Ayuhparyantasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_AyuHparyantasUtra.htm
+Bhadrakalpavadana See Sabhikasaugatasasanapravrajyavratacaranaparivarta
+-
+Bhaisajyaguruvaiduryaprabharajasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bhaiSajyaguruvaidUryaprabharAjasUtra.htm
+Bhaisajyavastu [ = Vinayavastu, 6] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_bhaiSajyavastu.htm
+Bhavasankrantisutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bhavasaMkrAntisUtra.htm
+Bhiksuni-Karmavacana (input by Michael Schmidt)
+gretil/corpustei/transformations/html/sa_bhikSuNIkarmavAcanA.htm
+Bhiksunivinaya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bhikSuNIvinaya.htm
+Bodhisattvapratimoksasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bodhisattvaprAtimokSasUtra.htm
+Buddhabaladhanapratiharyavikurvananirdesasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_buddhabalAdhAnaprAtihAryavikurvANanirdezasUtra.htm
+Buddhaghosa: Siddharthacaritrakavya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_buddhaghoSa-siddhArthacaritrakAvya.htm
+Buddhist Stotras - I. (input by Jens-Uwe Hartmann)
+gretil/corpustei/transformations/html/sa_buddhist-stotras.htm
+108 Buddhist Stotras (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_108-buddhist-stotras.htm
+Buddhist Yoga manual [Buddhistisches Yogalehrbuch] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_buddhist-yoga-manual.htm
+Candaragomin: Sisyalekha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_candragomin-ziSyalekha.htm
+Candrasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_candrasUtra.htm
+Carmavastu [ = Vinayavastu, 5] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_carmavastu.htm
+Civaravastu [ = Vinayavastu, 7] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_cIvaravastu.htm
+Dasabalasutra 1-4 (input by Jin-il Chung and Klaus Wille)
+gretil/corpustei/transformations/html/sa_dazabalasUtra-1-4.htm
+Dasabhumikasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dazabhUmikasUtra.htm
+Dasasahasrika Prajnaparamita, chapter 1 and 2 translated from the Tibetan (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_dazasAhasrikA-prajJApAramitA1-and-2-translated-from-tibetan.htm
+Devatasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_devatAsUtra-and-alpadevatAsUtra.htm
+Davuldena Jnanesvara Mahasthavira: Yasodharacarita (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_davuldeNa-jJAnezvara-mahAsthavira-yazodharAcarita.htm
+Patna Dharmapada (input by Tatsushi Tamai)
+gretil/corpustei/transformations/html/sa_patna-dharmapada.htm
+Dharmaskanda (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_dharmaskandha.htm
+Dhvajagrakeyuradharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_dhvajAgrakeyUrAdhAriNI-alt.htm
+Dhvajagrakeyura-Dharani (input by members of the Sanskrit Buddhist Canon Input Project) See also Dharani
+gretil/corpustei/transformations/html/sa_dhvajAgrakeyUrAdhAriNI.htm
+Dhvajagrasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_dhvajAgrasUtra.htm
+Dipamkarabhadra: Guhyasamajamandalavidhi (input by S. Klein-Schwind)
+gretil/corpustei/transformations/html/sa_dIpaMkarabhadra-guhyasamAjamaNDalavidhi.htm
+Divyavadana (input by Kensuke Okamoto) See also Asokavadana ( = Avadana 29) | Sardulakarnavadana ( = Avadana 33)
+gretil/corpustei/transformations/html/sa_divyAvadAna.htm
+Dvavimsatyavadanakatha (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_dvAviMzatyavadAnakathA.htm
+Ekadasamukhahrdaya (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_ekAdazamukhahRdaya.htm
+Ekadasamukhahrdaya [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ekAdazamukha.htm
+Ekottaragama (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_ekottarAgamafragments.htm
+Ganapatihrdayadharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_gaNapatihRdaydhAraNI.htm
+Gandavyuhasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_gaNDavyUhasUtra.htm
+Gopadatta: Jatakamala (input by Michael Hahn, proof-read by Klaus Wille)
+gretil/corpustei/transformations/html/sa_gopadatta-jAtakamAlA.htm
+Grahamatrkanamadharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_grahamAtRkAdhAraNI.htm
+Gunakarandavyuhasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_guNakAraNDavyUhasUtra.htm
+Gunaprabha (c. 5th cent.): Vinayasutra [a sutra-style compendium of the Vinayavastu] (input by Yoshiyasu Yonezawa et al., Taisho University)
+gretil/corpustei/transformations/html/sa_vinayasUtra.htm
+Gunaprabha: Vinayasutra, 1: Pravrajyavastu (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vinayasUtra-1pravrajyAvastu.htm
+Haribhatta: Jatakamala, Jatakas 1-8, 11-12, 19-20, 22, 24, 26, 32, 35 (input by Michael Hahn and Klaus Wille [Jat. 1])
+gretil/corpustei/transformations/html/sa_haribhaTTa-jAtakamAlA1-8--11-12--19-20--22--24--26--32--35.htm
+Hayagrivavidya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_hayagrIvavidyA.htm
+Jayaraksita: Sphutartha Srighanacarasamgrahatika [comm. on Srighanacarasamgraha] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_jayarakSita-sphuTArthA-zrIghanAcArasaMgrahaTIkA.htm
+Jnanalokalamkara (input by the members of the Study Group on Buddhist Sanskrit Literature, Taisho University, Tokyo)
+gretil/corpustei/transformations/html/sa_jJAnAlokAlaMkArasUtra.htm
+Jnanayasas: Jatakastava (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_jJAnayazas-jAtakastava.htm
+Kalpadrumavadanamala (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_kalpadrumAvadAnamAlA.htm
+Kamalasila: Vajracchedikatika [comm. on the Vajracchedika Prajnaparamita] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kamalazIla-vajracchedikATIkA.htm
+Kambalapada: Navasloki [on Astasahasrika Prajnaparamita] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_kambalapAda-navazlokI.htm
+Karandavyuha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kAraNDavyUha.htm
+Karmavastu [ = Vinayavastu, 10] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_karmavastu.htm
+Karmavibhangopadesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_karmavibhaGgopadeza.htm
+Karunapundarikasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_karuNApuNDarIkasUtra.htm
+Kasyapaparivartasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_kAzyapaparivartasUtra.htm
+Kasyapaparivartasutra [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kAzyapaparivartasUtra-alt.htm
+Kathinavadana (input by Lennart Hartmann) See also Avadana
+gretil/corpustei/transformations/html/sa_kaThinAvadAna.htm
+Kathinavastu [ = Vinayavastu, 8] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_kaThinavastu.htm
+Kausikaprajnaparamitasutra (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_kauzikaprajJApAramitAsUtra.htm
+Khasarpanasadhana (input by Klaus Wille) See also Sadhana
+gretil/corpustei/transformations/html/sa_khasarpaNasAdhana.htm
+Kosambakavastu [ = Vinayavastu, 9] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_kozAmbakavastu.htm
+Ksemendra: Avadanakalpalata (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kSemendra-avadAnakalpalatA.htm
+Ksemendra: Avadanakalpalata, no. 10: <a id="orgcba25bfGarbhavakrantyavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_kSemendra-garbhAvakrAntyavadAna.htm
+Ksemendra: Avadanakalpalata, no 64: <a id="org0e39e9fSudhanakinnaryavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_kSemendra-sudhanakinnaryavadAna.htm
+Ksemendra: Avadanakalpalata, no. 75: <a id="orgeaca98dPratityasamutpadavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_kSemendra-pratItyasamutpAdAvadAna.htm
+Ksemendra: Avadanakalpalata, no. 93: <a id="orgc285980Sumagadhavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_kSemendra-bodhisattvAvadAnakalpalatA-93sumAgadhAvadAna.htm
+Kumaralata: Kalpanamanditika (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_kumAralAta-kalpanAmaNDitikA.htm
+Laksminkara: Advayasiddhi (input by Peter Gäng)
+gretil/corpustei/transformations/html/sa_lakSmINkarA-advayasiddhi.htm
+Lalitavistara (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_lalitavistara.htm
+Lankavatarasutra See Saddharmalankavatarasutra
+-
+Larger Prajnaparamita, Gilgit Ms., fols. 1-27 (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_larger-prajJApAramitA.htm
+Larger Prajnaparamita, Gilgit Ms., fols. 202-205 (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_larger-prajJApAramitA-edchoong.htm
+Madhyamakasalistambasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_madhyamakazAlistambasUtra.htm
+Mahakarmavibhanga (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahAkarmavibhaGga.htm
+Mahamanivipulavimanavisvasupratisthitaguhyaparamarahasyakalparajadharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_mahAmaNivipulavimAnavizvasupratiSThitaguhyaparamarahasyakalparAjadhAraNI.htm
+Mahamantranusarini (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahAmantrAnusAriNI.htm
+Mahamayuri vidyarajni [cf. Pancaraksa] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahAmAyUrIvidyArAjJI.htm
+Mahaparinirvanasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahAparinirvANasUtra.htm
+Mahapratisaravidyadharani (input by members of the Sanskrit Buddhist Canon Input Project) See also Dharani
+gretil/corpustei/transformations/html/sa_mahApratisarAvidyAdhAraNI.htm
+Mahapratisara vidyarajni, 1937 ed. [cf. Pancaraksa] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahApratisarA-paJcarakSA.htm
+Mahapratisaramahavidyarajni, 2012 ed. [cf. Pancaraksa] (input by Gergely Hidas)
+gretil/corpustei/transformations/html/sa_mahApratisarAmahAvidyArAjJI.htm
+Mahapratisaravidyavidhi (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahApratisarAvidyAvidhi.htm
+Mahasahasrapramardani vidyarajni [cf. Pancaraksa] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_mahAsAhasrapramardanI.htm
+Mahasannipataratnaketudharanisutra, or Ratnaketuparivarta (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_mahAsaMnipAtaratnaketudhAraNIsUtra.htm
+Mahasannipataratnaketudharanisutra, or Ratnaketuparivarta, alternative version (input by members of the Sanskrit Buddhist Canon Input Project) See also Dharani
+gretil/corpustei/transformations/html/sa_mahAsaMnipAtaratnaketudhAraNIsUtra1-610-11.htm
+Mahasitavati vidyarajni (input by Klaus Wille) See also Pancaraksa
+gretil/corpustei/transformations/html/sa_mahAzItavatI-vidyArAjJI.htm
+Mahadandadharanisitavati (input by Gergely Hidas) See also Pancaraksa
+gretil/corpustei/transformations/html/sa_mahAdaNDadhAraNIzItavatI.htm
+Mahasudarsanavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_mahAsudarzanAvadAna.htm
+Mahavadanasutra (input by Takamichi Fukita) See also Avadana
+gretil/corpustei/transformations/html/sa_mahAvadAnasUtra.htm
+Mahavastu-"#org7b2cd3eAvadana (input by Emmanuel Fauré)
+gretil/corpustei/transformations/html/sa_mahAvastu-avAdana.htm
+Maitreyanatha: Abhisamayalamkaranamaprajnaparamitopadesasastra (input by Christian Coseru)
+gretil/corpustei/transformations/html/sa_maitreyanAtha-abhisamayAlaMkaranAmaprajJApAramitopadezazAstra.htm
+Maitreyavyakarana (input by Jens-Uwe Hartmann)
+gretil/corpustei/transformations/html/sa_maitreyavyAkaraNa.htm
+Maitreyavyakarana [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_maitreyavyAkaraNa-alt.htm
+Manjusrimulakalpa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_maJjuzrImUlakalpa.htm
+Manjusrinamasamgiti (input by Ian Sinclair)
+gretil/corpustei/transformations/html/sa_maJjuzrInAmasaMgIti.htm
+Manjusrinamasamgiti [alternative version] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_maJjuzrInAmasaMgIti-alt.htm
+Maricinamadharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_mArIcInAmadhAraNI.htm
+Matrceta: Prasadapratibhodhava [ = Satapancasatka] (input by Jens-Uwe Hartmann)
+gretil/corpustei/transformations/html/sa_mAtRceTa-zatapaJcAzatka.htm
+Mekhaladharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_mekhalAdhAraNI.htm
+Mrtyuvancanasitatarasadhana (input by Johannes Schneider) [see also Vagisvarakirti: Mrtyuvancanopadesa] See also Sadhana
+gretil/corpustei/transformations/html/sa_mRtyuvaJcanasitatArAsAdhana.htm
+Mrtyuvancanatarasadhana (input by Johannes Schneider) [see also Vagisvarakirti: Mrtyuvancanopadesa] See also Sadhana
+gretil/corpustei/transformations/html/sa_mRtyuvaJcanatArAsAdhana.htm
+Mrtyuvancanopadesatarasadhana (input by Johannes Schneider) [see also Vagisvarakirti: Mrtyuvancanopadesa] See also Sadhana
+gretil/corpustei/transformations/html/sa_mRtyuvaJcanopadezatArAsAdhana.htm
+Nagaropamasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_nagaropamasUtra.htm
+Nagnajit: Citralaksana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nagnajit-citralakSaNam.htm
+Nairatmyapariprcchamahayanasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nairAtmyaparipRcchAmahAyAnasUtra.htm
+Namaskaraikavimsatistotra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_namaskAraikaviMzatistotra.htm
+Nidanasamyukta (input by Seishi Karashima)
+gretil/corpustei/transformations/html/sa_nidAnasaMyukta.htm
+Nityakarmapujavidhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nityakarmapUjAvidhi.htm
+Pamsupradanavadana (transliterated by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_pAMzupradAna-avadAna.htm
+Pancavimsatisahasrika Prajnaparamita 1 [based on Dutt ed.] (input by Kenta Suzuki and Koichi Takahashi) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_paJcaviMzatisAhasrikA-prajJApAramitA1.htm
+Pancavimsatisahasrika Prajnaparamita 1-8 (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_paJcaviMzatisAhasrikA-prajJApAramitA1-8.htm
+Pancavimsatisahasrika Prajnaparamita, Anuradhapura fragment (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_paJcaviMzatisAhasrikA-prajJApAramitA.htm
+Pandulohitakavastu [ = Vinayavastu, 11] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_pANDulohitakavastu.htm
+Parivasikavastu [ = Vinayavastu, 13] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_pArivAsikavastu.htm
+Posadhasthapanavastu [ = Vinayavastu, 14] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_poSadhasthApanavastu.htm
+Posadhavastu [ = Vinayavastu, 2] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_poSadhavastu.htm
+Prajnaparamitahrdayasutra (input by John Richards)
+gretil/corpustei/transformations/html/sa_prajJApAramitAhRdayasUtra.htm
+Prajnaparamitahrdayasutra [samksiptamatrka] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_prajJApAramitAhRdayasUtrasaMkSiptamAtRkA.htm
+Prajnaparamitahrdayasutra [vistaramatrka] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_prajJApAramitAhRdayasUtravistaramAtRkA.htm
+Prajnaparamita texts, fragments (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_fragments-of-prajJApAramitA-texts.htm
+Pratimoksasutra (input by Georg von Simson)
+gretil/corpustei/transformations/html/sa_prAtimokSasUtra-of-the-sarvAstivAdins.htm
+Pratimoksasutra of the Lokottaravadimahasanghika (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_prAtimokSasUtra-of-the-lokottaravAdimahAsaGghika.htm
+Pratimoksasutra of the Mahasamghikas (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_prAtimokSasUtra-of-the-mahAsAMghikas.htm
+Pratimoksasutra of the Mulasarvastivadins (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_prAtimokSasUtra-of-the-mUlasarvAstivAdins.htm
+Pratimoksasutra [fragments] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_prAtimokSasUtrafragments.htm
+Pratisarakalpadharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_pratisarAkalpadhAraNI.htm
+Pratityasamutpadavibhangasutra
+-
+Edition Chung (input by Jin-il Chung)
+gretil/corpustei/transformations/html/sa_pratItyasamutpAdavibhaGgasUtra.htm
+Edition Vaidya, as "Pratityasamutpadadivibhanganirdesasutra" (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_pratItyasamutpAdAdivibhaGganirdezasUtra.htm
+Pratityasamutpadamahayanasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_pratItyasamutpAdamahAyAnasUtra.htm
+Pravaranavastu [ = Vinayavastu, 3] (input by Jin-il Chung &amp; Klaus Wille)
+gretil/corpustei/transformations/html/sa_pravAraNAvastu.htm
+Pravrajyavastu [ = Vinayavastu, 1] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_pravrajyAvastu.htm
+Pudgalavastu [ = Vinayavastu, 12] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_pudgalavastu.htm
+Rahulabhadra: Prajnaparamitastotra (input by Lennart and Jens-Uwe Hartmann)
+gretil/corpustei/transformations/html/sa_rAhulabhadra-prajJApAramitAstotra.htm
+Rastrapalapariprccha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_rASTrapAlaparipRcchA.htm
+Rastrapalasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_rASTrapAlasUtra.htm
+Ratnagunasamcayagatha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnaguNasaMcayagAthA.htm
+Ratnakarasanti: Bhramaharanama Hevajrasadhana (input by Klaus Wille) See also Sadhana
+gretil/corpustei/transformations/html/sa_ratnAkarazAnti-bhramaharanAma-hevajrasAdhana.htm
+Ratnakarasanti: Saratama [a Panjika on the Astasahasrika Prajnaparamita] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnAkarazAnti-sAratama.htm
+Ratnaketuparivarta see: Mahasannipataratnaketudharanisutra
+-
+Ratnamalavadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_ratnamAlAvadAna.htm
+Sabhikasaugatasasanapravrajyavratacaranaparivarta (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_sabhikasaugatazAsanapravrajyAvratacaraNaparivarta.htm
+Saddharmalankavatarasutra [Lankavatarasutra] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_saddharmalaGkAvatArasUtra.htm
+Saddharmapundarikasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_saddharmapuNDarIkasUtra.htm
+Sagaranagarajapariprcchasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_sAgaranAgarAjaparipRcchAmahAyAnasUtra.htm
+Salistambasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zAlistambasUtra.htm
+Samadhirajasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_samAdhirAjasUtra.htm
+Samadhirajasutra, Chapters 1-11, 13, 15-22 [transliteration of Gilgit ms.] (input by Kazuhiro Shimizu)
+gretil/corpustei/transformations/html/sa_samAdhirAjasUtratransliteration-1-111315-22.htm
+Sambhadravadanamala See Sabhikasaugatasasanapravrajyavratacaranaparivarta
+-
+Samghatasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_saMghATasUtra.htm
+Samghatasutra [alternative version] (input by Anne Peters and Klaus Wille)
+gretil/corpustei/transformations/html/sa_saMghATasUtra-alt.htm
+Samyaksambuddhabhasitam Pratimalaksanam (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_samyaksaMbuddhabhASitaM-pratimAlakSaNam.htm
+Samyuktagama (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_saMyuktAgama-966-972-according-to-the-chinese-canon.htm
+Sanghabhedavastu [ = Vinayavastu, 17] (input by Seishi Karashima and Klaus Wille)
+gretil/corpustei/transformations/html/sa_saGghabhedavastu.htm
+Saptasatika Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_saptazatikA-prajJApAramitA.htm
+Sardulakarnavadana [ = Avadana 33 of the Divyavadana] (input by Mizue Sugita) See also Avadana
+gretil/corpustei/transformations/html/sa_zArdUlakarNAvadAna.htm
+Sarvadurgatiparisodhanatantra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_sarvadurgatiparizodhanatantra.htm
+Sarvajnatakaradharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_sarvajJatAkAradhAraNI.htm
+Sarvatathagatadhisthanavyuhasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_sarvatathAgatAdhiSThAnavyUhasUtra.htm
+Sarvatathagatatattvasamgraha (input by Udip Shakya and Anula Shakya)
+gretil/corpustei/transformations/html/sa_sarvatathAgatatattvasaMgraha.htm
+Sarvatathagatosnisasitatpatra-nama-aparitamahapratyangiravidyarajni (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_sitAtapatrA.htm
+Satasahasrika Prajnaparamita, I (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_zatasAhasrikAprajJApAramitA-1.htm
+Satasahasrika Prajnaparamita, II (input by Klaus Wille) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_zatasAhasrikA-prajJApAramitA-2.htm
+Satyasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_satyasUtra.htm
+Sayanasanavastu [ = Vinayavastu, 15] (input by Seishi Karashima)
+gretil/corpustei/transformations/html/sa_zayanAsanavastu.htm
+Srighanacarasamgraha [reconstructed from Jayaraksita's Sphutartha Srighanacarasamgrahatika] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zrIghanAcArasaMgraha.htm
+Srimahadevivyakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zrImahAdevIvyAkaraNa.htm
+Stupalaksanakarikavivecana (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_stUpalakSaNakArikAvivecana.htm
+Subhasitaratnakarandakatha (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_subhASitaratnakaraNDakathA.htm
+Sukhavativyuha (input by Yoshimichi Fujita)
+gretil/corpustei/transformations/html/sa_sukhAvatIvyUha.htm
+Smaller
+gretil/corpustei/transformations/html/sa_smaller-sukhAvatIvyUha.htm
+Sukhavativyuha [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_sukhAvatIvyUhasaMkSiptamAtRkA.htm
+Another one:
+gretil/corpustei/transformations/html/sa_sukhAvatIvyUhavistaramAtRkA.htm
+Sumagadha-"#org7b2cd3eAvadana (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_sumAgadhAvadAna.htm
+Suvarnaprabhasasutra [ = Suvarnabhasottamasutra] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_suvarNaprabhAsasUtra.htm
+Suvarnavarnavadana (input by Jens Braarvig) See also Avadana
+gretil/corpustei/transformations/html/sa_suvarNavarNAvadAna.htm
+Suvikrantavikramipariprccha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_suvikrAntavikrAmiparipRcchA.htm
+Svagatasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_svAgatasUtra.htm
+Svalpaksara Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_svalpAkSarA-prajJApAramitA.htm
+Svayambhu-Purana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_svayaMbhupurANa.htm
+Tarabhattarikanamastottarasatakastotra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_tArAbhaTTArikAnAmASTottarazatakastotra.htm
+Tarasragdharastotra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_tArAsragdharAstotra.htm
+Tathagatabimbakarapanasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_tathAgatabimbakArApaNasUtra.htm
+Trisatika Prajnaparamita See Asanga: Trisatikayah Prajnaparamitayah Karikasaptatih
+-
+Triskandhasutra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_triskandhasUtra.htm
+Udanavarga (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_udAnavarga.htm
+Upasampadajnapti (input by Jin-il Chung)
+gretil/corpustei/transformations/html/sa_upasaMpadAjJapti.htm
+Vagisvarakirti: Mrtyuvancanopadesa (input by Johannes Schneider) [see also s.v. Sadhana]
+gretil/corpustei/transformations/html/sa_vAgIzvarakIrti-mRtyuvaJcanopadeza.htm
+Vajracchedika Prajnaparamita (input by members of the Sanskrit Buddhist Canon Input Project) See also Prajnaparamita
+gretil/corpustei/transformations/html/sa_vajracchedikA-prajJApAramitA.htm
+Vajracchedika Prajnaparamita, fragment from Afghanistan (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_vajracchedikA-prajJApAramitA-frag.htm
+Vajracchedika Prajnaparamita, Gilgit ms. (input by Klaus Wille) See also Prajnaparamita | Kamalasila: Vajracchedikatika
+gretil/corpustei/transformations/html/sa_vajracchedikA-prajJApAramitA-gilgit.htm
+Vajravidaranadharani (input by members of the Sanskrit Buddhist Canon Input Project) See also Dharani
+gretil/corpustei/transformations/html/sa_vajravidAraNAdhAraNI.htm
+Vajravidaranidharani (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_vajravidAraNIdhAraNI.htm
+Varsavastu [ = Vinayavastu, 4] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_varSAvastu.htm
+Vasudharadharani #1 (input by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_vasudhArAdhAraNI.htm
+Vasudharadharani #2 (transliterated from the manuscript by Klaus Wille) See also Dharani
+gretil/corpustei/transformations/html/sa_vasudhArAdhAraNI-gilgit.htm
+Vasudharadharani #3 (input by members of the Sanskrit Buddhist Canon Input Project) See also Dharani
+gretil/corpustei/transformations/html/sa_vasudhArAdhAraNI-alt.htm
+Vidyasthanopamasutra (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_vidyAsthAnopamasUtra.htm
+Vimalakirtinirdesa (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_vimalakIrtinirdeza.htm
+Vimalakirtinirdesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vimalakIrtinirdezasUtra.htm
+Vinayaviniscaya upalipariprccha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vinayavinizcayaupAliparipRcchA.htm
+Visvantaravadana (input by Klaus Wille) See also Avadana
+gretil/corpustei/transformations/html/sa_vizvantarAvadAna.htm
+# 4, Jaina
+#
+Haribhadrasuri: Sastravartasamuccaya (input by Yasunori Harada)
+gretil/corpustei/transformations/html/sa_haribhadrasUri-zAstravArttAsamuccaya.htm
+# 3, Poetry, poe
+#
+# 4, Alamkara
+#
+Anandavardhana: Dhvanyaloka, with Abhinavagupta's Locana (input by Rajani Arjun Shankar, revised by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_Anandavardhana-dhvanyAloka.htm
+Anandavardhana: Dhvanyaloka, with Abhinavagupta's Locana and Ramasaraka's Balapriya (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_Anandavardhana-dhvanyAloka-comm.htm
+Bhamaha: Kavyalamkara (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_bhAmaha-kAvyAlaMkAra.htm
+Dandin: Kavyadarsa, Paricchedas 1 &amp; 2 (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_daNDin-kAvyAdarza-1-2.htm
+Dandin: Kavyadarsa, Paricchedas 1; 2.1-144, 310-368 (input by Reinhold Grünendahl)
+gretil/corpustei/transformations/html/sa_daNDin-kAvyAdarza1--2.1-144--2.310-368.htm
+Dandin: Kavyadarsa, Pariccheda 3 (input by Dragomir Dimitrov)
+gretil/corpustei/transformations/html/sa_daNDin-kAvyAdarza-3.htm
+Jagannatha Panditaraja: Rasagangadhara, Anana 1 (input by Timothy C. Cahill)
+gretil/corpustei/transformations/html/sa_jagannAthapaNDitarAja-rasagaGgAdhara-1.htm
+Jayadeva [alias Piyusavarsa]: Candraloka (input by Réginald Beyaert, revised by Pierre-Sylvain Filliozat)
+gretil/corpustei/transformations/html/sa_jayadeva-candrAloka.htm
+Kuntaka: Vakroktijivita, with auto-commentary (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_kuntaka-vakroktijIvita-comm.htm
+Mammata: Kavyaprakasa (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_mammaTa-kAvyaprakAza.htm
+Mammata: Kavyaprakasa, with Vamanacarya Ramabhatta Jhalakikar's Balabodhini commentary (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_mammaTa-kAvyaprakAza-comm.htm
+Mammata: Sabdavyaparavicara (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_mammaTa-zabdavyApAravicAra.htm
+Rajasekhara: Kavyamimamsa (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_rAjazekhara-kAvyamImAMsA-1.htm
+Rudrabhatta: Srngaratilaka See below
+-
+Rupa Gosvamin: Natakacandrika (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-nATakacandrikA.htm
+Rupa Gosvamin: Ujjvalanilamani (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-ujjvalanIlamaNi.htm
+Ruyyaka [Rajanaka]: Alamkarasarvasva, Sutras 1-34 (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_ruyyaka-alaMkArasarvasva-1-34.htm
+Ruyyaka [Rajanaka]: Alamkarasarvasva, Sutras 1-34, with Jayaratha's Vimarsini (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_ruyyaka-alaMkArasarvasva-1-34-comm.htm
+Ruyyaka [Rajanaka]: Alamkarasarvasva, with Vidyacakravartin's Samjivani (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_ruyyaka-alaMkArasarvasva.htm
+Ruyyaka [Rajanaka]: Vyaktivivekavyakhya, 2nd vimarsa (input by Hugo David)
+gretil/corpustei/transformations/html/sa_ruyyaka-vyaktivivekavyAkhyA-2.htm
+Simhabhupala (attrib.): Rasarnavasudhakara (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_siMhabhUpAla-rasArNavasudhAkara.htm
+Udbhata: Kavyalamkarasarasamgraha, with Induraja's Laghuvrtti (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_udbhaTa-kAvyAlaMkArasArasaMgraha.htm
+Vamana: Kavyalamkara [sutras without comm.] (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_vAmana-kAvyAlaMkArasUtra-alt.htm
+Vamana: Kavyalamkarasutra, with Vrtti (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_vAmana-kAvyAlaMkArasUtra.htm
+Vidyanatha: Prataparudriya, or Prataparudrayasobhusana, with Kumarasvamin's Ratnapana commentary (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_vidyAnAtha-pratAparudrIya.htm
+Visvanatha kaviraja: Sahityadarpana [mulakarikas only] (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_vizvanAthakavirAja-sAhityadarpaNa.htm
+Visvanatha kaviraja: Sahitydarpana, with Locana and Vijnapriya commentaries (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_vizvanAthakavirAja-sAhityadarpaNa-comm.htm
+Visvesvara Kavicandra: Camatkaracandrika (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_vizvezvarakavicandra-camatkAracandrikA.htm
+# 4, Natya
+#
+Bharata: Natyasastra (input by Padmakar Dadegaonkar, Sowmya Krishnapur, Haresh Bakshi)
+gretil/corpustei/transformations/html/sa_bharata-nATyazAstra-1-1618-303335-37.htm
+Dhananjaya [Dhanamjaya]: Dasarupaka (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_dhanaMjaya-dazarUpaka-1-4.htm
+# 4, Chandas (prosody)
+#
+Chandoviciti (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_chandoviciti.htm
+Jnanasrimitra: Vrttamalastuti (input by Michael Hahn)
+gretil/corpustei/transformations/html/sa_jJAnazrImitra-vRttamAlAstuti.htm
+Kedarabhatta: Vrttaratnakara (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_kedArabhaTTa-vRttaratnAkara.htm
+Kedarabhatta: Vrttaratnakara, with Sulhana's Sukavihrdayanandini (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_kedArabhaTTa-vRttaratnAkara-comm.htm
+# 4, Kavya
+#
+Abhinanda: Kadambarikathasara [giving the story of Bana's Kadambari] (input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_abhinanda-kAdambarIkathAsAra.htm
+Abhinanda: Ramacaritamahakavya, 1-3 (in progress; input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_abhinanda-rAmacaritamahAkAvye.htm
+Amarusataka (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_amaru-amaruzataka.htm
+Anandabhatta: Vallalacarita [ = Ballalacarita] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_AnandabhaTTa-vallAlacarita.htm
+Appayadiksita: Vairagyasataka (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_appayadIkSita-vairAgyazatakam.htm
+Asvaghosa: Buddhacarita (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_azvaghoSa-buddhacarita.htm
+Asvaghosa: Buddhacarita [alternative Version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_azvaghoSa-buddhacarita-alt.htm
+Asvaghosa: Saundarananda-mahakavya (input by N.N.)
+gretil/corpustei/transformations/html/sa_azvaghoSa-saundarAnanda-edmatsunami.htm
+Asvaghosa: Saundarananda-mahakavya [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_azvaghoSa-saundarAnanda.htm
+Bana: Harsacarita
+-
+Edition Parab (input by Jens Thomas, Willem Bollée)
+gretil/corpustei/transformations/html/sa_bANa-harSacarita.htm
+Ucchvasas 1-4, 6-8 (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_bANa-harSacaritapariziSTa.htm
+Bana: Kadambari, Purvabhaga [partly] (input by members of the Sansknet Project) See also Abhinanda: Kadambarikathasara
+gretil/corpustei/transformations/html/sa_bANa-kAdambarI-1,84-122.htm
+Bhallata: Bhallatasataka (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_bhallaTa-bhallaTazataka.htm
+Bharavi: Kiratarjuniya (input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_bhAravi-kirAtArjunIya.htm
+Bhatti: Ravanavadha [ = "Bhattikavya"] (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_bhaTTi-rAvaNavadha.htm
+Bilhana: Caurapancasika (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_bilhaNa-caurapaJcAzikA.htm
+Damodaragupta: Kuttanimata (input by Csaba Dezso and Dominic Goodall)
+gretil/corpustei/transformations/html/sa_dAmodaragupta-kuTTanImata.htm
+Dandin: Dasakumaracarita (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_daNDin-dazakumAracarita.htm
+Dandin: Dasakumaracarita, Ucchvasas 3, 5 &amp; 6 (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_daNDin-dazakumAracarita3--5-6.htm
+Dhoyi (12th cent.): Pavanaduta (input by Harunaga Isaacson)
+gretil/corpustei/transformations/html/sa_dhoyI-pavanadUta.htm
+Ghatakarparakavya: Kusalamisra's Gudharthadipika (input by Walter Slaje)
+gretil/corpustei/transformations/html/sa_kuzalamizra-gUDhArthadIpikA.htm
+Ghatakarparakavya, with Abhinavagupta's Ghatakarparavivrti (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_ghaTakarparakAvya-comm.htm
+Govardhana (12th. cent.): Aryasaptasati (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_govardhana-AryAsaptazatI.htm
+Jagannatha: Pranabharana, with auto-commentary (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_jagannAtha-prANAbharaNa-comm.htm
+Jagannatha: Sudhalahari (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_jagannAtha-sudhAlaharI.htm
+Jalhana: Mugdhopadesa (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_jalhaNa-mugdhopadeza.htm
+Jayadeva: Gitagovinda [in pausa] (input by Jakub Cejka)
+gretil/corpustei/transformations/html/sa_jayadeva-gItagovinda.htm
+Jayadeva: Gitagovinda (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_jayadeva-gItagovinda-alt.htm
+Jiva Gosvamin: Gopalacampu (input by Malika Das)
+gretil/corpustei/transformations/html/sa_jIvagosvAmin-gopAlacampUp1-33u1-3u5-6u29.htm
+Jiva Gosvamin: Samkalpakalpadruma [Sankalpakalpadruma] (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_jIvagosvAmin-saMkalpakalpadruma.htm
+Kalidasa: Kumarasambhava (input by Utz Podzeit)
+gretil/corpustei/transformations/html/sa_kAlidAsa-kumArasaMbhava.htm
+Kalidasa: Meghaduta (input by Asko Parpola)
+gretil/corpustei/transformations/html/sa_kAlidAsa-meghadUta.htm
+Kalidasa: Meghaduta, according to Vallabha's commentary (input by Asko Parpola)
+gretil/corpustei/transformations/html/sa_kAlidAsa-meghadUta-acc-vallabhadeva.htm
+Kalidasa: Meghaduta [alternative version] (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_kAlidAsa-meghadUta-edkale.htm
+Kalidasa: Raghuvamsa (input by N.N.)
+gretil/corpustei/transformations/html/sa_kAlidAsa-raghuvaMza.htm
+Kalidasa: Raghuvamsa (1-6) [Kashmirian text, as read by Vallabhadeva] (input by Dominic Goodall)
+gretil/corpustei/transformations/html/sa_kAlidAsa-raghuvaMza-kashm1-6.htm
+Kalidasa: Rtusamhara (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_kAlidAsa-RtusaMhAra.htm
+Kalidasa: Syamaladandaka (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_kAlidAsa-zyAmalAdaNDaka.htm
+Ksemendra: Bharatamanjari (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_kSemendra-bhAratamaJjarI-6-19.htm
+Ksemendra: Kalavilasa (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_kSemendra-kalAvilAsa.htm
+Ksemendra: Narmamala (input by Martin Straube)
+gretil/corpustei/transformations/html/sa_kSemendra-narmamAlA.htm
+Kulasekhara: Mukundamala (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_kulazekhara-mukundamAlA-eddurgaprasad.htm
+Kusalamisra See Ghatakarparakavya: Kusalamisra's Gudharthadipika
+-
+Lankesvara: Sivastuti (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_laGkezvara-zivastuti.htm
+Magha: Sisupalavadha (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_mAgha-zizupAlavadha.htm
+Narayanabhatta: Narayaniya (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_nArAyaNabhaTTa-nArAyaNIya.htm
+Nilakantha Diksita: Kalividambana (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_nIlakaNThadIkSita-kaliviDambana.htm
+Padmagupta (alias Parimala): Navasahasankacarita (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_padmagupta-navasAhasAGkacarita.htm
+Prince of Kotilingapura: Hetvabhasadasaka (input by Venkata Raghavan)
+gretil/corpustei/transformations/html/sa_hetvAbhAsadazaka.htm
+Raghavacaitanya: Mahaganapatistotra, with comm. (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_rAghavacaitanya-mahAgaNapatistotra-comm.htm
+Ramodanta (input by Christophe Vielle)
+gretil/corpustei/transformations/html/sa_rAmodanta.htm
+Ravideva: Raksasakavya with Tika (input by Christophe Vielle)
+gretil/corpustei/transformations/html/sa_ravideva-rAkSasakAvyawithTIkA.htm
+Rudrabhatta: Srngaratilaka (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_rudrabhaTTaH-zRGgAratilaka.htm
+Rupa Gosvamin: Hamsaduta (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-haMsadUta.htm
+Rupa Gosvamin: Padyavali (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_rUpagosvAmin-padyAvalI.htm
+Ruyyaka: Sahrdayalila (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_ruyyaka-sahRdayalIlA.htm
+Subandhu: Vasavadatta (input by Christian Ferstl)
+gretil/corpustei/transformations/html/sa_subandhu-vAsavadattA.htm
+Uddanda: Kokilasamdesa (input by members of the Rasala team)
+gretil/corpustei/transformations/html/sa_uddaNDa-kokilasaMdesa.htm
+# 4, Drama
+#
+Asvaghosa: Sariputraprakarana See Dramatic Fragments
+-
+Bhasa: Dutavakya (input by Yves Codet)
+gretil/corpustei/transformations/html/sa_bhAsa-dUtavAkya.htm
+Bhasa: Svapnavasavadatta (input by Matthias Ahlborn)
+gretil/corpustei/transformations/html/sa_bhAsa-svapnavAsavadatta.htm
+Bhattanarayana: Venisamhara (input by Yves Codet)
+gretil/corpustei/transformations/html/sa_bhaTTanArAyaNa-veNIsaMhAra.htm
+Dramatic Fragments (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_dramatic-fragments-buddhist.htm
+Harsadeva: Naganandanataka (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_harSadeva-nAgAnanda.htm
+Harsadeva: Priyadarsika (input by a Paris-3 Sorbonne-Nouvelle University group of Master students in Indology : Pilar Altinier, Dominique Fradkine, Cl‚mentine Peroumal-Delavigne, Carmen Sylvia Spiers, checked and supervised by Nalini Balbir)
+gretil/corpustei/transformations/html/sa_harSadeva-priyadarzikA.htm
+Harsadeva: Ratnavalinatika (input by Martin Straube)
+gretil/corpustei/transformations/html/sa_harSadeva-ratnAvalInATikA.htm
+Kalidasa: Abhijnanasakuntala (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_kAlidAsa-abhijJAnazakuntala.htm
+Mahendravarman I: Mattavilasaprahasana (input by Christian Ferstl)
+gretil/corpustei/transformations/html/sa_mahendravarman-i-mattavilAsaprahasana.htm
+Udicya Syamilaka: Padataditaka (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_udIcyazyAmilaka-pADatADitaka.htm
+# 4, Narrative Literature
+#
+Buddhasvamin: Brhatkathaslokasamgraha (input by Andreas Bigger)
+gretil/corpustei/transformations/html/sa_buddhasvAmin-bRhatkathAzlokasaMgraha.htm
+Narayana: Hitopadesa (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_nArAyaNa-hitopadeza.htm
+Somadeva: Kathasaritsagara (input by James Mallinson, Elena Artesani, Rabi Acharya, Nirajan Kafle, and Tyler Neill)
+gretil/corpustei/transformations/html/sa_somadeva-kathAsaritsAgara.htm
+Somadeva: Kathasaritsagara, Vetalapancavimsatika (input by Elena Artesani)
+gretil/corpustei/transformations/html/sa_somadeva-kathAsaritsAgaravetAlapaJcaviMzatikA.htm
+Sukasaptati (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_zukasaptati.htm
+Tantrakhyayika (input by Lars Martin Fosse)
+gretil/corpustei/transformations/html/sa_tantrAkhyAyika-1-2.htm
+Visnusarma: Pancatantra (input by Jan Brzezinski)
+gretil/corpustei/transformations/html/sa_viSNuzarman-paJcatantra.htm
+# 4, Subhasita
+#
+Bhartrhari: Satakatraya [1. Nitisataka, 2. Srngarasataka, 3. Vairagyasataka] (input by Jan K. Brzezinski)
+gretil/corpustei/transformations/html/sa_bhatRhari-zatakatraya.htm
+Ksemendra: Caturvargasamgraha (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_kSemendra-caturvargasaMgraha.htm
+Ksemendra: Darpadalana (input by members of the Rasala team)
+gretil/corpustei/transformations/html/sa_kSemendra-darpadalana.htm
+Ksemendra: Sevyasevakopadesa (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_kSemendra-sevyasevakopadeza.htm
+Mahasubhasitasamgraha, verses 1-9979 (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_mahAsubhASitasaMgraha-1-9979.htm
+Vallabhadeva: Subhasitavali (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_vallabhadeva-subhASitAvali-1-1040.htm
+Vidyakara: Subhasitaratnakosa (input by Harunaga Isaacson, revised by Jan Brzezinski) GRETIL revision of Gaudiya Grantha Mandira version (modified text!):
+gretil/corpustei/transformations/html/sa_vidyAkara-subhASitaratnakoza.htm
+# 4, Historical
+#
+(Pseudo-)Jonaraja: Rajatarangini (input by Walter Slaje)
+gretil/corpustei/transformations/html/sa_jonarAja-and-pseudo-jonarAja-rAjataraGginI.htm
+Govind Kaul: Pradesasamgraha (input by Katrin Züfle)
+gretil/corpustei/transformations/html/sa_govindkaul-pradezasaMgraha.htm
+# 3, Sastra, sas
+#
+# 4, Grammar
+#
+Bhartrhari: Vakyapadiya [complete] (input by Yves Ramseier)
+gretil/corpustei/transformations/html/sa_bhartRhari-vAkyapadIya.htm
+Bhartrhari: Vakyapadiya 1 - 3,7 (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_bhartRhari-vAkyapadIya1-3,7.htm
+Jayaditya &amp; Vamana: Kasikavrtti [comm. on Panini's Astadhyayi] (input by Ms. Mari Minamino)
+gretil/corpustei/transformations/html/sa_jayAditya-and-vAmana-kAzikAvRtti.htm
+Based on CSX encoding
+gretil/1_sanskr/6_sastra/1_gram/jvkasipu.htm
+Kudaka: Samanvayadis (input by Walter Slaje)
+gretil/corpustei/transformations/html/sa_kuDaka-samanvayadiz.htm
+Nagesa [ = Nagojibhatta]: Paribhasendusekhara (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_nAgeza-paribhASenduzekhara.htm
+Panini: Astadhyayi [mula text extracted from the commented version] (input by Ms. Mari Minamino)
+gretil/corpustei/transformations/html/sa_pANini-aSTAdhyAyI.htm
+Panini: Astadhyayi [alternative version] (input under the guidance of W.P. Lehman)
+gretil/corpustei/transformations/html/sa_pANini-aSTAdhyAyI-alt.htm
+Patanjali: Vyakaranamahabhasya [Mahabhasya] (input by George Cardona)
+gretil/corpustei/transformations/html/sa_pataJjali-vyAkaraNamahAbhASya.htm
+Varadaraja: Laghusiddhantakaumudi [ = Laghukaumudi] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_varadarAja-laghusiddhAntakaumudI.htm
+# 4, Lexicography
+# 
+Amarasimha: Namalinganusasana [Amarakosa] (input by Avinash Sathaye &amp; Pramod SV Ganesan)
+gretil/corpustei/transformations/html/sa_amarasiMha-nAmaliGgAnuzAsana.htm
+# 4, Philosophy
+#
+# 5, General
+#
+Sarvamatasamgraha (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_sarvamatasaMgraha.htm
+# 5, Mimamsa
+#
+Jaimini: Mimamsasutra (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_jaimini-mImAMsAsUtra.htm
+Khandadeva: Bhattadipika, with Sambhubhatta's Prabhavali (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_khaNDadeva-bhATTadIpikA1-3,3.htm
+Kumarila Bhatta: Mimamsaslokavarttika [with Sucaritamisra's Kasika] (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_kumArila-mImAMsazlokavArttika-comm.htm
+Kumarila Bhatta: Tantravarttika (ad Mimamsa-Sutra 2,1.2-4) (input by Kei Kataoka)
+gretil/corpustei/transformations/html/sa_kumArila-tantravArttika-2,1,1-4.htm
+Madhava: Jaiminiyanyayamalavistara, with comm. (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_mAdhava-jaiminIyanyAyamAlAvistara.htm
+Parthasarathi Misra: Sastradipika (input by members of the Sansknet Projekt)
+gretil/corpustei/transformations/html/sa_pArthasArathimizra-zAstradIpikA.htm
+Sabarasvami: Mimamsasutrabhasya [Sabarabhasya], Adhy. 1-7 [to be continued] (input by Andreas Pohlus)
+gretil/corpustei/transformations/html/sa_jaimini-mImAMsAsUtra-1-7-comm.htm
+Sabarasvami: Mimamsasutrabhasya [Sabarabhasya] ad 1,1.1-5 (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_zabara-mImAMsAsUtrabhASya-1,1,1-5.htm
+Salikanathamisra: Prakaranapancika, with Jayapuri Narayanabhatta's comm. (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_zAlikanAthamizra-prakaraNapaJcikA-comm.htm
+Sucaritamisra: Mimamsaslokavarttikatika (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_sucaritamizra-mImAMsAzlokavArttika.htm
+# 5, Vedanta
+#
+Adisesa: Paramarthasara (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_AdizeSa-paramArthasAra.htm
+Badarayana: Brahmasutra (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra.htm
+Badarayana: Brahmasutra [alternative version extracted from Samkara's commentary] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra-alt.htm
+Badarayana: Brahmasutra, with Madhva's Bhasya and Jagannatha Tirtha's Dipika [subcomm.] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra1,1-1,3-comm-subcomm.htm
+Badarayana: Brahmasutra, with Samkara's Sarirakamimamsabhasya (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra-comm.htm
+Badarayana: Brahmasutra, with Govindananda's Ratnaprabhavyakhya [subcommentary] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra-subcomm.htm
+Badarayana: Brahmasutra, with Samkara's Sarirakamimamsabhasya and Govindananda's Ratnaprabhavyakhya [subcommentary] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra-comm-subcomm2.htm
+Badarayana: Brahmasutra, with Vacaspatimisra's Bhamati [subcomm. on Samkara's Brahmasutrabhasya] (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_bAdarAyaNa-brahmasUtra-subcomm2.htm
+Bhaskara: Bhagavadasayanusaranabhasya (on Bhagavadgita 1-9) (input by Takahiro Kato)
+gretil/corpustei/transformations/html/sa_bhAskara-bhagavadAzayAnusaraNabhAsya.htm
+Gaudapada: Agamasastra [ = Gaudapadakarika, Gaudapadiyakarika] (input by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_gauDapAda-AgamazAstra.htm
+Madhusudanasarasvati: Siddhantabindu (input by Takahiro Kato)
+gretil/corpustei/transformations/html/sa_madhusUdanasarasvatI-siddhAntabindu.htm
+Mandana Misra [Mandanamisra]: Brahmasiddhi (input by Diwakar Acharya)
+gretil/corpustei/transformations/html/sa_mandanamizra-brahmasiddhi.htm
+Mandana Misra [Mandanamisra]: Vibhramaviveka (input by Takahiro Kato)
+gretil/corpustei/transformations/html/sa_maNDanamizra-vibhramaviveka.htm
+Narahari: Bodhasara (input by Jennifer Cover)
+gretil/corpustei/transformations/html/sa_narahari-bodhasAra.htm
+Samkara: Upadesasahasri (input by Ivan Andrijanić)
+gretil/corpustei/transformations/html/sa_zaMkara-upadezasAhasrI.htm
+Samkara: Bhagavadgitabhasya (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_bhagavadgItA-comm.htm
+Samkara (attrib.): Kathopanisadbhasya (input by Ivan Andrijanić)
+gretil/corpustei/transformations/html/sa_zaMkara-kaThopaniSadbhASya.htm
+Samkara (attrib.): Vivekacudamani (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_zaMkara-vivekacuDAmaNi.htm
+Vacaspatimisra: Bhamati [subcomm. on Samkara's Brahmasutrabhasya, text without sutras] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_vAcaspatimizra-bhAmati.htm
+# 5, Dvaita-Vedanta
+#
+Jayatirtha: Nyayasudha, a commentary on Madhva's Anuvyakhyana [and subcomm. on Badarayana's Brahmasutra] (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_jayatIrtha-nyAyasudhA.htm
+Madhva (Anandatirtha): Anuvyakhyana, a verse commentary on Badarayana's Brahmasutra (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_mAdhva-anuvyAkhyAna.htm
+Madhva (Anandatirtha): Mahabharatatatparyanirnaya (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_mAdhva-mahAbhAratatAtparyanirNaya.htm
+# 5, Visistadvaita-Vedanta
+#
+Ramanuja: Bhagavadgitabhasya (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_rAmAnuja-bhagavadgItAbhASya.htm
+Ramanuja: Sribhasya 1,1.3 (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_rAmAnuja-zrIbhASya-1,1,3.htm
+Ramanuja: Vedarthasamgraha (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_rAmAnuja-vedArthasaMgraha.htm
+Yamuna: Gitarthasamgraha (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_yAmuna-gItArthasaMgraha.htm
+Yamuna: Isvarasiddhi (input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_yAmuna-Izvarasiddhi.htm
+Yamuna: Samvitsiddhi (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_yAmuna-saMvitsiddhi.htm
+Yamuna: Samvitsiddhi (alternative version; input by Sadanori Ishitobi)
+gretil/corpustei/transformations/html/sa_yAmuna-saMvitsiddhi-alt.htm
+Yamuna: Siddhitraya, with commentary (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_yAmuna-Atmasiddhi.htm
+Alternative:
+gretil/corpustei/transformations/html/sa_yAmuna-Izvarasiddhi-alt.htm
+Commentary:
+gretil/corpustei/transformations/html/sa_yAmuna-saMvitsiddhi-comm.htm
+# 5, Advaita (to be distinguished from Advaita-Vedanta)
+#
+Moksopaya [ = "Yogavasistha"] Text of the critical edition 1,1-6,252 (input by Walter Slaje, Susanne Krause-Stinner, Peter Stephan, Anett Krause, Jürgen Hanneder, and Stanislav Jager)
+gretil/corpustei/transformations/html/sa_mokSopAya.htm
+Mula-Text with Bhaskarakantha's Tika, Prakaranas 1-4 (input by Walter Slaje)
+gretil/corpustei/transformations/html/sa_bhAskarakaNTha-mokSopAyaTIkA.htm
+# 5, Samkhya
+#
+Bhavaganesa [or Ganesadiksita]: Tattvayatharthyadipana [a comm. on the Tattvasamasa] (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_bhAvAgaNeza-tattvayAthArthyadIpana.htm
+Isvarakrsna: Samkhyakarika ( = Samkhyasaptati) [mula text extracted from the commented version] (input by members of the Young Buddhist Association, University of Tokyo)
+gretil/corpustei/transformations/html/sa_IzvarakRSNa-sAMkhyakArikA-alt.htm
+Isvarakrsna: Samkhyakarika [alternative version] (input by Ferenc Ruzsa)
+gretil/corpustei/transformations/html/sa_IzvarakRSNa-sAMkhyakArikA.htm
+Isvarakrsna: Samkhyakarika, with Gaudapada's Bhasya (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_IzvarakRSNa-sAMkhyakArikA-comm2.htm
+Isvarakrsna: Samkhyakarika, with Mathara's commentary Matharavrtti (input by members of the Young Buddhist Association, University of Tokyo)
+gretil/corpustei/transformations/html/sa_IzvarakRSNa-sAMkhyakArikA-comm.htm
+Isvarakrsna: Samkhyakarika, with Samkara arya's Jayamangala commentary (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_IzvarakRSNa-sAMkhyakArikA-comm3.htm
+Isvarakrsna: Samkhyakarika, with Yuktidipika commentary (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_yuktidIpikA.htm
+Kapila: Samkhyasutra (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_kapila-sAMkhyasUtra.htm
+Kavirajayati ( = Kavirajagiri): Samkhyatattvapradipa (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_kavirAjayati-sAMkhyatattvapradIpa.htm
+Kesava: Samkhyatattvapradipika (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_kezava-sAMkhyatattvapradIpikA.htm
+Samkhyaparibhasa (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_sAMkhyaparibhASA.htm
+Samkhyasutravivarana [a comm. on the Tattvasamasa] (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_sAMkhyasUtravivaraNa.htm
+Sarvopakarani [a comm. on the Tattvasamasa] (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_sarvopakAriNI.htm
+Simananda [or Ksemananda]: Samkhyatattvavivecana [a comm. on the Tattvasamasa] (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_SimAnanda-sAMkhyatattvavivecana.htm
+Tattvamimamsa (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_tattvamImAMsA.htm
+Tattvasamasa [an abstract of Samkhya, in 4 versions] (input by Dhaval Patel / members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_tattvasamAsa-4versions.htm
+Tattvasamasasutravrtti, or Kramadipika [a comm. on the Tattvasamasa] (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_tattvasamAsasUtravRtti.htm
+Vijnanabhiksu: Samkhyasara (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_vijJAnabhikSu-sAMkhyasAra.htm
+# 5, Yoga
+#
+Gheranda-Samhita (input by Peter Thomi, ed. by Peter Schreiner)
+gretil/corpustei/transformations/html/sa_gheraNDasaMhitA.htm
+Patanjali: Yogasutra [extracted from the commented version below] (input by Philipp A. Maas)
+gretil/corpustei/transformations/html/sa_pataJjali-yogasUtra.htm
+Patanjali: Yogasutra [alternative version] (input by Ashok Aklujkar)
+gretil/corpustei/transformations/html/sa_pataJjali-yogasUtra-alt.htm
+Patanjali: Yogasutra with Bhasya [ = Patanjalayogasastra] (input by Philipp A. Maas)
+gretil/corpustei/transformations/html/sa_pataJjali-yogasUtra-with-bhASya.htm
+Patanjali: Yogasutra with Bhasya [alternative version] (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_pataJjali-yogasUtra-with-bhASya-alt.htm
+Svatmarama: Hathayogapradipika (input by &#x2026;)
+gretil/corpustei/transformations/html/sa_svAtmArAma-haThayogapradIpikA.htm
+# 5, Nyaya
+#
+Annambhatta: Tarkasamgraha (input by Takuya Ono)
+gretil/corpustei/transformations/html/sa_annaMbhatta-tarkasaMgraha.htm
+Annambhatta: Tarkasamgraha, with commentaries (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_annaMbhaTTa-tarkasaMgraha-comm.htm
+Gangesa: Tattvacintamani, Sabdakhanda (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_gAGgeza-tattvacintAmaNizabdakhANDa.htm
+Gautama: Nyayasutra (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_gautama-nyAyasUtra.htm
+Gautama: Nyayasutra, with Vacaspatimisra's Nyayasutravarttikatatparyatika (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_gautama-nyAyasUtra-comm2.htm
+Gautama: Nyayasutra, with Vatsyayana's Bhasya (input by Indology Student Team, University of Tokyo)
+gretil/corpustei/transformations/html/sa_gautama-nyAyasUtra-comm.htm
+Gautama: Nyayasutra, with Vatsyayana's Bhasya [alternative version, not proof-read!] (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_gautama-nyAyasUtra-comm-alt.htm
+Gautama: Nyayasutra 5.1 with Bhasya (input by Takuya Ono)
+gretil/corpustei/transformations/html/sa_gautama-nyAyasUtra5,1-comm.htm
+Siddhasena Mahamati: Nyayavatara, with Siddharsi-ganin's Nyayavataravivrti (input by Piotr Balcerowicz)
+gretil/corpustei/transformations/html/sa_siddhasenamahAmati-nyAyAvatAra-comm.htm
+Udayana: Nyayakusumanjali (SidNyayavNAVinput by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_udayana-nyAyakusumAJjali.htm
+Udayana: Nyayavarttikatatparyaparisuddhi (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_udayana-nyAyavArttikatAtparyaparizuddhi-1.htm
+Venkatanatha [Vedantadesika]: Nyayaparisuddhi (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_veGkaTanAtha-nyAyaparizuddhibhUmikA-13-5.htm
+Vyasatirtha: Tarkatandava, with Raghavendra's Nyayadipa comm. (input by members of the Sansknet Project)
+gretil/corpustei/transformations/html/sa_vyAsatIrtha-tarkatANDava-comm.htm
+# 5, Vaisesika
+#
+Kanada: Vaisesikasutra (input by Nozawa Masanobu)
+gretil/corpustei/transformations/html/sa_kaNAda-vaizeSikasUtra.htm
+Kanada: Vaisesikasutra (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_kaNAda-vaizeSikasUtra-alt.htm
+Prasastapada: Padarthadharmasamgraha (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_prazastapAda-pAdArthadharmasaMgraha.htm
+Vadivagisvara: Manamanohara (input by Diwakar Acharya with assistance from Raju Rimal)
+gretil/corpustei/transformations/html/sa_vAdivAgIzvara-mAnamanohara.htm
+# 5, Saiva (see also Religious Literature / Saiva)
+#
+Abhinavagupta: Anuttarastika (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-anuttarASTikA.htm
+Abhinavagupta: Bhairavastava (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-bhairavastava.htm
+Abhinavagupta: Bodhapancadasika (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-bodhapaJcadazikA.htm
+Abhinavagupta: Isvarapratyabhijnavimarsini [commentary on Utpaladeva's Isvarapratyabhijnakarika] (input by Masahiro Takano)
+gretil/corpustei/transformations/html/sa_abhinavagupta-IzvarapratyabhijJAvimarzinI.htm
+Abhinavagupta: Kramastotra (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-kramastotra.htm
+Abhinavagupta: Malinislokavarttika (input by Jürgen Hanneder)
+gretil/corpustei/transformations/html/sa_abhinavagupta-mAlinIzlokavArttika.htm
+Abhinavagupta: Paramarthasara (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-paramArthasAra.htm
+Abhinavagupta: Paramarthasara, with Yogaraja's commentary (input by Lyne Bansat-Boudon, Yves Codet and Judit Törzsök)
+gretil/corpustei/transformations/html/sa_abhinavagupta-paramArthasAra-comm.htm
+Abhinavagupta: Paratrimsikavivarana See below
+-
+Abhinavagupta: Paryantapancasika (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_abhinavagupta-paryantapaJcAzikA.htm
+Abhinavagupta: Tantraloka (input under the guidance of Jun Takashima)
+gretil/corpustei/transformations/html/sa_abhinavagupta-tantrAloka.htm
+Abhinavagupta: Tantrasara (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_abhinavagupta-tantrasAra.htm
+Adyanatha: Anuttaraprakasapancasika (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_AdyanAtha-anuttaraprakAzapaJcAzikA.htm
+Avadhutasiddha: Bhagavadbhaktistotra (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_avadhUtasiddha-bhagavadbhaktistotra.htm
+Bhasarvajna: Ganakarika (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_bhAsarvajJa-gaNakArikA-1-comm.htm
+Bhuti(raja): Svabodhasiddhi (input by Jürgen Hanneder)
+gretil/corpustei/transformations/html/sa_bhUtirAja-svabodhasiddhi.htm
+Ksemaraja: Pratyabhijnahrdaya (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_kSemarAja-pratyabhijJAhRdaya.htm
+Ksemaraja: Bodhavilasa (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_kSemarAja-bodhavilAsa.htm
+Ksemaraja: Bhairavanukaranastotra (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_kSemarAja-bhairavAnukaraNastotra.htm
+Paratrimsika (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_parAtriMzikA.htm
+Paratrimsika, with Abhinavagupta's Paratrimsikavivarana (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_parAtriMzikA-comm.htm
+Timirodghatana (incl. Nirvanakarika) (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_timirodghATana.htm
+Utpaladeva: Ajadapramatrsiddhi (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_utpaladeva-ajaDapramAtRsiddhi.htm
+Utpaladeva: Isvarapratyabhijnakarika (input by Somadeva Vasudeva) See also Abhinavagupta: Isvarapratyabhijnavimarsini [commentary]
+gretil/corpustei/transformations/html/sa_utpaladeva-IzvarapratyabhijJAkArikA-with-vRtti.htm
+Vamadeva: Janmamaranavicara (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vAmadeva-janmamaraNavicAra.htm
+Vamanadatta: Dvayasampattivarttika (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_vAmanadatta-dvayasaMpattivArttika.htm
+Vamanadatta: Svabodhodayamanjari (input by Daniele Cuneo)
+gretil/corpustei/transformations/html/sa_vAmanadatta-svabodhodayamaJjarI.htm
+Vasugupta [or Kallata Bhatta?]: Spandakarika, with commentary by Ksemaraja (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vasugupta-spandakArikA-comm.htm
+Vasugupta [or Kallata Bhatta?]: Spandakarika (input by Marino Faliero):
+gretil/corpustei/transformations/html/sa_vasugupta-spandakArikA.htm
+Vatulanatha: Vatulanathasutra (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_vAtUlanAtha-vAtUlanAthasUtra-comm.htm
+Vijnanabhairava (input by Marino Faliero)
+gretil/corpustei/transformations/html/sa_vijJAnabhairava.htm
+# 5, Buddhist
+#
+Abhidharmasamuccayabhasya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_abhidharmasamuccayabhASya.htm
+Abhisamayalamkara [Abhisamayalankara] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_abhisamayAlaMkAra.htm
+Abhisamayalankarantah patinam (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_abhisamayAlaMkAravivaraNa.htm
+Abhisamayalankaravrttih sphutartha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_abhisamayAlaMkAravRttiH-sphuTArthA.htm
+Alambanapariksa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_AlambanaparIkSA.htm
+Alambanapariksa with Alambanapariksavrtti (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_AlambanaparIkSA-comm.htm
+Antarvyaptisamarthana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_antarvyAptisamarthana.htm
+Arcata: Hetubindutika [comm. on Dharmakirti's Hetubindu] (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_arcaTa-hetubinduTIkA-edsanghavi.htm
+Arcata: Hetubindutika [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_arcaTa-hetubinduTIkA.htm
+Aryadeva: Caryamelavanapradipa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_Aryadeva-caryAmelAvaNapradIpa.htm
+Aryadeva: Catuhsatika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_Aryadeva-catuHzatikA.htm
+Aryadeva: Cittavisuddhiprakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_Aryadeva-cittavizuddhiprakaraNa.htm
+Aryasura: Paramitasamasa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_AryazUra-pAramitAsamAsa.htm
+Asanga: Abhidharmasamuccaya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_asaGga-abhidharmasamuccaya.htm
+Asvaghosa: Gurupancasika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_azvaghoSa-gurupaJcAzikA.htm
+Asvaghosa: Vajrasuci (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_azvaghoSa-vajrasUcI.htm
+Bhiksukarmavakya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bhikSukarmavAkya.htm
+Bodhipathapradipa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_atiza-bodhipathapradIpa.htm
+Bodhisattvabhumi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_bodhisattvabhUmi.htm
+Candrakirti: Prasannapada [or Madhyamakasastravrtti] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_candrakIrti-prasannapada.htm
+Candrakirti: Bodhisattvayogacaracatuhsatakatika (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_candrakIrti-bodhisattvayogAcAracatuHzatakaTIkA.htm
+Dharmakirti: Hetubindu
+-
+Input by Motoi Ono
+gretil/corpustei/transformations/html/sa_dharmakIrti-hetubindu-edsteinkellner.htm
+Alternative version (Sastra, 71)
+gretil/corpustei/transformations/html/sa_dharmakIrti-hetubindu.htm
+Dharmakirti: Nyayabindu
+gretil/corpustei/transformations/html/sa_dharmakIrti-nyAyabindu.htm
+Alternative version: (Sastra, 57)
+gretil/corpustei/transformations/html/sa_dharmakIrti-nyAyabinduprakaraNakArikA.htm
+Dharmakirti: Nyayabinduprakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dharmakIrti-nyAyabinduprakaraNa-comm.htm
+Dharmakirti: Pramanavarttikakarika (input by Motoi Ono)
+gretil/corpustei/transformations/html/sa_dharmakIrti-pramANavArttikakArikA.htm
+Dharmakirti: Pramanavarttikasvavrtti (input by Motoi Ono)
+gretil/corpustei/transformations/html/sa_dharmakIrti-pramANavArttisvavRtti.htm
+Dharmakirti: Pramanaviniscaya (fragment) (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_dharmakIrti-pramANavinizcaya-fragment.htm
+Dharmakirti: Sambandhapariksa, with Prabhacandra's commentary
+-
+Input by Motoi Ono
+gretil/corpustei/transformations/html/sa_dharmakIrti-subandhaparIkSA-1-25.htm
+Alternative version (Sastra, 63)
+gretil/corpustei/transformations/html/sa_dharmakIrti-saMbandhaparIkSA-comm.htm
+Dharmakirti: Samtanantarasiddhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dharmakIrti-saMtAnAntarasiddhi.htm
+Dharmakirti: Vadanyaya
+-
+Input by Motoi Ono
+gretil/corpustei/transformations/html/sa_dharmakIrti-vAdanyAya.htm
+Alternative version(Sastra, 64)
+gretil/corpustei/transformations/html/sa_dharmakIrti-vAdanyAya-alt.htm
+Dharmasamuccaya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dharmasamuccaya.htm
+Dignaga [ = Dinnaga]: Prajnaparamitapindartha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dignAga-prajJApAramitApiNDArtha.htm
+Dignaga [ = Dinnaga]: Yogavatara (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dignAga-yogAvatAra.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Apattidesanavidhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-ApattidezanAvidhi.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Bodhisattvadikarmikamargavataradesana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-bodhisattvAdikarmikamArgAvatAradezanA.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Caryasamgrahapradipa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkara-caryAsaMgrahapradIpa.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Cittotpadasamvaravidhikrama (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-cittotpAdasaMvaravidhikrama.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Dasakusalakarmapathadesana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-dazAkuzalakarmapathadezanA.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Gurukriyakrama (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-gurukriyAkrama.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa] Mahayanapathasadhanasamgraha (input by members of the Sanskrit Buddhist Canon Input Project) See also Sadhana
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-mahAyAnapathasAdhanasaMgraha.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Samadhisambharaparivarta (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-samAdhisaMbhAraparivarta.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Saranagamanadesana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-zaraNagamanadezanA.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Satyadvayavataranama (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkara-satyadvayAvatAranAma.htm
+Dipankarasrijnana [ = Dipamkarasrijnana = Atisa]: Sutrarthasamuccayopadesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_dIpaMkarazrIjJAna-sUtrArthasamuccayopadeza.htm
+Durveka Misra: Dharmottarapradipa (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_durvekamizra-dharmottarapradIpa.htm
+Durveka Misra: Hetubindutikaloka [subcomm. on Arcata's Hetubindutika] (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_durvekamizra-hetubinduTIkAloka.htm
+Garbhasamgraha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_garbhasaMgrahaH.htm
+Haribhadrasuri: Nyayapravesapravrtti (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_haribhadrasUri-nyAyapravezapravRtti.htm
+Harivarman: Satyasiddhisastra (input by Udip Shakya)
+gretil/corpustei/transformations/html/sa_harivarman-satyasiddhizAstram.htm
+Hastavalaprakaranavrtti (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_hastavAlaprakaraNavRtti.htm
+Jitari: Hetutattvopadesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_jitAri-hetutattvopadeza-alt.htm
+Jitari: Hetutattvopadesa [alternative version] (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_jitAri-hetutattvopadeza.htm
+Kamalasila: Bhavanakrama (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kamalazIla-bhAvanAkrama.htm
+Kamalasila: Madhyamakaloka (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kamalazIla-madhyamakAloka.htm
+Madhyamakavatara (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_madhyamakAvatAra-1-5.htm
+Mahayanasutralamkara (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_asaGga-mahAyAnasUtrAlaMkAra-alt.htm
+Maitreyanatha: Bhavasamkrantitika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_maitreyanAtha-bhavasaMkrAntiTIkA.htm
+Maitreyanatha [attrib.]: Madhyantavibhagakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_maitreya-madhyAntavibhAgakArikA.htm
+Nagarjuna: Acintyastava (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-acintyastava.htm
+Nagarjuna: Bhavasamkrantiparikatha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-bhavasaGkrAntiparikathA.htm
+Nagarjuna: Bodhicittavivarana (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-bodhicittavivaraNa-fragments.htm
+Nagarjuna: Dharmadhatugarbhavivarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-dharmadhAtugarbhavivaraNa.htm
+Nagarjuna: Dharmasamgraha [Dharmasangraha] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-dharmasaMgraha.htm
+Nagarjuna: Kriyasamgrahakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-kriyAsaMgrahakArikA.htm
+Nagarjuna: Lokatitastava (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-lokAtItastava.htm
+Nagarjuna: Madhyamakasastra [Karika only!] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-madhyamakazAstra.htm
+Nagarjuna: Mahayanavimsika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-mahAyAnaviMzikA.htm
+Nagarjuna: Mulamadhyamakakarika (input by Douglas Bachman, revised by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-mUlamadhyamakakArikA.htm
+Nagarjuna: Pancakrama (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-paJcakrama.htm
+Nagarjuna: Pindikrama [transmitted as krama 1 of Pancakrama] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-piNDIkrama.htm
+Nagarjuna: Pratityasamutpadahrdayakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-pratItyasamutpAdahRdayakArikA.htm
+Nagarjuna: Pratityasamutpadahrdayavyakhyana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-pratItyasamutpAdahRdayavyAkhyAna.htm
+Nagarjuna: Ratnavali [1-2.46, and 4; Sanskrit text of 2.47-95 and 3 lost] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-ratnAvalI.htm
+Nagarjuna: Ratnavali 1, 2 &amp; 4 (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-ratnAvali1,2,4.htm
+Nagarjuna: Salistambakakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-zAlistambakakArikA.htm
+Nagarjuna: Salistambakamahayanasutratika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-zAlistambakamahAyAnasUtraTIkA.htm
+Nagarjuna: Suhrllekha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-suhRllekha.htm
+Nagarjuna: Sunyatasaptati (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-zUnyatAsaptati.htm
+Nagarjuna: Vigrahavyavartani (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_nAgArjuna-vigrahavyAvartanI.htm
+Nagarjuna: Vigrahavyavartani [karikas only] (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-vigrahavyAvartanIkArikA.htm
+Nagarjuna: Vigrahavyavartini [karikas only, alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-vigrahavyAvartanI-alt.htm
+Nagarjuna: Yuktisastikarika (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_nAgArjuna-yuktiSaSTikakArikA-fragments.htm
+Nagarjuna: Yuktisastikarika [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAgArjuna-yuktiSaSTikakArikA.htm
+Naropa: Sekoddesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_nAropa-sekoddeza.htm
+Panditasoka: Avayavinirakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_paNDitAzoka-avayavinirAkaraNa.htm
+Panditasoka: Samanyadusanadikprasarita (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_paNDitAzoka-sAmAnyadUSaNadikprasAritA.htm
+Prajnakaramati: Bodhicaryavatarapanjika [comm. on Santideva's Bodhicaryavatara] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_prajJAkaramati-bodhicaryAvatArapaJjikA.htm
+Pramanavartika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_pramANavArttika.htm
+Ratnagotravibhaga (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnagotravibhAga.htm
+Ratnakirti: Apohasiddhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_apohasiddhi.htm
+Ratnakirti: Ksanabhangasiddhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_kSaNabhaGgasiddhi.htm
+Ratnakirti: Ksanabhangasiddhir Vyatirekatmika (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_ratnakIrti-kSaNabhaGgasiddhi-vyatirekAtmikA.htm
+Ratnakirti: Ksanabhangasiddhir Vyatirekatmika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnakIrti-kSaNabhaGgasiddhi-vyatirekAtmikA-alt.htm
+Ratnakirti: Nibandhavali (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnakIrti-nibandhAvalI.htm
+Ratnakirti (?): Vadarahasya, also known as Udayananirakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_ratnakIrti-vAdarahasya.htm
+Sakyabuddhi: Pramanavarttikatika (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_zAkyabuddhi-pramANavArttikaTIkA.htm
+Santaraksita: Tattvasamgraha [grammatical analysis] (input by Timothy Cahill and Elliot Stern)
+gretil/corpustei/transformations/html/sa_zAntarakSita-tattvasaMgraha.htm
+Santideva: Bodhicaryavatara (input by Richard Mahoney)
+gretil/corpustei/transformations/html/sa_zAntideva-bodhicaryAvatAra.htm
+Santideva: Bodhicaryavatara [alternative version] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zAntideva-bodhicaryAvatAra-alt.htm
+Santideva: Siksasamuccaya (input by Mirek Rozehnahl and Jens Braarvig)
+gretil/corpustei/transformations/html/sa_zAntideva-zikSAsamuccaya.htm
+Old version:
+gretil/corpustei/transformations/html/sa_zAntideva-zikSAsamuccaya-alt.htm
+Siksasamuccayakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zikSAsamuccayakArikA.htm
+Sthiramati: Trimsikavijnaptibhasya See Vasubandhu: Trimsikavijnaptikarika
+-
+Sunyasamadhipada: Tattvajnanasamsiddhi (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_zUnyasamAdhipAda-tattvajJAnasaMsiddhi.htm
+Tarkabhasa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_tarkabhASA.htm
+Tarkarahasya (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_tarkarahasya.htm
+Tarkarahasya, Pratyaksalaksana (provided by Helmut Krasser)
+gretil/corpustei/transformations/html/sa_pratyakSalakSaNa-of-the-tarkarahasya.htm
+Tarkasastra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_tarkazAstra.htm
+Tattvaratnavaloka (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_tattvaratnAvaloka.htm
+Upayahrdaya (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_upAyahRdaya.htm
+Vararuci: Satagatha (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vararuci-zatagAthA.htm
+Vasubandhu: Abhidharmakosabhasya (input by N.N., edited &amp; revised by Paul Hackett and Dan Lusthaus)
+gretil/corpustei/transformations/html/sa_vasubandhu-abhidharmakozabhASya.htm
+Vasubandhu: Abhidharmakosa [Karikas only] (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vasubandhu-abhidharmakoza.htm
+Vasubandhu: Bodhicittotpadasutrasastra (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vasubandhu-bodhicittotpAdasUtrazAstra.htm
+Vasubandhu: Madhyantavibhagakarikabhasya, a commentary on Maitreyanatha's Madhyantavibhagakarika (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_vasubandhu-madhyAntavibhAgakArikAbhASya.htm
+Vasubandhu: Pancaskandhaprakarana (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vasubandhu-paJcaskandhaprakaraNa.htm
+Vasubandhu: Trimsikavijnaptikarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vasubandhu-triMzikAvijJaptikArikA.htm
+Vasubandhu: Trimsikavijnaptikarika, with Sthiramati's Trimsikavijnaptibhasya (input by Takamichi Fukita and Klaus Wille)
+gretil/corpustei/transformations/html/sa_vasubandhu-triMzikAvijJaptikArikA-comm.htm
+Vasubandhu: Trisvabhavanirdesa (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vasubandhu-trisvabhAvanirdeza.htm
+Vasubandhu: Vimsatika vijnaptimatratasiddhi (input by Takamichi Fukita)
+gretil/corpustei/transformations/html/sa_vasubandhu-viMzatikA-vijJaptimAtratAsiddhi.htm
+Vidyakarasanti: Tarkasopana (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_vidyAkarazAnti-tarkasopAna.htm
+Vimalamitra(?): Abhidharmadipa, with auto(?)-commentary Vibhasaprabhasavrtti (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vimalamitra-abhidharmadIpa-comm.htm
+Vimalamitra(?): Abhidharmadipa, Karikas extracted from the commented text (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vimalamitra-abhidharmadIpa.htm
+Vimalamitra(?): Abhidharmadipa, Karikas 1-383 (alternative version) (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vimalamitra-abhidharmadIpa-1-383.htm
+Vimsatikakarika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_viMzatikAkArikA.htm
+Vimsikavrtti (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_viMzikAvRtti.htm
+Vinitadeva: Samtanantarasiddhitika (input by members of the Sanskrit Buddhist Canon Input Project)
+gretil/corpustei/transformations/html/sa_vinItadeva-saMtAnAntarasiddhiTIkA.htm
+Yasomitra: Sphutartha Abhidharmakosavyakhya (input by Seishi Karashima)
+gretil/corpustei/transformations/html/sa_yazomitra-sphuTArthA-abhidharmakozavyAkhyA.htm
+# 5, Other
+#
+Jayarasi: Tattvopaplavasimha (input by Somadeva Vasudeva)
+gretil/corpustei/transformations/html/sa_jayarAzi-tattvopaplavasiMha.htm
+Samantabhadra: Aptamimamsa (input by Diwakar Acharya)
+gretil/corpustei/transformations/html/sa_samantabhadra-AptamImAMsA.htm
+# 4, Dharmasastra
+#
+# 5, Sutra
+#
+Apastamba-Dharmasutra (input by Yasuke Ikari)
+gretil/corpustei/transformations/html/sa_ApastambadharmasUtra.htm
+Baudhayana-Dharmasutra (input by Masato Fujii &amp; Mieko Kajihara)
+gretil/corpustei/transformations/html/sa_baudhAyanadharmasUtra.htm
+Gautama-Dharmasutra (input by Nobuyuki Watase)
+gretil/corpustei/transformations/html/sa_gautama-dharmasUtra.htm
+Gautama-Dharmasutra, Adhy. 1-3, with Maskari's commentary (input by members of the Sansknet project)
+gretil/corpustei/transformations/html/sa_gautama-dharmasUtra1-3-comm.htm
+Vaikhanasa-Dharmasutra (input by Hiromichi Hikita, and collated by Yuuko Matsuda and Yasuke Ikari)
+gretil/corpustei/transformations/html/sa_vaikhAnasadharmasUtra.htm
+Vasistha-Dharmasastra (input by M. Fushimi)
+gretil/corpustei/transformations/html/sa_vAsiSThadharmasUtra.htm
+# 5, Smrti
+#
+Angirasa-Smrti (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_AGgirasasmRti.htm
+Brhaspati-Smrti: Vyavaharakanda (input by Yasuke Ikari and Akihiko Akamatsu) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_bRhaspatismRti-vyavahArakANDa.htm
+Katyayana-Smrti (input by Akihiko Akamatsu) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_kAtyAyanasmRti.htm
+Manu-Smriti (input by Michio Yano and Yasuke Ikari) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_manusmRti.htm
+Narada-Smrti (input by Richard Lariviere, ed. by Yasuke Ikari) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_nAradasmRti.htm
+Parasara-Smrti (input by Muneo Tokunaga) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_parAzarasmRti-AcAra-prAyazcitta.htm
+Visnu-Smrti (input by I. Shima, collated by T. Hayashi) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_viSNusmRti.htm
+Yajnavalkya-Smrti (input by Muneo Tokunaga, checked by Yasuke Ikari) Revised GRETIL version:
+gretil/corpustei/transformations/html/sa_yAjJavalkyasmRti.htm
+Yama-Smrti (input by Jürgen Neuss)
+-
+78-verse version
+gretil/corpustei/transformations/html/sa_yamasmRti-78v.htm
+99-verse version = Laghuyamasmrti
+gretil/corpustei/transformations/html/sa_yamasmRti-99v.htm
+182-verse version = Brhadyamasmrti
+gretil/corpustei/transformations/html/sa_yamasmRti-182v.htm
+South Indian recension
+gretil/corpustei/transformations/html/sa_yamasmRti-s.htm
+# 5, Nibandha and other
+#
+Mitramisra: Viramitrodaya: Samayaprakasa (input by members of the Sansknet project)
+gretil/1_sanskr/6_sastra/4_dharma/smrti/mvir_sau.htm
+Vijnanesvara: Mitaksara, a commentary on the Yajnavalkya-dharmasastra (input by Donald R. Davis, Jr., Patrick Olivelle, Amy Hyne-Sutherland, and Nikola Rajić)
+gretil/corpustei/transformations/html/sa_vijJAnezvara-mitAkSarA.htm
+# 4, Arthasastra
+#
+Kautiliya-Arthasastra (input by Muneo Tokunaga)
+gretil/corpustei/transformations/html/sa_kauTilya-arthazAstra.htm
+# 4, Kamasastra
+#
+Jyotirisvara Kavisekhara: Pancasayaka (input by Dhaval Patel)
+gretil/corpustei/transformations/html/sa_jyotirIzvarakavizekhara-paJcasAyaka.htm
+Minanatha: Smaradipika (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_mInanAtha-smaradIpikA.htm
+Pururavas: Kadambarisvikaranasutramanjari (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_purUravas-kAdambarIsvIkaraNasUtramaJjarI.htm
+Vatsyayana: Kamasutra [with notes] (input by Jean Fezas)
+gretil/corpustei/transformations/html/sa_vAtsyAyana-kAmasUtra.htm
+Vatsyayana: Kamasutra (input by Mizue Sugita)
+gretil/corpustei/transformations/html/sa_vAtsyAyana-kAmasUtra-ednirnaya.htm
+# 4, Ayurveda, alchemy etc.
+#
+Agnivesa: Caraka-Samhita [selected parts] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_agniveza-carakasaMhitA-parts-comm.htm
+Anandakanda (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_Anandakanda.htm
+Bhavamisra: Bhavaprakasa (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_bhAvamizra-bhAvaprakAza.htm
+Bower-Manuscript (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_bower-manuscript.htm
+Camunda [Kayastha ( = Kayasthacamunda)]: Rasasamketakalika [ = Rasasanketakalika] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_cAmuNDa-rasasaMketakalikA.htm
+Dhundhukanatha: Rasendracintamani (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_DhuNDhukanAtha-rasendracintAmaNi.htm
+Govindabhagavatpada: Rasahrdayatantra (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_govindabhagavatpAda-rasahRdayatantra-comm.htm
+Jyotsnika [in Manipravalam (Malayalam and Sanskrit)]
+-
+Lolimbaraja: Vaidyajivana (input by Jürgen Hanneder and Thomas Schäfer)
+gretil/corpustei/transformations/html/sa_lolimbarAja-vaidyajIvana.htm
+Narahari Pandita [alias Nrsimha]: Rajanighantu [also called Nighanturaja, or Abhidhanacudamani] (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_narahari-rAjanighaNTu.htm
+Nityanathasiddha [alias Nemanatha]: Rasaratnakara (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_nityanAthasiddha-rasaratnAkara.htm
+Rasadhyaya (with tika), verses 1-481 (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_rasAdhyaya1-302-com.htm
+Rasarnava (patalas 1-12) (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_rasArNava1-12.htm
+Salinatha: Rasamanjari (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_zAlinAtha-rasamaJjarI.htm
+Somadeva: Rasendracudamani, chapters 3-5, 7-16 (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_somadeva-rasendracUDAmaNi-3-57-16.htm
+Susena: Ayurvedamahodadhi, Annapanavidhi (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_suSeNa-Ayurvedamahodadhau-annapAnavidhi.htm
+Vagbhata: Astangahrdayasutra (input by R.P. Das and R.E. Emmerick)
+gretil/corpustei/transformations/html/sa_vAgbhaTa-aSTAGgahRdayasUtra.htm
+Vagbhata: Rasaratnasamuccaya (input: Adhy. 1-5 by W. Mical, Somadeva Vasudeva and A. Glazier; Adhy. 6-12 by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vAgbhaTa-rasaratnasamuccaya.htm
+Vagbhata: Rasaratnasamuccaya, Adhy. 1-18.29ab, with Bodhini and Tika commentaries (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vAgbhaTa-rasaratnasamuccaya-1-18,29.htm
+Vahata: Astanganighantu (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_vAhaTa-aSTAGganighaNTu.htm
+Yasodhara: Rasaprakasasudhakara (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_yazodhara-rasaprakAzasudhAkara.htm
+Yogasataka (input by Klaus Wille)
+gretil/corpustei/transformations/html/sa_yogazataka.htm
+# 4, Astrology, astronomy, mathematics
+#
+Aryabhatiya (input by Takao Hayashi)
+gretil/corpustei/transformations/html/sa_AryabhaTa-AryabhaTIya.htm
+Aryabhatiya with the commentary of Bhaskara I and Somesvara (input by Danielle Feller)
+gretil/corpustei/transformations/html/sa_AryabhaTa-AryabhaTIya-comm.htm
+Bhaskara: Bijaganita (input by Takao Hayashi)
+gretil/corpustei/transformations/html/sa_bhAskara-bIjagaNita.htm
+Bhaskara: Lilavati (input by Takao Hayashi)
+gretil/corpustei/transformations/html/sa_bhAskara-lIlAvatI.htm
+Brahmagupta: Brahmasphutasiddhanta (input by Takao Hayashi)
+gretil/corpustei/transformations/html/sa_brahmagupta-brAhmasphuTasiddhAnta.htm
+Lagadha: Rgvedavedangajyotisa (input by Oliver Hellwig)
+gretil/corpustei/transformations/html/sa_lagadha-RgvedavedAGgajyotiSa.htm
+Suryasiddhanta (input by Michio Yano)
+gretil/corpustei/transformations/html/sa_sUryasiddhAnta.htm
+Varahamihira: Brhajjataka (input by Mizue Sugita)
+gretil/corpustei/transformations/html/sa_varAhamihira-bRhajjAtaka.htm
+Varahamihira: Brhatsamhita (input by Michio Yano and Mizue Sugita)
+gretil/corpustei/transformations/html/sa_varAhamihira-bRhatsaMhitA.htm
+Varahamihira: Tikanikayatra (input by Mizue Sugita)
+gretil/corpustei/transformations/html/sa_varAhamihira-tikanikayAtra.htm
+Varahamihira: Vivahapatala (input by Mizue Sugita)
+gretil/corpustei/transformations/html/sa_varAhamihira-vivAhapaTala.htm
+Varahamihira: Yogayatra (input by Mizue Sugita)
+-
+David Pingree (ed.)
+gretil/corpustei/transformations/html/sa_varAhamihira-yogayAtrA-edpingree.htm
+Ramacandra Jha (ed.)
+gretil/corpustei/transformations/html/sa_varAhamihira-yogayAtrA-edjha.htm
+# 4, Miscellanea
+#
+Silpasastra See also Nagnajit: Citralaksana
+-
+# 3, Later Works, lat
+#
+# 4, 20th century
+#
+Ksama Rava: Mithyagrahana (input by Beate Guttandin)
+gretil/corpustei/transformations/html/sa_rAva-mithyAgrahaNa.htm

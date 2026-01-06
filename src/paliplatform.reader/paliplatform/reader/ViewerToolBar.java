@@ -35,7 +35,7 @@ import javafx.scene.Node;
  * @version 3.7
  * @since 2.0
  */
-class ViewerToolBar extends CommonWorkingToolBar {
+public class ViewerToolBar extends CommonWorkingToolBar {
 	private final ToggleGroup lineSpacingGroup = new ToggleGroup();
 	private final ToggleGroup styleGroup = new ToggleGroup();
 	private final Map<Utilities.Style, Toggle> styleToggleMap = new EnumMap<>(Utilities.Style.class);

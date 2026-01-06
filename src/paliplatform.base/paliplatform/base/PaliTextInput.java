@@ -64,7 +64,7 @@ public class PaliTextInput {
 	private TextFormatter<String> textFormatter;
 	private final SimpleBooleanProperty isChanged = new SimpleBooleanProperty(false);
 	private int limit = 0; // 0 means no limit
-	private boolean sktMode = false; // for sanskrit input
+	private boolean sanskritMode = false; // for sanskrit input
 	
 	public PaliTextInput(final InputType inputType) {
 		this.inputType = inputType;
@@ -218,7 +218,7 @@ public class PaliTextInput {
 	}
 	
 	public void setSanskritMode(final boolean yn) {
-		sktMode = yn;
+		sanskritMode = yn;
 	}
 	
 	public void requestFocus() {
@@ -231,11 +231,11 @@ public class PaliTextInput {
 	}
 	
 	public final void resetInputMethod() {
-		final String methodStr = sktMode
+		final String methodStr = sanskritMode
 									? Utilities.getSetting("sanskrit-input-method")
 									: Utilities.getSetting("pali-input-method");
 		inputMethod = methodStr == null
-					? sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS 
+					? sanskritMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS 
 					: InputMethod.valueOf(methodStr);
 		setInputMethod(inputMethod);
 	}
@@ -311,7 +311,7 @@ public class PaliTextInput {
 		if (inputMethod == InputMethod.NUMBER || inputMethod == InputMethod.METER_GROUP)
 			return;
 		if (inputMethod == InputMethod.NORMAL) {
-			inputMethod = sktMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS;
+			inputMethod = sanskritMode ? InputMethod.COMPOSITE : InputMethod.UNUSED_CHARS;
 		} else if (inputMethod == InputMethod.UNUSED_CHARS) {
 			inputMethod = InputMethod.COMPOSITE;
 		} else if (inputMethod == InputMethod.COMPOSITE) {

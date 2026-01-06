@@ -1,7 +1,7 @@
 /*
  * TermInfo.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import java.util.stream.*;
 /** 
  * The representation of term's information.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.7
  * @since 2.0
  */
  

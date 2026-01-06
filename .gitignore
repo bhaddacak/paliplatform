@@ -7,4 +7,5 @@ src/tags
 *.sh
 *.properties
 !pp3urls.properties
+!pp4urls.properties
 *.vim

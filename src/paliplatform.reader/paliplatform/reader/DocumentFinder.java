@@ -1,7 +1,7 @@
 /*
  * DocumentFinder.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,7 @@ import javafx.scene.layout.*;
 import javafx.util.Callback;
 import javafx.beans.property.*;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.concurrent.Task;
 import javafx.application.Platform;
 
@@ -46,17 +47,28 @@ import javafx.application.Platform;
  * The tool for listing, finding and opening a specific Pali document
  * from text collections.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 3.7
  * @since 2.0
  */
 public class DocumentFinder extends BorderPane {
-	private static enum SearchField { INFO, REF, CONTENT }
+	private static enum SearchField {
+		INFO("Doc Info"), REF("Ref"), CONTENT("Content");
+		public static final SearchField[] values = values();
+		private String name;
+		private SearchField(final String n) {
+			name = n;
+		}
+		public String getName() {
+			return name;
+		}
+	}
+	private static enum SortBy { ID, INFO }
 	private final BorderPane mainPane = new BorderPane();
 	private final PaliTextInput textInput = new PaliTextInput(PaliTextInput.InputType.COMBO);
 	private final ObservableList<DocumentInfo> resultList = FXCollections.<DocumentInfo>observableArrayList();
 	private final TableView<DocumentInfo> table = new TableView<>();
-	private final RadioButton inInfoRadio = new RadioButton("Doc Info");
 	private final ToggleGroup searchFieldGroup = new ToggleGroup();
+	private final ToggleGroup sortRuleGroup = new ToggleGroup();
 	private final CorpusSelectorBox corpusSelector;
 	private final ToggleButton starButton = new ToggleButton("", new TextIcon("asterisk", TextIcon.IconSet.AWESOME));
 	private final HBox statusBox = new HBox(3);
@@ -68,6 +80,7 @@ public class DocumentFinder extends BorderPane {
 	private final TextField searchTextField;
 	private final ComboBox<String> searchComboBox;
 	private SearchField searchIn = SearchField.INFO;
+	private SortBy sortBy = SortBy.ID;
 	private Task<Boolean> searchTask = null;
 	
 	public DocumentFinder() {
@@ -89,7 +102,6 @@ public class DocumentFinder extends BorderPane {
 				}
 			}
 		});
-		setupTable();
 		// add context menu
 		final ContextMenu popupMenu = new ContextMenu();
 		final MenuItem openMenuItem = new MenuItem("Open");
@@ -161,16 +173,39 @@ public class DocumentFinder extends BorderPane {
 				}
 			}
 		});
-		final ToggleGroup searchFieldGroup = new ToggleGroup();
-		final RadioButton inRefRadio = new RadioButton("Ref");
-		final RadioButton inContentRadio = new RadioButton("Content");
-		searchFieldGroup.getToggles().addAll(inInfoRadio, inRefRadio, inContentRadio);
-		inInfoRadio.setSelected(true);
-		inInfoRadio.setOnAction(actionEvent -> search(SearchField.INFO));
-		inRefRadio.setOnAction(actionEvent -> search(SearchField.REF));
-		inContentRadio.setOnAction(actionEvent -> search(SearchField.CONTENT));
-		secondToolBar.getItems().addAll(new Separator(), searchComboBox, clearButton, textInput.getMethodButton(),
-							new Separator(), new Label("Find in: "), inInfoRadio, inRefRadio, inContentRadio);
+		final MenuButton sortRuleButton = new MenuButton("", new TextIcon("arrow-down-a-z", TextIcon.IconSet.AWESOME));
+		sortRuleButton.setTooltip(new Tooltip("Sorting rule for information column"));
+		final SimpleBooleanProperty contentSelected = new SimpleBooleanProperty(false);
+		sortRuleButton.disableProperty().bind(contentSelected);
+		for (final Utilities.TermComparator comp : Utilities.TermComparator.values) {
+			final RadioMenuItem item = new RadioMenuItem(comp.getName());
+			item.setUserData(comp);
+			item.setToggleGroup(sortRuleGroup);
+			sortRuleButton.getItems().add(item);
+		}
+		sortRuleGroup.selectToggle(sortRuleGroup.getToggles().get(0));
+		sortRuleGroup.selectedToggleProperty().addListener(observable -> {
+			resultList.clear();
+			resultList.add(new DummyDocumentInfo());
+			table.getColumns().clear();
+			setupTable();
+			search(SortBy.INFO);
+		});
+		secondToolBar.getItems().addAll(new Separator(), searchComboBox, clearButton, textInput.getMethodButton(), sortRuleButton,
+										new Separator(), new Label("Find in: "));
+		for (final SearchField sf : SearchField.values) {
+			final RadioButton radio = new RadioButton(sf.getName());
+			radio.setUserData(sf);
+			radio.setToggleGroup(searchFieldGroup);
+			secondToolBar.getItems().add(radio);
+			if (sf == SearchField.CONTENT)
+				radio.selectedProperty().bindBidirectional(contentSelected);
+		}
+		searchFieldGroup.selectToggle(searchFieldGroup.getToggles().get(0));
+		searchFieldGroup.selectedToggleProperty().addListener(observable -> {
+			final SearchField sf = (SearchField)searchFieldGroup.getSelectedToggle().getUserData();
+			search(sf);
+		});
 		final VBox toolBox = new VBox();
 		toolBox.getChildren().addAll(toolBar, secondToolBar);
 		setTop(toolBox);
@@ -201,6 +236,7 @@ public class DocumentFinder extends BorderPane {
 		setBottom(statusBox);
 
 		// some init
+		setupTable();
 		if (ReaderUtilities.simpleServiceMap == null) 
 			ReaderUtilities.simpleServiceMap = ReaderUtilities.getSimpleServices();
 		if (ReaderUtilities.referenceList == null)
@@ -216,14 +252,17 @@ public class DocumentFinder extends BorderPane {
 	public void init() {
 		clearResult();
 		searchTextField.clear();
-		searchFieldGroup.selectToggle(inInfoRadio);
+		searchFieldGroup.selectToggle(searchFieldGroup.getToggles().get(0));
 		searchIn = SearchField.INFO;
+		sortBy = SortBy.ID;
 		search();
 	}
 
 	private void setupTable() {
 		if (resultList.isEmpty())
 			return;
+		final Utilities.TermComparator comp = (Utilities.TermComparator)sortRuleGroup.getSelectedToggle().getUserData();
+		final Comparator<String> infoComp = comp.getComparator();
 		final TableColumn<DocumentInfo, String> corpusCol = new TableColumn<>("Col");
 		corpusCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).corpusProperty().getName()));
 		corpusCol.setReorderable(false);
@@ -232,7 +271,7 @@ public class DocumentFinder extends BorderPane {
 		final TableColumn<DocumentInfo, String> summaryCol = new TableColumn<>("Document Information");
 		summaryCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).summaryProperty().getName()));
 		summaryCol.setReorderable(false);
-		summaryCol.setComparator(Utilities.paliComparator);
+		summaryCol.setComparator(infoComp);
 		summaryCol.prefWidthProperty().bind(mainPane.widthProperty().divide(15).multiply(8.5).subtract(32));
 		final TableColumn<DocumentInfo, String> refCol = new TableColumn<>("Ref");
 		refCol.setCellValueFactory(new PropertyValueFactory<>(resultList.get(0).refProperty().getName()));
@@ -310,6 +349,7 @@ public class DocumentFinder extends BorderPane {
 	}
 
 	private void search() {
+		sortBy = SortBy.ID;
 		final String text = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
 		if (isValidQuery(text))
 			search(text);
@@ -319,6 +359,16 @@ public class DocumentFinder extends BorderPane {
 
 	private void search(final SearchField field) {
 		searchIn = field;
+		sortBy = SortBy.ID;
+		final String text = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
+		if (isValidQuery(text))
+			search(text);
+		else
+			clearResult();
+	}
+	
+	private void search(final SortBy by) {
+		sortBy = by;
 		final String text = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC);
 		if (isValidQuery(text))
 			search(text);
@@ -328,8 +378,11 @@ public class DocumentFinder extends BorderPane {
 	
 	private void search(final String inputStr) {
 		clearResult();
+		final Utilities.TermComparator comp = (Utilities.TermComparator)sortRuleGroup.getSelectedToggle().getUserData();
+		final Comparator<String> infoComp = comp.getComparator();
 		final Corpus[] selectedCorp = getSelectedCorpora();
 		final String strToFind = inputStr.toLowerCase();
+		final List<DocumentInfo> allDocList = new ArrayList<>();
 		if (searchIn == SearchField.INFO) {
 			// search in document's information
 			final TextGroup selTextGroup = starButton.isSelected() ? Corpus.tgAll : corpusSelector.getSelectedTextGroup();
@@ -346,11 +399,10 @@ public class DocumentFinder extends BorderPane {
 						docList.add(docInfo);
 					}
 				}
-				if (cp.getCollection() == Corpus.Collection.SC)
+				if (cp.getCollection() == Corpus.Collection.SC && sortBy == SortBy.ID)
 					docList.sort((a, b) -> ScInfo.scComparator.compare(a.getId(), b.getId()));
-				resultList.addAll(docList);
+				allDocList.addAll(docList);
 			}
-			updateStatus();
 		} else if (searchIn == SearchField.REF) {
 			// search in reference abbreviations
 			final List<Reference> refList = ReaderUtilities.referenceList.stream()
@@ -370,15 +422,18 @@ public class DocumentFinder extends BorderPane {
 						docList.add(docInfo);
 					}
 				}
-				if (cp.getCollection() == Corpus.Collection.SC)
+				if (cp.getCollection() == Corpus.Collection.SC && sortBy == SortBy.ID)
 					docList.sort((a, b) -> ScInfo.scComparator.compare(a.getId(), b.getId()));
-				resultList.addAll(docList);
+				allDocList.addAll(docList);
 			}
-			updateStatus();
 		} else {
 			// brute full text search in the collection
 			searchContent(inputStr);
 		}
+		if (sortBy == SortBy.INFO)
+			allDocList.sort((a, b) -> infoComp.compare(a.summaryProperty().get(), b.summaryProperty().get()));
+		resultList.addAll(allDocList);
+		updateStatus();
 	}
 
 	private void searchContent(final String text) {
@@ -411,7 +466,8 @@ public class DocumentFinder extends BorderPane {
 							final ZipFile zip = new ZipFile(cp.getZipFile());
 							for (final DocumentInfo docInfo : docInfoMap.values()) {
 								if (!docInfo.isInTextGroup(selTextGroup)) continue;
-								final ZipEntry entry = zip.getEntry(docInfo.getFileNameWithExt());
+								final String ename = ReaderUtilities.getContentSearchSource(cp, docInfo.getFileNameWithExt());
+								final ZipEntry entry = zip.getEntry(ename);
 								final Scanner in = new Scanner(zip.getInputStream(entry), cp.getEncoding().getCharset());
 								final List<String> findResList = new ArrayList<>();
 								String findRes;
@@ -495,11 +551,11 @@ public class DocumentFinder extends BorderPane {
 		if (dinfo != null && !dinfo.getFileNameWithExt().isEmpty()) {
 			final Corpus.Collection col = Corpus.Collection.valueOf(dinfo.corpusProperty().get());
 			final List<String> findRes = dinfo.getMatchResult();
-			if (col == Corpus.Collection.SC) {
+			if (col == Corpus.Collection.SC || col == Corpus.Collection.SKT) {
 				if (findRes.isEmpty())
-					ReaderUtilities.openScReader(col, dinfo);
+					ReaderUtilities.openOtherReader(col, dinfo);
 				else
-					ReaderUtilities.openScReader(col, dinfo, findRes.get(0));
+					ReaderUtilities.openOtherReader(col, dinfo, findRes.get(0));
 			} else {
 				final TocTreeNode node = dinfo.toTocTreeNode();
 				if (Utilities.checkFileExistence(node.getNodeFile())) {

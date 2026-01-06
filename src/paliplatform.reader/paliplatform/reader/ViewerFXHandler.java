@@ -1,7 +1,7 @@
 /*
  * ViewerFXHandler.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,14 +24,14 @@ import paliplatform.base.*;
 /** 
  * The handler class used to communicate with JavaScript in WebView.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.7
  * @since 2.0
  */
 
 public class ViewerFXHandler extends FXHandler {
 	public ViewerFXHandler(final PaliHtmlViewerBase viewer) {
 		super((PaliHtmlViewerBase)viewer);
-		textOutput = "palidoc.txt";
+		textOutput = "document.txt";
 	}
 	
 	public void setSearchTextFound(final boolean yn) {
@@ -48,6 +48,10 @@ public class ViewerFXHandler extends FXHandler {
 
 	public void updateClickedObject(final String text) {
 		((PaliHtmlViewerBase)viewer).updateClickedObject(text);
+	}
+
+	public void openSktGretilDoc(final String name) {
+		((SktGretilHtmlViewer)viewer).openSktDoc(name.substring(0, name.lastIndexOf(".")));
 	}
 
 }

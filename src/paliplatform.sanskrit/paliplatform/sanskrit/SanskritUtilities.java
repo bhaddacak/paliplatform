@@ -1,7 +1,7 @@
 /*
  * SanskritUtilities.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,11 +45,12 @@ import javafx.beans.property.SimpleObjectProperty;
 /** 
  * The utility factory for the Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 3.5
  */
 final public class SanskritUtilities {
 	public static final String DICTPATH = Utilities.DATAPATH + "dict" + File.separator;
+	public static final String TEXTPATH = Utilities.DATAPATH + "text" + File.separator + "skt" + File.separator;
 	private static final String TXTDIR = "resources/text/";
 	public static final SimpleBooleanProperty sktDictDBAvailable = new SimpleBooleanProperty(false);
 	public static final Map<SktDictBook, SimpleBooleanProperty> sktDictAvailMap = new EnumMap<>(SktDictBook.class);
@@ -128,7 +129,7 @@ final public class SanskritUtilities {
 	}
 
 	public static void openWindow(final Utilities.WindowType win, final Object[] args) {
-		final Stage stg = Utilities.getOpenedWindow(win.getWindowClassName());
+		Stage stg = Utilities.getOpenedWindow(win.getWindowClassName());
 		switch (win) {
 			case SKTDICT:
 				if (stg == null) {

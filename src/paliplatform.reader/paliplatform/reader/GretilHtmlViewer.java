@@ -1,7 +1,7 @@
 /*
  * GretilHtmlViewer.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,9 +40,9 @@ import javafx.concurrent.Worker;
 import netscape.javascript.JSObject;
 
 /** 
- * The viewer of Pali texts from GRETIL, i.e., for PTS and BJT edition.
+ * The viewer of Pali texts from GRETIL, i.e., PTS edition.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 3.0
  */
 public class GretilHtmlViewer extends PaliHtmlViewer {

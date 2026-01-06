@@ -810,7 +810,8 @@ public class PaliTextEditor extends BorderPane {
 	
 	private void convertTo(final PaliScript toScript) {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		PaliScript fromScript = (PaliScript)convertFromGroup.getSelectedToggle().getUserData();
 		final EngineType romanDef = (EngineType)romanDefaultGroup.getSelectedToggle().getUserData();
 		if (fromScript == PaliScript.UNKNOWN)

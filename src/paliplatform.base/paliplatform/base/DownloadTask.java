@@ -1,7 +1,7 @@
 /*
  * DownloadTask.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ import java.nio.file.*;
 /** 
  * The representation of a download task used with ProgressiveDownloader.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.0
  * @since 3.0
  */
 public class DownloadTask {
@@ -39,6 +39,7 @@ public class DownloadTask {
 	private File destinationFile; // used only when selective unpack
 	private long totalSize = -1; // indeterminate at first
 	private State state = State.IDLE;
+	private boolean skipSizeCheck = false;
 	
 	public DownloadTask(final String url, final File target, final File destination, final boolean unpack) {
 		fileURL = url;
@@ -59,6 +60,14 @@ public class DownloadTask {
 
 	public UnpackMode getUnpackMode() {
 		return unpackMode;
+	}
+
+	public void setSkipSizeCheck(final boolean yn) {
+		skipSizeCheck = yn;
+	}
+
+	public boolean getSkipSizeCheck() {
+		return skipSizeCheck;
 	}
 
 	private static File getValidTargetFile(final File file) {

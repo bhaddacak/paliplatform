@@ -66,11 +66,11 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.0
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "3.6";
+	public static final String VERSION = "4.0";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -104,7 +104,7 @@ final public class Utilities {
 	public static String FONTSANS = genericFonts.get(1);
 	public static String FONTMONO = genericFonts.get(2);
 	public static String FONTMONOBOLD = FONTMONO;
-	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹṁṃṅṇṛṝṣṭēō";
+	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸḺṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹḻṁṃṅṇṛṝṣṭēō";
 	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
 	public static final String REX_NON_PALI_PUNC = "[^A-Za-z" + PALI_ALL_CHARS + "?!–-]+";
@@ -136,6 +136,8 @@ final public class Utilities {
 	public static Comparator<String> paliComparator;
 	public static RuleBasedCollator sktCollator;
 	public static Comparator<String> sktComparator;
+	public static RuleBasedCollator slp1Collator;
+	public static Comparator<String> slp1Comparator;
 	public static Comparator<String> alphanumComparator;
 	public static StringConverter<Integer> integerStringConverter;
 	public static ExecutorService threadPool;
@@ -218,7 +220,7 @@ final public class Utilities {
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
-		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader");
+		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"), VIEWER_SKTGRETIL("SktGretilHtmlViewer");
 		public static final WindowType[] types = values();
 		private final String windowClassName;
 		private WindowType(final String className) {
@@ -288,6 +290,29 @@ final public class Utilities {
 	public static enum PpdpdTable {
 		DICTIONARY, DECONSTRUCTOR, MINIDPD, SORTED_HEADWORDS;
 		public static final PpdpdTable[] tables = values(); 
+	}
+	public static enum TermComparator {
+		PALI("Roman Pāli"), SANSKRIT("Roman Sanskrit"), SLP1("SLP1"), NORMAL("Natural Order");
+		public static final TermComparator[] values = values();
+		private String name;
+		private TermComparator(final String n) {
+			name = n;
+		}
+		public String getName() {
+			return name;
+		}
+		public Comparator<String> getComparator() {
+			final Comparator<String> result;
+			if (this == PALI)
+				result = paliComparator;
+			else if (this == SANSKRIT)
+				result = sktComparator;
+			else if (this == SLP1)
+				result = slp1Comparator;
+			else
+				result = Comparator.naturalOrder();
+			return result;
+		}
 	}
 
 	public static String getSetting(final String key) {
@@ -592,11 +617,11 @@ final public class Utilities {
 	}
 	
 	/**
-	 * Prepares the Pali collator to sort Pali terms, including some Sanskrit characters
-	 * there is some problem with ḷ (maybe using lh is better)
+	 * Prepares collators to sort terms.
 	*/
 	public static void initializeComparator() throws Exception {
 		if (paliCollator != null) return;
+		// for Pali and Sanskrit collator
 		final String vowelBase = "< √ < A, a < Ā, ā < I, i < Ī, ī < U, u < Ū, ū < Ṛ, ṛ < Ṝ, ṝ";
 		final String vowelPali = vowelBase + "< E, e < Ē, ē < O, o < Ō, ō";	
 		final String vowelSkt = vowelBase + "< Ḷ, ḷ < Ḹ, ḹ < E, e < AI, Ai, ai < O, o < AU, Au, au";	
@@ -618,6 +643,17 @@ final public class Utilities {
 		final String sktRule = vowelSkt + niggahita + visarga + consonantSkt;
 		sktCollator = new RuleBasedCollator(sktRule);
 		sktComparator = sktCollator::compare;
+		// for SLP1 collator
+		final String slp1Rule = "< a < A < i < I < u < U < f < F < x < X < e < E < o < O" +
+								"< k < K < g < G < N" +
+								"< c < C < j < J < Y" +
+								"< w < W < q < Q < R" + 
+								"< t < T < d < D < n" +
+								"< p < P < b < B < m" +
+								"< y < r < l < L < v < S < z < s < h < M < H";
+		slp1Collator = new RuleBasedCollator(slp1Rule);
+		slp1Comparator = slp1Collator::compare;
+		// for alphanumeral
 		alphanumComparator = new Comparator<String>() {
 			@Override
 			public int compare(final String aName, final String bName) {
@@ -844,7 +880,7 @@ final public class Utilities {
 		final StringBuilder text = new StringBuilder();
 		try (final Scanner in = new Scanner(new FileInputStream(file), charset)) {
 			while (in.hasNextLine() && text.length() < 1024) {
-				final String line = removeTags(in.nextLine().trim());
+				final String line = removeTags(in.nextLine().trim(), true);
 				text.append(line);
 			}
 		} catch (FileNotFoundException e) {
@@ -930,7 +966,14 @@ final public class Utilities {
 	}
 
 	public static String removeTags(final String text) {
-		return text.replaceAll("<.*?>", " ");
+		return removeTags(text, false);
+	}
+	
+	public static String removeTags(final String text, final boolean spaceReplaced) {
+		final String result = spaceReplaced
+								? text.replaceAll("<.*?>", " ").replaceAll(" {2,}", " ")
+								: text.replaceAll("<.*?>", "");
+		return result;
 	}
 	
 	public static String getTextResource(final String fileNameWithPath) {
@@ -1151,7 +1194,7 @@ final public class Utilities {
 		if (text.isEmpty())
 			return result;
 		final String[] tokens = text.split(REX_NON_PALI);
-		result = Arrays.stream(tokens).filter(x -> x.length() > 0).findFirst().get().toLowerCase();
+		result = Arrays.stream(tokens).filter(x -> x.length() > 0).findFirst().orElse("").toLowerCase();
 		return normalizeNiggahita(result);
 	}
 	

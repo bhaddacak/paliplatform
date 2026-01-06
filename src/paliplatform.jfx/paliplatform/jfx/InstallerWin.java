@@ -1,7 +1,7 @@
 /*
  * InstallerWin.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ import javax.swing.border.*;
 /** 
  * The main window of JavaFX installer.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
 
@@ -43,7 +43,7 @@ public class InstallerWin extends JFrame {
 	private static final String NIMBUS = "javax.swing.plaf.nimbus.NimbusLookAndFeel";
 	private static final String START = "Start";
 	private static final double MEGA = 1024 * 1024;
-	private static final String aboutStr = "JavaFX Installer for Pāli Platform 3" +
+	private static final String aboutStr = "JavaFX Installer for Pāli Platform 4" +
 								"\n\nSimple guide:" +
 								"\n0. JavaFX is the essential GUI toolkit for running the program." +
 								"\n1. Available downloads are determined by the current system." +

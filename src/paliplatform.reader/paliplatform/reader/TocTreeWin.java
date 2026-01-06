@@ -1,7 +1,7 @@
 /*
  * TocTreeWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@ import javafx.scene.layout.BorderPane;
 /** 
  * The TOC (Table Of Contents) tree window of the Pali collections.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 3.7
  * @since 2.0
  */
 public class TocTreeWin extends BorderPane {
@@ -46,7 +46,8 @@ public class TocTreeWin extends BorderPane {
 		treeBase.setExpanded(true);
 		if (ReaderUtilities.corpusMap != null) {
 			for (final Corpus cp : ReaderUtilities.corpusMap.values()) {
-				if (cp.getCollection() == Corpus.Collection.SC) continue;
+				final Corpus.Collection col = cp.getCollection();
+				if (col == Corpus.Collection.SC || col == Corpus.Collection.SKT) continue;
 				if (!cp.isAvailable()) continue;
 				final TreeItem<TocTreeNode> node = cp.createTreeNode();
 				treeBase.getChildren().add(node);

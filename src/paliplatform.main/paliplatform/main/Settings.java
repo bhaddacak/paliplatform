@@ -76,9 +76,25 @@ class Settings extends SingletonWindow {
 		cbDpdLookup.setAllowIndeterminate(false);
 		cbDpdLookup.setSelected(Boolean.parseBoolean(Utilities.getSetting("dpd-lookup-enable")));
 		cbDpdLookup.setOnAction(actionEvent -> Utilities.setSetting("dpd-lookup-enable", Boolean.toString(cbDpdLookup.isSelected())));
-		generalBox.getChildren().addAll(cbExitAsk,
-								new Separator(), new Label("DPD integration"), cbDpdLookup,
-								new Separator(), new Label("Default transliteration to Roman in text readers"));
+		final HBox sktLookupDictBox = new HBox();
+		sktLookupDictBox.setSpacing(5);
+		final ToggleGroup sktDictGroup = new ToggleGroup();
+		final List<String> sktLookupDicts = List.of("MW", "AP", "SHS", "MD", "BHS");
+		for (final String dict : sktLookupDicts) {
+			final RadioButton radio = new RadioButton(dict);
+			radio.setToggleGroup(sktDictGroup);
+			sktLookupDictBox.getChildren().add(radio);
+		}
+		final String currDict = Utilities.getSetting("skt-lookup-dict");
+		sktDictGroup.selectToggle(sktDictGroup.getToggles().get(sktLookupDicts.indexOf(currDict)));
+        sktDictGroup.selectedToggleProperty().addListener(observable -> {
+			final String dict = ((RadioButton)sktDictGroup.getSelectedToggle()).getText();
+			Utilities.setSetting("skt-lookup-dict", dict);
+			MainProperties.INSTANCE.saveSettings();
+		});
+		generalBox.getChildren().addAll(cbExitAsk, new Separator(), new Label("DPD integration"), cbDpdLookup,
+										new Separator(), new Label("Default Sanskrit dictionay for looking up"), sktLookupDictBox,
+										new Separator(), new Label("Default transliteration to Roman in text readers"));
 		final ToggleGroup defRomanGroup = new ToggleGroup();
 		for (final EngineType en : EngineType.engines) {
 			final int ind = en.ordinal();
@@ -253,7 +269,7 @@ class Settings extends SingletonWindow {
 		final Button unusedCharResetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
 		unusedCharResetButton.setTooltip(new Tooltip("Reset to default values"));
 		unusedCharResetButton.setOnAction(actionEvent -> {
-			for (int i=0; i<unusedCharKeys.length; i++) {
+			for (int i = 0; i < unusedCharKeys.length; i++) {
 				final String def = defaultTable.get(unusedCharKeys[i]);
 				Utilities.setSetting(unusedCharKeys[i], def);
 				unusedCharTextFields[i].setText(def);
@@ -274,7 +290,7 @@ class Settings extends SingletonWindow {
 		int row;
 		int colLb;
 		int colTf;
-		for (int i=0; i<unusedCharNames.length; i++) {
+		for (int i = 0; i < unusedCharNames.length; i++) {
 			final Label lb = new Label(unusedCharNames[i]+":");
 			unusedCharTextFields[i] = new TextField(settings.getProperty(unusedCharKeys[i]));
 			unusedCharTextFields[i].setPrefColumnCount(1);
@@ -304,7 +320,7 @@ class Settings extends SingletonWindow {
 		final Button compCharResetButton = new Button("", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
 		compCharResetButton.setTooltip(new Tooltip("Reset to default values"));
 		compCharResetButton.setOnAction(actionEvent -> {
-			for (int i=0; i<compCharKeys.length; i++) {
+			for (int i = 0; i < compCharKeys.length; i++) {
 				final String def = defaultTable.get(compCharKeys[i]);
 				Utilities.setSetting(compCharKeys[i], def);
 				compCharTextFields[i].setText(def);
@@ -322,13 +338,13 @@ class Settings extends SingletonWindow {
 		compInputGrid.setHgap(5);
 		compInputGrid.setVgap(2);
 		compCharTextFields = new TextField[compCharNames.length];
-		for (int i=0; i<compCharNames.length; i++) {
+		for (int i = 0; i < compCharNames.length; i++) {
 			final Label lb = new Label(compCharNames[i]+":");
 			compCharTextFields[i] = new TextField(settings.getProperty(compCharKeys[i]));
 			compCharTextFields[i].setPrefColumnCount(1);
-			row = i/2;
-			colLb = 2*(i - row*2);
-			colTf = 2*(i - row*2) + 1;
+			row = i/3;
+			colLb = 2*(i - row*3);
+			colTf = 2*(i - row*3) + 1;
 			GridPane.setConstraints(lb, colLb, row, 1, 1, HPos.RIGHT, VPos.CENTER);
 			GridPane.setConstraints(compCharTextFields[i], colTf, row, 1, 1, HPos.RIGHT, VPos.CENTER);
 			compInputGrid.getChildren().addAll(lb, compCharTextFields[i]);

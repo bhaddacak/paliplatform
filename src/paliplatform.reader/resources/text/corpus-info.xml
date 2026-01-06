@@ -171,4 +171,23 @@
 		<url>https://suttacentral.net</url>
 		<url>https://github.com/suttacentral</url>
 	</corpus>
+	<corpus>
+		<name>GRETIL Sanskrit Collection</name>
+		<shortname>Skt. GRETIL</shortname>
+		<root>skt</root>
+		<inarchive>true</inarchive>
+		<zipfile>1_sanskr.zip</zipfile>
+		<encoding>UTF_8</encoding>
+		<script>ROMAN</script>
+		<transformable>false</transformable>
+		<textbasket>Veda::ved</textbasket>
+		<textbasket>Epics::epi</textbasket>
+		<textbasket>Purana::pur</textbasket>
+		<textbasket>Religious Literature::rel</textbasket>
+		<textbasket>Poetry::poe</textbasket>
+		<textbasket>Sastra::sas</textbasket>
+		<textbasket>Later Works::lat</textbasket>
+		<description>The Sanskrit text collection of the Göttingen Register of Electronic Texts in Indian Languages (GRETIL)</description>
+		<url>https://gretil.sub.uni-goettingen.de</url>
+	</corpus>
 </corpora>

@@ -1,7 +1,7 @@
 /*
  * SanskritMenu.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import javafx.scene.input.KeyCode;
 /** 
  * The menu items for Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 3.7
  * @since 3.5
  */
 public class SanskritMenu extends Menu {
@@ -50,7 +50,9 @@ public class SanskritMenu extends Menu {
 		final MenuItem lettersMenuItem = new MenuItem("_Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
 		lettersMenuItem.setMnemonicParsing(true);
 		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
-		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dict", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
+		final MenuItem docDownloadMenuItem = new MenuItem("Download Sanskrit documents", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
+		docDownloadMenuItem.setOnAction(actionEvent -> SktDocDownloader.INSTANCE.display());
+		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dictionaries", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		dictDownloadMenuItem.setOnAction(actionEvent -> SktDictDownloader.INSTANCE.display());
 		final MenuItem createDataMenuItem = new MenuItem("_Create Skt. Dict data", new TextIcon("database", TextIcon.IconSet.AWESOME));
 		createDataMenuItem.setMnemonicParsing(true);
@@ -63,7 +65,7 @@ public class SanskritMenu extends Menu {
 		lockDBMenuItem.graphicProperty().bindBidirectional(SanskritUtilities.sktDictDBLockIcon);
 		lockDBMenuItem.setOnAction(actionEvent -> SanskritUtilities.lockSktDictDB(lockDBMenuItem.isSelected()));
 		getItems().addAll(dictMenuItem, lettersMenuItem,
-				new SeparatorMenuItem(), dictDownloadMenuItem, createDataMenuItem,
+				new SeparatorMenuItem(), docDownloadMenuItem, dictDownloadMenuItem, createDataMenuItem,
 				new SeparatorMenuItem(), lockDBMenuItem);
 	}
 

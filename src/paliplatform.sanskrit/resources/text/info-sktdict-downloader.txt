@@ -10,4 +10,4 @@ Downloading Sanskrit dictionaries
 	   - Monier-Williams's English-Sanskrit Dictionary (1851)
 	   - Apte's Student's English-Sanskrit Dictionary (1964)
 	   - Borooah's English-Sanskrit Dictionary (1877-1881)
-	4. The first item (MW) has a sizeable file to download. Sometimes it causes a network error when the traffic is busy. In this case, deselect this dict and download it later.
+

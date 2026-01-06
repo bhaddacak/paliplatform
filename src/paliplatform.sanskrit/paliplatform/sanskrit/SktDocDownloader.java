@@ -1,5 +1,5 @@
 /*
- * ScDownloader.java
+ * SktDocDownloader.java
  *
  * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
@@ -17,57 +17,59 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package paliplatform.reader;
+package paliplatform.sanskrit;
 
 import paliplatform.base.*;
 
 import java.io.File;
+
 import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 
 /** 
- * The downloader dialog for SuttaCentral bilara data.
+ * The downloader dialog for Sanskrit documents.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
- * @since 3.0
+ * @version 3.7
+ * @since 3.7
  */
-class ScDownloader extends ProgressiveDownloader {
-	static final ScDownloader INSTANCE = new ScDownloader();
+class SktDocDownloader extends ProgressiveDownloader {
+	static final SktDocDownloader INSTANCE = new SktDocDownloader();
 	private final InfoPopup helpPopup = new InfoPopup();
 	
-	private ScDownloader() {
-        setTitle("SuttaCentral Data Downloader");
+	private SktDocDownloader() {
+		setTitle("Downloader of Sanskrit Documents");
 		// add up UI
 		final ToolBar toolBar = new ToolBar();
+		final Button refreshButton = new Button("Refresh");
+		refreshButton.disableProperty().bind(isRunningProperty());
+		refreshButton.setOnAction(actionEvent -> init());
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_LEFT, true));
-		toolBar.getItems().addAll(helpButton);
+		toolBar.getItems().addAll(refreshButton, helpButton);
 		mainPane.setTop(toolBar);
 		// initialization
-		helpPopup.setContentWithText(ReaderUtilities.getTextResource("info-scdownloader.txt"));
+		helpPopup.setContentWithText(SanskritUtilities.getTextResource("info-sktdoc-downloader.txt"));
 		helpPopup.setTextWidth(Utilities.getRelativeSize(26));
 		init();
 	}
 
 	private void init() {
-		final String scURL = Utilities.urls.getProperty("sc_data_url");
-		final File downloadTarget = new File(Utilities.CACHEPATH + ReaderUtilities.BILARA_DATA);
-		final File destination = new File(Utilities.ROOTDIR + ReaderUtilities.SCPATH);
-		final DownloadTask dlTask = new DownloadTask(scURL, downloadTarget, destination, false);
-		setDownloadTask(dlTask);
+		final String url = Utilities.urls.getProperty("gretil_skt_url", "");
+		if (url.isEmpty()) {
+			Utilities.displayAlert(Alert.AlertType.WARNING, "No URL available,\nplease update online info, then Refresh");
+		} else {
+			final String srcFile = url.substring(url.lastIndexOf("/") + 1);
+			final File downloadTarget = new File(Utilities.CACHEPATH + srcFile);
+			final File destination = new File(Utilities.ROOTDIR + SanskritUtilities.TEXTPATH);
+			final DownloadTask dlTask = new DownloadTask(url, downloadTarget, destination, false);
+			setDownloadTask(dlTask);
+		}
 	}
 
 	@Override
 	public void onFinished() {
-		if (!skipInstall()) {
-			ReaderUtilities.checkIfSuttaCentralAvailable();
-			if (ReaderUtilities.suttaCentralAvailable.get()) {
-				ReaderUtilities.createScHeads();
-				ReaderUtilities.scSuttaInfoMap.clear();
-				ReaderUtilities.loadScSuttaInfo();
-				ReaderUtilities.updateCorpusList();
-			}
-		}
+		// no-op
 	}
 
 }

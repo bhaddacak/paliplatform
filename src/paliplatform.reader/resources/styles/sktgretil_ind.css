@@ -1,0 +1,5 @@
+.doclink {
+	margin-left: 2em;
+	cursor: pointer;
+}
+.doclink:hover { font-weight: bold; }

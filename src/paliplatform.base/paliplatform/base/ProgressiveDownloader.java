@@ -1,7 +1,7 @@
 /*
  * ProgressiveDownloader.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ import org.apache.commons.compress.compressors.xz.*;
  * The progressive downloader dialog with progress report and post-download
  * installation, suitable for downloading sizeable files.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 4.0
  * @since 3.0
  */
 public class ProgressiveDownloader extends Stage {
@@ -173,6 +173,10 @@ public class ProgressiveDownloader extends Stage {
 		init();
 	}
 
+	protected boolean skipInstall() {
+		return !cbInstall.isSelected();
+	}
+
 	protected SimpleBooleanProperty isRunningProperty() {
 		return isRunning;
 	}
@@ -265,18 +269,21 @@ public class ProgressiveDownloader extends Stage {
 				long totalSize = -1;
 				String totalSizeReported = "";
 				Platform.runLater(() -> message.setText("Downloading " + item.getFileName()));
+				HttpURLConnection httpConn = null;
 				try {
 					// check for file size first
 					final URL url = new URL(item.getFileURL());
-					final HttpURLConnection httpConn = (HttpURLConnection)url.openConnection(); 
-					httpConn.setRequestMethod("HEAD"); 
-					totalSize = httpConn.getContentLengthLong();
+					httpConn = (HttpURLConnection)url.openConnection(); 
+					if (!item.getSkipSizeCheck()) {
+						httpConn.setRequestMethod("HEAD"); 
+						totalSize = httpConn.getContentLengthLong();
+						if (totalSize >= 0) {
+							isTotalSizeAvailable = true;
+							totalSizeReported = String.format("%.2f MB", (totalSize / MEGA));
+						}
+					}
 					item.setState(DownloadTask.State.STARTED);
 					item.setTotalSize(totalSize);
-					if (totalSize >= 0) {
-						isTotalSizeAvailable = true;
-						totalSizeReported = String.format("%.2f MB", (totalSize / MEGA));
-					}
 					rchannel = Channels.newChannel(url.openStream()); 
 				} catch (IOException e) {
 					System.err.println(e);
@@ -290,9 +297,20 @@ public class ProgressiveDownloader extends Stage {
 						return false;
 					} else {
 						item.setState(DownloadTask.State.FAILED);
+						final HttpURLConnection httpConnFinal = httpConn;
 						Platform.runLater(() -> {
 							progressBar.progressProperty().unbind();
-							init("Network error");
+							String mess = "Network error";
+							if (httpConnFinal != null) {
+								try {
+									mess = httpConnFinal.getResponseMessage() == null
+											? mess
+											: httpConnFinal.getResponseMessage();
+								} catch (IOException ex) {
+									System.err.println(ex);
+								}
+							}
+							init(mess);
 						});
 						return false;
 					}

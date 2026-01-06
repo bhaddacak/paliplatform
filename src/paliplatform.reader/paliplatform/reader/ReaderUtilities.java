@@ -1,7 +1,7 @@
 /*
  * ReaderUtilities.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ import com.google.gson.stream.*;
 /** 
  * The utility factory for the Reader module.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.7
  * @since 3.0
  */
 final public class ReaderUtilities {
@@ -74,6 +74,8 @@ final public class ReaderUtilities {
 	public static final String CST4_XSL = CSSDIR + "cst4.xsl";
 	public static final String BJT_CSS = CSSDIR + "bjt.css";
 	public static final String SC_CSS = CSSDIR + "sc.css";
+	public static final String SKTGRETIL_IND_CSS = CSSDIR + "sktgretil_ind.css";
+	public static final String SKTGRETIL_DOC_CSS = CSSDIR + "sktgretil_doc.css";
 	public static final String PALI_JS = JSDIR + "pali-viewer.js"; // used by all PaliHtmlViewer
 	public static final String CSTR_JS = JSDIR + "cstr-viewer.js"; // used only by CSTR
 	public static final String CST4_JS = JSDIR + "cst4-viewer.js"; // used only by CST4
@@ -81,6 +83,7 @@ final public class ReaderUtilities {
 	public static final String GRETIL_JS = JSDIR + "gretil-viewer.js"; // used only by PTS
 	public static final String SRT_JS = JSDIR + "srt-viewer.js"; // used only by SRT
 	public static final String GRAM_JS = JSDIR + "gram-viewer.js"; // used only by gram books
+	public static final String SKTGRETIL_JS = JSDIR + "sktgretil-viewer.js"; // used only by Skt GRETIL
 	public static final String CORPUS_INFO = TXTDIR + "corpus-info.xml";
 	public static final String ROOT_DEF = TXTDIR + "rootdef.xml";
 	public static final String REF_DATA = TXTDIR + "references.xml";
@@ -92,9 +95,14 @@ final public class ReaderUtilities {
 	public static final File scData = new File(Utilities.ROOTDIR + SCPATH + BILARA_DATA);
 	public static final String SC_HEADS = "sc-heads.txt";
 	public static final File scHeadFile = new File(Utilities.ROOTDIR + SCPATH + SC_HEADS);
+	public static final String SKT_GRETIL_DATA = "1_sanskr.zip";
+	public static final File sktGretilData = new File(Utilities.ROOTDIR + TEXTPATH + "skt" + File.separator + SKT_GRETIL_DATA);
+	public static final String SKT_GRETIL_INDEX = "gretil_skt_index.txt";
 	public static final SimpleBooleanProperty corpusAvailable = new SimpleBooleanProperty(false);
 	public static final SimpleBooleanProperty suttaCentralAvailable = new SimpleBooleanProperty(false);
+	public static final SimpleBooleanProperty sktGretilAvailable = new SimpleBooleanProperty(false);
 	public static Map<String, SimpleService> simpleServiceMap;
+	public static Map<String, SktService> sktServiceMap;
 	public static Map<Corpus.Collection, Corpus> corpusMap;
 	public static ObservableList<String> corpusAbbrList =  FXCollections.observableArrayList();
 	public static List<RootDef> rootList;
@@ -104,6 +112,8 @@ final public class ReaderUtilities {
 	public static List<Reference> referenceList;
 	public static Map<String, String> scSuttaInfoMap = new HashMap<>();
 	public static Comparator<String> gramSutRefComparator;
+	public static String sktGretilIndexHtml = "";
+	public static List<String> sktGretilIndexHeadList = new ArrayList<>();
 
 	public static Comparator<String> getReferenceComparator(final Corpus corpus) {
 		Comparator<String> result = Utilities.alphanumComparator;
@@ -182,6 +192,13 @@ final public class ReaderUtilities {
 
 	public static Map<String, SimpleService> getSimpleServices() {
 		return ServiceLoader.load(SimpleService.class)
+				.stream()
+				.map(Provider::get)
+				.collect(Collectors.toMap(x -> x.getClass().getName(), Function.identity()));
+	}
+
+	public static Map<String, SktService> getSktServices() {
+		return ServiceLoader.load(SktService.class)
 				.stream()
 				.map(Provider::get)
 				.collect(Collectors.toMap(x -> x.getClass().getName(), Function.identity()));
@@ -300,6 +317,15 @@ final public class ReaderUtilities {
 		FXCollections.sort(corpusAbbrList, Corpus.Collection.colComparator);
 	}
 
+	public static String getContentSearchSource(final Corpus corpus, final String fname) {
+		final String result = corpus.getCollection() == Corpus.Collection.PTST
+								? fname.replace("ou.htm", "pu.htm")
+								: corpus.getCollection() == Corpus.Collection.SKT
+									? fname.replace("/html/", "/plaintext/").replace(".htm", ".txt")
+									: fname;
+		return result;
+	}
+
 	public static Map<String, DocumentInfo> loadScDocInfoMap(final Corpus corpus) {
 		Map<String, DocumentInfo> result = Collections.emptyMap();
 		if (!suttaCentralAvailable.get()) return result;
@@ -331,6 +357,62 @@ final public class ReaderUtilities {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
+		return result;
+	}
+
+	public static Map<String, DocumentInfo> loadSktDocInfoMap(final Corpus corpus) {
+		final Map<String, DocumentInfo> result = new HashMap<>();
+		final String indStr = getTextResource(SKT_GRETIL_INDEX);
+		final StringBuilder indexHtml = new StringBuilder();
+		indexHtml.append("<h2>GRETIL Sanskrit Collection</h2>\n");
+		final String[] lines = indStr.split("\\r?\\n");
+		String currGroup = "";
+		int headCounter = 0;
+		for (int i = 0; i < lines.length; i += 2) {
+			final String desc = lines[i];
+			final String link = lines[i + 1];
+			if (link.startsWith("#")) {
+				final String[] heads = desc.substring(1).split(",");
+				final String level = heads[0].trim();
+				final String head = heads[1].trim();
+				final String grp = heads.length > 2 ? heads[2].trim() : "";
+				indexHtml.append("<h" + level + " id='jumptarget-h" + headCounter + "'>" + head + "</h" + level + ">\n");
+				final int lv = Integer.parseInt(level);
+				String spaces = " ";
+				int start = 3;
+				while (lv - start > 0) {
+					spaces = spaces + " ";
+					start++;
+				}
+				final String indent = lv > 3 ? spaces : "";
+				sktGretilIndexHeadList.add(indent + head);
+				if (lv == 3)
+					currGroup = grp;
+				headCounter++;
+				continue;
+			} else {
+				indexHtml.append("<div style='margin-top:0.5em;'>&nbsp;&nbsp;&nbsp;&nbsp;" + desc + "</div>\n");
+				if (link.startsWith("-") || !link.contains("/transformations/")) {
+					indexHtml.append("<div style='margin-left:2em;'>• (Unavailable)</div>\n");
+					continue;
+				} else {
+					final String id = link.substring(link.lastIndexOf("/") + 1, link.lastIndexOf("."));
+					final SimpleDocumentInfo sktInfo = new SimpleDocumentInfo(corpus, id);
+					final String fileName = link.replace("gretil/corpustei/", "1_sanskr/tei/");
+					sktInfo.setFileName(fileName);
+					final String textName = id.replace("sa_", "");
+					sktInfo.setTextName(textName);
+					sktInfo.setDescription(desc);
+					sktInfo.setSummary();
+					sktInfo.setGroup(currGroup);
+					result.put(id, sktInfo);
+					final String bareName = fileName.substring(fileName.lastIndexOf("/") + 1);
+					indexHtml.append("<div class='doclink' onClick=openDoc('" + bareName + "')>• " + bareName + "</div>\n");
+				}
+			}
+		} // end for
+		indexHtml.append("\n<p></p>\n");
+		sktGretilIndexHtml = indexHtml.toString();
 		return result;
 	}
 
@@ -823,6 +905,19 @@ final public class ReaderUtilities {
 					Utilities.showExistingWindow(stg);
 				}
 				break;
+			case VIEWER_SKTGRETIL:
+				final String sktDocId = args == null ? "" : (String)args[0];
+				if (stg == null) {
+					final SktGretilHtmlViewer sgViewer = new SktGretilHtmlViewer(sktDocId, strToLocate); 
+					stg = Utilities.openNewWindow(sgViewer,
+							new Image(ReaderUtilities.class.getResourceAsStream("resources/images/skt-scroll.png")), "GRETIL Sanskrit Documents");
+					sgViewer.setStage(stg);
+				} else {
+					final SktGretilHtmlViewer sgViewer = (SktGretilHtmlViewer)stg.getScene().getRoot();
+					sgViewer.init(sktDocId, strToLocate);
+					Utilities.showExistingWindow(stg);
+				}
+				break;
 		}
 		return stg;
 	}
@@ -837,14 +932,14 @@ final public class ReaderUtilities {
 		return openViewer(node.getCorpus().getCollection(), args);
 	}
 
-	public static Stage openScReader(final Corpus.Collection col, final DocumentInfo dinfo) {
-		String docId = dinfo.getId();
+	public static Stage openOtherReader(final Corpus.Collection col, final DocumentInfo dinfo) {
+		final String docId = dinfo.getId();
 		final Object[] args = { docId };
 		return openViewer(col, args);
 	}
 
-	public static Stage openScReader(final Corpus.Collection col, final DocumentInfo dinfo, final String strToLocate) {
-		String docId = dinfo.getId();
+	public static Stage openOtherReader(final Corpus.Collection col, final DocumentInfo dinfo, final String strToLocate) {
+		final String docId = dinfo.getId();
 		final Object[] args = { docId, strToLocate };
 		return openViewer(col, args);
 	}
@@ -868,6 +963,8 @@ final public class ReaderUtilities {
 				type = Utilities.WindowType.VIEWER_GRAM; break;
 			case SC:
 				type = Utilities.WindowType.VIEWER_SC; break;
+			case SKT:
+				type = Utilities.WindowType.VIEWER_SKTGRETIL; break;
 		}
 		return openWindow(type, args);
 	}
@@ -1083,6 +1180,12 @@ final public class ReaderUtilities {
 	static boolean checkIfSuttaCentralAvailable() {
 		final boolean result = scData.exists();
 		suttaCentralAvailable.set(result);
+		return result;
+	}
+	
+	static boolean checkIfSktGretilAvailable() {
+		final boolean result = sktGretilData.exists();
+		sktGretilAvailable.set(result);
 		return result;
 	}
 	

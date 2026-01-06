@@ -1,7 +1,7 @@
 /*
  * Installer.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,9 +36,9 @@ import org.apache.commons.compress.compressors.xz.*;
 import org.apache.commons.io.IOUtils;
 
 /** 
- * The installer of JavaFX for Pāli Platform 3.
+ * The installer of JavaFX for Pāli Platform 3-4.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
 

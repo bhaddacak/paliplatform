@@ -27,12 +27,12 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.0
  * @since 2.0
  */
 public class MainProperties {
 	public static final MainProperties INSTANCE = new MainProperties();
-	private static final String PROPERTIES_FILE = "PaliPlatform3.properties";
+	private static final String PROPERTIES_FILE = "PaliPlatform4.properties";
 	private static final double DEFAULT_WIDTH = 890;
 	private static final double DEFAULT_HEIGHT = 500;
 	private final Map<String, String> defPropMap = new HashMap<>();
@@ -55,9 +55,10 @@ public class MainProperties {
 		{ "sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString() },
 		{ "dictset", "CPED," },
 		{ "sktdictset", "" },
+		{ "skt-lookup-dict", "AP" },
 		{ "dpd-decon-count", "850000" },
 		{ "dpd-dict-count", "420000" },
-		{ "dpd-head-count", "80000" },
+		{ "dpd-head-count", "90000" },
 		{ "dpd-lookup-enable", "true" },
 		{ "sentence-normalize", "true" },
 		{ "sentence-use-cap", "true" },
@@ -86,17 +87,19 @@ public class MainProperties {
 		private final String[] unusedCharKeys = { "uc-ā", "uc-ī", "uc-ū", "uc-ṅ", "uc-ñ", "uc-ṭ",
 												"uc-ḍ", "uc-ṇ", "uc-ḷ", "uc-ṃ", "uc-upper", "uc-lower" };
 		
-		private final String[] compCharNames = { "tilde (o"+'\u0303'+")", "macron (o"+'\u0304'+")", "dot above (o"+'\u0307'+")",
-												"dot below (o"+'\u0323'+")", "acute (o"+'\u0301'+")", "avagraha (o"+'\u0315'+")" };
-		private final String[] compCharKeys = { "co-" + '\u0303', "co-" + '\u0304', "co-" + '\u0307',
-												"co-" + '\u0323', "co-" + '\u0301', "co-" + '\u0315' };
+		private final String[] compCharNames = { "tilde (o"+'\u0303'+")", "macron (o"+'\u0304'+")", "line below (l"+'\u0331'+")",
+												"dot above (o"+'\u0307'+")", "dot below (o"+'\u0323'+")", "acute (o"+'\u0301'+")",
+												"avagraha (o"+'\u0315'+")" };
+		private final String[] compCharKeys = { "co-" + '\u0303', "co-" + '\u0304', "co-" + '\u0331',
+												"co-" + '\u0307', "co-" + '\u0323', "co-" + '\u0301',
+												"co-" + '\u0315' };
 		private PaliInputProperties() {
 			String[] unusedCharVals = { "x", "X", "W", "F", "f", "q", "Q", "z", "Z", "w", "<", ">" };
 			// for unused-character input method
 			for (int i = 0; i<unusedCharKeys.length; i++)
 				defPaliInputTable.put(unusedCharKeys[i], unusedCharVals[i]);
 			// for composite-character input method
-			String[] compCharVals = { "~", "-", "\"", ".", "'", "`" };
+			String[] compCharVals = { "~", "-", "_", "\"", ".", "'", "`" };
 			for (int i = 0; i<compCharKeys.length; i++)
 				defPaliInputTable.put(compCharKeys[i], compCharVals[i]);		
 		}
@@ -171,7 +174,7 @@ public class MainProperties {
 	
 	public void saveSettings() {
 		try (final OutputStream out = new FileOutputStream(propertiesFile)) {
-			settings.store(out, "Properties of Pali Platform 3");
+			settings.store(out, "Properties of Pali Platform 4");
 		} catch (IOException e) {
 			System.err.println(e);
 		}

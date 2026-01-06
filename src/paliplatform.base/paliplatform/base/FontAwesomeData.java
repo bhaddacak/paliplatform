@@ -1,7 +1,7 @@
 /*
  * FontAwesomeData.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the FontAwesome symbols currently used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 3.7
  * @since 2.0
  */
  class FontAwesomeData extends HashMap<String, Character> {
@@ -53,6 +53,7 @@ import java.util.HashMap;
 		 put("power-off", '\uF011');
 		 put("gear", '\uF013');
 		 put("file", '\uF016');
+		 put("house", '\uF015');
 		 put("download", '\uF019');
 		 //~ put("arrow-rotate-right", '\uF01E');
 		 put("arrows-rotate", '\uF021');
@@ -117,6 +118,7 @@ import java.util.HashMap;
 		 put("language", '\uF1AB');
 		 put("database", '\uF1C0');
 		 put("file-code", '\uF1C9');
+		 put("arrow-down-a-z", '\uF15D');
 		 put("heading", '\uF1DC');
 		 put("paragraph", '\uF1DD');
 		 put("binoculars", '\uF1E5');
