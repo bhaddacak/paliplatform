@@ -82,21 +82,23 @@ To make `PPLauncher.exe` you have to use `Launch4j`.
 6. Hit the gear button (Build wrapper).
 
 ### How to make patches
-The program is now designed to be capable of self-updating (but not fully automatic). This has things to do with the program's online information, mostly about active URLs. The URL information resides in [`pp3urls.properties`](https://github.com/bhaddacak/paliplatform/blob/main/pp3urls.properties). This includes the URLs of DPD, SuttaCentral data, and some dictionaries. The main URL is hardcoded in `UrlProperties` of the base module.
+The program is now designed to be capable of self-updating (but not fully automatic). This has things to do with the program's online information, mostly about active URLs. The URL information resides in [`pp4urls.properties`](https://github.com/bhaddacak/paliplatform/blob/main/pp4urls.properties). This includes the URLs of DPD, SuttaCentral data, and some dictionaries. The main URL is hardcoded in `UrlProperties` of the base module.
 
-When the program starts, if the Internet is available, it will download `pp3urls.properties` to its root directory. If the file already existed, it will skip the download. The user has to `Update online info` manually.
+When the program starts, if the Internet is available, it will download `pp4urls.properties` to its root directory. If the file already existed, it will skip the download. The user has to `Update online info` manually.
 
 A patch is a zip file that has structure of the program's distribution, i.e., its root (`/`) is equivalent to `dist/PaliPatform/` as shown above. When the patch is applied, the files in this zip will be unpacked and replace the old ones. One exception, when `PPLauncher.exe` is updated, it has to be named `PPLauncher_new.exe` because the file cannot be overwritten when active.
 
-When a patch is available, it has to be named like `pp3patch-20241103.1.zip`. The prefix part is compulsory. The `YYYYMMDD` part should reflect the real date. The last number should be always `1` if you issue only one patch in that day. In case of multiple patches, the number can be increased as needed.
+When a patch is available, it has to be named like `pp4patch-20260115.1.zip`. The prefix part is compulsory. The `YYYYMMDD` part should reflect the real date. The last number should be always `1` if you issue only one patch in that day. In case of multiple patches, the number can be increased as needed.
 
-Once the patch file is ready, update `pp3urls.properties` by adding its line to the file, for example:
+Once the patch file is ready, update `pp4urls.properties` by adding its line to the file, for example:
 ```
-patch01_url=https\://github.com/bhaddacak/paliplatform/releases/download/v3.0.5.2-patch/pp3patch-20241103.1.zip
+patch01_url=https\://github.com/bhaddacak/paliplatform/releases/download/v4.0.1-patch/pp4patch-20260115.1.zip
 ```
 The `patchxx_url` pattern is compulsory. The `xx` part is patch numbers. The number is not important, but it can differentiate multiple patches. Normally, it will always be `01` for a single patch. When old patches are obsolete, you have to delete their line in the URL file and restart the number again.
 
-Now all data are ready. Then push the source code (including the URL file) to its repository, make a release by creating a new tag (e.g. `v3.0.5.2-patch` in the example above) and upload the patch file there. This means you have to think it carefully first about the tag's name before you make a patch.
+Now all data are ready. Then push the source code (including the URL file) to its repository, make a release by creating a new tag (e.g. `v4.0.1-patch` in the example above) and upload the patch file there. This means you have to think it carefully first about the tag's name before you make a patch.
+
+It is possible to put the patch file in the main release's assets. In this case, you have to change the URL accordingly.
 
 At the user side, when a new patch is available, the program will not know it. The user must `Update online info` to fetch the new URL file so that the `Patch Installer` can see and download it (refreshing the installer might be needed).
 

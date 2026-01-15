@@ -376,6 +376,8 @@ final public class PaliPlatform extends Application {
 							editor.clearEditor();
 							editor.setContent(content);
 							editor.setupFontMenu();
+							final Utilities.PaliScript script = Utilities.testLanguage(content);
+							editor.resetFont(script);
 							Utilities.showExistingWindow(stg);
 						}
 					}

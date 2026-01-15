@@ -668,7 +668,7 @@ Mahasudarsanavadana (input by Klaus Wille) See also Avadana
 gretil/corpustei/transformations/html/sa_mahAsudarzanAvadAna.htm
 Mahavadanasutra (input by Takamichi Fukita) See also Avadana
 gretil/corpustei/transformations/html/sa_mahAvadAnasUtra.htm
-Mahavastu-"#org7b2cd3eAvadana (input by Emmanuel Fauré)
+Mahavastu-Avadana (input by Emmanuel Fauré)
 gretil/corpustei/transformations/html/sa_mahAvastu-avAdana.htm
 Maitreyanatha: Abhisamayalamkaranamaprajnaparamitopadesasastra (input by Christian Coseru)
 gretil/corpustei/transformations/html/sa_maitreyanAtha-abhisamayAlaMkaranAmaprajJApAramitopadezazAstra.htm
@@ -836,7 +836,7 @@ Sukhavativyuha [alternative version] (input by members of the Sanskrit Buddhist 
 gretil/corpustei/transformations/html/sa_sukhAvatIvyUhasaMkSiptamAtRkA.htm
 Another one:
 gretil/corpustei/transformations/html/sa_sukhAvatIvyUhavistaramAtRkA.htm
-Sumagadha-"#org7b2cd3eAvadana (input by Klaus Wille)
+Sumagadha-Avadana (input by Klaus Wille)
 gretil/corpustei/transformations/html/sa_sumAgadhAvadAna.htm
 Suvarnaprabhasasutra [ = Suvarnabhasottamasutra] (input by members of the Sanskrit Buddhist Canon Input Project)
 gretil/corpustei/transformations/html/sa_suvarNaprabhAsasUtra.htm

@@ -316,7 +316,7 @@ public class Installer {
 					File dir = null;
 					final File dest;
 					if (name.contains("/lib/")) {
-						if ("src.zip".equals(shortName)) continue;
+						if ("src.zip".equals(shortName) || "javafx.swing.jar".equals(shortName)) continue;
 						filelist.append(shortName).append(LINESEP);
 						dir = targetDir;
 					} else if (name.contains("/bin/")) {

@@ -28,7 +28,7 @@ import javafx.scene.control.*;
  * The downloader dialog for SuttaCentral bilara data.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.0
  */
 class ScDownloader extends ProgressiveDownloader {
@@ -54,6 +54,7 @@ class ScDownloader extends ProgressiveDownloader {
 		final File downloadTarget = new File(Utilities.CACHEPATH + ReaderUtilities.BILARA_DATA);
 		final File destination = new File(Utilities.ROOTDIR + ReaderUtilities.SCPATH);
 		final DownloadTask dlTask = new DownloadTask(scURL, downloadTarget, destination, false);
+		dlTask.setSkipSizeCheck(true);
 		setDownloadTask(dlTask);
 	}
 

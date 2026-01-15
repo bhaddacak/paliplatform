@@ -46,7 +46,7 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.0
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
@@ -1076,6 +1076,7 @@ public class PaliTextEditor extends BorderPane {
 	private void loadTestData() {
 		final String testData = PaliPlatform.getTextResource("devatestdata.txt");
 		area.setText(testData);
+		toolBar.resetFont(PaliScript.DEVANAGARI);
 	}
 
 	private boolean proceedConfirm() {
