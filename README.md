@@ -45,6 +45,7 @@ After you have prepared tools to use, downloaded the source from github (or usin
 	|   |--paliplatform.lucene
 	|   |--paliplatform.main
 	|   |--paliplatform.reader
+	|   |--paliplatform.sanskrit
 	|   |--paliplatform.sentence
 	|   |--build.xml
 	|   |--...
@@ -108,7 +109,6 @@ I tried to use JUnit in the development, but I gave up eventually. One main reas
 ## Useful links
 - [Works by J.R. Bhaddacak](https://bhaddacak.github.io)
 - [Pāli Platform's page](https://bhaddacak.github.io/paliplatform)
-- [Page of Pāli Platform 3](https://bhaddacak.github.io/platform3)
 - [Page of Pāli Platform 4](https://bhaddacak.github.io/platform4)
 - [A collection of Sentences](https://github.com/bhaddacak/pp2-sentences)
 - The author's email: `bhaddacak` at `proton` dot `me`

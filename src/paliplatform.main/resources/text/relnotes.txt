@@ -38,6 +38,7 @@
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
   - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
   - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), please check the license at its website
+  - A Dictionary of Pāli, Margaret Cone (2001-2021, Pali Text Society), available online at https://gandhari.org/dictionary
 ⊚ Dictionaries from Cologne Digital Sanskrit Lexicon (CDSL) project (https://sanskrit-lexicon.uni-koeln.de), CC-BY-NC-SA 3.0 (mostly):
   - Monier-Williams' Sanskrit-English Dictionary, 1899 (https://github.com/sanskrit-lexicon/MWS)
   - V.S. Apte's Practical Sanskrit-English Dictionary, revised, 1957

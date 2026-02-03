@@ -1,7 +1,7 @@
 /*
  * PaliTextInput.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 /** 
  * General Pali text input.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 2.0
  */
 public class PaliTextInput {
@@ -273,6 +273,7 @@ public class PaliTextInput {
 		inputMethod = method;
 		switch (inputMethod) {
 			case NORMAL:
+				input.setOnKeyTyped(null);
 				textFormatter = new TextFormatter<>(regularFilter);
 				input.setTextFormatter(textFormatter);
 				break;
@@ -291,6 +292,7 @@ public class PaliTextInput {
 				input.setTextFormatter(textFormatter);
 				break;
 			case SLP1:
+				input.setOnKeyTyped(null);
 				textFormatter = new TextFormatter<>(slp1Filter);
 				input.setTextFormatter(textFormatter);
 				break;
@@ -328,19 +330,21 @@ public class PaliTextInput {
 			if (keyEvent.getEventType() == KeyEvent.KEY_TYPED) {
 				final String keychar = keyEvent.getCharacter();
 				if (Utilities.getSetting("uc-upper").equals(keychar))
-					upperCase(true);
+					upperLowerCase(true);
 				else if (Utilities.getSetting("uc-lower").equals(keychar))
-					upperCase(false);
+					upperLowerCase(false);
 			}
 		});		
 	}
 	
-	private void upperCase(final boolean yn) {
+	private void upperLowerCase(final boolean yn) {
 		final int currPos = input.getCaretPosition();
 		if (currPos == input.getLength()) return;
 		final String currChar = input.getText(currPos, currPos + 1);
-		input.deleteNextChar();
-		input.insertText(currPos, yn ? currChar.toUpperCase() : currChar.toLowerCase());
+		if (currChar.length() > 0 && Character.isLetter(currChar.charAt(0))) {
+			input.deleteNextChar();
+			input.insertText(currPos, yn ? currChar.toUpperCase() : currChar.toLowerCase());
+		}
 	}
 	
 	private void slp1ToDeva(final String indChar, final String depChar) {

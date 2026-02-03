@@ -28,7 +28,7 @@ import javafx.scene.layout.BorderPane;
 /** 
  * The TOC (Table Of Contents) tree window of the Pali collections.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.0
  * @since 2.0
  */
 public class TocTreeWin extends BorderPane {
@@ -113,7 +113,7 @@ public class TocTreeWin extends BorderPane {
 			final TocTreeNode node = treeItem.getValue();
 			if (node == null) return;
 			infoPopup.setContentWithText(node.getCorpus().getCorpusInformation());
-			infoPopup.showPopup(infoButton, InfoPopup.Pos.BELOW_LEFT, true);
+			infoPopup.showPopup(infoButton, InfoPopup.Pos.BELOW_CENTER, true);
 		});
 		toolBar.getItems().addAll(showFileNameButton, infoButton);
 		setTop(toolBar);		
