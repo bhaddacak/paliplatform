@@ -47,7 +47,7 @@ import org.apache.commons.compress.compressors.xz.*;
  * The progressive downloader dialog with progress report and post-download
  * installation, suitable for downloading sizeable files.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.0
  */
 public class ProgressiveDownloader extends Stage {
@@ -55,7 +55,7 @@ public class ProgressiveDownloader extends Stage {
 	private static final String START = "Start";
 	private static final double MEGA = 1024 * 1024;
 	private static final Set<String> formatExtSet = Set.of(".tar.gz", ".tar.xz", ".tar.bz2", ".zip");
-	private static final File tempDir = new File(Utilities.CACHEPATH + "temp" + File.separator);
+	private static final File tempDir = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + "temp" + File.separator);
 	protected final List<DownloadTask> taskList = new ArrayList<>();
 	private final LinkedList<DownloadTask> downloadQueue = new LinkedList<>();
 	private final LinkedList<DownloadTask> unpackQueue = new LinkedList<>();
@@ -344,7 +344,7 @@ public class ProgressiveDownloader extends Stage {
 							mess = "Download cancelled";
 							item.setState(DownloadTask.State.CANCELLED);
 						} else {
-							mess = "Download error";
+							mess = e.getMessage();
 							item.setState(DownloadTask.State.FAILED);
 						}
 						progressBar.progressProperty().unbind();

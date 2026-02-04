@@ -1,7 +1,7 @@
 /*
  * DictUtil.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ import com.google.gson.stream.*;
  * $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil
  *
  * @author J.R. Bhaddacak
- * @version 3.5
+ * @version 4.1
  * @since 3.0
  */
 final public class DictUtil {
@@ -151,7 +151,7 @@ final public class DictUtil {
 		Utilities.initializeComparator();
 		initUrl();
 		final String ncpedUrl = urlProps.getProperty("ncped_url");
-		final File ncpedTarget = new File(Utilities.CACHEPATH + "ncped.json");
+		final File ncpedTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + "ncped.json");
 		if (!ncpedTarget.exists() || forceDl) {
 			printLog("Downloading... (please wait)");
 			download(ncpedUrl, ncpedTarget);
@@ -294,7 +294,7 @@ final public class DictUtil {
 		Utilities.initializeComparator();
 		initUrl();
 		final String ptspedUrl = urlProps.getProperty("ptsped_url");
-		final File ptspedTarget = new File(Utilities.CACHEPATH + "ptsped.zip");
+		final File ptspedTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + "ptsped.zip");
 		if (!ptspedTarget.exists() || forceDl) {
 			printLog("Downloading... (please wait)");
 			download(ptspedUrl, ptspedTarget);

@@ -31,7 +31,7 @@ import javafx.scene.control.*;
  * The downloader dialog for CST Devanagari XML data.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.3
  */
 class CstXmlDownloader extends ProgressiveDownloader {
@@ -90,7 +90,7 @@ class CstXmlDownloader extends ProgressiveDownloader {
 		for (int i = 0; i < fileList.size(); i++) {
 			final String file = fileList.get(i);
 			final String url = cstxmlURL + "/deva/" + file;
-			final File downloadTarget = new File(Utilities.CACHEPATH + file);
+			final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + file);
 			final String cstxmlRoot = ReaderUtilities.corpusMap.get(Corpus.Collection.CSTDEVA).getRootName();
 			final File destination = new File(Utilities.ROOTDIR + ReaderUtilities.TEXTPATH + cstxmlRoot);
 			final DownloadTask dlTask = new DownloadTask(url, downloadTarget, destination, false);

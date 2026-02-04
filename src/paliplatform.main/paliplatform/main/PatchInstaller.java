@@ -1,7 +1,7 @@
 /*
  * PatchInstaller.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ import javafx.application.Platform;
  * The downloader and installer for the program's patches.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 3.0
  */
 class PatchInstaller extends ProgressiveDownloader {
@@ -92,7 +92,7 @@ class PatchInstaller extends ProgressiveDownloader {
 			for (int i = 0; i < tasks.length; i++) {
 				final String url = patchUrlList.get(i);
 				final String patchName = url.substring(url.lastIndexOf("/") + 1);
-				final File downloadTarget = new File(Utilities.CACHEPATH + patchName);
+				final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + patchName);
 				final File destination = new File(Utilities.ROOTDIR);
 				final DownloadTask dlTask = new DownloadTask(url, downloadTarget, destination, true);
 				tasks[i] = dlTask;

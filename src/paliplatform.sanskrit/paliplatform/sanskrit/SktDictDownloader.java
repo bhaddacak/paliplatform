@@ -33,7 +33,7 @@ import javafx.scene.control.Alert;
  * The downloader dialog for Sanskrit dictionaries.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.6
  */
 class SktDictDownloader extends ProgressiveDownloader {
@@ -94,7 +94,7 @@ class SktDictDownloader extends ProgressiveDownloader {
 				break;
 			}
 			final String srcFile = url.substring(url.lastIndexOf("/") + 1);
-			final File downloadTarget = new File(Utilities.CACHEPATH + srcFile);
+			final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + srcFile);
 			final File destination = new File(Utilities.ROOTDIR + SanskritUtilities.DICTPATH);
 			final DownloadTask dlTask = new DownloadTask(url, downloadTarget, destination, url.endsWith(".zip"));
 			// for zip files, use selective unpack mode

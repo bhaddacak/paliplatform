@@ -30,7 +30,7 @@ import javafx.scene.control.Alert;
  * The downloader dialog for Sanskrit documents.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.7
  */
 class SktDocDownloader extends ProgressiveDownloader {
@@ -60,7 +60,7 @@ class SktDocDownloader extends ProgressiveDownloader {
 			Utilities.displayAlert(Alert.AlertType.WARNING, "No URL available,\nplease update online info, then Refresh");
 		} else {
 			final String srcFile = url.substring(url.lastIndexOf("/") + 1);
-			final File downloadTarget = new File(Utilities.CACHEPATH + srcFile);
+			final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + srcFile);
 			final File destination = new File(Utilities.ROOTDIR + SanskritUtilities.TEXTPATH);
 			final DownloadTask dlTask = new DownloadTask(url, downloadTarget, destination, false);
 			setDownloadTask(dlTask);

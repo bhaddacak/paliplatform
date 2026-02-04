@@ -27,7 +27,7 @@ import javafx.scene.control.*;
 /** 
  * The downloader dialog for DPD database. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.0
  */
 class DpdDownloader extends ProgressiveDownloader {
@@ -73,7 +73,7 @@ class DpdDownloader extends ProgressiveDownloader {
 			version.setText("[" + ver + "]");
 		}
 		final String dbname = dbURL.substring(dbURL.lastIndexOf("/") + 1);
-		final File downloadTarget = new File(Utilities.CACHEPATH + dbname);
+		final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + dbname);
 		final File destination = new File(Utilities.ROOTDIR + Utilities.DBPATH);
 		final DownloadTask dlTask = new DownloadTask(dbURL, downloadTarget, destination, true);
 		setDownloadTask(dlTask);

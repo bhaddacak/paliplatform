@@ -51,7 +51,7 @@ class ScDownloader extends ProgressiveDownloader {
 
 	private void init() {
 		final String scURL = Utilities.urls.getProperty("sc_data_url");
-		final File downloadTarget = new File(Utilities.CACHEPATH + ReaderUtilities.BILARA_DATA);
+		final File downloadTarget = new File(Utilities.ROOTDIR + Utilities.CACHEPATH + ReaderUtilities.BILARA_DATA);
 		final File destination = new File(Utilities.ROOTDIR + ReaderUtilities.SCPATH);
 		final DownloadTask dlTask = new DownloadTask(scURL, downloadTarget, destination, false);
 		dlTask.setSkipSizeCheck(true);
