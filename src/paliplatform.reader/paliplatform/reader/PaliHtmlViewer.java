@@ -26,12 +26,14 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Orientation;
 import javafx.concurrent.Worker;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import netscape.javascript.JSObject;
 
 /** 
  * The generic viewer of HTML Pali texts.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.1
  */
 public class PaliHtmlViewer extends PaliHtmlViewerBase {
@@ -59,6 +61,9 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				setViewerFont();
 			}
 		});	
+		scriptContextBox.setAlignment(Pos.BOTTOM_LEFT);
+		scriptContextBox.setPadding(new Insets(1, 1, 1, 1));
+		scriptContextBox.setSpacing(5);
 		toolBar.getItems().add(scriptContextBox);
 		init(node);
 	}
@@ -110,6 +115,7 @@ public class PaliHtmlViewer extends PaliHtmlViewerBase {
 				}
 			});
 			toggleNumberButton = new ToggleButton("", new TextIcon("0-9", TextIcon.IconSet.SANS));
+			toggleNumberButton.setPadding(new Insets(3, 3, 3, 3));
 			toggleNumberButton.setTooltip(new Tooltip("Converting Roman numbers on/off"));
 			toggleNumberButton.setSelected(alsoConvertNumber);
 			toggleNumberButton.setOnAction(actionEvent -> {

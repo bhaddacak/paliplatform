@@ -47,7 +47,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  * The tool facilitating Pali text reading.
  * Formerly this class is named PaliTextReader.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
 public class SentenceReader extends BorderPane {
@@ -59,6 +59,7 @@ public class SentenceReader extends BorderPane {
 	private final VBox contentBox = new VBox();
 	private final VBox editBox = new VBox();
 	private final VBox transBox = new VBox();
+	private final Label translationText = new Label();
 	private final SplitPane splitPane = new SplitPane();
 	private final Map<String, Variant> variantMap = new HashMap<>();
 	private final List<Sentence> sentenceList = new ArrayList<>();
@@ -67,7 +68,7 @@ public class SentenceReader extends BorderPane {
 	private final SimpleBooleanProperty saveableThis = new SimpleBooleanProperty(false);
 	private final SimpleBooleanProperty saveableAll = new SimpleBooleanProperty(false);
 	private final SimpleBooleanProperty seqEdited = new SimpleBooleanProperty(false);
-	private final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(splitPane);
+	private final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(contentBox, translationText);
 	private final Spinner<Integer> sentenceSpinner = new Spinner<>();
 	private final ToggleButton showDetailButton = new ToggleButton("", new TextIcon("glasses", TextIcon.IconSet.AWESOME));		
 	private final CheckMenuItem itiReconstructMenuItem = new CheckMenuItem("Reconstruct iti");
@@ -78,7 +79,6 @@ public class SentenceReader extends BorderPane {
 	private final CheckMenuItem useIrrNounMenuItem = new CheckMenuItem("Use irregular noun/adj list");
 	private final ToggleButton showAllTransButton = new ToggleButton("", new TextIcon("asterisk", TextIcon.IconSet.AWESOME));
 	private final TextIcon lightbulb = new TextIcon("lightbulb", TextIcon.IconSet.AWESOME);
-	private final Label translationText = new Label();
 	private final ChoiceBox<String> variantChoice = new ChoiceBox<>();
 	private final ContextMenu termContextMenu = new ContextMenu();
 	private final Label fixedInfoLabel = new Label();
@@ -1078,7 +1078,6 @@ public class SentenceReader extends BorderPane {
 						: "";
 		}
 		translationText.setText(transText);
-		translationText.setStyle("-fx-font-family:'" + Utilities.FONTSANS + ",sans-serif';-fx-font-size:" + currTransSize + "%;");
 		saveableThis.set(isSenEditedMap.get(senInd));
 		saveableAll.set(isAllSenEdited());
 		closeEditPane();

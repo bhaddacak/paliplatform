@@ -1,7 +1,7 @@
 /*
  * TermLister.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ import org.apache.lucene.util.BytesRef;
 /** 
  * The window showing term lists of Pali collections.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 2.0
  */
 public class TermLister extends BorderPane {
@@ -641,11 +641,13 @@ public class TermLister extends BorderPane {
 		termCol.setCellValueFactory(new PropertyValueFactory<>(shownResultList.get(0).termProperty().getName()));
 		termCol.setComparator(Utilities.paliComparator);
 		termCol.prefWidthProperty().bind(mainPane.widthProperty().divide(totalCW).multiply(termCW).subtract(Utilities.getRelativeSize(2)));
+		termCol.setReorderable(false);
 		table.getColumns().add(termCol);
 		final TableColumn<SimpleTermFreqProp, Integer> totFreqCol = new TableColumn<>("Total Freq");
 		totFreqCol.setCellValueFactory(new PropertyValueFactory<>(shownResultList.get(0).totFreqProperty().getName()));
 		totFreqCol.prefWidthProperty().bind(mainPane.widthProperty().divide(totalCW).multiply(1.5));
 		totFreqCol.setStyle("-fx-alignment:center-right");
+		totFreqCol.setReorderable(false);
 		totFreqCol.setCellFactory(getIntegerCellFactory());
 		table.getColumns().add(totFreqCol);
 		if (showGathaFreq) {
@@ -653,6 +655,7 @@ public class TermLister extends BorderPane {
 			gatFreqCol.setCellValueFactory(new PropertyValueFactory<>(shownResultList.get(0).gatFreqProperty().getName()));
 			gatFreqCol.prefWidthProperty().bind(mainPane.widthProperty().divide(totalCW).multiply(1.5));
 			gatFreqCol.setStyle("-fx-alignment:center-right");
+			gatFreqCol.setReorderable(false);
 			gatFreqCol.setCellFactory(getIntegerCellFactory());
 			table.getColumns().add(gatFreqCol);
 		}
@@ -660,6 +663,7 @@ public class TermLister extends BorderPane {
 		lengthCol.setCellValueFactory(new PropertyValueFactory<>(shownResultList.get(0).lengthProperty().getName()));
 		lengthCol.prefWidthProperty().bind(mainPane.widthProperty().divide(totalCW));
 		lengthCol.setStyle("-fx-alignment:center-right");
+		lengthCol.setReorderable(false);
 		lengthCol.setCellFactory(getIntegerCellFactory());
 		table.getColumns().add(lengthCol);
 	}

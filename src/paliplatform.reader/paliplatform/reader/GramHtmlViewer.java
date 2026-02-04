@@ -1,7 +1,7 @@
 /*
  * GramHtmlViewer.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,12 +33,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.beans.property.*;
 import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 /** 
  * The viewer of Pali grammar books.
  * 
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 3.0
  */
 public class GramHtmlViewer extends PaliHtmlViewer {
@@ -131,6 +133,9 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		toolBar.getItems().add(helpButton);
 		
 		// some init
+		contextToolBar.setAlignment(Pos.BOTTOM_LEFT);
+		contextToolBar.setPadding(new Insets(1, 1, 1, 1));
+		contextToolBar.setSpacing(5);
 		helpPopup.setContentWithText(ReaderUtilities.getTextResource("info-gramviewer.txt"));
 		helpPopup.setTextWidth(Utilities.getRelativeSize(30));
 		
