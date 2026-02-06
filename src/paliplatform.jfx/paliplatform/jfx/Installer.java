@@ -38,7 +38,7 @@ import org.apache.commons.io.IOUtils;
 /** 
  * The installer of JavaFX for Pāli Platform 3-4.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.0
  */
 
@@ -286,6 +286,8 @@ public class Installer {
 				final String name = entry.getName();
 				if (name.startsWith("usr/lib/jvm/" + pkg + "/lib/") && !entry.isDirectory()) {
 					final String shortName = name.substring(name.lastIndexOf("/") + 1);
+					if ("javafx.swing.jar".equals(shortName) || "javafx.fxml.jar".equals(shortName))
+						continue;
 					filelist.append(shortName).append(LINESEP);
 					final File dest = new File(targetDir, shortName);
 					if (!targetDir.exists())
@@ -316,7 +318,10 @@ public class Installer {
 					File dir = null;
 					final File dest;
 					if (name.contains("/lib/")) {
-						if ("src.zip".equals(shortName) || "javafx.swing.jar".equals(shortName)) continue;
+						if ("src.zip".equals(shortName)
+								|| "javafx.swing.jar".equals(shortName)
+								|| "javafx.fxml.jar".equals(shortName))
+							continue;
 						filelist.append(shortName).append(LINESEP);
 						dir = targetDir;
 					} else if (name.contains("/bin/")) {

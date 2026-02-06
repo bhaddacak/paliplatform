@@ -130,12 +130,15 @@ class PatchInstaller extends ProgressiveDownloader {
 			final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") 
 				? "launch.cmd"
 				: "./launch.sh";
-			final Process proc = Runtime.getRuntime().exec(cmd);
-			proc.waitFor();
-			System.out.println(proc);
-			Platform.exit();
+			if (new File(cmd).exists()) {
+				final Process proc = Runtime.getRuntime().exec(cmd);
+				proc.waitFor();
+				System.out.println(proc);
+			}
 		} catch (InterruptedException | IOException e) {
 			System.err.println(e);
+		} finally {
+			Platform.exit();
 		}
 	}
 

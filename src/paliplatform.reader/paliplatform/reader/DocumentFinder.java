@@ -47,7 +47,7 @@ import javafx.application.Platform;
  * The tool for listing, finding and opening a specific Pali document
  * from text collections.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
 public class DocumentFinder extends BorderPane {
@@ -206,6 +206,10 @@ public class DocumentFinder extends BorderPane {
 			final SearchField sf = (SearchField)searchFieldGroup.getSelectedToggle().getUserData();
 			search(sf);
 		});
+		final Button cleanButton = new Button("", new TextIcon("broom", TextIcon.IconSet.AWESOME));
+		cleanButton.setTooltip(new Tooltip("Clear content-search result counts"));
+		cleanButton.setOnAction(actionEvent -> clearContentSearchResultCount());
+		secondToolBar.getItems().add(cleanButton);
 		final VBox toolBox = new VBox();
 		toolBox.getChildren().addAll(toolBar, secondToolBar);
 		setTop(toolBox);
@@ -531,6 +535,16 @@ public class DocumentFinder extends BorderPane {
 		});
 		Utilities.threadPool.submit(searchTask);
 		mainPane.setBottom(progressBox);
+	}
+
+	private void clearContentSearchResultCount() {
+		final Corpus[] selectedCorp = getSelectedCorpora();
+		for (final Corpus cp : selectedCorp) {
+			final Map<String, DocumentInfo> docInfoMap = cp.getDocInfoMap();
+			for (final DocumentInfo docInfo : docInfoMap.values()) {
+				docInfo.searchResultCountProperty().set(0);
+			}
+		}
 	}
 
 	private void updateStatus() {
