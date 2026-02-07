@@ -1,7 +1,7 @@
 /*
  * SentenceManager.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ import com.google.gson.stream.*;
  * The window managing sentences used by SentenceReader.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.3
+ * @version 4.1
  * @since 2.0
  */
 public class SentenceManager extends SingletonWindow {
@@ -541,8 +541,7 @@ public class SentenceManager extends SingletonWindow {
 		final File variFile =  new File(sentencePath + VARINFO);
 		if (!variFile.exists())
 			saveVariantInfo(variantMap, variFile, false);
-		else
-			loadVariantInfo(variantMap, variFile);
+		loadVariantInfo(variantMap, variFile);
 	}
 
 	private void loadVariantInfo(final Map<String, Variant> varMap, final File varFile) {
@@ -614,11 +613,11 @@ public class SentenceManager extends SingletonWindow {
 	public static void saveVariantInfo(final Map<String, Variant> varMap, final File variFile, final boolean mergeInfo) {
 		if (varMap == null) return;
 		final Map<String, Variant> finalMap;
-		if (mergeInfo && variFile.exists()) {
+		if (variFile.exists()) {
 			// read the existing, if any, then merge with the new ones
 			final Map<String, Variant> oldVarMap = loadVariantInfo(variFile);
 			varMap.forEach((k, v) -> {
-				if (oldVarMap.containsKey(k)) {
+				if (mergeInfo && oldVarMap.containsKey(k)) {
 					// update information with the new one, if any
 					final Variant oldVar = oldVarMap.get(k);
 					if (oldVar.getAuthor().isEmpty() && !v.getAuthor().isEmpty())
@@ -632,6 +631,9 @@ public class SentenceManager extends SingletonWindow {
 			});
 			finalMap = oldVarMap;
 		} else {
+			// if empty, the default variant is created
+			final String defName = "Default";
+			varMap.put(defName, new Variant(defName));
 			finalMap = varMap;
 		}
 		try (final OutputStream out = new BufferedOutputStream(new FileOutputStream(variFile))) {
@@ -645,20 +647,16 @@ public class SentenceManager extends SingletonWindow {
 		final JsonWriter writer = new JsonWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
 		writer.setIndent(" ");
 		writer.beginObject();
-		if (varMap.isEmpty()) {
-			writer.name("variants").nullValue();
-		} else {
-			writer.name("variants");
-			writer.beginArray();
-			for (final Variant v : varMap.values()) {
-				writer.beginObject();
-				writer.name("name").value(v.getName());
-				writer.name("author").value(v.getAuthor());
-				writer.name("note").value(v.getNote());
-				writer.endObject();
-			}
-			writer.endArray();
+		writer.name("variants");
+		writer.beginArray();
+		for (final Variant v : varMap.values()) {
+			writer.beginObject();
+			writer.name("name").value(v.getName());
+			writer.name("author").value(v.getAuthor());
+			writer.name("note").value(v.getNote());
+			writer.endObject();
 		}
+		writer.endArray();
 		writer.endObject();
 		writer.close();
 	}

@@ -504,8 +504,7 @@ public class SentenceReader extends BorderPane {
 		final File variFile =  new File(sentencePath + SentenceManager.VARINFO);
 		if (!variFile.exists())
 			SentenceManager.saveVariantInfo(variantMap, variFile, false);
-		else
-			variantMap.putAll(SentenceManager.loadVariantInfo(variFile));
+		variantMap.putAll(SentenceManager.loadVariantInfo(variFile));
 		updateVariantChoice();
 	}
 

@@ -1,7 +1,7 @@
 /*
  * Variant.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ package paliplatform.sentence;
  * The representation of a translation variant.
  * This is used in SentenceManager.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.1
  * @since 2.0
  */
 public class Variant {
@@ -64,6 +64,10 @@ public class Variant {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public String toStringFull() {
+		return name + " (" + author + ") [" + note + "]";
 	}
 
 }
