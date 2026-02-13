@@ -9,5 +9,6 @@ Guide to Sanskrit Dictionaries
 	   - MWE: Monier-Williams's English-Sanskrit Dictionary (1851)
 	   - AE: Apte's Student's English-Sanskrit Dictionary (1964)
 	   - BOR: Borooah's English-Sanskrit Dictionary (1877-1881)
-	3. When searching a Sanskrit word in meaning, only MW and BHS accept IAST. For the rest, you have to use SLP1 encoding (e.g. aMSa for aṃśa).
-	4. See also the help in Pāli Dictionaries for the searching techniques.
+	3. When searching a Sanskrit word in meaning, only MW, MD, and BHS accept IAST. For the rest, you have to use SLP1 encoding (e.g. aMSa for aṃśa, gacCati for gacchati). Be aware of accents (vowels with acute) in MW and MD also (e.g. gácchati).
+	4. In exploring modes (selected by the option button), only one dictionary is listed by word grouping. In AP, normally the gender of words can be derived from the ending, for example, gajaḥ (m.), nagaram (n.), and latā (f.), so it is not given except notable cases.
+	5. See also the help in Pāli Dictionaries for the searching techniques.

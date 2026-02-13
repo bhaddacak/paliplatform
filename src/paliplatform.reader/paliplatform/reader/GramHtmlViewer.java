@@ -54,7 +54,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 	private final ObservableList<String> docNavList = FXCollections.<String>observableArrayList();
 	private final ListView<String> docNavListView;
 	private LeftListType currLeftListType = LeftListType.HEADING;
-	private final HBox contextToolBar = new HBox();
+	private final HBox contextToolBox = new HBox();
 	private final ToggleButton heartButton = new ToggleButton("", new TextIcon("heart", TextIcon.IconSet.AWESOME));
 	private final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
 	private final List<CheckMenuItem> relatedBookMenuList = new ArrayList<>();
@@ -64,6 +64,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 
 	public GramHtmlViewer(final TocTreeNode node, final String strToLocate) {
 		super(node);
+		setPrefWidth(Utilities.getRelativeSize(66));
 		// prepare the left pane's content
 		docNavListView = new ListView<>(docNavList);
 		docNavListView.setCellFactory((ListView<String> lv) -> {
@@ -127,15 +128,15 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 			if (recentJS.length() > 0)
 				webEngine.executeScript(recentJS);
 		});
-		toolBar.getItems().addAll(new Separator(), toggleLeftPaneButton, recentJumpButton, contextToolBar);
+		toolBar.getItems().addAll(new Separator(), toggleLeftPaneButton, recentJumpButton, contextToolBox);
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> helpPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
 		toolBar.getItems().add(helpButton);
 		
 		// some init
-		contextToolBar.setAlignment(Pos.BOTTOM_LEFT);
-		contextToolBar.setPadding(new Insets(1, 1, 1, 1));
-		contextToolBar.setSpacing(5);
+		contextToolBox.setAlignment(Pos.BOTTOM_LEFT);
+		contextToolBox.setPadding(new Insets(1, 1, 1, 1));
+		contextToolBox.setSpacing(5);
 		helpPopup.setContentWithText(ReaderUtilities.getTextResource("info-gramviewer.txt"));
 		helpPopup.setTextWidth(Utilities.getRelativeSize(30));
 		
@@ -149,7 +150,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		super.init(node);
 		final Corpus corpus = node.getCorpus();
 		Platform.runLater(() ->	{
-			contextToolBar.getChildren().clear();
+			contextToolBox.getChildren().clear();
 			optionsMenu.getItems().clear();
 			relatedBookMenuList.clear();
 			heartButton.setSelected(false);
@@ -240,7 +241,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 		if (gramText.hasSuttaFormula()) {
 			heartButton.setTooltip(new Tooltip("Show only sutta heads/formulae"));
 			heartButton.setOnAction(actionEvent -> setupContent(displayScript.get()));
-			contextToolBar.getChildren().add(heartButton);
+			contextToolBox.getChildren().add(heartButton);
 		}
 		final List<GrammarText.GrammarBook> relatedBooks = bookId.getRelatedBooks();
 		if (!relatedBooks.isEmpty()) {
@@ -258,7 +259,7 @@ public class GramHtmlViewer extends PaliHtmlViewer {
 			final MenuItem noneMenuItem = new MenuItem("Include none");
 			noneMenuItem.setOnAction(actionEvent -> {relatedBookMenuList.forEach(x -> x.setSelected(false)); setupContent(displayScript.get());});
 			optionsMenu.getItems().addAll(new SeparatorMenuItem(), allMenuItem, noneMenuItem);
-			contextToolBar.getChildren().add(optionsMenu);
+			contextToolBox.getChildren().add(optionsMenu);
 		}
 	}
 

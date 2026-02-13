@@ -31,7 +31,7 @@ import javafx.application.Platform;
 /**
  * The main dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
 public class DictWin extends DictWinBase {
@@ -174,6 +174,7 @@ public class DictWin extends DictWinBase {
 		resultListView.scrollTo(0);
 		if (!resultList.isEmpty()) {
 			showResult(resultList.get(0));
+			showMessage(resultList.size() + " found");
 			initialStringToLocate = inMeaning.get() ? properQuery : "";
 		}
 	}

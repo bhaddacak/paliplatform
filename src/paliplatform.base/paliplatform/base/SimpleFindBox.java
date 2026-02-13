@@ -80,7 +80,7 @@ public class SimpleFindBox extends VBox {
 		messageBox.getStyleClass().add("infopopup");
 		messageBox.getChildren().add(messageText);
 		messagePopup.getContent().add(messageBox);
-				
+
 		infoPopup.setContent("info-find-simple.txt");
 		infoPopup.setTextWidth(Utilities.getRelativeSize(32));
 

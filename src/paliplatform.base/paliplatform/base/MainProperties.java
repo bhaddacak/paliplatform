@@ -27,7 +27,7 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 2.0
  */
 public class MainProperties {
@@ -54,7 +54,7 @@ public class MainProperties {
 		{ "pali-input-method", PaliTextInput.InputMethod.UNUSED_CHARS.toString() },
 		{ "sanskrit-input-method", PaliTextInput.InputMethod.COMPOSITE.toString() },
 		{ "dictset", "CPED," },
-		{ "sktdictset", "" },
+		{ "sktdictset", "MW," },
 		{ "skt-lookup-dict", "AP" },
 		{ "dpd-decon-count", "850000" },
 		{ "dpd-dict-count", "420000" },

@@ -29,18 +29,25 @@ import java.text.Normalizer.Form;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.stage.Popup;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.concurrent.Worker;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
+import javafx.geometry.Bounds;
 import netscape.javascript.JSObject;
 
 /**
  * The base class of dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.5
  */
 public abstract class DictWinBase extends BorderPane {
@@ -54,17 +61,22 @@ public abstract class DictWinBase extends BorderPane {
 	protected final ObservableList<String> resultList = FXCollections.<String>observableArrayList();
 	protected final ListView<String> resultListView = new ListView<>(resultList);
 	protected final Map<String, ArrayList<Object>> resultMap = new LinkedHashMap<>();
+	protected final CheckBox inMeaningButton = new CheckBox("In meaning");
 	protected final SimpleBooleanProperty incremental = new SimpleBooleanProperty(false);
 	protected final SimpleBooleanProperty useWildcards = new SimpleBooleanProperty(false);
 	protected final SimpleBooleanProperty inMeaning = new SimpleBooleanProperty(false);
 	protected final SimpleBooleanProperty searchResultTextFound = new SimpleBooleanProperty(false);
+	protected final ChangeListener<String> defSearchTextListener;
 	protected final BorderPane resultPane = new BorderPane();
 	protected final HtmlViewer htmlViewer = new HtmlViewer();
 	protected final SimpleFindBox findBox = new SimpleFindBox(this);
 	protected final TextField findInput = findBox.getFindTextField();
 	protected final Button editorButton;
 	protected final CommonWorkingToolBar toolBar;
+	protected final HBox contextToolBox = new HBox();
 	protected final InfoPopup infoPopup = new InfoPopup();
+	protected final Popup messagePopup = new Popup();
+	protected final Label messageText = new Label("");
 	protected String initialStringToLocate = "";
 	private int currFontSize;
 
@@ -113,11 +125,12 @@ public abstract class DictWinBase extends BorderPane {
 				}
 			}
 		});
-		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> {
+		defSearchTextListener = (obs, oldValue, newValue) -> {
 			if (incremental.get()) {
 				submitSearch(newValue);
 			}
-		});
+		};
+		searchTextField.textProperty().addListener(defSearchTextListener);
 		final Button clearButton = searchInput.getClearButton();
 		clearButton.setOnAction(actionEvent -> {
 			recordQuery();
@@ -135,7 +148,6 @@ public abstract class DictWinBase extends BorderPane {
 		wildcardButton.setTooltip(new Tooltip("Use wildcards (*/?)"));
 		wildcardButton.selectedProperty().bindBidirectional(useWildcards);
 		wildcardButton.disableProperty().bind(inMeaning.or(incremental));
-		final CheckBox inMeaningButton = new CheckBox("In meaning");
 		inMeaningButton.setTooltip(new Tooltip("Search in meaning"));
 		inMeaningButton.selectedProperty().bindBidirectional(inMeaning);
 		inMeaningButton.disableProperty().bind(useWildcards.or(incremental));
@@ -157,9 +169,13 @@ public abstract class DictWinBase extends BorderPane {
 		// help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
+		// context tool box for specific uses
+		contextToolBox.setAlignment(Pos.BOTTOM_LEFT);
+		contextToolBox.setPadding(new Insets(1, 1, 1, 1));
+		contextToolBox.setSpacing(5);
 		searchToolBar.getItems().addAll(searchComboBox, clearButton, searchInput.getMethodButton(), searchButton,
 										new Separator(), incrementalButton, wildcardButton, inMeaningButton,
-										new Separator(), findMenu, helpButton);
+										new Separator(), findMenu, contextToolBox, helpButton);
 
 		// add result split pane
 		final SplitPane splitPane = new SplitPane();
@@ -263,6 +279,14 @@ public abstract class DictWinBase extends BorderPane {
 			}
 			dragEvent.consume();
 		});
+		
+		// prepare popups
+		messagePopup.setHideOnEscape(true);
+		messagePopup.setAutoHide(true);
+		final StackPane messageBox = new StackPane();
+		messageBox.getStyleClass().add("infopopup");
+		messageBox.getChildren().add(messageText);
+		messagePopup.getContent().add(messageBox);
 	}
 
 	public abstract void init(final Object[] args);
@@ -284,14 +308,16 @@ public abstract class DictWinBase extends BorderPane {
 		});
 	}
 	
-	private void submitSearch(final String query) {
+	protected void submitSearch(final String query) {
 		final String term = Normalizer.normalize(query, Form.NFC);
 		CompletableFuture.runAsync(() -> searchDict(term), Utilities.threadPool);
 	}
 
 	protected void search() {
 		final String strQuery = searchTextField.getText().trim();
-		if (!strQuery.isEmpty())
+		if (strQuery.isEmpty())
+			resultList.clear();
+		else
 			submitSearch(strQuery);
 	}
 
@@ -369,6 +395,26 @@ public abstract class DictWinBase extends BorderPane {
 
 	private void saveText() {
 		htmlViewer.webEngine.executeScript("saveBody()");
+	}
+
+	protected void showMessage(final String text) {
+		messageText.setText(text);
+		final Bounds bounds = contextToolBox.localToScreen(contextToolBox.getBoundsInLocal());
+		final Runnable task = () -> {
+			try {
+				Platform.runLater(() -> messagePopup.show(contextToolBox, bounds.getMinX(), bounds.getMaxY() + Utilities.getRelativeSize(0.6)));
+				Thread.sleep(2000);
+				Platform.runLater(() -> hideMessage());
+			} catch (InterruptedException e) {
+				System.err.println(e);
+			}
+		};
+		final Thread t = new Thread(task); 
+		t.start();
+	}
+	
+	private void hideMessage() {
+		messagePopup.hide();
 	}
 
 }

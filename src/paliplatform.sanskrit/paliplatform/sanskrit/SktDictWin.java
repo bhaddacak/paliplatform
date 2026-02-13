@@ -26,17 +26,126 @@ import paliplatform.base.ScriptTransliterator.EngineType;
 import java.util.*;
 import java.util.regex.*;
 import java.util.stream.Collectors;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 
 /**
  * The sanskrit dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 3.5
  */
 public class SktDictWin extends DictWinBase {
+	static enum OperationMode {
+		NORMAL("Normal mode"), EXP_MW("Explore MW"), EXP_AP("Explore AP"),
+		EXP_SHS("Explore SHS"), EXP_MD("Explore MD"), EXP_BHS("Explore BHS");
+		public static final OperationMode[] values = OperationMode.values();
+		private String name;
+		private OperationMode(final String nam) {
+			name = nam;
+		}
+		public String getName() {
+			return name;
+		}
+		public String getTableName() {
+			if (this == NORMAL)
+				return "";
+			else
+				return name.substring(name.lastIndexOf(" ") + 1);
+		}
+		public SktDictBook getDictBook() {
+			if (this == EXP_MW)
+				return SktDictBook.MW;
+			else if (this == EXP_AP)
+				return SktDictBook.AP;
+			else if (this == EXP_SHS)
+				return SktDictBook.SHS;
+			else if (this == EXP_MD)
+				return SktDictBook.MD;
+			else if (this == EXP_BHS)
+				return SktDictBook.BHS;
+			else
+				return null;
+		}
+		public List<ExploringOption> getOptionList() {
+			final List<ExploringOption> result;
+			if (this == EXP_MW) {
+				result = new ArrayList<>();
+				result.add(new ExploringOption("Roots/Verbs", "<ab>cl."));
+				result.add(new ExploringOption("Genuine", "<info verb=\"genuineroot"));
+				result.add(new ExploringOption("Non-genuine", "<info verb=\"root"));
+				result.add(new ExploringOption("Westergaard", "<info westergaard"));
+				result.add(new ExploringOption("Whitney", "<info whitneyroots"));
+				result.add(new ExploringOption("Masculine", "<lex>m."));
+				result.add(new ExploringOption("Feminine", "<lex>f."));
+				result.add(new ExploringOption("Neuter", "<lex>n."));
+				result.add(new ExploringOption("M/F/N (adj.)", "<lex>mfn.", "<ab>mfn."));
+				result.add(new ExploringOption("M/F*/N (adj.)", "<lex>mf("));
+				result.add(new ExploringOption("Pronouns", "<ab>pron."));
+				result.add(new ExploringOption("Pronominals", "<ab>pronom."));
+				result.add(new ExploringOption("Indeclinables", "<lex>ind."));
+				result.add(new ExploringOption("Ind. Participles", "<ab>ind.p."));
+			} else if (this == EXP_AP) {
+				result = new ArrayList<>();
+				result.add(new ExploringOption("Roots/Verbs", "€"));
+				result.add(new ExploringOption("Masculine", "{\\%m."));
+				result.add(new ExploringOption("Feminine", "{\\%f."));
+				result.add(new ExploringOption("Neuter", "{\\%n."));
+				result.add(new ExploringOption("Pronominals", "{\\%pron. a."));
+				result.add(new ExploringOption("Adjectives", "{\\%a."));
+				result.add(new ExploringOption("Adverbs", "{\\%adv."));
+				result.add(new ExploringOption("Numerals", "{\\%Num. a.", "{\\%num. a."));
+				result.add(new ExploringOption("Past Participles", "{\\%p. p."));
+				result.add(new ExploringOption("Pot. Participles", "{\\%Pot. p.", "{\\%pot. p."));
+				result.add(new ExploringOption("Pres. Participles", "{\\%Pres. p.", "{\\%pres. p."));
+				result.add(new ExploringOption("Indeclinables", "{\\%ind."));
+			} else if (this == EXP_SHS) {
+				result = new ArrayList<>();
+				result.add(new ExploringOption("Roots/Verbs", " cl. "));
+				result.add(new ExploringOption("Masculine", " m. "));
+				result.add(new ExploringOption("Feminine", " f. "));
+				result.add(new ExploringOption("Masc/Fem", " mf. "));
+				result.add(new ExploringOption("Neuter", " n. "));
+				result.add(new ExploringOption("Masc/Neut", " mn. "));
+				result.add(new ExploringOption("M/F/N", " mfn. "));
+				result.add(new ExploringOption("Pronominals", " Pron. ", " pron. "));
+				result.add(new ExploringOption("Adjectives", " Adj. ", " adj. "));
+				result.add(new ExploringOption("Adverbs", " Adv. ", " adv. "));
+				result.add(new ExploringOption("Indeclinables", " Ind. ", " ind. "));
+			} else if (this == EXP_MD) {
+				result = new ArrayList<>();
+				result.add(new ExploringOption("Roots/Verbs", "<cl>"));
+				result.add(new ExploringOption("Masculine", "<lex>m."));
+				result.add(new ExploringOption("Feminine", "<lex>f."));
+				result.add(new ExploringOption("Neuter", "<lex>n."));
+				result.add(new ExploringOption("Pronominals", "<lex>prn.", "<ab>prn."));
+				result.add(new ExploringOption("Adjectives", "<lex>a."));
+				result.add(new ExploringOption("Adverbs", "<lex>ad."));
+				result.add(new ExploringOption("Perfect Participles", "<ab>pp."));
+				result.add(new ExploringOption("Future Participles", "<ab>fp."));
+				result.add(new ExploringOption("Indeclinables", "<ab>indec.", "<ab>indecl."));
+			} else if (this == EXP_BHS) {
+				result = new ArrayList<>();
+				result.add(new ExploringOption("Masculine", "<lex>m."));
+				result.add(new ExploringOption("Feminine", "<lex>f."));
+				result.add(new ExploringOption("Neuter", "<lex>nt."));
+				result.add(new ExploringOption("Adjectives", "<lex>adj."));
+				result.add(new ExploringOption("Past Participles", "<lex>ppp."));
+				result.add(new ExploringOption("Indeclinables", "<lex>indecl."));
+			} else {
+				result = Collections.emptyList();
+			}
+			return result;
+		}
+	}
 	private static final String[] shsXrefMapArr = {
 		"2187", "apāc", "3938", "avāc", "4913", "ā", "6939", "udaka",
 		"6964", "udac", "17495", "tiryyac", "23294", "parāñc", "26826", "pratyac",
@@ -50,9 +159,25 @@ public class SktDictWin extends DictWinBase {
 	private static final Pattern unreadablePatt = Pattern.compile("\\{\\?(.*?)\\?\\}");
 	private static final Pattern infoPatt = Pattern.compile("<[^>]+/>");
 	private static final Pattern poemPatt = Pattern.compile("<Poem>(.*?)</Poem>");
+	private static final List<String> mwExpList = Arrays.asList("m.", "f.", "mfn.");
+	private final ChoiceBox<ExploringOption> exploringChoice = new ChoiceBox<>();
+	private final ToggleGroup operationGroup = new ToggleGroup();
+	private final SimpleObjectProperty<OperationMode> operationMode = new SimpleObjectProperty<>(OperationMode.NORMAL);
 
 	public SktDictWin(final Object[] args) {
 		// initialization
+		setPrefWidth(Utilities.getRelativeSize(70));
+		inMeaningButton.disableProperty().bind(useWildcards.or(incremental).or(operationMode.isNotEqualTo(OperationMode.NORMAL)));
+		final ChangeListener<String> searchTextListener = (obs, oldValue, newValue) -> {
+			if (incremental.get()) {
+				if (operationMode.get() == OperationMode.NORMAL)
+					submitSearch(newValue);
+				else
+					explore();
+			}
+		};
+		searchTextField.textProperty().removeListener(defSearchTextListener);
+		searchTextField.textProperty().addListener(searchTextListener);
 		if (shsXrefMap.isEmpty()) {
 			for (int i = 0; i < shsXrefMapArr.length; i += 2) {
 				shsXrefMap.put(shsXrefMapArr[i], shsXrefMapArr[i + 1]);
@@ -60,11 +185,36 @@ public class SktDictWin extends DictWinBase {
 		}
 		if (SanskritUtilities.simpleServiceMap == null) 
 			SanskritUtilities.simpleServiceMap = SanskritUtilities.getSimpleServices();
+		final HBox dictToolBox = new HBox();
+		dictToolBox.disableProperty().bind(operationMode.isNotEqualTo(OperationMode.NORMAL));
+		dictToolBox.setAlignment(Pos.BOTTOM_LEFT);
+		dictToolBox.setPadding(new Insets(1, 1, 1, 1));
+		dictToolBox.setSpacing(5);
 		for (final SktDictBook d : SktDictBook.books) {
 			final CheckBox cb =  createDictCheckBox(d);
 			dictCBMap.put(d, cb);
-			toolBar.getItems().add(cb);
+			dictToolBox.getChildren().add(cb);
 		}
+		final MenuButton operationMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));
+		operationMenu.setTooltip(new Tooltip("Operation mode"));
+		for (final OperationMode m : OperationMode.values) {
+			final RadioMenuItem radio = new RadioMenuItem(m.getName());
+			radio.setUserData(m);
+			if (m != OperationMode.NORMAL)
+				radio.disableProperty().bind(SanskritUtilities.sktDictAvailMap.get(m.getDictBook()).not());
+			radio.setToggleGroup(operationGroup);
+			operationMenu.getItems().add(radio);
+		}
+		operationGroup.selectedToggleProperty().addListener((observable) -> {
+			if (operationGroup.getSelectedToggle() != null) {
+				operationModeSelected();
+			}
+		});
+		toolBar.getItems().addAll(dictToolBox, new Separator(), operationMenu);
+		// add context tool box
+		exploringChoice.disableProperty().bind(operationMode.isEqualTo(OperationMode.NORMAL));
+		contextToolBox.getChildren().add(exploringChoice);
+		// other setup
 		searchInput.setSanskritMode(true);
 		final String inputMethod = Utilities.getSetting("sanskrit-input-method");
 		searchInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
@@ -74,7 +224,7 @@ public class SktDictWin extends DictWinBase {
 		fxHandler = new SktDictFXHandler(htmlViewer, this);
 		// prepare info popup
 		infoPopup.setContentWithText(SanskritUtilities.getTextResource("info-sanskrit-dictionaries.txt"));
-		infoPopup.setTextWidth(Utilities.getRelativeSize(36));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(42));
 		init(args);
 	}
 
@@ -83,13 +233,15 @@ public class SktDictWin extends DictWinBase {
 		dictSet.clear();
 		final String strDictSet = Utilities.getSetting("sktdictset");
 		final String[] arrDictSet = strDictSet.split(",");
-		for (final SktDictBook db : SktDictBook.books)
-			dictCBMap.get(db).setSelected(false);
+		for (final SktDictBook book : SktDictBook.books)
+			dictCBMap.get(book).setSelected(false);
 		for (final String s : arrDictSet) {
 			if (SktDictBook.isValid(s)) {
-				final SktDictBook db = SktDictBook.valueOf(s);
-				dictSet.add(db);
-				dictCBMap.get(db).setSelected(true);
+				final SktDictBook book = SktDictBook.valueOf(s);
+				if (!SanskritUtilities.sktDictAvailMap.get(book).get())
+					continue;
+				dictSet.add(book);
+				dictCBMap.get(book).setSelected(true);
 			}
 		}
 		htmlViewer.setContent(Utilities.makeHTML(""));
@@ -103,6 +255,9 @@ public class SktDictWin extends DictWinBase {
 			resultMap.clear();
 		}
 		searchTextField.requestFocus();
+		operationGroup.selectToggle(operationGroup.getToggles().get(0));
+		operationMode.set(OperationMode.NORMAL);
+		exploringChoice.getItems().clear();
 		findBox.init();
 		Platform.runLater(() -> resultPane.setBottom(null));			
 	}
@@ -119,33 +274,57 @@ public class SktDictWin extends DictWinBase {
 		});
 		return cb;
 	}
-	
+
 	@Override
 	public String processInput(final String query) {
 		return Utilities.convertToRomanSanskrit(query);
 	}
 
+	private String processQuery(final String query) {
+		String result = query;
+		if (useWildcards.get()) {
+			if (result.indexOf('?') >= 0)
+				result = result.replace("?", "_");
+			if (result.indexOf('*') >= 0)
+				result = result.replace("*", "%");
+		}
+		return result;
+	}
+
+	private boolean isQueryValid(final String query) {
+		final int uCount = Utilities.charCount(query, '_');
+		final int pCount = Utilities.charCount(query, '%');
+		// just * or a sheer combination of ? and * is not allowed
+		if (query.length() == 0 || (pCount > 0 && pCount + uCount == query.length()))
+			return false;
+		else
+			return true;
+	}
+
+	@Override
+	protected void search() {
+		final String strQuery = searchTextField.getText().trim();
+		if (operationMode.get() == OperationMode.NORMAL) {
+			if (strQuery.isEmpty())
+				resultList.clear();
+			else
+				submitSearch(strQuery);
+		} else {
+			explore();
+		}
+	}
+
 	@Override
 	public void search(final String query) {
-		resultMap.clear();
 		// remove single qoute causing SQL error
 		final String properQuery = query.replace("'", "");
-		String termQuery = properQuery;
-		if (useWildcards.get()) {
-			if (termQuery.indexOf('?') >= 0)
-				termQuery = termQuery.replace("?", "_");
-			if (termQuery.indexOf('*') >= 0)
-				termQuery = termQuery.replace("*", "%");
-			final int uCount = Utilities.charCount(termQuery, '_');
-			final int pCount = Utilities.charCount(termQuery, '%');
-			// just * or a sheer combination of ? and * is not allowed
-			if (termQuery.length() == 0 || (pCount > 0 && pCount + uCount == termQuery.length()))
-				return;
-		}
+		final String termQuery = processQuery(properQuery);
+		if (!isQueryValid(termQuery))
+			return;
+		resultMap.clear();
 		for (final Object book : dictSet) {
 			final SktDictBook dicBook = (SktDictBook)book;
-			final String orderBy = "ORDER BY ID;";
-			final String tail = useWildcards.get() ? "' " + orderBy : "%' " + orderBy;
+			final String tail = useWildcards.get() ? "';" : "%';";
 			String dbQuery = "SELECT KEY1 FROM " + dicBook.toString() + " WHERE KEY1 LIKE '" + termQuery + tail;
 			if (inMeaning.get()) {
 				// make 2 queries, all lowercase and title case
@@ -165,13 +344,11 @@ public class SktDictWin extends DictWinBase {
 				resultMap.put(term, dList);
 			}
 		} // end for
-		if (dictSet.size() > 1)
-			resultList.setAll(resultMap.keySet().stream().sorted(Utilities.sktComparator).collect(Collectors.toList()));
-		else
-			resultList.setAll(resultMap.keySet());
+		resultList.setAll(resultMap.keySet().stream().sorted(Utilities.sktComparator).collect(Collectors.toList()));
 		resultListView.scrollTo(0);
 		if (!resultList.isEmpty()) {
 			showResult(resultList.get(0));
+			showMessage(resultList.size() + " found");
 			initialStringToLocate = inMeaning.get() ? properQuery : "";
 		}
 	}
@@ -252,6 +429,23 @@ public class SktDictWin extends DictWinBase {
 		String result = input;
 		// bullet
 		result = result.replace("¦", " •");
+		// meaning break for verbs
+		final Pattern breakPatt = Pattern.compile("<div n=\"(?:to|vp|p)\"/>");
+		result = breakPatt.matcher(result).replaceAll("<br> - ");
+		// root
+		final Pattern rootPatt = Pattern.compile("<info verb=\"root\" cp=\"(.*?)\"/>");
+		result = rootPatt.matcher(result).replaceAll("<br> - Root: $1.");
+		// genuine root
+		final Pattern genuineRootPatt = Pattern.compile("<info verb=\"genuineroot\" cp=\"(.*?)\"/>");
+		result = genuineRootPatt.matcher(result).replaceAll("<br> - Genuine root: $1.");
+		// Whitney root
+		final Pattern whitneyRootPatt = Pattern.compile("<info whitneyroots=\"(.*?)\"/>");
+		result = whitneyRootPatt.matcher(result).replaceAll(m ->
+				"<br> - Whitney's root: " + ScriptTransliterator.translitQuick(m.group(1), EngineType.SLP1_IAST, false) + ".");
+		// Westergaard root
+		final Pattern westergaardRootPatt = Pattern.compile("<info westergaard=\"(.*?)\"/>");
+		result = westergaardRootPatt.matcher(result).replaceAll(m ->
+				"<br> - Westergaard's root: " + ScriptTransliterator.translitQuick(m.group(1), EngineType.SLP1_IAST, false) + ".");
 		// remove mere info tags
 		result = infoPatt.matcher(result).replaceAll("");
 		// change other tags to span
@@ -395,6 +589,85 @@ public class SktDictWin extends DictWinBase {
 		final Pattern lsPatt = Pattern.compile("<ls>(.*?)</ls>");
 		result = lsPatt.matcher(result).replaceAll("<span class='ls'>$1</span>");
 		return result;
+	}
+
+	private void operationModeSelected() {
+		final Toggle selected = operationGroup.getSelectedToggle();
+		final OperationMode mode = (OperationMode)selected.getUserData();
+		operationMode.set(mode);
+		initialStringToLocate = "";
+		if (mode == OperationMode.NORMAL) {
+			search();
+		} else {
+			exploringChoice.getItems().clear();
+			exploringChoice.getItems().addAll(mode.getOptionList());
+			exploringChoice.setOnAction(actionEvent -> explore());
+			exploringChoice.getSelectionModel().select(0);
+		}
+	}
+
+	private void explore() {
+		resultMap.clear();
+		final ExploringOption option = exploringChoice.getSelectionModel().getSelectedItem();
+		if (option == null) return;
+		final String strQuery = processQuery(Normalizer.normalize(searchTextField.getText().trim(), Form.NFC).replace("'", ""));
+		final String termQuery = isQueryValid(strQuery) ? strQuery : "";
+		String keyLikeStr = "";
+		if (!termQuery.isEmpty()) {
+			final String tail = useWildcards.get() ? "' AND " : "%' AND ";
+			keyLikeStr = " KEY1 LIKE '" + termQuery + tail;
+		}
+		final List<String> ruleList = option.getRuleList();
+		String meaningLikeStr = "";
+		if (ruleList.size() > 1) {
+			meaningLikeStr += "(";
+			for (final String r : ruleList) {
+				meaningLikeStr += " MEANING LIKE '%" + r + "%' OR ";
+			}
+			meaningLikeStr = meaningLikeStr.substring(0, meaningLikeStr.length() - 3) + ");";
+		} else {
+			meaningLikeStr = " MEANING LIKE '%" + ruleList.get(0) + "%';";
+		}
+		final OperationMode mode = operationMode.get();
+		final String tabName = mode.getTableName();
+		final String dbQuery = "SELECT KEY1 FROM " + tabName + " WHERE" + keyLikeStr + meaningLikeStr;
+		final Set<String> results = Utilities.getFirstColumnFromDB(Utilities.H2DB.SKTDICT, dbQuery);
+		if (!results.isEmpty()) {
+			final ArrayList<Object> dList = new ArrayList<>();
+			dList.add(mode.getDictBook());
+			for (final String term : results) {
+				resultMap.put(term, dList);
+			}
+		}
+		resultList.setAll(resultMap.keySet().stream().sorted(Utilities.sktComparator).collect(Collectors.toList()));
+		resultListView.scrollTo(0);
+		if (!resultList.isEmpty()) {
+			showResult(resultList.get(0));
+			showMessage(resultList.size() + " found");
+		}
+	}
+
+	// inner class
+	static class ExploringOption {
+		private String name;
+		private List<String> ruleList;
+		public ExploringOption(final String nam, final String... rules) {
+			name = nam;
+			ruleList = new ArrayList<>();
+			for (final String r : rules) {
+				ruleList.add(r);
+			}
+		}
+		public String getName() {
+			return name;
+		}
+		public List<String> getRuleList() {
+			return ruleList;
+		}
+		@Override
+		public String toString() {
+			return name;
+		}
 	}
 
 }
