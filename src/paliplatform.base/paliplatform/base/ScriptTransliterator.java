@@ -1,7 +1,7 @@
 /*
  * ScriptTransliterator.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ import java.util.regex.*;
  * Sanskrit characters in most typical usages.
  * The class is a factory, providing static methods.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 1.0
  */
 public class ScriptTransliterator {
@@ -112,6 +112,7 @@ public class ScriptTransliterator {
 	private static final char[] devaVDSorted = Arrays.copyOfRange(devaVowelsDep, 1, devaVowelsDep.length); // sorted in init
 	private static final char[] devaNumbers = {
 		'\u0966', '\u0967', '\u0968', '\u0969', '\u096A', '\u096B', '\u096C', '\u096D', '\u096E', '\u096F' };
+	private static final char devaCandrabindu = '\u0901';
 	private static final char devaAnusvara = '\u0902';
 	private static final char devaVisarga = '\u0903';
 	private static final char devaNukta = '\u093C';
@@ -137,6 +138,7 @@ public class ScriptTransliterator {
 	private static final char[] romanNumbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 	private static final char romanAnusvaraSlp1 = 'M';
 	private static final char romanVisargaSlp1 = 'H';
+	private static final char romanCandrabindu = '\u0310';
 	private static final char romanAnusvara = 'ṃ';
 	private static final char romanVisarga = 'ḥ';
 	private static final char romanAvagraha = '\u0315';
@@ -238,6 +240,7 @@ public class ScriptTransliterator {
 	// These digits are used mainly for astrological purpose.
 	//private static final char[] sinhalaNumbers = {
 	//	'\u0DE6', '\u0DE7', '\u0DE8', '\u0DE9', '\u0DEA', '\u0DEB', '\u0DEC', '\u0DED', '\u0DEE', '\u0DEF' };
+	private static final char sinhalaCandrabindu = '\u0D81';
 	private static final char sinhalaAnusvara = '\u0D82';
 	private static final char sinhalaVisarga = '\u0D83';
 	private static final char sinhalaAvagraha = '’';
@@ -652,65 +655,6 @@ public class ScriptTransliterator {
 		return result;
 	}
 
-	public static String[][] getDevaSktLetterGridX() {
-		// mainly used in SktLetters
-		final String[][] result = new String[8][10];
-		// 1st & 2nd row = vowels + symbols
-		for (int i = 0; i < devaVowelsInd.length; i++) {
-			if (i < 10)
-				result[0][i] = "" + devaVowelsInd[i];
-			else
-				result[1][i - 10] = "" + devaVowelsInd[i];
-		}
-		result[1][4] = "" + devaAnusvara;
-		result[1][5] = "" + devaVisarga;
-		result[1][6] = "" + devaAvagraha;
-		result[1][7] = "" + devaDanda;
-		result[1][8] = "" + devaDoubleDanda;
-		result[1][9] = "" + devaAbbrSign;
-		// mutes
-		for (int i = 0; i < devaConsonants.length; i++) {
-			if (i < 5)
-				result[2][i] = "" + devaConsonants[i];
-			else if (i < 10)
-				result[3][i - 5] = "" + devaConsonants[i];
-			else if (i < 15)
-				result[4][i - 10] = "" + devaConsonants[i];
-			else if (i < 20)
-				result[5][i - 15] = "" + devaConsonants[i];
-			else if (i < 25)
-				result[6][i - 20] = "" + devaConsonants[i];
-			else
-				break;
-		}
-		// semivowels
-		result[3][5] = "\u092F"; // y;
-		result[4][5] = "\u0930"; // r
-		result[5][5] = "\u0932"; // l
-		result[6][5] = "\u0935"; // v
-		// sibilant
-		result[2][6] = "\u0939"; // h
-		result[3][6] = "\u0936"; // ś
-		result[4][6] = "\u0937"; // ṣ
-		result[5][6] = "\u0938"; // s
-		// vowels
-		result[2][7] = "\u0905"; // a
-		result[3][7] = "\u0907"; // i
-		result[4][7] = "\u090B"; // ṛ
-		result[5][7] = "\u090C"; // ḷ
-		result[6][7] = "\u0909"; // u
-		result[2][8] = "\u0906"; // ā
-		result[3][8] = "\u0908"; // ī
-		result[4][8] = "\u0960"; // ṝ
-		result[5][8] = "\u0961"; // ḹ
-		result[6][8] = "\u090A"; // ū
-		// numbers
-		for (int n = 1; n <= 9; n++)
-			result[7][n-1] = "" + devaNumbers[n];
-		result[7][9] = "" + devaNumbers[0];
-		return result;
-	}
-
 	private static String shiftCharCode(final String input, final boolean isUp) {
 		// up = encode, down = decode
 		final char[] chars = input.toCharArray();
@@ -932,6 +876,9 @@ public class ScriptTransliterator {
 			if ((ind = Arrays.binarySearch(devaNumbers, dch)) >= 0) {
 				// numbers
 				rch = romanNumbers[ind];
+			} else if (dch == devaCandrabindu) {
+				// candrabindu
+				rch = romanCandrabindu;
 			} else if (dch == devaAnusvara) {
 				// niggahita
 				rch = romanAnusvaraSlp1;
@@ -1009,6 +956,9 @@ public class ScriptTransliterator {
 			if ((ind = Arrays.binarySearch(devaNumbers, dch)) >= 0) {
 				// numbers
 				rch = Character.toString(romanNumbers[ind]);
+			} else if (dch == devaCandrabindu) {
+				// candrabindu
+				rch = "" + romanCandrabindu;
 			} else if (dch == devaAnusvara) {
 				// niggahita
 				rch = "" + romanAnusvara;
@@ -1257,6 +1207,9 @@ public class ScriptTransliterator {
 			if ((ind = Arrays.binarySearch(devaNumbers, dch)) >= 0) {
 				// numbers, sinhala uses roman
 				sch = Character.toString(romanNumbers[ind]);
+			} else if (dch == devaCandrabindu) {
+				// candrabindu
+				sch = "" + sinhalaCandrabindu;
 			} else if (dch == devaAnusvara) {
 				// niggahita
 				sch = "" + sinhalaAnusvara;
@@ -1427,6 +1380,9 @@ public class ScriptTransliterator {
 				// if numbers included
 				if (alsoNumber)
 					dch = devaNumbers[Character.digit(rch, 10)];
+			} else if (rch == romanCandrabindu) {
+				// candrabindu
+				dch = devaCandrabindu;
 			} else if (rch == romanAnusvaraSlp1) {
 				// niggahita
 				dch = devaAnusvara;
@@ -1524,6 +1480,9 @@ public class ScriptTransliterator {
 				// if numbers included
 				if (alsoNumber)
 					dch = devaNumbers[Character.digit(rch, 10)];
+			} else if (rch == romanCandrabindu) {
+				// candrabindu
+				dch = devaCandrabindu;
 			} else if (rch == romanAnusvara) {
 				// niggahita
 				dch = devaAnusvara;
@@ -1833,6 +1792,9 @@ public class ScriptTransliterator {
 			if ((ind = Arrays.binarySearch(romanNumbers, sch)) >= 0) {
 				// numbers, use Roman
 				dch = devaNumbers[ind];
+			} else if (sch == sinhalaCandrabindu) {
+				// candrabindu
+				dch = devaCandrabindu;
 			} else if (sch == sinhalaAnusvara) {
 				// niggahita
 				dch = devaAnusvara;

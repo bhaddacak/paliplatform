@@ -66,7 +66,7 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 2.0
  */
 final public class Utilities {
@@ -624,7 +624,7 @@ final public class Utilities {
 		// for Pali and Sanskrit collator
 		final String vowelBase = "< √ < A, a < Ā, ā < I, i < Ī, ī < U, u < Ū, ū < Ṛ, ṛ < Ṝ, ṝ";
 		final String vowelPali = vowelBase + "< E, e < Ē, ē < O, o < Ō, ō";	
-		final String vowelSkt = vowelBase + "< Ḷ, ḷ < Ḹ, ḹ < E, e < AI, Ai, ai < O, o < AU, Au, au";	
+		final String vowelSkt = vowelBase + "< Ḷ, ḷ < Ḹ, ḹ < E, e < AI, Ai, ai < Ē, ē < O, o < AU, Au, au < Ō, ō";	
 		final String consonantBase = "< K, k < KH, Kh, kh < G, g < GH, Gh, gh < Ṅ, ṅ" +
 									"< C, c < CH, Ch, ch < J, j < JH, Jh, jh < Ñ, ñ" +
 									"< Ṭ, ṭ < ṬH, Ṭh, ṭh < Ḍ, ḍ < ḌH, Ḍh, ḍh < Ṇ, ṇ" +

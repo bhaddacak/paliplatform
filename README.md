@@ -106,6 +106,8 @@ At the user side, when a new patch is available, the program will not know it. T
 ### Where are test cases and JUnit?
 I tried to use JUnit in the development, but I gave up eventually. One main reason is testing GUI applications with basic tools is really difficult. If you use `IntelliJ IDEA` or `Eclipse` or `NetBeans` and build the project with `Maven` or `Gradle`, it can be easier. For me testing the GUI with seeing and clicking is reliable enough. You have to be very conscious of what are you doing. Moreover, programming GUI with bare coding need a lot of patience and discipline. I call this way of doing *mindful programming*. New developers may try to build the project with modern tools. I just love the plain-and-simple way.
 
+In developing the Sanskrit module recently, I inevitably have to use automatic testing cases, starting with sandhi combinations. However, I do not use `JUnit` but just `hamcrest` to do assertions. Also the testing is integrated into the program, not separated. For the Sanskrit module, several test cases are done in `SktUtil`.
+
 ## Useful links
 - [Works by J.R. Bhaddacak](https://bhaddacak.github.io)
 - [Pāli Platform's page](https://bhaddacak.github.io/paliplatform)

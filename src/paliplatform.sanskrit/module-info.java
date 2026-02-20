@@ -1,4 +1,5 @@
 module paliplatform.sanskrit {
+	requires org.hamcrest;
 	requires java.sql;
 	requires jdk.jsobject;
 	requires jdk.xml.dom;

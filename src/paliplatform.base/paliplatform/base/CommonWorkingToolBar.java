@@ -35,7 +35,7 @@ import javafx.application.Platform;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
@@ -231,6 +231,7 @@ public class CommonWorkingToolBar extends ToolBar {
 	public void setFontMenu(final String fontname) {
 		currFont = fontname;
 		fontGroup.selectToggle(fontMenuItemsMap.get(fontname));
+		fontSizeChoice.getSelectionModel().select(Integer.valueOf(currFontSizePercent));
 	}
 
 	private void setFont(final String fontname) {

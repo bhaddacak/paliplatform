@@ -46,7 +46,7 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.1
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
@@ -241,31 +241,37 @@ public class PaliTextEditor extends BorderPane {
 		// tools menu
 		final Menu toolsMenu = new Menu("_Tools");
 		toolsMenu.setMnemonicParsing(true);
-		final MenuItem slp1EncodeMenuItem = new MenuItem("_Encode SLP1");
-		slp1EncodeMenuItem.setMnemonicParsing(true);
+		final Menu slp1Menu = new Menu("SLP1");
+		final MenuItem slp1EncodeMenuItem = new MenuItem("Encode SLP1");
 		slp1EncodeMenuItem.setOnAction(actionEvent -> encodeSlp1(true));	
-		final MenuItem slp1DecodeMenuItem = new MenuItem("_Decode SLP1 (to IAST)");
-		slp1DecodeMenuItem.setMnemonicParsing(true);
+		final MenuItem slp1DecodeMenuItem = new MenuItem("Decode SLP1 (to IAST)");
 		slp1DecodeMenuItem.setOnAction(actionEvent -> encodeSlp1(false));	
-		final MenuItem composeMenuItem = new MenuItem("_Compose characters");
-		composeMenuItem.setMnemonicParsing(true);
+		slp1Menu.getItems().addAll(slp1EncodeMenuItem, slp1DecodeMenuItem);
+		final Menu characterMenu = new Menu("Characters");
+		final MenuItem composeMenuItem = new MenuItem("Compose characters");
 		composeMenuItem.setOnAction(actionEvent -> composeChars(true));	
-		final MenuItem decomposeMenuItem = new MenuItem("_Decompose characters");
-		decomposeMenuItem.setMnemonicParsing(true);
+		final MenuItem decomposeMenuItem = new MenuItem("Decompose characters");
 		decomposeMenuItem.setOnAction(actionEvent -> composeChars(false));	
-		final MenuItem removeAccentsMenuItem = new MenuItem("_Remove diacritics");
-		removeAccentsMenuItem.setMnemonicParsing(true);
+		final MenuItem removeAccentsMenuItem = new MenuItem("Remove diacritics");
 		removeAccentsMenuItem.setOnAction(actionEvent -> removeAccents());	
+		characterMenu.getItems().addAll(composeMenuItem, decomposeMenuItem, removeAccentsMenuItem);
 		final MenuItem reformatMenuItem = new MenuItem("Re_format CST4 text");
 		reformatMenuItem.setMnemonicParsing(true);
 		reformatMenuItem.setOnAction(actionEvent -> reformatCST4());	
 		final MenuItem calMetersMenuItem = new MenuItem("Calculate _meters");
 		calMetersMenuItem.setMnemonicParsing(true);
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
-		toolsMenu.getItems().addAll(slp1EncodeMenuItem, slp1DecodeMenuItem,
-									new SeparatorMenuItem(), composeMenuItem, decomposeMenuItem, removeAccentsMenuItem, reformatMenuItem,
-									new SeparatorMenuItem(), calMetersMenuItem);
+		toolsMenu.getItems().addAll(slp1Menu, new SeparatorMenuItem(), characterMenu, reformatMenuItem,
+									new SeparatorMenuItem());
 
+		if (PaliPlatform.sktServiceImp != null) {
+			final Menu sandhiMenu = new Menu("Sandhi");
+			final MenuItem sandhiCombineMenuItem = new MenuItem("Sanskrit combine");
+			sandhiCombineMenuItem.setOnAction(actionEvent -> sandhiCombine());	
+			sandhiMenu.getItems().add(sandhiCombineMenuItem);
+			toolsMenu.getItems().add(sandhiMenu);
+		}
+		toolsMenu.getItems().add(calMetersMenuItem);
 		final SimpleService verseAnalyzer = (SimpleService)PaliPlatform.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
 		if (verseAnalyzer != null) {
 			final MenuItem analyzeMenuItem = new MenuItem("_Analyze the stanza/text");
@@ -284,15 +290,14 @@ public class PaliTextEditor extends BorderPane {
 		changeMdotAboveMenuItem.setOnAction(actionEvent -> replaceChar('ṃ', 'ṁ'));
 		final MenuItem changeMdotBelowMenuItem = new MenuItem("Change ṁ to ṃ");
 		changeMdotBelowMenuItem.setOnAction(actionEvent -> replaceChar('ṁ', 'ṃ'));
-		final MenuItem toUpperCaseMenuItem = new MenuItem("Change to _uppercase");
-		toUpperCaseMenuItem.setMnemonicParsing(true);
+		final Menu caseMenu = new Menu("Case");
+		final MenuItem toUpperCaseMenuItem = new MenuItem("Change to uppercase");
 		toUpperCaseMenuItem.setOnAction(actionEvent -> changeCase(true));
-		final MenuItem toLowerCaseMenuItem = new MenuItem("Change to _lowercase");
-		toLowerCaseMenuItem.setMnemonicParsing(true);
+		final MenuItem toLowerCaseMenuItem = new MenuItem("Change to lowercase");
 		toLowerCaseMenuItem.setOnAction(actionEvent -> changeCase(false));
-		final MenuItem toSentCaseMenuItem = new MenuItem("Change to _sentence case");
-		toSentCaseMenuItem.setMnemonicParsing(true);
+		final MenuItem toSentCaseMenuItem = new MenuItem("Change to sentence case");
 		toSentCaseMenuItem.setOnAction(actionEvent -> changeToSentCase());
+		caseMenu.getItems().addAll(toUpperCaseMenuItem, toLowerCaseMenuItem, toSentCaseMenuItem);
 		final Menu sortMenu = new Menu("Sort");
 		final MenuItem sortPaliAscMenuItem = new MenuItem("Pāli sort ascendingly");
 		sortPaliAscMenuItem.setOnAction(actionEvent -> paliSort(true));
@@ -314,7 +319,7 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem texToPaliMenuItem = new MenuItem("TeX to Pāli");
 		texToPaliMenuItem.setOnAction(actionEvent -> texToPali());
 		toolsMenu.getItems().addAll(new SeparatorMenuItem(), changeMdotAboveMenuItem, changeMdotBelowMenuItem,
-									toUpperCaseMenuItem, toLowerCaseMenuItem, toSentCaseMenuItem, sortMenu,
+									caseMenu, sortMenu,
 									new SeparatorMenuItem(), paliToTexMenu, texToPaliMenuItem);
 		// options menu
 		final Menu optionsMenu = new Menu("_Options");
@@ -827,7 +832,8 @@ public class PaliTextEditor extends BorderPane {
 	
 	private void encodeSlp1(final boolean isEncode) {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		String result = "";
 		if (isEncode) {
 			switch (Utilities.testLanguage(inputText)) {
@@ -874,7 +880,8 @@ public class PaliTextEditor extends BorderPane {
 	
 	private void reformatCST4() {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		final String result = reformatCST4(romanText);
 		openNewEditor(result);
@@ -901,23 +908,42 @@ public class PaliTextEditor extends BorderPane {
 		return output.toString();
 	}
 
+	private void sandhiCombine() {
+		final String selText = area.getSelectedText();
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
+		final String romanText = Utilities.convertToRomanPali(inputText);
+		final Map<PaliScript, List<String>> product = PaliPlatform.sktServiceImp.getSandhiProduct(romanText);
+		final List<String> romanRes = product.get(PaliScript.ROMAN);
+		final List<String> devaRes = product.get(PaliScript.DEVANAGARI);
+		final StringBuilder result = new StringBuilder();
+		for (int i = 0; i < romanRes.size(); i++) {
+			result.append(romanRes.get(i)).append("\n");
+			result.append(devaRes.get(i)).append("\n");
+		}
+		openNewEditor(result.toString());
+	}
+
 	private void calculateMeters() {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		openNewEditor(Utilities.addComputedMeters(romanText));
 	}
 
 	private void openAnalyzer(final SimpleService service) {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		service.process(romanText);
 	}
 
 	private void openReader(final SimpleService service) {
 		final String selText = area.getSelectedText();
-		final String inputText = selText.isEmpty() ? area.getText() : selText;
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		final Object[] args = { romanText };
 		service.processArray(args);
@@ -926,7 +952,8 @@ public class PaliTextEditor extends BorderPane {
 	private void changeCase(final boolean isUpper) {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
-		final String inputText = isAll ? area.getText() : selText;
+		String inputText = isAll ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
@@ -944,7 +971,8 @@ public class PaliTextEditor extends BorderPane {
 	private void changeToSentCase() {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
-		final String inputText = isAll ? area.getText() : selText;
+		String inputText = isAll ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
@@ -986,7 +1014,9 @@ public class PaliTextEditor extends BorderPane {
 
 	private void paliSort(final boolean isAsc) {
 		if (proceedConfirm()) {
-			final Stream<String> allLines = Utilities.convertToRomanPali(area.getText()).lines().map(s -> s.trim());
+			String inputText = area.getText();
+			inputText = Normalizer.normalize(inputText, Form.NFC);
+			final Stream<String> allLines = Utilities.convertToRomanPali(inputText).lines().map(s -> s.trim());
 			final Stream<String> result;
 			if (isAsc)
 				result = allLines.sorted(Utilities.paliComparator);
@@ -998,7 +1028,9 @@ public class PaliTextEditor extends BorderPane {
 
 	private void sktSort(final boolean isAsc) {
 		if (proceedConfirm()) {
-			final Stream<String> allLines = Utilities.convertToRomanSanskrit(area.getText()).lines().map(s -> s.trim());
+			String inputText = area.getText();
+			inputText = Normalizer.normalize(inputText, Form.NFC);
+			final Stream<String> allLines = Utilities.convertToRomanSanskrit(inputText).lines().map(s -> s.trim());
 			final Stream<String> result;
 			if (isAsc)
 				result = allLines.sorted(Utilities.sktComparator);
@@ -1018,7 +1050,8 @@ public class PaliTextEditor extends BorderPane {
 	private void paliToTex(final TexConvertMode mode) {
 		final String selText = Normalizer.normalize(area.getSelectedText(), Form.NFC);
 		final boolean isAll = selText.isEmpty();
-		final String inputText = isAll ? Normalizer.normalize(area.getText(), Form.NFC) : selText;
+		String inputText = isAll ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
@@ -1036,7 +1069,8 @@ public class PaliTextEditor extends BorderPane {
 	private void texToPali() {
 		final String selText = area.getSelectedText();
 		final boolean isAll = selText.isEmpty();
-		final String inputText = isAll ? area.getText() : selText;
+		String inputText = isAll ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
 		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())

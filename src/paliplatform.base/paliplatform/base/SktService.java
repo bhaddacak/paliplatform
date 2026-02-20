@@ -1,5 +1,5 @@
 /*
- * DictService.java
+ * SktService.java
  *
  * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
@@ -20,12 +20,13 @@
 package paliplatform.base;
 
 import java.util.List;
+import java.util.Map;
 import javafx.scene.control.Tab;
 
 /** 
  * The service interface used by Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.6
  */
 
@@ -36,5 +37,6 @@ public interface SktService {
 	boolean isSktDictAvailable(String dictCode);
 	List<String> getSktDictTerms(String dictCode);
 	List<String> getSktDictMeaning(String dictCode, String term);
+	Map<Utilities.PaliScript, List<String>> getSandhiProduct(String text);
 }
 

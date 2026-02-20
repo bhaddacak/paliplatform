@@ -33,7 +33,7 @@ import javafx.scene.layout.HBox;
 /** 
  * An implementation of Sanskrit service.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.0
  */
 public class SktServiceImp implements SktService {
@@ -127,6 +127,40 @@ public class SktServiceImp implements SktService {
 
 	private String extraFormatFix(final String input) {
 		return input.replace("<br>", "\n");
+	}
+
+	@Override
+	public Map<Utilities.PaliScript, List<String>> getSandhiProduct(final String text) {
+		final List<String> resultRaw = new ArrayList<>();
+		final Map<Utilities.PaliScript, List<String>> result = new EnumMap<>(Utilities.PaliScript.class);
+		final String[] lines = text.split("\\r?\\n");
+		for (final String l : lines) {
+			final String line = l.trim();
+			if (line.isEmpty()) continue;
+			final String[] tokens = line.split("\\s");
+			if (tokens.length == 1) {
+				resultRaw.add(tokens[0]);
+			} else {
+				final String first = tokens[0];
+				final String second = tokens[1];
+				final Sandhi sandhi = new Sandhi(first, second);
+				final List<String> prodList = new ArrayList<>(sandhi.getProductListRaw());
+				for (int i = 2; i < tokens.length; i++) {
+					final List<String> formerList = new ArrayList<>(prodList);
+					prodList.clear();
+					for (final String fp : formerList) {
+						final Sandhi san = new Sandhi(fp, tokens[i]);
+						prodList.addAll(san.getProductListRaw());
+					}
+				}
+				resultRaw.addAll(prodList);
+			}
+		}
+		final List<String> resultRoman = Sandhi.formatToRoman(resultRaw);
+		result.put(Utilities.PaliScript.ROMAN, resultRoman);
+		final List<String> resultDeva = Sandhi.formatToDeva(resultRaw);
+		result.put(Utilities.PaliScript.DEVANAGARI, resultDeva);
+		return result;
 	}
 
 }

@@ -25,7 +25,7 @@ import java.util.HashMap;
  * This contains the FontAwesome symbols currently used.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
  class FontAwesomeData extends HashMap<String, Character> {
@@ -127,6 +127,7 @@ import java.util.HashMap;
 		 put("note-sticky", '\uF249');
 		 put("hand", '\uF256');
 		 put("hashtag", '\uF292');
+		 put("handshake", '\uF2B5');
 		 //~ put("square-xmark", '\uF2D3');
 		 put("pencil", '\uF303');
 		 put("pen-clip", '\uF305');
