@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -67,6 +67,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 	protected boolean sanskritMode = false;
 	protected static final Map<String, List<String>> sktDictTermsMap = new HashMap<>(); // for skt dict lookup
 	private final List<MenuItem> contextMenuItems = new ArrayList<>();
+	private final List<MenuItem> sktOnlyMenuItems = new ArrayList<>();
 	protected final ContextMenu contextMenu;
 	public int currFontSize;
 
@@ -120,6 +121,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		// add main components
 		// add context menus to the main pane
 		contextMenu = new ContextMenu();
+		// All uses
 		final MenuItem editMenuItem = new MenuItem("Open in text editor");
 		editMenuItem.disableProperty().bind(clickedText.isEmpty());
 		editMenuItem.setOnAction(actionEvent -> openTextEditor());
@@ -144,10 +146,15 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		calMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
 		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
 		contextMenuItems.add(calMetersMenuItem);
-		final MenuItem analyzeMenuItem = new MenuItem("Analyze this stanza/portion");
-		analyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
-		analyzeMenuItem.setOnAction(actionEvent -> openAnalyzer());
-		contextMenuItems.add(analyzeMenuItem);
+		final MenuItem prosodyAnalyzeMenuItem = new MenuItem("Analyze this stanza/portion");
+		prosodyAnalyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
+		prosodyAnalyzeMenuItem.setOnAction(actionEvent -> openProsodyAnalyzer());
+		contextMenuItems.add(prosodyAnalyzeMenuItem);
+		// Sanskrit only
+		final MenuItem sandhiAnalyzeMenuItem = new MenuItem("Analyze this sandhi");
+		sandhiAnalyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
+		sandhiAnalyzeMenuItem.setOnAction(actionEvent -> openSandhiAnalyzer());
+		sktOnlyMenuItems.add(sandhiAnalyzeMenuItem);
 		webView.setOnMousePressed(mouseEvent -> {
 			if (mouseEvent.getButton() == MouseButton.SECONDARY) {
 				contextMenu.show(webView, mouseEvent.getScreenX(), mouseEvent.getScreenY());
@@ -217,7 +224,8 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			contextMenu.getItems().clear();
 			if (sanskritMode)
 				contextMenu.getItems().addAll(contextMenuItems.get(0), contextMenuItems.get(2),
-									contextMenuItems.get(3), contextMenuItems.get(4), contextMenuItems.get(5));
+									contextMenuItems.get(3), contextMenuItems.get(4), contextMenuItems.get(5),
+									sktOnlyMenuItems.get(0));
 			else
 				contextMenu.getItems().addAll(contextMenuItems);
 		});			
@@ -305,7 +313,16 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			DictUtilities.openWindow(Utilities.WindowType.DICT, args);
 		}
 	}
-	
+
+	private void openSandhiAnalyzer() {
+		copySelection();
+		final Clipboard cboard = Clipboard.getSystemClipboard();
+		final String text = cboard.hasString() ? cboard.getString().trim() : "";
+		final SktService sktServ = (SktService)ReaderUtilities.sktServiceMap.get("paliplatform.sanskrit.SktServiceImp");
+		if (sktServ != null)
+			sktServ.openSandhiAnalyzer(text);
+	}
+
 	private void sendToDict(final boolean toSktDict) {
 		copySelection();
 		final Clipboard cboard = Clipboard.getSystemClipboard();
@@ -491,7 +508,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		}
 	}
 
-	private void openAnalyzer() {
+	private void openProsodyAnalyzer() {
 		final String text = clickedText.get();
 		final String romanText = Utilities.convertToRomanPali(text);
 		if (!text.isEmpty()) {

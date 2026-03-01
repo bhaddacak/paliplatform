@@ -31,6 +31,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.text.RuleBasedCollator;
+import java.time.LocalDateTime;
 import java.sql.*;
 import java.security.*;
 
@@ -91,6 +92,7 @@ final public class Utilities {
 	public static final String SKTDICT_CSS = CSSDIR + "sktdict.css";
 	public static final String COMMON_JS = JSDIR + "viewer-common.js"; // used by all HtmlViewer
 	public static final String TEXCONV = TXTDIR + "texconv.csv";
+	public static final String LOGFILE = "pp4log.txt";
 	public static final String FONTICON = "PaliPlatformIcons";
 	public static final String FONTAWESOME = "Font Awesome 6 Free Solid";
 	public static final String FONT_ROMAN_DEFAULT = "DejaVu Sans";
@@ -218,6 +220,7 @@ final public class Utilities {
 		TOCTREE("TocTreeWin"), FINDER("DocumentFinder"), LUCENE("LuceneFinder"),
 		LISTER("TermLister"), DICT("DictWin"), SKTDICT("SktDictWin"), EDITOR("PaliTextEditor"),
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
+		SANDHI_ANALYZER("SandhiAnalyzer"),
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
 		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"), VIEWER_SKTGRETIL("SktGretilHtmlViewer");
@@ -1118,6 +1121,17 @@ final public class Utilities {
 	
 	public static void saveText(final String text, final File file) {
 		saveText(text, file, StandardCharsets.UTF_8);
+	}
+	
+	public static void saveLog(final String text) {
+		final Path logfile = Path.of(ROOTDIR + OUTPUTPATH + LOGFILE);
+		final String stamp = LocalDateTime.now().toString();
+		final String mess = stamp + " " + text + "\n";
+		try {
+			Files.writeString(logfile, mess, StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+		} catch (IOException e) {
+			System.err.println(e);
+		}
 	}
 	
 	public static File saveCSV(final List<String[]> text, final String filename) {

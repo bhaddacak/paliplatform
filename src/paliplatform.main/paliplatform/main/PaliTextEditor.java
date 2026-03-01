@@ -268,7 +268,9 @@ public class PaliTextEditor extends BorderPane {
 			final Menu sandhiMenu = new Menu("Sandhi");
 			final MenuItem sandhiCombineMenuItem = new MenuItem("Sanskrit combine");
 			sandhiCombineMenuItem.setOnAction(actionEvent -> sandhiCombine());	
-			sandhiMenu.getItems().add(sandhiCombineMenuItem);
+			final MenuItem sandhiAnalyzeMenuItem = new MenuItem("Sanskrit analyze");
+			sandhiAnalyzeMenuItem.setOnAction(actionEvent -> sandhiAnalyze());	
+			sandhiMenu.getItems().addAll(sandhiCombineMenuItem, sandhiAnalyzeMenuItem);
 			toolsMenu.getItems().add(sandhiMenu);
 		}
 		toolsMenu.getItems().add(calMetersMenuItem);
@@ -922,6 +924,13 @@ public class PaliTextEditor extends BorderPane {
 			result.append(devaRes.get(i)).append("\n");
 		}
 		openNewEditor(result.toString());
+	}
+
+	private void sandhiAnalyze() {
+		final String selText = area.getSelectedText();
+		String inputText = selText.isEmpty() ? area.getText() : selText;
+		inputText = Normalizer.normalize(inputText, Form.NFC);
+		PaliPlatform.sktServiceImp.openSandhiAnalyzer(inputText);
 	}
 
 	private void calculateMeters() {

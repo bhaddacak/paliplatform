@@ -45,7 +45,7 @@ import javafx.beans.property.SimpleObjectProperty;
 /** 
  * The utility factory for the Sanskrit module.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 3.5
  */
 final public class SanskritUtilities {
@@ -138,6 +138,16 @@ final public class SanskritUtilities {
 				} else {
 					final SktDictWin sktDictWin = (SktDictWin)stg.getScene().getRoot();
 					sktDictWin.init(args);
+					Utilities.showExistingWindow(stg);
+				}
+				break;
+			case SANDHI_ANALYZER:
+				if (stg == null) {
+					Utilities.openNewWindow(new SandhiAnalyzer(args), 
+						new Image(SanskritUtilities.class.getResourceAsStream("resources/images/hammer.png")), "Sanskrit Sandhi Analyzer");
+				} else {
+					final SandhiAnalyzer sandhiAnalyzer = (SandhiAnalyzer)stg.getScene().getRoot();
+					sandhiAnalyzer.init(args);
 					Utilities.showExistingWindow(stg);
 				}
 				break;

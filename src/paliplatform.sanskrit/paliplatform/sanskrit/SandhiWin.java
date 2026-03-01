@@ -30,9 +30,11 @@ import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.image.*;
+import javafx.scene.text.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
+
 /** 
  * The window showing Sanskrit external sandhi rules.
  * This is a singleton.
@@ -41,25 +43,40 @@ import javafx.geometry.Insets;
  * @since 4.1
  */
 public final class SandhiWin extends SingletonWindow {
-	static enum OutputForm { DASH, WORD };
+	static enum OutputForm { BARE, DASH, WORD };
+	static enum PrecedingVowel { 
+		ONLY_A("Only a"), A_AA("Only a & ā"), ALL("All");
+		public static PrecedingVowel[] values = PrecedingVowel.values();
+		private String name;
+		private PrecedingVowel(final String nam) {
+			name = nam;
+		}
+		public String getName() {
+			return name;
+		}
+	};
 	public static final SandhiWin INSTANCE = new SandhiWin();
-	private final BorderPane mainPane = new BorderPane();
 	private final ComboBox<String> endingChoice = new ComboBox<>();
 	private final ComboBox<String> beginningChoice = new ComboBox<>();
 	private final ChoiceBox<OutputForm> outputFormChoice = new ChoiceBox<>();
+	private final ToggleGroup precedingVowelGroup = new ToggleGroup();
 	private final CheckMenuItem showDevaMenuItem = new CheckMenuItem("Show Devanāgarī");
 	private final TextField searchTextField;
 	private final GridPane outputGrid = new GridPane();
 	private final InfoPopup infoPopup = new InfoPopup();
 	private final List<SandhiOutput> outputList = new ArrayList<>();
+	private PrecedingVowel currPrecedingVowel = PrecedingVowel.A_AA;
 
 	private SandhiWin() {
+		final BorderPane mainPane = new BorderPane();
 		windowWidth = Utilities.getRelativeSize(55);
 		windowHeight = Utilities.getRelativeSize(46);
 		setTitle("Sanskrit Sandhi Rules");
 		getIcons().add(new Image(SandhiWin.class.getResourceAsStream("resources/images/handshake.png")));
 		// add common toolbar on the top
-		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(outputGrid);
+		final PaliTextInput searchInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
+		searchTextField = (TextField)searchInput.getInput();
+		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(outputGrid, searchTextField);
 		// configure some buttons first
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save data as text"));
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
@@ -81,14 +98,29 @@ public final class SandhiWin extends SingletonWindow {
 		beginningChoice.getSelectionModel().select(0);
 		beginningChoice.setOnAction(actionEvent -> updateOutput());
 		outputFormChoice.setTooltip(new Tooltip("Output form"));
-		outputFormChoice.getItems().addAll(OutputForm.DASH, OutputForm.WORD);
-		outputFormChoice.getSelectionModel().select(0);
+		outputFormChoice.getItems().addAll(OutputForm.BARE, OutputForm.DASH, OutputForm.WORD);
+		outputFormChoice.getSelectionModel().select(1);
 		outputFormChoice.setOnAction(actionEvent -> updateOutput());
 		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
 		optionsMenu.setTooltip(new Tooltip("Options"));
+		final Menu preVowelMenu = new Menu("Preceding vowel");
+		for (final PrecedingVowel pv : PrecedingVowel.values) {
+			final RadioMenuItem radio = new RadioMenuItem(pv.getName());
+			radio.setUserData(pv);
+			radio.setToggleGroup(precedingVowelGroup);
+			preVowelMenu.getItems().add(radio);
+		}
+		precedingVowelGroup.selectToggle(precedingVowelGroup.getToggles().get(1));
+        precedingVowelGroup.selectedToggleProperty().addListener((observable) -> {
+			if (precedingVowelGroup.getSelectedToggle() != null) {
+				final Toggle selected = precedingVowelGroup.getSelectedToggle();
+				currPrecedingVowel = (PrecedingVowel)selected.getUserData();
+				updateOutput();
+			}
+		});
 		showDevaMenuItem.setSelected(false);
 		showDevaMenuItem.setOnAction(actionEvent -> updateOutput());
-		optionsMenu.getItems().add(showDevaMenuItem);
+		optionsMenu.getItems().addAll(preVowelMenu, showDevaMenuItem);
 		// add help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
@@ -99,11 +131,9 @@ public final class SandhiWin extends SingletonWindow {
 		final HBox searchBox = new HBox();
 		searchBox.setPadding(new Insets(3, 0, 0, 0));
 		searchBox.setSpacing(3);
-		final PaliTextInput searchInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
 		searchInput.setSanskritMode(true);
 		final String inputMethod = Utilities.getSetting("sanskrit-input-method");
 		searchInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
-		searchTextField = (TextField)searchInput.getInput();
 		searchTextField.setPromptText("Filter only...");
 		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> updateDisplay());
 		final Button clearButton = searchInput.getClearButton();
@@ -111,13 +141,13 @@ public final class SandhiWin extends SingletonWindow {
 		searchBox.getChildren().addAll(searchTextField, clearButton, searchInput.getMethodButton());
 		mainPane.setBottom(searchBox);
 		// add main content
-		final ScrollPane scrollPane = new ScrollPane();
 		final StackPane outputPane = new StackPane();
 		StackPane.setMargin(outputGrid, new Insets(5, 10, 5, 10));
 		outputGrid.setAlignment(Pos.TOP_CENTER);
 		outputGrid.setHgap(10);
 		outputGrid.setVgap(3);
 		outputPane.getChildren().add(outputGrid);
+		final ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setContent(outputPane);
 		mainPane.setCenter(scrollPane);
 		final Scene scene = new Scene(mainPane, windowWidth, windowHeight);
@@ -143,11 +173,11 @@ public final class SandhiWin extends SingletonWindow {
 		final List<String> firstWordList = new ArrayList<>();
 		if (end.equals("all")) {
 			for (final String s : Sandhi.availEndings) {
-				final List<String> firstWords = getFirstWord(s, formSelected, false);
+				final List<String> firstWords = getFirstWord(s, formSelected, currPrecedingVowel);
 				firstWordList.addAll(firstWords);
 			}
 		} else {
-			final List<String> words = getFirstWord(end, formSelected, !start.equals("all"));
+			final List<String> words = getFirstWord(end, formSelected, currPrecedingVowel);
 			firstWordList.addAll(words);
 		}
 		// create the list of second word
@@ -242,37 +272,45 @@ public final class SandhiWin extends SingletonWindow {
 			outputGrid.getChildren().addAll(lbCaseRoman, lbEqual1, lbProductRoman);
 	}
 
-	private List<String> getFirstWord(final String end, final OutputForm form, final boolean isFull) {
+	public static List<String> getFirstWord(final String end, final OutputForm form, final PrecedingVowel preVowel) {
 		final List<String> wordEndList = new ArrayList<>();
-		if (isFull) {
+		wordEndList.add("-a" + end);
+		if (preVowel == PrecedingVowel.A_AA)
+			wordEndList.add("-ā" + end);
+		if (preVowel == PrecedingVowel.ALL) {
 			for (final char v : Sandhi.sktVowels.toCharArray()) {
+				if (v == 'a' || v == 'ā') continue;
 				wordEndList.add("-" + v + end);
 			}
-		} else {
-			wordEndList.addAll(Arrays.asList("-a" + end, "-ā" + end));
 		}
 		final List<String> result = new ArrayList<>();
-			if (form == OutputForm.DASH) {
-				if (Sandhi.sktVowels.indexOf(end.charAt(0)) > -1)
+			if (form == OutputForm.WORD) {
+				final List<String> endList = wordEndList.stream()
+											.map(x -> x.replace("-", "kat"))
+											.collect(Collectors.toList());
+				if (Sandhi.isVowel(end.charAt(0)))
+					result.add("kat" + end);
+				else
+					result.addAll(endList);
+			} else if (form == OutputForm.DASH) {
+				if (Sandhi.isVowel(end.charAt(0)))
 					result.add("-" + end);
 				else
 					result.addAll(wordEndList);
 			} else {
-				final List<String> endList = wordEndList.stream()
-											.map(x -> x.replace("-", "kat"))
-											.collect(Collectors.toList());
-				if (Sandhi.sktVowels.indexOf(end.charAt(0)) > -1)
-					result.add("kat" + end);
+				if (Sandhi.isVowel(end.charAt(0)))
+					result.add(end);
 				else
-					result.addAll(endList);
+					result.addAll(wordEndList.stream().map(x -> x.replace("-", "")).collect(Collectors.toList()));
 			}
 		return result;
 	}
 
-	private String getSecondWord(final String start, final OutputForm form) {
-		final String result = form == OutputForm.DASH
-								? start + "-"
-								: Sandhi.sktVowels.indexOf(start) > -1
+	public static String getSecondWord(final String start, final OutputForm form) {
+		final String dash = form == OutputForm.DASH ? "-" : "";
+		final String result = form == OutputForm.DASH || form == OutputForm.BARE
+								? start + dash
+								: Sandhi.isVowel(start)
 									? start + "taḥ"
 									: start + "ataḥ";
 		return result;
@@ -294,7 +332,7 @@ public final class SandhiWin extends SingletonWindow {
 	}
 
 	// inner class
-	class SandhiOutput {
+	static class SandhiOutput {
 		public final String caseRoman;
 		public final String productRoman;
 		public final String caseDeva;

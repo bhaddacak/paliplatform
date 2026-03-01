@@ -1,7 +1,7 @@
 /*
  * MainMenu.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,8 @@ package paliplatform.main;
 
 import paliplatform.base.*;
 
+import java.io.File;
+
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyCodeCombination;
@@ -30,7 +32,7 @@ import javafx.scene.input.KeyCode;
  * The main menu bar including some action controllers.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.6
+ * @version 4.1
  * @since 2.0
  */
 class MainMenu extends MenuBar {
@@ -54,17 +56,19 @@ class MainMenu extends MenuBar {
 		final MenuItem batchMenuItem = new MenuItem("_Batch Script Transformer", new TextIcon("gears", TextIcon.IconSet.AWESOME));
 		batchMenuItem.setMnemonicParsing(true);
 		batchMenuItem.setOnAction(actionEvent -> BatchScriptTransformer.INSTANCE.display());
-		final MenuItem updateInfoMenuItem = new MenuItem("Update online info", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
+		final MenuItem updateInfoMenuItem = new MenuItem("_Update online info", new TextIcon("arrows-rotate", TextIcon.IconSet.AWESOME));
+		updateInfoMenuItem.setMnemonicParsing(true);
 		updateInfoMenuItem.setOnAction(actionEvent -> UrlProperties.INSTANCE.update());
 		final MenuItem patcherMenuItem = new MenuItem("_Patch Installer", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		patcherMenuItem.setMnemonicParsing(true);
 		patcherMenuItem.setOnAction(actionEvent -> PatchInstaller.INSTANCE.display());
+		final MenuItem desktopMenuItem = new MenuItem("_Create desktop launcher", new TextIcon("rocket", TextIcon.IconSet.AWESOME));
+		desktopMenuItem.setMnemonicParsing(true);
+		desktopMenuItem.setOnAction(actionEvent -> PaliPlatform.createDesktopLauncher());
 		final MenuItem exitMenuItem = new MenuItem("E_xit", new TextIcon("power-off", TextIcon.IconSet.AWESOME));
 		exitMenuItem.setMnemonicParsing(true);
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN));
 		exitMenuItem.setOnAction(actionEvent -> PaliPlatform.exit(null));
-		final MenuItem desktopMenuItem = new MenuItem("Create desktop launcher", new TextIcon("rocket", TextIcon.IconSet.AWESOME));
-		desktopMenuItem.setOnAction(actionEvent -> PaliPlatform.createDesktopLauncher());
 		fileMenu.getItems().addAll(editorMenuItem, openTextMenuItem, 
 								new SeparatorMenuItem(), batchMenuItem, updateInfoMenuItem, patcherMenuItem, desktopMenuItem, 
 								new SeparatorMenuItem(), exitMenuItem);

@@ -125,7 +125,7 @@ class PatchInstaller extends ProgressiveDownloader {
 		restart();
 	}
 
-	private void restart() {
+	private static void restart() {
 		try {
 			final String cmd = System.getProperty("os.name").toLowerCase().contains("windows") 
 				? "launch.cmd"

@@ -280,7 +280,7 @@ public abstract class DictWinBase extends BorderPane {
 			dragEvent.consume();
 		});
 		
-		// prepare popups
+		// prepare popup
 		messagePopup.setHideOnEscape(true);
 		messagePopup.setAutoHide(true);
 		final StackPane messageBox = new StackPane();

@@ -50,9 +50,12 @@ public class SanskritMenu extends Menu {
 		final MenuItem lettersMenuItem = new MenuItem("_Letters", new TextIcon("skt-letter", TextIcon.IconSet.CUSTOM));
 		lettersMenuItem.setMnemonicParsing(true);
 		lettersMenuItem.setOnAction(actionEvent -> SktLetterWin.INSTANCE.display());
-		final MenuItem sandhiMenuItem = new MenuItem("_Sandhi Rules", new TextIcon("handshake", TextIcon.IconSet.AWESOME));
-		sandhiMenuItem.setMnemonicParsing(true);
-		sandhiMenuItem.setOnAction(actionEvent -> SandhiWin.INSTANCE.display());
+		final MenuItem sandhiRulesMenuItem = new MenuItem("_Sandhi Rules", new TextIcon("handshake", TextIcon.IconSet.AWESOME));
+		sandhiRulesMenuItem.setMnemonicParsing(true);
+		sandhiRulesMenuItem.setOnAction(actionEvent -> SandhiWin.INSTANCE.display());
+		final MenuItem sandhiAnalyzerMenuItem = new MenuItem("Sandhi _Analyzer", new TextIcon("hammer", TextIcon.IconSet.AWESOME));
+		sandhiAnalyzerMenuItem.setMnemonicParsing(true);
+		sandhiAnalyzerMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SANDHI_ANALYZER, null));
 		final MenuItem docDownloadMenuItem = new MenuItem("Download Sanskrit documents", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		docDownloadMenuItem.setOnAction(actionEvent -> SktDocDownloader.INSTANCE.display());
 		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dictionaries", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
@@ -67,7 +70,7 @@ public class SanskritMenu extends Menu {
 		lockDBMenuItem.textProperty().bindBidirectional(SanskritUtilities.sktDictDBLockString);
 		lockDBMenuItem.graphicProperty().bindBidirectional(SanskritUtilities.sktDictDBLockIcon);
 		lockDBMenuItem.setOnAction(actionEvent -> SanskritUtilities.lockSktDictDB(lockDBMenuItem.isSelected()));
-		getItems().addAll(dictMenuItem, lettersMenuItem, sandhiMenuItem,
+		getItems().addAll(dictMenuItem, lettersMenuItem, sandhiRulesMenuItem, sandhiAnalyzerMenuItem,
 				new SeparatorMenuItem(), docDownloadMenuItem, dictDownloadMenuItem, createDataMenuItem,
 				new SeparatorMenuItem(), lockDBMenuItem);
 	}

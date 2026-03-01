@@ -163,5 +163,10 @@ public class SktServiceImp implements SktService {
 		return result;
 	}
 
+	@Override
+	public void openSandhiAnalyzer(final String text) {
+		SanskritUtilities.openWindow(Utilities.WindowType.SANDHI_ANALYZER, new String[] { text });
+	}
+
 }
 

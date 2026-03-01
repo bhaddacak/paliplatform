@@ -5,8 +5,8 @@ Guide to Sanskrit sandhi
 	   - The dual-number endings (ī, ū, e) do not sandhi to others.
 	   - Saḥ (he) becomes sa before all consonants.
 	   - The ending -aḥ of punaḥ, prātaḥ, and antaḥ behaves like -iḥ.
-	3. When only one case is selected in both two terms, all vowels before the ending of the first one are rendered, otherwise only a and ā.
-	4. The rendered output can be selected as dash form or (meaningless) dummy word form.
+	3. There are choices of the preceding vowel of the first term, i.e., only a, only a & ā, and all vowels. There are cases that depend on this vowel, particularly when it is short or long.
+	4. The rendered output can be selected as bare form, dash form, or (meaningless) dummy word form.
 	5. The query entered will firstly filter the sandhi products. If a plus sign (+) is entered, it then filters the source terms.
 	6. When Devanāgarī is shown, the query can be entered with that script. Remember that the products of Devanāgarī are connected, whereas those of Roman are separated.
 	7. For an arbitrary combination of terms, use the sandhi function in Text Editor.

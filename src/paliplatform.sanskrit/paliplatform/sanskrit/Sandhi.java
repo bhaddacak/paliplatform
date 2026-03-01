@@ -36,7 +36,7 @@ class Sandhi {
 	private static String sktVowelsNotA = "āiīuūṛṝḷeēoō";
 	public static String sktVowels = "a" + sktVowelsNotA;
 	private static String sktBeforeVisarga = "aāiīuūeēoō";
-	private static String sktHasH = "kgcjṭḍtdpb";
+	public static String sktHasH = "kgcjṭḍtdpb";
 	public static String[] availEndings = {
 		"k", "ṭ", "t", "p", "ṅ", "m", "n", "aḥ", "āḥ",
 		"iḥ", "īḥ", "uḥ", "ūḥ", "eḥ", "oḥ", "ēḥ", "ōḥ",
@@ -49,10 +49,12 @@ class Sandhi {
 	private static Map<String, List<String>> vowelSandhiRuleMap = new HashMap<>();
 	private String first;
 	private String second;
+	private List<String> productListRaw;
 
 	public Sandhi(final String one, final String two) {
 		first = normalize(one);
 		second = normalize(two);
+		productListRaw = combineRaw(first, second);
 	}
 
 	public static String normalize(final String term) {
@@ -65,6 +67,31 @@ class Sandhi {
 
 	public static Map<String, SandhiRule> getSandhiRuleMap() {
 		return sandhiRuleMap;
+	}
+
+	public static boolean isVowel(final char ch) {
+		return sktVowels.indexOf(ch) > -1;
+	}
+
+	public static boolean isVowel(final String ch) {
+		return sktVowels.indexOf(ch) > -1;
+	}
+
+	public static String removeUnitSep(final String input) {
+		return input.replace("" + UNIT_SEP, "");
+	}
+
+	public static String formatAvagraha(final String input) {
+		return input.replace(AVAGRAHA, '’');
+	}
+
+	public static String convertAvagraha(final String input) {
+		return input.replace('’', AVAGRAHA);
+	}
+
+	@Override
+	public String toString() {
+		return getFirst() + " + " + getSecond();
 	}
 
 	public String getFirst() {
@@ -84,7 +111,7 @@ class Sandhi {
 	}
 
 	public List<String> getProductListRaw() {
-		return combineRaw(first, second);
+		return productListRaw;
 	}
 
 	public List<String> getProductList() {
@@ -92,13 +119,11 @@ class Sandhi {
 	}
 
 	public List<String> getProductListRoman() {
-		final List<String> rawProdList = combineRaw(first, second);
-		return formatToRoman(rawProdList);
+		return formatToRoman(productListRaw);
 	}
 
 	public List<String> getProductListDeva() {
-		final List<String> rawProdList = combineRaw(first, second);
-		return formatToDeva(rawProdList);
+		return formatToDeva(productListRaw);
 	}
 
 	public String getProduct() {
@@ -141,7 +166,7 @@ class Sandhi {
 		if (len > 1) {
 			final char preEnd = word.charAt(len - 2);
 			if (end == 'h') {
-				result = sktVowels.indexOf(preEnd) > -1
+				result = isVowel(preEnd)
 							? "" + end
 							: sktHasH.indexOf(preEnd) > -1
 								? "" + preEnd + end
@@ -173,11 +198,11 @@ class Sandhi {
 								? one.substring(diff - 1, diff) // the letter before end
 								: "";
 		final String last = firstEnding.substring(firstEnding.length() - 1);
-		final String keyStart = sktVowels.indexOf(last) > -1
+		final String keyStart = isVowel(last)
 								? last
 								: "";
 		final List<String> immResList = applyStartDoubleRules(keyStart, applyEndDoubleRules(keyEnd, resList));
-		final List<String> finResList = sktVowels.indexOf(firstEnding) > -1 && sktVowels.indexOf(secondBeginning) > -1
+		final List<String> finResList = isVowel(firstEnding) && isVowel(secondBeginning)
 											? applyVowelSandhi(immResList)
 											: immResList;
 		final List<String> result = new ArrayList<>();
@@ -200,7 +225,7 @@ class Sandhi {
 	public static List<String> formatToDeva(final List<String> rawResList) {
 		final List<String> result = new ArrayList<>();
 		for (final String res : rawResList) {
-			final String item = ScriptTransliterator.translitQuick(restoreChar(res.replace("" + UNIT_SEP, "")),
+			final String item = ScriptTransliterator.translitQuick(restoreChar(removeUnitSep(res)),
 								ScriptTransliterator.EngineType.ROMAN_SKT_DEVA, false);
 			result.add(item);
 		}
@@ -217,7 +242,7 @@ class Sandhi {
 				continue;
 			}
 			final String lastChar = parts[0].substring(parts[0].length() - 1);
-			final String firstPart = endRuleSet != null && endRuleSet.contains(lastChar) && sktVowels.indexOf(parts[1].charAt(0)) > -1
+			final String firstPart = endRuleSet != null && endRuleSet.contains(lastChar) && isVowel(parts[1].charAt(0))
 									? parts[0] + lastChar
 									: parts[0];
 			result.add(firstPart + UNIT_SEP + parts[1]);
@@ -252,7 +277,7 @@ class Sandhi {
 			}
 			final char firstEnd = parts[0].charAt(parts[0].length() - 1);
 			final char secondStart = parts[1].charAt(0);
-			if (sktVowels.indexOf(firstEnd) > -1 && sktVowels.indexOf(secondStart) > -1) {
+			if (isVowel(firstEnd) && isVowel(secondStart)) {
 				final List<String> rules = vowelSandhiRuleMap.get("" + secondStart);
 				if (rules != null) {
 					final int index =  firstEnd == 'i' || firstEnd == 'ī' ? 1
@@ -332,7 +357,7 @@ class Sandhi {
 										: end.equals("t") ? "d"
 										: end.equals("p") &&  (start.equals("n") || start.equals("m")) ? "m"
 										: end.equals("p") ? "b"
-										: end.equals("m") && sktVowels.indexOf(start) == -1 ? "ṃ"
+										: end.equals("m") && !isVowel(start) ? "ṃ"
 										: end.equals("n") && start.startsWith("j") ? "ñ"
 										: end.equals("n") && start.startsWith("ḍ") ? "ṇ"
 										: end.equals("n") && start.equals("l") ? "ṃ"

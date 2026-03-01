@@ -38,5 +38,6 @@ public interface SktService {
 	List<String> getSktDictTerms(String dictCode);
 	List<String> getSktDictMeaning(String dictCode, String term);
 	Map<Utilities.PaliScript, List<String>> getSandhiProduct(String text);
+	void openSandhiAnalyzer(String text);
 }
 

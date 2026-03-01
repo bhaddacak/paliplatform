@@ -1,0 +1,7 @@
+Guide to Sanskrit Sandhi Analyzer
+	1. Sandhi analysis is difficult because there are many possibilities to restore the source terms. So, it is better to analyze a short unit rather than a long one.
+	2. First, copy a portion of text (in any supported script) and paste to the analyzer by the button provided. The portion will be collapsed to one unit.
+	3. If any part of the text can be broken by a sandhi rule, the possible chunks will be listed on the left. When selected, the original terms will be shown in the result area. Not all reconstructions make sense, though. You have to choose a right one.
+	4. At first, only consonant-sandhi rules are applied. If this is not enough, vowel-sandhi rules can be added by the options menu. This will increase the possibilities greatly, including irrelevant cases and noises.
+	5. The Sandhi Analyzer can also be invoked by Text Editor and Sanskrit Text Viewer.
+

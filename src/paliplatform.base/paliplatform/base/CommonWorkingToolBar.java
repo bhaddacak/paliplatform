@@ -260,7 +260,7 @@ public class CommonWorkingToolBar extends ToolBar {
 				sktFontSetter.processArray(new Object[] { node, fontname });
 		} else {
 			if (node instanceof ComboBox || node instanceof TextField)
-				node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:100%;");
+				node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:110%;");
 			else
 				node.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
 		}
@@ -268,7 +268,7 @@ public class CommonWorkingToolBar extends ToolBar {
 		for (int i = 1; i < nodes.length; i++) {
 			final Node compo = nodes[i];
 			if (compo instanceof ComboBox || compo instanceof TextField)
-				compo.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:100%;");
+				compo.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:110%;");
 			else
 				compo.setStyle("-fx-font-family:'" + fontname + "';-fx-font-size:" + currFontSizePercent + "%;");
 		}
