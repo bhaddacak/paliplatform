@@ -1,7 +1,7 @@
 /*
  * PaliWord.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,14 +22,14 @@ package paliplatform.base;
 import java.util.*;
 
 /** 
- * Pali word class, mainly used with CPED dictionary and other grammatical purposes.
+ * The representation of a Pali word, mainly used with CPED dictionary and other grammatical purposes.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.1
  * @since 1.0
  */
 public class PaliWord {
 	public static enum Gender { 
-		MAS, FAM, NEU;
+		MAS, FEM, NEU;
 		public static final Gender[] values = values();
 		private final static String codes = "mfn";
 		private final char code;
@@ -44,7 +44,7 @@ public class PaliWord {
 			if (code == 'm')
 				name = "Masculine";
 			else if (code == 'f')
-				name = "Faminine";
+				name = "Feminine";
 			else if (code == 'n')
 				name = "Neuter";
 			else
@@ -121,7 +121,7 @@ public class PaliWord {
 	public char getLastChar() {
 		return lastChar;
 	}
-	
+
 	/**
 	 * Sets ending and insertion of pronouns and numerals
 	 */
@@ -167,26 +167,26 @@ public class PaliWord {
 			final String p = s.trim();
 			if (p.equals("3") || p.contains("adj.")) {
 				genderSet.add(Gender.MAS);
-				genderSet.add(Gender.FAM);
+				genderSet.add(Gender.FEM);
 				genderSet.add(Gender.NEU);
 			} else if (p.equals("n.")) {
 				if (lastChar == 'ā') {
-					genderSet.add(Gender.FAM);
+					genderSet.add(Gender.FEM);
 				} else if (lastChar == 'a') {
 					genderSet.add(Gender.MAS);
 					genderSet.add(Gender.NEU);
 				} else if (lastChar == 'ī' || lastChar == 'ū') {
 					genderSet.add(Gender.MAS);
-					genderSet.add(Gender.FAM);
+					genderSet.add(Gender.FEM);
 				} else {
 					genderSet.add(Gender.MAS);
-					genderSet.add(Gender.FAM);
+					genderSet.add(Gender.FEM);
 					genderSet.add(Gender.NEU);
 				}
 			} else if (p.contains("m.")) {
 				genderSet.add(Gender.MAS);
 			} else if (p.contains("f.")) {
-				genderSet.add(Gender.FAM);
+				genderSet.add(Gender.FEM);
 			} else if (p.contains("nt.")) {
 				genderSet.add(Gender.NEU);
 			}
@@ -197,7 +197,7 @@ public class PaliWord {
 				gender.add(g);
 				insertion.put(g, "");
 				String end = transformEnding("" + lastChar, g);
-				if (g == Gender.FAM && !isNumber()) {
+				if (g == Gender.FEM && !isNumber()) {
 					if (isAdjective() && (lastChar == 'ī' || lastChar == 'i')) {
 						end = "ī";
 						insertion.put(g, "in");
@@ -220,7 +220,7 @@ public class PaliWord {
 			if (gender == Gender.MAS) {
 				if (lastCh == 'ā' || lastCh == 'o')
 					end = "a";
-			} else if (gender == Gender.FAM) {
+			} else if (gender == Gender.FEM) {
 				if (lastCh == 'a' || lastCh == 'o')
 					end = "ā";
 			} else if (gender == Gender.NEU) {
@@ -265,7 +265,7 @@ public class PaliWord {
 	public void setAllGenders() {
 		gender = new ArrayList<>();
 		gender.add(Gender.MAS);
-		gender.add(Gender.FAM);
+		gender.add(Gender.FEM);
 		gender.add(Gender.NEU);
 	}
 	
@@ -273,18 +273,18 @@ public class PaliWord {
 		gender = new ArrayList<>();
 		if ((numericValue <= 18 && expValue == 0) || isOrdinal) {
 			gender.add(Gender.MAS);
-			gender.add(Gender.FAM);
+			gender.add(Gender.FEM);
 			gender.add(Gender.NEU);
 		} else if (numericValue >= 99 || expValue > 0) {
 			if (lastChar == 'i' || lastChar == 'ī')
-				gender.add(Gender.FAM);
+				gender.add(Gender.FEM);
 			else
 				gender.add(Gender.NEU);
 		} else {
 			if (lastChar == 'ṃ')
 				gender.add(Gender.NEU);
 			else
-			gender.add(Gender.FAM);
+			gender.add(Gender.FEM);
 		}
 	}
 	

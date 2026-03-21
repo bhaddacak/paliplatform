@@ -7,7 +7,7 @@ module paliplatform.sanskrit {
 	requires javafx.controls;
 	requires javafx.web;
 	requires paliplatform.base;
-	opens paliplatform.sanskrit to javafx.web;
+	opens paliplatform.sanskrit to javafx.web, javafx.base;
 	uses paliplatform.base.SimpleService;
 	provides javafx.css.Styleable with
 		paliplatform.sanskrit.SanskritMenu,

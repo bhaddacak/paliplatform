@@ -220,7 +220,7 @@ final public class Utilities {
 		TOCTREE("TocTreeWin"), FINDER("DocumentFinder"), LUCENE("LuceneFinder"),
 		LISTER("TermLister"), DICT("DictWin"), SKTDICT("SktDictWin"), EDITOR("PaliTextEditor"),
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
-		SANDHI_ANALYZER("SandhiAnalyzer"),
+		SANDHI_ANALYZER("SandhiAnalyzer"), SKTDECLENSION("SktDeclensionWin"), 
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
 		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"), VIEWER_SKTGRETIL("SktGretilHtmlViewer");

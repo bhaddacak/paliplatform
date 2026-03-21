@@ -1,7 +1,7 @@
 /*
  * GrammarUtilities.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ import javafx.geometry.*;
 /** 
  * The utility factory for the Grammar module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.1
  * @since 3.0
  */
 final public class GrammarUtilities {
@@ -98,10 +98,10 @@ final public class GrammarUtilities {
 			case DECLENSION:
 				if (stg == null) {
 					Utilities.openNewWindow(new DeclensionWin(args), 
-						new Image(GrammarUtilities.class.getResourceAsStream("resources/images/table-cells.png")), "Declension Table");
+							new Image(GrammarUtilities.class.getResourceAsStream("resources/images/table-cells.png")), "Pāli Declension Table");
 				} else {
 					final DeclensionWin declWin = (DeclensionWin)stg.getScene().getRoot();
-					declWin.init(DeclensionWin.Mode.NOUN, args);					
+					declWin.init(DeclensionWin.Mode.PRONOUN, args);					
 					Utilities.showExistingWindow(stg);
 				}
 				break;

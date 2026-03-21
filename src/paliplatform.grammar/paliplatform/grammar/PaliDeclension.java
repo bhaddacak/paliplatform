@@ -1,7 +1,7 @@
 /*
  * PaliDeclension.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The class handling Pali declensions.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.1
  * @since 1.0
  */
 public class PaliDeclension {
@@ -37,7 +37,7 @@ public class PaliDeclension {
 		ABL("Ablative"), GEN("Genitive"), LOC("Locative"), VOC("Vocative");
 		public static final Case[] values = values();
 		private final String name;
-		Case(final String n) {
+		private Case(final String n) {
 			name = n;
 		}
 		public String getName() {
@@ -48,12 +48,7 @@ public class PaliDeclension {
 		}
 		public String getNumAbbr() {
 			final int num = this.ordinal() + 1;
-			final String strNum;
-			if (num < 8)
-				strNum = "" + num;
-			else
-				strNum = "ā";
-			return strNum;
+			return num < 8 ? "" + num : "ā";
 		}
 		public String getSimpleMeaning() {
 			final String result;
@@ -69,6 +64,8 @@ public class PaliDeclension {
 				result = "of";
 			else if (this == LOC)
 				result = "in/at";
+			else if (this == VOC)
+				result = "O!";
 			else
 				result = "";
 			return result;
@@ -78,7 +75,7 @@ public class PaliDeclension {
 		SING("Singular"), PLU("Plural");
 		public static final Number[] values = values();
 		private final String name;
-		Number(final String n) {
+		private Number(final String n) {
 			name = n;
 		}
 		public String getName() {

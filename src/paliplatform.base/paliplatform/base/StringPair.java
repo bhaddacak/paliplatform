@@ -1,6 +1,6 @@
 /* StringPair.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,12 @@ package paliplatform.base;
 /** 
  * The representation of a pair of string for general uses.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.1
  * @since 3.0
  */
 public class StringPair {
 	private final String[] pair = new String[2];
+	private int hashCode;
 
 	public StringPair(final String first, final String second) {
 		pair[0] = first;
@@ -48,6 +49,22 @@ public class StringPair {
 		return pair[0] + ":" + pair[1];
 	}
 
+	@Override
+	public boolean equals(final Object other) {
+		final StringPair otherPair = (StringPair)other;
+		return pair[0].equals(otherPair.getFirst()) && pair[1].equals(otherPair.getSecond());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = hashCode;
+		if (result == 0) {
+			result = pair[0].hashCode();
+			result = 31 * result + pair[1].hashCode();
+			hashCode = result;
+		}
+		return result;
+	}
 	@Override
 	public String toString() {
 		return pair[0];

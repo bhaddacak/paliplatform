@@ -41,38 +41,29 @@ import javafx.util.Callback;
 import javafx.geometry.*;
 
 /** 
- * The declension table window.
+ * The Pāli declension table window.
  * @author J.R. Bhaddacak
- * @version 3.7
+ * @version 4.1
  * @since 2.0
  */
 public class DeclensionWin extends BorderPane {
 	public static enum Mode {
 		NOUN("Nouns/Adj"), PRONOUN("Pronouns"), NUMBER("Numbers");
+		private static String[] descriptions = { "Pāli nouns and adjectives", "Pāli pronouns", "Pāli numerals" };
 		public static final Mode[] values = values();
 		public String name;
 		private Mode(final String name) {
 			this.name = name;
 		}
 		public String getDescription() {
-			final String desc;
-			if (this == NOUN)
-				desc = "Pāli nouns and adjectives";
-			else if (this == PRONOUN)
-				desc = "Pāli pronouns";
-			else if (this == NUMBER)
-				desc = "Pāli numerals";
-			else
-				desc = "";
-			return desc;
+			return descriptions[this.ordinal()];
 		}
 	};
-	private final SimpleObjectProperty<Toggle> currMode = new SimpleObjectProperty<>();
 	private final ObservableList<String> wordList = FXCollections.<String>observableArrayList();
 	private final ListView<String> wordListView = new ListView<>(wordList);
 	private final ObservableList<DeclensionOutput> outputList = FXCollections.<DeclensionOutput>observableArrayList();
 	private final TableView<DeclensionOutput> table = new TableView<>();	
-	private final Map<Mode, Toggle> toggleMap = new EnumMap<>(Mode.class);
+	private final Map<Mode, Toggle> toggleRadioMap = new EnumMap<>(Mode.class);
 	private final Map<Mode, HBox> toolbarMap = new EnumMap<>(Mode.class);
 	private final BorderPane mainPane = new BorderPane();
 	private final SplitPane splitPane = new SplitPane();
@@ -105,7 +96,7 @@ public class DeclensionWin extends BorderPane {
 		// add main content
 		// prepare toolbar for nouns/adj
 		nounTextField = (TextField)nounTextInput.getInput();
-		nounTextField.setPromptText("Enter some word...");
+		nounTextField.setPromptText("Filter by...");
 		nounTextField.textProperty().addListener((obs, oldValue, newValue) -> {
 			final String strQuery = Normalizer.normalize(newValue.trim(), Form.NFC);
 			if (!strQuery.isEmpty())
@@ -214,23 +205,16 @@ public class DeclensionWin extends BorderPane {
 		// add new buttons
 		commonToolbar.getItems().add(new Separator());
 		for (final Mode m : Mode.values) {
-			final RadioButton tb = new RadioButton(m.name);
-			tb.setTooltip(new Tooltip(m.getDescription()));
-			tb.setToggleGroup(toggleModeGroup);
-			tb.setUserData(m);
-			toggleMap.put(m, tb);
-			commonToolbar.getItems().add(tb);
+			final RadioButton radio = new RadioButton(m.name);
+			radio.setTooltip(new Tooltip(m.getDescription()));
+			radio.setToggleGroup(toggleModeGroup);
+			radio.setUserData(m);
+			toggleRadioMap.put(m, radio);
+			commonToolbar.getItems().add(radio);
 		}
-		currMode.bind(toggleModeGroup.selectedToggleProperty());
         toggleModeGroup.selectedToggleProperty().addListener((observable) -> {
-			final Mode mode = (Mode)currMode.get().getUserData();
+			final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
 			init(mode, null);
-			if (mode == Mode.PRONOUN) {
-				showPronounList();
-			} else if (mode == Mode.NUMBER) {
-				showNumberList();
-			}
-			wordListView.scrollTo(0);
         });
 		final Button wordFreqListButton = new Button("", new TextIcon("list", TextIcon.IconSet.AWESOME));
 		wordFreqListButton.setTooltip(new Tooltip("Word frequency list on/off"));
@@ -240,6 +224,7 @@ public class DeclensionWin extends BorderPane {
 		commonToolbar.getItems().addAll(new Separator(), wordFreqListButton, helpButton);	
 		setTop(commonToolbar);
 		
+		mainPane.setLeft(wordListView);
 		splitPane.getItems().add(mainPane);
 		setCenter(splitPane);
 		
@@ -263,7 +248,6 @@ public class DeclensionWin extends BorderPane {
 					this.setText(null);
 					this.setGraphic(null);
 					if (!empty) {
-						this.setText(null);
 						Text text = new Text(item);
 						text.getStyleClass().add("shape");                      
 						text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(5));
@@ -288,7 +272,7 @@ public class DeclensionWin extends BorderPane {
 		toolbarMap.put(Mode.NUMBER, numbToolBox);
 		genderToolBox.setPadding(new Insets(3, 3, 3, 3));
 		genderToolBox.setSpacing(3);
-		init(Mode.NOUN, args);
+		init(Mode.PRONOUN, args);
 	}
 	
 	public final void init(final Mode mode, final Object[] args) {
@@ -302,10 +286,12 @@ public class DeclensionWin extends BorderPane {
 		showNumValueButton.setSelected(false);
 		cardinalButton.setSelected(true);
 		currNumberMap = GrammarUtilities.paliNumerals;
-		toggleModeGroup.selectToggle(toggleMap.get(mode));
+		final RadioButton modeRadio = (RadioButton)toggleRadioMap.get(mode);
+		toggleModeGroup.selectToggle(modeRadio);
+		modeRadio.requestFocus();
+		wordListView.getSelectionModel().clearSelection();
 		updateToolBar(mode);
 		table.setItems(null);
-		mainPane.setLeft(null);
 		mainPane.setCenter(null);
 		if (splitPane.getItems().size() > 1)
 			splitPane.getItems().remove(wordFreqPane);
@@ -315,6 +301,15 @@ public class DeclensionWin extends BorderPane {
 			final String starterTerm = (String)args[0];
 			if (!starterTerm.isEmpty())
 				nounTextField.setText(starterTerm);
+		} else {
+			if (mode == Mode.PRONOUN) {
+				showPronounList();
+			} else if (mode == Mode.NUMBER) {
+				showNumberList();
+			} else {
+				showNounList();
+			}
+			wordListView.scrollTo(0);
 		}
 		Platform.runLater(() -> updateListerTableChoice());
 	}
@@ -362,20 +357,25 @@ public class DeclensionWin extends BorderPane {
 		}
 	}
 
+	private void showNounList() {
+		showNounList("");
+	}
+
 	private void showNounList(final String word) {
 		wordList.clear();
 		// if the last character is a word ending, enable submit
-		computeButton.setDisable(Utilities.PALI_NOUN_ENDINGS.indexOf(word.charAt(word.length()-1)) < 0
-								&& !word.endsWith("ant") && !word.endsWith("ar"));
+		final boolean endCondition = word.isEmpty()
+										? true
+										: Utilities.PALI_NOUN_ENDINGS.indexOf(word.charAt(word.length()-1)) < 0;
+		computeButton.setDisable(endCondition && !word.endsWith("ant") && !word.endsWith("ar"));
 		// reading from db directly is slow, so use prebuilt list instead
 		final Set<String> results = GrammarUtilities.declinables.stream().filter(x -> x.startsWith(word)).collect(Collectors.toSet());
 		if (!results.isEmpty()) {
 			final List<String> resList = results.stream().filter(x->!x.endsWith("ṃ")).collect(Collectors.toList());
 			resList.sort(Utilities.paliComparator);
 			wordList.setAll(resList);
-			showFirstResult();
 		}
-		mainPane.setLeft(wordListView);
+		showFirstResult();
 	}
 	
 	private void showPronounList() {
@@ -389,7 +389,6 @@ public class DeclensionWin extends BorderPane {
 		} else {
 			wordList.setAll(GrammarUtilities.paliPronouns.keySet());
 		}
-		mainPane.setLeft(wordListView);
 		showFirstResult();
 	}	
 	
@@ -410,7 +409,6 @@ public class DeclensionWin extends BorderPane {
 		} else {
 			wordList.setAll(currNumberMap.keySet());
 		}
-		mainPane.setLeft(wordListView);
 		showFirstResult();
 	}
 
@@ -439,20 +437,20 @@ public class DeclensionWin extends BorderPane {
 
 	private void showResult(final String item) {
 		String term = item;
-		final Mode mode = (Mode)currMode.get().getUserData();
+		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
 		if ((mode == Mode.PRONOUN && cbShowMeaning.isSelected()) || 
 			(mode == Mode.NUMBER && showNumValueButton.isSelected())) {
 			term = item.substring(0, item.indexOf(" ("));
 		}		
-		if (currMode.get().equals(toggleMap.get(Mode.NOUN))) {
+		if (mode == Mode.NOUN) {
 			// noun/adj declension
 			if (DictUtilities.dictAvailMap.get(DictUtilities.DictBook.CPED).get()) {
 				showDeclensionTable(DictUtilities.lookUpCPEDFromDB(term), 0);
 			}
-		} else if (currMode.get().equals(toggleMap.get(Mode.PRONOUN))) {
+		} else if (mode == Mode.PRONOUN) {
 			// pronoun declension
 			showDeclensionTable(GrammarUtilities.paliPronouns.get(term), 0);
-		} else if (currMode.get().equals(toggleMap.get(Mode.NUMBER))) {
+		} else if (mode == Mode.NUMBER) {
 			// numeral declension
 			showDeclensionTable(currNumberMap.get(term), 0);
 		}
@@ -530,12 +528,12 @@ public class DeclensionWin extends BorderPane {
 		updateGenderToolBox(pword, genderIndex);
 		outputList.clear();
 		allWords.clear();
-		final Map<PaliDeclension.Case, Map<PaliDeclension.Number, List<String>>> termMap = GrammarUtilities.computeDeclension(pword, genderIndex);
+		final Map<PaliDeclension.Case, Map<PaliDeclension.Number, List<String>>> caseMap = GrammarUtilities.computeDeclension(pword, genderIndex);
 		for (PaliDeclension.Case cas : PaliDeclension.Case.values) {
-			final Map<PaliDeclension.Number, List<String>> dmap = termMap.get(cas);
-			final DeclensionOutput dout = new DeclensionOutput(cas, dmap);
+			final Map<PaliDeclension.Number, List<String>> numMap = caseMap.get(cas);
+			final DeclensionOutput dout = new DeclensionOutput(cas, numMap);
 			outputList.add(dout);
-			dmap.values().forEach(lst -> allWords.addAll(lst));
+			numMap.values().forEach(lst -> allWords.addAll(lst));
 		}
 		if (!outputList.isEmpty()) {
 			setupTable();
@@ -660,6 +658,6 @@ public class DeclensionWin extends BorderPane {
 				pluralOutput = new SimpleStringProperty(this, "pluralOutput");
 			return pluralOutput;
 		}
-	} // end inner class
+	}
 	
 }

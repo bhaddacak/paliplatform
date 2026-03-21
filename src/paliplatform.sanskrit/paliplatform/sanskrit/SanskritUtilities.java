@@ -52,6 +52,12 @@ final public class SanskritUtilities {
 	public static final String DICTPATH = Utilities.DATAPATH + "dict" + File.separator;
 	public static final String TEXTPATH = Utilities.DATAPATH + "text" + File.separator + "skt" + File.separator;
 	private static final String TXTDIR = "resources/text/";
+	private static final String SKT_NOUN_LIST = TXTDIR + "sktnouns.csv";
+	private static final String SKT_ADJ_LIST = TXTDIR + "sktadjectives.csv";
+	private static final String SKT_NUM_LIST = TXTDIR + "sktnumerals.csv";
+	public static final List<String> sktNouns = new ArrayList<>();
+	public static final List<SktNominal.Adjective> sktAdjectives = new ArrayList<>();
+	public static final List<SktNominal.Numeral> sktNumerals = new ArrayList<>();
 	public static final SimpleBooleanProperty sktDictDBAvailable = new SimpleBooleanProperty(false);
 	public static final Map<SktDictBook, SimpleBooleanProperty> sktDictAvailMap = new EnumMap<>(SktDictBook.class);
 	public static final SimpleBooleanProperty someSktDictDataAvailable = new SimpleBooleanProperty(false);
@@ -148,6 +154,16 @@ final public class SanskritUtilities {
 				} else {
 					final SandhiAnalyzer sandhiAnalyzer = (SandhiAnalyzer)stg.getScene().getRoot();
 					sandhiAnalyzer.init(args);
+					Utilities.showExistingWindow(stg);
+				}
+				break;
+			case SKTDECLENSION:
+				if (stg == null) {
+					Utilities.openNewWindow(new SktDeclensionWin(args), 
+						new Image(SanskritUtilities.class.getResourceAsStream("resources/images/table-cells.png")), "Sanskrit Declension Table");
+				} else {
+					final SktDeclensionWin declensionWin = (SktDeclensionWin)stg.getScene().getRoot();
+					declensionWin.init(SktDeclensionWin.Mode.NOUN, args);
 					Utilities.showExistingWindow(stg);
 				}
 				break;
@@ -347,6 +363,85 @@ final public class SanskritUtilities {
 			System.err.println(e);
 		}
 		return entryList;	
+	}
+
+	public static void loadNounList() {
+		if (!sktNouns.isEmpty())
+			return;
+		try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_NOUN_LIST), StandardCharsets.UTF_8)) {
+			while (in.hasNextLine()) {
+				final String line = in.nextLine().trim();
+				if (line.isEmpty())
+					continue;
+				if (line.charAt(0) == '#')
+					continue;
+				sktNouns.add(line);
+			}
+		}
+	}
+	
+	public static void loadAdjList() {
+		if (!sktAdjectives.isEmpty())
+			return;
+		try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_ADJ_LIST), StandardCharsets.UTF_8)) {
+			while (in.hasNextLine()) {
+				final String line = in.nextLine().trim();
+				if (line.isEmpty())
+					continue;
+				if (line.charAt(0) == '#')
+					continue;
+				sktAdjectives.add(new SktNominal.Adjective(line));
+			}
+		}
+	}
+	
+	public static void loadNumberList() {
+		if (!sktNumerals.isEmpty())
+			return;
+		try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_NUM_LIST), StandardCharsets.UTF_8)) {
+			while (in.hasNextLine()) {
+				final String line = in.nextLine().trim();
+				if (line.isEmpty())
+					continue;
+				if (line.charAt(0) == '#')
+					continue;
+				final String[] parts = line.split(",");
+				if (parts.length >= 3)
+					sktNumerals.add(new SktNominal.Numeral(parts[0], parts[1], parts[2]));
+			}
+		}
+	}
+	
+	public static List<String> toCharList(final String input) {
+		final List<String> result = new ArrayList<>();
+		final char[] charArr = input.toCharArray();
+		boolean skip = false;
+		for (int i = 0; i < charArr.length; i++) {
+			if (skip) {
+				skip = false;
+				continue;
+			}
+			if (Sandhi.sktHasH.indexOf(charArr[i]) > -1) {
+				if (i < charArr.length - 1 && charArr[i + 1] == 'h') {
+					result.add(charArr[i] + "h");
+					skip = true;
+				} else {
+					result.add(charArr[i] + "");
+				}
+			} else {
+				result.add(charArr[i] + "");
+			}
+		}
+		return result;
+	}
+
+	public static String reverseString(final String input) {
+		final List<String> chList = toCharList(input);
+		final List<String> reverse = new ArrayList<>();
+		for (int i = chList.size() - 1; i >= 0 ; i--) {
+			reverse.add(chList.get(i));
+		}
+		return reverse.stream().collect(Collectors.joining());
 	}
 
 }

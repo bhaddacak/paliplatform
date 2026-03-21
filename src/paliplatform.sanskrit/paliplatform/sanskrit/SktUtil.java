@@ -22,6 +22,9 @@ import paliplatform.base.*;
 
 import java.util.*;
 import java.util.stream.*;
+import java.io.*;
+import java.nio.file.*;
+import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.MatcherAssert.assertThat; 
 import static org.hamcrest.Matchers.*;
@@ -30,7 +33,7 @@ import static org.hamcrest.Matchers.*;
  * The CLI tool for Sanskrit module.
  * This consists of static factory methods.
  * The tool can be invoked by this command line from the program's root dir:
- * $ java -p modules -m paliplatform.dpd/paliplatform.dpd.SktUtil
+ * $ java -p modules -m paliplatform.sanskrit/paliplatform.sanskrit.SktUtil
  *
  * @author J.R. Bhaddacak
  * @version 4.1
@@ -46,20 +49,55 @@ final public class SktUtil {
 		if (args.length == 0) {
 			printHelpAndExit();
 		}
+		ScriptTransliterator.initializeTransliterator();
 		String opt = "";
 		final String[] param = { "", "" };
 		switch (args[0]) {
-			case "test":
-				ScriptTransliterator.initializeTransliterator();
+			case "list":
+				opt = args.length > 1 ? args[1] : "";
+				if (opt.equals("-d")) {
+					listDeclensionParadigms();
+				} else {
+					printHelpAndExit();
+				}
+				break;
+			case "show":
 				opt = args.length > 1 ? args[1] : "";
 				param[0] = args.length > 2 ? args[2] : "";
 				param[1] = args.length > 3 ? args[3] : "";
 				if (opt.equals("-s") && !param[0].isEmpty() && !param[1].isEmpty()) {
-					testSandhi(param);
-				} else if (opt.equals("-sa")) {
+					showExternalSandhi(param);
+				} else if (opt.equals("-si") && !param[0].isEmpty() && !param[1].isEmpty()) {
+					showInternalSandhi(param);
+				} else if (opt.equals("-d") && !param[0].isEmpty()) {
+					showDeclension(param);
+				} else {
+					printHelpAndExit();
+				}
+				break;
+			case "save":
+				Utilities.initializeSktDictDB(false);
+				Utilities.initializeComparator();
+				opt = args.length > 1 ? args[1] : "";
+				param[0] = args.length > 2 ? args[2] : "";
+				if (opt.equals("-mw") && !param[0].isEmpty()) {
+					saveMWTerms(param);
+				} else if (opt.equals("-o") && !param[0].isEmpty()) {
+					sortAndSave(param);
+				} else {
+					printHelpAndExit();
+				}
+				break;
+			case "test":
+				opt = args.length > 1 ? args[1] : "";
+				if (opt.equals("-sa")) {
 					testSandhiAuto();
+				} else if (opt.equals("-si")) {
+					testInternalSandhi();
 				} else if (opt.equals("-sf")) {
 					testSandhiFull();
+				} else if (opt.equals("-da")) {
+					testDeclensionAuto();
 				} else {
 					printHelpAndExit();
 				}
@@ -71,7 +109,7 @@ final public class SktUtil {
 
 	private static void printHelpAndExit() {
 		final StringBuilder help = new StringBuilder();
-		help.append(LINESEP).append("Pāli Platform DPD Util CLI").append(LINESEP);
+		help.append(LINESEP).append("Pāli Platform Sanskrit Util CLI").append(LINESEP);
 		help.append("  Usage:").append(LINESEP);
 		help.append("    SktUtil [<command>] <option>").append(LINESEP);
 		help.append("      (The abstract SktUtil can be a launcher script,").append(LINESEP);
@@ -79,10 +117,20 @@ final public class SktUtil {
 		help.append("       found in the program's root directory.").append(LINESEP);
 		help.append("       See also Notes below.)").append(LINESEP);
 		help.append("  Commands:").append(LINESEP);
+		help.append("    list\tList things").append(LINESEP);
+		help.append("        -d\tList all declensional paradigms").append(LINESEP);
+		help.append("    show\tShow things").append(LINESEP);
+		help.append("        -d <paradigm> [<stem>]\tShow declensions of a paradigm [with a stem]").append(LINESEP);
+		help.append("        -s <word1> <word2>\tShow external sandhi of word1 + word2").append(LINESEP);
+		help.append("        -si <stem> <suffix>\tShow internal sandhi of stem + suffix").append(LINESEP);
+		help.append("    save\tSave data").append(LINESEP);
+		help.append("        -mw <condition>\tSave MW terms on the <condition>").append(LINESEP);
+		help.append("        -o <file>\tSort and save <file>").append(LINESEP);
 		help.append("    test\tTest cases").append(LINESEP);
-		help.append("        -s <word1> <word2>\tSandhi test of word1 + word2").append(LINESEP);
-		help.append("        -sa\tAutomatic sandhi test").append(LINESEP);
-		help.append("        -sf\tFull sandhi list").append(LINESEP);
+		help.append("        -sa\tAutomatic external sandhi test").append(LINESEP);
+		help.append("        -si\tAutomatic Internal sandhi test").append(LINESEP);
+		help.append("        -sf\tFull external sandhi list").append(LINESEP);
+		help.append("        -da\tAutomatic declension test").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
@@ -101,10 +149,147 @@ final public class SktUtil {
 		printLog(String.format("Done in %.3f seconds", msec/1000.0));
 	}
 
-	private static void testSandhi(final String[] param) {
+	private static void listDeclensionParadigms() {
+		int count = 0;
+		for (final String pname : SktDeclension.paradigmMap.keySet()) {
+			final NominalParadigm parad = SktDeclension.paradigmMap.get(pname);
+			final int bucknell = parad.getBucknellNumber();
+			final String bucknellStr = bucknell > 0 ? " [" + bucknell + "]": "";
+			final String gendStr = parad.getGenderStr();
+			final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> prod = parad.getSampleProduct();
+			final Map<SktDeclension.Number, List<String>> numMap = prod.get(SktDeclension.Case.NOM);
+			final List<String> decl = new ArrayList<>();
+			for (final SktDeclension.Number n : SktDeclension.Number.values) {
+				final List<String> tlist = numMap.get(n);
+				final String term = tlist.get(0);
+				decl.add(term.isEmpty() ? "-" : term);
+			}
+			final String result = pname + bucknellStr + " " + gendStr + " => " + decl.stream().collect(Collectors.joining(":"));
+			System.out.println(result);
+			count++;
+		}
+		System.out.println(count + " items listed");
+	}
+
+	private static void showExternalSandhi(final String[] param) {
 		final Sandhi sandhi = new Sandhi(param[0], param[1]);
 		System.out.println(param[0] + " + " + param[1] + " = " +
 				sandhi.getProductRoman() + " (" + sandhi.getProductDeva() + ")");
+	}
+
+	private static void showInternalSandhi(final String[] param) {
+		final String result = Sandhi.applyInternalSandhi(param[0], param[1]);
+		final String resultDeva = ScriptTransliterator.translitQuick(result, ScriptTransliterator.EngineType.ROMAN_SKT_DEVA, false);
+		System.out.println(param[0] + " + " + param[1] + " = " + result + " (" + resultDeva + ")");
+	}
+
+	private static void showDeclension(final String[] args) {
+		final String pname = args[0];
+		final String stem = args.length > 1 ? args[1] : "";
+		final String exactName = SktDeclension.paradigmMap.keySet().stream()
+									.filter(x -> x.startsWith(pname))
+									.findFirst()
+									.orElse(null);
+		if (exactName == null) {
+			System.out.println("No paradigm like '" + pname + "*' found");
+			System.exit(0);
+		}
+		final NominalParadigm parad = SktDeclension.paradigmMap.get(exactName);
+		final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> product;
+		if (stem.isEmpty()) {
+			product = parad.getSampleProduct();
+			System.out.println(drawDeclensionTable(parad, product));
+			System.out.println(drawDeclensionTableDeva(parad, product));
+		} else {
+			final SktNominal term = new SktNominal(stem, parad);
+			product = SktDeclension.compute(term);
+			System.out.println(drawDeclensionTable(parad, product));
+			System.out.println(drawDeclensionTableDeva(parad, product));
+		}
+	}
+
+	private static String drawDeclensionTable(final NominalParadigm parad, final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> product) {
+		final StringBuilder result = new StringBuilder();
+		final int colWidth = 18;
+		result.append("Paradigm name: " + parad.getName()).append(LINESEP);
+		final List<NominalParadigm.Gender> glist = parad.getGenderList();
+		final String gendStr = glist == null || glist.isEmpty() ? ""
+								: glist.stream().map(x -> x.getShortName()).collect(Collectors.joining("/"));
+		result.append("Gender: " + gendStr).append(LINESEP);
+		result.append(String.format("     %-" + colWidth + "s%-" + colWidth + "s%-" + colWidth + "s", 
+					SktDeclension.Number.SING.getName().toUpperCase(),
+					SktDeclension.Number.DUAL.getName().toUpperCase(),
+					SktDeclension.Number.PLU.getName().toUpperCase()));
+		result.append(LINESEP);
+		for (final SktDeclension.Case cas : SktDeclension.Case.values) {
+			result.append(cas + "  ");
+			final Map<SktDeclension.Number, List<String>> numList = product.get(cas);
+			for (final SktDeclension.Number num : SktDeclension.Number.values) {
+				result.append(String.format("%-" + colWidth + "s",
+						numList.get(num).stream().collect(Collectors.joining(", "))));
+			}
+			result.append(LINESEP);
+		}
+		return result.toString();
+	}
+
+	private static String drawDeclensionTableDeva(final NominalParadigm parad, final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> product) {
+		final StringBuilder result = new StringBuilder();
+		result.append("\t" + SktDeclension.Number.SING.getDevaName() + "\t"
+							+ SktDeclension.Number.DUAL.getDevaName() + "\t"
+							+ SktDeclension.Number.PLU.getDevaName());
+		result.append(LINESEP);
+		for (final SktDeclension.Case cas : SktDeclension.Case.values) {
+			result.append(cas.getDevaName());
+			final Map<SktDeclension.Number, List<String>> numList = product.get(cas);
+			for (final SktDeclension.Number num : SktDeclension.Number.values) {
+				result.append("\t");
+				result.append(numList.get(num).stream()
+						.map(x -> ScriptTransliterator.translitQuick(x, ScriptTransliterator.EngineType.ROMAN_SKT_DEVA, false))
+						.collect(Collectors.joining(", ")));
+			}
+			result.append(LINESEP);
+		}
+		return result.toString();
+	}
+
+	private static void saveMWTerms(final String[] args) throws IOException {
+		final long startTime = System.currentTimeMillis();
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
+		printLog("Retrieving data...");
+		final String condition = args[0];
+		final String dbQuery = "SELECT KEY1 FROM MW WHERE MEANING LIKE '%" + condition + "%';";
+		final Set<String> results = Utilities.getFirstColumnFromDB(Utilities.H2DB.SKTDICT, dbQuery);
+		if (!results.isEmpty()) {
+			final String sortedResult = results.stream().sorted(Utilities.sktComparator).collect(Collectors.joining(LINESEP));
+			final String condStr = condition.replaceAll("<.*?>", "").replaceAll("[(<>.?/\\|]+", "");
+			final File outfile = new File(Utilities.OUTPUTPATH + "mw-" + condStr + ".txt");
+			printLog("Writing out " + outfile.getPath());
+			Utilities.saveText(sortedResult, outfile);
+			final long endTime = System.currentTimeMillis();
+			printTime(endTime - startTime);
+		}
+	}
+
+	private static void sortAndSave(final String[] args) throws Exception {
+		Utilities.initializeComparator();
+		final File input = new File(args[0]);
+		final List<String> lineList = new ArrayList<>();
+		try (final Scanner in = new Scanner(new FileInputStream(input), StandardCharsets.UTF_8)) {
+			while (in.hasNextLine()) {
+				final String line = in.nextLine().trim();
+				if (line.isEmpty())
+					continue;
+				lineList.add(line);
+			}
+		}
+		printLog("Sorting " + args[0]);
+		Collections.sort(lineList, Utilities.sktComparator);
+		final File outfile = new File(Utilities.OUTPUTPATH + "sorted_" + args[0]);
+		printLog("Writing out " + outfile.getPath());
+		Utilities.saveText(lineList.stream().collect(Collectors.joining(LINESEP)), outfile);
 	}
 
 	private static void testSandhiAuto() {
@@ -202,7 +387,7 @@ final public class SktUtil {
 			final List<String> product = c.getProductList();
 			assertThat(expected.size(), equalTo(product.size()));
 			for (int i = 0; i < expected.size(); i++) {
-				assertThat(expected.get(i), equalTo(product.get(i)));
+				assertThat(product.get(i), equalTo(expected.get(i)));
 			}
 		}
 	}
@@ -235,6 +420,65 @@ final public class SktUtil {
 		}
 	}
 
+	private static void testInternalSandhi() {
+		// general case
+		assertThat(Sandhi.applyInternalSandhi("vār", ""), equalTo("vār"));
+		assertThat(Sandhi.applyInternalSandhi("", "ime"), equalTo("ime"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "ime"), equalTo("vārime"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "iṇa"), equalTo("vāriṇa"));
+		assertThat(Sandhi.applyInternalSandhi("phal", "eṣu"), equalTo("phaleṣu"));
+		// n rules
+		assertThat(Sandhi.applyInternalSandhi("vār", "in"), equalTo("vārin"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "ina"), equalTo("vāriṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inā"), equalTo("vāriṇā"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "ini"), equalTo("vāriṇi"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inī"), equalTo("vāriṇī"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inu"), equalTo("vāriṇu"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inū"), equalTo("vāriṇū"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inṛ"), equalTo("vāriṇṛ"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inṝ"), equalTo("vāriṇṝ"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "ine"), equalTo("vāriṇe"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "ino"), equalTo("vāriṇo"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inna"), equalTo("vāriṇna"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inma"), equalTo("vāriṇma"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inya"), equalTo("vāriṇya"));
+		assertThat(Sandhi.applyInternalSandhi("vār", "inva"), equalTo("vāriṇva"));
+		assertThat(Sandhi.applyInternalSandhi("vāp", "ina"), equalTo("vāpina"));
+		assertThat(Sandhi.applyInternalSandhi("ṣāp", "ina"), equalTo("ṣāpiṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vārap", "ina"), equalTo("vārapiṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vākṛp", "ina"), equalTo("vākṛpiṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vākṝp", "ina"), equalTo("vākṝpiṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vāṣap", "ina"), equalTo("vāṣapiṇa"));
+		assertThat(Sandhi.applyInternalSandhi("vāral", "ina"), equalTo("vāralina"));
+		assertThat(Sandhi.applyInternalSandhi("vārac", "ina"), equalTo("vāracina"));
+		assertThat(Sandhi.applyInternalSandhi("sarv", "ena"), equalTo("sarveṇa"));
+		assertThat(Sandhi.applyInternalSandhi("sarv", "āni"), equalTo("sarvāṇi"));
+		// s rules
+		assertThat(Sandhi.applyInternalSandhi("phal", "esu"), equalTo("phaleṣu"));
+		assertThat(Sandhi.applyInternalSandhi("phal", "esru"), equalTo("phalesru"));
+		assertThat(Sandhi.applyInternalSandhi("phal", "esṛ"), equalTo("phalesṛ"));
+		assertThat(Sandhi.applyInternalSandhi("phal", "esṝ"), equalTo("phalesṝ"));
+		assertThat(Sandhi.applyInternalSandhi("phak", "su"), equalTo("phakṣu"));
+		assertThat(Sandhi.applyInternalSandhi("phaṃ", "su"), equalTo("phaṃsu"));
+		assertThat(Sandhi.applyInternalSandhi("phaḥ", "su"), equalTo("phaḥsu"));
+		assertThat(Sandhi.applyInternalSandhi("phiṃ", "su"), equalTo("phiṃṣu"));
+		assertThat(Sandhi.applyInternalSandhi("phiḥ", "su"), equalTo("phiḥṣu"));
+	}
+
+	private static void testDeclensionAuto() {
+		final NominalParadigm parad = SktDeclension.paradigmMap.get("devaḥ");
+		final SktNominal devah = new SktNominal("dev", parad);
+		final DeclensionTestCase testCase = new DeclensionTestCase(SktDeclension.compute(devah));
+		assertThat(testCase.getCase(SktDeclension.Case.NOM), arrayContaining("devaḥ", "devau", "devāḥ"));
+		assertThat(testCase.getCase(SktDeclension.Case.ACC), arrayContaining("devam", "devau", "devān"));
+		assertThat(testCase.getCase(SktDeclension.Case.INS), arrayContaining("devena", "devābhyām", "devaiḥ"));
+		assertThat(testCase.getCase(SktDeclension.Case.DAT), arrayContaining("devāya", "devābhyām", "devebhyaḥ"));
+		assertThat(testCase.getCase(SktDeclension.Case.ABL), arrayContaining("devāt", "devābhyām", "devebhyaḥ"));
+		assertThat(testCase.getCase(SktDeclension.Case.GEN), arrayContaining("devasya", "devayoḥ", "devānām"));
+		assertThat(testCase.getCase(SktDeclension.Case.LOC), arrayContaining("deve", "devayoḥ", "deveṣu"));
+		assertThat(testCase.getCase(SktDeclension.Case.VOC), arrayContaining("deva", "devau", "devāḥ"));
+	}
+
 	// inner classes
 	static class SandhiTestCase {
 		private String first;
@@ -253,6 +497,21 @@ final public class SktUtil {
 			return res.getProductList();
 		}
 
+	}
+
+	static class DeclensionTestCase {
+		private final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> product;
+		public DeclensionTestCase(final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> prod) {
+			product = prod;
+		}
+		public String[] getCase(final SktDeclension.Case cas) {
+			final String[] result = new String[3];
+			final Map<SktDeclension.Number, List<String>> numMap = product.get(cas);
+			result[0] = numMap.get(SktDeclension.Number.SING).get(0);
+			result[1] = numMap.get(SktDeclension.Number.DUAL).get(0);
+			result[2] = numMap.get(SktDeclension.Number.PLU).get(0);
+			return result;
+		}
 	}
 
 }

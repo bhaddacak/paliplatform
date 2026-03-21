@@ -154,6 +154,7 @@ import java.util.HashMap;
 		 put("file-arrow-up", '\uF574');
 		 put("grip", '\uF58D');
 		 put("pen-fancy", '\uF5AC');
+		 put("stamp", '\uF5BF');
 		 put("book-open-reader", '\uF5DA');
 		 put("person-running", '\uF70C');
 		 put("hammer", '\uF6E3');

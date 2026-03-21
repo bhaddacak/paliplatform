@@ -29,8 +29,6 @@ import javafx.scene.layout.*;
 import javafx.scene.input.*;
 import javafx.scene.text.*;
 import javafx.scene.Node;
-import javafx.stage.Popup;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.*;

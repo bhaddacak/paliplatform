@@ -25,6 +25,7 @@ import java.util.stream.*;
 
 /**
  * The representation of a unit of two joined words.
+ * Also some static sandhi utilities.
  * @author J.R. Bhaddacak
  * @version 4.1
  * @since 4.1
@@ -42,6 +43,8 @@ class Sandhi {
 		"iḥ", "īḥ", "uḥ", "ūḥ", "eḥ", "oḥ", "ēḥ", "ōḥ",
 		"a", "ā", "i", "ī", "u", "ū", "ṛ", "e", "ē", "o", "ō"
 	};
+	private static final Set<String> prohibitedNSet = new HashSet<>();
+	private static final String prohibitedS = "rṛṝ";
 	public static List<String> availBeginnings = new ArrayList<>();
 	private static Map<String, SandhiRule> sandhiRuleMap = new HashMap<>();
 	private static Map<String, Set<String>> startDoubleRuleMap = new HashMap<>();
@@ -300,14 +303,95 @@ class Sandhi {
 		return result;
 	}
 
+	public static String applyInternalSandhi(final String firstPart, final String secondPart) {
+		String result = firstPart + secondPart;
+		if (firstPart.isEmpty() || secondPart.isEmpty())
+			return result;
+		final int nPos = secondPart.indexOf("n");
+		final int sPos = secondPart.indexOf("s");
+		if (nPos > -1) {
+			result = applyInternalSandhiN(firstPart, secondPart);
+		} else if (sPos > -1) {
+			result = applyInternalSandhiS(firstPart, secondPart);
+		}
+		return result;
+	}
+
+	public static String applyInternalSandhiN(final String firstPart, final String secondPart) {
+		// rules concerning n -> ṇ
+		String result = firstPart + secondPart;
+		final int nPos = secondPart.indexOf("n");
+		// no n found OR n at the end, return concatenation
+		if (nPos < 0 || nPos == secondPart.length() - 1)
+			return result;
+		final char nextToN = secondPart.charAt(nPos + 1);
+		// n not followed by a vowel, return concatenation
+		// n not followed by n, m, y, v, return concatenation
+		if (sktVowels.indexOf(nextToN) < 0 && "nmyv".indexOf(nextToN) < 0)
+			return result;
+		final String beforeN = secondPart.substring(0, nPos);
+		final String afterN = secondPart.substring(nPos + 1);
+		final List<String> charList = SanskritUtilities.toCharList(firstPart);
+		charList.addAll(SanskritUtilities.toCharList(beforeN));
+		// check necessary preceding sounds
+		int validIndex = -1;
+		for (int i = charList.size() - 1; i >= 0; i--) {
+			if ("rṛṝṣ".indexOf(charList.get(i)) > -1) {
+				validIndex = i;
+				break;
+			}
+		}
+		// check prohibited intervening sounds
+		int prohibitedIndex = -1;
+		for (int i = charList.size() - 1; i >= 0; i--) {
+			if (prohibitedNSet.contains(charList.get(i))) {
+				prohibitedIndex = i;
+				break;
+			}
+		}
+		// if prohibited sounds precede necessay sounds, return concatenation
+		if (validIndex > -1 && (prohibitedIndex == -1 || validIndex > prohibitedIndex)) {
+			result = charList.stream().collect(Collectors.joining());
+			result = result + "ṇ" + afterN;
+		}
+		return result;
+	}
+
+	public static String applyInternalSandhiS(final String firstPart, final String secondPart) {
+		// rules concerning s -> ṣ
+		String result = firstPart + secondPart;
+		final int sPos = secondPart.indexOf("s");
+		// no s found OR s at the end, return concatenation
+		if (sPos < 0 || sPos == secondPart.length() - 1)
+			return result;
+		final char nextToS = secondPart.charAt(sPos + 1);
+		// s is followed by r, ṛ, ṝ, return concatenation
+		if (prohibitedS.indexOf(nextToS) > -1)
+			return result;
+		final String beforeS = firstPart + secondPart.substring(0, sPos);
+		final String afterS = secondPart.substring(sPos + 1);
+		final int len = beforeS.length();
+		final int indexToSee = "ṃḥ".indexOf(beforeS.charAt(len - 1)) > -1
+								? len - 2
+								: len - 1;
+		if (indexToSee < 0)
+			return result;
+		final char charToSee = beforeS.charAt(indexToSee);
+		if ("kriīuūṛṝeo".indexOf(charToSee) > -1)
+			result = beforeS + "ṣ" + afterS;
+		return result;
+	}
+
 	static {
+		prohibitedNSet.addAll(Arrays.asList("c", "ch", "j", "jh", "ñ", "ś", "ṭ", "ṭh", "ḍ", "ḍh", "ṇ",
+											"t", "th", "d", "dh", "n", "l", "s"));
 		for (final String start : new String[] { EMPTY, "k", "kh", "p", "ph", "ṣ", "s", "ś" }) {
 			if (!start.equals(EMPTY))
 				availBeginnings.add(start);
 			final SandhiRule rule = new SandhiRule(start);
 			for (final String end : availEndings) {
 				final List<String> prodList = new ArrayList<>();
-				final String endChanged = end.equals("t") ? "c"
+				final String endChanged = end.equals("t") && start.equals("ś") ? "c"
 										: end.equals("m") ? "ṃ"
 										: end.equals("n") && start.equals("ś") ? "ñ"
 										: end;

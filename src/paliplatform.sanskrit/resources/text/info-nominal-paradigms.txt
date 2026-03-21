@@ -1,0 +1,9 @@
+Guide to Sanskrit Nominal Paradigms
+	1. The paradigms listed here mainly follow Bucknell's Sanskrit Manual. The names therefore correspond to the book mostly. Several distinct paradigms are added for clarity.
+	2. Some marked differences can be seen in the marut-vaṇik-like paradigms (mas/fem) which are extended to separate cases. These are treated as the same group under the marut type. The jagat-asṛk-like (neu) can also be seen likewise. Read closely in the Manual, pp. 20-21, to see why you see the names as such.
+	3. Note that dvāḥ has its own paradigm, which is slightly different from the marut-ḥ-r.
+	4. The numbers given in '#' column correspond to those given by Bucknell. Only nouns have these numbers.
+	5. The demonstratives are subsumed under the pronoun type.
+	6. When a paradigm is selected, its full declension table will be shown.
+	7. The list on the right shows all products sorted by their ending. This can be helpful when you look for a particular ending. When an item is selected, the paradigms will be located.
+	8. To see the application of a paradigm to words, open Declension Table Window by the context menu (right-click).
