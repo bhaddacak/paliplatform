@@ -1,5 +1,5 @@
 /*
- * NominalParadigmWin.java
+ * VerbalParadigmWin.java
  *
  * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
@@ -20,8 +20,10 @@
 package paliplatform.sanskrit;
 
 import paliplatform.base.*;
-import static paliplatform.sanskrit.SktDeclension.Case;
-import static paliplatform.sanskrit.SktDeclension.Number;
+import static paliplatform.sanskrit.SktConjugation.Person;
+import static paliplatform.sanskrit.SktConjugation.Number;
+import static paliplatform.sanskrit.SktConjugation.Pada;
+import static paliplatform.sanskrit.SktConjugation.TenseMood;
 
 import java.util.*;
 import java.util.stream.*;
@@ -44,66 +46,66 @@ import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 
 /** 
- * The window showing Sanskrit nominal paradigms.
+ * The window showing Sanskrit verbal paradigms.
  * This is a singleton.
  * @author J.R. Bhaddacak
  * @version 4.1
  * @since 4.1
  */
-public final class NominalParadigmWin extends SingletonWindow {
-	public static final NominalParadigmWin INSTANCE = new NominalParadigmWin();
+public final class VerbalParadigmWin extends SingletonWindow {
+	public static final VerbalParadigmWin INSTANCE = new VerbalParadigmWin();
 	private final SplitPane splitPane = new SplitPane();
 	private final BorderPane mainPane = new BorderPane();
-	private final GridPane declensionGrid = new GridPane();
-	private final ChoiceBox<String> genderChoice = new ChoiceBox<>();
-	private final ChoiceBox<String> wordTypeChoice = new ChoiceBox<>();
+	private final GridPane conjugationGrid = new GridPane();
+	private final ChoiceBox<String> tenseMoodChoice = new ChoiceBox<>();
+	private final ChoiceBox<String> padaChoice = new ChoiceBox<>();
 	private final TableView<ParadigmOutput> table = new TableView<>();	
 	private final ObservableList<ParadigmOutput> outputList = FXCollections.<ParadigmOutput>observableArrayList();
-	private final ObservableList<ProductOutput> productList = FXCollections.<ProductOutput>observableArrayList();
-	private final Map<StringPair, Set<String>> productParadigmMap = new HashMap<>();
-	private final ListView<ProductOutput> productListView = new ListView<>(productList);
+	private final ObservableList<String> productList = FXCollections.<String>observableArrayList();
+	private final Map<String, Set<String>> productParadigmMap = new HashMap<>();
+	private final ListView<String> productListView = new ListView<>(productList);
 	private final List<ParadigmOutput> paradigmList = new ArrayList<>();
-	private final MenuItem openMenuItem = new MenuItem("Open Declension Table");
 	private final TextField searchTextField;
 	private final InfoPopup infoPopup = new InfoPopup();
 	private double divPosition = Double.MAX_VALUE;
 
-	private NominalParadigmWin() {
+	private VerbalParadigmWin() {
 		windowWidth = Utilities.getRelativeSize(68);
 		windowHeight = Utilities.getRelativeSize(46);
-		setTitle("Sanskrit Nominal Paradigms");
-		getIcons().add(new Image(NominalParadigmWin.class.getResourceAsStream("resources/images/stamp.png")));
+		setTitle("Sanskrit Verbal Paradigms");
+		getIcons().add(new Image(VerbalParadigmWin.class.getResourceAsStream("resources/images/stamp.png")));
 		// add common toolbar on the top
-		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(table, declensionGrid);
+		final CommonWorkingToolBar toolBar = new CommonWorkingToolBar(table, conjugationGrid);
 		// configure some buttons first
 		toolBar.saveTextButton.setTooltip(new Tooltip("Save data as CSV"));
 		toolBar.saveTextButton.setOnAction(actionEvent -> saveCSV());		
 		toolBar.copyButton.setTooltip(new Tooltip("Copy CSV to clipboard"));
 		toolBar.copyButton.setOnAction(actionEvent -> copyCSV());	
 		// add new toolbar components
-		genderChoice.setTooltip(new Tooltip("Gender selector"));
-		genderChoice.getItems().add("ALL");
-		for (final NominalParadigm.Gender gend : NominalParadigm.Gender.values) {
-			genderChoice.getItems().add(gend.getName());
+		tenseMoodChoice.setTooltip(new Tooltip("Tense/Mood selector"));
+		tenseMoodChoice.getItems().add("ALL");
+		for (final TenseMood tense : TenseMood.values) {
+			if (tense.ordinal() > 7) break; // not future and conditional
+			tenseMoodChoice.getItems().add(tense.getFullName());
 		}
-		genderChoice.getSelectionModel().select(0);
-		genderChoice.setOnAction(actionEvent -> updateOutput());
-		wordTypeChoice.setTooltip(new Tooltip("Word type selector"));
-		wordTypeChoice.getItems().add("ALL");
-		for (final NominalParadigm.WordType type : NominalParadigm.WordType.values) {
-			wordTypeChoice.getItems().add(type.getShortName());
+		tenseMoodChoice.getSelectionModel().select(0);
+		tenseMoodChoice.setOnAction(actionEvent -> updateOutput());
+		padaChoice.setTooltip(new Tooltip("Pada selector"));
+		padaChoice.getItems().add("ALL");
+		for (final Pada pada : Pada.values) {
+			padaChoice.getItems().add(pada.getSktName());
 		}
-		wordTypeChoice.getSelectionModel().select(0);
-		wordTypeChoice.setOnAction(actionEvent -> updateOutput());
+		padaChoice.getSelectionModel().select(0);
+		padaChoice.setOnAction(actionEvent -> updateOutput());
 		// add help button
 		final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
-		toolBar.getItems().addAll(new Separator(), genderChoice, wordTypeChoice, new Separator(), helpButton);
+		toolBar.getItems().addAll(new Separator(), tenseMoodChoice, padaChoice, new Separator(), helpButton);
 		mainPane.setTop(toolBar);
 
 		// generate all paradigm list
-		for (final String pname : SktDeclension.paradigmMap.keySet()) {
-			final NominalParadigm parad = SktDeclension.paradigmMap.get(pname);
+		for (final String pname : SktConjugation.paradigmMap.keySet()) {
+			final VerbalParadigm parad = SktConjugation.paradigmMap.get(pname);
 			paradigmList.add(new ParadigmOutput(parad));
 		}
 
@@ -114,8 +116,7 @@ public final class NominalParadigmWin extends SingletonWindow {
 		searchBox.setSpacing(3);
 		final PaliTextInput searchInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
 		searchTextField = (TextField)searchInput.getInput();
-		searchTextField.setPromptText("Ending filter");
-		searchTextField.setAlignment(Pos.BOTTOM_RIGHT);
+		searchTextField.setPromptText("Filter for...");
 		searchTextField.setPrefWidth(Utilities.getRelativeSize(8));
 		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> updateProduct());
 		searchTextField.setOnKeyPressed(keyEvent -> {
@@ -137,36 +138,35 @@ public final class NominalParadigmWin extends SingletonWindow {
 		searchInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
 		searchBox.getChildren().addAll(searchTextField, searchInput.getMethodButton());
 		productListView.setPrefWidth(Utilities.getRelativeSize(10));
-		productListView.setCellFactory((ListView<ProductOutput> lv) -> {
-			return new ListCell<ProductOutput>() {
+		productListView.setCellFactory((ListView<String> lv) -> {
+			return new ListCell<String>() {
 				@Override
-				public void updateItem(ProductOutput item, boolean empty) {
+				public void updateItem(String item, boolean empty) {
 					super.updateItem(item, empty);
 					this.setGraphic(null);
 					if (empty) {
 						this.setText(null);
 						this.setTooltip(null);
 					} else {
-						final ProductOutput value = this.getItem();
+						final String value = this.getItem();
 						this.setText(value.toString());
 					}
-					this.setAlignment(Pos.CENTER_RIGHT);
 				}
 			};
 		});
 		productListView.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
-			final ProductOutput selItem = newValue;
+			final String selItem = newValue;
 			if (selItem != null)
-				selectTableRows(selItem.getTerm());
+				selectTableRows(selItem);
 		});
 		VBox.setVgrow(productListView, Priority.ALWAYS);	
 		productBox.getChildren().addAll(searchBox, productListView);
 		mainPane.setRight(productBox);
 		
 		// prepare declension table grid
-		declensionGrid.setAlignment(Pos.TOP_CENTER);
-		declensionGrid.setHgap(20);
-		declensionGrid.setVgap(3);
+		conjugationGrid.setAlignment(Pos.TOP_CENTER);
+		conjugationGrid.setHgap(20);
+		conjugationGrid.setVgap(3);
 
 		// add main table at the center
 		splitPane.setOrientation(Orientation.VERTICAL);
@@ -174,13 +174,9 @@ public final class NominalParadigmWin extends SingletonWindow {
 		table.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
 			final ParadigmOutput selItem = newValue;
 			if (selItem != null) {
-				openMenuItem.setDisable(!"Noun".equals(selItem.wordTypeProperty().get()));
-				showDeclension(selItem);
+				showConjugation(selItem);
 			}
 		});
-		openMenuItem.setOnAction(actionEvent -> openDeclension());		
-		final ContextMenu popupMenu = new ContextMenu(openMenuItem);
-		table.setContextMenu(popupMenu);
 		outputList.addAll(paradigmList);
 		setupTable();
 		table.setItems(outputList);
@@ -190,32 +186,32 @@ public final class NominalParadigmWin extends SingletonWindow {
 		setScene(scene);
 
 		// prepare info popup
-		infoPopup.setContentWithText(SanskritUtilities.getTextResource("info-nominal-paradigms.txt"));
-		infoPopup.setTextWidth(Utilities.getRelativeSize(38));		
+		infoPopup.setContentWithText(SanskritUtilities.getTextResource("info-verbal-paradigms.txt"));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(38));
 
 		updateProduct();
 	}
 
 	private void setupTable() {
 		final TableColumn<ParadigmOutput, String> nameCol = createParadigmTableColumn("Name", outputList.get(0).paradNameProperty().getName()); 
-		nameCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(8)).divide(15).multiply(2.5));
+		nameCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(8)).divide(15).multiply(2));
 		nameCol.setComparator(Utilities.sktComparator);
-		final TableColumn<ParadigmOutput, String> genderCol = createParadigmTableColumn("Gender", outputList.get(0).genderProperty().getName());
-		genderCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(2));
 		final TableColumn<ParadigmOutput, String> bucknellCol = createParadigmTableColumn("Ref", outputList.get(0).bucknellNumberProperty().getName()); 
-		bucknellCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(0.8));
+		bucknellCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(1));
 		bucknellCol.setSortable(false);
-		final TableColumn<ParadigmOutput, String> sampleCol = createParadigmTableColumn("Nominative Samples", outputList.get(0).nominativeSampleProperty().getName()); 
-		sampleCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(10)).divide(15).multiply(7));
+		final TableColumn<ParadigmOutput, String> tenseMoodCol = createParadigmTableColumn("Tense/Mood", outputList.get(0).tenseMoodProperty().getName());
+		tenseMoodCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(2.5));
+		final TableColumn<ParadigmOutput, String> padaCol = createParadigmTableColumn("Pada", outputList.get(0).padaProperty().getName());
+		padaCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(1.5));
+		final TableColumn<ParadigmOutput, String> sampleCol = createParadigmTableColumn("Prathama Samples", outputList.get(0).prathamaSampleProperty().getName()); 
+		sampleCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(12)).divide(15).multiply(7));
 		sampleCol.setComparator(Utilities.sktComparator);
-		final TableColumn<ParadigmOutput, String> wordTypeCol = createParadigmTableColumn("Type", outputList.get(0).wordTypeProperty().getName());
-		wordTypeCol.prefWidthProperty().bind(mainPane.widthProperty().subtract(Utilities.getRelativeSize(6)).divide(15).multiply(1.5));
 		table.getColumns().clear();
 		table.getColumns().add(nameCol);
-		table.getColumns().add(genderCol);
 		table.getColumns().add(bucknellCol);
+		table.getColumns().add(tenseMoodCol);
+		table.getColumns().add(padaCol);	
 		table.getColumns().add(sampleCol);
-		table.getColumns().add(wordTypeCol);	
 	}
 	
 	private TableColumn<ParadigmOutput, String> createParadigmTableColumn(final String colName, final String propValue) {
@@ -243,24 +239,27 @@ public final class NominalParadigmWin extends SingletonWindow {
 
 	private void updateOutput() {
 		outputList.clear();
-		declensionGrid.getChildren().clear();
+		conjugationGrid.getChildren().clear();
 		if (splitPane.getItems().size() > 1) {
 			divPosition = splitPane.getDividerPositions()[0];
 			splitPane.getItems().remove(1, 2);
 		}
-		final String genderSelected = genderChoice.getSelectionModel().getSelectedItem();
-		final String typeSelected = wordTypeChoice.getSelectionModel().getSelectedItem();
-		if (genderSelected == null || typeSelected == null) return;
-		final String gend = genderSelected.substring(0, 3);
-		final Predicate<ParadigmOutput> gendCondition = gend.equals("ALL")
+		final int tenseMoodIndex = tenseMoodChoice.getSelectionModel().getSelectedIndex();
+		final int padaIndex = padaChoice.getSelectionModel().getSelectedIndex();
+		if (tenseMoodIndex < 0 || padaIndex < 0) return;
+		final boolean allTenseMood = tenseMoodIndex == 0;
+		final TenseMood selectedTenseMood = allTenseMood ? null : TenseMood.values[tenseMoodIndex-1];
+		final boolean allPada = padaIndex == 0;
+		final Pada selectedPada = allPada ? null : Pada.values[padaIndex-1];
+		final Predicate<ParadigmOutput> tenseMoodCondition = allTenseMood
 										? x -> true
-										: x -> x.genderProperty().get().contains(gend);
-		final Predicate<ParadigmOutput> typeCondition = typeSelected.equals("ALL")
+										: x -> x.getTenseMood() == selectedTenseMood;
+		final Predicate<ParadigmOutput> padaCondition = allPada
 										? x -> true
-										: x -> x.wordTypeProperty().get().contains(typeSelected);
+										: x -> x.getPada() == selectedPada;
 		final List<ParadigmOutput> result = paradigmList.stream()
-											.filter(gendCondition)
-											.filter(typeCondition)
+											.filter(tenseMoodCondition)
+											.filter(padaCondition)
 											.collect(Collectors.toList());
 		outputList.addAll(result);
 		table.scrollTo(0);
@@ -270,29 +269,31 @@ public final class NominalParadigmWin extends SingletonWindow {
 
 	private void updateProduct() {
 		final String strQuery = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC).toLowerCase();
-		final String revQuery = SanskritUtilities.reverseString(strQuery);
+		final String queryFinal = strQuery.replace("?", ".").replace("*", ".*");
 		productList.clear();
 		productParadigmMap.clear();
 		for (final ParadigmOutput pout : outputList) {
-			final Set<StringPair> allTerms = pout.getAllProducts();
-			for (final StringPair term : allTerms) {
-				if (revQuery.isEmpty() || term.getSecond().startsWith(revQuery)) {
+			final Set<String> allTerms = pout.getAllProducts();
+			for (final String term : allTerms) {
+				final boolean condition = queryFinal.contains(".")
+										? term.matches(queryFinal)
+										: term.startsWith(queryFinal);
+				if (condition) {
 					final Set<String> paradList = productParadigmMap.getOrDefault(term, new HashSet<>());
 					paradList.add(pout.paradNameProperty().get());
 					productParadigmMap.put(term, paradList);
 				}
 			}
 		}
-		final List<ProductOutput> sorted = productParadigmMap.keySet().stream()
-										.sorted((x, y) -> Utilities.sktComparator.compare(x.getSecond(), y.getSecond()))
-										.map(ProductOutput::new)
+		final List<String> sorted = productParadigmMap.keySet().stream()
+										.sorted(Utilities.sktComparator)
 										.collect(Collectors.toList());
 		productList.addAll(sorted);
 		productListView.scrollTo(0);
 		productListView.getSelectionModel().clearSelection();
 	}
 
-	private void selectTableRows(final StringPair term) {
+	private void selectTableRows(final String term) {
 		table.getSelectionModel().clearSelection();
 		final Set<String> paradSet = productParadigmMap.get(term);
 		if (paradSet == null) return;
@@ -309,13 +310,13 @@ public final class NominalParadigmWin extends SingletonWindow {
 			table.scrollTo(min);
 	}
 
-	private void showDeclension(final ParadigmOutput parad) {
-		declensionGrid.getChildren().clear();
-		final Map<Case, Map<Number, List<String>>> product = parad.getProduct();
-		final String[] strHead = { "Case", Number.SING.getName(), Number.DUAL.getName(), Number.PLU.getName() };
+	private void showConjugation(final ParadigmOutput parad) {
+		conjugationGrid.getChildren().clear();
+		final Map<Person, Map<Number, List<String>>> product = parad.getProduct();
+		final String[] strHead = { "Person", Number.SING.getName(), Number.DUAL.getName(), Number.PLU.getName() };
 		final String[] strResult = { "", "", "", "" };
 		product.forEach((k, v) -> {
-			strResult[0] = strResult[0] + k.getNumAbbr() + " "  + k.getAbbr() + "\n";
+			strResult[0] = strResult[0] + k.getAbbr() + "\n";
 			final String singStr = v.get(Number.SING).stream().collect(Collectors.joining(", "));
 			final String dualStr = v.get(Number.DUAL).stream().collect(Collectors.joining(", "));
 			final String pluralStr = v.get(Number.PLU).stream().collect(Collectors.joining(", "));
@@ -327,28 +328,19 @@ public final class NominalParadigmWin extends SingletonWindow {
 			final Label lbHead = new Label(strHead[i]);
 			lbHead.setStyle("-fx-font-weight: bold;");
 			GridPane.setConstraints(lbHead, i, 0);
-			declensionGrid.getChildren().add(lbHead);
+			conjugationGrid.getChildren().add(lbHead);
 		}
 		for (int i = 0; i < strResult.length; i++) {
 			final Label lbResult = new Label(strResult[i]);
 			if (i == 0)
 				lbResult.setStyle("-fx-font-weight: bold;");
 			GridPane.setConstraints(lbResult, i, 1);
-			declensionGrid.getChildren().add(lbResult);
+			conjugationGrid.getChildren().add(lbResult);
 		}
 		if (splitPane.getItems().size() == 1) {
-			splitPane.setDividerPositions(divPosition == Double.MAX_VALUE ? 0.7 : divPosition);
-			splitPane.getItems().add(declensionGrid);
+			splitPane.setDividerPositions(divPosition == Double.MAX_VALUE ? 0.8 : divPosition);
+			splitPane.getItems().add(conjugationGrid);
 		}
-	}
-
-	private void openDeclension() {
-		final ObservableList<Integer> selected = table.getSelectionModel().getSelectedIndices();
-		if (selected == null || selected.isEmpty()) return;
-		final ParadigmOutput parad = outputList.get(selected.get(0));
-		final String pname = parad.paradNameProperty().get();
-		final Object[] args = new Object[] { pname };
-		SanskritUtilities.openWindow(Utilities.WindowType.SKTDECLENSION, args);
 	}
 
 	private List<String[]> makeCSV() {
@@ -365,10 +357,10 @@ public final class NominalParadigmWin extends SingletonWindow {
 			final ParadigmOutput parad = table.getItems().get(i);
 			final String[] data = new String[colCount];
 			data[0] = parad.paradNameProperty().get();
-			data[1] = parad.genderProperty().get();
-			data[2] = parad.bucknellNumberProperty().get();
-			data[3] = parad.nominativeSampleProperty().get();
-			data[4] = parad.wordTypeProperty().get();
+			data[1] = parad.bucknellNumberProperty().get();
+			data[2] = parad.tenseMoodProperty().get();
+			data[3] = parad.padaProperty().get();
+			data[4] = parad.prathamaSampleProperty().get();
 			result.add(data);
 		}
 		return result;
@@ -379,63 +371,67 @@ public final class NominalParadigmWin extends SingletonWindow {
 	}
 	
 	private void saveCSV() {
-		Utilities.saveCSV(makeCSV(), "nominal-paradigms.csv");
+		Utilities.saveCSV(makeCSV(), "verbal-paradigms.csv");
 	}
 	
 	// inner classes
 	public static final class ParadigmOutput {
 		private StringProperty paradName;
-		private StringProperty gender;
 		private StringProperty bucknellNumber;
-		private StringProperty nominativeSample;
-		private StringProperty wordType;
-		private final Map<Case, Map<Number, List<String>>> product;
+		private StringProperty tenseMood;
+		private StringProperty pada;
+		private StringProperty prathamaSample;
+		private final TenseMood tense;
+		private final Pada pad;
+		private final Map<Person, Map<Number, List<String>>> product;
 		
-		public ParadigmOutput(final NominalParadigm parad) {
+		public ParadigmOutput(final VerbalParadigm parad) {
 			paradNameProperty().set(parad.getName());
-			genderProperty().set(parad.getGenderStr());
 			bucknellNumberProperty().set(parad.getBucknellNumber());
-			wordTypeProperty().set(parad.getWordType().getShortName());
+			tense = parad.getTenseMood();
+			tenseMoodProperty().set(tense.getName());
+			pad = parad.getPada();
+			padaProperty().set(pad.getName());
 			product = parad.getSampleProduct();
-			final Map<Number, List<String>> numMap = product.get(Case.NOM);
-			final List<String> decl = new ArrayList<>();
+			final Map<Number, List<String>> numMap = product.get(Person.PRATHAMA);
+			final List<String> conjug = new ArrayList<>();
 			for (final Number n : Number.values) {
 				final List<String> tlist = numMap.get(n);
 				final String term = tlist.get(0);
-				decl.add(term.isEmpty() ? "-" : term);
+				conjug.add(term.isEmpty() ? "-" : term);
 			}
-			nominativeSampleProperty().set(decl.stream().collect(Collectors.joining(" : ")));
+			prathamaSampleProperty().set(conjug.stream().collect(Collectors.joining(" : ")));
 		} 
 
-		public Map<Case, Map<Number, List<String>>> getProduct() {
+		public Map<Person, Map<Number, List<String>>> getProduct() {
 			return product;
 		}
 
-		public Set<StringPair> getAllProducts() {
-			final Set<StringPair> result = new HashSet<>();
+		public Set<String> getAllProducts() {
+			final Set<String> result = new HashSet<>();
 			for (final Map<Number, List<String>> numMap : product.values()) {
 				for (final List<String> plist : numMap.values()) {
 					for (final String term : plist) {
 						if (term.isEmpty()) continue;
-						final String reverse = SanskritUtilities.reverseString(term);
-						final StringPair pair = new StringPair(term, reverse);
-						result.add(pair);
+						result.add(term);
 					}
 				}
 			}
 			return result;
 		}
-		
+	
+		public TenseMood getTenseMood() {
+			return tense;
+		}
+
+		public Pada getPada() {
+			return pad;
+		}
+
 		public StringProperty paradNameProperty() {
 			if (paradName == null)
 				paradName = new SimpleStringProperty(this, "paradName");
 			return paradName;
-		}
-		
-		public StringProperty genderProperty() {
-			if (gender == null)
-				gender = new SimpleStringProperty(this, "gender");
-			return gender;
 		}
 		
 		public StringProperty bucknellNumberProperty() {
@@ -444,31 +440,24 @@ public final class NominalParadigmWin extends SingletonWindow {
 			return bucknellNumber;
 		}
 		
-		public StringProperty nominativeSampleProperty() {
-			if (nominativeSample == null)
-				nominativeSample = new SimpleStringProperty(this, "nominativeSample");
-			return nominativeSample;
+		public StringProperty tenseMoodProperty() {
+			if (tenseMood == null)
+				tenseMood = new SimpleStringProperty(this, "tenseMood");
+			return tenseMood;
 		}
 		
-		public StringProperty wordTypeProperty() {
-			if (wordType == null)
-				wordType = new SimpleStringProperty(this, "wordType");
-			return wordType;
+		public StringProperty padaProperty() {
+			if (pada == null)
+				pada = new SimpleStringProperty(this, "pada");
+			return pada;
+		}
+		
+		public StringProperty prathamaSampleProperty() {
+			if (prathamaSample == null)
+				prathamaSample = new SimpleStringProperty(this, "prathamaSample");
+			return prathamaSample;
 		}
 	}
 		
-	static class ProductOutput {
-		private final StringPair term;
-		public ProductOutput(final StringPair t) {
-			term = t;
-		}
-		public StringPair getTerm() {
-			return term;
-		}
-		@Override
-		public String toString() {
-			return term.getFirst();
-		}
-	}
-
 }
+

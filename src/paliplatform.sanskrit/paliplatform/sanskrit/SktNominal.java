@@ -22,6 +22,7 @@ package paliplatform.sanskrit;
 import java.util.*;
 import java.util.stream.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /** 
  * Representation of a Sanskrit nominal, i.e., noun, adjective, or pronoun.
@@ -75,22 +76,92 @@ public class SktNominal {
 
 	// inner classes
 	static class Adjective {
-		private static final String II = "ī";
-		private static final String IKAA = "ikā";
-		private String[] terms = new String[3];
+		private static final List<Map<String, String>> paradList = new ArrayList<>();
+		static {
+			// masculine
+			final Map<String, String> masMap = new HashMap<>();
+			masMap.put("i", "muniḥ");
+			masMap.put("u", "paśuḥ");
+			masMap.put("ṛ", "netā");
+			masMap.put("in",  "hastī");
+			masMap.put("van", "ātmā");
+			masMap.put("man", "rājā");
+			masMap.put("mat", "dhīmān");
+			masMap.put("vat", "dhīmān");
+			masMap.put("at", "marut");
+			masMap.put("yas", "śreyān");
+			masMap.put("ivas", "tenivān");
+			masMap.put("īvas", "ninīvān");
+			masMap.put("uvas", "śuśruvān");
+			masMap.put("ṛvas", "cakṛvān");
+			masMap.put("vas", "vidvān");
+			masMap.put("as", "vedhāḥ");
+			paradList.add(masMap);
+			// feminine
+			final Map<String, String> femMap = new HashMap<>();
+			femMap.put("ī", "nadī");
+			femMap.put("i", "matiḥ");
+			femMap.put("u", "dhenuḥ");
+			femMap.put("as", "vedhāḥ");
+			paradList.add(femMap);
+			// neuter
+			final Map<String, String> neuMap = new HashMap<>();
+			neuMap.put("i", "vāri");
+			neuMap.put("u", "madhu");
+			neuMap.put("ṛ", "dhātṛ");
+			neuMap.put("in", "bali");
+			neuMap.put("van", "karma");
+			neuMap.put("man", "nāma");
+			neuMap.put("at", "jagat");
+			neuMap.put("yas", "manaḥ");
+			neuMap.put("ivas", "tenivat");
+			neuMap.put("īvas", "ninīvat");
+			neuMap.put("uvas", "śuśruvat");
+			neuMap.put("ṛvas", "cakṛvat");
+			neuMap.put("vas", "vidvat");
+			neuMap.put("as", "manaḥ");
+			paradList.add(neuMap);
+		}
+		private static final String[] fallbackParad = NominalParadigm.genericFallback;
+		private String[] terms = new String[3]; // for 3 genders: m, f, n
 		public Adjective(final String input) {
 			final String[] parts = input.split(",");
 			terms[0] = parts[0];
 			terms[2] = parts[0];
 			if (parts.length == 1) {
-				terms[1] = parts[0];
+				// in uncommon set
+				if (parts[0].endsWith("ṛ")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-1) + "rī";
+				} else if (parts[0].endsWith("in")) {
+					terms[1] = parts[0] + "ī";
+				} else if (parts[0].endsWith("van")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-2) + "ṇī";
+				} else if (parts[0].endsWith("man")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-2) + "nī";
+				} else if (parts[0].endsWith("at") || parts[0].endsWith("yas")) {
+					terms[1] = parts[0] + "ī";
+				} else if (parts[0].endsWith("ivas")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-4) + "uṣī";
+				} else if (parts[0].endsWith("īvas")) {
+					final String front = parts[0].substring(0, parts[0].length()-4);
+					terms[1] = SanskritUtilities.endsWithDoubleConsonant(front)
+								? front + "iyuṣī"
+								: front + "yuṣī";
+				} else if (parts[0].endsWith("uvas")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-3) + "vuṣī";
+				} else if (parts[0].endsWith("ṛvas")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-4) + "ruṣī";
+				} else if (parts[0].endsWith("vas")) {
+					terms[1] = parts[0].substring(0, parts[0].length()-3) + "uṣī";
+				} else {
+					terms[1] = parts[0];
+				}
 			} else {
-				if (II.equals(parts[1])) {
-					terms[1] = parts[0].endsWith("n")
-								? parts[0] + II
-								: parts[0].substring(0, parts[0].length()-1) + II;
-				} else if (IKAA.equals(parts[1])) {
-					terms[1] = parts[0].substring(0, parts[0].length()-3) + IKAA;
+				// in common set
+				if ("ī".equals(parts[1])) {
+					terms[1] = parts[0].substring(0, parts[0].length()-1) + "ī";
+				} else if ("ikā".equals(parts[1])) {
+					terms[1] = parts[0].substring(0, parts[0].length()-3) + "ikā";
 				} else {
 					terms[1] = parts[0];
 				}
@@ -101,9 +172,38 @@ public class SktNominal {
 		}
 		public String[] getParadigmNames() {
 			final String[] result = new String[3];
-			result[0] = terms[0].endsWith("n") ? "hastī" : "devaḥ";
-			result[1] = terms[1].endsWith("ī") ? "nadī" : "kathā";
-			result[2] = terms[2].endsWith("n") ? "bali" : "phalam";
+			for (int i = 0; i < 3; i++) {
+				final Map<String, String> paradMap = paradList.get(i);
+				final String term = terms[i];
+				final String end4 = term.length() >= 4 ? term.substring(term.length()-4) : "";
+				final String end3 = term.length() >= 3 ? term.substring(term.length()-3) : "";
+				final String end2 = term.length() >= 2 ? term.substring(term.length()-2) : "";
+				final String end = term.substring(term.length()-1);
+				if (paradMap.containsKey(end4)) {
+					result[i] = paradMap.get(end4);
+				} else if (paradMap.containsKey(end3)) {
+					result[i] = paradMap.get(end3);
+				} else if (paradMap.containsKey(end2)) {
+					result[i] = paradMap.get(end2);
+				} else if (paradMap.containsKey(end)) {
+					result[i] = paradMap.get(end);
+				} else {
+					result[i] = fallbackParad[i];
+				}
+			}
+			return result;
+		}
+		public static Predicate<String> getEndingPredicate(final String end) {
+			final Predicate<String> result;
+			if (end.equals("at")) {
+				result = x -> x.matches(".*[^mv]at");
+			} else if (end.equals("vas")) {
+				result = x -> x.matches(".*[^i]vas");
+			} else if (end.equals("as")) {
+				result = x -> x.matches(".*[^yv]as");
+			} else {
+				result = x -> x.endsWith(end);
+			}
 			return result;
 		}
 	}

@@ -86,6 +86,7 @@ public class NominalParadigm {
 			};
 		}
 	};
+	public static final String[] genericFallback =  { "devaḥ", "kathā", "phalam" };
 	private static final Map<String, String> voicedMap = Map.of("k", "g", "ṭ", "ḍ", "t", "d", "p", "b", "ḥ", "r");
 	private static final List<Set<String>> vaggas = List.of(Set.of("k", "kh", "g", "gh"),
 															Set.of("c", "ch", "j", "jh"),
@@ -99,7 +100,7 @@ public class NominalParadigm {
 	private final List<Gender> gender;
 	private String wordGroupIdentifier;
 	private int stemCutFactor; // number of chars to cut a given word into stem, e.g. 1 for deva gets dev
-	private int numBucknell; // pardigm number in Bucknell's handbook
+	private String numBucknell; // table-paradigm number in Bucknell's handbook
 	private WordType wordType;
 	private final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> paradigm;
 	
@@ -110,7 +111,7 @@ public class NominalParadigm {
 		gender = new ArrayList<>(3);
 		wordGroupIdentifier = "";
 		stemCutFactor = 1; // cut the last character by default
-		numBucknell = -1;
+		numBucknell = "";
 		wordType = WordType.NOUN; // noun by default
 		paradigm = new EnumMap<>(SktDeclension.Case.class);
 	}
@@ -132,9 +133,9 @@ public class NominalParadigm {
 		return parad;
 	}
 
-	public static NominalParadigm generate(final String pname, final String term, final String[][] data, final int num) {
+	public static NominalParadigm generate(final String pname, final String term, final String[][] data, final String ref) {
 		final NominalParadigm parad = generate(pname, term, data);
-		parad.setBucknellNumber(num);
+		parad.setBucknellNumber(ref);
 		return parad;
 	}
 
@@ -176,9 +177,9 @@ public class NominalParadigm {
 	}
 
 	public static NominalParadigm generateFromPrototype(final NominalParadigm prototype, final String singEnd, final String pluEnd,
-			final String term, final int num) {
+			final String term, final String ref) {
 		final NominalParadigm parad = generateFromPrototype(prototype, singEnd, pluEnd, term);
-		parad.setBucknellNumber(num);
+		parad.setBucknellNumber(ref);
 		return parad;
 	}
 
@@ -271,23 +272,17 @@ public class NominalParadigm {
 	}
 
 	public String getStemFromWord(final String word) {
-		return word.isEmpty() ? "" : word.substring(0, word.length() - stemCutFactor);
+		return word.length() < stemCutFactor
+				? ""
+				: word.substring(0, word.length() - stemCutFactor);
 	}
 
-	public void setBucknellNumber(final int num) {
-		numBucknell = num;
+	public void setBucknellNumber(final String ref) {
+		numBucknell = ref;
 	}
 
-	public void clearBucknellNumber() {
-		numBucknell = -1;
-	}
-
-	public int getBucknellNumber() {
+	public String getBucknellNumber() {
 		return numBucknell;
-	}
-
-	public String getBucknellNumberStr() {
-		return numBucknell > 0 ? "" + numBucknell : "";
 	}
 
 	public void setWordType(final WordType type) {

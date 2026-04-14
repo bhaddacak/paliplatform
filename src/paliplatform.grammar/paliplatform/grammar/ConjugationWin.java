@@ -1,7 +1,7 @@
 /*
  * ConjugationWin.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ import javafx.geometry.*;
  * The window showing conjugation paradigms for some typical verbs.
  * This is a singleton.
  * @author J.R. Bhaddacak
- * @version 3.4
+ * @version 4.1
  * @since 2.0
  */
 public class ConjugationWin extends SingletonWindow {
@@ -92,7 +92,7 @@ public class ConjugationWin extends SingletonWindow {
 	private PaliRoot currRoot;
 	
 	private ConjugationWin() {
-		setTitle("Conjugation Table");
+		setTitle("Pāli Conjugation Table");
 		getIcons().add(new Image(ConjugationWin.class.getResourceAsStream("resources/images/table-cells.png")));
 		windowWidth = Utilities.getRelativeSize(65);
 		GrammarUtilities.loadRootList();

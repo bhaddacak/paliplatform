@@ -1,0 +1,916 @@
+p001:√ aṃh, 'be narrow or distressing'.
+p001:√ 1 akṣ, 'attain'.
+p001:√ 2 akṣ, 'mutilate'.
+p001:√ aṅg, 'move'.
+p001:√ ac‚ añc‚ 'bend'.
+p002:√ aj, 'drive'.
+p002:√ añj, anoint'.
+p002:√ aṭ, 'wander'.
+p003:√ ad, 'eat'.
+p003:√ an, 'breathe'.
+p003:√ am, 'injure'.
+p003:√ ay, see √ 1 i.
+p004:√ arc, ṛc, 'shine, praise'.
+p004:√ arj, see √ 1 ṛj, ṛñj.
+p004:√ art, see √ ṛt.
+p004:√ arh, 'deserve' etc.
+p004:√ av, 'favor'.
+p004:√ 1 aś, aṃś, 'attain'.
+p005:√ 2 aś, 'eat'.
+p005:√ 1 as, 'be'.
+p005:√ 2 as, 'throw'.
+p006:√ ah, 'say'.
+p006:√ āñch, 'tear'.
+p006:√ āp, 'obtain'.
+p006:√ ār, 'praise' (?).
+p006:√ ās‚ 'sit'.
+p007:√ 1 i, ī, ay, 'go'.
+p007:√ 2 i, inv, in, 'send'.
+p008:√ iṅg, 'stir'.
+p008:√ ich, see √ 1 iṣ.
+p008:√ iṭ.
+p008:√ idh, indh, 'kindle'.
+p008:√ in, inv, see √ 2 i.
+p008:√ inakṣ, see √ 2 naś.
+p008:√ iyakṣ, see √ yaj.
+p008:√ irajy, see √ ṛj.
+p008:√ iradh, see √ rādh.
+p009:√ il, 'be quiet'.
+p009:√ 1 iṣ, ich, 'seek, desire'.
+p009:√ 2 iṣ, 'send'.
+p009:√ ī, see √ 1 i.
+p009:√ īkṣ, 'see'.
+p010:√ īṅkh, 'swing'.
+p010:√ īj, see √ ej.
+p010:√ īḍ, 'praise'.
+p010:√ īr, 'set in motion'.
+p010:√ īrṣy, 'be jealous'.
+p011:√ īś, 'be master'.
+p011:√ īṣ, eṣ, 'move'.
+p011:√ īh, 'be eager'.
+p011:√ u, 'proclaim'.
+p011:√ 1 ukṣ, 'sprinkle'.
+p012:√ 2 ukṣ, vakṣ, 'grow', see √ vakṣ.
+p012:√ uc, 'be pleased'.
+p012:√ uch, see √ 1 vas.
+p012:√ ujh, 'forsake'.
+p012:√ uñch, 'glean'.
+p012:√ ud, und, 'wet'.
+p012:√ ubj, 'force'.
+p013:√ ubh, umbh, 'confine'.
+p013:√ uṣ, 'shine', see √ 1 vas.
+p013:√ uṣ, 'burn'.
+p013:√ 1 ūrṇu, see √ 1 vṛ.
+p013:√ 1 ūh, 'remove'.
+p013:√ 2 ūh, 'consider'.
+p014:√ ṛ, ṛch, 'go, send'.
+p014:√ ṛe, see √ arc.
+p014:√ ṛj, ṛñj, arj, 'direct, stretch, attain'.
+p015:√ 2 ṛj, 'shine'.
+p015:√ ṛt, art, 'pursue'.
+p015:√ ṛd, ard, 'stir, dissolve'.
+p015:√ ṛdh, 'thrive'.
+p016:√ ṛś(?), 'harm'.
+p016:√ ṛṣ, 'rush, push'.
+p016:√ ej, īj, 'stir'.
+p016:√ edh, 'thrive'.
+p016:√ katth, 'boast'.
+p016:√ kad, 'destroy'.
+p017:√ kan, kā, 'be pleased, enjoy'.
+p017:√ kam, 'love'.
+p017:√ kamp, 'tremble'.
+p017:√ kal, 'drive, produce', etc.
+p018:√ kaṣ, 'scratch'.
+p018:√ kas, 'open'.
+p018:√ kā, see √ kan.
+p018:√ kāṅkṣ, 'desire'.
+p019:√ kās, 'cough.
+p019:√ ku, see √ kū.
+p019:√ kuc, kuñc, 'shrink, curl'.
+p019:√ kuñj, 'rustle'.
+p019:√ kuṭṭ, 'divide, crush'.
+p019:√ kuṇṭh, 'dull'.
+p019:√ kuth, 'stink'.
+p020:√ kup, 'be angry'.
+p020:√ kuṣ, 'tear'.
+p020:√ kū, 'design'.
+p020:√ kūj, 'hum'.
+p020:√ kūḍ, kūl, 'burn'.
+p021:√ kūṇ, 'shrink'.
+p021:√ kūrd, 'leap, exult'.
+p021:√ 1 kṛ (skṛ), 'make'.
+p022:√ 2 kṛ, kir, 'scatter'.
+p022:√ 3 kṛ, 'commemorate'.
+p022:√ 1 kṛt, 'cut'.
+p023:√ 2 kṛt, 'spin'.
+p023:√ kṛp, 'lament'.
+p023:√ kṛś, 'be lean'.
+p023:√ kṛṣ, 'drag, plough'.
+p024:√ kḷp, 'be adapted'.
+p024:√ knū, 'wet.
+p024:√ krakṣ, 'crash'.
+p024:√ krath, 'be jubilant'.
+p024:√ krand, kland, 'cry out'.
+p025:√ kram, 'stride'.
+p025:√ krī, 'buy'.
+p025:√ krīḍ, 'play'.
+p026:√ kru, 'be rough or raw'.
+p026:√ krudh, 'be angry'.
+p026:√ kruś, 'cry out'.
+p026:√ krūḍ, 'thicken' (?).
+p026:√ klath, 'turn' (?).
+p026:√ kland, see √ krand.
+p026:√ klam, 'be weary'.
+p027:√ klav, 'stammer'.
+p027:√ klid, 'be wet'.
+p027:√ kliś, 'distress'.
+p027:√ kvaṇ, 'sound'.
+p027:√ kvath, 'boil'.
+p027:√ kṣad, 'divide'.
+p028:√ kṣan, 'wound'.
+p028:√ kṣap, 'be abstinent'.
+p028:√ kṣam, 'endure'.
+p028:√ kṣar, 'flow'.
+p028:√ kṣal, 'wash'.
+p029:√ kṣā, 'burn'.
+p029:√ 1 kṣi, 'possess'.
+p029:√ 2 kṣi, kṣī, 'destroy'.
+p029:√ kṣip, 'throw'.
+p030:√ kṣu, 'sneeze'.
+p030:√ kṣud, 'crush'.
+p030:√ kṣudh, 'be hungry'.
+p030:√ kṣup, 'be startled' (?).
+p030:√ kṣubh, 'quake'.
+p031:√ kṣṇu, 'whet'.
+p031:√ kṣmā, 'tremble'.
+p031:√ kṣviḍ, 'hum'.
+p031:√ kṣvid, 'hum'.
+p031:√ kṣvel, 'play'.
+p031:√ khac, 'show through'.
+p031:√ khañj, 'limp'.
+p031:√ khad, 'be hard'.
+p032:√ khan, khā, 'dig'.
+p032:√ kharj, 'creak'.
+p032:√ khall, 'be relaxed'.
+p032:√ khā, see √ khan.
+p032:√ khād, 'chew'.
+p032:√ khid, 'tear'.
+p033:√ khud, 'futuere'.
+p033:√ khel, 'stagger'.
+p033:√ khyā, 'see'.
+p033:√ gach, see √ gam.
+p033:√ gad, 'say'.
+p034:√ gadh, 'attach' (?).
+p034:√ gabh, see √ gah.
+p034:√ gam, gach, 'go'.
+p034:√ garj, 'roar'.
+p035:√ gard, 'exult' (?).
+p035:√ garh, 'chide'.
+p035:√ gal, 'drop'.
+p035:√ galbh, 'dare'.
+p035:√ 1 gā, 'go'.
+p035:√ 2 gā, 'sing'.
+p036:√ gāh etc., 'plunge'.
+p036:√ gir, gil, see √ 2 gṛ.
+p036:√ gu, 'sound'.
+p036:√ guñj, 'hum'.
+p037:√ guṇṭh, 'cover up'.
+p037:√ gup, 'protect'.
+p037:√ guph, gumph, 'twine'.
+p037:√ gur, 'greet'.
+p037:√ gulph, 'bunch'.
+p038:√ guh, 'hide'.
+p038:√ gūrd, 'exult' (?).
+p038:√ gurdh, 'exalt' (?).
+p038:√ 1 gṛ, 'sing'.
+p038:√ 2 gṛ, gir, gil, 'swallow'.
+p039:√ 3 gṛ, jāgṛ, 'wake'.
+p039:√ gṛdh, 'be greedy'.
+p039:√ grath, granth, 'tie'.
+p040:√ grabh, grah, 'seize'.
+p040:√ gras, 'devour'.
+p040:√ grah, see √ grabh.
+p041:√ glap, see √ glā.
+p041:√ glah, 'gamble'.
+p041:√ glā, 'be weary'.
+p041:√ ghaṭ, 'strive'.
+p041:√ ghaṭṭ, 'rub' etc.
+p041:√ ghar, see √ ghṛ.
+p042:√ ghas, 'eat'.
+p042:√ ghuṭ, 'turn' (?).
+p042:√ ghuṣ, 'sound'.
+p042:√ ghūrṇ, 'waver'.
+p043:√ ghṛ, ghar, 'drip'.
+p043:√ ghṛṣ, 'rub'.
+p043:√ ghrā, 'smell'.
+p043:√ cak, 'quake'.
+p043:√ cakas, 'shine'.
+p044:√ cakṣ, 'see'.
+p044:√ cañc, 'dance'.
+p044:√ caṭ, 'go'(?).
+p044:√ cat, 'hide' (?).
+p044:√ can, 'be pleased'.
+p044:√ cand, see √ ścand.
+p044:√ cam, 'sip'.
+p045:√ car, 'move'.
+p045:√ carc, 'repeat'.
+p045:√ carv, 'chew'.
+p045:√ cal, 'stir'.
+p046:√ cāy, 'note, observe'.
+p046:√ 1 ci, 'gather'.
+p046:√ 2 ci, 'note, observe'.
+p047:√ cit, 'perceive, know, appear'.
+p047:√ cint, 'think'.
+p048:√ cud, 'impel'.
+p048:√ cup, 'stir'.
+p048:√ cumb, 'kiss'.
+p048:√ cur, 'steal'.
+p048:√ culump, 'suck in'.
+p048:√ cūṣ, 'draw, suck'.
+p048:√ cṛt, 'bind'.
+p049:√ ceṣṭ, 'stir'.
+p049:√ cyu, 'move, stir'.
+p049:√ cyut, 'drip'.
+p049:√ chad, 'cover'.
+p050:√ ehand, chad, 'seem, please'.
+p050:√ chā, 'cut up'.
+p050:√ chid, 'cut off'.
+p050:√ chuṭ, chuḍ, 'wrench'.
+p051:√ chur, 'scatter'.
+p051:√ chṛd, 'spue, eject'.
+p051:√ 1 jakṣ, 'eat'.
+p051:√ 2 jakṣ, 'laugh'.
+p051:√ jagh, 'eat, devour'.
+p051:√ jajh.
+p051:√ jañj.
+p052:√ jan, jā, 'give birth, be born'.
+p052:√ jap, 'whisper'.
+p052:√ jam.
+p053:√ jambh, jabh, 'chew up, crush'.
+p053:√ jar, see √ jṛ.
+p053:√ jalp, 'murmur, speak'.
+p053:√ jas, 'be exhausted'.
+p053:√ jah, see √ ha.
+p053:√ jā, see √ jan.
+p053:√ 1 ji, 'conquer'.
+p054:√ 2 ji, jinv, 'quicken'.
+p054:√ jīv, 'live'.
+p054:√ jur‚ see √ jṛ.
+p054:√ juṣ, 'enjoy'.
+p055:√ jū, 'be swift'.
+p055:√ jurv, 'consume'.
+p055:√ 1 jṛ, jur, 'waste away'.
+p055:√ 2 jṛ, 'sing'.
+p056:√ jṛmbh, 'gape'.
+p056:√ jeh. 'loll, pant'.
+p056:√ jñā, 'know'.
+p056:√ jyā, jī, 'overpower, injure'.
+p057:√ jyut, 'shine'.
+p057:√ jri, 'go'.
+p057:√ jvar, 'be hot'.
+p057:√ jval, 'burn, flame'.
+p057:√ jhaṭ, 'confuse'.
+p058:√ jhaṇ, 'sound'.
+p058:√ jhar, 'fall'.
+p058:√ ṭaṅk, 'cover'(?).
+p058:√ ṭal, 'be confused'.
+p058:√ ṭīk, 'trip'.
+p058:√ ṭup, 'swell'.
+p058:√ ḍam, 'sound'.
+p058:√ ḍamb, 'mock'.
+p058:√ ḍī, 'fly'.
+p059:√ ḍval, 'mix'.
+p060:√ tañc, tac, 'coagulate'.
+p060:√ taṭ, 'clatter'.
+p060:√ taḍ, 'beat'.
+p060:√ 1 tan, tā, 'stretch'.
+p061:√ 2 tan, 'roar'.
+p061:√ tand, 'be weary'.
+p061:√ tap, 'heat'.
+p061:√ tam, 'faint'.
+p061:√ tark, 'think'.
+p062:√ tarj, 'threaten'.
+p062:√ tas, see √ tans.
+p062:√ tā, see √ tan.
+p062:√ tāy, 'stretch'.
+p062:√ tāv.
+p062:√ ti, 'crush'.
+p062:√ tij, 'be sharp'.
+p063:√ tir, see √ tṛ.
+p063:√ til.
+p063:√ tu‚ 'be strong'.
+p063:√ tuc, 'impel, generate'.
+p063:√ tuj, 'urge, thrust'.
+p063:√ tud, 'push, thrust'.
+p063:√ tur, see √ tṛ.
+p064:√ turv, tūrv, 'overcome'.
+p064:√ tul, 'lift, weigh'.
+p064:√ tuś, 'drip'.
+p064:√ tuṣ, 'be content'.
+p064:√ tūrv, see √ turv.
+p064:√ tṛ, tir, tur, 'pass'.
+p066:√ tṛṣ, 'be thirsty'.
+p066:√ tṛh, 'crush'.
+p066:√ tyaj, 'forsake'.
+p067:√ trap, 'be abashed'.
+p067:√ tras, 'be terrified'.
+p067:√ trā, 'rescue'.
+p067:√ truṭ, 'come to pieces'.
+p068:√ tvakṣ, 'fashion'.
+p068:√ tvaṅg, 'leap'.
+p068:√ tvae, 'cover.
+p068:√ tvar, 'hasten'.
+p068:√ tviṣ, 'be stirred up'.
+p068:√ tsar, 'approach stealthily'.
+p069:√ thurv ?.
+p069:√ daṃś, daś, 'bite'.
+p069:√ daṃs, 'be wondrous'.
+p069:√ dakṣ, 'be able'.
+p069:√ dagh, 'reach to'.
+p069:√ dad, see √ 1 dā.
+p069:√ dadh, see √ 1 dhā.
+p069:√ dan, 'straighten' (?).
+p070:√ dabh, dambh, 'harm'.
+p070:√ dam, 'control'.
+p070:√ day, 'share'.
+p070:√ daridrā, see √ 1 drā.
+p070:√ dal, 'burst'.
+p071:√ das, dās, 'waste'.
+p071:√ dah, 'burn'.
+p071:√ 1 da, dad, 'give'.
+p072:√ 2 dā, 'divide, share'.
+p072:√ 3 dā, di, 'bind'.
+p072:√ 4 dā, 'clear'.
+p073:√ dāś, 'make offering'.
+p073:√ dās, see √ das.
+p073:√ div, 'play', see √ 1 dīv.
+p073:√ diś, 'point'.
+p073:√ dih, 'smear'.
+p074:√ 1 dī,­fly'.
+p074:√ 2 dī, dīdī, 'shine'.
+p074:√ dīkṣ, 'be consecrated'.
+p074:√ dīdhī, see √ dhī.
+p074:√ dīp, 'shine'.
+p075:√ 1 dīv, 'play'.
+p075:√ 2 dīv (dev), 'lament'.
+p075:√ du, dū, 'burn'.
+p075:√ dudh, 'stir up'.
+p075:√ dul, 'raise'.
+p076:√ duṣ, 'spoil'.
+p076:√ duh, 'milk, derive'.
+p076:√ du, see √ du.
+p076:√ 1 dṛ, 'pierce, split'.
+p077:√ 2 dṛ, 'heed'.
+p077:√ dṛp, 'rave'.
+p077:√ dṛbh, 'bunch'.
+p078:√ dṛś, 'see'.
+p078:√ dṛh, dṛṃh, 'make firm'.
+p078:√ dev, see √ 2 dīv.
+p079:√ dyu, 'attack'.
+p079:√ dyut, 'shine'.
+p079:√ dram, 'run'.
+p079:√ 1 drā, 'run'.
+p079:√ 2 drā, 'sleep'.
+p080:√ drāḍ, 'split'.
+p080:√ dru, 'run'.
+p080:√ druh, 'be hostile'.
+p080:√ drū, 'hurl' (?).
+p080:√ dvar ?.
+p081:√ dviṣ, 'hate'.
+p081:√ dhan, 'run'.
+p081:√ dhanv, 'run'.
+p081:√ dham, dhma, 'blow'.
+p081:√ dhav, 'flow'.
+p082:√ 1 dhā, dadh, 'put'.
+p082:√ 2 dhā, 'suck'.
+p083:√ 1 dhāv, 'run'.
+p083:√ 2 dhāv, 'rinse'.
+p083:√ dhi, dhinv, 'nourish'.
+p083:√ dhī, dīdhī, 'think'.
+p083:√ dhukṣ, 'kindle'.
+p084:√ dhū, dhu, 'shake'.
+p084:√ dhūrv, 'injure'.
+p084:√ dhṛ, 'hold'.
+p085:√ dhṛṣ, 'dare'.
+p085:√ dhmā, see √ dham.
+p085:√ dhyā, 'think'.
+p086:√ dhraj, dhrāj, 'sweep'.
+p086:√ dhvaṃs, dhvas, 'scatter'.
+p086:√ dhvan, 'sound'.
+p086:√ dhvṛ, dhur, dhru, 'injure'.
+p087:√ naṃś, see √ 2 naś.
+p088:√ nabh, 'burst'.
+p088:√ nam, 'bend, bow'.
+p088:√ nard, 'bellow'.
+p089:√ 1 naś, 'be lost'.
+p089:√ 2 naś, naṃś, 'attain'.
+p089:√ nas, 'unite'.
+p089:√ nah, 'tie'.
+p089:√ nāth, nadh, 'seek aid'.
+p090:√ niṃs, 'kiss'.
+p090:√ nikṣ, 'pierce'.
+p090:√ nij, 'wash'.
+p090:√ nind, nid, 'revile'.
+p090:√ nī, 'lead'.
+p091:√ nīḍ, 'nest'.
+p091:√ 1 nu, nū, 'praise'.
+p091:√ 2 nu, 'move'.
+p091:√ nud, 'push'.
+p092:√ nṛ, 'sport'.
+p092:√ nṛt, 'dance'.
+p092:√ ned, 'flow'.
+p092:√ pac, 'cook'.
+p093:√ paj, 'start' (?).
+p093:√ paṭ, 'tear'.
+p093:√ paṭh, 'read'.
+p093:√ paṇ, 'bargain'.
+p094:√ 1 pat, 'fly, fall'.
+p094:√ 2 pat, 'rule'.
+p094:√ path, 'go' (?).
+p094:√ pad, 'go'.
+p095:√ pan, 'admire'.
+p095:√ pard, 'pedere'.
+p095:√ 1 paś, spaś, 'see'.
+p095:√ 2 paś, 'bind'.
+p095:√ 1 pā, 'drink'.
+p096:√ 2 pā, 'protect'.
+p096:√ 3 pā, 'rise against'.
+p096:√ pāy, 'cacare'.
+p096:√ pi, pī, 'swell, fatten'.
+p097:√ pinv, 'fatten'.
+p097:√ pibd, 'be firm' (?).
+p097:√ piś, 'adorn'.
+p097:√ piṣ, 'crush'.
+p098:√ pis, 'stretch' (?).
+p098:√ 1 pi, see √ pi.
+p098:√ 2 pī, see √ pīy.
+p098:√ pīḍ, 'press'.
+p098:√ puṭ, 'scale' etc.
+p098:√ puth, 'crush.
+p098:√ puṣ, 'thrive'.
+p099:√ pū, 'cleanse'.
+p099:√ pūj, 'reverence.
+p099:√ pūy, 'stink'.
+p100:√ pūr, see √ 1 pṛ.
+p100:√ 1 pṛ, pṛṇ, pūr, 'fill'.
+p100:√ 2 pṛ, 'pass'.
+p100:√ 3 pṛ, 'be busy'.
+p101:√ pṛc, 'mix'.
+p101:√ pṛṇ, see √ 1 pṛ.
+p101:√ pṛt, 'fight'.
+p101:√ pṛś, pṛṣ (?).
+p101:√ pyā, 'fill up'.
+p102:√ prach, 'ask'.
+p102:√ prath, 'spread'.
+p102:√ prā, 'fill'.
+p102:√ prī, 'please'.
+p103:√ pru, 'flow'.
+p103:√ pruth, 'snort'.
+p103:√ pruṣ, 'sprinkle'.
+p103:√ plī (?).
+p103:√ plu, 'float'.
+p104:√ plus, 'burn.
+p104:√ psā, 'devour.
+p104:√ phakk, 'swell' (?).
+p104:√ phaṇ, 'spring'.
+p104:√ phar, 'scatter' (?).
+p105:√ 1 phal, 'burst'.
+p105:√ 2 phal, 'fruit'.
+p105:√ baṃh, 'make firm'.
+p105:√ bandh, 'bind'.
+p106:√ bal, 'whirl'(?).
+p106:√ bādh, 'oppress'.
+p106:√ budh, 'know, wake'.
+p107:√ bul, 'submerge'.
+p107:√ bṛṃh, vṛṃh, 'roar', see √ vṛṃh.
+p107:√ 1 bṛh, 'make big or strong'.
+p107:√ 2 bṛh, vṛh, 'tear', see √ vṛh.
+p107:√ brū, 'say'.
+p107:√ blī, see √ vlī.
+p107:√ bhakṣ, 'partake of, eat'.
+p108:√ bhaj, 'divide, share'.
+p108:√ bhañj, 'break'.
+p108:√ bhaṭ, 'hire'.
+p108:√ bhaṇ, 'speak'.
+p109:√ bhan, 'speak'.
+p109:√ bhand, 'be bright'.
+p109:√ bharts, 'revile'.
+p109:√ bharv, 'devour'.
+p109:√ bhal, 'perceive'.
+p109:√ bhaṣ, 'bark'.
+p109:√ bhas, 'devour'.
+p110:√ bhā, 'shine'.
+p110:√ bhām, 'be angry'.
+p110:√ bhāṣ, 'speak'.
+p110:√ bhās, 'shine'.
+p111:√ bhikṣ, 'beg'.
+p111:√ bhid, 'split'.
+p111:√ bhiṣaj, 'heal'.
+p111:√ bhī, bhīṣ, 'fear'.
+p112:√ 1 bhuj, 'bend'.
+p112:√ 2 bhuj, 'enjoy'.
+p113:√ bhur, 'quiver'.
+p113:√ bhuraj.
+p113:√ bhū, 'be'.
+p113:√ bhūṣ, 'attend upon, adorn'.
+p114:√ bhṛ, 'bear'.
+p114:√ bhṛjj, 'roast'.
+p115:√ bhyas, 'fear'.
+p115:√ bhraṃś, bhraś, 'fall'.
+p115:√ bhram, 'wander'.
+p115:√ bhrāj, 'shine'.
+p116:√ bhrī, consume'.
+p116:√ bhreṣ, 'totter'.
+p116:√ maṃh, mah, 'be great, be liberal, bestow'.
+p116:√ majj, 'sink'.
+p117:√ mañc, 'purify' (?).
+p117:√ maṇ, 'sound'.
+p117:√ maṇṭ ?.
+p117:√ maṇḍ, 'deck'.
+p117:√ math, manth, 'shake'.
+p118:√ mad, mand, 'be exhilarated, exhilarate'.
+p118:√ man, 'think'.
+p119:√ mah, see √ maṃh.
+p119:√ 1 mā, 'measure'.
+p119:√ 2 mā, 'exchange'.
+p119:√ 3 mā, 'bellow'.
+p120:√ mārg, 'chase'.
+p120:√ mi, 'fix'.
+p120:√ mi, 'damage', see √ mī.
+p120:√ mikṣ (miś), 'mix'.
+p120:√ migh, see √ mih.
+p120:√ mith, 'alternate, altercate'.
+p121:√ mid, mind, see √ med.
+p121:√ mil, 'combine'.
+p121:√ miṣ, 'wink'.
+p121:√ mih, 'mingere'.
+p122:√ mīl, 'wink'.
+p122:√ mīv, mū, 'push'.
+p122:√ muc, mokṣ, 'release'.
+p123:√ muṭ, 'break'.
+p123:√ mud, 'be merry'.
+p123:√ muṣ, 'steal'.
+p123:√ muh, 'be crazed'.
+p123:√ mū, see √ mīv.
+p124:√ mūrch, mūr, 'thicken'.
+p124:√ 1 mṛ, 'dir'.
+p124:√ 2 mṛ, mṛṇ, 'crush'.
+p124:√ mṛkṣ, 'stroke'.
+p125:√ mṛc, 'injure'.
+p125:√ mṛch, 'perish'.
+p125:√ mṛj, 'wipe'.
+p125:√ mṛḍ, 'be gracious'.
+p126:√ mṛṇ, see √ 2 mṛ.
+p126:√ mṛd, mrad, 'rub, crush'.
+p126:√ mṛdh, 'neglect'.
+p126:√ m ṛś, 'touch, feel'.
+p126:√ mṛṣ, 'not heed'.
+p127:√ med [mid], 'be fat'.
+p127:√ mokṣ, see √ muc.
+p127:√ mnā, 'note'.
+p127:√ myakṣ, 'be situated' (?).
+p127:√ mrad, see √ mṛd.
+p127:√ mrit, mlit, 'dissolve'.
+p128:√ mruc, mluc, mlup, 'set'.
+p128:√ mreḍ, 'gratify' (?).
+p128:√ mlā, 'relax'.
+p128:√ mluc, see √ mruc.
+p128:√ mlup, see √ mruc.
+p128:√ mlech, 'speak barbarously'.
+p128:√ yakṣ, 'press on' (?).
+p128:√ yach, see √ yam.
+p129:√ yaj, 'offer'.
+p129:√ yat, 'stretch'.
+p129:√ yabh, futuere'.
+p130:√ yam, yach, 'reach'.
+p130:√ yas, yeṣ, 'be heated'.
+p130:√ yah.
+p131:√ yā, 'go'.
+p131:√ yāc, 'ask'.
+p131:√ yād, 'unite' (?).
+p131:√ 1 yu, 'unite'.
+p132:√ 2 yu, yuch, 'separate'.
+p132:√ yuj, 'join'.
+p133:√ yup, 'obstruct'.
+p133:√ yeṣ, see √ yas.
+p133:√ raṃh, 'hasten'.
+p134:√ rakṣ, 'protect'.
+p134:√ rang, 'rock'.
+p134:√ rae, 'produce'.
+p134:√ 1 raj, 'direct', see √ ṛj.
+p134:√ 2 raj, rañj, 'color'.
+p135:√ ranch, 'mark'.
+p135:√ raṭ, 'howl'.
+p135:√ raṇv, 'delight'.
+p135:√ rad, 'dig'.
+p135:√ radh, randh, 'be or make subject'.
+p135:√ 1 ran, 'take pleasure'.
+p136:√ 2 ran, 'ring'.
+p136:√ rap, 'chatter'.
+p136:√ rapś, 'be full'.
+p136:√ raph.
+p136:√ rabh, rambh, 'take hold'.
+p137:√ ram, 'be or make content'.
+p137:√ ramb, 'hang down'.
+p137:√ rambh, 'roar'.
+p137:√ raś.
+p137:√ ras, 'roar'.
+p138:√ rah, 'desert'.
+p138:√ 1 rā, rās, 'give'.
+p138:√ 2 rā, 'bark'.
+p138:√ rāj, 'be kingly'.
+p138:√ rādh, 'succeed'.
+p139:√ 1 ras, 'roar'.
+p139:√ 2 rās, see √ 1 rā.
+p139:√ ri, rī, 'flow'.
+p139:√ rikh, 'scratch'.
+p139:√ riṅkh, riṅg, 'creep'.
+p139:√ ric, 'leave'.
+p140:√ rip, 'smear'.
+p140:√ riph, 'snarl'.
+p140:√ ribh, 'sing'.
+p140:√ riś, 'tear'.
+p140:√ riṣ, 'be hurt'.
+p141:√ rih, 'lick'.
+p141:√ rī, see √ ri.
+p141:√ 1 ru, 'cry'.
+p141:√ 2 ru, 'break'.
+p141:√ rue, 'shine'.
+p142:√ ruj, 'break'.
+p142:√ ruṭh, 'torment'.
+p142:√ rud, 'weep'.
+p142:√ 1 rudh, 'grow'.
+p143:√ 2 rudh, 'obstruct'.
+p143:√ rup, 'break, pain'.
+p143:√ ruṣ, 'be vexed'.
+p143:√ ruh, 'ascend'.
+p144:√ rūṣ, 'strew'.
+p144:√ rej, 'tremble'.
+p144:√ rebh, see √ ribh.
+p144:√ lakṣ, 'mark'.
+p144:√ lag, 'attach.
+p145:√ laṅgh, 'leap'.
+p145:√ lajj, 'be ashamed'.
+p145:√ lap, 'prate'.
+p145:√ labh, 'take'.
+p146:√ lam, 'take pleasure'.
+p146:√ lamb, 'hang down'.
+p146:√ lal, 'sport'.
+p146:√ laṣ, 'desire'.
+p147:√ las, 'be lively'.
+p147:√ lā, 'grasp'.
+p147:√ lāñch, 'mark'.
+p147:√ likh, 'scratch'.
+p147:√ lip, limp, 'smear'.
+p148:√ liś, 'tear'.
+p148:√ lih, 'lick'.
+p148:√ 1 lī, 'cling'.
+p149:√ 2 lī, 'be unsteady'.
+p149:√ luñc, 'tear'.
+p149:√ 1 luṭh, 'roll'.
+p149:√ 2 luṭh, luṇṭh, 'rob'.
+p149:√ luḍ, 'stir up'.
+p149:√ lup, 'break'.
+p150:√ lubh, 'be lustful'.
+p150:√ lul, 'be lively'.
+p150:√ lū, 'sut'.
+p150:√ lok, 'look'.
+p151:√ loc, 'see, consider'.
+p151:√ vak, see √ vañc.
+p151:√ vakṣ, ukṣ, 'increase'.
+p151:√ vac, 'speak'.
+p152:√ vaj, 'be strong'.
+p152:√ vañc, 'move crookedly'.
+p152:√ vaṇṭ, 'divide'.
+p152:√ vat, 'apprehend'.
+p152:√ vad, 'speak'.
+p153:√ vadh, badh, 'slay'.
+p153:√ van, vā, 'win'.
+p153:√ vand, 'greet'.
+p154:√ 1 vap, 'strew'.
+p154:√ 2 vap, 'shear'.
+p154:√ vam, 'vomit'.
+p155:√ val, 'turn'.
+p155:√ valg, 'spring'.
+p155:√ valh, 'challenge'.
+p155:√ vaś, 'be eager'.
+p155:√ 1 vas, uṣ, uch, 'shine'.
+p156:√ 2 vas, 'clothe'.
+p156:√ 3 vas, 'dwell'.
+p157:√ vah, 'carry'.
+p157:√ 1 vā, 'blow'.
+p157:√ 2 vā, vi, u, 'weave'.
+p158:√ 3 vā (in vivāsa), see √ van.
+p158:√ vāñch, 'desire'.
+p158:√ vāś, 'bellow'.
+p158:√ vāh, 'press'.
+p158:√ 1 vic, 'sift'.
+p159:√ 2 vie, see √ vyac.
+p159:√ vij‚ 'tremble'.
+p159:√ 1 vid, 'know'.
+p159:√ 2 vid, 'find'.
+p160:√ 1 vidh, 'worship'.
+p160:√ 2 vidh, see √ vyadh.
+p160:√ vindh, 'lack'.
+p160:√ vip, vep, 'tremble'.
+p160:√ viś, 'enter'.
+p161:√ viṣ, 'be active'.
+p161:√ viṣṭ, veśṭ, 'wrap'.
+p161:√ vī, 'enjoy' etc.
+p162:√ vīj, vyaj, 'fan'.
+p162:√ vīḍ, 'make strong.
+p162:√ 1 vṛ, 'cover'.
+p163:√ 2 vṛ, 'choose'.
+p163:√ vṛṃh, bṛṃh, 'roar'.
+p163:√ vṛj, 'twist'.
+p164:√ vṛt, 'turn'.
+p164:√ vṛdh, 'grow'.
+p165:√ vṛṣ, 'rain'.
+p165:√ vṛh, bṛh, 'tear'.
+p165:√ ven, 'long'.
+p166:√ vell, 'stagger'.
+p166:√ veṣṭ, see √ viṣṭ.
+p166:√ vyaj, see √ vīj.
+p166:√ vyath, 'waver'.
+p166:√ vyadh, vidh, 'pierce'.
+p167:√ vyay, 'expend'.
+p167:√ vyā, vī, 'envelop'.
+p167:√ vraj, 'proceed'.
+p167:√ vrad, vrand, 'weaken'.
+p167:√ vran, 'sound' (?).
+p168:√ vraśc, 'cut up'.
+p168:√ vrādh, 'stir up'.
+p168:√ vrīḍ, 'be abashed'.
+p168:√ vruḍ, 'sink'.
+p168:√ vlag, vlaṅg, 'pursue' (?).
+p168:√ vlī, bll, 'crush.
+p169:√ śans, 'praise'.
+p169:√ śak, 'be able'.
+p170:√ śaṅk, 'doubt'.
+p170:√ śat, 'cut in pieces'.
+p170:√ 1 śad, 'prevail'.
+p170:√ 2 śad, 'fall'.
+p170:√ śap, 'curse'.
+p171:√ 1 śam, śim, 'labor'.
+p171:√ 2 śam, 'be quiet'.
+p171:√ 3 śam, 'note'.
+p171:√ śal, 'leap'.
+p171:√ śaś, 'leap'.
+p172:√ śas, śās, 'cut'.
+p172:√ śā, śi, 'sharpen'.
+p172:√ 1 śās, śiṣ, 'order'.
+p173:√ 2 śas, 'cut', see √ śas.
+p173:√ śikṣ, see √ śak.
+p173:√ śiṅgh, 'snuff'.
+p173:√ śiñj, 'twang'.
+p173:√ śip, 'be smooth' (?).
+p173:√ śim, see √ 1 śam.
+p173:√ śiṣ, 'leave'.
+p173:√ 1 śī, 'fall'.
+p174:√ 2 śī, 'lie'.
+p174:√ śuc, 'gleam'.
+p174:√ śuj, 'swell' (?).
+p174:√ śudh, śundh, 'purify'.
+p175:√ śubh, śumbh, 'beautify'.
+p175:√ 1 śuṣ, 'dry'.
+p175:√ 2 śuṣ, 'blow', see √ śvas.
+p175:√ śū, śvā, śvi, 'swell'.
+p176:√ 1 śṛ, 'crush'.
+p176:√ 2 śṛ, see √ śrā.
+p176:√ 3 śṛ, see √ śri.
+p176:√ śṛdh, 'be defiant'.
+p177:√ ścand, cand, 'shine'.
+p177:√ ścam.
+p177:√ ścut, 'drip'.
+p177:√ śnath, 'pierce'.
+p177:√ śyā, śī, 'coagulate'.
+p177:√ śrath, ślath, 'slacken'.
+p178:√ śran, 'give'.
+p178:√ śram, 'be weary'.
+p178:√ śrambh, 'trust'.
+p178:√ śrā, 2 śrī, 2 śṛ, 'boil'.
+p179:√ śri, 3 śṛ, 'resort'.
+p179:√ śriṣ, see √ śliṣ.
+p179:√ 1 śrī, śṛ, 'mix'.
+p179:√ 2 śrī, see √ śrā.
+p179:√ śru, 'hear'.
+p180:√ śruṣ, 'hear'.
+p180:√ ślath, see √ śrath.
+p180:√ ślā‚ 'dissolve' (?).
+p180:√ ślāgh, 'extol'.
+p180:√ śliṣ, śriṣ, 'clasp'.
+p181:√ śvañc, 'spread'.
+p181:√ śvas, śuṣ, 'blow'.
+p181:√ śvā, śvi, see √ śū.
+p181:√ śvit, 'be bright'.
+p181:√ ṣṭhīv, 'spew'.
+p182:√ sakṣ.
+p182:√ sagh, 'be equal to'.
+p182:√ sac, 'accompany'.
+p182:√ saj, sañj, 'hang'.
+p183:√ sad, 'sit'.
+p183:√ san, 2 sā, 'gain'.
+p184:√ sap, 'serve'.
+p184:√ sarj, 'creak'.
+p184:√ saśc, see √ sac.
+p184:√ sas, 'sleep'.
+p184:√ sah, 'prevail'.
+p185:√ 1 sā, si‚ 'bind'.
+p185:√ 2 sā, see √ san.
+p185:√ sādh, sadh, 'succeed'.
+p186:√ si, 'bind', see √ 1 sā.
+p186:√ sic, 'pour out'.
+p186:√ 1 sidh, 'repel'.
+p186:√ 2 sidh, 'succeed'.
+p187:√ sī, see √ si.
+p187:√ sīv, syū, 'sew'.
+p187:√ su, 'press out'.
+p187:√ sul (?)'.
+p188:√ subh, sumbh, 'smother' (?).
+p188:√ sū, su, 'generate, enliven, impel'.
+p188:√ sūd, 'put in order'.
+p189:√ sūrkṣ, 'heed'.
+p189:√ sṛ, 'flow'.
+p189:√ sṛk, 'be pointed' (?).
+p189:√ sṛj, 'send forth'.
+p190:√ sṛp 'creep'.
+p190:√ sev, 'attend upon'.
+p190:√ skand, 'leap'.
+p191:√ skambh, skabh, 'prop'.
+p191:√ sku, 'tear'.
+p191:√ skṛ, see √ 1 kṛ.
+p191:√ skhal, 'stumble'.
+p191:√ stan, 'thunder'.
+p192:√ stambh, stabh, 'prop'.
+p192:√ stā, 'be stealthy'.
+p193:√ 1 stu, 'praise'.
+p193:√ 2 stu, 'drip'.
+p193:√ stubh, 'praise'.
+p193:√ stṛ, 'strew'.
+p194:√ stṛh, 'crush'.
+p194:√ styā, stī, 'stiffen'.
+p194:√ sthag, 'cover'.
+p194:√ sthā, 'stand'.
+p195:√ snā, 'bathe'.
+p195:√ snih, 'be sticky'.
+p195:√ snu, 'distil'.
+p196:√ spand, 'quiver'.
+p196:√ spaś, see √ paś.
+p196:√ spūrdh, see √ spṛdh.
+p196:√ spṛ, 'win'.
+p196:√ spṛdh, spūrdh, 'contend'.
+p196:√ spṛś, 'touch.
+p197:√ spṛh, 'be eager'.
+p197:√ sphaṭ, 'split'.
+p197:√ sphar, see √ sphṛ.
+p197:√ sphal, 'strike'.
+p197:√ sphā, 'fatten'.
+p197:√ sphuṭ, 'burst'.
+p198:√ sphur, sphul, see sphṛ.
+p198:√ sphūrj, 'rumble'.
+p198:√ sphṛ, sphar, sphur, sphul, 'jerk' etc.
+p198:√ smi, 'smile'.
+p199:√ smṛ, 'remember'.
+p199:√ syand, syad, 'move on'.
+p199:√ sraṃs, sras, 'fall'.
+p200:√ sridh, 'blunder' (?).
+p200:√ srīv, 'fail'.
+p200:√ sru, 'flow'.
+p200:√ svaj, svañj, 'embrace'.
+p201:√ svad, svād, 'sweeten'.
+p201:√ svan, 'sound'.
+p201:√ svap, 'sleep'.
+p201:√ svar, 'sound'.
+p202:√ svād, see √ svad.
+p202:√ svid, 'sweat'.
+p202:√ had, 'cacare'.
+p202:√ han, 'smite'.
+p203:√ har, 'be gratified'.
+p203:√ has, 'laugh'.
+p204:√ 1 hā, 'leave'.
+p204:√ 2 hā, 'go forth'.
+p204:√ has, 'go emulously'.
+p205:√ hi, 'impel'.
+p205:√ hiṃs, 'injure'.
+p205:√ hikk, 'sob'.
+p205:√ hiṇḍ, 'be empty' (?).
+p206:√ hīḍ, hel, 'be hostile'.
+p206:√ hu, 'sacrifice'.
+p206:√ hur, see √ hvṛ.
+p206:√ hū, hvā, 'call'.
+p207:√ hūrch, 'fall away'.
+p207:√ 1 hṛ, 'take'.
+p207:√ 2 hṛ, 'be angry'.
+p208:√ hṛṣ, 'be excited'.
+p208:√ heṭh.
+p208:√ heḍ, hel, see √ hīḍ.
+p208:√ heṣ, 'whinney'.
+p208:√ hnu, 'hide'.
+p208:√ hras, 'shorten'.
+p209:√ hrād, 'make a noise'.
+p209:√ hrī, 'be ashamed'.
+p209:√ hru, see √ hvṛ.
+p209:√ hreṣ, 'neigh'.
+p209:√ hlād, 'refresh'.
+p209:√ hval, 'go wrong'.
+p210:√ hvṛ, hru, hur, 'be or make crooked'.

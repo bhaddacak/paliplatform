@@ -51,6 +51,7 @@ public class StringPair {
 
 	@Override
 	public boolean equals(final Object other) {
+		if (other == null) return false;
 		final StringPair otherPair = (StringPair)other;
 		return pair[0].equals(otherPair.getFirst()) && pair[1].equals(otherPair.getSecond());
 	}

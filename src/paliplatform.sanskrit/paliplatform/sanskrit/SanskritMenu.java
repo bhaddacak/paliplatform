@@ -56,11 +56,16 @@ public class SanskritMenu extends Menu {
 		final MenuItem sandhiAnalyzerMenuItem = new MenuItem("Sandhi _Analyzer", new TextIcon("hammer", TextIcon.IconSet.AWESOME));
 		sandhiAnalyzerMenuItem.setMnemonicParsing(true);
 		sandhiAnalyzerMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SANDHI_ANALYZER, null));
-		final MenuItem nominalParadMenuItem = new MenuItem("Nominal _Paradigms", new TextIcon("stamp", TextIcon.IconSet.AWESOME));
-		nominalParadMenuItem.setMnemonicParsing(true);
+		final MenuItem nominalParadMenuItem = new MenuItem("Nominal Paradigms", new TextIcon("stamp", TextIcon.IconSet.AWESOME));
 		nominalParadMenuItem.setOnAction(actionEvent -> NominalParadigmWin.INSTANCE.display());
 		final MenuItem sktDeclensionMenuItem = new MenuItem("Declension Table", new TextIcon("table-cells", TextIcon.IconSet.AWESOME));
 		sktDeclensionMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SKTDECLENSION, null));
+		final MenuItem verbalParadMenuItem = new MenuItem("Verbal Paradigms", new TextIcon("stamp", TextIcon.IconSet.AWESOME));
+		verbalParadMenuItem.setOnAction(actionEvent -> VerbalParadigmWin.INSTANCE.display());
+		final MenuItem sktConjugationMenuItem = new MenuItem("Conjugation Table", new TextIcon("table-cells", TextIcon.IconSet.AWESOME));
+		sktConjugationMenuItem.setOnAction(actionEvent -> SanskritUtilities.openWindow(Utilities.WindowType.SKTCONJUGATION, null));
+		final MenuItem whitneyRootsMenuItem = new MenuItem("Whitney's roots", new TextIcon("seedling", TextIcon.IconSet.AWESOME));
+		whitneyRootsMenuItem.setOnAction(actionEvent -> WhitneyRootsWin.INSTANCE.display());
 		final MenuItem docDownloadMenuItem = new MenuItem("Download Sanskrit documents", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
 		docDownloadMenuItem.setOnAction(actionEvent -> SktDocDownloader.INSTANCE.display());
 		final MenuItem dictDownloadMenuItem = new MenuItem("Download Sanskrit dictionaries", new TextIcon("cloud-arrow-down", TextIcon.IconSet.AWESOME));
@@ -75,7 +80,8 @@ public class SanskritMenu extends Menu {
 		lockDBMenuItem.textProperty().bindBidirectional(SanskritUtilities.sktDictDBLockString);
 		lockDBMenuItem.graphicProperty().bindBidirectional(SanskritUtilities.sktDictDBLockIcon);
 		lockDBMenuItem.setOnAction(actionEvent -> SanskritUtilities.lockSktDictDB(lockDBMenuItem.isSelected()));
-		getItems().addAll(dictMenuItem, lettersMenuItem, sandhiRulesMenuItem, sandhiAnalyzerMenuItem, nominalParadMenuItem, sktDeclensionMenuItem,
+		getItems().addAll(dictMenuItem, lettersMenuItem, sandhiRulesMenuItem, sandhiAnalyzerMenuItem, nominalParadMenuItem,
+				sktDeclensionMenuItem, verbalParadMenuItem, sktConjugationMenuItem, whitneyRootsMenuItem,
 				new SeparatorMenuItem(), docDownloadMenuItem, dictDownloadMenuItem, createDataMenuItem,
 				new SeparatorMenuItem(), lockDBMenuItem);
 	}

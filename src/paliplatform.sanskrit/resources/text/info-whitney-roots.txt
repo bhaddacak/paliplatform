@@ -1,0 +1,7 @@
+Guide to Whitney's Sanskrit roots
+	1. The images of the 1885 printed version are taken from archive.org with some color adjustment for size reduction. A better OCR version can be found at GRETIL. The full root list is carefully edited by the author.
+	2. As for the book used unfamiliar encoding, here are some noteworthy differences:
+	   - n̄ = ṅ
+	   - ç = ś
+	   - ṅ = ṃ
+	3. In the searching, you can enter the standard encoding, but when seeing the content, you have to replace the characters in mind, and ignore all accents.

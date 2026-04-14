@@ -1,7 +1,7 @@
 /*
  * PaliConjugation.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import java.util.stream.*;
 import java.nio.charset.StandardCharsets;
 
 /** 
- * The class handling verbal conjugation.
+ * The class handling Pali verbal conjugation.
  * @author J.R. Bhaddacak
  * @version 3.4
  * @since 1.0
@@ -110,7 +110,6 @@ public class PaliConjugation {
 			return name.substring(0, 3) + ".";
 		}
 	}
-	
 	public static enum Voice {
 		ACTI("Active"), PASS("Passive"), CAUS("Causative"), CAUPAS("Causal Passive");
 		public static final Voice[] values = values();

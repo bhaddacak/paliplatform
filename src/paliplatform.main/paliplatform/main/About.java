@@ -200,7 +200,7 @@ class About extends Stage {
 			try {
 				final String imgName = magazine.get(nextNum % magazine.size());
 				final ZipFile zip = new ZipFile(slideZip);
-				final ZipEntry entry = zip.getEntry (imgName);
+				final ZipEntry entry = zip.getEntry(imgName);
 				picDisplay.setImage(new Image(zip.getInputStream(entry)));
 				zip.close();
 				final FadeTransition fadePicIn = new FadeTransition(Duration.millis(1000), picDisplay);

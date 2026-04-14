@@ -50,8 +50,8 @@ import javafx.geometry.*;
 public class SktDeclensionWin extends BorderPane {
 	private static final String DEF_PRONOUN = "yuṣmad";
 	public static enum Mode {
-		NOUN("Nouns"), ADJ("Adj."), PRONOUN("Pronouns"), CARDINAL("Cardinals"), ORDINAL("Ordinals");
-		private static String[] descriptions = { "Nouns", "Adjectives", "Pronouns and demonstratives",
+		NOUN("Nouns"), ADJ1("Adj. I"), ADJ2("Adj. II"), PRONOUN("Pronouns"), CARDINAL("Cardinals"), ORDINAL("Ordinals");
+		private static String[] descriptions = { "Nouns", "Common adjectives", "Uncommon adjectives", "Pronouns and demonstratives",
 												"Carninal numbers", "Ordinal numbers" };
 		public static final Mode[] values = values();
 		public String name;
@@ -61,17 +61,24 @@ public class SktDeclensionWin extends BorderPane {
 		public String getDescription() {
 			return descriptions[this.ordinal()];
 		}
+		@Override
+		public String toString() {
+			return descriptions[this.ordinal()];
+		}
 	};
+	private final Map<Mode, List<String>> adjEndings = Map.of(
+		Mode.ADJ1, Arrays.asList("ALL", "ā", "ikā", "ī"),
+		Mode.ADJ2, Arrays.asList("ALL", "i", "u", "ṛ", "in", "man", "van", "mat", "vat", "at", "yas", "ivas", "vas", "as"));
 	private final ObservableList<String> wordList = FXCollections.<String>observableArrayList();
 	private final ListView<String> wordListView = new ListView<>(wordList);
 	private final ObservableList<DeclensionOutput> outputList = FXCollections.<DeclensionOutput>observableArrayList();
 	private final TableView<DeclensionOutput> table = new TableView<>();	
 	private final Callback<TableColumn<DeclensionOutput, String>, TableCell<DeclensionOutput, String>> declOutputCellFactory;
-	private final Map<Mode, Toggle> toggleMap = new EnumMap<>(Mode.class);
 	private final Map<Mode, HBox> toolbarMap = new EnumMap<>(Mode.class);
 	private final BorderPane mainPane = new BorderPane();
 	private final CheckMenuItem devaMenuItem = new CheckMenuItem("Devanāgarī");
-	private final ToggleGroup toggleModeGroup = new ToggleGroup();
+	private final ChoiceBox<Mode> modeChoice = new ChoiceBox<>();
+	private final ChoiceBox<String> endingChoice = new ChoiceBox<>();
 	private final ToggleGroup genderGroup = new ToggleGroup();
 	private final PaliTextInput nounTextInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
 	private final TextField nounTextField;
@@ -148,9 +155,11 @@ public class SktDeclensionWin extends BorderPane {
 		});	
 		final Button adjClearButton = adjTextInput.getClearButton();
 		adjClearButton.setOnAction(actionEvent -> adjTextField.clear());
+		endingChoice.setTooltip(new Tooltip("Ending selector"));
+		endingChoice.setOnAction(actionEvent -> showAdjList());
 		adjToolBox.setPadding(new Insets(3));
 		adjToolBox.setSpacing(3);
-		adjToolBox.getChildren().addAll(adjTextField, adjClearButton, adjTextInput.getMethodButton());
+		adjToolBox.getChildren().addAll(adjTextField, adjClearButton, adjTextInput.getMethodButton(), endingChoice);
 
 		// prepare toolbar for numbers
 		numberChoice.setOnAction(actionEvent -> showNumberResult());
@@ -196,26 +205,15 @@ public class SktDeclensionWin extends BorderPane {
 		commonToolbar.copyButton.disableProperty().bind(outputListProperty.sizeProperty().isEqualTo(0));
 		commonToolbar.copyButton.setTooltip(new Tooltip("Copy CSV to clipboard"));
 		// add new buttons
-		commonToolbar.getItems().add(new Separator());
-		for (final Mode m : Mode.values) {
-			final RadioButton radio = new RadioButton(m.name);
-			radio.setTooltip(new Tooltip(m.getDescription()));
-			radio.setToggleGroup(toggleModeGroup);
-			radio.setUserData(m);
-			toggleMap.put(m, radio);
-			commonToolbar.getItems().add(radio);
-		}
-        toggleModeGroup.selectedToggleProperty().addListener((observable) -> {
-			final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
-			init(mode, null);
-        });
-		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));		
+		modeChoice.getItems().addAll(Arrays.asList(Mode.values));
+		modeChoice.setOnAction(actionEvent -> init(modeChoice.getSelectionModel().getSelectedItem(), null));
+		final MenuButton optionsMenu = new MenuButton("", new TextIcon("check-double", TextIcon.IconSet.AWESOME));
 		optionsMenu.setTooltip(new Tooltip("Options"));
 		devaMenuItem.setOnAction(actionEvent -> showResult());
 		optionsMenu.getItems().addAll(devaMenuItem);
         final Button helpButton = new Button("", new TextIcon("circle-question", TextIcon.IconSet.AWESOME));
 		helpButton.setOnAction(actionEvent -> infoPopup.showPopup(helpButton, InfoPopup.Pos.BELOW_RIGHT, true));
-		commonToolbar.getItems().addAll(new Separator(), optionsMenu, helpButton);	
+		commonToolbar.getItems().addAll(new Separator(), modeChoice, optionsMenu, helpButton);	
 		setTop(commonToolbar);
 
 		mainPane.setLeft(wordListView);
@@ -245,11 +243,12 @@ public class SktDeclensionWin extends BorderPane {
 		SanskritUtilities.loadNumberList();
 		// prepare info popup
 		infoPopup.setContentWithText(SanskritUtilities.getTextResource("info-sktdeclension.txt"));
-		infoPopup.setTextWidth(Utilities.getRelativeSize(32));
+		infoPopup.setTextWidth(Utilities.getRelativeSize(40));
 		// other inits
 		table.setSelectionModel(null);
 		toolbarMap.put(Mode.NOUN, nounToolBox);
-		toolbarMap.put(Mode.ADJ, adjToolBox);
+		toolbarMap.put(Mode.ADJ1, adjToolBox);
+		toolbarMap.put(Mode.ADJ2, adjToolBox);
 		toolbarMap.put(Mode.PRONOUN, pronToolBox);
 		toolbarMap.put(Mode.CARDINAL, numbToolBox);
 		toolbarMap.put(Mode.ORDINAL, numbToolBox);
@@ -262,11 +261,11 @@ public class SktDeclensionWin extends BorderPane {
 		nounTextField.clear();
 		wordList.clear();
 		outputList.clear();
-		toggleModeGroup.selectToggle(toggleMap.get(mode));
+		modeChoice.getSelectionModel().select(mode);
 		updateToolBar(mode);
 		table.setItems(null);
 		mainPane.setCenter(null);
-		setPrefWidth(Utilities.getRelativeSize(63));
+		setPrefWidth(Utilities.getRelativeSize(60));
 		setPrefHeight(Utilities.getRelativeSize(30));
 		if (args != null) {
 			final String paradName = (String)args[0];
@@ -281,7 +280,9 @@ public class SktDeclensionWin extends BorderPane {
 				showPronounList();
 			} else if (mode == Mode.CARDINAL || mode == Mode.ORDINAL) {
 				showNumberList();
-			} else if (mode == Mode.ADJ) {
+			} else if (mode == Mode.ADJ1 || mode == Mode.ADJ2) {
+				endingChoice.getItems().setAll(adjEndings.get(mode));
+				endingChoice.getSelectionModel().select(0);
 				showAdjList();
 			} else {
 				paradigmChoice.getSelectionModel().selectFirst();
@@ -335,9 +336,12 @@ public class SktDeclensionWin extends BorderPane {
 
 	private void showNounList(final String word) {
 		wordList.clear();
+		final String queryFinal = word.replace("?", ".").replace("*", ".*");
 		final Predicate<String> filterCond = word.isEmpty()
 												? x -> true
-												: x -> x.startsWith(word);
+												: queryFinal.contains(".")
+													? x -> x.matches(queryFinal)
+													: x -> x.startsWith(queryFinal);
 		final String paradName = paradigmChoice.getSelectionModel().getSelectedItem();
 		if (paradName == null) return;
 		final String wordgrpStr = SktDeclension.getWordGroupIdentifier(paradName);
@@ -363,17 +367,35 @@ public class SktDeclensionWin extends BorderPane {
 				wordList.add(parad.getSampleTerm().getTerm());
 			}
 		}
+		wordListView.scrollTo(0);
 		showFirstResult();
 	}
 
 	private void showAdjList() {
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
+		final String ending = endingChoice.getSelectionModel().getSelectedItem();
+		if (ending == null) return;
+		final Predicate<String> endPred = ending.equals("ALL")
+										? x -> true
+										: mode == Mode.ADJ2
+											? SktNominal.Adjective.getEndingPredicate(ending)
+											: ending.equals("ā")
+												? x -> x.endsWith("a")
+												: x -> x.endsWith(ending + ")");
+		final List<String> adjList = mode == Mode.ADJ1
+						? SanskritUtilities.sktAdjCommon.keySet().stream().filter(endPred).collect(Collectors.toList())
+						: SanskritUtilities.sktAdjUncommon.keySet().stream().filter(endPred).collect(Collectors.toList());
 		final String strQuery = Normalizer.normalize(adjTextField.getText().trim(), Form.NFC);
-		final List<String> alist = SanskritUtilities.sktAdjectives.stream()
-									.map(x -> x.getTerms()[0])
-									.filter(x -> x.startsWith(strQuery))
+		final String queryFinal = strQuery.replace("?", ".").replace("*", ".*");
+		final Predicate<String> queryPred = queryFinal.contains(".")
+								? x -> x.matches(queryFinal)
+								: x -> x.startsWith(queryFinal);
+		final List<String> result = adjList.stream()
+									.filter(queryPred)
 									.collect(Collectors.toList());
-		wordList.setAll(alist);
+		wordList.setAll(result);
 		wordListView.getSelectionModel().selectFirst();
+		wordListView.scrollTo(0);
 		showFirstResult();
 	}
 
@@ -421,7 +443,7 @@ public class SktDeclensionWin extends BorderPane {
 	}
 
 	private void showResult(final String term) {
-		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
 		if (mode == Mode.NOUN) {
 			final String paradName = paradigmChoice.getSelectionModel().getSelectedItem();
 			if (paradName != null) {
@@ -429,7 +451,7 @@ public class SktDeclensionWin extends BorderPane {
 				updateGenderToolBox(parad.getGenderList());
 				showDeclensionTable(parad, term);
 			}
-		} else if (mode == Mode.ADJ || mode == Mode.PRONOUN) {
+		} else if (mode == Mode.ADJ1 || mode == Mode.ADJ2 || mode == Mode.PRONOUN) {
 			updateGenderToolBox();
 			showResult(term, Gender.MAS);
 		} else if (mode == Mode.CARDINAL || mode == Mode.ORDINAL) {
@@ -456,7 +478,7 @@ public class SktDeclensionWin extends BorderPane {
 	}
 
 	private void showResult(final String term, final Gender gender) {
-		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
 		if (mode == Mode.PRONOUN) {
 			final Set<NominalParadigm> paradSet = pronounParadMap.get(term);
 			final NominalParadigm parad = paradSet.stream()
@@ -465,11 +487,10 @@ public class SktDeclensionWin extends BorderPane {
 											.orElse(null);
 			if (parad == null) return;
 			showDeclensionTable(parad, term);
-		} else if (mode == Mode.ADJ) {
-			final SktNominal.Adjective adj = SanskritUtilities.sktAdjectives.stream()
-												.filter(x -> term.equals(x.getTerms()[0]))
-												.findFirst()
-												.orElse(null);
+		} else if (mode == Mode.ADJ1 || mode == Mode.ADJ2) {
+			final SktNominal.Adjective adj = mode == Mode.ADJ1
+											? SanskritUtilities.sktAdjCommon.get(term)
+											: SanskritUtilities.sktAdjUncommon.get(term);
 			if (adj == null) return;
 			final String[] terms = adj.getTerms();
 			final String[] paradNames = adj.getParadigmNames();
@@ -481,8 +502,8 @@ public class SktDeclensionWin extends BorderPane {
 	}
 	
 	private void showResult(final Gender gender) {
-		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
-		if (mode == Mode.ADJ || mode == Mode.PRONOUN) {
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
+		if (mode == Mode.ADJ1 || mode == Mode.ADJ2 || mode == Mode.PRONOUN) {
 			final String term = wordListView.getSelectionModel().getSelectedItem();
 			if (term != null)
 				showResult(term, gender);
@@ -492,7 +513,7 @@ public class SktDeclensionWin extends BorderPane {
 	}
 	
 	private void showNumberResult() {
-		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
 		final String numStr = wordListView.getSelectionModel().getSelectedItem();
 		if (numStr == null) return;
 		final int num = Integer.parseInt(numStr);
@@ -538,7 +559,7 @@ public class SktDeclensionWin extends BorderPane {
 	}
 
 	private void showDeclensionTable(final NominalParadigm parad, final String term, final Number... numArr) {
-		final Mode mode = (Mode)toggleModeGroup.getSelectedToggle().getUserData();
+		final Mode mode = modeChoice.getSelectionModel().getSelectedItem();
 		outputList.clear();
 		// for multiple-word term
 		final String[] terms = term.split(" ");
@@ -563,7 +584,7 @@ public class SktDeclensionWin extends BorderPane {
 		}
 		// add the last or the only part
 		nominals[terms.length - 1] = new SktNominal(terms[terms.length - 1], parad);
-		final Map<Case, Map<Number, List<String>>> caseMap = combineDeclension(nominals);
+		final Map<Case, Map<Number, List<String>>> caseMap = SktDeclension.computeMerge(nominals);
 		for (Case cas : Case.values) {
 			final Map<Number, List<String>> numMap = caseMap.get(cas);
 			final Map<Number, List<String>> numMapSelected;
@@ -583,26 +604,6 @@ public class SktDeclensionWin extends BorderPane {
 			table.setItems(outputList);
 			mainPane.setCenter(table);
 		}
-	}
-
-	private Map<Case, Map<Number, List<String>>> combineDeclension(final SktNominal... nominals) {
-		final Map<Case, Map<Number, List<String>>> result = SktDeclension.compute(nominals[0]);
-		for (int i = 1; i < nominals.length; i++) {
-			final Map<Case, Map<Number, List<String>>> caseMap = SktDeclension.compute(nominals[i]);
-			for (final Case c : Case.values) {
-				final Map<Number, List<String>> resNumMap = result.get(c);
-				final Map<Number, List<String>> curNumMap = caseMap.get(c);
-				for (final Number n : Number.values) {
-					final List<String> resTermList = resNumMap.get(n);
-					final List<String> curTermList = curNumMap.get(n);
-					final String resFirst = resTermList.isEmpty() ? "" : resTermList.get(0);
-					final String curFirst = curTermList.isEmpty() ? "" : curTermList.get(0);
-					final Sandhi sandhi = new Sandhi(resFirst, curFirst);
-					resNumMap.put(n, List.of(sandhi.getProductRoman()));
-				}
-			}
-		}
-		return result;
 	}
 
 	private void setupTable() {

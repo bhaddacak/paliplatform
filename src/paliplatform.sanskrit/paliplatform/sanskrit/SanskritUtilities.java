@@ -24,8 +24,8 @@ import paliplatform.base.ScriptTransliterator.EngineType;
 import java.util.*;
 import java.util.regex.*;
 import java.util.stream.*;
-import java.util.concurrent.*;
 import java.util.function.Function;
+import java.util.concurrent.*;
 import java.util.ServiceLoader.Provider;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -51,13 +51,18 @@ import javafx.beans.property.SimpleObjectProperty;
 final public class SanskritUtilities {
 	public static final String DICTPATH = Utilities.DATAPATH + "dict" + File.separator;
 	public static final String TEXTPATH = Utilities.DATAPATH + "text" + File.separator + "skt" + File.separator;
+	public static final String WHITNEY_ROOTS_ZIP = Utilities.DATAPATH + "gram" + File.separator + "whitney_roots.zip";
 	private static final String TXTDIR = "resources/text/";
 	private static final String SKT_NOUN_LIST = TXTDIR + "sktnouns.csv";
-	private static final String SKT_ADJ_LIST = TXTDIR + "sktadjectives.csv";
+	private static final String SKT_ADJ1_LIST = TXTDIR + "sktadj-common.csv";
+	private static final String SKT_ADJ2_LIST = TXTDIR + "sktadj-uncommon.csv";
 	private static final String SKT_NUM_LIST = TXTDIR + "sktnumerals.csv";
+	private static final String WHITNEY_ROOTS_INDEX = TXTDIR + "whitney_roots_index.txt";
 	public static final List<String> sktNouns = new ArrayList<>();
-	public static final List<SktNominal.Adjective> sktAdjectives = new ArrayList<>();
+	public static final Map<String, SktNominal.Adjective> sktAdjCommon = new LinkedHashMap<>();
+	public static final Map<String, SktNominal.Adjective> sktAdjUncommon = new LinkedHashMap<>();
 	public static final List<SktNominal.Numeral> sktNumerals = new ArrayList<>();
+	public static final List<StringPair> whitneyRootsList = new ArrayList<>();
 	public static final SimpleBooleanProperty sktDictDBAvailable = new SimpleBooleanProperty(false);
 	public static final Map<SktDictBook, SimpleBooleanProperty> sktDictAvailMap = new EnumMap<>(SktDictBook.class);
 	public static final SimpleBooleanProperty someSktDictDataAvailable = new SimpleBooleanProperty(false);
@@ -66,6 +71,9 @@ final public class SanskritUtilities {
 	private static final String[] dbLockStatus = { "Skt. Dict DB unlocked", "Skt. Dict DB locked" };
 	public static final SimpleStringProperty sktDictDBLockString = new SimpleStringProperty(dbLockStatus[0]);
 	public static Map<String, SimpleService> simpleServiceMap;
+	public static Map<String, String> zeroGradeMap = new HashMap<>();
+	public static Map<String, String> gunaGradeMap = new HashMap<>();
+	public static Map<String, String> vrddhiGradeMap = new HashMap<>();
 	public static enum SktDictBook {
 		MW("Monier-Williams' Sanskrit-English Dictionary (1899)"), AP("Apte's Practical Sanskrit-English Dictionary (revised, 1957)"),
 		SHS("Jīvānanda Vidyāsāgara Bhaṭṭācāryya's Śabda-sāgara (1900)"), MD("Macdonell's Sanskrit-English Dictionary (1893)"),
@@ -93,6 +101,86 @@ final public class SanskritUtilities {
 			}
 			return result;
 		}
+	}
+	public static enum VocalicGrade {
+		ZERO("Zero-grade"), GUNA("Guṇa-grade"), VRDDHI("Vṛddhi-grade");
+		public final static VocalicGrade[] values = values();
+		private final String name;
+		private VocalicGrade(final String n) {
+			name = n;
+		}
+		public String getName() {
+			return name;
+		}
+	}
+
+	static {
+		// static initializations
+		// zero vocalic gradation
+		zeroGradeMap.put("a", "");
+		zeroGradeMap.put("ā", "");
+		zeroGradeMap.put("e", "i");
+		zeroGradeMap.put("ai", "i");
+		zeroGradeMap.put("ay", "y");
+		zeroGradeMap.put("āy", "y");
+		zeroGradeMap.put("ya", "i");
+		zeroGradeMap.put("yā", "i");
+		zeroGradeMap.put("ar", "r");
+		zeroGradeMap.put("ār", "r");
+		zeroGradeMap.put("ra", "ṛ");
+		zeroGradeMap.put("rā", "ṛ");
+		zeroGradeMap.put("al", "ḷ");
+		zeroGradeMap.put("āl", "ḷ");
+		zeroGradeMap.put("o", "u");
+		zeroGradeMap.put("au", "u");
+		zeroGradeMap.put("av", "v");
+		zeroGradeMap.put("āv", "v");
+		zeroGradeMap.put("va", "u");
+		zeroGradeMap.put("vā", "u");
+		// guṇa vocalic gradation
+		gunaGradeMap.put("a", "a");
+		gunaGradeMap.put("ā", "a");
+		gunaGradeMap.put("i", "e");
+		gunaGradeMap.put("ī", "e");
+		gunaGradeMap.put("ai", "e");
+		gunaGradeMap.put("y", "ay");
+		gunaGradeMap.put("āy", "ay");
+		gunaGradeMap.put("yā", "i");
+		gunaGradeMap.put("ṛ", "ar");
+		gunaGradeMap.put("ṝ", "ar");
+		gunaGradeMap.put("r", "ar");
+		gunaGradeMap.put("ār", "ar");
+		gunaGradeMap.put("rā", "ra");
+		gunaGradeMap.put("ḷ", "al");
+		gunaGradeMap.put("āl", "al");
+		gunaGradeMap.put("u", "o");
+		gunaGradeMap.put("ū", "o");
+		gunaGradeMap.put("au", "o");
+		gunaGradeMap.put("v", "av");
+		gunaGradeMap.put("āv", "av");
+		gunaGradeMap.put("vā", "va");
+		// vṛddhi vocalic gradation
+		vrddhiGradeMap.put("a", "ā");
+		vrddhiGradeMap.put("ā", "ā");
+		vrddhiGradeMap.put("i", "ai");
+		vrddhiGradeMap.put("ī", "ai");
+		vrddhiGradeMap.put("e", "ai");
+		vrddhiGradeMap.put("y", "āy");
+		vrddhiGradeMap.put("ay", "āy");
+		vrddhiGradeMap.put("ya", "yā");
+		vrddhiGradeMap.put("ṛ", "ār");
+		vrddhiGradeMap.put("ṝ", "ār");
+		vrddhiGradeMap.put("r", "ār");
+		vrddhiGradeMap.put("ar", "ār");
+		vrddhiGradeMap.put("ra", "rā");
+		vrddhiGradeMap.put("ḷ", "āl");
+		vrddhiGradeMap.put("al", "āl");
+		vrddhiGradeMap.put("u", "au");
+		vrddhiGradeMap.put("ū", "au");
+		vrddhiGradeMap.put("o", "au");
+		vrddhiGradeMap.put("v", "āv");
+		vrddhiGradeMap.put("av", "āv");
+		vrddhiGradeMap.put("va", "vā");
 	}
 
 	static String getTextResource(final String filename) {
@@ -164,6 +252,16 @@ final public class SanskritUtilities {
 				} else {
 					final SktDeclensionWin declensionWin = (SktDeclensionWin)stg.getScene().getRoot();
 					declensionWin.init(SktDeclensionWin.Mode.NOUN, args);
+					Utilities.showExistingWindow(stg);
+				}
+				break;
+			case SKTCONJUGATION:
+				if (stg == null) {
+					Utilities.openNewWindow(new SktConjugationWin(args), 
+						new Image(SanskritUtilities.class.getResourceAsStream("resources/images/table-cells.png")), "Sanskrit Conjugation Table");
+				} else {
+					final SktConjugationWin conjugationWin = (SktConjugationWin)stg.getScene().getRoot();
+					conjugationWin.init(args);
 					Utilities.showExistingWindow(stg);
 				}
 				break;
@@ -381,16 +479,32 @@ final public class SanskritUtilities {
 	}
 	
 	public static void loadAdjList() {
-		if (!sktAdjectives.isEmpty())
-			return;
-		try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_ADJ_LIST), StandardCharsets.UTF_8)) {
-			while (in.hasNextLine()) {
-				final String line = in.nextLine().trim();
-				if (line.isEmpty())
-					continue;
-				if (line.charAt(0) == '#')
-					continue;
-				sktAdjectives.add(new SktNominal.Adjective(line));
+		if (sktAdjCommon.isEmpty()) {
+			try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_ADJ1_LIST), StandardCharsets.UTF_8)) {
+				while (in.hasNextLine()) {
+					final String line = in.nextLine().trim();
+					if (line.isEmpty())
+						continue;
+					if (line.charAt(0) == '#')
+						continue;
+					final String[] parts = line.split(",");
+					final String key = parts.length > 1
+										? parts[0] + " (" + parts[1] + ")"
+										: parts[0];
+					sktAdjCommon.put(key, new SktNominal.Adjective(line));
+				}
+			}
+		}
+		if (sktAdjUncommon.isEmpty()) {
+			try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(SKT_ADJ2_LIST), StandardCharsets.UTF_8)) {
+				while (in.hasNextLine()) {
+					final String line = in.nextLine().trim();
+					if (line.isEmpty())
+						continue;
+					if (line.charAt(0) == '#')
+						continue;
+					sktAdjUncommon.put(line.split(",")[0], new SktNominal.Adjective(line));
+				}
 			}
 		}
 	}
@@ -408,6 +522,23 @@ final public class SanskritUtilities {
 				final String[] parts = line.split(",");
 				if (parts.length >= 3)
 					sktNumerals.add(new SktNominal.Numeral(parts[0], parts[1], parts[2]));
+			}
+		}
+	}
+	
+	public static void loadWhitneyRootsIndex() {
+		if (!whitneyRootsList.isEmpty())
+			return;
+		try (final Scanner in = new Scanner(SanskritUtilities.class.getResourceAsStream(WHITNEY_ROOTS_INDEX), StandardCharsets.UTF_8)) {
+			while (in.hasNextLine()) {
+				final String line = in.nextLine().trim();
+				if (line.isEmpty())
+					continue;
+				if (line.charAt(0) == '#')
+					continue;
+				final String[] parts = line.split(":");
+				if (parts.length > 1)
+					whitneyRootsList.add(new StringPair(parts[0], parts[1]));
 			}
 		}
 	}
@@ -442,6 +573,26 @@ final public class SanskritUtilities {
 			reverse.add(chList.get(i));
 		}
 		return reverse.stream().collect(Collectors.joining());
+	}
+
+	public static String getGradationOf(final VocalicGrade grade, final String ch) {
+		final String result;
+		if (grade == VocalicGrade.ZERO) {
+			result = zeroGradeMap.getOrDefault(ch, ch);
+		} else if (grade == VocalicGrade.GUNA) {
+			result = gunaGradeMap.getOrDefault(ch, ch);
+		} else {
+			result = vrddhiGradeMap.getOrDefault(ch, ch);
+		}
+		return result;
+	}
+
+	public static boolean endsWithDoubleConsonant(final String word) {
+		if (word.length() < 2) return false;
+		final List<String> chList = toCharList(word);
+		final int len = chList.size();
+		if (len < 2) return false;
+		return !Sandhi.isVowel(chList.get(len - 1)) && !Sandhi.isVowel(chList.get(len - 2));
 	}
 
 }

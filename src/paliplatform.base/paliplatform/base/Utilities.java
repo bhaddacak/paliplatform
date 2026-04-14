@@ -71,7 +71,7 @@ import org.apache.commons.csv.*;
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "4.0";
+	public static final String VERSION = "4.1";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -220,7 +220,7 @@ final public class Utilities {
 		TOCTREE("TocTreeWin"), FINDER("DocumentFinder"), LUCENE("LuceneFinder"),
 		LISTER("TermLister"), DICT("DictWin"), SKTDICT("SktDictWin"), EDITOR("PaliTextEditor"),
 		DECLENSION("DeclensionWin"), PROSODY("ProsodyWin"), READER("SentenceReader"),
-		SANDHI_ANALYZER("SandhiAnalyzer"), SKTDECLENSION("SktDeclensionWin"), 
+		SANDHI_ANALYZER("SandhiAnalyzer"), SKTDECLENSION("SktDeclensionWin"), SKTCONJUGATION("SktConjugationWin"), 
 		VIEWER("PaliHtmlViewer"), VIEWER_CSTR("CstrHtmlViewer"), VIEWER_CST4("Cst4HtmlViewer"),
 		VIEWER_GRETIL("GretilHtmlViewer"), VIEWER_BJT("BjtHtmlViewer"), VIEWER_SRT("SrtHtmlViewer"), 
 		VIEWER_GRAM("GramHtmlViewer"), VIEWER_SC("ScReader"), VIEWER_SKTGRETIL("SktGretilHtmlViewer");

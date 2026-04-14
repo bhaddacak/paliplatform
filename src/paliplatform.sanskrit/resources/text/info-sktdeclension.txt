@@ -1,6 +1,9 @@
 Guide to Sanskrit Declension Table
 	1. Sanskrit words here are taken mainly from MW dictionary. Nominal paradigms follow Bucknell's Manual (see also the help on that tool).
 	2. The noun list depends on the paradigm selected. Some paradigms have only one sample. Among these, they can be counted as irregular. Some may have a number of words but difficult to list, e.g., those under marut and the like.
-	3. Adjectives selected here are common, including the a-ending and the in-ending. The feminine variations of these are recognized.
-	4. The declension results are computed using internal sandhi rules, and external sandhi rules in case of numerals with multiple terms. The operation behind is really complex. If odd results are found, please report them to make corrections.
-	5. The declension result can also be rendered to Devanāgarī if this option is selected.
+	3. Adjectives have two sets. The first is common, including the a-ending citation forms with feminine variations (-ā, -ikā, and -ī). This set has around 40,000 words.
+	4. The second set of adjectives is less common, ending with -i, -u, -ṛ, -in, -man, -van, -mat, -vat, -at, -yas, -ivas, -vas, and -as in citation forms. This set has around 12,000 words.
+	5. The selection of paradigms for adjectives may not be totally correct, and some word-endings difficult to make a clear decision are left out. For the full list of possible endings, see Table 8 in Bucknell's Manual, p. 99.
+	6. Wildcards (? and *) can be used in the filtering of word list. For example, to filter only words ending with '-at', enter '*at' as the query.
+	7. The declension results are computed using internal sandhi rules, and external sandhi rules in case of numerals with multiple terms. The operation behind is really complex. If odd results are found, please report them to make corrections.
+	8. The declension result can also be rendered to Devanāgarī if this option is selected.

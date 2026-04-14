@@ -1,0 +1,8 @@
+Guide to Sanskrit Verbal Paradigms
+	1. The paradigms listed here mainly follow Roderick Bucknell's Sanskrit Manual. The names shown are those of singular third (prathama) person. If a distinction is needed, a specific letter is added, e.g., M for Middle.
+	2. A number of paradigms are also added for clarity, either taken from Madhav Deshpande's Sanskrit Primer (Saṃskṛtasubodhinī) or from the author's speculation.
+	3. Simple Future and Conditional do not have their own paradigms because they can be computed from others.
+	4. The numbers given in 'Ref' column correspond to those given by Bucknell in tables.
+	5. If a paradigm is clicked, its full table is shown at the bottom.
+	6. Word list on the right contains all terms rendered, according to the selected criteria. It can be searched using wildcards (? and *). For example, '*āt' will search for all terms ending with 'āt'. When an item in the list is clicked, the relevant paradigm will be located in the table.
+	7. All data input here are done manually with great difficulty. If errors are found, please kindly report to the author.

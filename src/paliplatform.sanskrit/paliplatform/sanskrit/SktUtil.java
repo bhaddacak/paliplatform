@@ -19,6 +19,11 @@
 package paliplatform.sanskrit;
 
 import paliplatform.base.*;
+import static paliplatform.sanskrit.SktConjugationWin.VForm;
+import static paliplatform.sanskrit.SktConjugation.TenseMood;
+import static paliplatform.sanskrit.SktConjugation.Pada;
+import static paliplatform.sanskrit.SktConjugation.Person;
+import static paliplatform.sanskrit.SktConjugation.Number;
 
 import java.util.*;
 import java.util.stream.*;
@@ -57,6 +62,8 @@ final public class SktUtil {
 				opt = args.length > 1 ? args[1] : "";
 				if (opt.equals("-d")) {
 					listDeclensionParadigms();
+				} else if (opt.equals("-c")) {
+					listConjugationParadigms();
 				} else {
 					printHelpAndExit();
 				}
@@ -84,6 +91,8 @@ final public class SktUtil {
 					saveMWTerms(param);
 				} else if (opt.equals("-o") && !param[0].isEmpty()) {
 					sortAndSave(param);
+				} else if (opt.equals("-cf")) {
+					saveConjugationProducts();
 				} else {
 					printHelpAndExit();
 				}
@@ -98,6 +107,10 @@ final public class SktUtil {
 					testSandhiFull();
 				} else if (opt.equals("-da")) {
 					testDeclensionAuto();
+				} else if (opt.equals("-aa")) {
+					testAugmentAuto();
+				} else if (opt.equals("-x")) {
+					testMisc();
 				} else {
 					printHelpAndExit();
 				}
@@ -119,6 +132,7 @@ final public class SktUtil {
 		help.append("  Commands:").append(LINESEP);
 		help.append("    list\tList things").append(LINESEP);
 		help.append("        -d\tList all declensional paradigms").append(LINESEP);
+		help.append("        -c\tList all conjugational paradigms").append(LINESEP);
 		help.append("    show\tShow things").append(LINESEP);
 		help.append("        -d <paradigm> [<stem>]\tShow declensions of a paradigm [with a stem]").append(LINESEP);
 		help.append("        -s <word1> <word2>\tShow external sandhi of word1 + word2").append(LINESEP);
@@ -126,11 +140,13 @@ final public class SktUtil {
 		help.append("    save\tSave data").append(LINESEP);
 		help.append("        -mw <condition>\tSave MW terms on the <condition>").append(LINESEP);
 		help.append("        -o <file>\tSort and save <file>").append(LINESEP);
+		help.append("        -cf\tSave all conjugational products").append(LINESEP);
 		help.append("    test\tTest cases").append(LINESEP);
 		help.append("        -sa\tAutomatic external sandhi test").append(LINESEP);
 		help.append("        -si\tAutomatic Internal sandhi test").append(LINESEP);
 		help.append("        -sf\tFull external sandhi list").append(LINESEP);
 		help.append("        -da\tAutomatic declension test").append(LINESEP);
+		help.append("        -aa\tAutomatic augment test").append(LINESEP);
 		help.append("    <none>\tShow this help").append(LINESEP);
 		help.append("  Notes:").append(LINESEP);
 		help.append("    To invoke the program, the Java convention has to be used.").append(LINESEP);
@@ -153,8 +169,8 @@ final public class SktUtil {
 		int count = 0;
 		for (final String pname : SktDeclension.paradigmMap.keySet()) {
 			final NominalParadigm parad = SktDeclension.paradigmMap.get(pname);
-			final int bucknell = parad.getBucknellNumber();
-			final String bucknellStr = bucknell > 0 ? " [" + bucknell + "]": "";
+			final String bucknell = parad.getBucknellNumber();
+			final String bucknellStr = !bucknell.isEmpty() ? " [" + bucknell + "]": "";
 			final String gendStr = parad.getGenderStr();
 			final Map<SktDeclension.Case, Map<SktDeclension.Number, List<String>>> prod = parad.getSampleProduct();
 			final Map<SktDeclension.Number, List<String>> numMap = prod.get(SktDeclension.Case.NOM);
@@ -165,6 +181,29 @@ final public class SktUtil {
 				decl.add(term.isEmpty() ? "-" : term);
 			}
 			final String result = pname + bucknellStr + " " + gendStr + " => " + decl.stream().collect(Collectors.joining(":"));
+			System.out.println(result);
+			count++;
+		}
+		System.out.println(count + " items listed");
+	}
+
+	private static void listConjugationParadigms() {
+		int count = 0;
+		for (final String pname : SktConjugation.paradigmMap.keySet()) {
+			final VerbalParadigm parad = SktConjugation.paradigmMap.get(pname);
+			final String bucknell = parad.getBucknellNumber();
+			final String bucknellStr = !bucknell.isEmpty() ? " [" + bucknell + "]": "";
+			final TenseMood tenseMood = parad.getTenseMood();
+			final Pada pada = parad.getPada();
+			final Map<Person, Map<Number, List<String>>> prod = parad.getSampleProduct();
+			final Map<Number, List<String>> numMap = prod.get(Person.PRATHAMA);
+			final List<String> conjug = new ArrayList<>();
+			for (final Number n : Number.values) {
+				final List<String> tlist = numMap.getOrDefault(n, List.of(""));
+				final String term = tlist.get(0);
+				conjug.add(term.isEmpty() ? "-" : term);
+			}
+			final String result = pname + bucknellStr + " " + tenseMood + " " + pada + " => " + conjug.stream().collect(Collectors.joining(":"));
 			System.out.println(result);
 			count++;
 		}
@@ -290,6 +329,43 @@ final public class SktUtil {
 		final File outfile = new File(Utilities.OUTPUTPATH + "sorted_" + args[0]);
 		printLog("Writing out " + outfile.getPath());
 		Utilities.saveText(lineList.stream().collect(Collectors.joining(LINESEP)), outfile);
+	}
+
+	private static void saveConjugationProducts() throws Exception {
+		final long startTime = System.currentTimeMillis();
+		final Path outputPath = Path.of(Utilities.ROOTDIR + Utilities.OUTPUTPATH);
+		if (Files.notExists(outputPath))
+			Files.createDirectories(outputPath);
+		final StringBuilder result = new StringBuilder();
+		int vcount = 0;
+		for (final SktVerb verb : VerbRepo.sktVerbMap.values()) {
+			vcount++;
+			result.append(getConjugResult(verb.getBucknellNumber(),
+						verb.getCommonProduct(TenseMood.PRES, Pada.ACT),
+						TenseMood.PRES.getNameCut(),
+						Pada.ACT,
+						VForm.ACT));
+		}
+		printLog(vcount + " verbs processed");
+		final File outfile = new File(Utilities.OUTPUTPATH + "allsktverbforms.txt");
+		printLog("Writing out " + outfile.getPath());
+		Utilities.saveText(result.toString(), outfile);
+		final long endTime = System.currentTimeMillis();
+		printTime(endTime - startTime);
+	}
+
+	private static String getConjugResult(final int num, final Map<Person, Map<Number, List<String>>> prod,
+										final String tense, final Pada pad, final VForm vform) {
+		final StringBuilder result = new StringBuilder();
+		prod.forEach((p, m) -> {
+			m.forEach((n, l) -> {
+				for (final String term : l) {
+					result.append(num + ":" + term + ":" + p.getInitial()+ ":" + n  + ":" + tense + ":" + pad + ":" + vform);
+					result.append(LINESEP);
+				}
+			});
+		});
+		return result.toString();
 	}
 
 	private static void testSandhiAuto() {
@@ -477,6 +553,34 @@ final public class SktUtil {
 		assertThat(testCase.getCase(SktDeclension.Case.GEN), arrayContaining("devasya", "devayoḥ", "devānām"));
 		assertThat(testCase.getCase(SktDeclension.Case.LOC), arrayContaining("deve", "devayoḥ", "deveṣu"));
 		assertThat(testCase.getCase(SktDeclension.Case.VOC), arrayContaining("deva", "devau", "devāḥ"));
+	}
+
+	private static void testAugmentAuto() {
+		assertThat(VerbalParadigm.augment(""), equalTo("a"));
+		assertThat(VerbalParadigm.augment("kat"), equalTo("akat"));
+		assertThat(VerbalParadigm.augment("akat"), equalTo("ākat"));
+		assertThat(VerbalParadigm.augment("ākat"), equalTo("ākat"));
+		assertThat(VerbalParadigm.augment("ikat"), equalTo("aikat"));
+		assertThat(VerbalParadigm.augment("īkat"), equalTo("aikat"));
+		assertThat(VerbalParadigm.augment("ukat"), equalTo("aukat"));
+		assertThat(VerbalParadigm.augment("ūkat"), equalTo("aukat"));
+		assertThat(VerbalParadigm.augment("ṛkat"), equalTo("ārkat"));
+		assertThat(VerbalParadigm.augment("ṝkat"), equalTo("ārkat"));
+		assertThat(VerbalParadigm.augment("ḷkat"), equalTo("ālkat"));
+		assertThat(VerbalParadigm.augment("ekat"), equalTo("aikat"));
+		assertThat(VerbalParadigm.augment("okat"), equalTo("aukat"));
+		assertThat(VerbalParadigm.augment("aikat"), equalTo("aikat"));
+		assertThat(VerbalParadigm.augment("aukat"), equalTo("aukat"));
+	}
+
+	private static void testMisc() {
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("t"), equalTo(false));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("tt"), equalTo(true));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("it"), equalTo(false));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("ith"), equalTo(false));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("tth"), equalTo(true));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("itth"), equalTo(true));
+		assertThat(SanskritUtilities.endsWithDoubleConsonant("tith"), equalTo(false));
 	}
 
 	// inner classes

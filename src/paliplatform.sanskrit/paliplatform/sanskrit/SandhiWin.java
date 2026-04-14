@@ -129,7 +129,7 @@ public final class SandhiWin extends SingletonWindow {
 		mainPane.setTop(toolBar);
 		// add search bar at the bottom
 		final HBox searchBox = new HBox();
-		searchBox.setPadding(new Insets(3, 0, 0, 0));
+		searchBox.setPadding(new Insets(3, 3, 3, 3));
 		searchBox.setSpacing(3);
 		searchInput.setSanskritMode(true);
 		final String inputMethod = Utilities.getSetting("sanskrit-input-method");

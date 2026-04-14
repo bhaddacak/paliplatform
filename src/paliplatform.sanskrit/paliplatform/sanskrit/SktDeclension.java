@@ -72,9 +72,6 @@ public class SktDeclension {
 		public String getDevaName() {
 			return devaNames[this.ordinal()];
 		}
-		public String getAbbr() {
-			return name.substring(0, 3) + ".";
-		}
 	}
 	public static final Map<String, NominalParadigm> paradigmMap = new LinkedHashMap<>();
 
@@ -90,6 +87,42 @@ public class SktDeclension {
 			final Map<Number, List<String>> numMap = new EnumMap<>(Number.class);
 			for (final Number n : Number.values) {
 				final List<String> productList = word.getDeclension(parad.getEndings(c, n));
+				numMap.put(n, productList);
+			}
+			result.put(c, numMap);
+		}
+		return result;
+	}
+
+	public static Map<Case, Map<Number, List<String>>> computeMerge(final SktNominal... nominals) {
+		final Map<Case, Map<Number, List<String>>> result = compute(nominals[0]);
+		for (int i = 1; i < nominals.length; i++) {
+			final Map<Case, Map<Number, List<String>>> caseMap = compute(nominals[i]);
+			for (final Case c : Case.values) {
+				final Map<Number, List<String>> resNumMap = result.get(c);
+				final Map<Number, List<String>> curNumMap = caseMap.get(c);
+				for (final Number n : Number.values) {
+					final List<String> resTermList = resNumMap.get(n);
+					final List<String> curTermList = curNumMap.get(n);
+					final String resFirst = resTermList.isEmpty() ? "" : resTermList.get(0);
+					final String curFirst = curTermList.isEmpty() ? "" : curTermList.get(0);
+					final Sandhi sandhi = new Sandhi(resFirst, curFirst);
+					resNumMap.put(n, List.of(sandhi.getProductRoman()));
+				}
+			}
+		}
+		return result;
+	}
+
+	public static Map<Case, Map<Number, List<String>>> productCombine(final Map<Case, Map<Number, List<String>>> prod1,
+																		final Map<Case, Map<Number, List<String>>> prod2) {
+		final Map<Case, Map<Number, List<String>>> result = new EnumMap<>(Case.class);
+		for (final Case c : Case.values) {
+			final Map<Number, List<String>> numMap = new EnumMap<>(Number.class);
+			for (final Number n : Number.values) {
+				final List<String> productList = new ArrayList<>();
+				productList.addAll(prod1.get(c).get(n));
+				productList.addAll(prod2.get(c).get(n));
 				numMap.put(n, productList);
 			}
 			result.put(c, numMap);
@@ -114,7 +147,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "ānām" },
 			{ "e", "ayoḥ", "eṣu" },
 			{ "a", "au", "āḥ" } };
-		final NominalParadigm devahParad = NominalParadigm.generate("devaḥ", "deva", devahData, 1);
+		final NominalParadigm devahParad = NominalParadigm.generate("devaḥ", "deva", devahData, "6-1");
 		devahParad.addGender(Gender.MAS);
 		devahParad.setWordGroupIdentifier("m:a:");
 		paradigmMap.put("devaḥ", devahParad);
@@ -127,7 +160,7 @@ public class SktDeclension {
 			{ "eḥ", "yoḥ", "īnām" },
 			{ "au", "yoḥ", "iṣu" },
 			{ "e", "ī", "ayaḥ" } };
-		final NominalParadigm munihParad = NominalParadigm.generate("muniḥ", "muni", munihData, 2);
+		final NominalParadigm munihParad = NominalParadigm.generate("muniḥ", "muni", munihData, "6-2");
 		munihParad.addGender(Gender.MAS);
 		munihParad.setWordGroupIdentifier("m:i:");
 		paradigmMap.put("muniḥ", munihParad);
@@ -140,7 +173,7 @@ public class SktDeclension {
 			{ "oḥ", "voḥ", "ūnām" },
 			{ "au", "voḥ", "uṣu" },
 			{ "o", "ū", "avaḥ" } };
-		final NominalParadigm pasuhParad = NominalParadigm.generate("paśuḥ", "paśu", pasuhData, 3);
+		final NominalParadigm pasuhParad = NominalParadigm.generate("paśuḥ", "paśu", pasuhData, "6-3");
 		pasuhParad.addGender(Gender.MAS);
 		pasuhParad.setWordGroupIdentifier("m:u:");
 		paradigmMap.put("paśuḥ", pasuhParad);
@@ -153,7 +186,7 @@ public class SktDeclension {
 			{ "uḥ", "roḥ", "ṝṇām" },
 			{ "ari", "roḥ", "ṛṣu" },
 			{ "aḥ", "ārau", "āraḥ" } };
-		final NominalParadigm netaParad = NominalParadigm.generate("netā", "netṛ", netaData, 4);
+		final NominalParadigm netaParad = NominalParadigm.generate("netā", "netṛ", netaData, "6-4");
 		netaParad.addGender(Gender.MAS);
 		netaParad.setWordGroupIdentifier("m:ṛ:");
 		paradigmMap.put("netā", netaParad);
@@ -166,7 +199,7 @@ public class SktDeclension {
 			{ "uḥ", "roḥ", "ṝṇām" },
 			{ "ari", "roḥ", "ṛṣu" },
 			{ "aḥ", "arau", "araḥ" } };
-		final NominalParadigm pitaParad = NominalParadigm.generate("pitā", "pitṛ", pitaData, 5);
+		final NominalParadigm pitaParad = NominalParadigm.generate("pitā", "pitṛ", pitaData, "6-5");
 		pitaParad.addGender(Gender.MAS);
 		pitaParad.setWordGroupIdentifier("m:ṛk:");
 		paradigmMap.put("pitā", pitaParad);
@@ -179,26 +212,26 @@ public class SktDeclension {
 			{ "taḥ", "toḥ", "tām" },
 			{ "ti", "toḥ", "tsu" },
 			{ "t", "tau", "taḥ" } };
-		final NominalParadigm marutParad = NominalParadigm.generate("marut", "marut", marutData, 6);
+		final NominalParadigm marutParad = NominalParadigm.generate("marut", "marut", marutData, "6-6");
 		marutParad.addGender(Gender.MAS, Gender.FEM);
 		paradigmMap.put("marut", marutParad);
 		paradigmMap.put("marut-k-k", NominalParadigm.generateFromPrototype(marutParad, "k", "k", "sarvaśak"));
-		paradigmMap.put("marut-k-c", NominalParadigm.generateFromPrototype(marutParad, "k", "c", "vāk", 7));
-		paradigmMap.put("marut-k-j", NominalParadigm.generateFromPrototype(marutParad, "k", "j", "vaṇik", 7));
-		paradigmMap.put("marut-k-ś", NominalParadigm.generateFromPrototype(marutParad, "k", "ś", "dik", 7));
-		paradigmMap.put("marut-k-ṣ", NominalParadigm.generateFromPrototype(marutParad, "k", "ṣ", "dadhṛk", 7));
-		paradigmMap.put("marut-k-h", NominalParadigm.generateFromPrototype(marutParad, "k", "h", "kāmadhuk", 7));
-		paradigmMap.put("marut-ṭ-j", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "j", "samrāṭ", 7));
-		paradigmMap.put("marut-ṭ-ś", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "ś", "viṭ", 7));
-		paradigmMap.put("marut-ṭ-ṣ", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "ṣ", "dviṭ", 7));
-		paradigmMap.put("marut-ṭ-h", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "h", "madhuliṭ", 7));
+		paradigmMap.put("marut-k-c", NominalParadigm.generateFromPrototype(marutParad, "k", "c", "vāk", "6-7"));
+		paradigmMap.put("marut-k-j", NominalParadigm.generateFromPrototype(marutParad, "k", "j", "vaṇik", "6-7"));
+		paradigmMap.put("marut-k-ś", NominalParadigm.generateFromPrototype(marutParad, "k", "ś", "dik", "6-7"));
+		paradigmMap.put("marut-k-ṣ", NominalParadigm.generateFromPrototype(marutParad, "k", "ṣ", "dadhṛk", "6-7"));
+		paradigmMap.put("marut-k-h", NominalParadigm.generateFromPrototype(marutParad, "k", "h", "kāmadhuk", "6-7"));
+		paradigmMap.put("marut-ṭ-j", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "j", "samrāṭ", "6-7"));
+		paradigmMap.put("marut-ṭ-ś", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "ś", "viṭ", "6-7"));
+		paradigmMap.put("marut-ṭ-ṣ", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "ṣ", "dviṭ", "6-7"));
+		paradigmMap.put("marut-ṭ-h", NominalParadigm.generateFromPrototype(marutParad, "ṭ", "h", "madhuliṭ", "6-7"));
 		paradigmMap.put("marut-t-t", NominalParadigm.generateFromPrototype(marutParad, "t", "t", "marut"));
-		paradigmMap.put("marut-t-d", NominalParadigm.generateFromPrototype(marutParad, "t", "d", "āpat", 7));
-		paradigmMap.put("marut-t-dh", NominalParadigm.generateFromPrototype(marutParad, "t", "dh", "samit", 7));
-		paradigmMap.put("marut-t-h", NominalParadigm.generateFromPrototype(marutParad, "t", "h", "upānat", 7));
+		paradigmMap.put("marut-t-d", NominalParadigm.generateFromPrototype(marutParad, "t", "d", "āpat", "6-7"));
+		paradigmMap.put("marut-t-dh", NominalParadigm.generateFromPrototype(marutParad, "t", "dh", "samit", "6-7"));
+		paradigmMap.put("marut-t-h", NominalParadigm.generateFromPrototype(marutParad, "t", "h", "upānat", "6-7"));
 		paradigmMap.put("marut-p-p", NominalParadigm.generateFromPrototype(marutParad, "p", "p", "dharmagup"));
-		paradigmMap.put("marut-p-bh", NominalParadigm.generateFromPrototype(marutParad, "p", "bh", "triṣṭup", 7));
-		final NominalParadigm maruthrParad = NominalParadigm.generateFromPrototype(marutParad, "ḥ", "r", "dvāḥ", 7);
+		paradigmMap.put("marut-p-bh", NominalParadigm.generateFromPrototype(marutParad, "p", "bh", "triṣṭup", "6-7"));
+		final NominalParadigm maruthrParad = NominalParadigm.generateFromPrototype(marutParad, "ḥ", "r", "dvāḥ", "6-7");
 		paradigmMap.put("marut-ḥ-r", maruthrParad);
 		paradigmMap.put("marut-ḥ-ṣ", NominalParadigm.generateFromPrototype(marutParad, "ḥ", "ṣ", "doḥ"));
 		final NominalParadigm dvahParad = NominalParadigm.duplicate(maruthrParad, "dvāḥ", "dvāḥ");
@@ -214,7 +247,7 @@ public class SktDeclension {
 			{ "asaḥ", "asoḥ", "asām" },
 			{ "asi", "asoḥ", "aḥsu" },
 			{ "aḥ", "asau", "asaḥ" } };
-		final NominalParadigm vedhahParad = NominalParadigm.generate("vedhāḥ", "vedhas", vedhahData, 8);
+		final NominalParadigm vedhahParad = NominalParadigm.generate("vedhāḥ", "vedhas", vedhahData, "6-8");
 		vedhahParad.setStemCutFactor(2);
 		vedhahParad.addGender(Gender.MAS, Gender.FEM);
 		vedhahParad.setWordGroupIdentifier("m:as:");
@@ -228,7 +261,7 @@ public class SktDeclension {
 			{ "anaḥ", "anoḥ", "anām" },
 			{ "ani", "anoḥ", "asu" },
 			{ "an", "ānau", "ānaḥ" } };
-		final NominalParadigm atmaParad = NominalParadigm.generate("ātmā", "ātman", atmaData, 9);
+		final NominalParadigm atmaParad = NominalParadigm.generate("ātmā", "ātman", atmaData, "6-9");
 		atmaParad.setStemCutFactor(2);
 		atmaParad.addGender(Gender.MAS, Gender.FEM);
 		atmaParad.setWordGroupIdentifier("m:an2:");
@@ -242,7 +275,7 @@ public class SktDeclension {
 			{ "ñaḥ", "ñoḥ", "ñām" },
 			{ "ñi", "ñoḥ", "asu" },
 			{ "an", "ānau", "ānaḥ" } };
-		final NominalParadigm rajaParad = NominalParadigm.generate("rājā", "rājan", rajaData, 10);
+		final NominalParadigm rajaParad = NominalParadigm.generate("rājā", "rājan", rajaData, "6-10");
 		rajaParad.setStemCutFactor(2);
 		rajaParad.addGender(Gender.MAS, Gender.FEM);
 		rajaParad.setWordGroupIdentifier("m:an1:");
@@ -257,7 +290,7 @@ public class SktDeclension {
 			{ "inaḥ", "inoḥ", "inām" },
 			{ "ini", "inoḥ", "iṣu" },
 			{ "in", "inau", "inaḥ" } };
-		final NominalParadigm hastiParad = NominalParadigm.generate("hastī", "hastin", hastiData, 11);
+		final NominalParadigm hastiParad = NominalParadigm.generate("hastī", "hastin", hastiData, "6-11");
 		hastiParad.setStemCutFactor(2);
 		hastiParad.addGender(Gender.MAS);
 		hastiParad.setWordGroupIdentifier("m:in:");
@@ -271,7 +304,7 @@ public class SktDeclension {
 			{ "taḥ", "toḥ", "tām" },
 			{ "ti", "toḥ", "tsu" },
 			{ "n", "ntau", "ntaḥ" } };
-		final NominalParadigm nayanParad = NominalParadigm.generate("nayan", "nayant", nayanData, 12);
+		final NominalParadigm nayanParad = NominalParadigm.generate("nayan", "nayant", nayanData, "6-12");
 		nayanParad.setStemCutFactor(2);
 		nayanParad.addGender(Gender.MAS);
 		nayanParad.addWordList(List.of("nayant", "neṣyant", "bhānt", "rakṣant", "sunvant"));
@@ -285,7 +318,7 @@ public class SktDeclension {
 			{ "ataḥ", "atoḥ", "atām" },
 			{ "ati", "atoḥ", "atsu" },
 			{ "an", "antau", "antaḥ" } };
-		final NominalParadigm dhimanParad = NominalParadigm.generate("dhīmān", "dhīmat", dhimanData, 13);
+		final NominalParadigm dhimanParad = NominalParadigm.generate("dhīmān", "dhīmat", dhimanData, "6-13");
 		dhimanParad.setStemCutFactor(2);
 		dhimanParad.addGender(Gender.MAS);
 		dhimanParad.setWordGroupIdentifier("m:mat:");
@@ -299,7 +332,7 @@ public class SktDeclension {
 			{ "asaḥ", "asoḥ", "asām" },
 			{ "asi", "asoḥ", "aḥsu" },
 			{ "an", "āṃsau", "āṃsaḥ" } };
-		final NominalParadigm sreyanParad = NominalParadigm.generate("śreyān", "śreyas", sreyanData, 14);
+		final NominalParadigm sreyanParad = NominalParadigm.generate("śreyān", "śreyas", sreyanData, "6-14");
 		sreyanParad.setStemCutFactor(2);
 		sreyanParad.addGender(Gender.MAS);
 		sreyanParad.addWordList(Arrays.asList("aṇīyas", "alpīyas", "kanīyas", "kṣepīyas", "kṣodīyas", "garīyas",
@@ -316,7 +349,7 @@ public class SktDeclension {
 			{ "uṣaḥ", "uṣoḥ", "uṣām" },
 			{ "uṣi", "uṣoḥ", "ivatsu" },
 			{ "ivan", "ivāṃsau", "ivāṃsaḥ" } };
-		final NominalParadigm tenivanParad = NominalParadigm.generate("tenivān", "tenivas", tenivanData, 15);
+		final NominalParadigm tenivanParad = NominalParadigm.generate("tenivān", "tenivas", tenivanData, "6-15");
 		tenivanParad.setStemCutFactor(4);
 		tenivanParad.addGender(Gender.MAS);
 		tenivanParad.addWordList(List.of("tenivas", "tutudivas", "rarakṣivas"));
@@ -330,7 +363,7 @@ public class SktDeclension {
 			{ "ruṣaḥ", "ruṣoḥ", "ruṣām" },
 			{ "ruṣi", "ruṣoḥ", "ṛvatsu" },
 			{ "ṛvan", "ṛvāṃsau", "ṛvāṃsaḥ" } };
-		final NominalParadigm cakrvanParad = NominalParadigm.generate("cakṛvān", "cakṛvas", cakrvanData, 16);
+		final NominalParadigm cakrvanParad = NominalParadigm.generate("cakṛvān", "cakṛvas", cakrvanData, "6-16");
 		cakrvanParad.setStemCutFactor(4);
 		cakrvanParad.addGender(Gender.MAS);
 		paradigmMap.put("cakṛvān", cakrvanParad);
@@ -343,7 +376,7 @@ public class SktDeclension {
 			{ "uṣaḥ", "uṣoḥ", "uṣām" },
 			{ "uṣi", "uṣoḥ", "vatsu" },
 			{ "van", "vāṃsau", "vāṃsaḥ" } };
-		final NominalParadigm vidvanParad = NominalParadigm.generate("vidvān", "vidvas", vidvanData, 16);
+		final NominalParadigm vidvanParad = NominalParadigm.generate("vidvān", "vidvas", vidvanData, "6-16");
 		vidvanParad.setStemCutFactor(3);
 		vidvanParad.addGender(Gender.MAS);
 		paradigmMap.put("vidvān", vidvanParad);
@@ -356,7 +389,7 @@ public class SktDeclension {
 			{ "vuṣaḥ", "vuṣoḥ", "vuṣām" },
 			{ "vuṣi", "vuṣoḥ", "vatsu" },
 			{ "van", "vāṃsau", "vāṃsaḥ" } };
-		final NominalParadigm susruvanParad = NominalParadigm.generate("śuśruvān", "śuśruvas", susruvanData, 16);
+		final NominalParadigm susruvanParad = NominalParadigm.generate("śuśruvān", "śuśruvas", susruvanData, "6-16");
 		susruvanParad.setStemCutFactor(3);
 		susruvanParad.addGender(Gender.MAS);
 		paradigmMap.put("śuśruvān", susruvanParad);
@@ -369,7 +402,7 @@ public class SktDeclension {
 			{ "yuṣaḥ", "yuṣoḥ", "yuṣām" },
 			{ "yuṣi", "yuṣoḥ", "īvatsu" },
 			{ "īvan", "īvāṃsau", "īvāṃsaḥ" } };
-		final NominalParadigm ninivanParad = NominalParadigm.generate("ninīvān", "ninīvas", ninivanData, 16);
+		final NominalParadigm ninivanParad = NominalParadigm.generate("ninīvān", "ninīvas", ninivanData, "6-16");
 		ninivanParad.setStemCutFactor(4);
 		ninivanParad.addGender(Gender.MAS);
 		paradigmMap.put("ninīvān", ninivanParad);
@@ -383,7 +416,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "ānām" },
 			{ "e", "ayoḥ", "eṣu" },
 			{ "a", "e", "āni" } };
-		final NominalParadigm phalamParad = NominalParadigm.generate("phalam", "phala", phalamData, 17);
+		final NominalParadigm phalamParad = NominalParadigm.generate("phalam", "phala", phalamData, "6-17");
 		phalamParad.addGender(Gender.NEU);
 		phalamParad.setWordGroupIdentifier("n:a:");
 		paradigmMap.put("phalam", phalamParad);
@@ -396,7 +429,7 @@ public class SktDeclension {
 			{ "inaḥ", "inoḥ", "īnām" },
 			{ "ini", "inoḥ", "iṣu" },
 			{ "i", "inī", "īni" } };
-		final NominalParadigm variParad = NominalParadigm.generate("vāri", "vāri", variData, 18);
+		final NominalParadigm variParad = NominalParadigm.generate("vāri", "vāri", variData, "6-18");
 		variParad.addGender(Gender.NEU);
 		variParad.setWordGroupIdentifier("n:i:");
 		variParad.addEndings(Case.VOC, Number.SING, "e");
@@ -410,7 +443,7 @@ public class SktDeclension {
 			{ "inaḥ", "inoḥ", "īnām" },
 			{ "ini", "inoḥ", "iṣu" },
 			{ "i", "inī", "īni" } };
-		final NominalParadigm suciParad = NominalParadigm.generate("śuci", "śuci", suciData, 18);
+		final NominalParadigm suciParad = NominalParadigm.generate("śuci", "śuci", suciData, "6-18");
 		suciParad.addGender(Gender.NEU);
 		suciParad.addEndings(Case.DAT, Number.SING, "aye");
 		suciParad.addEndings(Case.ABL, Number.SING, "eḥ");
@@ -429,7 +462,7 @@ public class SktDeclension {
 			{ "unaḥ", "unoḥ", "ūnām" },
 			{ "uni", "unoḥ", "uṣu" },
 			{ "u", "unī", "ūni" } };
-		final NominalParadigm madhuParad = NominalParadigm.generate("madhu", "madhu", madhuData, 19);
+		final NominalParadigm madhuParad = NominalParadigm.generate("madhu", "madhu", madhuData, "6-19");
 		madhuParad.addGender(Gender.NEU);
 		madhuParad.setWordGroupIdentifier("n:u:");
 		madhuParad.addEndings(Case.VOC, Number.SING, "o");
@@ -443,7 +476,7 @@ public class SktDeclension {
 			{ "unaḥ", "unoḥ", "ūnām" },
 			{ "uni", "unoḥ", "uṣu" },
 			{ "u", "unī", "ūni" } };
-		final NominalParadigm laghuParad = NominalParadigm.generate("laghu", "laghu", laghuData, 19);
+		final NominalParadigm laghuParad = NominalParadigm.generate("laghu", "laghu", laghuData, "6-19");
 		laghuParad.addGender(Gender.NEU);
 		laghuParad.addEndings(Case.DAT, Number.SING, "ave");
 		laghuParad.addEndings(Case.ABL, Number.SING, "oḥ");
@@ -462,7 +495,7 @@ public class SktDeclension {
 			{ "ṛṇaḥ", "ṛṇoḥ", "ṝṇām" },
 			{ "ṛṇi", "ṛṇoḥ", "ṛṣu" },
 			{ "ṛ", "ṛṇī", "ṝṇi" } };
-		final NominalParadigm dhatrParad = NominalParadigm.generate("dhātṛ", "dhātṛ", dhatrData, 20);
+		final NominalParadigm dhatrParad = NominalParadigm.generate("dhātṛ", "dhātṛ", dhatrData, "6-20");
 		dhatrParad.addGender(Gender.NEU);
 		dhatrParad.addEndings(Case.VOC, Number.SING, "aḥ");
 		dhatrParad.addWordList(List.of("dātṛ", "dhātṛ", "rakṣitṛ", "sumātṛ"));
@@ -476,12 +509,12 @@ public class SktDeclension {
 			{ "taḥ", "toḥ", "tām" },
 			{ "ti", "toḥ", "tsu" },
 			{ "t", "tī", "nti" } };
-		final NominalParadigm jagatParad = NominalParadigm.generate("jagat", "jagat", jagatData, 21);
+		final NominalParadigm jagatParad = NominalParadigm.generate("jagat", "jagat", jagatData, "6-21");
 		jagatParad.addGender(Gender.NEU);
 		paradigmMap.put("jagat", jagatParad);
 		paradigmMap.put("jagat-k-k", NominalParadigm.generateFromPrototype(jagatParad, "k", "k", "sarvaśak"));
-		paradigmMap.put("jagat-k-c", NominalParadigm.generateFromPrototype(jagatParad, "k", "j", "priyavāk", 22));
-		paradigmMap.put("jagat-k-j", NominalParadigm.generateFromPrototype(jagatParad, "k", "j", "asṛk", 22));
+		paradigmMap.put("jagat-k-c", NominalParadigm.generateFromPrototype(jagatParad, "k", "j", "priyavāk", "6-22"));
+		paradigmMap.put("jagat-k-j", NominalParadigm.generateFromPrototype(jagatParad, "k", "j", "asṛk", "6-22"));
 		final NominalParadigm jagatttParad = NominalParadigm.generateFromPrototype(jagatParad, "t", "t", "jagat");
 		jagatttParad.addWordList(Arrays.asList("jagat", "jānat", "juhvat", "tudat", "trivṛt", "dadhat", "dāsyat", "dhīmat", "neṣyat", "bibhrat", "bhagavat", "bhāt"));
 		paradigmMap.put("jagat-t-t", jagatttParad);
@@ -495,7 +528,7 @@ public class SktDeclension {
 			{ "asaḥ", "asoḥ", "asām" },
 			{ "asi", "asoḥ", "aḥsu" },
 			{ "aḥ", "asī", "āṃsi" } };
-		final NominalParadigm manahParad = NominalParadigm.generate("manaḥ", "manas", manahData, 23);
+		final NominalParadigm manahParad = NominalParadigm.generate("manaḥ", "manas", manahData, "6-23");
 		manahParad.setStemCutFactor(2);
 		manahParad.addGender(Gender.NEU);
 		manahParad.setWordGroupIdentifier("n:as:");
@@ -509,7 +542,7 @@ public class SktDeclension {
 			{ "iṣaḥ", "iṣoḥ", "iṣām" },
 			{ "iṣi", "iṣoḥ", "iḥṣu" },
 			{ "iḥ", "iṣī", "īṃṣi" } };
-		final NominalParadigm havihParad = NominalParadigm.generate("haviḥ", "havis", havihData, 24);
+		final NominalParadigm havihParad = NominalParadigm.generate("haviḥ", "havis", havihData, "6-24");
 		havihParad.setStemCutFactor(2);
 		havihParad.addGender(Gender.NEU);
 		havihParad.setWordGroupIdentifier("n:is:");
@@ -523,7 +556,7 @@ public class SktDeclension {
 			{ "uṣaḥ", "uṣoḥ", "uṣām" },
 			{ "uṣi", "uṣoḥ", "uḥṣu" },
 			{ "uḥ", "uṣī", "ūṃṣi" } };
-		final NominalParadigm ayuhParad = NominalParadigm.generate("āyuḥ", "āyus", ayuhData, 25);
+		final NominalParadigm ayuhParad = NominalParadigm.generate("āyuḥ", "āyus", ayuhData, "6-25");
 		ayuhParad.setStemCutFactor(2);
 		ayuhParad.addGender(Gender.NEU);
 		ayuhParad.setWordGroupIdentifier("n:us:");
@@ -537,7 +570,7 @@ public class SktDeclension {
 			{ "anaḥ", "anoḥ", "anām" },
 			{ "ani", "anoḥ", "asu" },
 			{ "a", "anī", "āni" } };
-		final NominalParadigm karmaParad = NominalParadigm.generate("karma", "karman", karmaData, 26);
+		final NominalParadigm karmaParad = NominalParadigm.generate("karma", "karman", karmaData, "6-26");
 		karmaParad.setStemCutFactor(2);
 		karmaParad.addGender(Gender.NEU);
 		karmaParad.setWordGroupIdentifier("n:an2:");
@@ -552,7 +585,7 @@ public class SktDeclension {
 			{ "naḥ", "noḥ", "nām" },
 			{ "ni", "noḥ", "asu" },
 			{ "a", "nī", "āni" } };
-		final NominalParadigm namaParad = NominalParadigm.generate("nāma", "nāman", namaData, 27);
+		final NominalParadigm namaParad = NominalParadigm.generate("nāma", "nāman", namaData, "6-27");
 		namaParad.setStemCutFactor(2);
 		namaParad.addGender(Gender.NEU);
 		namaParad.setWordGroupIdentifier("n:an1:");
@@ -571,7 +604,7 @@ public class SktDeclension {
 			{ "inaḥ", "inoḥ", "inām" },
 			{ "ini", "inoḥ", "iṣu" },
 			{ "i", "inī", "īni" } };
-		final NominalParadigm baliParad = NominalParadigm.generate("bali", "balin", baliData, 28);
+		final NominalParadigm baliParad = NominalParadigm.generate("bali", "balin", baliData, "6-28");
 		baliParad.setStemCutFactor(2);
 		baliParad.addGender(Gender.NEU);
 		baliParad.setWordGroupIdentifier("n:in:");
@@ -586,7 +619,7 @@ public class SktDeclension {
 			{ "taḥ", "toḥ", "tām" },
 			{ "ti", "toḥ", "tsu" },
 			{ "t", "ntī", "nti" } };
-		final NominalParadigm nayatParad = NominalParadigm.generate("nayat", "nayant", nayatData, 29);
+		final NominalParadigm nayatParad = NominalParadigm.generate("nayat", "nayant", nayatData, "6-29");
 		nayatParad.setStemCutFactor(2);
 		nayatParad.addGender(Gender.NEU);
 		nayatParad.addWordList(List.of("tudant", "dāsyant", "nāyayant", "ninīṣant", "neṣyant", "bhānt", "rakṣant"));
@@ -600,7 +633,7 @@ public class SktDeclension {
 			{ "uṣaḥ", "uṣoḥ", "uṣām" },
 			{ "uṣi", "uṣoḥ", "ivatsu" },
 			{ "ivat", "uṣī", "ivāṃsi" } };
-		final NominalParadigm tenivatParad = NominalParadigm.generate("tenivat", "tenivas", tenivatData, 30);
+		final NominalParadigm tenivatParad = NominalParadigm.generate("tenivat", "tenivas", tenivatData, "6-30");
 		tenivatParad.setStemCutFactor(4);
 		tenivatParad.addGender(Gender.NEU);
 		tenivatParad.addWordList(List.of("tenivas", "tutudivas", "rarakṣivas"));
@@ -614,7 +647,7 @@ public class SktDeclension {
 			{ "ruṣaḥ", "ruṣoḥ", "ruṣām" },
 			{ "ruṣi", "ruṣoḥ", "ṛvatsu" },
 			{ "ṛvat", "ruṣī", "ṛvāṃsi" } };
-		final NominalParadigm cakrvatParad = NominalParadigm.generate("cakṛvat", "cakṛvas", cakrvatData, 31);
+		final NominalParadigm cakrvatParad = NominalParadigm.generate("cakṛvat", "cakṛvas", cakrvatData, "6-31");
 		cakrvatParad.setStemCutFactor(4);
 		cakrvatParad.addGender(Gender.NEU);
 		paradigmMap.put("cakṛvat", cakrvatParad);
@@ -627,7 +660,7 @@ public class SktDeclension {
 			{ "uṣaḥ", "uṣoḥ", "uṣām" },
 			{ "uṣi", "uṣoḥ", "vatsu" },
 			{ "vat", "uṣī", "vāṃsi" } };
-		final NominalParadigm vidvatParad = NominalParadigm.generate("vidvat", "vidvas", vidvatData, 31);
+		final NominalParadigm vidvatParad = NominalParadigm.generate("vidvat", "vidvas", vidvatData, "6-31");
 		vidvatParad.setStemCutFactor(3);
 		vidvatParad.addGender(Gender.NEU);
 		paradigmMap.put("vidvat", vidvatParad);
@@ -640,7 +673,7 @@ public class SktDeclension {
 			{ "vuṣaḥ", "vuṣoḥ", "vuṣām" },
 			{ "vuṣi", "vuṣoḥ", "vatsu" },
 			{ "vat", "vuṣī", "vāṃsi" } };
-		final NominalParadigm susruvatParad = NominalParadigm.generate("śuśruvat", "śuśruvas", susruvatData, 31);
+		final NominalParadigm susruvatParad = NominalParadigm.generate("śuśruvat", "śuśruvas", susruvatData, "6-31");
 		susruvatParad.setStemCutFactor(3);
 		susruvatParad.addGender(Gender.NEU);
 		paradigmMap.put("śuśruvat", susruvatParad);
@@ -653,7 +686,7 @@ public class SktDeclension {
 			{ "yuṣaḥ", "yuṣoḥ", "yuṣām" },
 			{ "yuṣi", "yuṣoḥ", "īvatsu" },
 			{ "īvat", "vuṣī", "īvāṃsi" } };
-		final NominalParadigm ninivatParad = NominalParadigm.generate("ninīvat", "ninīvas", ninivatData, 31);
+		final NominalParadigm ninivatParad = NominalParadigm.generate("ninīvat", "ninīvas", ninivatData, "6-31");
 		ninivatParad.setStemCutFactor(4);
 		ninivatParad.addGender(Gender.NEU);
 		paradigmMap.put("ninīvat", ninivatParad);
@@ -667,7 +700,7 @@ public class SktDeclension {
 			{ "āyāḥ", "ayoḥ", "ānām" },
 			{ "āyām", "ayoḥ", "āsu" },
 			{ "e", "e", "āḥ" } };
-		final NominalParadigm kathaParad = NominalParadigm.generate("kathā", "kathā", kathaData, 32);
+		final NominalParadigm kathaParad = NominalParadigm.generate("kathā", "kathā", kathaData, "6-32");
 		kathaParad.addGender(Gender.FEM);
 		kathaParad.setWordGroupIdentifier("f:ā:");
 		paradigmMap.put("kathā", kathaParad);
@@ -680,7 +713,7 @@ public class SktDeclension {
 			{ "yāḥ", "yoḥ", "īnām" },
 			{ "yām", "yoḥ", "īṣu" },
 			{ "i", "yau", "yaḥ" } };
-		final NominalParadigm nadiParad = NominalParadigm.generate("nadī", "nadī", nadiData, 33);
+		final NominalParadigm nadiParad = NominalParadigm.generate("nadī", "nadī", nadiData, "6-33");
 		nadiParad.addGender(Gender.FEM);
 		nadiParad.setWordGroupIdentifier("f:ī:");
 		paradigmMap.put("nadī", nadiParad);
@@ -693,7 +726,7 @@ public class SktDeclension {
 			{ "iyāḥ", "iyoḥ", "īnām" },
 			{ "iyām", "iyoḥ", "īṣu" },
 			{ "īḥ", "iyau", "iyaḥ" } };
-		final NominalParadigm dhihParad = NominalParadigm.generate("dhīḥ", "dhī", dhihData, 34);
+		final NominalParadigm dhihParad = NominalParadigm.generate("dhīḥ", "dhī", dhihData, "6-34");
 		dhihParad.addGender(Gender.FEM);
 		dhihParad.setWordGroupIdentifier("f:ī1:");
 		dhihParad.addEndings(Case.DAT, Number.SING, "iye");
@@ -709,7 +742,7 @@ public class SktDeclension {
 			{ "yāḥ", "yoḥ", "īnām" },
 			{ "yām", "yoḥ", "iṣu" },
 			{ "e", "ī", "ayaḥ" } };
-		final NominalParadigm matihParad = NominalParadigm.generate("matiḥ", "mati", matihData, 35);
+		final NominalParadigm matihParad = NominalParadigm.generate("matiḥ", "mati", matihData, "6-35");
 		matihParad.addGender(Gender.FEM);
 		matihParad.setWordGroupIdentifier("f:i:");
 		matihParad.addEndings(Case.DAT, Number.SING, "aye");
@@ -725,7 +758,7 @@ public class SktDeclension {
 			{ "vāḥ", "voḥ", "ūnām" },
 			{ "vām", "voḥ", "ūṣu" },
 			{ "u", "vau", "vaḥ" } };
-		final NominalParadigm vadhuParad = NominalParadigm.generate("vadhūḥ", "vadhū", vadhuhData, 36);
+		final NominalParadigm vadhuParad = NominalParadigm.generate("vadhūḥ", "vadhū", vadhuhData, "6-36");
 		vadhuParad.addGender(Gender.FEM);
 		vadhuParad.setWordGroupIdentifier("f:ū:");
 		paradigmMap.put("vadhūḥ", vadhuParad);
@@ -738,7 +771,7 @@ public class SktDeclension {
 			{ "uvāḥ", "uvoḥ", "ūnām" },
 			{ "uvām", "uvoḥ", "ūṣu" },
 			{ "ūḥ", "uvau", "uvaḥ" } };
-		final NominalParadigm bhuhParad = NominalParadigm.generate("bhūḥ", "bhū", bhuhData, 37);
+		final NominalParadigm bhuhParad = NominalParadigm.generate("bhūḥ", "bhū", bhuhData, "6-37");
 		bhuhParad.addGender(Gender.FEM);
 		bhuhParad.setWordGroupIdentifier("f:ū1:");
 		bhuhParad.addEndings(Case.DAT, Number.SING, "uve");
@@ -754,7 +787,7 @@ public class SktDeclension {
 			{ "vāḥ", "voḥ", "ūnām" },
 			{ "vām", "voḥ", "uṣu" },
 			{ "o", "ū", "avaḥ" } };
-		final NominalParadigm dhenuhParad = NominalParadigm.generate("dhenuḥ", "dhenu", dhenuhData, 38);
+		final NominalParadigm dhenuhParad = NominalParadigm.generate("dhenuḥ", "dhenu", dhenuhData, "6-38");
 		dhenuhParad.addGender(Gender.FEM);
 		dhenuhParad.setWordGroupIdentifier("f:u:");
 		dhenuhParad.addEndings(Case.DAT, Number.SING, "ave");
@@ -771,7 +804,7 @@ public class SktDeclension {
 			{ "āvaḥ", "āvoḥ", "āvām" },
 			{ "āvi", "āvoḥ", "auṣu" },
 			{ "auḥ", "āvau", "āvaḥ" } };
-		final NominalParadigm nauhParad = NominalParadigm.generate("nauḥ", "nau", nauhData, 39);
+		final NominalParadigm nauhParad = NominalParadigm.generate("nauḥ", "nau", nauhData, "6-39");
 		nauhParad.setStemCutFactor(2);
 		nauhParad.addGender(Gender.FEM);
 		nauhParad.setWordGroupIdentifier("f:au:");
@@ -785,7 +818,7 @@ public class SktDeclension {
 			{ "uḥ", "roḥ", "ṝṇām" },
 			{ "ari", "roḥ", "ṛṣu" },
 			{ "aḥ", "arau", "araḥ" } };
-		final NominalParadigm mataParad = NominalParadigm.generate("mātā", "mātṛ", mataData, 40);
+		final NominalParadigm mataParad = NominalParadigm.generate("mātā", "mātṛ", mataData, "6-40");
 		mataParad.addGender(Gender.FEM);
 		mataParad.setWordGroupIdentifier("f:ṛ:");
 		paradigmMap.put("mātā", mataParad);
@@ -799,7 +832,7 @@ public class SktDeclension {
 			{ "uḥ", "roḥ", "ṝṇām" },
 			{ "ari", "roḥ", "ṛṣu" },
 			{ "aḥ", "ārau", "āraḥ" } };
-		final NominalParadigm svasaParad = NominalParadigm.generate("svasā", "svasā", svasaData, 40);
+		final NominalParadigm svasaParad = NominalParadigm.generate("svasā", "svasā", svasaData, "6-40");
 		svasaParad.addGender(Gender.FEM);
 		paradigmMap.put("svasā", svasaParad);
 		// irregular masculine set
@@ -812,7 +845,7 @@ public class SktDeclension {
 			{ "aḥ", "oḥ", "ām" },
 			{ "i", "oḥ", "āsu" },
 			{ "āḥ", "au", "āḥ" } };
-		final NominalParadigm visvapahParad = NominalParadigm.generate("viśvapāḥ", "viśvapā", visvapahData, 41);
+		final NominalParadigm visvapahParad = NominalParadigm.generate("viśvapāḥ", "viśvapā", visvapahData, "7-41");
 		visvapahParad.addGender(Gender.MAS);
 		visvapahParad.setWordGroupIdentifier("m:ā:");
 		paradigmMap.put("viśvapāḥ", visvapahParad);
@@ -825,7 +858,7 @@ public class SktDeclension {
 			{ "iyaḥ", "iyoḥ", "iyām" },
 			{ "iyi", "iyoḥ", "īṣu" },
 			{ "īḥ", "iyau", "iyaḥ" } };
-		final NominalParadigm yavakrihParad = NominalParadigm.generate("yavakrīḥ", "yavakrī", yavakrihData, 42);
+		final NominalParadigm yavakrihParad = NominalParadigm.generate("yavakrīḥ", "yavakrī", yavakrihData, "7-42");
 		yavakrihParad.addGender(Gender.MAS);
 		yavakrihParad.setWordGroupIdentifier("m:ī2:");
 		paradigmMap.put("yavakrīḥ", yavakrihParad);
@@ -838,7 +871,7 @@ public class SktDeclension {
 			{ "yaḥ", "yoḥ", "yām" },
 			{ "yām", "yoḥ", "īṣu" },
 			{ "īḥ", "yau", "yaḥ" } };
-		final NominalParadigm senanihParad = NominalParadigm.generate("senānīḥ", "senānī", senanihData, 43);
+		final NominalParadigm senanihParad = NominalParadigm.generate("senānīḥ", "senānī", senanihData, "7-43");
 		senanihParad.addGender(Gender.MAS);
 		senanihParad.setWordGroupIdentifier("m:ī1:");
 		paradigmMap.put("senānīḥ", senanihParad);
@@ -851,7 +884,7 @@ public class SktDeclension {
 			{ "āyaḥ", "āyoḥ", "āyām" },
 			{ "āyi", "āyoḥ", "āsu" },
 			{ "āḥ", "āyau", "āyaḥ" } };
-		final NominalParadigm rahParad = NominalParadigm.generate("rāḥ", "rai", rahData, 44);
+		final NominalParadigm rahParad = NominalParadigm.generate("rāḥ", "rai", rahData, "7-44");
 		rahParad.setStemCutFactor(2);
 		rahParad.addGender(Gender.MAS);
 		paradigmMap.put("rāḥ", rahParad);
@@ -864,7 +897,7 @@ public class SktDeclension {
 			{ "yuḥ", "yoḥ", "īnām" },
 			{ "yau", "yoḥ", "iṣu" },
 			{ "e", "āyau", "āyaḥ" } };
-		final NominalParadigm sakhaParad = NominalParadigm.generate("sakhā", "sakhi", sakhaData, 45);
+		final NominalParadigm sakhaParad = NominalParadigm.generate("sakhā", "sakhi", sakhaData, "7-45");
 		sakhaParad.addGender(Gender.MAS);
 		paradigmMap.put("sakhā", sakhaParad);
 		final String[][] patihData = {
@@ -876,7 +909,7 @@ public class SktDeclension {
 			{ "yuḥ", "yoḥ", "īnām" },
 			{ "yau", "yoḥ", "iṣu" },
 			{ "e", "ī", "ayaḥ" } };
-		final NominalParadigm patihParad = NominalParadigm.generate("patiḥ", "pati", patihData, 46);
+		final NominalParadigm patihParad = NominalParadigm.generate("patiḥ", "pati", patihData, "7-46");
 		patihParad.addGender(Gender.MAS);
 		paradigmMap.put("patiḥ", patihParad);
 		final String[][] patData = {
@@ -888,7 +921,7 @@ public class SktDeclension {
 			{ "adaḥ", "adoḥ", "adām" },
 			{ "adi", "adoḥ", "atsu" },
 			{ "āt", "ādau", "ādaḥ" } };
-		final NominalParadigm patParad = NominalParadigm.generate("pāt", "pad", patData, 47);
+		final NominalParadigm patParad = NominalParadigm.generate("pāt", "pad", patData, "7-47");
 		patParad.setStemCutFactor(2);
 		patParad.addGender(Gender.MAS);
 		paradigmMap.put("pāt", patParad);
@@ -901,7 +934,7 @@ public class SktDeclension {
 			{ "adaḥ", "adoḥ", "adām" },
 			{ "adi", "adoḥ", "atsu" },
 			{ "āt", "ādau", "ādaḥ" } };
-		final NominalParadigm dvipatParad = NominalParadigm.generate("dvipāt", "dvipād", dvipatData, 48);
+		final NominalParadigm dvipatParad = NominalParadigm.generate("dvipāt", "dvipād", dvipatData, "7-48");
 		dvipatParad.setStemCutFactor(2);
 		dvipatParad.addGender(Gender.MAS);
 		dvipatParad.addWordList(List.of("catuṣpād", "dvipād", "supād"));
@@ -915,7 +948,7 @@ public class SktDeclension {
 			{ "uhaḥ", "uhoḥ", "uhām" },
 			{ "uhi", "uhoḥ", "utsu" },
 			{ "van", "vāhau", "vāhaḥ" } };
-		final NominalParadigm anadvanParad = NominalParadigm.generate("anaḍvān", "anaḍuḥ", anadvanData, 49);
+		final NominalParadigm anadvanParad = NominalParadigm.generate("anaḍvān", "anaḍuḥ", anadvanData, "7-49");
 		anadvanParad.setStemCutFactor(2);
 		anadvanParad.addGender(Gender.MAS);
 		paradigmMap.put("anaḍvān", anadvanParad);
@@ -928,7 +961,7 @@ public class SktDeclension {
 			{ "caḥ", "coḥ", "cām" },
 			{ "ci", "coḥ", "kṣu" },
 			{ "ṅ", "ñcau", "ñcaḥ" } };
-		final NominalParadigm pranParad = NominalParadigm.generate("prāṅ", "prāñc", pranData, 50);
+		final NominalParadigm pranParad = NominalParadigm.generate("prāṅ", "prāñc", pranData, "7-50");
 		pranParad.setStemCutFactor(2);
 		pranParad.addGender(Gender.MAS);
 		pranParad.addWordList(List.of("avāñc", "prāñc"));
@@ -942,7 +975,7 @@ public class SktDeclension {
 			{ "caḥ", "coḥ", "cām" },
 			{ "ci", "coḥ", "kṣu" },
 			{ "ṅ", "ñcau", "ñcaḥ" } };
-		final NominalParadigm prakParad = NominalParadigm.generate("prāk", "prāñc", prakData, 50);
+		final NominalParadigm prakParad = NominalParadigm.generate("prāk", "prāñc", prakData, "7-50");
 		prakParad.setStemCutFactor(2);
 		prakParad.addGender(Gender.NEU);
 		prakParad.addWordList(List.of("avāñc", "prāñc"));
@@ -956,7 +989,7 @@ public class SktDeclension {
 			{ "īcaḥ", "īcoḥ", "īcām" },
 			{ "īci", "īcoḥ", "yakṣu" },
 			{ "yaṅ", "yañcau", "yañcaḥ" } };
-		final NominalParadigm pratyanParad = NominalParadigm.generate("pratyaṅ", "pratyañc", pratyanData, 51);
+		final NominalParadigm pratyanParad = NominalParadigm.generate("pratyaṅ", "pratyañc", pratyanData, "7-51");
 		pratyanParad.setStemCutFactor(4);
 		pratyanParad.addGender(Gender.MAS);
 		pratyanParad.addWordList(List.of("nyañc", "pratyañc"));
@@ -970,7 +1003,7 @@ public class SktDeclension {
 			{ "īcaḥ", "īcoḥ", "īcām" },
 			{ "īci", "īcoḥ", "yakṣu" },
 			{ "yaṅ", "yañcau", "yañcaḥ" } };
-		final NominalParadigm pratyakParad = NominalParadigm.generate("pratyak", "pratyañc", pratyakData, 51);
+		final NominalParadigm pratyakParad = NominalParadigm.generate("pratyak", "pratyañc", pratyakData, "7-51");
 		pratyakParad.setStemCutFactor(4);
 		pratyakParad.addGender(Gender.NEU);
 		pratyakParad.addWordList(List.of("nyañc", "pratyañc"));
@@ -984,7 +1017,7 @@ public class SktDeclension {
 			{ "īcaḥ", "īcoḥ", "īcām" },
 			{ "īci", "īcoḥ", "akṣu" },
 			{ "aṅ", "añcau", "añcaḥ" } };
-		final NominalParadigm udanParad = NominalParadigm.generate("udaṅ", "udañc", udanData, 52);
+		final NominalParadigm udanParad = NominalParadigm.generate("udaṅ", "udañc", udanData, "7-52");
 		udanParad.setStemCutFactor(3);
 		udanParad.addGender(Gender.MAS);
 		paradigmMap.put("udaṅ", udanParad);
@@ -997,7 +1030,7 @@ public class SktDeclension {
 			{ "īcaḥ", "īcoḥ", "īcām" },
 			{ "īci", "īcoḥ", "akṣu" },
 			{ "aṅ", "añcau", "añcaḥ" } };
-		final NominalParadigm udakParad = NominalParadigm.generate("udak", "udañc", udakData, 52);
+		final NominalParadigm udakParad = NominalParadigm.generate("udak", "udañc", udakData, "7-52");
 		udakParad.setStemCutFactor(3);
 		udakParad.addGender(Gender.NEU);
 		paradigmMap.put("udak", udakParad);
@@ -1010,7 +1043,7 @@ public class SktDeclension {
 			{ "ūcaḥ", "ūcoḥ", "ūcām" },
 			{ "ūci", "ūcoḥ", "vakṣu" },
 			{ "vaṅ", "vañcau", "vañcaḥ" } };
-		final NominalParadigm anvanParad = NominalParadigm.generate("anvaṅ", "anvañc", anvanData, 53);
+		final NominalParadigm anvanParad = NominalParadigm.generate("anvaṅ", "anvañc", anvanData, "7-53");
 		anvanParad.setStemCutFactor(4);
 		anvanParad.addGender(Gender.MAS);
 		anvanParad.addWordList(List.of("anvañc", "viśvañc"));
@@ -1024,7 +1057,7 @@ public class SktDeclension {
 			{ "ūcaḥ", "ūcoḥ", "ūcām" },
 			{ "ūci", "ūcoḥ", "vakṣu" },
 			{ "vaṅ", "vañcau", "vañcaḥ" } };
-		final NominalParadigm anvakParad = NominalParadigm.generate("anvak", "anvañc", anvakData, 53);
+		final NominalParadigm anvakParad = NominalParadigm.generate("anvak", "anvañc", anvakData, "7-53");
 		anvakParad.setStemCutFactor(4);
 		anvakParad.addGender(Gender.NEU);
 		anvakParad.addWordList(List.of("anvañc", "viśvañc"));
@@ -1038,7 +1071,7 @@ public class SktDeclension {
 			{ "aścaḥ", "aścoḥ", "aścām" },
 			{ "aści", "aścoḥ", "yakṣu" },
 			{ "yaṅ", "yañcau", "yañcaḥ" } };
-		final NominalParadigm triyanParad = NominalParadigm.generate("tiryaṅ", "tiryañc", triyanData, 54);
+		final NominalParadigm triyanParad = NominalParadigm.generate("tiryaṅ", "tiryañc", triyanData, "7-54");
 		triyanParad.setStemCutFactor(4);
 		triyanParad.addGender(Gender.MAS);
 		paradigmMap.put("tiryaṅ", triyanParad);
@@ -1051,7 +1084,7 @@ public class SktDeclension {
 			{ "aścaḥ", "aścoḥ", "aścām" },
 			{ "aści", "aścoḥ", "yakṣu" },
 			{ "yaṅ", "yañcau", "yañcaḥ" } };
-		final NominalParadigm triyakParad = NominalParadigm.generate("tiryak", "tiryañc", triyakData, 54);
+		final NominalParadigm triyakParad = NominalParadigm.generate("tiryak", "tiryañc", triyakData, "7-54");
 		triyakParad.setStemCutFactor(4);
 		triyakParad.addGender(Gender.NEU);
 		paradigmMap.put("tiryak", triyakParad);
@@ -1064,7 +1097,7 @@ public class SktDeclension {
 			{ "ṃsaḥ", "ṃsoḥ", "ṃsām" },
 			{ "ṃsi", "ṃsoḥ", "ṃsu" },
 			{ "man", "māṃsau", "māṃsaḥ" } };
-		final NominalParadigm pumanParad = NominalParadigm.generate("pumān", "puṃs", pumanData, 55);
+		final NominalParadigm pumanParad = NominalParadigm.generate("pumān", "puṃs", pumanData, "7-55");
 		pumanParad.setStemCutFactor(2);
 		pumanParad.addGender(Gender.MAS);
 		paradigmMap.put("pumān", pumanParad);
@@ -1077,7 +1110,7 @@ public class SktDeclension {
 			{ "thaḥ", "thoḥ", "thām" },
 			{ "thi", "thoḥ", "thiṣu" },
 			{ "nthāḥ", "nthānau", "nthānaḥ" } };
-		final NominalParadigm panthahParad = NominalParadigm.generate("panthāḥ", "pathin", panthahData, 56);
+		final NominalParadigm panthahParad = NominalParadigm.generate("panthāḥ", "pathin", panthahData, "7-56");
 		panthahParad.setStemCutFactor(4);
 		panthahParad.addGender(Gender.MAS);
 		panthahParad.addWordList(List.of("ṛbhukhin", "manthin", "panthin"));
@@ -1091,7 +1124,7 @@ public class SktDeclension {
 			{ "ṇaḥ", "ṇoḥ", "ṇām" },
 			{ "ṇi", "ṇoḥ", "asu" },
 			{ "an", "aṇau", "aṇaḥ" } };
-		final NominalParadigm pusaParad = NominalParadigm.generate("pūṣā", "pūṣan", pusaData, 57);
+		final NominalParadigm pusaParad = NominalParadigm.generate("pūṣā", "pūṣan", pusaData, "7-57");
 		pusaParad.setStemCutFactor(2);
 		pusaParad.addGender(Gender.MAS);
 		pusaParad.addWordList(List.of("aryaman", "pūṣan"));
@@ -1105,7 +1138,7 @@ public class SktDeclension {
 			{ "ghnaḥ", "ghnoḥ", "ghnām" },
 			{ "ghni", "ghnoḥ", "hasu" },
 			{ "han", "hanau", "hanaḥ" } };
-		final NominalParadigm gohaParad = NominalParadigm.generate("gohā", "gohan", gohaData, 58);
+		final NominalParadigm gohaParad = NominalParadigm.generate("gohā", "gohan", gohaData, "7-58");
 		gohaParad.setStemCutFactor(3);
 		gohaParad.addGender(Gender.MAS);
 		gohaParad.addWordList(List.of("goham", "brahmahan"));
@@ -1120,7 +1153,7 @@ public class SktDeclension {
 			{ "unaḥ", "unoḥ", "unām" },
 			{ "uni", "unoḥ", "vasu" },
 			{ "van", "vānau", "vānaḥ" } };
-		final NominalParadigm svaParad = NominalParadigm.generate("śvā", "śvan", svaData, 59);
+		final NominalParadigm svaParad = NominalParadigm.generate("śvā", "śvan", svaData, "7-59");
 		svaParad.setStemCutFactor(3);
 		svaParad.addGender(Gender.MAS);
 		paradigmMap.put("śvā", svaParad);
@@ -1133,7 +1166,7 @@ public class SktDeclension {
 			{ "ūnaḥ", "ūnoḥ", "ūnām" },
 			{ "ūni", "ūnoḥ", "uvasu" },
 			{ "uvan", "uvānau", "uvānaḥ" } };
-		final NominalParadigm yuvaParad = NominalParadigm.generate("yuvā", "yuvan", yuvaData, 60);
+		final NominalParadigm yuvaParad = NominalParadigm.generate("yuvā", "yuvan", yuvaData, "7-60");
 		yuvaParad.setStemCutFactor(4);
 		yuvaParad.addGender(Gender.MAS);
 		paradigmMap.put("yuvā", yuvaParad);
@@ -1146,7 +1179,7 @@ public class SktDeclension {
 			{ "onaḥ", "onoḥ", "onām" },
 			{ "oni", "onoḥ", "avasu" },
 			{ "avan", "avānau", "avānaḥ" } };
-		final NominalParadigm maghavaParad = NominalParadigm.generate("maghavā", "maghavan", maghavaData, 61);
+		final NominalParadigm maghavaParad = NominalParadigm.generate("maghavā", "maghavan", maghavaData, "7-61");
 		maghavaParad.setStemCutFactor(4);
 		maghavaParad.addGender(Gender.MAS);
 		paradigmMap.put("maghavā", maghavaParad);
@@ -1159,7 +1192,7 @@ public class SktDeclension {
 			{ "ataḥ", "atoḥ", "atām" },
 			{ "ati", "atoḥ", "atsu" },
 			{ "an", "āntau", "āntaḥ" } };
-		final NominalParadigm mahanParad = NominalParadigm.generate("mahān", "mahat", mahanData, 62);
+		final NominalParadigm mahanParad = NominalParadigm.generate("mahān", "mahat", mahanData, "7-62");
 		mahanParad.setStemCutFactor(2);
 		mahanParad.addGender(Gender.MAS);
 		paradigmMap.put("mahān", mahanParad);
@@ -1173,7 +1206,7 @@ public class SktDeclension {
 			{ "ataḥ", "atoḥ", "atām" },
 			{ "ati", "atoḥ", "atsu" },
 			{ "at", "atī", "ānti" } };
-		final NominalParadigm mahatParad = NominalParadigm.generate("mahat", "mahat", mahatData, 63);
+		final NominalParadigm mahatParad = NominalParadigm.generate("mahat", "mahat", mahatData, "7-63");
 		mahatParad.setStemCutFactor(2);
 		mahatParad.addGender(Gender.NEU);
 		paradigmMap.put("mahat", mahatParad);
@@ -1186,7 +1219,7 @@ public class SktDeclension {
 			{ "naḥ", "noḥ", "nām" },
 			{ "ni", "noḥ", "iṣu" },
 			{ "e", "inī", "īni" } };
-		final NominalParadigm dadhiParad = NominalParadigm.generate("dadhi", "dadhi", dadhiData, 64);
+		final NominalParadigm dadhiParad = NominalParadigm.generate("dadhi", "dadhi", dadhiData, "7-64");
 		dadhiParad.addGender(Gender.NEU);
 		dadhiParad.addWordList(List.of("akśi", "asthi", "dadhi", "sakthi"));
 		dadhiParad.addEndings(Case.LOC, Number.SING, "ani");
@@ -1201,7 +1234,7 @@ public class SktDeclension {
 			{ "naḥ", "noḥ", "nām" },
 			{ "ni", "noḥ", "aḥsu" },
 			{ "aḥ", "nī", "āni" } };
-		final NominalParadigm ahahParad = NominalParadigm.generate("ahaḥ", "ahan", ahahData, 65);
+		final NominalParadigm ahahParad = NominalParadigm.generate("ahaḥ", "ahan", ahahData, "7-65");
 		ahahParad.setStemCutFactor(2);
 		ahahParad.addGender(Gender.NEU);
 		ahahParad.addEndings(Case.NOM, Number.DUAL, "anī");
@@ -1219,7 +1252,7 @@ public class SktDeclension {
 			{ "asaḥ", "asoḥ", "asām" },
 			{ "asi", "asoḥ", "āsu" },
 			{ "e", "asau", "asaḥ" } };
-		final NominalParadigm jaraParad = NominalParadigm.generate("jarā", "jarā", jaraData, 66);
+		final NominalParadigm jaraParad = NominalParadigm.generate("jarā", "jarā", jaraData, "7-66");
 		jaraParad.addGender(Gender.FEM);
 		paradigmMap.put("jarā", jaraParad);
 		final String[][] striData = {
@@ -1231,7 +1264,7 @@ public class SktDeclension {
 			{ "iyāḥ", "iyoḥ", "īṇām" },
 			{ "iyām", "iyoḥ", "īṣu" },
 			{ "i", "iyau", "iyaḥ" } };
-		final NominalParadigm striParad = NominalParadigm.generate("strī", "strī", striData, 67);
+		final NominalParadigm striParad = NominalParadigm.generate("strī", "strī", striData, "7-67");
 		striParad.addGender(Gender.FEM);
 		striParad.addEndings(Case.ACC, Number.SING, "īm");
 		striParad.addEndings(Case.ACC, Number.PLU, "īḥ");
@@ -1245,7 +1278,7 @@ public class SktDeclension {
 			{ "yāḥ", "yoḥ", "īṇām" },
 			{ "yām", "yoḥ", "īṣu" },
 			{ "i", "yau", "yaḥ" } };
-		final NominalParadigm laksmihParad = NominalParadigm.generate("lakṣmīḥ", "lakṣmī", laksmihData, 68);
+		final NominalParadigm laksmihParad = NominalParadigm.generate("lakṣmīḥ", "lakṣmī", laksmihData, "7-68");
 		laksmihParad.addGender(Gender.FEM);
 		laksmihParad.addWordList(List.of("tantrī", "tarī", "lakṣmī"));
 		paradigmMap.put("lakṣmīḥ", laksmihParad);
@@ -1258,7 +1291,7 @@ public class SktDeclension {
 			{ "ivaḥ", "ivoḥ", "ivām" },
 			{ "ivi", "ivoḥ", "yuṣu" },
 			{ "yauḥ", "ivau", "ivaḥ" } };
-		final NominalParadigm dyauhParad = NominalParadigm.generate("dyauḥ", "dyo", dyauhData, 69);
+		final NominalParadigm dyauhParad = NominalParadigm.generate("dyauḥ", "dyo", dyauhData, "7-69");
 		dyauhParad.setStemCutFactor(2);
 		dyauhParad.addGender(Gender.FEM);
 		paradigmMap.put("dyauḥ", dyauhParad);
@@ -1271,7 +1304,7 @@ public class SktDeclension {
 			{ "oḥ", "avoḥ", "avām" },
 			{ "avi", "avoḥ", "oṣu" },
 			{ "auḥ", "āvau", "āvaḥ" } };
-		final NominalParadigm gauhParad = NominalParadigm.generate("gauḥ", "go", gauhData, 70);
+		final NominalParadigm gauhParad = NominalParadigm.generate("gauḥ", "go", gauhData, "7-70");
 		gauhParad.addGender(Gender.FEM);
 		paradigmMap.put("gauḥ", gauhParad);
 		final String[][] apahData = {
@@ -1283,7 +1316,7 @@ public class SktDeclension {
 			{ "", "", "apām" },
 			{ "", "", "apsu" },
 			{ "", "", "āpaḥ" } };
-		final NominalParadigm apahParad = NominalParadigm.generate("āpaḥ", "ap", apahData, 71);
+		final NominalParadigm apahParad = NominalParadigm.generate("āpaḥ", "ap", apahData, "7-71");
 		apahParad.setStemCutFactor(2);
 		apahParad.addGender(Gender.FEM);
 		paradigmMap.put("āpaḥ", apahParad);
@@ -1296,7 +1329,7 @@ public class SktDeclension {
 			{ "iraḥ", "iroḥ", "irām" },
 			{ "iri", "iroḥ", "īrṣu" },
 			{ "īḥ", "irau", "iraḥ" } };
-		final NominalParadigm gihParad = NominalParadigm.generate("gīḥ", "gir", gihData, 72);
+		final NominalParadigm gihParad = NominalParadigm.generate("gīḥ", "gir", gihData, "7-72");
 		gihParad.setStemCutFactor(2);
 		gihParad.addGender(Gender.FEM);
 		paradigmMap.put("gīḥ", gihParad);
@@ -1309,7 +1342,7 @@ public class SktDeclension {
 			{ "iṣaḥ", "iṣoḥ", "iṣām" },
 			{ "iṣi", "iṣoḥ", "īḥṣu" },
 			{ "īḥ", "iṣau", "iṣaḥ" } };
-		final NominalParadigm asihParad = NominalParadigm.generate("āśīḥ", "āśir", asihData, 72);
+		final NominalParadigm asihParad = NominalParadigm.generate("āśīḥ", "āśir", asihData, "7-72");
 		asihParad.setStemCutFactor(2);
 		asihParad.addGender(Gender.FEM);
 		paradigmMap.put("āśīḥ", asihParad);
@@ -1322,7 +1355,7 @@ public class SktDeclension {
 			{ "uraḥ", "uroḥ", "urām" },
 			{ "uri", "uroḥ", "ūrṣu" },
 			{ "ūḥ", "urau", "uraḥ" } };
-		final NominalParadigm puhParad = NominalParadigm.generate("pūḥ", "pur", puhData, 73);
+		final NominalParadigm puhParad = NominalParadigm.generate("pūḥ", "pur", puhData, "7-73");
 		puhParad.setStemCutFactor(2);
 		puhParad.addGender(Gender.FEM);
 		puhParad.addWordList(List.of("dhur", "pur"));
@@ -1338,7 +1371,7 @@ public class SktDeclension {
 			{ "asya", "", "" },
 			{ "asmin", "", "" },
 			{ "", "", "" } };
-		final NominalParadigm ekahParad = NominalParadigm.generate("ekaḥ", "eka", ekahData);
+		final NominalParadigm ekahParad = NominalParadigm.generate("ekaḥ", "eka", ekahData, "12");
 		ekahParad.addGender(Gender.MAS);
 		ekahParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("ekaḥ", ekahParad);
@@ -1351,7 +1384,7 @@ public class SktDeclension {
 			{ "asya", "", "" },
 			{ "asmin", "", "" },
 			{ "", "", "" } };
-		final NominalParadigm ekamParad = NominalParadigm.generate("ekam", "eka", ekamData);
+		final NominalParadigm ekamParad = NominalParadigm.generate("ekam", "eka", ekamData, "12");
 		ekamParad.addGender(Gender.NEU);
 		ekamParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("ekam", ekamParad);
@@ -1364,7 +1397,7 @@ public class SktDeclension {
 			{ "asyāḥ", "", "" },
 			{ "asyām", "", "" },
 			{ "", "", "" } };
-		final NominalParadigm ekaParad = NominalParadigm.generate("ekā", "eka", ekaData);
+		final NominalParadigm ekaParad = NominalParadigm.generate("ekā", "eka", ekaData, "12");
 		ekaParad.addGender(Gender.FEM);
 		ekaParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("ekā", ekaParad);
@@ -1377,7 +1410,7 @@ public class SktDeclension {
 			{ "", "ayoḥ", "" },
 			{ "", "ayoḥ", "" },
 			{ "", "", "" } };
-		final NominalParadigm dvauParad = NominalParadigm.generate("dvau", "dvi", dvauData);
+		final NominalParadigm dvauParad = NominalParadigm.generate("dvau", "dvi", dvauData, "12");
 		dvauParad.addGender(Gender.MAS);
 		dvauParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("dvau", dvauParad);
@@ -1390,7 +1423,7 @@ public class SktDeclension {
 			{ "", "ayoḥ", "" },
 			{ "", "ayoḥ", "" },
 			{ "", "", "" } };
-		final NominalParadigm dveParad = NominalParadigm.generate("dve", "dvi", dveData);
+		final NominalParadigm dveParad = NominalParadigm.generate("dve", "dvi", dveData, "12");
 		dveParad.addGender(Gender.FEM, Gender.NEU);
 		dveParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("dve", dveParad);
@@ -1403,7 +1436,7 @@ public class SktDeclension {
 			{ "", "", "ayāṇām" },
 			{ "", "", "iṣu" },
 			{ "", "", "" } };
-		final NominalParadigm trayahParad = NominalParadigm.generate("trayaḥ", "tri", trayahData);
+		final NominalParadigm trayahParad = NominalParadigm.generate("trayaḥ", "tri", trayahData, "12");
 		trayahParad.addGender(Gender.MAS);
 		trayahParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("trayaḥ", trayahParad);
@@ -1416,7 +1449,7 @@ public class SktDeclension {
 			{ "", "", "ayāṇām" },
 			{ "", "", "iṣu" },
 			{ "", "", "" } };
-		final NominalParadigm triniParad = NominalParadigm.generate("trīṇi", "tri", triniData);
+		final NominalParadigm triniParad = NominalParadigm.generate("trīṇi", "tri", triniData, "12");
 		triniParad.addGender(Gender.NEU);
 		triniParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("trīṇi", triniParad);
@@ -1429,7 +1462,7 @@ public class SktDeclension {
 			{ "", "", "isṛṇām" },
 			{ "", "", "isṛṣu" },
 			{ "", "", "" } };
-		final NominalParadigm tisrahParad = NominalParadigm.generate("tisraḥ", "tri", tisrahData);
+		final NominalParadigm tisrahParad = NominalParadigm.generate("tisraḥ", "tri", tisrahData, "12");
 		tisrahParad.setStemCutFactor(2);
 		tisrahParad.addGender(Gender.FEM);
 		tisrahParad.setWordType(WordType.NUMERAL);
@@ -1443,7 +1476,7 @@ public class SktDeclension {
 			{ "", "", "urṇām" },
 			{ "", "", "urṣu" },
 			{ "", "", "" } };
-		final NominalParadigm catvarahParad = NominalParadigm.generate("catvāraḥ", "catur", catvarahData);
+		final NominalParadigm catvarahParad = NominalParadigm.generate("catvāraḥ", "catur", catvarahData, "12");
 		catvarahParad.setStemCutFactor(2);
 		catvarahParad.addGender(Gender.MAS);
 		catvarahParad.setWordType(WordType.NUMERAL);
@@ -1457,7 +1490,7 @@ public class SktDeclension {
 			{ "", "", "urṇām" },
 			{ "", "", "urṣu" },
 			{ "", "", "" } };
-		final NominalParadigm catvariParad = NominalParadigm.generate("catvāri", "catur", catvariData);
+		final NominalParadigm catvariParad = NominalParadigm.generate("catvāri", "catur", catvariData, "12");
 		catvariParad.setStemCutFactor(2);
 		catvariParad.addGender(Gender.NEU);
 		catvariParad.setWordType(WordType.NUMERAL);
@@ -1471,7 +1504,7 @@ public class SktDeclension {
 			{ "", "", "asṛṇām" },
 			{ "", "", "asṛṣu" },
 			{ "", "", "" } };
-		final NominalParadigm catasrahParad = NominalParadigm.generate("catasraḥ", "catur", catasrahData);
+		final NominalParadigm catasrahParad = NominalParadigm.generate("catasraḥ", "catur", catasrahData, "12");
 		catasrahParad.setStemCutFactor(2);
 		catasrahParad.addGender(Gender.FEM);
 		catasrahParad.setWordType(WordType.NUMERAL);
@@ -1485,7 +1518,7 @@ public class SktDeclension {
 			{ "", "", "ānām" },
 			{ "", "", "asu" },
 			{ "", "", "" } };
-		final NominalParadigm pancaParad = NominalParadigm.generate("pañca", "pañca", pancaData);
+		final NominalParadigm pancaParad = NominalParadigm.generate("pañca", "pañca", pancaData, "12");
 		pancaParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		pancaParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("pañca", pancaParad);
@@ -1498,7 +1531,7 @@ public class SktDeclension {
 			{ "", "", "ṇṇām" },
 			{ "", "", "ṭsu" },
 			{ "", "", "" } };
-		final NominalParadigm satParad = NominalParadigm.generate("ṣaṭ", "ṣaṭ", satData);
+		final NominalParadigm satParad = NominalParadigm.generate("ṣaṭ", "ṣaṭ", satData, "12");
 		satParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		satParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("ṣaṭ", satParad);
@@ -1511,7 +1544,7 @@ public class SktDeclension {
 			{ "", "", "ānām" },
 			{ "", "", "asu" },
 			{ "", "", "" } };
-		final NominalParadigm saptaParad = NominalParadigm.generate("sapta", "sapta", saptaData);
+		final NominalParadigm saptaParad = NominalParadigm.generate("sapta", "sapta", saptaData, "12");
 		saptaParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		saptaParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("sapta", saptaParad);
@@ -1524,7 +1557,7 @@ public class SktDeclension {
 			{ "", "", "ānām" },
 			{ "", "", "āsu" },
 			{ "", "", "" } };
-		final NominalParadigm astaParad = NominalParadigm.generate("aṣṭa", "aṣṭa", astaData);
+		final NominalParadigm astaParad = NominalParadigm.generate("aṣṭa", "aṣṭa", astaData, "12");
 		astaParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		astaParad.setWordType(WordType.NUMERAL);
 		astaParad.addEndings(Case.NOM, Number.PLU, "u");
@@ -1539,7 +1572,7 @@ public class SktDeclension {
 			{ "", "", "ānām" },
 			{ "", "", "asu" },
 			{ "", "", "" } };
-		final NominalParadigm navaParad = NominalParadigm.generate("nava", "nava", navaData);
+		final NominalParadigm navaParad = NominalParadigm.generate("nava", "nava", navaData, "12");
 		navaParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		navaParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("nava", navaParad);
@@ -1552,13 +1585,12 @@ public class SktDeclension {
 			{ "", "", "ānām" },
 			{ "", "", "asu" },
 			{ "", "", "" } };
-		final NominalParadigm dasaParad = NominalParadigm.generate("daśa", "daśa", dasaData);
+		final NominalParadigm dasaParad = NominalParadigm.generate("daśa", "daśa", dasaData, "12");
 		dasaParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		dasaParad.setWordType(WordType.NUMERAL);
 		paradigmMap.put("daśa", dasaParad);
 		// ordinals
 		final NominalParadigm prathamahParad = NominalParadigm.duplicate(devahParad, "prathamaḥ", "prathama");
-		prathamahParad.clearBucknellNumber();
 		prathamahParad.setWordType(WordType.NUMERAL);
 		prathamahParad.addEndings(Case.DAT, Number.SING, "asmai");
 		prathamahParad.addEndings(Case.ABL, Number.SING, "asmāt");
@@ -1566,7 +1598,6 @@ public class SktDeclension {
 		prathamahParad.addEndings(Case.LOC, Number.SING, "asmin");
 		paradigmMap.put("prathamaḥ", prathamahParad);
 		final NominalParadigm prathamamParad = NominalParadigm.duplicate(phalamParad, "prathamam", "prathama");
-		prathamamParad.clearBucknellNumber();
 		prathamamParad.setWordType(WordType.NUMERAL);
 		prathamamParad.addEndings(Case.DAT, Number.SING, "asmai");
 		prathamamParad.addEndings(Case.ABL, Number.SING, "asmāt");
@@ -1574,7 +1605,6 @@ public class SktDeclension {
 		prathamamParad.addEndings(Case.LOC, Number.SING, "asmin");
 		paradigmMap.put("prathamam", prathamamParad);
 		final NominalParadigm prathamaParad = NominalParadigm.duplicate(kathaParad, "prathamā", "prathama");
-		prathamaParad.clearBucknellNumber();
 		prathamaParad.setWordType(WordType.NUMERAL);
 		prathamaParad.addEndings(Case.DAT, Number.SING, "asyai");
 		prathamaParad.addEndings(Case.ABL, Number.SING, "asyāḥ");
@@ -1592,7 +1622,7 @@ public class SktDeclension {
 			{ "asya", "anayoḥ", "eṣām" },
 			{ "asmin", "anayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm ayamParad = NominalParadigm.generate("ayam", "idam", ayamData);
+		final NominalParadigm ayamParad = NominalParadigm.generate("ayam", "idam", ayamData, "13");
 		ayamParad.setStemCutFactor(4);
 		ayamParad.addGender(Gender.MAS);
 		ayamParad.setWordType(WordType.PRONOUN);
@@ -1612,7 +1642,7 @@ public class SktDeclension {
 			{ "asya", "anayoḥ", "eṣām" },
 			{ "asmin", "anayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm idamParad = NominalParadigm.generate("idam", "idam", idamData);
+		final NominalParadigm idamParad = NominalParadigm.generate("idam", "idam", idamData, "13");
 		idamParad.setStemCutFactor(4);
 		idamParad.addGender(Gender.NEU);
 		idamParad.setWordType(WordType.PRONOUN);
@@ -1632,7 +1662,7 @@ public class SktDeclension {
 			{ "asyāḥ", "anayoḥ", "āsām" },
 			{ "asyām", "anayoḥ", "āsu" },
 			{ "", "", "" } };
-		final NominalParadigm iyamParad = NominalParadigm.generate("iyam", "idam", iyamData);
+		final NominalParadigm iyamParad = NominalParadigm.generate("iyam", "idam", iyamData, "13");
 		iyamParad.setStemCutFactor(4);
 		iyamParad.addGender(Gender.FEM);
 		iyamParad.setWordType(WordType.PRONOUN);
@@ -1653,7 +1683,7 @@ public class SktDeclension {
 			{ "amuṣmin", "amuyoḥ", "amīṣu" },
 			{ "", "", "" } };
 		// adas
-		final NominalParadigm asauParad = NominalParadigm.generate("asau", "adas", asauData);
+		final NominalParadigm asauParad = NominalParadigm.generate("asau", "adas", asauData, "13");
 		asauParad.setStemCutFactor(4);
 		asauParad.addGender(Gender.MAS);
 		asauParad.setWordType(WordType.PRONOUN);
@@ -1667,7 +1697,7 @@ public class SktDeclension {
 			{ "amuṣya", "amuyoḥ", "amīṣām" },
 			{ "amuṣmin", "amuyoḥ", "amīṣu" },
 			{ "", "", "" } };
-		final NominalParadigm adahParad = NominalParadigm.generate("adaḥ", "adas", adahData);
+		final NominalParadigm adahParad = NominalParadigm.generate("adaḥ", "adas", adahData, "13");
 		adahParad.setStemCutFactor(4);
 		adahParad.addGender(Gender.NEU);
 		adahParad.setWordType(WordType.PRONOUN);
@@ -1681,7 +1711,7 @@ public class SktDeclension {
 			{ "amuṣyāḥ", "amuyoḥ", "amūṣām" },
 			{ "amuṣyām", "amuyoḥ", "amūṣu" },
 			{ "", "", "" } };
-		final NominalParadigm amuhParad = NominalParadigm.generate("amuḥ", "adas", amuhData);
+		final NominalParadigm amuhParad = NominalParadigm.generate("amuḥ", "adas", amuhData, "13");
 		amuhParad.setStemCutFactor(4);
 		amuhParad.addGender(Gender.FEM);
 		amuhParad.setWordType(WordType.PRONOUN);
@@ -1696,7 +1726,7 @@ public class SktDeclension {
 			{ "tasya", "tayoḥ", "teṣām" },
 			{ "tasmin", "tayoḥ", "teṣu" },
 			{ "", "", "" } };
-		final NominalParadigm esahParad = NominalParadigm.generate("esaḥ", "etad", esahData);
+		final NominalParadigm esahParad = NominalParadigm.generate("esaḥ", "etad", esahData, "14");
 		esahParad.setStemCutFactor(3);
 		esahParad.addGender(Gender.MAS);
 		esahParad.setWordType(WordType.PRONOUN);
@@ -1716,7 +1746,7 @@ public class SktDeclension {
 			{ "tasya", "tayoḥ", "teṣām" },
 			{ "tasmin", "tayoḥ", "teṣu" },
 			{ "", "", "" } };
-		final NominalParadigm etatParad = NominalParadigm.generate("etat", "etad", etatData);
+		final NominalParadigm etatParad = NominalParadigm.generate("etat", "etad", etatData, "14");
 		etatParad.setStemCutFactor(3);
 		etatParad.addGender(Gender.NEU);
 		etatParad.setWordType(WordType.PRONOUN);
@@ -1736,7 +1766,7 @@ public class SktDeclension {
 			{ "tasyāḥ", "tayoḥ", "tāsām" },
 			{ "tasyām", "tayoḥ", "tāsu" },
 			{ "", "", "" } };
-		final NominalParadigm esaParad = NominalParadigm.generate("esā", "etad", esaData);
+		final NominalParadigm esaParad = NominalParadigm.generate("esā", "etad", esaData, "14");
 		esaParad.setStemCutFactor(3);
 		esaParad.addGender(Gender.FEM);
 		esaParad.setWordType(WordType.PRONOUN);
@@ -1759,7 +1789,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm yahParad = NominalParadigm.generate("yaḥ", "ya", yahData);
+		final NominalParadigm yahParad = NominalParadigm.generate("yaḥ", "ya", yahData, "14");
 		yahParad.addGender(Gender.MAS);
 		yahParad.setWordType(WordType.PRONOUN);
 		yahParad.addWordList(yaLikeList);
@@ -1773,7 +1803,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm yatParad = NominalParadigm.generate("yat", "ya", yatData);
+		final NominalParadigm yatParad = NominalParadigm.generate("yat", "ya", yatData, "14");
 		yatParad.addGender(Gender.NEU);
 		yatParad.setWordType(WordType.PRONOUN);
 		yatParad.addWordList(yaLikeList);
@@ -1787,7 +1817,7 @@ public class SktDeclension {
 			{ "asyāḥ", "ayoḥ", "āsām" },
 			{ "asyām", "ayoḥ", "āsu" },
 			{ "", "", "" } };
-		final NominalParadigm yaParad = NominalParadigm.generate("yā", "ya", yaData);
+		final NominalParadigm yaParad = NominalParadigm.generate("yā", "ya", yaData, "14");
 		yaParad.addGender(Gender.FEM);
 		yaParad.setWordType(WordType.PRONOUN);
 		yaParad.addWordList(yaLikeList);
@@ -1802,7 +1832,7 @@ public class SktDeclension {
 			{ "tasya", "tayoḥ", "teṣām" },
 			{ "tasmin", "tayoḥ", "teṣu" },
 			{ "", "", "" } };
-		final NominalParadigm sahParad = NominalParadigm.generate("saḥ", "tad", sahData);
+		final NominalParadigm sahParad = NominalParadigm.generate("saḥ", "tad", sahData, "14");
 		sahParad.setStemCutFactor(3);
 		sahParad.addGender(Gender.MAS);
 		sahParad.setWordType(WordType.PRONOUN);
@@ -1816,7 +1846,7 @@ public class SktDeclension {
 			{ "tasya", "tayoḥ", "teṣām" },
 			{ "tasmin", "tayoḥ", "teṣu" },
 			{ "", "", "" } };
-		final NominalParadigm tatParad = NominalParadigm.generate("tat", "tad", tatData);
+		final NominalParadigm tatParad = NominalParadigm.generate("tat", "tad", tatData, "14");
 		tatParad.setStemCutFactor(3);
 		tatParad.addGender(Gender.NEU);
 		tatParad.setWordType(WordType.PRONOUN);
@@ -1830,7 +1860,7 @@ public class SktDeclension {
 			{ "tasyāḥ", "tayoḥ", "tāsām" },
 			{ "tasyām", "tayoḥ", "tāsu" },
 			{ "", "", "" } };
-		final NominalParadigm saParad = NominalParadigm.generate("sā", "tad", saData);
+		final NominalParadigm saParad = NominalParadigm.generate("sā", "tad", saData, "14");
 		saParad.setStemCutFactor(3);
 		saParad.addGender(Gender.FEM);
 		saParad.setWordType(WordType.PRONOUN);
@@ -1845,7 +1875,7 @@ public class SktDeclension {
 			{ "tava", "yuvayoḥ", "yuṣmākam" },
 			{ "tvayi", "yuvayoḥ", "yuṣmāsu" },
 			{ "", "", "" } };
-		final NominalParadigm tvamParad = NominalParadigm.generate("tvam", "yuṣmad", tvamData);
+		final NominalParadigm tvamParad = NominalParadigm.generate("tvam", "yuṣmad", tvamData, "14");
 		tvamParad.setStemCutFactor(6);
 		tvamParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		tvamParad.setWordType(WordType.PRONOUN);
@@ -1869,7 +1899,7 @@ public class SktDeclension {
 			{ "mayi", "āvayoḥ", "asmāsu" },
 			{ "", "", "" } };
 		// asmad
-		final NominalParadigm ahamParad = NominalParadigm.generate("aham", "asmad", ahamData);
+		final NominalParadigm ahamParad = NominalParadigm.generate("aham", "asmad", ahamData, "14");
 		ahamParad.setStemCutFactor(5);
 		ahamParad.addGender(Gender.MAS, Gender.FEM, Gender.NEU);
 		ahamParad.setWordType(WordType.PRONOUN);
@@ -1896,7 +1926,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "a", "au", "e" } };
-		final NominalParadigm sarvahParad = NominalParadigm.generate("sarvaḥ", "sarva", sarvahData);
+		final NominalParadigm sarvahParad = NominalParadigm.generate("sarvaḥ", "sarva", sarvahData, "14");
 		sarvahParad.addGender(Gender.MAS);
 		sarvahParad.setWordType(WordType.PRONOUN);
 		sarvahParad.addWordList(sarvaLikeList);
@@ -1910,7 +1940,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "a", "e", "āni" } };
-		final NominalParadigm sarvamParad = NominalParadigm.generate("sarvam", "sarva", sarvamData);
+		final NominalParadigm sarvamParad = NominalParadigm.generate("sarvam", "sarva", sarvamData, "14");
 		sarvamParad.addGender(Gender.NEU);
 		sarvamParad.setWordType(WordType.PRONOUN);
 		sarvamParad.addWordList(sarvaLikeList);
@@ -1924,7 +1954,7 @@ public class SktDeclension {
 			{ "asyāḥ", "ayoḥ", "āsām" },
 			{ "asyām", "ayoḥ", "āsu" },
 			{ "e", "e", "āḥ" } };
-		final NominalParadigm sarvaParad = NominalParadigm.generate("sarvā", "sarva", sarvaData);
+		final NominalParadigm sarvaParad = NominalParadigm.generate("sarvā", "sarva", sarvaData, "14");
 		sarvaParad.addGender(Gender.FEM);
 		sarvaParad.setWordType(WordType.PRONOUN);
 		sarvaParad.addWordList(sarvaLikeList);
@@ -1939,7 +1969,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm kahParad = NominalParadigm.generate("kaḥ", "kim", kahData);
+		final NominalParadigm kahParad = NominalParadigm.generate("kaḥ", "kim", kahData, "14");
 		kahParad.setStemCutFactor(2);
 		kahParad.addGender(Gender.MAS);
 		kahParad.setWordType(WordType.PRONOUN);
@@ -1953,7 +1983,7 @@ public class SktDeclension {
 			{ "asya", "ayoḥ", "eṣām" },
 			{ "asmin", "ayoḥ", "eṣu" },
 			{ "", "", "" } };
-		final NominalParadigm kimParad = NominalParadigm.generate("kim", "kim", kimData);
+		final NominalParadigm kimParad = NominalParadigm.generate("kim", "kim", kimData, "14");
 		kimParad.setStemCutFactor(2);
 		kimParad.addGender(Gender.NEU);
 		kimParad.setWordType(WordType.PRONOUN);
@@ -1967,7 +1997,7 @@ public class SktDeclension {
 			{ "asyāḥ", "ayoḥ", "āsām" },
 			{ "asyām", "ayoḥ", "āsu" },
 			{ "", "", "" } };
-		final NominalParadigm kaParad = NominalParadigm.generate("kā", "kim", kaData);
+		final NominalParadigm kaParad = NominalParadigm.generate("kā", "kim", kaData, "14");
 		kaParad.setStemCutFactor(2);
 		kaParad.addGender(Gender.FEM);
 		kaParad.setWordType(WordType.PRONOUN);
