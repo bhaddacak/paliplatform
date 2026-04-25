@@ -29,9 +29,12 @@ import static paliplatform.sanskrit.NominalParadigm.Gender;
 
 import java.util.*;
 import java.util.stream.*;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.input.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.*;
@@ -39,7 +42,7 @@ import javafx.geometry.*;
 /**
  * The Sanskrit conjugation window.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 4.1
  */
 public class SktConjugationWin extends BorderPane {
@@ -90,6 +93,7 @@ public class SktConjugationWin extends BorderPane {
 	private final ListView<String> verbListView = new ListView<>(verbList);
 	private final InfoPopup infoPopup = new InfoPopup();
 	private final ToggleGroup listTypeGroup = new ToggleGroup();
+	private final TextField searchTextField;
 	private VerbListMode currVerbListMode = VerbListMode.VERB;
 	private SktVerb currVerb = null;
 	private StringBuilder exportedResult;
@@ -135,7 +139,33 @@ public class SktConjugationWin extends BorderPane {
 		lameButton.setOnAction(actionEvent -> updateVerbList(VerbListMode.LAME));
 		listTypeGroup.getToggles().addAll(verbButton, rootButton, lameButton);
 		verbListToolBar.getItems().addAll(verbButton, rootButton, lameButton);
-		verbListView.setPrefWidth(Utilities.getRelativeSize(11));
+		final HBox searchBox = new HBox();
+		searchBox.setPadding(new Insets(3));
+		searchBox.setSpacing(3);
+		final PaliTextInput searchInput = new PaliTextInput(PaliTextInput.InputType.FIELD);
+		searchTextField = (TextField)searchInput.getInput();
+		searchTextField.setPromptText("Search for...");
+		searchTextField.setPrefWidth(Utilities.getRelativeSize(10));
+		searchTextField.textProperty().addListener((obs, oldValue, newValue) -> updateVerbList(currVerbListMode));
+		searchTextField.setOnKeyPressed(keyEvent -> {
+			if (keyEvent.getEventType() == KeyEvent.KEY_PRESSED) {
+				final KeyCode key = keyEvent.getCode();
+				if (keyEvent.isControlDown()) {
+					if (key == KeyCode.SPACE) {
+						searchInput.rotateInputMethod();
+					}					
+				} else {
+					if (key == KeyCode.ESCAPE) {
+						searchTextField.clear();
+					}
+				}
+			}
+		});	
+		searchInput.setSanskritMode(true);
+		final String inputMethod = Utilities.getSetting("sanskrit-input-method");
+		searchInput.setInputMethod(PaliTextInput.InputMethod.valueOf(inputMethod));
+		searchBox.getChildren().addAll(searchTextField, searchInput.getMethodButton());
+		verbListView.setPrefWidth(Utilities.getRelativeSize(13));
 		verbListView.setCellFactory((ListView<String> lv) -> {
 			return new ListCell<String>() {
 				@Override
@@ -160,7 +190,7 @@ public class SktConjugationWin extends BorderPane {
 				showResult(selItem);
 		});
 		VBox.setVgrow(verbListView, Priority.ALWAYS);
-		verbListBox.getChildren().addAll(verbListToolBar, verbListView);
+		verbListBox.getChildren().addAll(verbListToolBar, searchBox, verbListView);
 		setLeft(verbListBox);
 
 		tablePane.setHgap(2.0);
@@ -178,8 +208,8 @@ public class SktConjugationWin extends BorderPane {
 	}
 
 	public final void init(final Object[] args) {
-		setPrefWidth(Utilities.getRelativeSize(55));
-		setPrefHeight(Utilities.getRelativeSize(35));
+		setPrefWidth(Utilities.getRelativeSize(60));
+		setPrefHeight(Utilities.getRelativeSize(36));
 		mainVerbButton.setSelected(true);
 		updateVerbFormList();
 		currVerb = null;
@@ -200,6 +230,7 @@ public class SktConjugationWin extends BorderPane {
 	}
 
 	private void updateVerbList(final VerbListMode mode) {
+		final String strQuery = Normalizer.normalize(searchTextField.getText().trim(), Form.NFC).toLowerCase();
 		int selectedInd = verbListView.getSelectionModel().getSelectedIndex();
 		selectedInd = selectedInd < 0 ? 0 : selectedInd;
 		verbList.clear();
@@ -207,7 +238,8 @@ public class SktConjugationWin extends BorderPane {
 		if (mode == VerbListMode.VERB) {
 			final List<String> rlist = VerbRepo.sktVerbMap.values().stream()
 											.filter(x -> x.isCompleted())
-											.map(SktVerb::getCitationForm)
+											.map(SktVerb::getVerbAndRoot)
+											.filter(x -> x.indexOf(strQuery) > -1)
 											.collect(Collectors.toList());
 			verbList.addAll(rlist);
 			verbListView.getSelectionModel().select(selectedInd);
@@ -215,6 +247,7 @@ public class SktConjugationWin extends BorderPane {
 			final List<String> rlist = VerbRepo.sktVerbMap.values().stream()
 											.filter(x -> x.isCompleted())
 											.map(SktVerb::getDescription)
+											.filter(x -> x.indexOf(strQuery) > -1)
 											.collect(Collectors.toList());
 			verbList.addAll(rlist);
 			verbListView.getSelectionModel().select(selectedInd);
@@ -222,6 +255,7 @@ public class SktConjugationWin extends BorderPane {
 			final List<String> rlist = VerbRepo.sktVerbMap.values().stream()
 											.filter(x -> !x.isCompleted())
 											.map(SktVerb::getFullDescription)
+											.filter(x -> x.indexOf(strQuery) > -1)
 											.collect(Collectors.toList());
 			verbList.addAll(rlist);
 			verbListView.getSelectionModel().select(0);
@@ -229,9 +263,9 @@ public class SktConjugationWin extends BorderPane {
 	}
 
 	private void showResult() {
-		final String selected = verbListView.getSelectionModel().getSelectedItem();
-		if (selected == null) return;
-		showResult(selected);
+		final String selectedVerb = verbListView.getSelectionModel().getSelectedItem();
+		if (selectedVerb == null) return;
+		showResult(selectedVerb);
 	}
 
 	private void showResult(final String term) {
@@ -242,28 +276,33 @@ public class SktConjugationWin extends BorderPane {
 			final int bpos = term.indexOf("[");
 			final String num = term.substring(bpos + 1, term.lastIndexOf("]"));
 			currVerb = VerbRepo.sktVerbMap.values().stream()
-						.filter(x -> x.getBucknellNumber() == Integer.parseInt(num))
+						.filter(x -> num.equals(x.getBucknellNumberStr()))
 						.findFirst()
 						.orElse(null);
 		}
 		if (currVerb == null) return;
 		exportedResult.append(currVerb.getDescription()).append(LINESEP);
 		tablePane.getChildren().clear();
-		final int selected = verbFormChoice.getSelectionModel().getSelectedIndex();
-		if (selected < 0) return;
+		final int selectedForm = verbFormChoice.getSelectionModel().getSelectedIndex();
+		if (selectedForm < 0) return;
 		exportedResult.append(verbFormChoice.getSelectionModel().getSelectedItem()).append(LINESEP);
 		if (mainVerbButton.isSelected()) {
-			final TenseMood tense = TenseMood.values[selected];
-			switch (selected) {
+			final TenseMood tense = TenseMood.values[selectedForm];
+			switch (selectedForm) {
 				case 0: // PRES
 				case 1: // IMP
 				case 2: // OPT
 				case 3: // IMPERF
 					addMainVerbTable(currVerb.getCommonProduct(tense, Pada.ACT), VForm.ACT);
 					addMainVerbTable(currVerb.getCommonProduct(tense, Pada.MID), VForm.MID);
-					addMainVerbTable(currVerb.getCommonPassiveProduct(tense), VForm.PAS);
+					for (int i = 0; i < currVerb.getIrregularMiddleForm().size(); i++) {
+						addMainVerbTable(currVerb.getIrrMidCommonProduct(tense, i), VForm.MID);
+					}
+					for (int i = 0; i < currVerb.getPresentPassiveForm().size(); i++) {
+						addMainVerbTable(currVerb.getCommonPassiveProduct(tense, i), VForm.PAS);
+					}
 					addMainVerbTable(currVerb.getCommonCausativeProduct(tense), VForm.CAU);
-					if (selected == 0) {
+					if (selectedForm == 0) {
 						addMainVerbTable(currVerb.getCausativePassiveProduct(), VForm.CAUPAS);
 						addMainVerbTable(currVerb.getDesiderativeProduct(Pada.ACT), VForm.DES);
 						addMainVerbTable(currVerb.getDesiderativeProduct(Pada.MID), VForm.DESMID);
@@ -318,8 +357,8 @@ public class SktConjugationWin extends BorderPane {
 					break;
 			}
 		} else {
-			final DeriVerbForm deriForm = DeriVerbForm.values[selected];
-			switch (selected) {
+			final DeriVerbForm deriForm = DeriVerbForm.values[selectedForm];
+			switch (selectedForm) {
 				case 0: // PRES_ACT_PART
 					addDeriVerbTable(currVerb.getPresentActiveParticipleProduct(Gender.MAS), Gender.MAS);
 					addDeriVerbTable(currVerb.getPresentActiveParticipleProduct(Gender.FEM), Gender.FEM);
@@ -331,17 +370,21 @@ public class SktConjugationWin extends BorderPane {
 					addDeriVerbTable(currVerb.getPresentMiddleParticipleProduct(Gender.NEU), Gender.NEU);
 					break;
 				case 2: // PRES_PAS_PART
-					addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.MAS), Gender.MAS);
-					addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.FEM), Gender.FEM);
-					addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.NEU), Gender.NEU);
+					for (int i = 0; i < currVerb.getPresentPassiveForm().size(); i++) {
+						addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.MAS, i), Gender.MAS);
+						addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.FEM, i), Gender.FEM);
+						addDeriVerbTable(currVerb.getPresentPassiveParticipleProduct(Gender.NEU, i), Gender.NEU);
+					}
 					break;
 				case 3: // PERF_ACT_PART
 					addDeriVerbTable(currVerb.getPerfectActiveParticipleProduct(Gender.MAS), Gender.MAS);
 					addDeriVerbTable(currVerb.getPerfectActiveParticipleProduct(Gender.FEM), Gender.FEM);
 					addDeriVerbTable(currVerb.getPerfectActiveParticipleProduct(Gender.NEU), Gender.NEU);
-					addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.MAS), Gender.MAS);
-					addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.FEM), Gender.FEM);
-					addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.NEU), Gender.NEU);
+					for (int i = 0; i < currVerb.getPppForm().size(); i++) {
+						addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.MAS, i), Gender.MAS);
+						addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.FEM, i), Gender.FEM);
+						addDeriVerbTable(currVerb.getPerfectActiveParticipleFromTaProduct(Gender.NEU, i), Gender.NEU);
+					}
 					break;
 				case 4: // PERF_MID_PART
 					addDeriVerbTable(currVerb.getPerfectMiddleParticipleProduct(Gender.MAS), Gender.MAS);
@@ -349,9 +392,11 @@ public class SktConjugationWin extends BorderPane {
 					addDeriVerbTable(currVerb.getPerfectMiddleParticipleProduct(Gender.NEU), Gender.NEU);
 					break;
 				case 5: // PERF_PAS_PART
-					addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.MAS), Gender.MAS);
-					addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.FEM), Gender.FEM);
-					addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.NEU), Gender.NEU);
+					for (int i = 0; i < currVerb.getPppForm().size(); i++) {
+						addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.MAS, i), Gender.MAS);
+						addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.FEM, i), Gender.FEM);
+						addDeriVerbTable(currVerb.getPerfectPassiveParticipleProduct(Gender.NEU, i), Gender.NEU);
+					}
 					addDeriVerbTable(currVerb.getPerfectPassiveParticipleCausativeProduct(Gender.MAS), Gender.MAS, VForm.CAU);
 					addDeriVerbTable(currVerb.getPerfectPassiveParticipleCausativeProduct(Gender.FEM), Gender.FEM, VForm.CAU);
 					addDeriVerbTable(currVerb.getPerfectPassiveParticipleCausativeProduct(Gender.NEU), Gender.NEU, VForm.CAU);

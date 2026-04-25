@@ -27,7 +27,7 @@ import java.util.stream.*;
 /** 
  * The class handling Sanskrit verbal conjugation.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 4.1
  */
 public class SktConjugation {
@@ -154,6 +154,28 @@ public class SktConjugation {
 		return result;
 	}
 
+	public static Map<Person, Map<Number, List<String>>> compute(final String word, final String paradName, final List<String> replacement) {
+		final VerbalParadigm parad = paradigmMap.get(paradName);
+		if (parad == null)
+			return Collections.emptyMap();
+		final List<String> toBeReplaced = parad.getPresentSubstitution();
+		final Map<String, String> replaceMap = new HashMap<>();
+		for (int i = 0; i < toBeReplaced.size(); i++) {
+			if (i < replacement.size())
+				replaceMap.put(toBeReplaced.get(i), replacement.get(i));
+		}
+		final Map<Person, Map<Number, List<String>>> result = new EnumMap<>(Person.class);
+		for (final Person p : Person.values) {
+			final Map<Number, List<String>> numMap = new EnumMap<>(Number.class);
+			for (final Number n : Number.values) {
+				final List<String> productList = parad.getConjugation(word, p, n, replaceMap);
+				numMap.put(n, productList);
+			}
+			result.put(p, numMap);
+		}
+		return result;
+	}
+
 	public static Map<Person, Map<Number, List<String>>> compute(final String word, final String paradName, final String preTerm) {
 		final VerbalParadigm parad = paradigmMap.get(paradName);
 		if (parad == null)
@@ -174,14 +196,14 @@ public class SktConjugation {
 
 	public static Map<Person, Map<Number, List<String>>> computePerfect(final String word, final String paradName, final List<String> replacement) {
 		final VerbalParadigm parad = paradigmMap.get(paradName);
-		final List<String> tobeReplaced = parad.getPerfectSubstitution();
-		final Map<String, String> replaceMap = new HashMap<>();
-		for (int i = 0; i < tobeReplaced.size(); i++) {
-			if (i < replacement.size())
-				replaceMap.put(tobeReplaced.get(i), replacement.get(i));
-		}
 		if (parad == null)
 			return Collections.emptyMap();
+		final List<String> toBeReplaced = parad.getPerfectSubstitution();
+		final Map<String, String> replaceMap = new HashMap<>();
+		for (int i = 0; i < toBeReplaced.size(); i++) {
+			if (i < replacement.size())
+				replaceMap.put(toBeReplaced.get(i), replacement.get(i));
+		}
 		final Map<Person, Map<Number, List<String>>> result = new EnumMap<>(Person.class);
 		for (final Person p : Person.values) {
 			final Map<Number, List<String>> numMap = new EnumMap<>(Number.class);
@@ -213,38 +235,25 @@ public class SktConjugation {
 	public static String getParadigmName(final String citeForm, final TenseMood tense, final Pada pad) {
 		String result = "";
 		if (citeForm.isEmpty()) return result;
-		final String end1 = citeForm.length() >= 1 ? citeForm.substring(citeForm.length() - 1) : citeForm;
-		final String end2 = citeForm.length() >= 2 ? citeForm.substring(citeForm.length() - 2) : citeForm;
-		final String end3 = citeForm.length() >= 3 ? citeForm.substring(citeForm.length() - 3) : citeForm;
-		final String end4 = citeForm.length() >= 4 ? citeForm.substring(citeForm.length() - 4) : citeForm;
-		final String end5 = citeForm.length() >= 5 ? citeForm.substring(citeForm.length() - 5) : citeForm;
-		final String end6 = citeForm.length() >= 6 ? citeForm.substring(citeForm.length() - 6) : citeForm;
 		if (tense.ordinal() <= 3) {
 			// PRES, IMP, OPT, IMPERF
-			final List<String> irregularList = List.of("atti", "asti", "āste", "eti");
-			final Map<String, String> sampleMap = new HashMap<>();
-			sampleMap.put("ati", "nayati");
-			sampleMap.put("āti", "bhāti");
-			sampleMap.put("iti", "svapiti");
-			sampleMap.put("auti", "stauti");
-			sampleMap.put("nāti", "jānāti");
-			sampleMap.put("noti", "sunoti");
-			sampleMap.put("pnoti", "āpnoti");
-			sampleMap.put("oti", "juhoti");
-			sampleMap.put("kti", "yunakti");
-			sampleMap.put("ate", "nayati");
-			sampleMap.put("ate", "nayati");
-			sampleMap.put("ute", "sunoti");
+			final List<String> irregularList = Arrays.asList(
+					"atti", "adhīte", "asti", "āste", "inddhe", "īṭṭe", "īrte", "īṣṭe", "eti", "karoti", "caṣṭe",
+					"jahāti", "dadāti", "dadhāti", "degdhi", "dogdhi", "dveṣṭi", "bravīti", "mārṣṭi", "mimīte",
+					"ruṇaddhi", "roditi", "leḍhi", "vakti", "vaṣṭi", "vetti", "śāsti", "śete", "hanti");
 			final String sample = irregularList.contains(citeForm)
-				? citeForm
-				: sampleMap.getOrDefault(end5, sampleMap.getOrDefault(end4, sampleMap.get(end3)));
-			if (sample != null) {
+									? citeForm
+									: getPresentSample(citeForm);
+			final String specialParadName = getSpecialParadigmName(citeForm, tense, pad);
+			if (!specialParadName.isEmpty()) {
+				result = specialParadName;
+			} else if (!sample.isEmpty()) {
 				result = paradigmMap.values().stream()
-					.filter(x -> sample.equals(x.getSampleTerm()))
-					.filter(x -> x.getTenseMood() == tense && x.getPada() == pad)
-					.map(x -> x.getName())
-					.findFirst()
-					.orElse("");
+						.filter(x -> sample.equals(x.getSampleTerm()))
+						.filter(x -> x.getTenseMood() == tense && x.getPada() == pad)
+						.map(x -> x.getName())
+						.findFirst()
+						.orElse("");
 			}
 		} else if(tense == TenseMood.AOR) {
 			final VerbalParadigm abhasitParad = paradigmMap.get("abhāsīt");
@@ -257,36 +266,106 @@ public class SktConjugation {
 			} else if (abhasitParad.hasInWordList(citeForm)) {
 				result = pad == Pada.ACT ? "abhāsīt" : "";
 			} else {
-				final Map<String, String> sampleMap = new HashMap<>();
-				sampleMap.put("at", "asicat");
-				sampleMap.put("ṣat", "adikṣat");
-				sampleMap.put("aiṣīt", "anaiṣīt");
-				sampleMap.put("auṣīt", "asauṣīt");
-				sampleMap.put("āsīt", "ajñāsīt");
-				sampleMap.put("aipsīt", "akṣaipsīt");
-				sampleMap.put("aukṣīt", "ayaukṣīt");
-				sampleMap.put("kṣīt", "ayokṣīt");
-				sampleMap.put("īt", "apāvīt");
-				sampleMap.put("āt", "adāt");
-				final String sample = sampleMap.getOrDefault(end6,
-										sampleMap.getOrDefault(end5,
-											sampleMap.getOrDefault(end4,
-												sampleMap.getOrDefault(end3,
-													sampleMap.getOrDefault(end2,
-														sampleMap.get(end1))))));
-				if (sample != null) {
+				final String sample = getAoristSample(citeForm);
+				if (!sample.isEmpty()) {
 					result = paradigmMap.values().stream()
-						.filter(x -> sample.equals(x.getSampleTerm()))
-						.filter(x -> x.getTenseMood() == tense && x.getPada() == pad)
-						.map(x -> x.getName())
-						.findFirst()
-						.orElse("");
+							.filter(x -> sample.equals(x.getSampleTerm()))
+							.filter(x -> x.getTenseMood() == tense && x.getPada() == pad)
+							.map(x -> x.getName())
+							.findFirst()
+							.orElse("");
 				}
 			}
 		} else if(tense == TenseMood.PREC) {
 			result = pad == Pada.ACT ? "nīyāt" : "neṣīṣṭa";
 		} else if(tense == TenseMood.PERI) {
 			result = pad == Pada.ACT ? "netā" : "netāM";
+		}
+//~ 		System.out.println(citeForm + " " + result);
+		return result;
+	}
+
+	private static String getPresentSample(final String citeForm) {
+		final int len = citeForm.length();
+		final String end3 = len >= 3 ? citeForm.substring(len - 3) : citeForm;
+		final String end4 = len >= 4 ? citeForm.substring(len - 4) : citeForm;
+		final String end5 = len >= 5 ? citeForm.substring(len - 5) : citeForm;
+		final Set<String> yunaktiSet = Set.of("anakti", "bhanakti", "bhunakti", "yunakti", "vṛṇakti");
+		final Set<String> vinaktiSet = Set.of("pṛṇakti", "riṇakti", "vinakti");
+		final Map<String, String> sampleMap = new HashMap<>();
+		sampleMap.put("ati", "nayati");
+		sampleMap.put("āti", "bhāti");
+		sampleMap.put("iti", "svapiti");
+		sampleMap.put("auti", "stauti");
+		sampleMap.put("nāti", "jānāti");
+		sampleMap.put("oti", "juhoti");
+		sampleMap.put("arti", "bibharti");
+		sampleMap.put("eti", "bibheti");
+		sampleMap.put("naṣṭi", "pinaṣṭi");
+		sampleMap.put("natti", "bhinatti");
+		sampleMap.put("ṇatti", "kṣuṇatti");
+		sampleMap.put("ate", "nayati");
+		sampleMap.put("īte", "mimīte");
+		sampleMap.put("ute", "sunoti");
+		sampleMap.put("vaste", "āste");
+		final String result;
+		if (citeForm.endsWith("noti")) {
+			final String stem = citeForm.substring(0, citeForm.length() - 3);
+			result = SanskritUtilities.endsWithDoubleConsonant(stem)
+						? "āpnoti"
+						: "sunoti";
+		} else if (citeForm.endsWith("eti")) {
+			final String stem = citeForm.substring(0, citeForm.length() - 3);
+			result = SanskritUtilities.endsWithDoubleConsonant(stem)
+						? "jihreti"
+						: "bibheti";
+		} else if (citeForm.endsWith("kti")) {
+			result = yunaktiSet.contains(citeForm)
+						? "yunakti"
+						: vinaktiSet.contains(citeForm)
+							? "vinakti"
+							: "";
+		} else {
+			result = sampleMap.getOrDefault(end5, sampleMap.getOrDefault(end4, sampleMap.get(end3)));
+		}
+		return result == null ? "" : result;
+	}
+
+	private static String getAoristSample(final String citeForm) {
+		final int len = citeForm.length();
+		final String end1 = len >= 1 ? citeForm.substring(len - 1) : citeForm;
+		final String end2 = len >= 2 ? citeForm.substring(len - 2) : citeForm;
+		final String end3 = len >= 3 ? citeForm.substring(len - 3) : citeForm;
+		final String end4 = len >= 4 ? citeForm.substring(len - 4) : citeForm;
+		final String end5 = len >= 5 ? citeForm.substring(len - 5) : citeForm;
+		final String end6 = len >= 6 ? citeForm.substring(len - 6) : citeForm;
+		final Map<String, String> sampleMap = new HashMap<>();
+		sampleMap.put("at", "asicat");
+		sampleMap.put("ṣat", "adikṣat");
+		sampleMap.put("aiṣīt", "anaiṣīt");
+		sampleMap.put("auṣīt", "asauṣīt");
+		sampleMap.put("āsīt", "ajñāsīt");
+		sampleMap.put("aipsīt", "akṣaipsīt");
+		sampleMap.put("aukṣīt", "ayaukṣīt");
+		sampleMap.put("kṣīt", "ayokṣīt");
+		sampleMap.put("īt", "apāvīt");
+		sampleMap.put("āt", "adāt");
+		final String result = sampleMap.getOrDefault(end6,
+								sampleMap.getOrDefault(end5,
+									sampleMap.getOrDefault(end4,
+										sampleMap.getOrDefault(end3,
+											sampleMap.getOrDefault(end2,
+												sampleMap.get(end1))))));
+		return result == null ? "" : result;
+	}
+
+	private static String getSpecialParadigmName(final String citeForm, final TenseMood tense, final Pada pad) {
+		final String result;
+		if (citeForm.endsWith("nāti") && tense == TenseMood.IMP && pad == Pada.ACT) {
+			final String stem = citeForm.substring(0, citeForm.length() - 3);
+			result = SanskritUtilities.endsWithDoubleConsonant(stem) ? "grathnātu" : "";
+		} else {
+			result = "";
 		}
 		return result;
 	}
@@ -383,7 +462,7 @@ public class SktConjugation {
 		paradigmMap.put("abhāt", abhatParad);
 
 		// -iti group
-		final List<String> svapitiWordList = List.of("aniti", "jakṣiti", "śvasiti", "svapiti");
+		final List<String> svapitiWordList = List.of("aniti", "śvasiti", "svapiti");
 		final String[][] svapitiData = {
 			{ "iti", "itaḥ", "anti" },
 			{ "iṣi", "ithaḥ", "itha" },
@@ -417,7 +496,7 @@ public class SktConjugation {
 		paradigmMap.put("asvapat", asvapatParad);
 
 		// -auti group
-		final List<String> stautiWordList = List.of("kauti", "tauti", "rauti", "stauti");
+		final List<String> stautiWordList = List.of("nauti", "rauti", "stauti");
 		final String[][] stautiData = {
 			{ "auti", "utaḥ", "uvanti" },
 			{ "auṣi", "uthaḥ", "utha" },
@@ -578,7 +657,7 @@ public class SktConjugation {
 		final VerbalParadigm sunotuParad = VerbalParadigm.generate("sunotu", "sunoti", TenseMood.IMP, Pada.ACT, sunotuData, "16-6");
 		final VerbalParadigm apnotuParad = VerbalParadigm.duplicate(sunotuParad, "āpnotu", "āpnoti");
 		paradigmMap.put("sunotu", sunotuParad);
-		apnotiParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvantu"));
+		apnotuParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvantu"));
 		apnotuParad.setEndings(Person.MADHYAMA, Number.SING, List.of("uhi"));
 		paradigmMap.put("āpnotu", apnotuParad);
 		final String[][] asunotData = {
@@ -654,9 +733,6 @@ public class SktConjugation {
 			{ "omi", "uvaḥ", "umaḥ" } };
 		final VerbalParadigm juhotiParad = VerbalParadigm.generate("juhoti", "juhoti", TenseMood.PRES, Pada.ACT, juhotiData, "16-7");
 		paradigmMap.put("juhoti", juhotiParad);
-//~ 		final VerbalParadigm juxhotiParad = VerbalParadigm.duplicate(juhotiParad, "juxhoti", "juxhoti");
-//~ 		juxhotiParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvati"));
-//~ 		paradigmMap.put("juxhoti", juxhotiParad);
 		final String[][] juhuyatData = {
 			{ "uyāt", "uyātām", "uyuḥ" },
 			{ "uyāḥ", "uyātam", "uyāta" },
@@ -669,9 +745,6 @@ public class SktConjugation {
 			{ "avāni", "avāva", "avāma" } };
 		final VerbalParadigm juhotuParad = VerbalParadigm.generate("juhotu", "juhoti", TenseMood.IMP, Pada.ACT, juhotuData, "16-7");
 		paradigmMap.put("juhotu", juhotuParad);
-//~ 		final VerbalParadigm juxhotuParad = VerbalParadigm.duplicate(juhotuParad, "juxhotu", "juxhoti");
-//~ 		juxhotuParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvatu"));
-//~ 		paradigmMap.put("juxhotu", juxhotuParad);
 		final String[][] ajuhotData = {
 			{ "ot", "utām", "avuḥ" },
 			{ "oḥ", "utam", "uta" },
@@ -685,35 +758,18 @@ public class SktConjugation {
 			{ "ve", "uvahe", "umahe" } };
 		final VerbalParadigm juhuteParad = VerbalParadigm.generate("juhute", "juhoti", TenseMood.PRES, Pada.MID, juhuteData, "16-7");
 		paradigmMap.put("juhute", juhuteParad);
-//~ 		final VerbalParadigm juxhuteParad = VerbalParadigm.duplicate(juhuteParad, "juxhute", "juxhoti");
-//~ 		juxhuteParad.setEndings(Person.PRATHAMA, Number.DUAL, List.of("uvāte"));
-//~ 		juxhuteParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvate"));
-//~ 		juxhuteParad.setEndings(Person.MADHYAMA, Number.DUAL, List.of("uvāthe"));
-//~ 		juxhuteParad.setEndings(Person.UTTAMA, Number.SING, List.of("uve"));
-//~ 		paradigmMap.put("juxhute", juxhuteParad);
 		final String[][] juhvitaData = {
 			{ "vīta", "vīyātām", "vīran" },
 			{ "vīthāḥ", "vīyāthām", "vīdhvam" },
 			{ "vīya", "vīvahi", "vīmahi" } };
 		final VerbalParadigm juhvitaParad = VerbalParadigm.generate("juhvīta", "juhoti", TenseMood.OPT, Pada.MID, juhvitaData, "16-7");
 		paradigmMap.put("juhvīta", juhvitaParad);
-//~ 		final String[][] juxhuvitaData = {
-//~ 			{ "uvīta", "uvīyātām", "uvīran" },
-//~ 			{ "uvīthāḥ", "uvīyāthām", "uvīdhvam" },
-//~ 			{ "uvīya", "uvīvahi", "uvīmahi" } };
-//~ 		final VerbalParadigm juxhuvitaParad = VerbalParadigm.generate("juxhuvīta", "juxhoti", TenseMood.OPT, Pada.MID, juxhuvitaData, "16-7");
-//~ 		paradigmMap.put("juxhuvīta", juxhuvitaParad);
 		final String[][] juhutamData = {
 			{ "utām", "vātām", "vatām" },
 			{ "uṣva", "vāthām", "udhvam" },
 			{ "avai", "avāvahai", "avāmahai" } };
 		final VerbalParadigm juhutamParad = VerbalParadigm.generate("juhutām", "juhoti", TenseMood.IMP, Pada.MID, juhutamData, "16-7");
 		paradigmMap.put("juhutām", juhutamParad);
-//~ 		final VerbalParadigm juxhutamParad = VerbalParadigm.duplicate(juhutamParad, "juxhutām", "juxhoti");
-//~ 		juxhutamParad.setEndings(Person.PRATHAMA, Number.DUAL, List.of("uvātām"));
-//~ 		juxhutamParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvatām"));
-//~ 		juxhutamParad.setEndings(Person.MADHYAMA, Number.DUAL, List.of("uvāthām"));
-//~ 		paradigmMap.put("juxhutām", juxhutamParad);
 		final String[][] ajuhutaData = {
 			{ "uta", "vātām", "vata" },
 			{ "uthāḥ", "vāthām", "udhvam" },
@@ -721,14 +777,9 @@ public class SktConjugation {
 		final VerbalParadigm ajuhutaParad = VerbalParadigm.generate("ajuhuta", "juhoti", TenseMood.IMPERF, Pada.MID, ajuhutaData, "16-7");
 		ajuhutaParad.setAugment(true);
 		paradigmMap.put("ajuhuta", ajuhutaParad);
-//~ 		final VerbalParadigm ajuxhutaParad = VerbalParadigm.duplicate(ajuhutaParad, "ajuxhuta", "juxhoti");
-//~ 		ajuxhutaParad.setEndings(Person.PRATHAMA, Number.DUAL, List.of("uvātām"));
-//~ 		ajuxhutaParad.setEndings(Person.PRATHAMA, Number.PLU, List.of("uvata"));
-//~ 		ajuxhutaParad.setEndings(Person.MADHYAMA, Number.DUAL, List.of("uvāthām"));
-//~ 		ajuxhutaParad.setEndings(Person.UTTAMA, Number.SING, List.of("uvi"));
-//~ 		paradigmMap.put("ajuxhuta", ajuxhutaParad);
+
 		// bibharti
-		final List<String> bibhartiWordList = List.of("jāgarti", "piparti", "bibharti");
+		final List<String> bibhartiWordList = List.of("jāgarti", "jigharti", "piparti", "bibharti");
 		final String[][] bibhartiData = {
 			{ "arti", "ṛtaḥ", "rti" },
 			{ "arṣi", "ṛthaḥ", "ṛtha" },
@@ -802,9 +853,9 @@ public class SktConjugation {
 			{ "eṣi", "īthaḥ", "ītha" },
 			{ "emi", "īvaḥ", "īmaḥ" } };
 		final String[][] bibhetiData2 = {
-			{ "", "itaḥ", "iyati" },
-			{ "", "ithaḥ", "itha" },
-			{ "", "ivaḥ", "imaḥ" } };
+			{ "-", "itaḥ", "iyati" },
+			{ "-", "ithaḥ", "itha" },
+			{ "-", "ivaḥ", "imaḥ" } };
 		final VerbalParadigm bibhetiParad = VerbalParadigm.generate("bibheti", "bibheti", TenseMood.PRES, Pada.ACT, bibhetiData, "16-7");
 		bibhetiParad.addEndings(bibhetiData2);
 		paradigmMap.put("bibheti", bibhetiParad);
@@ -822,14 +873,16 @@ public class SktConjugation {
 		final VerbalParadigm bibhiyatParad = VerbalParadigm.generate("bibhīyāt", "bibheti", TenseMood.OPT, Pada.ACT, bibhiyatData, "16-7");
 		bibhiyatParad.addEndings(bibhiyatData2);
 		paradigmMap.put("bibhīyāt", bibhiyatParad);
+		final VerbalParadigm jihriyatParad = VerbalParadigm.duplicate(bibhiyatParad, "jihrīyāt", "jihreti");
+		paradigmMap.put("jihrīyāt", jihriyatParad);
 		final String[][] bibhetuData = {
 			{ "etu", "ītām", "yatu" },
 			{ "īhi", "ītam", "īta" },
 			{ "ayāṇi", "ayāva", "ayāma" } };
 		final String[][] bibhetuData2 = {
-			{ "", "itām", "iyatu" },
+			{ "-", "itām", "iyatu" },
 			{ "ihi", "itam", "ita" },
-			{ "", "", "" } };
+			{ "-", "-", "-" } };
 		final VerbalParadigm bibhetuParad = VerbalParadigm.generate("bibhetu", "bibheti", TenseMood.IMP, Pada.ACT, bibhetuData, "16-7");
 		bibhetuParad.addEndings(bibhetuData2);
 		paradigmMap.put("bibhetu", bibhetuParad);
@@ -841,22 +894,27 @@ public class SktConjugation {
 			{ "eḥ", "ītam", "īta" },
 			{ "ayam", "īva", "īma" } };
 		final String[][] abibhetData2 = {
-			{ "", "itām", "" },
-			{ "", "itam", "ita" },
-			{ "", "iva", "ima" } };
+			{ "-", "itām", "-" },
+			{ "-", "itam", "ita" },
+			{ "-", "iva", "ima" } };
 		final VerbalParadigm abibhetParad = VerbalParadigm.generate("abibhet", "bibheti", TenseMood.IMPERF, Pada.ACT, abibhetData, "16-7");
 		abibhetParad.addEndings(abibhetData2);
 		abibhetParad.setAugment(true);
 		paradigmMap.put("abibhet", abibhetParad);
+		final VerbalParadigm ajihretParad = VerbalParadigm.duplicate(abibhetParad, "ajihret", "jihreti");
+		paradigmMap.put("ajihret", ajihretParad);
 
 		// -Cti group
 		// yunakti
+		final List<String> yunaktiWordList = List.of("anakti", "bhanakti", "bhunakti", "yunakti", "vṛṇakti");
 		final String[][] yunaktiData = {
 			{ "nakti", "ṅktaḥ", "ñjanti" },
 			{ "nakṣi", "ṅkthaḥ", "ṅktha" },
 			{ "najmi", "ñjvaḥ", "ñjmaḥ" } };
 		final VerbalParadigm yunaktiParad = VerbalParadigm.generate("yunakti", "yunakti", TenseMood.PRES, Pada.ACT, yunaktiData, "16-8");
 		yunaktiParad.setStemCutFactor(5);
+		yunaktiParad.addPresentSubstitution("na");
+		yunaktiParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yunakti", yunaktiParad);
 		final String[][] yunjyatData = {
 			{ "ñjyāt", "ñjyātām", "ñjyuḥ" },
@@ -864,6 +922,7 @@ public class SktConjugation {
 			{ "ñjyām", "ñjyāva", "ñjyāma" } };
 		final VerbalParadigm yunjyatParad = VerbalParadigm.generate("yuñjyāt", "yunakti", TenseMood.OPT, Pada.ACT, yunjyatData, "16-8");
 		yunjyatParad.setStemCutFactor(5);
+		yunjyatParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yuñjyāt", yunjyatParad);
 		final String[][] yunaktuData = {
 			{ "naktu", "ṅktām", "ñjantu" },
@@ -871,6 +930,8 @@ public class SktConjugation {
 			{ "najāni", "najāva", "najāma" } };
 		final VerbalParadigm yunaktuParad = VerbalParadigm.generate("yunaktu", "yunakti", TenseMood.IMP, Pada.ACT, yunaktuData, "16-8");
 		yunaktuParad.setStemCutFactor(5);
+		yunaktuParad.addPresentSubstitution("na");
+		yunaktuParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yunaktu", yunaktuParad);
 		final String[][] ayunakData = {
 			{ "nak", "ṅktām", "ñjan" },
@@ -878,6 +939,8 @@ public class SktConjugation {
 			{ "najam", "ñjva", "ñjma" } };
 		final VerbalParadigm ayunakParad = VerbalParadigm.generate("ayunak", "yunakti", TenseMood.IMPERF, Pada.ACT, ayunakData, "16-8");
 		ayunakParad.setStemCutFactor(5);
+		ayunakParad.addPresentSubstitution("na");
+		ayunakParad.addWordList(yunaktiWordList);
 		ayunakParad.setAugment(true);
 		paradigmMap.put("ayunak", ayunakParad);
 		final String[][] yunkteData = {
@@ -886,6 +949,7 @@ public class SktConjugation {
 			{ "ñje", "ñjvahe", "ñjmahe" } };
 		final VerbalParadigm yunkteParad = VerbalParadigm.generate("yuṅkte", "yunakti", TenseMood.PRES, Pada.MID, yunkteData, "16-8");
 		yunkteParad.setStemCutFactor(5);
+		yunkteParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yuṅkte", yunkteParad);
 		final String[][] yunjitaData = {
 			{ "ñjīta", "ñjīyātām", "ñjīran" },
@@ -893,6 +957,7 @@ public class SktConjugation {
 			{ "ñjīya", "ñjīvahi", "ñjīmahi" } };
 		final VerbalParadigm yunjitaParad = VerbalParadigm.generate("yuñjīta", "yunakti", TenseMood.OPT, Pada.MID, yunjitaData, "16-8");
 		yunjitaParad.setStemCutFactor(5);
+		yunjitaParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yuñjīta", yunjitaParad);
 		final String[][] yunktamData = {
 			{ "ṅktām", "ñjātām", "ñjatām" },
@@ -900,6 +965,8 @@ public class SktConjugation {
 			{ "najai", "najāvahai", "najāmahai" } };
 		final VerbalParadigm yunktamParad = VerbalParadigm.generate("yuṅktām", "yunakti", TenseMood.IMP, Pada.MID, yunktamData, "16-8");
 		yunktamParad.setStemCutFactor(5);
+		yunktamParad.addPresentSubstitution("na");
+		yunktamParad.addWordList(yunaktiWordList);
 		paradigmMap.put("yuṅktām", yunktamParad);
 		final String[][] ayunktaData = {
 			{ "ṅkta", "ñjātām", "ñjata" },
@@ -907,96 +974,216 @@ public class SktConjugation {
 			{ "ñji", "ñjvahi", "ñjmahi" } };
 		final VerbalParadigm ayunktaParad = VerbalParadigm.generate("ayuṅkta", "yunakti", TenseMood.IMPERF, Pada.MID, ayunktaData, "16-8");
 		ayunktaParad.setStemCutFactor(5);
+		ayunktaParad.addWordList(yunaktiWordList);
 		ayunktaParad.setAugment(true);
 		paradigmMap.put("ayuṅkta", ayunktaParad);
 
-		// rinakti
-		final String[][] rinaktiData = {
+		// vinakti
+		final List<String> vinaktiWordList = List.of("pṛṇakti", "riṇakti", "vinakti");
+		final String[][] vinaktiData = {
 			{ "nakti", "ṅktaḥ", "ñcanti" },
 			{ "nakṣi", "ṅkthaḥ", "ṅktha" },
 			{ "nacmi", "ñcvaḥ", "ñcmaḥ" } };
-		final VerbalParadigm rinaktiParad = VerbalParadigm.generate("rinakti", "rinakti", TenseMood.PRES, Pada.ACT, rinaktiData, "16-8");
-		rinaktiParad.setStemCutFactor(5);
-		paradigmMap.put("rinakti", rinaktiParad);
-		final String[][] rincyatData = {
+		final VerbalParadigm vinaktiParad = VerbalParadigm.generate("vinakti", "vinakti", TenseMood.PRES, Pada.ACT, vinaktiData, "16-8");
+		vinaktiParad.setStemCutFactor(5);
+		vinaktiParad.addPresentSubstitution("na");
+		vinaktiParad.addWordList(vinaktiWordList);
+		paradigmMap.put("vinakti", vinaktiParad);
+		final String[][] vincyatData = {
 			{ "ñcyāt", "ñcyātām", "ñcyuḥ" },
 			{ "ñcyāḥ", "ñcyātam", "ñcyāta" },
 			{ "ñcyām", "ñcyāva", "ñcyāma" } };
-		final VerbalParadigm rincyatParad = VerbalParadigm.generate("riñcyāt", "rinakti", TenseMood.OPT, Pada.ACT, rincyatData, "16-8");
-		rincyatParad.setStemCutFactor(5);
-		paradigmMap.put("riñcyāt", rincyatParad);
-		final String[][] rinaktuData = {
+		final VerbalParadigm vincyatParad = VerbalParadigm.generate("viñcyāt", "vinakti", TenseMood.OPT, Pada.ACT, vincyatData, "16-8");
+		vincyatParad.setStemCutFactor(5);
+		vincyatParad.addWordList(vinaktiWordList);
+		paradigmMap.put("viñcyāt", vincyatParad);
+		final String[][] vinaktuData = {
 			{ "naktu", "ṅktām", "ñcantu" },
 			{ "ṅgdhi", "ṅktam", "ṅkta" },
 			{ "nacāni", "nacāva", "nacāma" } };
-		final VerbalParadigm rinaktuParad = VerbalParadigm.generate("rinaktu", "rinakti", TenseMood.IMP, Pada.ACT, rinaktuData, "16-8");
-		rinaktuParad.setStemCutFactor(5);
-		paradigmMap.put("rinaktu", rinaktuParad);
-		final String[][] arinakData = {
+		final VerbalParadigm vinaktuParad = VerbalParadigm.generate("vinaktu", "vinakti", TenseMood.IMP, Pada.ACT, vinaktuData, "16-8");
+		vinaktuParad.setStemCutFactor(5);
+		vinaktuParad.addPresentSubstitution("na");
+		vinaktuParad.addWordList(vinaktiWordList);
+		paradigmMap.put("vinaktu", vinaktuParad);
+		final String[][] avinakData = {
 			{ "nak", "ṅktām", "ñcan" },
 			{ "nak", "ṅktam", "ṅkta" },
 			{ "nacam", "ñcva", "ñcma" } };
-		final VerbalParadigm arinakParad = VerbalParadigm.generate("arinak", "rinakti", TenseMood.IMPERF, Pada.ACT, arinakData, "16-8");
-		arinakParad.setStemCutFactor(5);
-		arinakParad.setAugment(true);
-		paradigmMap.put("arinak", arinakParad);
-		final String[][] rinkteData = {
+		final VerbalParadigm avinakParad = VerbalParadigm.generate("avinak", "vinakti", TenseMood.IMPERF, Pada.ACT, avinakData, "16-8");
+		avinakParad.setStemCutFactor(5);
+		avinakParad.addPresentSubstitution("na");
+		avinakParad.addWordList(vinaktiWordList);
+		avinakParad.setAugment(true);
+		paradigmMap.put("avinak", avinakParad);
+		final String[][] vinkteData = {
 			{ "ṅkte", "ñcāte", "ñcate" },
 			{ "ṅkṣe", "ñcāthe", "ṅgdhve" },
 			{ "ñce", "ñcvahe", "ñcmahe" } };
-		final VerbalParadigm rinkteParad = VerbalParadigm.generate("riṅkte", "rinakti", TenseMood.PRES, Pada.MID, rinkteData, "16-8");
-		rinkteParad.setStemCutFactor(5);
-		paradigmMap.put("riṅkte", rinkteParad);
-		final String[][] rincitaData = {
+		final VerbalParadigm vinkteParad = VerbalParadigm.generate("viṅkte", "vinakti", TenseMood.PRES, Pada.MID, vinkteData, "16-8");
+		vinkteParad.setStemCutFactor(5);
+		vinkteParad.addWordList(vinaktiWordList);
+		paradigmMap.put("viṅkte", vinkteParad);
+		final String[][] vincitaData = {
 			{ "ñcīta", "ñcīyātām", "ñcīran" },
 			{ "ñcīthāḥ", "ñcīyāthām", "ñcīdhvam" },
 			{ "ñcīya", "ñcīvahi", "ñcīmahi" } };
-		final VerbalParadigm rincitaParad = VerbalParadigm.generate("riñcīta", "rinakti", TenseMood.OPT, Pada.MID, rincitaData, "16-8");
-		rincitaParad.setStemCutFactor(5);
-		paradigmMap.put("riñcīta", rincitaParad);
-		final String[][] rinktamData = {
+		final VerbalParadigm vincitaParad = VerbalParadigm.generate("viñcīta", "vinakti", TenseMood.OPT, Pada.MID, vincitaData, "16-8");
+		vincitaParad.setStemCutFactor(5);
+		vincitaParad.addWordList(vinaktiWordList);
+		paradigmMap.put("viñcīta", vincitaParad);
+		final String[][] vinktamData = {
 			{ "ṅktām", "ñcātām", "ñcatām" },
 			{ "ṅkṣva", "ñcāthām", "ṅgdhvam" },
 			{ "nacai", "nacāvahai", "nacāmahai" } };
-		final VerbalParadigm rinktamParad = VerbalParadigm.generate("riṅktām", "rinakti", TenseMood.IMP, Pada.MID, rinktamData, "16-8");
-		rinktamParad.setStemCutFactor(5);
-		paradigmMap.put("riṅktām", rinktamParad);
-		final String[][] arinktaData = {
+		final VerbalParadigm vinktamParad = VerbalParadigm.generate("viṅktām", "vinakti", TenseMood.IMP, Pada.MID, vinktamData, "16-8");
+		vinktamParad.setStemCutFactor(5);
+		vinktamParad.addPresentSubstitution("na");
+		vinktamParad.addWordList(vinaktiWordList);
+		paradigmMap.put("viṅktām", vinktamParad);
+		final String[][] avinktaData = {
 			{ "ṅkta", "ñcātām", "ñcata" },
 			{ "ṅkthāḥ", "ñcāthām", "ṅgdhvam" },
 			{ "ñci", "ñcvahi", "ñcmahi" } };
-		final VerbalParadigm arinktaParad = VerbalParadigm.generate("ariṅkta", "rinakti", TenseMood.IMPERF, Pada.MID, arinktaData, "16-8");
-		arinktaParad.setStemCutFactor(5);
-		arinktaParad.setAugment(true);
-		paradigmMap.put("ariṅkta", arinktaParad);
+		final VerbalParadigm avinktaParad = VerbalParadigm.generate("aviṅkta", "vinakti", TenseMood.IMPERF, Pada.MID, avinktaData, "16-8");
+		avinktaParad.setStemCutFactor(5);
+		avinktaParad.addWordList(vinaktiWordList);
+		avinktaParad.setAugment(true);
+		paradigmMap.put("aviṅkta", avinktaParad);
+
+		// bhinatti (from Deshpande's Primer, p. 237)
+		final List<String> bhinattiWordList = List.of("unatti", "chinatti", "bhinatti");
+		final String[][] bhinattiData = {
+			{ "natti", "nttaḥ", "ndanti" },
+			{ "naksi", "ntthaḥ", "nttha" },
+			{ "nadmi", "ndvaḥ", "ndmaḥ" } };
+		final VerbalParadigm bhinattiParad = VerbalParadigm.generate("bhinatti", "bhinatti", TenseMood.PRES, Pada.ACT, bhinattiData);
+		bhinattiParad.setStemCutFactor(5);
+		bhinattiParad.addWordList(bhinattiWordList);
+		paradigmMap.put("bhinatti", bhinattiParad);
+		final String[][] bhindyatData = {
+			{ "ndyāt", "ndyātām", "ndyuḥ" },
+			{ "ndyāḥ", "ndyātam", "ndyāta" },
+			{ "ndyām", "ndyāva", "ndyāma" } };
+		final VerbalParadigm bhindyatParad = VerbalParadigm.generate("bhindyāt", "bhinatti", TenseMood.OPT, Pada.ACT, bhindyatData);
+		bhindyatParad.setStemCutFactor(5);
+		bhindyatParad.addWordList(vinaktiWordList);
+		paradigmMap.put("bhindyāt", bhindyatParad);
+		final String[][] bhinattuData = {
+			{ "nattu", "nttām", "ndantu" },
+			{ "nddhi", "nttam", "ntta" },
+			{ "nadāni", "nadāva", "nadāma" } };
+		final VerbalParadigm bhinattuParad = VerbalParadigm.generate("bhinattu", "bhinatti", TenseMood.IMP, Pada.ACT, bhinattuData);
+		bhinattuParad.setStemCutFactor(5);
+		bhinattuParad.addWordList(vinaktiWordList);
+		paradigmMap.put("bhinattu", bhinattuParad);
+		final String[][] abhinatData = {
+			{ "nat", "nttām", "ndan" },
+			{ "nat", "nttam", "ntta" },
+			{ "nadam", "ndva", "ndma" } };
+		final VerbalParadigm abhinatParad = VerbalParadigm.generate("abhinat", "bhinatti", TenseMood.IMPERF, Pada.ACT, abhinatData);
+		abhinatParad.setStemCutFactor(5);
+		abhinatParad.addWordList(vinaktiWordList);
+		abhinatParad.setAugment(true);
+		paradigmMap.put("abhinat", abhinatParad);
+
+		// kṣuṇatti (best guess)
+		final List<String> ksunattiWordList = List.of("kṣuṇatti", "tṛṇatti");
+		final String[][] ksunattiData = {
+			{ "ṇatti", "nttaḥ", "ndanti" },
+			{ "ṇaksi", "ntthaḥ", "nttha" },
+			{ "ṇadmi", "ndvaḥ", "ndmaḥ" } };
+		final VerbalParadigm ksunattiParad = VerbalParadigm.generate("kṣuṇatti", "kṣuṇatti", TenseMood.PRES, Pada.ACT, ksunattiData);
+		ksunattiParad.setStemCutFactor(5);
+		ksunattiParad.addWordList(ksunattiWordList);
+		paradigmMap.put("kṣuṇatti", ksunattiParad);
+		final String[][] ksundyatData = {
+			{ "ndyāt", "ndyātām", "ndyuḥ" },
+			{ "ndyāḥ", "ndyātam", "ndyāta" },
+			{ "ndyām", "ndyāva", "ndyāma" } };
+		final VerbalParadigm ksundyatParad = VerbalParadigm.generate("kṣundyāt", "kṣuṇatti", TenseMood.OPT, Pada.ACT, ksundyatData);
+		ksundyatParad.setStemCutFactor(5);
+		ksundyatParad.addWordList(vinaktiWordList);
+		paradigmMap.put("kṣundyāt", ksundyatParad);
+		final String[][] ksunattuData = {
+			{ "ṇattu", "nttām", "ndantu" },
+			{ "nddhi", "nttam", "ntta" },
+			{ "ṇadāni", "ṇadāva", "ṇadāma" } };
+		final VerbalParadigm ksunattuParad = VerbalParadigm.generate("kṣuṇattu", "kṣuṇatti", TenseMood.IMP, Pada.ACT, ksunattuData);
+		ksunattuParad.setStemCutFactor(5);
+		ksunattuParad.addWordList(vinaktiWordList);
+		paradigmMap.put("kṣuṇattu", ksunattuParad);
+		final String[][] aksunatData = {
+			{ "ṇat", "nttām", "ndan" },
+			{ "ṇat", "nttam", "ntta" },
+			{ "ṇadam", "ndva", "ndma" } };
+		final VerbalParadigm aksunatParad = VerbalParadigm.generate("akṣuṇat", "kṣuṇatti", TenseMood.IMPERF, Pada.ACT, aksunatData);
+		aksunatParad.setStemCutFactor(5);
+		aksunatParad.addWordList(vinaktiWordList);
+		aksunatParad.setAugment(true);
+		paradigmMap.put("akṣuṇat", aksunatParad);
+
+		// vakti (from Deshpande's Primer, p. 208)
+		// for vadanti, see Bucknell, p. 191
+		final String[][] vaktiData = {
+			{ "kti", "ktaḥ", "danti" },
+			{ "kṣi", "kthaḥ", "ktha" },
+			{ "cmi", "cvaḥ", "cmaḥ" } };
+		final VerbalParadigm vaktiParad = VerbalParadigm.generate("vakti", "vakti", TenseMood.PRES, Pada.ACT, vaktiData);
+		vaktiParad.setStemCutFactor(3);
+		paradigmMap.put("vakti", vaktiParad);
+		final String[][] vacyatData = {
+			{ "cyāt", "cyātām", "cyuḥ" },
+			{ "cyāḥ", "cyātam", "cyāta" },
+			{ "cyām", "cyāva", "cyāma" } };
+		final VerbalParadigm vacyatParad = VerbalParadigm.generate("vacyāt", "vakti", TenseMood.OPT, Pada.ACT, vacyatData);
+		vacyatParad.setStemCutFactor(3);
+		paradigmMap.put("vacyāt", vacyatParad);
+		final String[][] vaktuData = {
+			{ "ktu", "ktām", "cantu" },
+			{ "gdhi", "ktam", "kta" },
+			{ "cāni", "cāva", "cāma" } };
+		final VerbalParadigm vaktuParad = VerbalParadigm.generate("vaktu", "vakti", TenseMood.IMP, Pada.ACT, vaktuData);
+		vaktuParad.setStemCutFactor(3);
+		paradigmMap.put("vaktu", vaktuParad);
+		final String[][] avakData = {
+			{ "k", "ktām", "can" },
+			{ "k", "ktam", "kta" },
+			{ "cam", "cva", "cma" } };
+		final VerbalParadigm avakParad = VerbalParadigm.generate("avak", "vakti", TenseMood.IMPERF, Pada.ACT, avakData);
+		avakParad.setStemCutFactor(3);
+		avakParad.setAugment(true);
+		avakParad.addEndings(Person.PRATHAMA, Number.SING, "g");
+		avakParad.addEndings(Person.MADHYAMA, Number.SING, "g");
+		paradigmMap.put("avak", avakParad);
 
 		// vetti (from Deshpande's Primer, p. 218)
 		final String[][] vettiData = {
 			{ "etti", "ittaḥ", "idanti" },
 			{ "etsi", "itthaḥ", "ittha" },
 			{ "edmi", "idvaḥ", "idmaḥ" } };
-		final VerbalParadigm vettiParad = VerbalParadigm.generate("vetti", "vetti", TenseMood.PRES, Pada.ACT, vettiData, "16-8");
+		final VerbalParadigm vettiParad = VerbalParadigm.generate("vetti", "vetti", TenseMood.PRES, Pada.ACT, vettiData);
 		vettiParad.setStemCutFactor(4);
 		paradigmMap.put("vetti", vettiParad);
 		final String[][] vidyatData = {
 			{ "idyāt", "idyātām", "idyuḥ" },
 			{ "idyāḥ", "idyātam", "idyāta" },
 			{ "idyām", "idyāva", "idyāma" } };
-		final VerbalParadigm vidyatParad = VerbalParadigm.generate("vidyāt", "vetti", TenseMood.OPT, Pada.ACT, vidyatData, "16-8");
+		final VerbalParadigm vidyatParad = VerbalParadigm.generate("vidyāt", "vetti", TenseMood.OPT, Pada.ACT, vidyatData);
 		vidyatParad.setStemCutFactor(4);
 		paradigmMap.put("vidyāt", vidyatParad);
 		final String[][] vettuData = {
 			{ "ettu", "ittām", "idantu" },
 			{ "iddhi", "ittam", "itta" },
 			{ "idāni", "idāva", "idāma" } };
-		final VerbalParadigm vettuParad = VerbalParadigm.generate("vettu", "vetti", TenseMood.IMP, Pada.ACT, vettuData, "16-8");
+		final VerbalParadigm vettuParad = VerbalParadigm.generate("vettu", "vetti", TenseMood.IMP, Pada.ACT, vettuData);
 		vettuParad.setStemCutFactor(4);
 		paradigmMap.put("vettu", vettuParad);
 		final String[][] avetData = {
 			{ "et", "ittām", "iduḥ" },
 			{ "et", "ittam", "itta" },
 			{ "edam", "idva", "idma" } };
-		final VerbalParadigm avetParad = VerbalParadigm.generate("avet", "vetti", TenseMood.IMPERF, Pada.ACT, avetData, "16-8");
+		final VerbalParadigm avetParad = VerbalParadigm.generate("avet", "vetti", TenseMood.IMPERF, Pada.ACT, avetData);
 		avetParad.setStemCutFactor(4);
 		avetParad.setAugment(true);
 		avetParad.addEndings(Person.MADHYAMA, Number.SING, "eḥ");
@@ -1098,9 +1285,9 @@ public class SktConjugation {
 			{ "vaṣṭi", "uṣṭaḥ", "uśanti" },
 			{ "vakṣi", "uṣṭhaḥ", "uṣṭha" },
 			{ "vaśmi", "uśvaḥ", "uśmaḥ" } };
-		final VerbalParadigm vaṣṭiParad = VerbalParadigm.generate("vaṣṭi", "vaṣṭi", TenseMood.PRES, Pada.ACT, vastiData, "16-10");
-		vaṣṭiParad.setStemCutFactor(5);
-		paradigmMap.put("vaṣṭi", vaṣṭiParad);
+		final VerbalParadigm vastiParad = VerbalParadigm.generate("vaṣṭi", "vaṣṭi", TenseMood.PRES, Pada.ACT, vastiData, "16-10");
+		vastiParad.setStemCutFactor(5);
+		paradigmMap.put("vaṣṭi", vastiParad);
 		final String[][] usyatData = {
 			{ "uśyāt", "uśyātām", "uśyuḥ" },
 			{ "uśyāḥ", "uśyātam", "uśyāta" },
@@ -1184,6 +1371,167 @@ public class SktConjugation {
 		arunddhaParad.setStemCutFactor(6);
 		arunddhaParad.setAugment(true);
 		paradigmMap.put("arunddha", arunddhaParad);
+
+		// inddhe
+		final String[][] inddheData = {
+			{ "nddhe", "ndhāte", "ndhate" },
+			{ "ntse", "ndhāthe", "nddhve" },
+			{ "ndhe", "ndhvahe", "ndhmahe" } };
+		final VerbalParadigm inddheParad = VerbalParadigm.generate("inddhe", "inddhe", TenseMood.PRES, Pada.MID, inddheData);
+		inddheParad.setStemCutFactor(5);
+		paradigmMap.put("inddhe", inddheParad);
+		final String[][] indhitaData = {
+			{ "ndhīta", "ndhīyātām", "ndhīran" },
+			{ "ndhīthāḥ", "ndhīyāthām", "ndhīdhvam" },
+			{ "ndhīya", "ndhīvahi", "ndhīmahi" } };
+		final VerbalParadigm indhitaParad = VerbalParadigm.generate("indhīta", "inddhe", TenseMood.OPT, Pada.MID, indhitaData);
+		indhitaParad.setStemCutFactor(5);
+		paradigmMap.put("indhīta", indhitaParad);
+		final String[][] inddhamData = {
+			{ "nddhām", "ndhātām", "ndhatām" },
+			{ "ntsva", "ndhāthām", "nddhvam" },
+			{ "ṇadhai", "ṇadhāvahai", "ṇadhāmahai" } };
+		final VerbalParadigm inddhamParad = VerbalParadigm.generate("inddhām", "inddhe", TenseMood.IMP, Pada.MID, inddhamData);
+		inddhamParad.setStemCutFactor(5);
+		paradigmMap.put("inddhām", inddhamParad);
+		final String[][] ainddhaData = {
+			{ "nddha", "ndhātām", "ndhata" },
+			{ "nddhāḥ", "ndhāthām", "nddhvam" },
+			{ "ndhi", "ndhvahi", "ndhmahi" } };
+		final VerbalParadigm ainddhaParad = VerbalParadigm.generate("ainddha", "inddhe", TenseMood.IMPERF, Pada.MID, ainddhaData);
+		ainddhaParad.setStemCutFactor(5);
+		ainddhaParad.setAugment(true);
+		paradigmMap.put("ainddha", ainddhaParad);
+
+		// īṭṭe (best guess)
+		final String[][] itteData = {
+			{ "ṭṭe", "ḍāte", "ḍate" },
+			{ "ṭṣe", "ḍāthe", "ḍḍhve" },
+			{ "ṭe", "ṭvahe", "ṭmahe" } };
+		final VerbalParadigm itteParad = VerbalParadigm.generate("īṭṭe", "īṭṭe", TenseMood.PRES, Pada.MID, itteData);
+		itteParad.setStemCutFactor(3);
+		paradigmMap.put("īṭṭe", itteParad);
+		final String[][] ittitaData = {
+			{ "ṭṭīta", "ṭṭīyātām", "ṭṭīran" },
+			{ "ṭṭīthāḥ", "ṭṭīyāthām", "ṭṭīdhvam" },
+			{ "ṭṭīya", "ṭṭīvahi", "ṭṭīmahi" } };
+		final VerbalParadigm ittitaParad = VerbalParadigm.generate("īṭṭīta", "īṭṭe", TenseMood.OPT, Pada.MID, ittitaData);
+		ittitaParad.setStemCutFactor(3);
+		paradigmMap.put("īṭṭīta", ittitaParad);
+		final String[][] ittamData = {
+			{ "ṭṭām", "ḍātām", "ḍatām" },
+			{ "ṭṣva", "ḍāthām", "ḍḍhvam" },
+			{ "ḍai", "ḍāvahai", "ḍāmahai" } };
+		final VerbalParadigm ittamParad = VerbalParadigm.generate("īṭṭām", "īṭṭe", TenseMood.IMP, Pada.MID, ittamData);
+		ittamParad.setStemCutFactor(3);
+		paradigmMap.put("īṭṭām", ittamParad);
+		final String[][] aittaData = {
+			{ "ṭṭa", "ḍātām", "ḍata" },
+			{ "ṭṭāḥ", "ḍāthām", "ḍḍhvam" },
+			{ "ṭi", "ṭvahi", "ṭmahi" } };
+		final VerbalParadigm aittaParad = VerbalParadigm.generate("aiṭṭa", "īṭṭe", TenseMood.IMPERF, Pada.MID, aittaData);
+		aittaParad.setStemCutFactor(3);
+		aittaParad.setAugment(true);
+		paradigmMap.put("aiṭṭa", aittaParad);
+
+		// caṣṭe (best guess)
+		final String[][] casteData = {
+			{ "ṣṭe", "kṣāte", "kṣate" },
+			{ "kṣe", "kṣāthe", "ḍḍhve" },
+			{ "ṣe", "ṣvahe", "ṣmahe" } };
+		final VerbalParadigm casteParad = VerbalParadigm.generate("caṣṭe", "caṣṭe", TenseMood.PRES, Pada.MID, casteData);
+		casteParad.setStemCutFactor(3);
+		paradigmMap.put("caṣṭe", casteParad);
+		final String[][] casitaData = {
+			{ "ṣīta", "ṣīyātām", "ṣīran" },
+			{ "ṣīthāḥ", "ṣīyāthām", "ṣīdhvam" },
+			{ "ṣīya", "ṣīvahi", "ṣīmahi" } };
+		final VerbalParadigm casitaParad = VerbalParadigm.generate("caṣīta", "caṣṭe", TenseMood.OPT, Pada.MID, casitaData);
+		casitaParad.setStemCutFactor(3);
+		paradigmMap.put("caṣīta", casitaParad);
+		final String[][] castamData = {
+			{ "ṣṭām", "ṣātām", "ṣatām" },
+			{ "kṣva", "ṣāthām", "ḍḍhvam" },
+			{ "ṣai", "ṣāvahai", "ṣāmahai" } };
+		final VerbalParadigm castamParad = VerbalParadigm.generate("caṣṭām", "caṣṭe", TenseMood.IMP, Pada.MID, castamData);
+		castamParad.setStemCutFactor(3);
+		paradigmMap.put("caṣṭām", castamParad);
+		final String[][] acastaData = {
+			{ "ṣṭa", "kṣātām", "kṣata" },
+			{ "ṣṭāḥ", "kṣāthām", "ḍḍhvam" },
+			{ "ṣi", "ṣvahi", "ṣmahi" } };
+		final VerbalParadigm acastaParad = VerbalParadigm.generate("acaṣṭa", "caṣṭe", TenseMood.IMPERF, Pada.MID, acastaData);
+		acastaParad.setStemCutFactor(3);
+		acastaParad.setAugment(true);
+		paradigmMap.put("acaṣṭa", acastaParad);
+
+		// pinaṣṭi (from Deshpande's Primer, p. 239)
+		final List<String> pinastiWordList = List.of("pinaṣṭi", "śinaṣṭi");
+		final String[][] pinastiData = {
+			{ "naṣṭi", "ṃṣṭaḥ", "ṃṣanti" },
+			{ "nakṣi", "ṃṣṭhaḥ", "ṃṣṭha" },
+			{ "naṣmi", "ṃṣvaḥ", "ṃṣmaḥ" } };
+		final VerbalParadigm pinastiParad = VerbalParadigm.generate("pinaṣṭi", "pinaṣṭi", TenseMood.PRES, Pada.ACT, pinastiData);
+		pinastiParad.setStemCutFactor(5);
+		pinastiParad.addWordList(pinastiWordList);
+		paradigmMap.put("pinaṣṭi", pinastiParad);
+		final String[][] pimsyatData = {
+			{ "ṃṣyāt", "ṃṣyātām", "ṃṣyuḥ" },
+			{ "ṃṣyāḥ", "ṃṣyātam", "ṃṣyāta" },
+			{ "ṃṣyām", "ṃṣyāva", "ṃṣyāma" } };
+		final VerbalParadigm pimsyatParad = VerbalParadigm.generate("piṃṣyāt", "pinaṣṭi", TenseMood.OPT, Pada.ACT, pimsyatData);
+		pimsyatParad.setStemCutFactor(5);
+		pimsyatParad.addWordList(pinastiWordList);
+		paradigmMap.put("piṃṣyāt", pimsyatParad);
+		final String[][] pinastuData = {
+			{ "naṣṭu", "ṃṣṭām", "ṃṣantu" },
+			{ "ṇḍḍhi", "ṃṣṭam", "ṃṣṭa" },
+			{ "naṣāṇi", "naṣāva", "naṣāma" } };
+		final VerbalParadigm pinastuParad = VerbalParadigm.generate("pinaṣṭu", "pinaṣṭi", TenseMood.IMP, Pada.ACT, pinastuData);
+		pinastuParad.setStemCutFactor(5);
+		pinastuParad.addWordList(pinastiWordList);
+		paradigmMap.put("pinaṣṭu", pinastuParad);
+		final String[][] apinatData = {
+			{ "naṭ", "ṃṣṭām", "ṃṣan" },
+			{ "naṭ", "ṃṣṭam", "ṃṣṭa" },
+			{ "naṣam", "ṃṣva", "ṃṣma" } };
+		final VerbalParadigm apinatParad = VerbalParadigm.generate("apinaṭ", "pinaṣṭi", TenseMood.IMPERF, Pada.ACT, apinatData);
+		apinatParad.setStemCutFactor(5);
+		apinatParad.addWordList(pinastiWordList);
+		apinatParad.setAugment(true);
+		paradigmMap.put("apinaṭ", apinatParad);
+
+		// mārṣṭi (best guess)
+		final String[][] marstiData = {
+			{ "ārṣṭi", "ṛṣṭaḥ", "ṛjanti" },
+			{ "ārkṣi", "ṛṣṭhaḥ", "ṛṣṭha" },
+			{ "ārjmi", "ṛjvaḥ", "ṛjmaḥ" } };
+		final VerbalParadigm marstiParad = VerbalParadigm.generate("mārṣṭi", "mārṣṭi", TenseMood.PRES, Pada.ACT, marstiData);
+		marstiParad.setStemCutFactor(5);
+		marstiParad.addEndings(Person.PRATHAMA, Number.PLU, "ārjanti");
+		paradigmMap.put("mārṣṭi", marstiParad);
+		final String[][] mrjyatData = {
+			{ "ṛjyāt", "ṛjyātām", "ṛjyuḥ" },
+			{ "ṛjyāḥ", "ṛjyātam", "ṛjyāta" },
+			{ "ṛjyām", "ṛjyāva", "ṛjyāma" } };
+		final VerbalParadigm mrjyatParad = VerbalParadigm.generate("mṛjyāt", "mārṣṭi", TenseMood.OPT, Pada.ACT, mrjyatData);
+		mrjyatParad.setStemCutFactor(5);
+		paradigmMap.put("mṛjyāt", mrjyatParad);
+		final String[][] marstuData = {
+			{ "ārṣṭu", "ṛṣṭām", "ṛjantu" },
+			{ "ṛgdhi", "ṛṣṭam", "ṛṣṭa" },
+			{ "ṛjāni", "ṛjāva", "ṛjāma" } };
+		final VerbalParadigm marstuParad = VerbalParadigm.generate("mārṣṭu", "mārṣṭi", TenseMood.IMP, Pada.ACT, marstuData);
+		marstuParad.setStemCutFactor(5);
+		paradigmMap.put("mārṣṭu", marstuParad);
+		final String[][] amartData = {
+			{ "ārt", "ṛṣṭām", "ṛjuḥ" },
+			{ "ārt", "ṛṣṭam", "ṛṣṭa" },
+			{ "ārdam", "ṛjva", "ṛjma" } };
+		final VerbalParadigm amartParad = VerbalParadigm.generate("amārt", "mārṣṭi", TenseMood.IMPERF, Pada.ACT, amartData);
+		amartParad.setStemCutFactor(5);
+		amartParad.setAugment(true);
+		paradigmMap.put("amārt", amartParad);
 
 		// irregular
 		// roditi
@@ -1662,6 +2010,58 @@ public class SktConjugation {
 		astaParad.addEndings(Person.MADHYAMA, Number.PLU, "ddhvam");
 		paradigmMap.put("āsta", astaParad);
 
+		// īṣṭe (best guess)
+		final String[][] isteData = {
+			{ "ṣṭe", "ṣāte", "ṣate" },
+			{ "ṣṣe", "ṣāthe", "ḍhve" },
+			{ "ṣe", "ṣvahe", "ṣmahe" } };
+		final VerbalParadigm isteParad = VerbalParadigm.generate("īṣṭe", "īṣṭe", TenseMood.PRES, Pada.MID, isteData);
+		paradigmMap.put("īṣṭe", isteParad);
+		final String[][] isitaData = {
+			{ "ṣīta", "ṣīyātām", "ṣīran" },
+			{ "ṣīthāḥ", "ṣīyāthām", "ṣīdhvam" },
+			{ "ṣīya", "ṣīvahi", "ṣīmahi" } };
+		final VerbalParadigm isitaParad = VerbalParadigm.generate("īṣīta", "īṣṭe", TenseMood.OPT, Pada.MID, isitaData);
+		paradigmMap.put("īṣīta", isitaParad);
+		final String[][] istamData = {
+			{ "ṣṭām", "ṣātām", "ṣatām" },
+			{ "ṣṣva", "ṣāthām", "ḍhvam" },
+			{ "ṣai", "ṣāvahai", "ṣāmahai" } };
+		final VerbalParadigm istamParad = VerbalParadigm.generate("īṣṭām", "īṣṭe", TenseMood.IMP, Pada.MID, istamData);
+		paradigmMap.put("īṣṭām", istamParad);
+		final String[][] istaData = {
+			{ "ṣṭa", "ṣātām", "ṣata" },
+			{ "ṣṭhāḥ", "ṣāthām", "ḍhvam" },
+			{ "ṣi", "ṣvahi", "ṣmahi" } };
+		final VerbalParadigm istaParad = VerbalParadigm.generate("īṣṭa", "īṣṭe", TenseMood.IMPERF, Pada.MID, istaData);
+		paradigmMap.put("īṣṭa", istaParad);
+
+		// īrte (best guess)
+		final String[][] irteData = {
+			{ "rte", "rāte", "rate" },
+			{ "rse", "rāthe", "rdhve" },
+			{ "re", "rvahe", "rmahe" } };
+		final VerbalParadigm irteParad = VerbalParadigm.generate("īrte", "īrte", TenseMood.PRES, Pada.MID, irteData);
+		paradigmMap.put("īrte", irteParad);
+		final String[][] iritaData = {
+			{ "rīta", "rīyātām", "rīran" },
+			{ "rīthāḥ", "rīyāthām", "rīdhvam" },
+			{ "rīya", "rīvahi", "rīmahi" } };
+		final VerbalParadigm iritaParad = VerbalParadigm.generate("īrīta", "īrte", TenseMood.OPT, Pada.MID, iritaData);
+		paradigmMap.put("īrīta", iritaParad);
+		final String[][] irtamData = {
+			{ "rtām", "rātām", "ratām" },
+			{ "rsva", "rāthām", "rdhvam" },
+			{ "rai", "rāvahai", "rāmahai" } };
+		final VerbalParadigm irtamParad = VerbalParadigm.generate("īrtām", "īrte", TenseMood.IMP, Pada.MID, irtamData);
+		paradigmMap.put("īrtām", irtamParad);
+		final String[][] irtaData = {
+			{ "rta", "rātām", "rata" },
+			{ "rthāḥ", "rāthām", "rdhvam" },
+			{ "ri", "rvahi", "rmahi" } };
+		final VerbalParadigm irtaParad = VerbalParadigm.generate("īrta", "īrte", TenseMood.IMPERF, Pada.MID, irtaData);
+		paradigmMap.put("īrta", irtaParad);
+
 		// śāsti
 		final String[][] sastiData = {
 			{ "āsti", "iṣṭaḥ", "āsati" },
@@ -1781,6 +2181,64 @@ public class SktConjugation {
 		final VerbalParadigm adugdhaParad = VerbalParadigm.generate("adugdha", "dogdhi", TenseMood.IMPERF, Pada.MID, adugdhaData, "17-24");
 		adugdhaParad.setStemCutFactor(6);
 		paradigmMap.put("adugdha", adugdhaParad);
+
+		// degdhi
+		final String[][] degdhiData = {
+			{ "degdhi", "digdhaḥ", "dihanti" },
+			{ "dhekṣi", "digdhaḥ", "digdha" },
+			{ "dehmi", "dihvaḥ", "dihmaḥ" } };
+		final VerbalParadigm degdhiParad = VerbalParadigm.generate("degdhi", "degdhi", TenseMood.PRES, Pada.ACT, degdhiData, "17-24");
+		degdhiParad.setStemCutFactor(6);
+		paradigmMap.put("degdhi", degdhiParad);
+		final String[][] dihyatData = {
+			{ "dihyāt", "dihyātām", "dihyuḥ" },
+			{ "dihyāḥ", "dihyātam", "dihyāta" },
+			{ "dihyām", "dihyāva", "dihyāma" } };
+		final VerbalParadigm dihyatParad = VerbalParadigm.generate("dihyāt", "degdhi", TenseMood.OPT, Pada.ACT, dihyatData, "17-24");
+		dihyatParad.setStemCutFactor(6);
+		paradigmMap.put("dihyāt", dihyatParad);
+		final String[][] degdhuData = {
+			{ "degdhu", "digdhām", "dihantu" },
+			{ "digdhi", "digdham", "digdha" },
+			{ "dehāni", "dehāva", "dehāma" } };
+		final VerbalParadigm degdhuParad = VerbalParadigm.generate("degdhu", "degdhi", TenseMood.IMP, Pada.ACT, degdhuData, "17-24");
+		degdhuParad.setStemCutFactor(6);
+		paradigmMap.put("degdhu", degdhuParad);
+		final String[][] adhekData = {
+			{ "adhek", "adigdhām", "adihan" },
+			{ "adhek", "adigdham", "adigdha" },
+			{ "adeham", "adihva", "adihma" } };
+		final VerbalParadigm adhekParad = VerbalParadigm.generate("adhek", "degdhi", TenseMood.IMPERF, Pada.ACT, adhekData, "17-24");
+		adhekParad.setStemCutFactor(6);
+		paradigmMap.put("adhek", adhekParad);
+		final String[][] digdheData = {
+			{ "digdhe", "dihāte", "dihate" },
+			{ "dhikṣe", "dihāthe", "dhigdhve" },
+			{ "dihe", "dihvahe", "dihmahe" } };
+		final VerbalParadigm digdheParad = VerbalParadigm.generate("digdhe", "degdhi", TenseMood.PRES, Pada.MID, digdheData, "17-24");
+		digdheParad.setStemCutFactor(6);
+		paradigmMap.put("digdhe", digdheParad);
+		final String[][] dihitaData = {
+			{ "dihīta", "dihīyātām", "dihīran" },
+			{ "dihīthāḥ", "dihīyāthām", "dihīdhvam" },
+			{ "dihīya", "dihīvahi", "dihīmahi" } };
+		final VerbalParadigm dihitaParad = VerbalParadigm.generate("dihīta", "degdhi", TenseMood.OPT, Pada.MID, dihitaData, "17-24");
+		dihitaParad.setStemCutFactor(6);
+		paradigmMap.put("dihīta", dihitaParad);
+		final String[][] digdhamData = {
+			{ "digdhām", "dihātām", "dihatām" },
+			{ "dhikṣva", "dihāthām", "dhigdhvam" },
+			{ "dehai", "dehāvahai", "dehāmahai" } };
+		final VerbalParadigm digdhamParad = VerbalParadigm.generate("digdhām", "degdhi", TenseMood.IMP, Pada.MID, digdhamData, "17-24");
+		digdhamParad.setStemCutFactor(6);
+		paradigmMap.put("digdhām", digdhamParad);
+		final String[][] adigdhaData = {
+			{ "adigdha", "adihātām", "adihata" },
+			{ "adigdhāḥ", "adihāthām", "adhigdhvam" },
+			{ "adihi", "adihvahi", "adihmahi" } };
+		final VerbalParadigm adigdhaParad = VerbalParadigm.generate("adigdha", "degdhi", TenseMood.IMPERF, Pada.MID, adigdhaData, "17-24");
+		adigdhaParad.setStemCutFactor(6);
+		paradigmMap.put("adigdha", adigdhaParad);
 
 		// leḍhi
 		final String[][] ledhiData = {
@@ -2045,8 +2503,8 @@ public class SktConjugation {
 
 		final String[][] ahaData = {
 			{ "āha", "āhatuḥ", "āhuḥ" },
-			{ "āttha", "āhathuḥ", "" },
-			{ "", "", "" } };
+			{ "āttha", "āhathuḥ", "-" },
+			{ "-", "-", "-" } };
 		final VerbalParadigm ahaParad = VerbalParadigm.generate("āha", "āha", TenseMood.PERF, Pada.ACT, ahaData, "18-12");
 		ahaParad.setStemCutFactor(3);
 		paradigmMap.put("āha", ahaParad);

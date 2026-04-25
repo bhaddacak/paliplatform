@@ -64,6 +64,8 @@ final public class SktUtil {
 					listDeclensionParadigms();
 				} else if (opt.equals("-c")) {
 					listConjugationParadigms();
+				} else if (opt.equals("-v")) {
+					listVerbs();
 				} else {
 					printHelpAndExit();
 				}
@@ -133,6 +135,7 @@ final public class SktUtil {
 		help.append("    list\tList things").append(LINESEP);
 		help.append("        -d\tList all declensional paradigms").append(LINESEP);
 		help.append("        -c\tList all conjugational paradigms").append(LINESEP);
+		help.append("        -v\tList all verbs").append(LINESEP);
 		help.append("    show\tShow things").append(LINESEP);
 		help.append("        -d <paradigm> [<stem>]\tShow declensions of a paradigm [with a stem]").append(LINESEP);
 		help.append("        -s <word1> <word2>\tShow external sandhi of word1 + word2").append(LINESEP);
@@ -204,6 +207,20 @@ final public class SktUtil {
 				conjug.add(term.isEmpty() ? "-" : term);
 			}
 			final String result = pname + bucknellStr + " " + tenseMood + " " + pada + " => " + conjug.stream().collect(Collectors.joining(":"));
+			System.out.println(result);
+			count++;
+		}
+		System.out.println(count + " items listed");
+	}
+
+	private static void listVerbs() {
+		int count = 0;
+		for (final SktVerb verb : VerbRepo.sktVerbMap.values()) {
+			final String refNum = verb.getBucknellNumberStr();
+			final String verbStr = verb.getVerbAndRoot();
+			final Pada pad = verb.isActiveNormal() ? Pada.ACT : Pada.MID;
+			final String paradName = SktConjugation.getParadigmName(verb.getCitationForm(), TenseMood.PRES, pad);
+			final String result = String.format("%4s %s: %s", refNum, verbStr, paradName);
 			System.out.println(result);
 			count++;
 		}
@@ -340,11 +357,23 @@ final public class SktUtil {
 		int vcount = 0;
 		for (final SktVerb verb : VerbRepo.sktVerbMap.values()) {
 			vcount++;
-			result.append(getConjugResult(verb.getBucknellNumber(),
+			result.append(getConjugResult(verb.getBucknellNumberStr(),
 						verb.getCommonProduct(TenseMood.PRES, Pada.ACT),
 						TenseMood.PRES.getNameCut(),
 						Pada.ACT,
 						VForm.ACT));
+			result.append(getConjugResult(verb.getBucknellNumberStr(),
+						verb.getCommonProduct(TenseMood.PRES, Pada.MID),
+						TenseMood.PRES.getNameCut(),
+						Pada.MID,
+						VForm.MID));
+			for (int i = 0; i < verb.getIrregularMiddleForm().size(); i++) {
+				result.append(getConjugResult(verb.getBucknellNumberStr(),
+							verb.getIrrMidCommonProduct(TenseMood.PRES, i),
+							TenseMood.PRES.getNameCut(),
+							Pada.MID,
+							VForm.MID));
+			}
 		}
 		printLog(vcount + " verbs processed");
 		final File outfile = new File(Utilities.OUTPUTPATH + "allsktverbforms.txt");
@@ -354,13 +383,13 @@ final public class SktUtil {
 		printTime(endTime - startTime);
 	}
 
-	private static String getConjugResult(final int num, final Map<Person, Map<Number, List<String>>> prod,
+	private static String getConjugResult(final String ref, final Map<Person, Map<Number, List<String>>> prod,
 										final String tense, final Pada pad, final VForm vform) {
 		final StringBuilder result = new StringBuilder();
 		prod.forEach((p, m) -> {
 			m.forEach((n, l) -> {
 				for (final String term : l) {
-					result.append(num + ":" + term + ":" + p.getInitial()+ ":" + n  + ":" + tense + ":" + pad + ":" + vform);
+					result.append(ref + ":" + term + ":" + p.getInitial()+ ":" + n  + ":" + tense + ":" + pad + ":" + vform);
 					result.append(LINESEP);
 				}
 			});

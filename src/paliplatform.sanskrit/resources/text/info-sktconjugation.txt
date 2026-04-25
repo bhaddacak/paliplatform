@@ -1,7 +1,8 @@
 Guide to Sanskrit Conjugation Table
-	1. The formation and terminology used here follow closely Roderick Bucknell's Sanskrit Manual. For obscure cases, please consult the manual.
+	1. The formation and terminology used here follow closely Roderick Bucknell's Sanskrit Manual. For dubious cases, please consult the manual.
 	2. Because this tool is the most complex piece of work in the Sanskrit module, results from computation can be found incorrect. If so, please report to the author.
-	3. There are around a dozen of verbs that can be rendered in all forms. These can cover some range of the variety of verbal formations. Bucknell has listed 432 verbs in the manual. Adding all of them to the list can be a backbreaking task, and it takes a lot of time. However, more verbs are planned to be added subsequently, as shown in the uncompleted list.
-	4. All verb forms are products of computation. They are comprehensive and a little overwhelming in some cases. Most applicable explanations given by Bucknell are implemented here.
-	5. Main verb forms have different renditions from derivative ones (mostly resulting in adjectives). So, you have to choose the selectors properly.
-	6. Devanāgarī results can also be seen, if its option is selected.
+	3. There are around twenty verbs that can be rendered in all forms. These can cover some range of the variety of verbal formations. Bucknell has listed 432 roots in the manual. Adding all of them to the list can be a backbreaking task, and it takes a lot of time. However, more verbs are planned to be added subsequently, as shown in the uncompleted list.
+	4. The uncompleted verbs now can be at least rendered in present, imperative, optative, and imperfect tense, except āha (having only perfect form). Some class-2 verbs are difficult to find suitable paradigms, so they are speculative and needed to be attested further. These include īṭṭe, īrte, īṣṭe, caṣṭe, and vaste.
+	5. All verb forms are products of computation. They are comprehensive and a little overwhelming in some cases. Most applicable explanations given by Bucknell are implemented here.
+	6. Main verb forms have different renditions from derivative ones (mostly resulting in adjectives). So, you have to choose the selectors properly.
+	7. Devanāgarī results can also be seen, if its option is selected.

@@ -41,6 +41,7 @@ public class VerbalParadigm {
 	private int stemCutFactor;
 	private String numBucknell;
 	private boolean hasAugment;
+	private List<String> presentSubstitution;
 	private List<String> perfectSubstitution;
 	private final Map<Person, Map<Number, List<String>>> paradigm;
 	
@@ -169,8 +170,10 @@ public class VerbalParadigm {
 				final String end = endings[n] == null || endings[n].isEmpty()
 									? ""
 									: endings[n];
-				final Number number = Number.values[n];
-				addEndings(person, number, end);
+				if (!end.equals("-")) {
+					final Number number = Number.values[n];
+					addEndings(person, number, end);
+				}
 			}
 		}
 	}
@@ -180,6 +183,15 @@ public class VerbalParadigm {
 		numMap.put(num, new ArrayList<String>(endings));
 	}
 
+	public void addPresentSubstitution(final String... part) {
+		presentSubstitution = new ArrayList<>();
+		presentSubstitution.addAll(Arrays.asList(part));
+	}
+
+	public List<String> getPresentSubstitution() {
+		return presentSubstitution == null ? Collections.emptyList() : presentSubstitution;
+	}
+	
 	public void addPerfectSubstitution(final String... part) {
 		perfectSubstitution = new ArrayList<>();
 		perfectSubstitution.addAll(Arrays.asList(part));
