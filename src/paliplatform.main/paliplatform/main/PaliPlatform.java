@@ -47,7 +47,7 @@ import java.nio.charset.StandardCharsets;
 /** 
  * The entry point of the whole program.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.2
  * @since 2.0
  */
 final public class PaliPlatform extends Application {
@@ -461,7 +461,7 @@ final public class PaliPlatform extends Application {
 			content.append("GenericName=Pāli Platform").append(LINESEP);
 			content.append("Exec=\"" + Utilities.ROOTDIR + "run.sh\"").append(LINESEP);
 			content.append("Terminal=false").append(LINESEP);
-			content.append("Icon=" + Utilities.ROOTDIR + "data/pic/budcircle2.ico").append(LINESEP);
+			content.append("Icon=" + Utilities.ROOTDIR + "data/pic/lotusbuddha.ico").append(LINESEP);
 			content.append("Type=Application").append(LINESEP);
 			content.append("Categories=Application;Education;").append(LINESEP);
 			content.append("Comment=Pali studies made enjoyable").append(LINESEP);

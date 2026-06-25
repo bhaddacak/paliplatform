@@ -83,15 +83,15 @@ To make `PPLauncher.exe` you have to use `Launch4j`.
 6. Hit the gear button (Build wrapper).
 
 ### How to make patches
-The program is now designed to be capable of self-updating (but not fully automatic). This has things to do with the program's online information, mostly about active URLs. The URL information resides in [`pp4urls.properties`](https://github.com/bhaddacak/paliplatform/blob/main/pp4urls.properties). This includes the URLs of DPD, SuttaCentral data, and some dictionaries. The main URL is hardcoded in `UrlProperties` of the base module.
+The program is now designed to be capable of self-updating (but not fully automatic). This has things to do with the program's online information, mostly about active URLs. The URL information resides in `pp4XXurls.properties` (from v4.2.0 onward, XX is sub-version, hence for this version `pp402urls.properties`). This includes the URLs of DPD, SuttaCentral data, and some dictionaries. The main URL is hardcoded in `UrlProperties` of the base module.
 
-When the program starts, if the Internet is available, it will download `pp4urls.properties` to its root directory. If the file already existed, it will skip the download. The user has to `Update online info` manually.
+When the program starts, if the Internet is available, it will download `pp4XXurls.properties` to its root directory. If the file already existed, it will skip the download. The user has to `Update online info` manually.
 
 A patch is a zip file that has structure of the program's distribution, i.e., its root (`/`) is equivalent to `dist/PaliPatform/` as shown above. When the patch is applied, the files in this zip will be unpacked and replace the old ones. One exception, when `PPLauncher.exe` is updated, it has to be named `PPLauncher_new.exe` because the file cannot be overwritten when active.
 
 When a patch is available, it has to be named like `pp4patch-20260115.1.zip`. The prefix part is compulsory. The `YYYYMMDD` part should reflect the real date. The last number should be always `1` if you issue only one patch in that day. In case of multiple patches, the number can be increased as needed.
 
-Once the patch file is ready, update `pp4urls.properties` by adding its line to the file, for example:
+Once the patch file is ready, update `pp4XXurls.properties` by adding its line to the file, for example:
 ```
 patch01_url=https\://github.com/bhaddacak/paliplatform/releases/download/v4.0.1-patch/pp4patch-20260115.1.zip
 ```

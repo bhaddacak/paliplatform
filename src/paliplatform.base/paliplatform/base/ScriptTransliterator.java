@@ -31,7 +31,7 @@ import java.util.regex.*;
  * Sanskrit characters in most typical usages.
  * The class is a factory, providing static methods.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 1.0
  */
 public class ScriptTransliterator {
@@ -771,7 +771,7 @@ public class ScriptTransliterator {
 		return result;
 	}
 
-	private static String toIAST(final String text) {
+	public static String toIAST(final String text) {
 		final String result = text
 								.replace("ai", "a'i")
 								.replace("au", "a'u")
@@ -803,6 +803,10 @@ public class ScriptTransliterator {
 						.replace("ḷ", "ŀ")
 						.replace("ḻ", "ḷ");
 		return result;
+	}
+
+	public static String toSktUnique(final String text) {
+		return toUnique(text, false);
 	}
 
 	private static String toUnique(final String text, final boolean asPali) {

@@ -27,7 +27,7 @@ import javafx.scene.control.*;
 /** 
  * The downloader dialog for DPD database. This is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 3.0
  */
 class DpdDownloader extends ProgressiveDownloader {
@@ -58,7 +58,7 @@ class DpdDownloader extends ProgressiveDownloader {
 	private void init() {
 		final String dbURL;
 		if (cbLatest.isSelected()) {
-			dbURL = "https://github.com/digitalpalidictionary/dpd-db/releases/latest/download/dpd.db.tar.bz2";
+			dbURL = "https://github.com/digitalpalidictionary/dpd-db/releases/latest/download/dpd-mobile-db.zip";
 			version.setText("[latest]");	
 		} else {
 			dbURL = Utilities.urls.getProperty("dpd_db_url");

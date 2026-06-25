@@ -1,8 +1,7 @@
 DPD database download guide
-	1. This tool downloads 'dpd.db.tar.bz2' from the provided address and installs it to the program.
-	2. Since the database is huge (~2GB), it takes time to unpack.
+	1. This tool downloads 'dpd-mobile-db.zip' from the provided address and installs it to the program.
+	2. Downloading and unpacking the database may take time to finish. Please wait until it is completely done.
 	3. Make sure that the latest version is in the cache before skipping the download, otherwise the existing version will be unpacked again.
-	4. Once the unpacking gets started, there is no way to stop it. You have to wait until it gets done.
-	5. To update the download URL, select 'Update online info' in the main File menu when the Internet is available. Then press Refresh button.
-	6. When the Latest option is checked, the program will download the untested latest data. So, if things go wrong, reverse to the given one.
+	4. To update the download URL, select 'Update online info' in the main File menu when the Internet is available. Then press Refresh button.
+	5. When the Latest option is checked, the program will download the untested latest data. So, if things go wrong, reverse to the given one.
 

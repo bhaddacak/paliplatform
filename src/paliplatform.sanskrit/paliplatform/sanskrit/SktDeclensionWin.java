@@ -44,7 +44,7 @@ import javafx.geometry.*;
 /**
  * The Sanskrit declension window.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 4.1
  */
 public class SktDeclensionWin extends BorderPane {
@@ -155,7 +155,7 @@ public class SktDeclensionWin extends BorderPane {
 		});	
 		final Button adjClearButton = adjTextInput.getClearButton();
 		adjClearButton.setOnAction(actionEvent -> adjTextField.clear());
-		endingChoice.setTooltip(new Tooltip("Ending selector"));
+		endingChoice.setTooltip(new Tooltip("Feminine ending selector"));
 		endingChoice.setOnAction(actionEvent -> showAdjList());
 		adjToolBox.setPadding(new Insets(3));
 		adjToolBox.setSpacing(3);

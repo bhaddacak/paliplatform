@@ -1,7 +1,7 @@
 /*
  * DpdRoot.java
  *
- * Copyright (C) 2023-2024 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import java.util.*;
 /** 
  * The respresentation of a Pali root in DPD.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.2
  * @since 3.0
  */
 class DpdRoot {
@@ -53,7 +53,6 @@ class DpdRoot {
 	private String[] mala = new String[3];
 	private String[] panini = new String[3];
 	private String note = "";
-	private String matrix = "";
 	private Map<String, List<List<String>>> rootFamily = null;
 
 	public DpdRoot(final String rname) {
@@ -155,10 +154,6 @@ class DpdRoot {
 		return note;
 	}
 
-	public void setMatrix(final String text) {
-		matrix = DpdUtilities.replaceTags(text, " ");
-	}
-
 	public void setRootFamily(final Map<String, List<List<String>>> rmap) {
 		rootFamily = rmap;
 	}
@@ -174,7 +169,6 @@ class DpdRoot {
 		result = result || example.contains(text);
 		result = result || sanskritInfo.contains(text);
 		result = result || note.contains(text);
-		result = result || matrix.contains(text);
 		result = result || containsInArray(text, patha);
 		result = result || containsInArray(text, manjusa);
 		result = result || containsInArray(text, mala);

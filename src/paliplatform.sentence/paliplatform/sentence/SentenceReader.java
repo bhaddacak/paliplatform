@@ -47,7 +47,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  * The tool facilitating Pali text reading.
  * Formerly this class is named PaliTextReader.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 2.0
  */
 public class SentenceReader extends BorderPane {
@@ -191,12 +191,6 @@ public class SentenceReader extends BorderPane {
 		goPrevNoTransMenuItem.setOnAction(actionEvent -> goPrev(false));
 		gotoMenu.getItems().addAll(goNextTransMenuItem, goPrevTransMenuItem, new SeparatorMenuItem(), goNextNoTransMenuItem, goPrevNoTransMenuItem);
 		menuBar.getMenus().addAll(sentenceMenu, editMenu, viewMenu, gotoMenu);
-		// config some toolbar's buttons
-		toolBar.getZoomInButton().setOnAction(actionEvent -> zoom(+1));
-		toolBar.getZoomOutButton().setOnAction(actionEvent -> zoom(-1));
-		toolBar.getFontSizeChoice().setOnAction(actionEvent -> fontSizeSelected());
-		toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
-		toolBar.copyButton.setOnAction(actionEvent -> copyText());		
 		// add new components
 		final Button pasteButton = new Button("", new TextIcon("paste", TextIcon.IconSet.AWESOME));
 		pasteButton.setTooltip(new Tooltip("Paste text"));
@@ -300,6 +294,13 @@ public class SentenceReader extends BorderPane {
 		DictUtilities.loadSandhiList();
 		DictUtilities.loadCPEDTerms(); // used in dict look up		
 		Platform.runLater(() -> {
+			// config some toolbar's buttons
+			toolBar.getZoomInButton().setOnAction(actionEvent -> zoom(+1));
+			toolBar.getZoomOutButton().setOnAction(actionEvent -> zoom(-1));
+			toolBar.getFontSizeChoice().setOnAction(actionEvent -> fontSizeSelected());
+			toolBar.saveTextButton.setOnAction(actionEvent -> saveText());		
+			toolBar.copyButton.setOnAction(actionEvent -> copyText());		
+			// init declension list
 			GrammarUtilities.createDeclPronounsMap();
 			GrammarUtilities.createDeclNumbersMap();
 		});
@@ -1077,6 +1078,7 @@ public class SentenceReader extends BorderPane {
 						: "";
 		}
 		translationText.setText(transText);
+		translationText.setStyle("-fx-font-size:" + currTransSize + "%");
 		saveableThis.set(isSenEditedMap.get(senInd));
 		saveableAll.set(isAllSenEdited());
 		closeEditPane();

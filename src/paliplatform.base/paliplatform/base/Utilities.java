@@ -67,11 +67,11 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 2.0
  */
 final public class Utilities {
-	public static final String VERSION = "4.1";
+	public static final String VERSION = "4.2";
 	public static Path ROOTPATH = Path.of(".");
 	public static String ROOTDIR = "";
 	public static final String IMGDIR = "resources/images/";
@@ -106,19 +106,24 @@ final public class Utilities {
 	public static String FONTSANS = genericFonts.get(1);
 	public static String FONTMONO = genericFonts.get(2);
 	public static String FONTMONOBOLD = FONTMONO;
-	public static final String PALI_ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸḺṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹḻṁṃṅṇṛṝṣṭēō";
-	public static final String REX_NON_PALI = "[^A-Za-z" + PALI_ALL_CHARS + "]+";
-	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + PALI_ALL_CHARS + "]+";
-	public static final String REX_NON_PALI_PUNC = "[^A-Za-z" + PALI_ALL_CHARS + "?!–-]+";
-	public static final String REX_NON_PALI_PUNC_FULL = "[^A-Za-z" + PALI_ALL_CHARS + "?!–-‖|.:;]+";
+	public static final String ALL_CHARS = "ÑĀĪŊŚŪḌḤḶḸḺĿṀṂṄṆṚṜṢṬñāīŋśūḍḥḷḹḻŀṁṃṅṇṛṝṣṭēō";
+	public static final String REX_NON_PALI = "[^A-Za-z" + ALL_CHARS + "]+";
+	public static final String REX_NON_PALI_NUM = "[^A-Za-z0-9" + ALL_CHARS + "]+";
+	public static final String REX_NON_PALI_PUNC = "[^A-Za-z" + ALL_CHARS + "?!–-]+";
+	public static final String REX_NON_PALI_PUNC_FULL = "[^A-Za-z" + ALL_CHARS + "?!–-‖|.:;]+";
 	public static final String PALI_NOUN_ENDINGS = "aāiīuū";
 	public static final String PALI_VOWELS = "aāiīuūeo";
+	private static final String SKT_VOWELS = PALI_VOWELS + "ṛṝḷḹēō"; // Roman Unique for meter calculation (ē = ai, ō = au)
 	public static final String PALI_LAHU_VOWELS = "aiu";
+	public static final String SKT_LAGHU_VOWELS = PALI_LAHU_VOWELS + "ṛḷ";
 	public static final String PALI_LONG_VOWELS = "āīū";
-	public static final String PALI_CONSONANTS = "kgṅcjñṭḍṇtdnpbmyrlvshḷ";
+	private static final String COMMON_CONSONANTS = "kgṅcjñṭḍṇtdnpbmyrlvsh";
+	public static final String PALI_CONSONANTS = COMMON_CONSONANTS + "ḷ";
+	public static final String SKT_CONSONANTS = COMMON_CONSONANTS + "śṣḻ";
 	public static final String WITH_H_CHARS = "bcdgjkptḍṭ";
 	public static final String DASH_N = "–";
 	public static final String DASH_M = "—";
+	public static final String LINESEP = System.getProperty("line.separator");
 	public static String csvDelimiter = CSVFormat.EXCEL.getDelimiterString();
 	public static String csvRecordSeparator = CSVFormat.EXCEL.getRecordSeparator();
 	public static final int[] fontSizes = { 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 250, 300 };
@@ -146,6 +151,9 @@ final public class Utilities {
 	public static double defBaseFontSize;
 	public static IconSize iconSize = IconSize.NORMAL;
 	// enums
+	public static enum Lang {
+		PALI, SANSKRIT
+	}
 	public static enum Encoding {
 		UTF_8, UTF_16;
 		public Charset getCharset() {
@@ -272,7 +280,7 @@ final public class Utilities {
 		private final String name;
 		private static final java.sql.Connection[] connection = new java.sql.Connection[1];
 		private SQLiteDB(final String name) {
-			this.name = name;
+			this.name = name + "-mobile";
 		}
 		public String getName() {
 			return name;
@@ -316,6 +324,17 @@ final public class Utilities {
 				result = Comparator.naturalOrder();
 			return result;
 		}
+	}
+
+	public static String getVersionCode() {
+		final String[] verArr = VERSION.split("\\.");
+		final String main = verArr[0];
+		final String sub = verArr.length > 1
+							? verArr[1].length() == 1
+								? "0" + verArr[1]
+								: verArr[1]
+							: "";
+		return main + sub;
 	}
 
 	public static String getSetting(final String key) {
@@ -877,6 +896,18 @@ final public class Utilities {
 	}
 	
 	/**
+	 * Convert a given string to Roman Sanskrit (Unique).
+	 */
+	public static String convertToRomanSanskritUnique(final String input) {
+		final PaliScript script = testLanguage(input);
+		final String result = script == PaliScript.ROMAN || script == PaliScript.UNKNOWN
+								? ScriptTransliterator.toSktUnique(input.toLowerCase())
+								: ScriptTransliterator.translitQuickSanskrit(input, script, Utilities.PaliScript.ROMAN,
+									ScriptTransliterator.EngineType.DEVA_ROMAN_UNIQUE, true);
+		return result;
+	}
+	
+	/**
 	 * Reads a file and determines its script.
 	 */
 	public static PaliScript getScriptLanguage(final File file, final Charset charset) {
@@ -1319,26 +1350,31 @@ final public class Utilities {
 		return sum;
 	}
 
-	public static String addComputedMeters(final String text) {
+	public static String addComputedMeters(final String text, final Lang lang) {
 		final String[] paragraphs = text.split("\\n");
 		final StringBuilder result = new StringBuilder();
 		for (final String p : paragraphs) {
 			if (!p.trim().isEmpty()) {
 				final String[] tokens = p.split(REX_NON_PALI);
 				for (final String s : tokens) {
-					final String meters = computeMeter(s, true);
-					if (!meters.isEmpty())
-						result.append(s).append(" (").append(meters).append(") ");
+					final String meters = computeMeter(s, lang, true);
+					if (!meters.isEmpty()) {
+						final String word = lang == Lang.SANSKRIT ? ScriptTransliterator.toIAST(s) : s;
+						result.append(word).append(" (").append(meters).append(") ");
+					}
 				}
-				result.append(System.getProperty("line.separator"));
+				result.append(LINESEP);
 			} else {
-				result.append(System.getProperty("line.separator"));
+				result.append(LINESEP);
 			}
 		}
 		return result.toString();
 	}
 	
-	public static String computeMeter(final String text, final boolean... useNumber) {
+	public static String computeMeter(final String text, final Lang lang, final boolean... useNumber) {
+		final String vowels = lang == Lang.PALI ? PALI_VOWELS : SKT_VOWELS;
+		final String consonants = lang == Lang.PALI ? PALI_CONSONANTS : SKT_CONSONANTS;
+		final String lahuVowels = lang == Lang.PALI ? PALI_LAHU_VOWELS : SKT_LAGHU_VOWELS;
 		final char[] munit = useNumber.length > 0 && useNumber[0] ? new char[] { '1', '2' } : new char[] { 'l', 'g' };
 		final String input = text.contains("\n") ? text.toLowerCase().trim().split("\\n")[0] : text.toLowerCase().trim();
 		final StringBuilder meterPattern = new StringBuilder();
@@ -1347,7 +1383,7 @@ final public class Utilities {
 		for (int i=0; i<chars.length; i++) {
 			final char thisCh = chars[i];
 			char meter = '0';
-			if (PALI_VOWELS.indexOf(thisCh) >= 0) {
+			if (vowels.indexOf(thisCh) >= 0) {
 				// only consider when it is a vowel
 				// check what follows
 				if (i < chars.length-1) {
@@ -1355,10 +1391,10 @@ final public class Utilities {
 						if (chars[i+1] == 'ṃ' || chars[i+1] == 'ṁ') {
 							// followed by a niggahita, garu is assured
 							meter = munit[1];
-						} else if (PALI_CONSONANTS.indexOf(chars[i+1]) >= 0 && PALI_CONSONANTS.indexOf(chars[i+2]) >= 0) {
+						} else if (consonants.indexOf(chars[i+1]) >= 0 && consonants.indexOf(chars[i+2]) >= 0) {
 							// followed by a double consonants, garu is assured, with some exceptions
 							if (WITH_H_CHARS.indexOf(chars[i+1]) >= 0 && chars[i+2] == 'h') {
-								if (PALI_LAHU_VOWELS.indexOf(thisCh) >= 0)
+								if (lahuVowels.indexOf(thisCh) >= 0)
 									meter = munit[0];
 								else
 									meter = munit[1];
@@ -1366,7 +1402,7 @@ final public class Utilities {
 								meter = munit[1];
 							}
 						} else {
-							if (PALI_LAHU_VOWELS.indexOf(thisCh) >= 0)
+							if (lahuVowels.indexOf(thisCh) >= 0)
 								meter = munit[0];
 							else
 								meter = munit[1];
@@ -1376,14 +1412,14 @@ final public class Utilities {
 							// followed by a niggahita, garu is assured
 							meter = munit[1];
 						} else {
-							if (PALI_LAHU_VOWELS.indexOf(thisCh) >= 0)
+							if (lahuVowels.indexOf(thisCh) >= 0)
 								meter = munit[0];
 							else
 								meter = munit[1];
 						}
 					}
 				} else {
-					if (PALI_LAHU_VOWELS.indexOf(thisCh) >= 0)
+					if (lahuVowels.indexOf(thisCh) >= 0)
 						meter = munit[0];
 					else
 						meter = munit[1];

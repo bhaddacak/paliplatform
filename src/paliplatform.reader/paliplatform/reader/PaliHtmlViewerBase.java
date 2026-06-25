@@ -46,7 +46,7 @@ import netscape.javascript.JSObject;
  * The base of generic HTML viewer for Pali texts.
  * 
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 3.0
  */
 public class PaliHtmlViewerBase extends HtmlViewer {
@@ -125,27 +125,27 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		final MenuItem editMenuItem = new MenuItem("Open in text editor");
 		editMenuItem.disableProperty().bind(clickedText.isEmpty());
 		editMenuItem.setOnAction(actionEvent -> openTextEditor());
-		contextMenuItems.add(editMenuItem);
+		contextMenuItems.add(editMenuItem); // 0
 		final MenuItem readMenuItem = new MenuItem("Read this portion");
 		readMenuItem.disableProperty().bind(clickedText.isEmpty());
 		readMenuItem.setOnAction(actionEvent -> openSentenceReader());
-		contextMenuItems.add(readMenuItem);
+		contextMenuItems.add(readMenuItem); // 1
 		final MenuItem openPaliDictMenuItem = new MenuItem("Open Pāli Dictionaries");
 		openPaliDictMenuItem.setOnAction(actionEvent -> openDict(false));
-		contextMenuItems.add(openPaliDictMenuItem);
+		contextMenuItems.add(openPaliDictMenuItem); // 2
 		final MenuItem openSktDictMenuItem = new MenuItem("Open Sanskrit Dictionaries");
 		openSktDictMenuItem.setOnAction(actionEvent -> openDict(true));
-		contextMenuItems.add(openSktDictMenuItem);
+		contextMenuItems.add(openSktDictMenuItem); // 3
 		final MenuItem sendToDictMenuItem = new MenuItem("Send to Pāli Dictionaries");
 		sendToDictMenuItem.setOnAction(actionEvent -> sendToDict(false));
-		contextMenuItems.add(sendToDictMenuItem);
+		contextMenuItems.add(sendToDictMenuItem); // 4
 		final MenuItem sendToSktDictMenuItem = new MenuItem("Send to Sanskrit Dictionaries");
 		sendToSktDictMenuItem.setOnAction(actionEvent -> sendToDict(true));
-		contextMenuItems.add(sendToSktDictMenuItem);
-		final MenuItem calMetersMenuItem = new MenuItem("Calculate meters");
-		calMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
-		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
-		contextMenuItems.add(calMetersMenuItem);
+		contextMenuItems.add(sendToSktDictMenuItem); //5
+		final MenuItem calPaliMetersMenuItem = new MenuItem("Calculate meters");
+		calPaliMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
+		calPaliMetersMenuItem.setOnAction(actionEvent -> calculateMeters(Utilities.Lang.PALI));
+		contextMenuItems.add(calPaliMetersMenuItem);
 		final MenuItem prosodyAnalyzeMenuItem = new MenuItem("Analyze this stanza/portion");
 		prosodyAnalyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
 		prosodyAnalyzeMenuItem.setOnAction(actionEvent -> openProsodyAnalyzer());
@@ -154,7 +154,11 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		final MenuItem sandhiAnalyzeMenuItem = new MenuItem("Analyze this sandhi");
 		sandhiAnalyzeMenuItem.disableProperty().bind(clickedText.isEmpty());
 		sandhiAnalyzeMenuItem.setOnAction(actionEvent -> openSandhiAnalyzer());
-		sktOnlyMenuItems.add(sandhiAnalyzeMenuItem);
+		sktOnlyMenuItems.add(sandhiAnalyzeMenuItem); // 0
+		final MenuItem calSktMetersMenuItem = new MenuItem("Calculate meters");
+		calSktMetersMenuItem.disableProperty().bind(clickedText.isEmpty());
+		calSktMetersMenuItem.setOnAction(actionEvent -> calculateMeters(Utilities.Lang.SANSKRIT));
+		sktOnlyMenuItems.add(calSktMetersMenuItem); // 1
 		webView.setOnMousePressed(mouseEvent -> {
 			if (mouseEvent.getButton() == MouseButton.SECONDARY) {
 				contextMenu.show(webView, mouseEvent.getScreenX(), mouseEvent.getScreenY());
@@ -225,7 +229,7 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 			if (sanskritMode)
 				contextMenu.getItems().addAll(contextMenuItems.get(0), contextMenuItems.get(2),
 									contextMenuItems.get(3), contextMenuItems.get(4), contextMenuItems.get(5),
-									sktOnlyMenuItems.get(0));
+									sktOnlyMenuItems.get(0), sktOnlyMenuItems.get(1));
 			else
 				contextMenu.getItems().addAll(contextMenuItems);
 		});			
@@ -496,13 +500,15 @@ public class PaliHtmlViewerBase extends HtmlViewer {
 		}
 	}
 
-	private void calculateMeters() {
+	private void calculateMeters(final Utilities.Lang lang) {
 		final String text = clickedText.get();
-		final String romanText = Utilities.convertToRomanPali(text);
+		final String romanText = lang == Utilities.Lang.PALI
+									? Utilities.convertToRomanPali(text)
+									: Utilities.convertToRomanSanskritUnique(text);
 		if (!text.isEmpty()) {
 			final SimpleService editor = (SimpleService)ReaderUtilities.simpleServiceMap.get("paliplatform.main.EditorLauncher");
 			if (editor != null) {
-				final Object[] args = { Utilities.addComputedMeters(romanText) };
+				final Object[] args = { Utilities.addComputedMeters(romanText, lang) };
 				editor.processArray(args);
 			}
 		}

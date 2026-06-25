@@ -47,7 +47,7 @@ import netscape.javascript.JSObject;
 /**
  * The base class of dictionary window's pane.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 3.5
  */
 public abstract class DictWinBase extends BorderPane {
@@ -302,9 +302,12 @@ public abstract class DictWinBase extends BorderPane {
 	private void searchDict(final String query) {
 		final String term = processInput(query);
 		Platform.runLater(() -> {
-			if (!term.isEmpty())
+			if (!term.isEmpty()) {
 				search(term);
-			searchComboBox.commitValue();
+				searchComboBox.commitValue();
+			} else {
+				resultList.clear();
+			}
 		});
 	}
 	

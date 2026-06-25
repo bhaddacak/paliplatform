@@ -37,12 +37,12 @@ import com.google.gson.stream.*;
  * $ java -p modules -m paliplatform.dict/paliplatform.dict.DictUtil
  *
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 3.0
  */
 final public class DictUtil {
 	private static final String LINESEP = System.getProperty("line.separator");
-	private static final File propFile = new File(UrlProperties.URL_PROPS_FILE);
+	private static final File propFile = new File(UrlProperties.urlPropsFileName);
 	private static Properties urlProps = new Properties();
 
 	private DictUtil() {
@@ -136,7 +136,7 @@ final public class DictUtil {
 
 	private static void checkUrlProp() throws IOException {
 		if (!propFile.exists()) {
-			download(UrlProperties.MAIN_URL + UrlProperties.URL_PROPS_FILE, propFile);
+			download(UrlProperties.MAIN_URL + UrlProperties.urlPropsFileName, propFile);
 		}
 	}
 

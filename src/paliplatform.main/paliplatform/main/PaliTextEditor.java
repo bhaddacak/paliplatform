@@ -46,7 +46,7 @@ import javax.print.attribute.*;
 /** 
  * A general text editor for Pali.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 2.0
  */
 public class PaliTextEditor extends BorderPane {
@@ -258,9 +258,6 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem reformatMenuItem = new MenuItem("Re_format CST4 text");
 		reformatMenuItem.setMnemonicParsing(true);
 		reformatMenuItem.setOnAction(actionEvent -> reformatCST4());	
-		final MenuItem calMetersMenuItem = new MenuItem("Calculate _meters");
-		calMetersMenuItem.setMnemonicParsing(true);
-		calMetersMenuItem.setOnAction(actionEvent -> calculateMeters());
 		toolsMenu.getItems().addAll(slp1Menu, new SeparatorMenuItem(), characterMenu, reformatMenuItem,
 									new SeparatorMenuItem());
 
@@ -273,17 +270,23 @@ public class PaliTextEditor extends BorderPane {
 			sandhiMenu.getItems().addAll(sandhiCombineMenuItem, sandhiAnalyzeMenuItem);
 			toolsMenu.getItems().add(sandhiMenu);
 		}
-		toolsMenu.getItems().add(calMetersMenuItem);
+		final Menu meterMenu = new Menu("Meters");
+		final MenuItem paliMeterAnalyzeMenuItem = new MenuItem("Pāli calculate");
+		paliMeterAnalyzeMenuItem.setOnAction(actionEvent -> calculateMeters(Utilities.Lang.PALI));
+		final MenuItem sktMeterAnalyzeMenuItem = new MenuItem("Sanskrit calculate");
+		sktMeterAnalyzeMenuItem.setOnAction(actionEvent -> calculateMeters(Utilities.Lang.SANSKRIT));
+		meterMenu.getItems().addAll(paliMeterAnalyzeMenuItem, sktMeterAnalyzeMenuItem);
+		toolsMenu.getItems().add(meterMenu);
 		final SimpleService verseAnalyzer = (SimpleService)PaliPlatform.simpleServiceMap.get("paliplatform.grammar.ProsodyLauncher");
 		if (verseAnalyzer != null) {
-			final MenuItem analyzeMenuItem = new MenuItem("_Analyze the stanza/text");
+			final MenuItem analyzeMenuItem = new MenuItem("_Analyze Pāli prosody");
 			analyzeMenuItem.setMnemonicParsing(true);
 			analyzeMenuItem.setOnAction(actionEvent -> openAnalyzer(verseAnalyzer));
 			toolsMenu.getItems().add(analyzeMenuItem);
 		}
 		final SimpleService textReader = (SimpleService)PaliPlatform.simpleServiceMap.get("paliplatform.sentence.ReaderLauncher");
 		if (textReader != null) {
-			final MenuItem readTextMenuItem = new MenuItem("Read _text");
+			final MenuItem readTextMenuItem = new MenuItem("Read Pāli _text");
 			readTextMenuItem.setMnemonicParsing(true);
 			readTextMenuItem.setOnAction(actionEvent -> openReader(textReader));
 			toolsMenu.getItems().add(readTextMenuItem);
@@ -310,7 +313,7 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem sortSktDesMenuItem = new MenuItem("Sanskrit sort descendingly");
 		sortSktDesMenuItem.setOnAction(actionEvent -> sktSort(false));
 		sortMenu.getItems().addAll(sortPaliAscMenuItem, sortPaliDesMenuItem, sortSktAscMenuItem, sortSktDesMenuItem);
-		final Menu paliToTexMenu = new Menu("Pāli to TeX");
+		final Menu paliToTexMenu = new Menu("Pāli/IAST to TeX");
 		final MenuItem simpleP2TMenuItem = new MenuItem("Style 1: \\~n");
 		simpleP2TMenuItem.setOnAction(actionEvent -> paliToTex(TexConvertMode.SIMPLE));
 		final MenuItem bracesP2TMenuItem = new MenuItem("Style 2: \\~{n}");
@@ -318,7 +321,7 @@ public class PaliTextEditor extends BorderPane {
 		final MenuItem withaP2TMenuItem = new MenuItem("Style 3: \\a{~}n");
 		withaP2TMenuItem.setOnAction(actionEvent -> paliToTex(TexConvertMode.WITH_A));
 		paliToTexMenu.getItems().addAll(simpleP2TMenuItem, bracesP2TMenuItem, withaP2TMenuItem);
-		final MenuItem texToPaliMenuItem = new MenuItem("TeX to Pāli");
+		final MenuItem texToPaliMenuItem = new MenuItem("TeX to Pāli/IAST");
 		texToPaliMenuItem.setOnAction(actionEvent -> texToPali());
 		toolsMenu.getItems().addAll(new SeparatorMenuItem(), changeMdotAboveMenuItem, changeMdotBelowMenuItem,
 									caseMenu, sortMenu,
@@ -914,7 +917,7 @@ public class PaliTextEditor extends BorderPane {
 		final String selText = area.getSelectedText();
 		String inputText = selText.isEmpty() ? area.getText() : selText;
 		inputText = Normalizer.normalize(inputText, Form.NFC);
-		final String romanText = Utilities.convertToRomanPali(inputText);
+		final String romanText = Utilities.convertToRomanSanskrit(inputText);
 		final Map<PaliScript, List<String>> product = PaliPlatform.sktServiceImp.getSandhiProduct(romanText);
 		final List<String> romanRes = product.get(PaliScript.ROMAN);
 		final List<String> devaRes = product.get(PaliScript.DEVANAGARI);
@@ -933,12 +936,14 @@ public class PaliTextEditor extends BorderPane {
 		PaliPlatform.sktServiceImp.openSandhiAnalyzer(inputText);
 	}
 
-	private void calculateMeters() {
+	private void calculateMeters(final Utilities.Lang lang) {
 		final String selText = area.getSelectedText();
 		String inputText = selText.isEmpty() ? area.getText() : selText;
 		inputText = Normalizer.normalize(inputText, Form.NFC);
-		final String romanText = Utilities.convertToRomanPali(inputText);
-		openNewEditor(Utilities.addComputedMeters(romanText));
+		final String romanText = lang == Utilities.Lang.PALI
+									? Utilities.convertToRomanPali(inputText)
+									: Utilities.convertToRomanSanskritUnique(inputText);
+		openNewEditor(Utilities.addComputedMeters(romanText, lang));
 	}
 
 	private void openAnalyzer(final SimpleService service) {
@@ -1061,16 +1066,15 @@ public class PaliTextEditor extends BorderPane {
 		final boolean isAll = selText.isEmpty();
 		String inputText = isAll ? area.getText() : selText;
 		inputText = Normalizer.normalize(inputText, Form.NFC);
-		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(toTex(romanText, mode));
+				area.setText(toTex(inputText, mode));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, toTex(romanText, mode));
+			text.insert(start, toTex(inputText, mode));
 			area.setText(text.toString());
 		}
 	}
@@ -1080,16 +1084,15 @@ public class PaliTextEditor extends BorderPane {
 		final boolean isAll = selText.isEmpty();
 		String inputText = isAll ? area.getText() : selText;
 		inputText = Normalizer.normalize(inputText, Form.NFC);
-		final String romanText = Utilities.convertToRomanPali(inputText);
 		if (isAll) {
 			if (proceedConfirm())
-				area.setText(fromTex(romanText));
+				area.setText(fromTex(inputText));
 		} else {
 			final IndexRange indRange = area.getSelection();
 			final int start = indRange.getStart();
 			final StringBuilder text = new StringBuilder(area.getText());
 			text.delete(start, indRange.getEnd());
-			text.insert(start, fromTex(romanText));
+			text.insert(start, fromTex(inputText));
 			area.setText(text.toString());
 		}
 	}
@@ -1107,7 +1110,16 @@ public class PaliTextEditor extends BorderPane {
 
 	private String fromTex(final String text) {
 		String result = text;
+		// treat double composite first
+		final String doubleComp = "ṜḸṝḹ";
+		for (final char ch : doubleComp.toCharArray()) {
+			final List<String> pattList = Utilities.texConvMap.get(ch);
+			result = result.replace(pattList.get(0), "" + ch)
+							.replace(pattList.get(1), "" + ch)
+							.replace(pattList.get(2), "" + ch);
+		}
 		for (final char ch : Utilities.texConvMap.keySet()) {
+			if (doubleComp.indexOf(ch) > -1) continue;
 			final List<String> pattList = Utilities.texConvMap.get(ch);
 			result = result.replace(pattList.get(0), "" + ch)
 							.replace(pattList.get(1), "" + ch)

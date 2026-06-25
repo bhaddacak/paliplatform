@@ -27,7 +27,7 @@ import java.util.Properties;
  * This manages the program's properties.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 2.0
  */
 public class MainProperties {
@@ -56,8 +56,8 @@ public class MainProperties {
 		{ "dictset", "CPED," },
 		{ "sktdictset", "MW," },
 		{ "skt-lookup-dict", "AP" },
-		{ "dpd-decon-count", "850000" },
-		{ "dpd-dict-count", "420000" },
+		{ "dpd-decon-count", "870000" },
+		{ "dpd-dict-count", "460000" },
 		{ "dpd-head-count", "90000" },
 		{ "dpd-lookup-enable", "true" },
 		{ "sentence-normalize", "true" },

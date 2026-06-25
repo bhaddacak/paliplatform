@@ -37,7 +37,7 @@
   - The Pali Text Society's Pali-English Dictionary, T. W. Rhys Davids and W. Stede
   - A digital version of The PTS Pali-English Dictionary (proofread 2021) at https://vpnry.github.io/ptsped/
   - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
-  - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pali
+  - New Concise Pali-English Dictionary, compiled by SuttaCentral, updated and corrected from Margaret Cone's Dictionary of Pāli
   - Digital Pāḷi Dictionary (https://digitalpalidictionary.github.io), please check the license at its website
   - A Dictionary of Pāli, Margaret Cone (2001-2021, Pali Text Society), available online at https://gandhari.org/dictionary
 ⊚ Dictionaries from Cologne Digital Sanskrit Lexicon (CDSL) project (https://sanskrit-lexicon.uni-koeln.de), CC-BY-NC-SA 3.0 (mostly):
@@ -58,6 +58,15 @@
 ╭────────────╮
 │ Change log │
 ╰────────────╯
+2026, Jun 25
+⊚ Base version 4.2.0 released
+⊚ URL info file changed
+⊚ DPD database changed (mobile version used)
+⊚ Editor's tools improved
+⊚ Multiple-sized icon files
+⊚ Minor fixes and improvements
+⊚ New user's manual bundled
+
 2026, Apr 14
 ⊚ Base version 4.1.0 released
 ⊚ Complete implementation of Sanskrit tools
@@ -157,9 +166,8 @@
 ╰──────────╯
 ⊚ The author's base portal: https://bhaddacak.github.io
 ⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
-⊚ Pāli Platform 3's page: https://bhaddacak.github.io/platform3
 ⊚ Pāli Platform 4's page: https://bhaddacak.github.io/platform4
-⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
+⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppman
 ⊚ Chaṭṭha Saṅgāyana Tipiṭaka Restructured:
     https://github.com/bhaddacak/cst-kit
     https://bhaddacak.github.io/cstpage

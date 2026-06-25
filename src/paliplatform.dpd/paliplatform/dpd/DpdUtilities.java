@@ -1,7 +1,7 @@
 /*
  * DpdUtilities.java
  *
- * Copyright (C) 2023-2025 J. R. Bhaddacak 
+ * Copyright (C) 2023-2026 J. R. Bhaddacak 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ import com.google.gson.stream.*;
 /** 
  * The utility factory for the DPD module.
  * @author J.R. Bhaddacak
- * @version 3.0
+ * @version 4.2
  * @since 3.0
  */
 final public class DpdUtilities {
@@ -136,7 +136,7 @@ final public class DpdUtilities {
 				  "dhatumanjusa_root,dhatumanjusa_pali,dhatumanjusa_english," +
 				  "dhatumala_root,dhatumala_pali,dhatumala_english," +
 				  "panini_root,panini_sanskrit,panini_english," +
-				  "note,root_matrix" +
+				  "note" +
 				  " FROM dpd_roots;";
 			resultSet = statement.executeQuery(select);
 			while (resultSet.next()) {
@@ -160,7 +160,6 @@ final public class DpdUtilities {
 										resultSet.getString("panini_sanskrit"),
 										resultSet.getString("panini_english") };
 				final String note = resultSet.getString("note");
-				final String matrix = resultSet.getString("root_matrix");
 				final DpdRoot dpdRoot = new DpdRoot(root);
 				dpdRoot.setGroup(grp);
 				dpdRoot.setRootSign(sign);
@@ -172,7 +171,6 @@ final public class DpdUtilities {
 				dpdRoot.setMala(mala);
 				dpdRoot.setPanini(panini);
 				dpdRoot.setNote(note);
-				dpdRoot.setMatrix(matrix);
 				result.add(dpdRoot);
 			}
         } catch (SQLException e) {
@@ -562,7 +560,7 @@ final public class DpdUtilities {
 				  "dhatumanjusa_root,dhatumanjusa_pali,dhatumanjusa_english," +
 				  "dhatumala_root,dhatumala_pali,dhatumala_english," +
 				  "panini_root,panini_sanskrit,panini_english," +
-				  "note,root_matrix" +
+				  "note" +
 				  " FROM dpd_roots LIMIT 1;";
 				final Statement stmt = dpdConn.createStatement();
 				final ResultSet res = stmt.executeQuery(select);

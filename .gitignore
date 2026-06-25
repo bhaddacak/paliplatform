@@ -6,6 +6,6 @@ src/tags
 *.zip
 *.sh
 *.properties
-!pp3urls.properties
-!pp4urls.properties
+!pp?urls.properties
+!pp4??urls.properties
 *.vim

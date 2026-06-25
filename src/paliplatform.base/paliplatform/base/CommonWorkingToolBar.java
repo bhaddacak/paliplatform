@@ -35,11 +35,11 @@ import javafx.application.Platform;
 /** 
  * The common toolbar used in various working components.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.2
  * @since 2.0
  */
 public class CommonWorkingToolBar extends ToolBar {
-	static enum NodeClass { VIEWER, PDICT, SDICT, PLETTER, SLETTER, SREADER, OTHER }
+	static enum NodeClass { VIEWER, PDICT, SDICT, PLETTER, SLETTER, OTHER }
 	private final Node[] nodes;
 	private Utilities.Theme theme;
 	private final Map<String, RadioMenuItem> fontMenuItemsMap = new HashMap<>();
@@ -119,11 +119,7 @@ public class CommonWorkingToolBar extends ToolBar {
 				} else if (winName.endsWith("LetterWin")) {
 					nodeClass = NodeClass.PLETTER;
 				} else {
-					final String parentName = nodes[0].getParent().getClass().getName();
-					if (parentName.endsWith("SentenceReader"))
-						nodeClass = NodeClass.SREADER;
-					else
-						nodeClass = NodeClass.OTHER;
+					nodeClass = NodeClass.OTHER;
 				}
 			}
 		}
@@ -133,8 +129,7 @@ public class CommonWorkingToolBar extends ToolBar {
 				&& nodeClass != NodeClass.PLETTER
 				&& nodeClass != NodeClass.SLETTER
 				&& nodeClass != NodeClass.PDICT
-				&& nodeClass != NodeClass.SDICT
-				&& nodeClass != NodeClass.SREADER) {
+				&& nodeClass != NodeClass.SDICT) {
 			fontSizeChoice.setOnAction(actionEvent -> fontSizeSelected());
 			resetFont(currFontSizePercent);
 		}

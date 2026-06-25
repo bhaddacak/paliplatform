@@ -41,7 +41,7 @@ import javafx.geometry.*;
 /** 
  * Prosody window analyzes prosodic patterns of a selected stanza.
  * @author J.R. Bhaddacak
- * @version 3.2
+ * @version 4.2
  * @since 2.0
  */
 public final class ProsodyWin extends BorderPane {
@@ -351,7 +351,7 @@ public final class ProsodyWin extends BorderPane {
 			// 1st line is the text
 			stanza[i*3] = line;
 			// 2rd line is meter pattern
-			glPatterns[i] = Utilities.computeMeter(line, true);
+			glPatterns[i] = Utilities.computeMeter(line, Utilities.Lang.PALI, true);
 			final StringBuilder rawPattern = new StringBuilder();
 			int ind = 0;
 			for (int j = 0; j < line.length(); j++) {

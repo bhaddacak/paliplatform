@@ -604,7 +604,7 @@ public class TermLister extends BorderPane {
 		final List<SimpleTermFreqProp> result = inputPatt.length() == 0
 												? new ArrayList<>(terms)
 												: terms.stream()
-													.filter(x -> Utilities.computeMeter(x.termProperty().get()).matches(inputPatt))
+													.filter(x -> Utilities.computeMeter(x.termProperty().get(), Utilities.Lang.PALI).matches(inputPatt))
 													.collect(Collectors.toList());
 		return result;
 	}

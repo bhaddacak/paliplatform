@@ -28,15 +28,15 @@ import javafx.application.Platform;
  * This manages URL properties mainly used for downloading materials.
  * This class is a singleton.
  * @author J.R. Bhaddacak
- * @version 4.0
+ * @version 4.2
  * @since 3.0
  */
 public class UrlProperties {
 	public static final UrlProperties INSTANCE = new UrlProperties();
-	public static final String URL_PROPS_FILE = "pp4urls.properties";
+	public static String urlPropsFileName = "";
 	public static final String MAIN_URL = "https://raw.githubusercontent.com/bhaddacak/paliplatform/main/"; // hardcoded
 //~ 	public static final String MAIN_URL = "http://localhost:8000/"; // for test
-	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/dpd-db/releases/download/v0.3.20260103/dpd.db.tar.bz2";
+	private static final String DEF_DPD_DB_URL = "https://github.com/digitalpalidictionary/dpd-db/releases/download/v0.4.20260531/dpd-mobile-db.zip";
 	private static final String DEF_SC_DATA_URL = "https://github.com/suttacentral/bilara-data/archive/refs/heads/published.zip";
 	private static final String DEF_CSTXML_URL = "https://raw.githubusercontent.com/VipassanaTech/tipitaka-xml/main/";
 	private static final String NCPED_URL = "https://raw.githubusercontent.com/suttacentral/sc-data/refs/heads/main/dictionaries/simple/en/pli2en_ncped.json";
@@ -47,10 +47,12 @@ public class UrlProperties {
 	private final SimpleDownloader downloader;
 	
 	private UrlProperties() {
-		urlPropsFile = new File(Utilities.ROOTDIR + URL_PROPS_FILE);
+		final String versionCode = Utilities.getVersionCode();
+		urlPropsFileName = "pp" + versionCode + "urls.properties";
+		urlPropsFile = new File(Utilities.ROOTDIR + urlPropsFileName);
 		urlProps = new Properties();
 		downloader = new SimpleDownloader(
-				MAIN_URL + URL_PROPS_FILE,
+				MAIN_URL + urlPropsFileName,
 				urlPropsFile,
 				res -> load(), // successful
 				res -> {
