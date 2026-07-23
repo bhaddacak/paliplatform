@@ -43,7 +43,7 @@ import javafx.geometry.*;
 /** 
  * The Pāli declension table window.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.3
  * @since 2.0
  */
 public class DeclensionWin extends BorderPane {
@@ -272,7 +272,8 @@ public class DeclensionWin extends BorderPane {
 		toolbarMap.put(Mode.NUMBER, numbToolBox);
 		genderToolBox.setPadding(new Insets(3, 3, 3, 3));
 		genderToolBox.setSpacing(3);
-		init(Mode.PRONOUN, args);
+		final Mode initMode = args == null ? Mode.PRONOUN : Mode.NOUN;
+		init(initMode, args);
 	}
 	
 	public final void init(final Mode mode, final Object[] args) {

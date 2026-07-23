@@ -38,7 +38,7 @@ import javafx.geometry.*;
 /** 
  * The utility factory for the Grammar module.
  * @author J.R. Bhaddacak
- * @version 4.1
+ * @version 4.3
  * @since 3.0
  */
 final public class GrammarUtilities {
@@ -101,7 +101,8 @@ final public class GrammarUtilities {
 							new Image(GrammarUtilities.class.getResourceAsStream("resources/images/table-cells.png")), "Pāli Declension Table");
 				} else {
 					final DeclensionWin declWin = (DeclensionWin)stg.getScene().getRoot();
-					declWin.init(DeclensionWin.Mode.PRONOUN, args);					
+					final DeclensionWin.Mode initMode = args == null ? DeclensionWin.Mode.PRONOUN : DeclensionWin.Mode.NOUN;
+					declWin.init(initMode, args);					
 					Utilities.showExistingWindow(stg);
 				}
 				break;

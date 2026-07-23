@@ -67,7 +67,7 @@ import org.apache.commons.csv.*;
 /** 
  * The main method factory for various uses, including common constants.
  * @author J.R. Bhaddacak
- * @version 4.2
+ * @version 4.3
  * @since 2.0
  */
 final public class Utilities {
@@ -1030,13 +1030,12 @@ final public class Utilities {
 	}
 	
 	public static void copyCSV(final List<String[]> data) {
-		final StringBuilder result = new StringBuilder();
-		for (final String[] row : data) {
-			for (final String text : row) {
-				result.append(text).append(csvDelimiter);
-			}
-			result.append(csvRecordSeparator);
-		}
+		final StringWriter result = new StringWriter();
+		try (final CSVPrinter printer = new CSVPrinter(result, CSVFormat.EXCEL)){
+			printer.printRecords(data);
+		} catch (IOException e) {
+			System.err.println(e);
+		}			
 		copyText(result.toString());
 	}
 	
@@ -1165,23 +1164,23 @@ final public class Utilities {
 		}
 	}
 	
-	public static File saveCSV(final List<String[]> text, final String filename) {
-		return saveCSV(text, filename, mainStage);
+	public static File saveCSV(final List<String[]> data, final String filename) {
+		return saveCSV(data, filename, mainStage);
 	}
 	
-	public static File saveCSV(final List<String[]> text, final String filename, final Window owner) {
+	public static File saveCSV(final List<String[]> data, final String filename, final Window owner) {
 		final File outfile = getOutputFile(filename, OUTPUTPATH, owner);
 		if (outfile != null) {
-			saveCSV(text, outfile);
+			saveCSV(data, outfile);
 		}
 		return outfile;
 	}
 
-	public static void saveCSV(final List<String[]> text, final File file) {
+	public static void saveCSV(final List<String[]> data, final File file) {
 		try (final CSVPrinter printer = new CSVPrinter(new BufferedWriter(
 								new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)),
 								CSVFormat.EXCEL)){
-			printer.printRecords(text);
+			printer.printRecords(data);
 		} catch (IOException e) {
 			System.err.println(e);
 		}			
